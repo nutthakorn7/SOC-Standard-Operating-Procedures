@@ -1,0 +1,76 @@
+site_name: SOC Standard Operating Procedures
+site_description: Vendor-Agnostic SOC SOPs, Playbooks, and Detection Rules.
+site_author: SOC Team
+repo_url: https://github.com/nutthakorn7/SOC-Standard-Operating-Procedures
+edit_uri: edit/main/
+
+theme:
+  name: material
+  palette:
+    # Light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+
+nav:
+  - Home: README.md
+  - Onboarding:
+    - 'Infrastructure Setup': 01_Onboarding/System_Activation.en.md
+    - 'Curriculum': 09_Training_Onboarding/Analyst_Onboarding_Path.en.md
+    - 'Checklist': 09_Training_Onboarding/Training_Checklist.en.md
+  - Operations:
+    - 'Data Governance': 02_Platform_Operations/Database_Management.en.md
+    - 'Deployment': 02_Platform_Operations/Deployment_Procedures.en.md
+    - 'Shift Handoff': 06_Operations_Management/Shift_Handoff.en.md
+    - 'SOC Metrics': 06_Operations_Management/SOC_Metrics.en.md
+  - Incident Response:
+    - 'Framework': 05_Incident_Response/Framework.en.md
+    - 'Playbooks':
+      - 'PB-01 Phishing': 05_Incident_Response/Playbooks/Phishing.en.md
+      - 'PB-02 Ransomware': 05_Incident_Response/Playbooks/Ransomware.en.md
+      - 'PB-03 Malware': 05_Incident_Response/Playbooks/Malware_Infection.en.md
+      - 'PB-04 Brute Force': 05_Incident_Response/Playbooks/Brute_Force.en.md
+      - 'PB-05 Account Compromise': 05_Incident_Response/Playbooks/Account_Compromise.en.md
+      # ... (Other playbooks would be listed here dynamically by mkdocs if folder is used)
+  - Detection Engineering:
+    - 'Lifecycle': 03_User_Guides/Content_Management.en.md
+    - 'Integration': 03_User_Guides/Integration_Hub.en.md
+  - Simulation:
+    - 'Guide': 08_Simulation_Testing/Simulation_Guide.md
+    - 'Atomic Map': 08_Simulation_Testing/Atomic_Test_Map.md
+  - Templates:
+    - 'Incident Report': templates/incident_report.en.md
+    - 'Shift Log': templates/shift_handover.en.md
+    - 'RFC': templates/change_request_rfc.en.md
