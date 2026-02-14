@@ -28,6 +28,13 @@ This repository contains the Standard Operating Procedures (SOPs) for the zcrAI 
 | :--- | :--- | :--- |
 | Common Issues | [Link](04_Troubleshooting/Common_Issues.en.md) | [ลิ้งค์](04_Troubleshooting/Common_Issues.th.md) |
 
+### 05_Incident_Response
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| Framework | [Link](05_Incident_Response/Framework.en.md) | [ลิ้งค์](05_Incident_Response/Framework.th.md) |
+| **Playbook**: Phishing | [Link](05_Incident_Response/Playbooks/Phishing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Phishing.th.md) |
+| **Playbook**: Ransomware | [Link](05_Incident_Response/Playbooks/Ransomware.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Ransomware.th.md) |
+
 ## Contributing / การมีส่วนร่วม
 
 1.  **Consistency**: Ensure all new procedures follow the established Markdown format.
