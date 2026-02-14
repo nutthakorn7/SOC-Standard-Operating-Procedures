@@ -41,6 +41,14 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | **KPIs**: SOC Metrics Standard | [Link](06_Operations_Management/SOC_Metrics.en.md) | [ลิ้งค์](06_Operations_Management/SOC_Metrics.th.md) |
 | **Procedures**: Shift Ops & Handoff | [Link](06_Operations_Management/Shift_Handoff.en.md) | [ลิ้งค์](06_Operations_Management/Shift_Handoff.th.md) |
 
+## 📂 Templates / แบบฟอร์มพร้อมใช้
+
+| Template | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **Incident Report** | [Link](templates/incident_report.en.md) | [ลิ้งค์](templates/incident_report.th.md) |
+| **Shift Handover Log** | [Link](templates/shift_handover.en.md) | [ลิ้งค์](templates/shift_handover.th.md) |
+| **Change Request (RFC)** | [Link](templates/change_request_rfc.en.md) | [ลิ้งค์](templates/change_request_rfc.th.md) |
+
 ## Contributing / การมีส่วนร่วม
 
 1.  **Standardization**: Ensure procedures remain vendor-agnostic where possible.
