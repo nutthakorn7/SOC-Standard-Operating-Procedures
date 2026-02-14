@@ -79,6 +79,17 @@ Validate your SOC's readiness by running simulated attacks mapped to our Playboo
 | **[Atomic_Test_Map.md](08_Simulation_Testing/Atomic_Test_Map.md)** | Mapping of PB-01...PB-20 to MITRE Atomic Red Team tests. |
 | **[Simulation_Guide.md](08_Simulation_Testing/Simulation_Guide.md)** | Guide on how to run Purple Team exercises. |
 
+## 📂 Training & Onboarding / การฝึกอบรม
+
+A structured 4-week curriculum to train new SOC Analysts using this repository.
+
+**Path**: `09_Training_Onboarding/`
+
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **Curriculum** | [Link](09_Training_Onboarding/Analyst_Onboarding_Path.en.md) | [ลิ้งค์](09_Training_Onboarding/Analyst_Onboarding_Path.th.md) |
+| **Checklist** | [Link](09_Training_Onboarding/Training_Checklist.en.md) | [ลิ้งค์](09_Training_Onboarding/Training_Checklist.th.md) |
+
 ### 06_Operations_Management
 | Document | English | ภาษาไทย |
 | :--- | :--- | :--- |
