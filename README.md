@@ -32,8 +32,26 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | Document | English | ภาษาไทย |
 | :--- | :--- | :--- |
 | **Framework**: NIST-based IR | [Link](05_Incident_Response/Framework.en.md) | [ลิ้งค์](05_Incident_Response/Framework.th.md) |
-| **Playbook**: Phishing | [Link](05_Incident_Response/Playbooks/Phishing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Phishing.th.md) |
-| **Playbook**: Ransomware | [Link](05_Incident_Response/Playbooks/Ransomware.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Ransomware.th.md) |
+| **Playbook**: PB-01 Phishing | [Link](05_Incident_Response/Playbooks/Phishing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Phishing.th.md) |
+| **Playbook**: PB-02 Ransomware | [Link](05_Incident_Response/Playbooks/Ransomware.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Ransomware.th.md) |
+| **Playbook**: PB-03 Malware Infection | [Link](05_Incident_Response/Playbooks/Malware_Infection.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Malware_Infection.th.md) |
+| **Playbook**: PB-04 Brute Force | [Link](05_Incident_Response/Playbooks/Brute_Force.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Brute_Force.th.md) |
+| **Playbook**: PB-05 Account Compromise | [Link](05_Incident_Response/Playbooks/Account_Compromise.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Account_Compromise.th.md) |
+| **Playbook**: PB-06 Impossible Travel | [Link](05_Incident_Response/Playbooks/Impossible_Travel.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Impossible_Travel.th.md) |
+| **Playbook**: PB-07 Privilege Escalation | [Link](05_Incident_Response/Playbooks/Privilege_Escalation.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Privilege_Escalation.th.md) |
+| **Playbook**: PB-08 Data Exfiltration | [Link](05_Incident_Response/Playbooks/Data_Exfiltration.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Data_Exfiltration.th.md) |
+| **Playbook**: PB-09 DDoS Attack | [Link](05_Incident_Response/Playbooks/DDoS_Attack.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/DDoS_Attack.th.md) |
+| **Playbook**: PB-10 Web App Attack | [Link](05_Incident_Response/Playbooks/Web_Attack.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Web_Attack.th.md) |
+| **Playbook**: PB-11 Suspicious Script | [Link](05_Incident_Response/Playbooks/Suspicious_Script.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Suspicious_Script.th.md) |
+| **Playbook**: PB-12 Lateral Movement | [Link](05_Incident_Response/Playbooks/Lateral_Movement.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Lateral_Movement.th.md) |
+| **Playbook**: PB-13 C2 Communication | [Link](05_Incident_Response/Playbooks/C2_Communication.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/C2_Communication.th.md) |
+| **Playbook**: PB-14 Insider Threat | [Link](05_Incident_Response/Playbooks/Insider_Threat.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Insider_Threat.th.md) |
+| **Playbook**: PB-15 Rogue Admin | [Link](05_Incident_Response/Playbooks/Rogue_Admin.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Rogue_Admin.th.md) |
+| **Playbook**: PB-16 Cloud IAM Anomaly | [Link](05_Incident_Response/Playbooks/Cloud_IAM.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Cloud_IAM.th.md) |
+| **Playbook**: PB-17 BEC | [Link](05_Incident_Response/Playbooks/BEC.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/BEC.th.md) |
+| **Playbook**: PB-18 Exploit | [Link](05_Incident_Response/Playbooks/Exploit.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Exploit.th.md) |
+| **Playbook**: PB-19 Lost Device | [Link](05_Incident_Response/Playbooks/Lost_Device.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Lost_Device.th.md) |
+| **Playbook**: PB-20 Log Clearing | [Link](05_Incident_Response/Playbooks/Log_Clearing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Log_Clearing.th.md) |
 
 ### 06_Operations_Management
 | Document | English | ภาษาไทย |
