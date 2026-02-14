@@ -68,6 +68,17 @@ I have included standard Sigma rules corresponding to the Top 20 Playbooks to he
 | **Privilege Escalation** | [win_domain_admin_group_add.yml](07_Detection_Rules/win_domain_admin_group_add.yml) |
 | *(And 15 more rules matching the Playbooks)* | |
 
+## 📂 Simulation & Testing (Purple Team)
+
+Validate your SOC's readiness by running simulated attacks mapped to our Playbooks.
+
+**Path**: `08_Simulation_Testing/`
+
+| Document | Description |
+| :--- | :--- |
+| **[Atomic_Test_Map.md](08_Simulation_Testing/Atomic_Test_Map.md)** | Mapping of PB-01...PB-20 to MITRE Atomic Red Team tests. |
+| **[Simulation_Guide.md](08_Simulation_Testing/Simulation_Guide.md)** | Guide on how to run Purple Team exercises. |
+
 ### 06_Operations_Management
 | Document | English | ภาษาไทย |
 | :--- | :--- | :--- |
