@@ -93,8 +93,14 @@ A structured 4-week curriculum to train new SOC Analysts using this repository.
 ### 06_Operations_Management
 | Document | English | ภาษาไทย |
 | :--- | :--- | :--- |
-| **KPIs**: SOC Metrics Standard | [Link](06_Operations_Management/SOC_Metrics.en.md) | [ลิ้งค์](06_Operations_Management/SOC_Metrics.th.md) |
-| **Procedures**: Shift Ops & Handoff | [Link](06_Operations_Management/Shift_Handoff.en.md) | [ลิ้งค์](06_Operations_Management/Shift_Handoff.th.md) |
+| **Shift Handoff** | [Link](06_Operations_Management/Shift_Handoff.en.md) | [ลิ้งค์](06_Operations_Management/Shift_Handoff.th.md) |
+| **SOC KPI Standard** | [Link](06_Operations_Management/SOC_KPI_Standard.en.md) | [ลิ้งค์](06_Operations_Management/SOC_KPI_Standard.th.md) |
+
+## 🛠 Tools / เครื่องมือช่วยงาน
+
+| Tool | Script | Description |
+| :--- | :--- | :--- |
+| **Export Docs** | [export_docs.py](tools/export_docs.py) | Run `python3 tools/export_docs.py` to merge all docs into a single Markdown file (great for PDF export). |
 
 ## 📂 Templates / แบบฟอร์มพร้อมใช้
 
