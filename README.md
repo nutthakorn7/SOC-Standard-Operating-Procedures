@@ -35,6 +35,12 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | **Playbook**: Phishing | [Link](05_Incident_Response/Playbooks/Phishing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Phishing.th.md) |
 | **Playbook**: Ransomware | [Link](05_Incident_Response/Playbooks/Ransomware.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Ransomware.th.md) |
 
+### 06_Operations_Management
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **KPIs**: SOC Metrics Standard | [Link](06_Operations_Management/SOC_Metrics.en.md) | [ลิ้งค์](06_Operations_Management/SOC_Metrics.th.md) |
+| **Procedures**: Shift Ops & Handoff | [Link](06_Operations_Management/Shift_Handoff.en.md) | [ลิ้งค์](06_Operations_Management/Shift_Handoff.th.md) |
+
 ## Contributing / การมีส่วนร่วม
 
 1.  **Standardization**: Ensure procedures remain vendor-agnostic where possible.
