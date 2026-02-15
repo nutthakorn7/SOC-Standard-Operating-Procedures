@@ -22,6 +22,8 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | **Technology Stack Selection** | [Link](01_SOC_Fundamentals/Technology_Stack.en.md) | [ลิ้งค์](01_SOC_Fundamentals/Technology_Stack.th.md) |
 | **Infrastructure Setup** (Hands-on) | [Link](01_SOC_Fundamentals/Infrastructure_Setup.en.md) | [ลิ้งค์](01_SOC_Fundamentals/Infrastructure_Setup.th.md) |
 | **Use Case Prioritization** | [Link](01_SOC_Fundamentals/Use_Case_Prioritization.en.md) | [ลิ้งค์](01_SOC_Fundamentals/Use_Case_Prioritization.th.md) |
+| **Budget & Staffing** | [Link](01_SOC_Fundamentals/Budget_Staffing.en.md) | [ลิ้งค์](01_SOC_Fundamentals/Budget_Staffing.th.md) |
+| **Analyst Training Path** (6-month curriculum) | [Link](01_SOC_Fundamentals/Analyst_Training_Path.en.md) | [ลิ้งค์](01_SOC_Fundamentals/Analyst_Training_Path.th.md) |
 
 ### 01_Onboarding
 | Document | English | ภาษาไทย |
