@@ -72,6 +72,11 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | **Playbook**: PB-23 Cryptomining | [Link](05_Incident_Response/Playbooks/Cryptomining.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Cryptomining.th.md) |
 | **Playbook**: PB-24 DNS Tunneling | [Link](05_Incident_Response/Playbooks/DNS_Tunneling.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/DNS_Tunneling.th.md) |
 | **Playbook**: PB-25 Zero-Day Exploit | [Link](05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md) |
+| **Playbook**: PB-26 MFA Bypass / Token Theft | [Link](05_Incident_Response/Playbooks/MFA_Bypass.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/MFA_Bypass.th.md) |
+| **Playbook**: PB-27 Cloud Storage Exposure | [Link](05_Incident_Response/Playbooks/Cloud_Storage_Exposure.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Cloud_Storage_Exposure.th.md) |
+| **Playbook**: PB-28 Mobile Device Compromise | [Link](05_Incident_Response/Playbooks/Mobile_Compromise.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Mobile_Compromise.th.md) |
+| **Playbook**: PB-29 Shadow IT | [Link](05_Incident_Response/Playbooks/Shadow_IT.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Shadow_IT.th.md) |
+| **Playbook**: PB-30 OT/ICS Incident | [Link](05_Incident_Response/Playbooks/OT_ICS_Incident.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/OT_ICS_Incident.th.md) |
 
 ## 📂 Detection Rules (Sigma)
 

@@ -121,6 +121,11 @@ nav:
       - Cryptomining: 05_Incident_Response/Playbooks/Cryptomining.en.md
       - DNS Tunneling: 05_Incident_Response/Playbooks/DNS_Tunneling.en.md
       - Zero-Day Exploit: 05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md
+      - MFA Bypass: 05_Incident_Response/Playbooks/MFA_Bypass.en.md
+      - Cloud Storage Exposure: 05_Incident_Response/Playbooks/Cloud_Storage_Exposure.en.md
+      - Mobile Compromise: 05_Incident_Response/Playbooks/Mobile_Compromise.en.md
+      - Shadow IT: 05_Incident_Response/Playbooks/Shadow_IT.en.md
+      - OT/ICS Incident: 05_Incident_Response/Playbooks/OT_ICS_Incident.en.md
     - Playbooks (TH):
       - Phishing: 05_Incident_Response/Playbooks/Phishing.th.md
       - Ransomware: 05_Incident_Response/Playbooks/Ransomware.th.md
@@ -150,6 +155,11 @@ nav:
       - Cryptomining: 05_Incident_Response/Playbooks/Cryptomining.th.md
       - DNS Tunneling: 05_Incident_Response/Playbooks/DNS_Tunneling.th.md
       - Zero-Day Exploit: 05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md
+      - MFA Bypass: 05_Incident_Response/Playbooks/MFA_Bypass.th.md
+      - Cloud Storage Exposure: 05_Incident_Response/Playbooks/Cloud_Storage_Exposure.th.md
+      - Mobile Compromise: 05_Incident_Response/Playbooks/Mobile_Compromise.th.md
+      - Shadow IT: 05_Incident_Response/Playbooks/Shadow_IT.th.md
+      - OT/ICS Incident: 05_Incident_Response/Playbooks/OT_ICS_Incident.th.md
   - 📊 Operations:
     - SOC Team Structure: 06_Operations_Management/SOC_Team_Structure.en.md
     - โครงสร้างทีม (TH): 06_Operations_Management/SOC_Team_Structure.th.md
