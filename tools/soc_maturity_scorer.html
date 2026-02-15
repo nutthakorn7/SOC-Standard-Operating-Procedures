@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOC Maturity Scoring Tool</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f1a;--card:#1a1a2e;--accent:#7c3aed;--accent2:#06b6d4;--text:#e2e8f0;--muted:#94a3b8;--border:#2d2d44;--success:#10b981;--warn:#f59e0b;--danger:#ef4444}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:2rem}
+.container{max-width:900px;margin:0 auto}
+h1{text-align:center;font-size:2rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem}
+.subtitle{text-align:center;color:var(--muted);margin-bottom:2rem;font-size:.95rem}
+.domain{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem;transition:border-color .3s}
+.domain:hover{border-color:var(--accent)}
+.domain-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;cursor:pointer}
+.domain-icon{font-size:1.5rem}
+.domain-title{font-size:1.1rem;font-weight:600}
+.domain-score{margin-left:auto;font-size:.85rem;color:var(--muted);min-width:60px;text-align:right}
+.questions{display:grid;gap:.75rem}
+.q{display:flex;align-items:flex-start;gap:.75rem;padding:.6rem .75rem;border-radius:8px;background:rgba(255,255,255,.03);transition:background .2s}
+.q:hover{background:rgba(124,58,237,.08)}
+.q label{flex:1;font-size:.9rem;line-height:1.4;cursor:pointer;color:var(--text)}
+.q input[type=checkbox]{width:18px;height:18px;margin-top:3px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
+.progress-bar{width:100%;height:6px;background:var(--border);border-radius:3px;margin-top:.75rem;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .4s ease}
+#results{display:none;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-top:2rem;text-align:center}
+.score-circle{width:180px;height:180px;border-radius:50%;margin:1.5rem auto;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.score-circle::before{content:'';position:absolute;inset:-4px;border-radius:50%;padding:4px;background:conic-gradient(var(--accent) calc(var(--pct)*1%),var(--border) 0);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.score-number{font-size:3rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.score-label{font-size:.85rem;color:var(--muted)}
+.level-badge{display:inline-block;padding:.5rem 1.5rem;border-radius:999px;font-weight:600;font-size:1.1rem;margin:1rem 0}
+.level-1{background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
+.level-2{background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3)}
+.level-3{background:rgba(6,182,212,.15);color:#06b6d4;border:1px solid rgba(6,182,212,.3)}
+.level-4{background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.3)}
+.level-5{background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.3)}
+.breakdown{text-align:left;margin-top:1.5rem}
+.breakdown h3{font-size:1rem;margin-bottom:.75rem;color:var(--text)}
+.bd-row{display:flex;align-items:center;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.bd-row:last-child{border:none}
+.bd-icon{font-size:1.1rem;flex-shrink:0}
+.bd-name{flex:1;font-size:.9rem}
+.bd-bar{width:120px;height:8px;background:var(--border);border-radius:4px;overflow:hidden;flex-shrink:0}
+.bd-fill{height:100%;border-radius:4px;transition:width .5s ease}
+.bd-pct{font-size:.85rem;color:var(--muted);min-width:36px;text-align:right}
+.recs{text-align:left;margin-top:1.5rem;padding:1rem;background:rgba(124,58,237,.06);border-radius:10px;border:1px solid rgba(124,58,237,.15)}
+.recs h3{font-size:1rem;margin-bottom:.75rem;color:var(--accent2)}
+.recs ul{list-style:none;padding:0}
+.recs li{padding:.35rem 0;font-size:.9rem;color:var(--text)}
+.recs li::before{content:'→ ';color:var(--accent)}
+.actions{display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+button{padding:.75rem 2rem;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;transition:transform .15s,opacity .15s}
+button:hover{transform:translateY(-1px)}
+button:active{transform:translateY(0)}
+#calcBtn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+#resetBtn{background:var(--border);color:var(--text)}
+#exportBtn{background:rgba(16,185,129,.15);color:var(--success);border:1px solid rgba(16,185,129,.3)}
+.lang-toggle{text-align:center;margin-bottom:1.5rem}
+.lang-toggle button{padding:.4rem 1rem;font-size:.85rem;background:var(--card);color:var(--muted);border:1px solid var(--border);margin:0 .25rem;border-radius:6px}
+.lang-toggle button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+@media(max-width:600px){body{padding:1rem}.q label{font-size:.85rem}.bd-bar{width:80px}.actions{flex-direction:column}button{width:100%}}
+</style>
+</head>
+<body>
+<div class="container">
+<h1 id="mainTitle">🛡️ SOC Maturity Scoring Tool</h1>
+<p class="subtitle" id="mainSub">Self-assessment based on SOC-CMM & NIST CSF</p>
+<div class="lang-toggle"><button class="active" onclick="setLang('en')">English</button><button onclick="setLang('th')">ภาษาไทย</button></div>
+<div id="domains"></div>
+<div class="actions"><button id="calcBtn" onclick="calculate()">Calculate Score</button><button id="resetBtn" onclick="resetAll()">Reset</button></div>
+<div id="results">
+<h2 id="resTitle">Your SOC Maturity Score</h2>
+<div class="score-circle" id="scoreCircle"><span class="score-number" id="scoreNum">0</span><span class="score-label" id="scorePct">0%</span></div>
+<div class="level-badge" id="levelBadge">Level 1</div>
+<p id="levelDesc" style="color:var(--muted);margin:.5rem 0;font-size:.95rem"></p>
+<div class="breakdown"><h3 id="bdTitle">Score Breakdown</h3><div id="bdRows"></div></div>
+<div class="recs"><h3 id="recTitle">🎯 Top Recommendations</h3><ul id="recList"></ul></div>
+<div class="actions"><button id="exportBtn" onclick="exportReport()">📄 Export Report</button></div>
+</div>
+</div>
+<script>
+const DATA={en:{title:"🛡️ SOC Maturity Scoring Tool",sub:"Self-assessment based on SOC-CMM & NIST CSF",calc:"Calculate Score",reset:"Reset",resTitle:"Your SOC Maturity Score",bdTitle:"Score Breakdown",recTitle:"🎯 Top Recommendations",exportTxt:"📄 Export Report",
+domains:[
+{icon:"👥",name:"People & Organization",questions:["Dedicated SOC team exists (not shared IT duties)","Defined roles: Tier 1 Analyst, Tier 2 Investigator, Tier 3 Threat Hunter","SOC Manager / Lead appointed","24/7 or extended shift coverage","Documented escalation matrix","Regular training & certification program (e.g., SANS, BTL, CCD)","Analyst burnout prevention measures (rotation, mental health)","Tabletop exercises conducted at least quarterly"]},
+{icon:"📋",name:"Process & Procedures",questions:["Documented Incident Response plan (NIST/SANS based)","At least 10 playbooks covering common threats","Severity classification matrix defined","SLA targets defined (MTTD, MTTR, MTTA)","Change management process for detection rules","Post-incident review / lessons learned conducted","Threat intelligence integrated into detection workflow","Evidence handling and chain of custody procedures"]},
+{icon:"🔧",name:"Technology & Tools",questions:["SIEM deployed and collecting logs from critical sources","EDR deployed on all endpoints","SOAR / automation platform in use","Threat Intelligence Platform (TIP) integrated","Vulnerability scanner running regularly","Network monitoring (NDR/NTA) deployed","Email security gateway with sandbox","Log retention meets regulatory requirements (≥90 days)"]},
+{icon:"📊",name:"Detection & Monitoring",questions:["Detection rules mapped to MITRE ATT&CK","Custom detection rules developed (not just vendor defaults)","False positive tuning process in place","Coverage across all MITRE ATT&CK tactics","Alert triage SOP documented","Use case library maintained and reviewed","Sigma rules or equivalent detection-as-code","Honeypots or deception technology deployed"]},
+{icon:"🚨",name:"Incident Response",questions:["IR team can be assembled within 30 minutes","Forensic toolkit available (disk imaging, memory capture)","Containment actions can be executed within 1 hour","Communication plan for stakeholders during incidents","Legal and compliance team engagement process","External IR retainer contract in place","Automated containment capabilities (SOAR-driven)","Regulatory notification process documented (PDPA/GDPR)"]},
+{icon:"📈",name:"Metrics & Improvement",questions:["MTTD tracked and reported monthly","MTTR tracked and reported monthly","SOC dashboard visible to management","Quarterly SOC maturity assessment conducted","KPIs reviewed and targets adjusted","Benchmark against industry peers","Continuous improvement roadmap maintained","Executive reporting with business context"]},
+{icon:"🌐",name:"Threat Intelligence",questions:["Subscribed to at least 2 threat intel feeds","IOC feeds integrated into SIEM/EDR automatically","Threat reports reviewed and actionable items created","CTI team or function exists","TTP-based hunting conducted regularly","Industry ISAC membership active","Threat landscape briefings provided to leadership","Dark web monitoring in place"]}
+],
+levels:["Level 1 — Initial: Ad-hoc, reactive SOC with minimal processes","Level 2 — Managed: Basic processes defined but inconsistent","Level 3 — Defined: Standardized processes, proactive monitoring","Level 4 — Measured: Metrics-driven with continuous improvement","Level 5 — Optimizing: Industry-leading, fully automated & adaptive"],
+recs:{0:"Establish a dedicated SOC team with clear roles",1:"Document incident response procedures and create playbooks",2:"Deploy and integrate core security tools (SIEM + EDR)",3:"Build detection rules mapped to MITRE ATT&CK",4:"Set up formal incident response capability with forensics",5:"Implement SOC metrics dashboard and KPI tracking",6:"Integrate threat intelligence into detection and hunting"}},
+th:{title:"🛡️ เครื่องมือประเมินความพร้อม SOC",sub:"ประเมินตนเองตามแนวทาง SOC-CMM & NIST CSF",calc:"คำนวณคะแนน",reset:"รีเซ็ต",resTitle:"คะแนนความพร้อม SOC ของคุณ",bdTitle:"คะแนนแยกตามหมวด",recTitle:"🎯 คำแนะนำสำคัญ",exportTxt:"📄 ส่งออกรายงาน",
+domains:[
+{icon:"👥",name:"บุคลากรและองค์กร",questions:["มีทีม SOC เฉพาะ (ไม่ใช่ IT ที่ทำหลายหน้าที่)","กำหนดบทบาทชัดเจน: Tier 1, Tier 2, Tier 3","มี SOC Manager / หัวหน้าทีม","ครอบคลุม 24/7 หรือกะขยาย","มีตาราง Escalation ที่จัดทำเป็นเอกสาร","มีโปรแกรมฝึกอบรมและใบรับรองสม่ำเสมอ","มีมาตรการป้องกัน Burnout ของ Analyst","จัด Tabletop Exercise อย่างน้อยทุกไตรมาส"]},
+{icon:"📋",name:"กระบวนการและขั้นตอน",questions:["มีแผน Incident Response เป็นเอกสาร (NIST/SANS)","มี Playbook อย่างน้อย 10 ชุดสำหรับภัยคุกคามทั่วไป","กำหนดเกณฑ์จำแนกความรุนแรง (Severity Matrix)","กำหนดเป้า SLA (MTTD, MTTR, MTTA)","มีกระบวนการ Change Management สำหรับ Detection Rule","ทำ Post-Incident Review / Lessons Learned","ผสาน Threat Intelligence เข้ากับกระบวนการตรวจจับ","มีขั้นตอนจัดการหลักฐานและ Chain of Custody"]},
+{icon:"🔧",name:"เทคโนโลยีและเครื่องมือ",questions:["ติดตั้ง SIEM และเก็บ Log จากแหล่งสำคัญ","ติดตั้ง EDR บนทุก Endpoint","ใช้ SOAR / แพลตฟอร์มอัตโนมัติ","ผสาน Threat Intelligence Platform (TIP)","รัน Vulnerability Scanner สม่ำเสมอ","ติดตั้ง Network Monitoring (NDR/NTA)","มี Email Security Gateway พร้อม Sandbox","เก็บ Log ตามข้อกำหนดกฎหมาย (≥90 วัน)"]},
+{icon:"📊",name:"การตรวจจับและเฝ้าระวัง",questions:["Detection Rule map กับ MITRE ATT&CK","พัฒนา Custom Detection Rule (ไม่ใช่แค่ค่าเริ่มต้นจาก Vendor)","มีกระบวนการปรับ False Positive","ครอบคลุมทุก Tactic ของ MITRE ATT&CK","จัดทำ SOP สำหรับ Alert Triage","ดูแลและทบทวน Use Case Library","ใช้ Sigma Rule หรือ Detection-as-Code","ติดตั้ง Honeypot หรือ Deception Technology"]},
+{icon:"🚨",name:"การตอบสนองต่อเหตุการณ์",questions:["ระดมทีม IR ได้ภายใน 30 นาที","มีเครื่องมือ Forensic พร้อมใช้ (Disk Image, Memory Capture)","ดำเนินการ Contain ได้ภายใน 1 ชั่วโมง","มีแผนสื่อสารกับผู้มีส่วนได้ส่วนเสียระหว่างเหตุการณ์","มีกระบวนการประสานงานทีมกฎหมายและ Compliance","มีสัญญา External IR Retainer","มีความสามารถ Containment อัตโนมัติ (SOAR)","จัดทำกระบวนการแจ้งหน่วยงานกำกับ (PDPA/GDPR)"]},
+{icon:"📈",name:"ตัวชี้วัดและการปรับปรุง",questions:["ติดตาม MTTD และรายงานรายเดือน","ติดตาม MTTR และรายงานรายเดือน","มี SOC Dashboard ให้ผู้บริหารเห็น","ทำ SOC Maturity Assessment ทุกไตรมาส","ทบทวน KPI และปรับเป้าหมาย","เปรียบเทียบกับองค์กรในอุตสาหกรรม (Benchmark)","มี Continuous Improvement Roadmap","รายงานผู้บริหารพร้อมบริบททางธุรกิจ"]},
+{icon:"🌐",name:"ข่าวกรองภัยคุกคาม",questions:["สมัคร Threat Intel Feed อย่างน้อย 2 แหล่ง","IOC Feed ผสานเข้า SIEM/EDR อัตโนมัติ","ทบทวน Threat Report และสร้าง Action Item","มีทีมหรือฟังก์ชัน CTI","ทำ TTP-based Hunting สม่ำเสมอ","เป็นสมาชิก ISAC ในอุตสาหกรรม","บรรยาย Threat Landscape ให้ผู้บริหาร","มีการ Monitor Dark Web"]}
+],
+levels:["ระดับ 1 — เริ่มต้น: SOC แบบ Ad-hoc ตั้งรับ กระบวนการน้อย","ระดับ 2 — จัดการ: กำหนดกระบวนการพื้นฐานแต่ยังไม่สม่ำเสมอ","ระดับ 3 — กำหนดมาตรฐาน: กระบวนการมาตรฐาน เฝ้าระวังเชิงรุก","ระดับ 4 — วัดผล: ขับเคลื่อนด้วยตัวชี้วัด ปรับปรุงต่อเนื่อง","ระดับ 5 — เพิ่มประสิทธิภาพ: ระดับชั้นนำ อัตโนมัติเต็มรูปแบบ"],
+recs:{0:"จัดตั้งทีม SOC เฉพาะพร้อมบทบาทที่ชัดเจน",1:"จัดทำเอกสาร IR Procedures และสร้าง Playbook",2:"ติดตั้งและผสานเครื่องมือความปลอดภัยหลัก (SIEM + EDR)",3:"สร้าง Detection Rule ที่ map กับ MITRE ATT&CK",4:"สร้างความสามารถ IR อย่างเป็นทางการพร้อม Forensic",5:"สร้าง SOC Metrics Dashboard และติดตาม KPI",6:"ผสาน Threat Intelligence เข้ากับการตรวจจับและ Hunting"}}};
+let lang='en';
+function setLang(l){lang=l;document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.lang-toggle button')[l==='en'?0:1].classList.add('active');render();document.getElementById('results').style.display='none'}
+function render(){const d=DATA[lang];document.getElementById('mainTitle').textContent=d.title;document.getElementById('mainSub').textContent=d.sub;document.getElementById('calcBtn').textContent=d.calc;document.getElementById('resetBtn').textContent=d.reset;
+const c=document.getElementById('domains');c.innerHTML='';
+d.domains.forEach((dom,di)=>{const div=document.createElement('div');div.className='domain';div.innerHTML=`<div class="domain-header"><span class="domain-icon">${dom.icon}</span><span class="domain-title">${dom.name}</span><span class="domain-score" id="ds${di}">0/${dom.questions.length}</span></div><div class="questions">${dom.questions.map((q,qi)=>`<div class="q"><input type="checkbox" id="q${di}_${qi}" onchange="updateDomain(${di})"><label for="q${di}_${qi}">${q}</label></div>`).join('')}</div><div class="progress-bar"><div class="progress-fill" id="pf${di}" style="width:0%"></div></div>`;c.appendChild(div)})}
+function updateDomain(di){const d=DATA[lang].domains[di];let checked=0;d.questions.forEach((_,qi)=>{if(document.getElementById(`q${di}_${qi}`).checked)checked++});document.getElementById(`ds${di}`).textContent=`${checked}/${d.questions.length}`;document.getElementById(`pf${di}`).style.width=`${(checked/d.questions.length)*100}%`}
+function calculate(){const d=DATA[lang];let total=0,max=0;const scores=[];
+d.domains.forEach((dom,di)=>{let checked=0;dom.questions.forEach((_,qi)=>{if(document.getElementById(`q${di}_${qi}`).checked)checked++});scores.push({name:dom.name,icon:dom.icon,score:checked,max:dom.questions.length,pct:Math.round((checked/dom.questions.length)*100)});total+=checked;max+=dom.questions.length});
+const pct=Math.round((total/max)*100);const lvl=pct>=90?5:pct>=70?4:pct>=50?3:pct>=25?2:1;
+document.getElementById('results').style.display='block';document.getElementById('resTitle').textContent=d.resTitle;
+const circle=document.getElementById('scoreCircle');circle.style.setProperty('--pct',pct);
+document.getElementById('scoreNum').textContent=`${total}/${max}`;document.getElementById('scorePct').textContent=`${pct}%`;
+const badge=document.getElementById('levelBadge');badge.className=`level-badge level-${lvl}`;badge.textContent=d.levels[lvl-1].split(':')[0];document.getElementById('levelDesc').textContent=d.levels[lvl-1].split(':')[1]||'';
+document.getElementById('bdTitle').textContent=d.bdTitle;
+const bdRows=document.getElementById('bdRows');bdRows.innerHTML='';
+scores.forEach(s=>{const color=s.pct>=75?'var(--success)':s.pct>=50?'var(--accent2)':s.pct>=25?'var(--warn)':'var(--danger)';bdRows.innerHTML+=`<div class="bd-row"><span class="bd-icon">${s.icon}</span><span class="bd-name">${s.name}</span><div class="bd-bar"><div class="bd-fill" style="width:${s.pct}%;background:${color}"></div></div><span class="bd-pct">${s.pct}%</span></div>`});
+document.getElementById('recTitle').textContent=d.recTitle;
+const recList=document.getElementById('recList');recList.innerHTML='';
+scores.filter(s=>s.pct<75).sort((a,b)=>a.pct-b.pct).slice(0,3).forEach((_,i)=>{const weakIdx=scores.indexOf(scores.filter(s=>s.pct<75).sort((a,b)=>a.pct-b.pct)[i]);if(d.recs[weakIdx])recList.innerHTML+=`<li>${d.recs[weakIdx]}</li>`});
+if(recList.innerHTML==='')recList.innerHTML=`<li>${lang==='en'?'Excellent! Maintain current practices and focus on continuous improvement.':'ยอดเยี่ยม! รักษาแนวปฏิบัติและมุ่งเน้นการปรับปรุงต่อเนื่อง'}</li>`;
+document.getElementById('exportBtn').textContent=d.exportTxt;
+document.getElementById('results').scrollIntoView({behavior:'smooth'})}
+function resetAll(){document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);DATA[lang].domains.forEach((_,di)=>updateDomain(di));document.getElementById('results').style.display='none';window.scrollTo({top:0,behavior:'smooth'})}
+function exportReport(){const d=DATA[lang];let total=0,max=0;const lines=[lang==='en'?'SOC MATURITY ASSESSMENT REPORT':'รายงานประเมินความพร้อม SOC',`Date: ${new Date().toISOString().split('T')[0]}`,'',''];
+d.domains.forEach((dom,di)=>{let checked=0;const items=[];dom.questions.forEach((q,qi)=>{const c=document.getElementById(`q${di}_${qi}`).checked;if(c)checked++;items.push(`  ${c?'[x]':'[ ]'} ${q}`)});total+=checked;max+=dom.questions.length;lines.push(`${dom.icon} ${dom.name}: ${checked}/${dom.questions.length} (${Math.round(checked/dom.questions.length*100)}%)`,...items,'')});
+const pct=Math.round(total/max*100);const lvl=pct>=90?5:pct>=70?4:pct>=50?3:pct>=25?2:1;
+lines.unshift('',`TOTAL SCORE: ${total}/${max} (${pct}%)`,d.levels[lvl-1],'');
+const blob=new Blob([lines.join('\n')],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`SOC_Maturity_Report_${new Date().toISOString().split('T')[0]}.txt`;a.click()}
+render();
+</script>
+</body>
+</html>
