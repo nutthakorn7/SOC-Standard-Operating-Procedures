@@ -61,6 +61,11 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | **Playbook**: PB-18 Exploit | [Link](05_Incident_Response/Playbooks/Exploit.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Exploit.th.md) |
 | **Playbook**: PB-19 Lost Device | [Link](05_Incident_Response/Playbooks/Lost_Device.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Lost_Device.th.md) |
 | **Playbook**: PB-20 Log Clearing | [Link](05_Incident_Response/Playbooks/Log_Clearing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Log_Clearing.th.md) |
+| **Playbook**: PB-21 Supply Chain Attack | [Link](05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md) |
+| **Playbook**: PB-22 API Abuse | [Link](05_Incident_Response/Playbooks/API_Abuse.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/API_Abuse.th.md) |
+| **Playbook**: PB-23 Cryptomining | [Link](05_Incident_Response/Playbooks/Cryptomining.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Cryptomining.th.md) |
+| **Playbook**: PB-24 DNS Tunneling | [Link](05_Incident_Response/Playbooks/DNS_Tunneling.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/DNS_Tunneling.th.md) |
+| **Playbook**: PB-25 Zero-Day Exploit | [Link](05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md) |
 
 ## 📂 Detection Rules (Sigma)
 

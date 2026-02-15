@@ -2304,6 +2304,157 @@ Indicators of Compromise (IoCs) ทุกตัวต้องผ่านกร
 
 ---
 
+## File: docs/README.md
+
+# SOC Standard Operating Procedures
+
+![SOC Hero](assets/soc_header.png)
+
+This repository contains **Standard Operating Procedures (SOPs)** for a modern Security Operations Center (SOC). These documents are designed to be vendor-agnostic and follow industry best practices (NIST, MITRE ATT&CK).
+
+เอกสารนี้รวบรวม **ระเบียบปฏิบัติมาตรฐาน (SOPs)** สำหรับศูนย์ปฏิบัติการความปลอดภัย (SOC) ออกแบบมาให้เป็นกลางทางเทคโนโลยีและปฏิบัติตามมาตรฐานอุตสาหกรรม
+
+## Directory Structure & Documents
+
+### 🚀 00_Getting_Started (New to SOC? Start Here!)
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **SOC 101 — What is a SOC?** | [Link](00_Getting_Started/SOC_101.en.md) | [ลิ้งค์](00_Getting_Started/SOC_101.th.md) |
+| **Quickstart Guide** | [Link](00_Getting_Started/Quickstart_Guide.en.md) | [ลิ้งค์](00_Getting_Started/Quickstart_Guide.th.md) |
+| **Glossary of Terms** | [Link](00_Getting_Started/Glossary.en.md) | [ลิ้งค์](00_Getting_Started/Glossary.th.md) |
+
+### 01_Onboarding
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **Setup**: SOC Infrastructure Setup | [Link](01_Onboarding/System_Activation.en.md) | [ลิ้งค์](01_Onboarding/System_Activation.th.md) |
+
+### 02_Platform_Operations
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| Data Governance & Retention | [Link](02_Platform_Operations/Database_Management.en.md) | [ลิ้งค์](02_Platform_Operations/Database_Management.th.md) |
+| Change Management & Deployment | [Link](02_Platform_Operations/Deployment_Procedures.en.md) | [ลิ้งค์](02_Platform_Operations/Deployment_Procedures.th.md) |
+
+### 03_User_Guides
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| Detection Engineering Lifecycle | [Link](03_User_Guides/Content_Management.en.md) | [ลิ้งค์](03_User_Guides/Content_Management.th.md) |
+| Tool Integration Strategy | [Link](03_User_Guides/Integration_Hub.en.md) | [ลิ้งค์](03_User_Guides/Integration_Hub.th.md) |
+
+### 04_Troubleshooting
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| Standard Methodology | [Link](04_Troubleshooting/Common_Issues.en.md) | [ลิ้งค์](04_Troubleshooting/Common_Issues.th.md) |
+
+### 05_Incident_Response
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **Framework**: NIST-based IR | [Link](05_Incident_Response/Framework.en.md) | [ลิ้งค์](05_Incident_Response/Framework.th.md) |
+| **Playbook**: PB-01 Phishing | [Link](05_Incident_Response/Playbooks/Phishing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Phishing.th.md) |
+| **Playbook**: PB-02 Ransomware | [Link](05_Incident_Response/Playbooks/Ransomware.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Ransomware.th.md) |
+| **Playbook**: PB-03 Malware Infection | [Link](05_Incident_Response/Playbooks/Malware_Infection.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Malware_Infection.th.md) |
+| **Playbook**: PB-04 Brute Force | [Link](05_Incident_Response/Playbooks/Brute_Force.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Brute_Force.th.md) |
+| **Playbook**: PB-05 Account Compromise | [Link](05_Incident_Response/Playbooks/Account_Compromise.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Account_Compromise.th.md) |
+| **Playbook**: PB-06 Impossible Travel | [Link](05_Incident_Response/Playbooks/Impossible_Travel.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Impossible_Travel.th.md) |
+| **Playbook**: PB-07 Privilege Escalation | [Link](05_Incident_Response/Playbooks/Privilege_Escalation.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Privilege_Escalation.th.md) |
+| **Playbook**: PB-08 Data Exfiltration | [Link](05_Incident_Response/Playbooks/Data_Exfiltration.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Data_Exfiltration.th.md) |
+| **Playbook**: PB-09 DDoS Attack | [Link](05_Incident_Response/Playbooks/DDoS_Attack.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/DDoS_Attack.th.md) |
+| **Playbook**: PB-10 Web App Attack | [Link](05_Incident_Response/Playbooks/Web_Attack.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Web_Attack.th.md) |
+| **Playbook**: PB-11 Suspicious Script | [Link](05_Incident_Response/Playbooks/Suspicious_Script.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Suspicious_Script.th.md) |
+| **Playbook**: PB-12 Lateral Movement | [Link](05_Incident_Response/Playbooks/Lateral_Movement.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Lateral_Movement.th.md) |
+| **Playbook**: PB-13 C2 Communication | [Link](05_Incident_Response/Playbooks/C2_Communication.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/C2_Communication.th.md) |
+| **Playbook**: PB-14 Insider Threat | [Link](05_Incident_Response/Playbooks/Insider_Threat.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Insider_Threat.th.md) |
+| **Playbook**: PB-15 Rogue Admin | [Link](05_Incident_Response/Playbooks/Rogue_Admin.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Rogue_Admin.th.md) |
+| **Playbook**: PB-16 Cloud IAM Anomaly | [Link](05_Incident_Response/Playbooks/Cloud_IAM.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Cloud_IAM.th.md) |
+| **Playbook**: PB-17 BEC | [Link](05_Incident_Response/Playbooks/BEC.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/BEC.th.md) |
+| **Playbook**: PB-18 Exploit | [Link](05_Incident_Response/Playbooks/Exploit.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Exploit.th.md) |
+| **Playbook**: PB-19 Lost Device | [Link](05_Incident_Response/Playbooks/Lost_Device.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Lost_Device.th.md) |
+| **Playbook**: PB-20 Log Clearing | [Link](05_Incident_Response/Playbooks/Log_Clearing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Log_Clearing.th.md) |
+| **Playbook**: PB-21 Supply Chain Attack | [Link](05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md) |
+| **Playbook**: PB-22 API Abuse | [Link](05_Incident_Response/Playbooks/API_Abuse.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/API_Abuse.th.md) |
+| **Playbook**: PB-23 Cryptomining | [Link](05_Incident_Response/Playbooks/Cryptomining.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Cryptomining.th.md) |
+| **Playbook**: PB-24 DNS Tunneling | [Link](05_Incident_Response/Playbooks/DNS_Tunneling.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/DNS_Tunneling.th.md) |
+| **Playbook**: PB-25 Zero-Day Exploit | [Link](05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md) |
+
+## 📂 Detection Rules (Sigma)
+
+I have included standard Sigma rules corresponding to the Top 20 Playbooks to help you get started with detection.
+
+**Path**: `07_Detection_Rules/`
+
+| Playbook | Detection Rule |
+| :--- | :--- |
+| **Phishing** | [proc_office_spawn_powershell.yml](07_Detection_Rules/proc_office_spawn_powershell.yml) |
+| **Ransomware** | [file_bulk_renaming_ransomware.yml](07_Detection_Rules/file_bulk_renaming_ransomware.yml) |
+| **Malware** | [proc_temp_folder_execution.yml](07_Detection_Rules/proc_temp_folder_execution.yml) |
+| **Brute Force** | [win_multiple_failed_logins.yml](07_Detection_Rules/win_multiple_failed_logins.yml) |
+| **Privilege Escalation** | [win_domain_admin_group_add.yml](07_Detection_Rules/win_domain_admin_group_add.yml) |
+| *(And 15 more rules matching the Playbooks)* | |
+
+## 📂 Simulation & Testing (Purple Team)
+
+Validate your SOC's readiness by running simulated attacks mapped to our Playbooks.
+
+**Path**: `08_Simulation_Testing/`
+
+| Document | Description |
+| :--- | :--- |
+| **[Atomic_Test_Map.md](08_Simulation_Testing/Atomic_Test_Map.md)** | Mapping of PB-01...PB-20 to MITRE Atomic Red Team tests. |
+| **[Simulation_Guide.md](08_Simulation_Testing/Simulation_Guide.md)** | Guide on how to run Purple Team exercises. |
+
+## 📂 Training & Onboarding / การฝึกอบรม
+
+A structured 4-week curriculum to train new SOC Analysts using this repository.
+
+**Path**: `09_Training_Onboarding/`
+
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **Curriculum** | [Link](09_Training_Onboarding/Analyst_Onboarding_Path.en.md) | [ลิ้งค์](09_Training_Onboarding/Analyst_Onboarding_Path.th.md) |
+| **Checklist** | [Link](09_Training_Onboarding/Training_Checklist.en.md) | [ลิ้งค์](09_Training_Onboarding/Training_Checklist.th.md) |
+
+### 06_Operations_Management
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **SOC Team Structure** | [Link](06_Operations_Management/SOC_Team_Structure.en.md) | [ลิ้งค์](06_Operations_Management/SOC_Team_Structure.th.md) |
+| **Shift Handoff** | [Link](06_Operations_Management/Shift_Handoff.en.md) | [ลิ้งค์](06_Operations_Management/Shift_Handoff.th.md) |
+| **SOC KPI Standard** | [Link](06_Operations_Management/SOC_Metrics.en.md) | [ลิ้งค์](06_Operations_Management/SOC_Metrics.th.md) |
+
+
+## 🛠 Tools / เครื่องมือช่วยงาน
+
+| Tool | Script | Description |
+| :--- | :--- | :--- |
+| **Export Docs** | [export_docs.py](tools/export_docs.py) | Run `python3 tools/export_docs.py` to merge all docs into a single Markdown file (great for PDF export). |
+
+## 📂 Templates / แบบฟอร์มพร้อมใช้
+
+| Template | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **Incident Report** | [Link](templates/incident_report.en.md) | [ลิ้งค์](templates/incident_report.th.md) |
+| **Shift Handover Log** | [Link](templates/shift_handover.en.md) | [ลิ้งค์](templates/shift_handover.th.md) |
+| **Change Request (RFC)** | [Link](templates/change_request_rfc.en.md) | [ลิ้งค์](templates/change_request_rfc.th.md) |
+
+## 📚 Full Manual / คู่มือฉบับเต็ม
+For offline reading or printing, download the consolidated manual:
+-   **[SOC_Manual_Consolidated.md](SOC_Manual_Consolidated.md)** (All 100+ pages in one file)
+
+## Contributing / การมีส่วนร่วม
+
+1.  **Standardization**: Ensure procedures remain vendor-agnostic where possible.
+2.  **Bilingual**: Maintain both English and Thai versions.
+3.  **Review**: Changes should be reviewed by SOC Managers or Lead Engineers.
+
+---
+
+<p align="center">
+  <b>Built with 🛡️ by</b><br>
+  <a href="https://cyberdefense.co.th"><b>cyberdefense.co.th</b></a><br>
+  Line OA: <code>@cyberdefense</code>
+</p>
+
+
+---
+
 ## File: 03_User_Guides/Content_Management.en.md
 
 # Detection Engineering Lifecycle
@@ -2633,6 +2784,126 @@ graph LR
 -   [MITRE ATT&CK](https://attack.mitre.org/)
 
 -   [ISO/IEC 27035 (Information Security Incident Management)](https://www.iso.org/standard/60803.html)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/API_Abuse.en.md
+
+# Playbook: API Abuse Response
+
+**Severity**: High | **Category**: Application Security
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: Abnormal API Activity] --> Type{Type of Abuse}
+    Type --> |Rate Abuse| Rate[Excessive Request Volume]
+    Type --> |Auth Bypass| Auth[Unauthorized Endpoint Access]
+    Type --> |Data Scraping| Scrape[Bulk Data Extraction]
+    Rate --> Analyze[Analyze Source IP / API Key / User]
+    Auth --> Analyze
+    Scrape --> Analyze
+    Analyze --> |Malicious| Confirm[Confirm API Abuse]
+    Analyze --> |Legitimate| FP[False Positive — Tune Rule]
+    Confirm --> Contain[Start Containment]
+```
+
+-   **Identify the Source**: Determine the API key, OAuth token, IP address, or user account generating the abnormal traffic.
+-   **Request Analysis**: Review API logs for unusual patterns — excessive calls, access to unauthorized endpoints, abnormal query parameters, bulk data retrieval.
+-   **Check Authentication**: Verify whether the requests use valid credentials or exploit authentication weaknesses (broken auth, BOLA/IDOR).
+-   **Business Context**: Confirm with the API owner whether the usage pattern is expected (e.g., a partner integration ramping up).
+
+## 2. Containment
+-   **Rate Limit**: Apply aggressive rate limiting to the offending API key/IP.
+-   **Revoke Credentials**: Disable the compromised API key or OAuth token immediately.
+-   **IP Block**: Add the source IP(s) to the WAF/API Gateway blocklist.
+-   **Disable Endpoint**: If a vulnerable endpoint is being exploited, temporarily disable it.
+-   **Geo-Block**: If abuse originates from unexpected geographies, apply geo-restrictions.
+
+## 3. Remediation
+-   **Credential Rotation**: Issue new API keys to the legitimate owner; invalidate all existing tokens.
+-   **Fix Vulnerability**: Patch the underlying API vulnerability (BOLA, excessive data exposure, broken function-level authorization).
+-   **Implement Controls**: Add input validation, pagination limits, field-level filtering, and proper authorization checks.
+-   **WAF Rules**: Create custom WAF rules targeting the specific attack pattern.
+
+## 4. Recovery
+-   **Restore Service**: Re-enable the endpoint once the vulnerability is patched.
+-   **Notify Consumers**: Inform legitimate API consumers of key rotation.
+-   **Data Impact Assessment**: Determine if any data was exfiltrated and notify affected parties if required by PDPA/GDPR.
+
+## Related Documents
+-   [Incident Response Framework](../Framework.en.md)
+-   [Data Exfiltration Playbook](Data_Exfiltration.en.md)
+-   [Web Attack Playbook](Web_Attack.en.md)
+-   [Incident Report Template](../../templates/incident_report.en.md)
+-   [Shift Handover Log](../../templates/shift_handover.en.md)
+
+## References
+-   [MITRE ATT&CK T1106 — Native API](https://attack.mitre.org/techniques/T1106/)
+-   [OWASP API Security Top 10 (2023)](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+-   [NIST SP 800-95 — Guide to Secure Web Services](https://csrc.nist.gov/publications/detail/sp/800-95/final)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/API_Abuse.th.md
+
+# Playbook: การตอบสนองต่อ API Abuse (การใช้ API ในทางที่ผิด)
+
+**ความรุนแรง**: สูง | **หมวดหมู่**: Application Security
+
+## 1. การวิเคราะห์ (Triage)
+
+```mermaid
+flowchart TD
+    Start[แจ้งเตือน: API Activity ผิดปกติ] --> Type{ประเภทการใช้ในทางที่ผิด}
+    Type --> |Rate Abuse| Rate[ปริมาณ Request สูงผิดปกติ]
+    Type --> |Auth Bypass| Auth[เข้าถึง Endpoint โดยไม่ได้รับอนุญาต]
+    Type --> |Data Scraping| Scrape[ดึงข้อมูลจำนวนมาก]
+    Rate --> Analyze[วิเคราะห์ Source IP / API Key / User]
+    Auth --> Analyze
+    Scrape --> Analyze
+    Analyze --> |อันตราย| Confirm[ยืนยัน API Abuse]
+    Analyze --> |ปกติ| FP[False Positive — ปรับกฎ]
+    Confirm --> Contain[เริ่มจำกัดวง]
+```
+
+-   **ระบุต้นทาง**: หา API Key, OAuth Token, IP Address หรือบัญชีผู้ใช้ที่สร้าง Traffic ผิดปกติ
+-   **วิเคราะห์ Request**: ดู API Log หา Pattern ผิดปกติ — เรียก API ถี่เกินไป, เข้าถึง Endpoint ที่ไม่ได้รับอนุญาต, Query Parameter แปลก, ดึงข้อมูลจำนวนมาก
+-   **ตรวจ Authentication**: ยืนยันว่า Request ใช้ Credential ถูกต้องหรือใช้ช่องโหว่ Authentication (Broken Auth, BOLA/IDOR)
+-   **บริบทธุรกิจ**: ยืนยันกับเจ้าของ API ว่ารูปแบบการใช้งานเป็นปกติหรือไม่
+
+## 2. การจำกัดวง (Containment)
+-   **Rate Limit**: ใช้ Rate Limiting เข้มงวดกับ API Key/IP ที่ละเมิด
+-   **ยกเลิก Credential**: ปิด API Key หรือ OAuth Token ที่ถูก Compromise ทันที
+-   **บล็อก IP**: เพิ่ม Source IP เข้า Blocklist ใน WAF/API Gateway
+-   **ปิด Endpoint**: ถ้า Endpoint ที่มีช่องโหว่ถูกใช้งาน ให้ปิดชั่วคราว
+-   **Geo-Block**: ถ้าการโจมตีมาจากพื้นที่ไม่คาดคิด ให้ใช้ Geo-restriction
+
+## 3. การแก้ไข (Remediation)
+-   **หมุนเวียน Credential**: ออก API Key ใหม่ให้เจ้าของจริง ยกเลิก Token ทั้งหมดที่มี
+-   **แก้ช่องโหว่**: Patch ช่องโหว่ API (BOLA, Excessive Data Exposure, Broken Function-Level Authorization)
+-   **เพิ่ม Control**: ใส่ Input Validation, Pagination Limit, Field-Level Filtering และ Authorization Check
+-   **กฎ WAF**: สร้าง Custom WAF Rule สำหรับ Attack Pattern เฉพาะ
+
+## 4. การกู้คืน (Recovery)
+-   **เปิดบริการ**: เปิด Endpoint อีกครั้งหลัง Patch ช่องโหว่แล้ว
+-   **แจ้ง Consumer**: แจ้งผู้ใช้ API ที่ถูกต้องเรื่องการเปลี่ยน Key
+-   **ประเมินผลกระทบข้อมูล**: ตรวจสอบว่ามีข้อมูลรั่วไหลหรือไม่ แจ้งผู้เกี่ยวข้องตาม PDPA/GDPR
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [กรอบ Incident Response](../Framework.th.md)
+-   [Playbook: Data Exfiltration](Data_Exfiltration.th.md)
+-   [Playbook: Web Attack](Web_Attack.th.md)
+-   [แบบฟอร์มรายงาน Incident](../../templates/incident_report.th.md)
+-   [แบบฟอร์มส่งมอบกะ](../../templates/shift_handover.th.md)
+
+## References
+-   [MITRE ATT&CK T1106 — Native API](https://attack.mitre.org/techniques/T1106/)
+-   [OWASP API Security Top 10 (2023)](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+-   [NIST SP 800-95 — Guide to Secure Web Services](https://csrc.nist.gov/publications/detail/sp/800-95/final)
 
 
 ---
@@ -3520,6 +3791,132 @@ graph TD
 
 ---
 
+## File: 05_Incident_Response/Playbooks/Cryptomining.en.md
+
+# Playbook: Cryptomining Response
+
+**Severity**: Medium | **Category**: Resource Abuse
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: High CPU/GPU Usage] --> Check{Source of Activity}
+    Check --> |Server| Server[Check Running Processes]
+    Check --> |Cloud Instance| Cloud[Check Cloud Billing Spike]
+    Check --> |Endpoint| Endpoint[Check User Activity]
+    Server --> Process{Known Mining Binary?}
+    Cloud --> Process
+    Endpoint --> Process
+    Process --> |Yes: xmrig/minerd/etc| Confirm[Confirm Cryptomining]
+    Process --> |No| Deep[Deep Analysis — Network & Hash Check]
+    Deep --> |Mining Pool Connection| Confirm
+    Confirm --> Contain[Start Containment]
+```
+
+-   **CPU/GPU Anomaly**: Identify the process or container consuming abnormal CPU/GPU resources (>90% sustained).
+-   **Process Analysis**: Check for known mining binaries (xmrig, minerd, ccminer, phoenixminer) or suspicious processes with randomized names.
+-   **Network Connections**: Look for connections to known mining pool domains/ports (e.g., `*pool.com`, `*xmr.*`, ports 3333, 4444, 5555, 8333).
+-   **Cloud Billing**: Check for unexpected cost spikes in cloud billing (new instances, GPU instances, spot instances).
+-   **Entry Vector**: Determine how the miner was installed — vulnerable web app, compromised credentials, Docker image, or supply chain.
+
+## 2. Containment
+-   **Kill Process**: Terminate the mining process immediately.
+-   **Block Pool**: Add mining pool domains/IPs to Firewall/Proxy blocklist.
+-   **Isolate System**: Network-isolate if the miner was installed via an exploit (indicates deeper compromise).
+-   **Suspend Cloud Resources**: Terminate unauthorized cloud instances spawned for mining.
+-   **Block Ports**: Block common mining ports (3333, 4444, 5555, 8333, 14444) at the firewall.
+
+## 3. Remediation
+-   **Remove Malware**: Delete the mining binary and all associated files (config files, persistence mechanisms).
+-   **Check Persistence**: Look for crontabs, scheduled tasks, systemd services, or container restart policies that re-launch the miner.
+-   **Patch Entry Point**: Fix the vulnerability or misconfiguration that allowed the miner to be installed.
+-   **Credential Reset**: Reset credentials if the miner was installed via compromised accounts.
+-   **Container Audit**: If running in containers, audit all images for embedded miners.
+
+## 4. Recovery
+-   **Restore Performance**: Verify CPU/GPU usage returns to normal after remediation.
+-   **Cost Recovery**: File a support request with the cloud provider for unauthorized usage credits.
+-   **Detection Rules**: Add monitoring for mining pool connections and abnormal CPU patterns.
+
+## Related Documents
+-   [Incident Response Framework](../Framework.en.md)
+-   [Malware Infection Playbook](Malware_Infection.en.md)
+-   [Exploit Playbook](Exploit.en.md)
+-   [Incident Report Template](../../templates/incident_report.en.md)
+-   [Shift Handover Log](../../templates/shift_handover.en.md)
+
+## References
+-   [MITRE ATT&CK T1496 — Resource Hijacking](https://attack.mitre.org/techniques/T1496/)
+-   [Red Canary — Cryptomining Detection](https://redcanary.com/threat-detection-report/threats/cryptominers/)
+-   [CISA Alert — Cryptomining Malware](https://www.cisa.gov/news-events/alerts)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Cryptomining.th.md
+
+# Playbook: การตอบสนองต่อ Cryptomining (การขุดเหรียญเข้ารหัสลับ)
+
+**ความรุนแรง**: ปานกลาง | **หมวดหมู่**: Resource Abuse
+
+## 1. การวิเคราะห์ (Triage)
+
+```mermaid
+flowchart TD
+    Start[แจ้งเตือน: CPU/GPU สูงผิดปกติ] --> Check{ต้นทาง}
+    Check --> |เซิร์ฟเวอร์| Server[ตรวจ Process ที่กำลังทำงาน]
+    Check --> |Cloud Instance| Cloud[ตรวจค่าใช้จ่าย Cloud ที่พุ่ง]
+    Check --> |Endpoint| Endpoint[ตรวจกิจกรรมผู้ใช้]
+    Server --> Process{พบ Binary ขุดเหรียญ?}
+    Cloud --> Process
+    Endpoint --> Process
+    Process --> |ใช่: xmrig/minerd ฯลฯ| Confirm[ยืนยัน Cryptomining]
+    Process --> |ไม่แน่ใจ| Deep[วิเคราะห์เชิงลึก — Network & Hash]
+    Deep --> |เชื่อมต่อ Mining Pool| Confirm
+    Confirm --> Contain[เริ่มจำกัดวง]
+```
+
+-   **CPU/GPU ผิดปกติ**: ระบุ Process หรือ Container ที่กิน CPU/GPU สูงผิดปกติ (>90% ต่อเนื่อง)
+-   **วิเคราะห์ Process**: ค้นหา Binary ขุดเหรียญที่รู้จัก (xmrig, minerd, ccminer, phoenixminer) หรือ Process ชื่อแปลก
+-   **ตรวจ Network**: หาการเชื่อมต่อไปยัง Mining Pool (เช่น `*pool.com`, `*xmr.*`, Port 3333, 4444, 5555, 8333)
+-   **ค่าใช้จ่าย Cloud**: ตรวจสอบค่าใช้จ่าย Cloud ที่พุ่งสูงผิดปกติ (Instance ใหม่, GPU Instance)
+-   **ช่องทางเข้า**: หาว่า Miner ถูกติดตั้งอย่างไร — Web App มีช่องโหว่, Credential ถูกแฮก, Docker Image หรือ Supply Chain
+
+## 2. การจำกัดวง (Containment)
+-   **Kill Process**: หยุด Process ขุดเหรียญทันที
+-   **บล็อก Pool**: เพิ่ม Domain/IP ของ Mining Pool เข้า Blocklist ใน Firewall/Proxy
+-   **แยกระบบ**: Network-isolate ถ้า Miner ถูกติดตั้งผ่าน Exploit (อาจมีการ Compromise ลึกกว่า)
+-   **หยุด Cloud Resource**: ปิด Cloud Instance ที่ถูกสร้างมาเพื่อขุดเหรียญโดยไม่ได้รับอนุญาต
+-   **บล็อก Port**: บล็อก Port ที่ใช้ขุดเหรียญ (3333, 4444, 5555, 8333, 14444)
+
+## 3. การแก้ไข (Remediation)
+-   **ลบมัลแวร์**: ลบ Mining Binary และไฟล์ที่เกี่ยวข้องทั้งหมด (Config File, กลไก Persistence)
+-   **ตรวจ Persistence**: ค้นหา Crontab, Scheduled Task, Systemd Service หรือ Container Restart Policy
+-   **Patch จุดเข้า**: แก้ช่องโหว่หรือการตั้งค่าผิดที่ทำให้ Miner ถูกติดตั้งได้
+-   **เปลี่ยนรหัส**: Reset Credential ถ้า Miner ถูกติดตั้งผ่านบัญชีที่ถูก Compromise
+-   **ตรวจ Container**: ถ้ารันใน Container ให้ตรวจทุก Image ว่ามี Miner ฝังอยู่หรือไม่
+
+## 4. การกู้คืน (Recovery)
+-   **คืนสภาพ**: ยืนยันว่า CPU/GPU กลับสู่ปกติหลังแก้ไข
+-   **ขอคืนค่าใช้จ่าย**: ยื่นคำร้องกับ Cloud Provider เพื่อขอเครดิตคืนจากการใช้งานที่ไม่ได้อนุญาต
+-   **เพิ่ม Detection Rule**: เพิ่มการเฝ้าระวัง Mining Pool Connection และ CPU Pattern ผิดปกติ
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [กรอบ Incident Response](../Framework.th.md)
+-   [Playbook: Malware Infection](Malware_Infection.th.md)
+-   [Playbook: Exploit](Exploit.th.md)
+-   [แบบฟอร์มรายงาน Incident](../../templates/incident_report.th.md)
+-   [แบบฟอร์มส่งมอบกะ](../../templates/shift_handover.th.md)
+
+## References
+-   [MITRE ATT&CK T1496 — Resource Hijacking](https://attack.mitre.org/techniques/T1496/)
+-   [Red Canary — Cryptomining Detection](https://redcanary.com/threat-detection-report/threats/cryptominers/)
+-   [CISA Alert — Cryptomining Malware](https://www.cisa.gov/news-events/alerts)
+
+
+---
+
 ## File: 05_Incident_Response/Playbooks/DDoS_Attack.en.md
 
 # Playbook: Denial of Service (DDoS)
@@ -3608,6 +4005,132 @@ graph TD
 ## References
 -   [MITRE ATT&CK T1498 (Network Denial of Service)](https://attack.mitre.org/techniques/T1498/)
 -   [CISA DDoS Quick Guide](https://www.cisa.gov/sites/default/files/publications/ddos-quick-guide.pdf)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/DNS_Tunneling.en.md
+
+# Playbook: DNS Tunneling Response
+
+**Severity**: High | **Category**: Data Exfiltration / C2
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: Anomalous DNS Activity] --> Check{DNS Analysis}
+    Check --> Entropy[High Entropy Subdomain Queries]
+    Check --> Volume[Abnormal DNS Query Volume]
+    Check --> TXT[Large TXT Record Responses]
+    Entropy --> Source[Identify Source Host]
+    Volume --> Source
+    TXT --> Source
+    Source --> Process[Identify Process Making DNS Queries]
+    Process --> |Known Tunnel Tool| Confirm[Confirm DNS Tunneling]
+    Process --> |Unknown| IOC[Check Domain Against Threat Intel]
+    IOC --> |Malicious| Confirm
+    Confirm --> Contain[Start Containment]
+```
+
+-   **DNS Query Analysis**: Look for high-entropy subdomain queries (long, random-looking strings like `aGVsbG8gd29ybGQ.evil.com`), excessive query volume to a single domain, or unusually large TXT/NULL/CNAME responses.
+-   **Source Host**: Identify the endpoint making the DNS queries from DNS server logs or EDR telemetry.
+-   **Process Identification**: Use EDR to find the process generating the DNS traffic (e.g., iodine, dnscat2, dns2tcp, or custom malware).
+-   **Domain Analysis**: Check if the destination domain is newly registered, uses a free DNS provider, or appears in Threat Intel feeds.
+-   **Data Volume**: Estimate the volume of data potentially exfiltrated by analyzing query payload sizes.
+
+## 2. Containment
+-   **Block Domain**: Add the tunneling domain to the DNS sinkhole/blocklist.
+-   **Isolate Host**: Network-isolate the source endpoint to prevent further data exfiltration.
+-   **DNS Filtering**: If not already in place, route all DNS through a filtering DNS resolver (e.g., Cisco Umbrella, Cloudflare Gateway).
+-   **Block Direct DNS**: Block outbound DNS (port 53/853) to any server other than your approved resolvers at the firewall.
+
+## 3. Remediation
+-   **Remove Malware**: Remove the DNS tunneling tool/malware from the compromised host.
+-   **Forensic Analysis**: Determine what data was exfiltrated through the DNS tunnel. Reconstruct the payloads if possible.
+-   **Credential Reset**: Reset credentials for any accounts on the compromised host.
+-   **DNS Security**: Implement DNS monitoring and Response Policy Zones (RPZ) if not already deployed.
+
+## 4. Recovery
+-   **Restore Host**: Rebuild or restore the compromised host from a known-good backup.
+-   **Detection Rules**: Add detection for high-entropy DNS queries, excessive NXDOMAIN responses, and anomalous TXT record sizes.
+-   **DNS Logging**: Ensure full DNS query logging is enabled and forwarded to SIEM.
+
+## Related Documents
+-   [Incident Response Framework](../Framework.en.md)
+-   [Data Exfiltration Playbook](Data_Exfiltration.en.md)
+-   [C2 Communication Playbook](C2_Communication.en.md)
+-   [Incident Report Template](../../templates/incident_report.en.md)
+-   [Shift Handover Log](../../templates/shift_handover.en.md)
+
+## References
+-   [MITRE ATT&CK T1071.004 — Application Layer Protocol: DNS](https://attack.mitre.org/techniques/T1071/004/)
+-   [MITRE ATT&CK T1048.003 — Exfiltration Over Alternative Protocol](https://attack.mitre.org/techniques/T1048/003/)
+-   [SANS — Detecting DNS Tunneling](https://www.sans.org/white-papers/detecting-dns-tunneling/)
+-   [Infoblox — DNS Tunneling Detection](https://www.infoblox.com/dns-security-resource-center/dns-tunneling/)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/DNS_Tunneling.th.md
+
+# Playbook: การตอบสนองต่อ DNS Tunneling (การส่งข้อมูลผ่าน DNS)
+
+**ความรุนแรง**: สูง | **หมวดหมู่**: Data Exfiltration / C2
+
+## 1. การวิเคราะห์ (Triage)
+
+```mermaid
+flowchart TD
+    Start[แจ้งเตือน: DNS Activity ผิดปกติ] --> Check{วิเคราะห์ DNS}
+    Check --> Entropy[Subdomain Query มี Entropy สูง]
+    Check --> Volume[ปริมาณ DNS Query ผิดปกติ]
+    Check --> TXT[TXT Record Response ขนาดใหญ่]
+    Entropy --> Source[ระบุเครื่องต้นทาง]
+    Volume --> Source
+    TXT --> Source
+    Source --> Process[หา Process ที่สร้าง DNS Query]
+    Process --> |เครื่องมือ Tunnel ที่รู้จัก| Confirm[ยืนยัน DNS Tunneling]
+    Process --> |ไม่ทราบ| IOC[ตรวจ Domain กับ Threat Intel]
+    IOC --> |อันตราย| Confirm
+    Confirm --> Contain[เริ่มจำกัดวง]
+```
+
+-   **วิเคราะห์ DNS Query**: ค้นหา Subdomain Query ที่มี Entropy สูง (สตริงยาว สุ่ม เช่น `aGVsbG8gd29ybGQ.evil.com`), ปริมาณ Query สูงผิดปกติไปยัง Domain เดียว หรือ TXT/NULL/CNAME Response ขนาดใหญ่ผิดปกติ
+-   **เครื่องต้นทาง**: ระบุ Endpoint ที่สร้าง DNS Query จาก DNS Server Log หรือ EDR Telemetry
+-   **ระบุ Process**: ใช้ EDR หา Process ที่สร้าง DNS Traffic (เช่น iodine, dnscat2, dns2tcp หรือมัลแวร์ Custom)
+-   **วิเคราะห์ Domain**: ตรวจว่า Domain ปลายทางจดทะเบียนใหม่หรือไม่ ใช้ DNS Provider ฟรีหรือไม่ หรือปรากฏใน Threat Intel Feed
+-   **ปริมาณข้อมูล**: ประเมินปริมาณข้อมูลที่อาจรั่วไหลจากขนาด Payload ของ Query
+
+## 2. การจำกัดวง (Containment)
+-   **บล็อก Domain**: เพิ่ม Domain ที่ใช้ Tunneling เข้า DNS Sinkhole/Blocklist
+-   **แยกเครื่อง**: Network-isolate Endpoint ต้นทางเพื่อป้องกันการรั่วไหลเพิ่มเติม
+-   **กรอง DNS**: ถ้ายังไม่มี ให้ Route DNS ทั้งหมดผ่าน Filtering DNS Resolver (เช่น Cisco Umbrella, Cloudflare Gateway)
+-   **บล็อก Direct DNS**: บล็อก Outbound DNS (Port 53/853) ไปยังเซิร์ฟเวอร์อื่นนอกจาก Resolver ที่อนุมัติที่ Firewall
+
+## 3. การแก้ไข (Remediation)
+-   **ลบมัลแวร์**: ลบเครื่องมือ DNS Tunneling/มัลแวร์ออกจากเครื่องที่ถูก Compromise
+-   **วิเคราะห์ Forensic**: ตรวจสอบว่าข้อมูลอะไรถูกส่งออกผ่าน DNS Tunnel สร้าง Payload ใหม่ถ้าเป็นไปได้
+-   **เปลี่ยนรหัส**: Reset Credential สำหรับทุกบัญชีบนเครื่องที่ถูก Compromise
+-   **DNS Security**: ติดตั้ง DNS Monitoring และ Response Policy Zones (RPZ) ถ้ายังไม่มี
+
+## 4. การกู้คืน (Recovery)
+-   **กู้คืนเครื่อง**: Rebuild หรือ Restore เครื่องที่ถูก Compromise จาก Backup ที่ปลอดภัย
+-   **เพิ่ม Detection Rule**: ตรวจจับ DNS Query ที่มี Entropy สูง, NXDOMAIN Response จำนวนมาก และ TXT Record Size ผิดปกติ
+-   **DNS Logging**: ให้แน่ใจว่ามีการ Log DNS Query ครบถ้วนและส่งไป SIEM
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [กรอบ Incident Response](../Framework.th.md)
+-   [Playbook: Data Exfiltration](Data_Exfiltration.th.md)
+-   [Playbook: C2 Communication](C2_Communication.th.md)
+-   [แบบฟอร์มรายงาน Incident](../../templates/incident_report.th.md)
+-   [แบบฟอร์มส่งมอบกะ](../../templates/shift_handover.th.md)
+
+## References
+-   [MITRE ATT&CK T1071.004 — Application Layer Protocol: DNS](https://attack.mitre.org/techniques/T1071/004/)
+-   [MITRE ATT&CK T1048.003 — Exfiltration Over Alternative Protocol](https://attack.mitre.org/techniques/T1048/003/)
+-   [SANS — Detecting DNS Tunneling](https://www.sans.org/white-papers/detecting-dns-tunneling/)
+-   [Infoblox — DNS Tunneling Detection](https://www.infoblox.com/dns-security-resource-center/dns-tunneling/)
 
 
 ---
@@ -4803,6 +5326,138 @@ graph TD
 
 ---
 
+## File: 05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md
+
+# Playbook: Supply Chain Attack Response
+
+**Severity**: Critical | **Category**: Software Supply Chain
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: Compromised Package/Vendor] --> Identify{Identify Affected Component}
+    Identify --> Scope[Scope Impact]
+    Scope --> |Software Dependency| Dep[Check All Systems Using Dependency]
+    Scope --> |Vendor Compromise| Vendor[Assess Vendor Access Level]
+    Dep --> IOC[Search for Known IOCs]
+    Vendor --> IOC
+    IOC --> |IOCs Found| Confirm[Confirm Compromise]
+    IOC --> |No IOCs| Monitor[Enhanced Monitoring]
+    Confirm --> Contain[Start Containment]
+```
+
+-   **Identify the Component**: Determine the compromised library, package, update, or vendor integration (CVE advisory, vendor notification, threat intel feed).
+-   **Impact Assessment**: Enumerate all systems, servers, and applications using the compromised component. Use SBOM (Software Bill of Materials) if available.
+-   **IOC Search**: Check for known IOCs from vendor advisories or CERTs — malicious hashes, C2 domains, backdoor indicators.
+-   **Timeline**: Determine when the compromised version was installed and for how long it was active.
+
+## 2. Containment
+-   **Isolate Affected Systems**: Network-isolate servers running the compromised component.
+-   **Block C2**: Add known C2 IPs/domains from advisories to Firewall/Proxy blocklist.
+-   **Disable Vendor Access**: Revoke API keys, OAuth tokens, VPN credentials, and service accounts granted to the compromised vendor.
+-   **Freeze Deployments**: Halt all CI/CD pipelines until the compromised dependency is removed.
+-   **Snapshot**: Take forensic images of affected systems before remediation.
+
+## 3. Remediation
+-   **Patch/Rollback**: Update to a clean version of the dependency, or rollback to a known-good version.
+-   **Credential Rotation**: Rotate all secrets, API keys, and certificates that were accessible to the compromised component.
+-   **SBOM Review**: Audit Software Bill of Materials for other potentially vulnerable dependencies.
+-   **Vendor Assessment**: Request the vendor's incident report and remediation evidence before restoring access.
+
+## 4. Recovery
+-   **Staged Restoration**: Restore systems in phases, monitoring closely for residual compromise.
+-   **Enhanced Monitoring**: Increase detection rules for the specific TTPs associated with the supply chain attack (e.g., unusual outbound connections, new scheduled tasks).
+-   **Validate Integrity**: Compare file hashes of critical binaries against known-good baselines.
+
+## 5. Lessons Learned
+-   **SBOM Implementation**: Ensure an up-to-date SBOM exists for all applications.
+-   **Vendor Security Assessment**: Establish or strengthen third-party risk management.
+-   **Dependency Pinning**: Pin dependency versions and verify checksums in CI/CD.
+-   **Detection Gap**: Add detection rules for compromised update mechanisms (T1195).
+
+## Related Documents
+-   [Incident Response Framework](../Framework.en.md)
+-   [Malware Infection Playbook](Malware_Infection.en.md)
+-   [Data Exfiltration Playbook](Data_Exfiltration.en.md)
+-   [Incident Report Template](../../templates/incident_report.en.md)
+-   [Shift Handover Log](../../templates/shift_handover.en.md)
+
+## References
+-   [MITRE ATT&CK T1195 — Supply Chain Compromise](https://attack.mitre.org/techniques/T1195/)
+-   [NIST SP 800-161 — Cybersecurity Supply Chain Risk Management](https://csrc.nist.gov/publications/detail/sp/800-161/rev-1/final)
+-   [CISA — Defending Against Software Supply Chain Attacks](https://www.cisa.gov/sites/default/files/publications/defending_against_software_supply_chain_attacks_508.pdf)
+-   [SLSA Framework (Supply-chain Levels for Software Artifacts)](https://slsa.dev/)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md
+
+# Playbook: การตอบสนองต่อ Supply Chain Attack (การโจมตีห่วงโซ่อุปทาน)
+
+**ความรุนแรง**: วิกฤต | **หมวดหมู่**: Software Supply Chain
+
+## 1. การวิเคราะห์ (Triage)
+
+```mermaid
+flowchart TD
+    Start[แจ้งเตือน: Package/Vendor ถูกบุกรุก] --> Identify{ระบุ Component ที่ได้รับผลกระทบ}
+    Identify --> Scope[ประเมินขอบเขต]
+    Scope --> |Software Dependency| Dep[ตรวจทุกระบบที่ใช้ Dependency นี้]
+    Scope --> |Vendor ถูกแฮก| Vendor[ประเมินสิทธิ์เข้าถึงของ Vendor]
+    Dep --> IOC[ค้นหา IOC ที่ทราบ]
+    Vendor --> IOC
+    IOC --> |พบ IOC| Confirm[ยืนยันการถูกบุกรุก]
+    IOC --> |ไม่พบ IOC| Monitor[เฝ้าระวังเข้มงวด]
+    Confirm --> Contain[เริ่มจำกัดวง]
+```
+
+-   **ระบุ Component**: ตรวจสอบว่า Library, Package, Update หรือ Vendor Integration ใดถูก Compromise (จาก CVE Advisory, แจ้งเตือนจาก Vendor, Threat Intel Feed)
+-   **ประเมินผลกระทบ**: นับทุกระบบ เซิร์ฟเวอร์ และแอปพลิเคชันที่ใช้ Component ที่ถูก Compromise — ใช้ SBOM (Software Bill of Materials) ถ้ามี
+-   **ค้นหา IOC**: ตรวจสอบ IOC จาก Advisory ต่างๆ — Hash อันตราย, C2 Domain, ตัวบ่งชี้ Backdoor
+-   **ไทม์ไลน์**: ระบุว่าเวอร์ชันที่ถูก Compromise ถูกติดตั้งเมื่อไหร่ และใช้งานมานานเท่าไหร่
+
+## 2. การจำกัดวง (Containment)
+-   **แยกระบบ**: Network-isolate เซิร์ฟเวอร์ที่รัน Component ที่ถูก Compromise
+-   **บล็อก C2**: เพิ่ม IP/Domain C2 จาก Advisory เข้า Blocklist ใน Firewall/Proxy
+-   **ปิดการเข้าถึง Vendor**: ยกเลิก API Key, OAuth Token, VPN Credential และ Service Account ที่ให้ Vendor
+-   **หยุด Deployment**: หยุด CI/CD Pipeline ทั้งหมดจนกว่าจะลบ Dependency ที่ถูก Compromise ออก
+-   **Snapshot**: เก็บ Forensic Image ของระบบที่ได้รับผลกระทบก่อนทำ Remediation
+
+## 3. การแก้ไข (Remediation)
+-   **Patch/Rollback**: อัปเดตเป็นเวอร์ชันสะอาด หรือ Rollback ไปเวอร์ชันที่ปลอดภัย
+-   **หมุนเวียนรหัส**: เปลี่ยน Secret, API Key และ Certificate ทั้งหมดที่ Component ที่ถูก Compromise เข้าถึงได้
+-   **ตรวจ SBOM**: ตรวจสอบ Software Bill of Materials หา Dependency อื่นที่อาจมีช่องโหว่
+-   **ประเมิน Vendor**: ร้องขอรายงาน Incident และหลักฐานการแก้ไขจาก Vendor ก่อนคืนสิทธิ์
+
+## 4. การกู้คืน (Recovery)
+-   **กู้คืนเป็นขั้น**: กู้คืนระบบทีละเฟส เฝ้าดูอย่างใกล้ชิดว่ามีเศษของการ Compromise เหลืออยู่
+-   **เฝ้าระวังเข้มงวด**: เพิ่ม Detection Rule สำหรับ TTP เฉพาะที่เกี่ยวข้อง (เช่น Outbound Connection ผิดปกติ, Scheduled Task ใหม่)
+-   **ตรวจสอบความสมบูรณ์**: เปรียบเทียบ Hash ของไฟล์สำคัญกับ Baseline ที่ปลอดภัย
+
+## 5. บทเรียน (Lessons Learned)
+-   **เริ่มใช้ SBOM**: ให้มี Software Bill of Materials ที่อัปเดตสำหรับทุกแอปพลิเคชัน
+-   **ประเมินความปลอดภัย Vendor**: สร้างหรือเสริมโปรแกรม Third-Party Risk Management
+-   **Pin Dependency**: ล็อกเวอร์ชัน Dependency และตรวจ Checksum ใน CI/CD
+-   **ช่องว่างการตรวจจับ**: เพิ่ม Detection Rule สำหรับกลไก Update ที่ถูก Compromise (T1195)
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [กรอบ Incident Response](../Framework.th.md)
+-   [Playbook: Malware Infection](Malware_Infection.th.md)
+-   [Playbook: Data Exfiltration](Data_Exfiltration.th.md)
+-   [แบบฟอร์มรายงาน Incident](../../templates/incident_report.th.md)
+-   [แบบฟอร์มส่งมอบกะ](../../templates/shift_handover.th.md)
+
+## References
+-   [MITRE ATT&CK T1195 — Supply Chain Compromise](https://attack.mitre.org/techniques/T1195/)
+-   [NIST SP 800-161 — Cybersecurity Supply Chain Risk Management](https://csrc.nist.gov/publications/detail/sp/800-161/rev-1/final)
+-   [CISA — Defending Against Software Supply Chain Attacks](https://www.cisa.gov/sites/default/files/publications/defending_against_software_supply_chain_attacks_508.pdf)
+-   [SLSA Framework](https://slsa.dev/)
+
+
+---
+
 ## File: 05_Incident_Response/Playbooks/Suspicious_Script.en.md
 
 # Playbook: Suspicious Script Execution
@@ -4997,6 +5652,152 @@ graph TD
 ## References
 -   [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 -   [MITRE ATT&CK T1190 (Exploit Public-Facing Application)](https://attack.mitre.org/techniques/T1190/)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md
+
+# Playbook: Zero-Day Exploit Response
+
+**Severity**: Critical | **Category**: Vulnerability Exploitation
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: Suspected Zero-Day] --> Source{Source of Intelligence}
+    Source --> |Vendor Advisory| Vendor[Read Vendor Advisory + CVE]
+    Source --> |Threat Intel| TI[Check CISA KEV / Threat Feeds]
+    Source --> |Anomaly Detection| Anomaly[Investigate Unknown Exploit Behavior]
+    Vendor --> Scope[Determine Affected Products/Versions]
+    TI --> Scope
+    Anomaly --> Scope
+    Scope --> Exposure[Assess Exposure — How Many Systems?]
+    Exposure --> |Active Exploitation| Confirm[Confirm Zero-Day Impact]
+    Exposure --> |No Exploitation Yet| Prep[Prepare Mitigation — Pre-Patch]
+    Confirm --> Contain[Start Emergency Containment]
+```
+
+-   **Assess the Vulnerability**: Review CVE details, CVSS score, attack vector (network/local), complexity, and whether authentication is required.
+-   **Determine Exposure**: Inventorize all systems, services, and applications running the affected software/version. Use asset management and vulnerability scanning tools.
+-   **Check for Exploitation**: Search for IOCs associated with known exploitation — unusual process behavior, unexpected files, web shells, suspicious network connections.
+-   **Monitor Advisories**: Track vendor advisories, CISA KEV (Known Exploited Vulnerabilities), and security researchers for updates.
+
+## 2. Containment
+-   **Emergency Mitigation**: Apply vendor-recommended workarounds immediately if no patch is available:
+    -   Disable vulnerable features/services
+    -   Restrict network access to affected systems (ACLs/firewall rules)
+    -   Implement WAF rules to block known exploit payloads
+-   **Isolate Compromised**: If exploitation is confirmed, network-isolate the compromised systems immediately.
+-   **Virtual Patching**: Deploy IPS/WAF signatures from security vendors that detect the exploit attempt.
+-   **Increase Monitoring**: Add specific detection rules and enhance logging on affected systems.
+
+## 3. Remediation
+-   **Patch Immediately**: Apply the vendor patch as soon as it is released — treat as emergency change (skip standard change window).
+-   **Forensic Investigation**: For any confirmed compromise, perform full forensic analysis to determine scope, lateral movement, and data impact.
+-   **Credential Rotation**: Reset credentials for any accounts on compromised systems.
+-   **Backdoor Hunting**: Search all affected systems for web shells, implants, scheduled tasks, or new user accounts created by the attacker.
+
+## 4. Recovery
+-   **Staged Patching**: Patch remaining systems in priority order: internet-facing → internal critical → all others.
+-   **Validate Patches**: Confirm patches are applied successfully and the vulnerability is no longer exploitable.
+-   **Post-Exploitation Check**: Even after patching, verify no residual compromise exists (attacker may have already established persistence).
+-   **Update SBOM**: Document the vulnerability and resolution in the software inventory.
+
+## 5. Special Considerations
+-   **Communication**: Notify CISO and executive team immediately for Critical/High CVSS zero-days.
+-   **Regulatory**: If data breach is confirmed, initiate PDPA/GDPR notification process within required timeline.
+-   **Industry Sharing**: Share IOCs and detection methods with ISACs and peer organizations via TLP:AMBER or TLP:GREEN.
+-   **Vendor Coordination**: If you discover a new zero-day, follow Coordinated Vulnerability Disclosure (CVD) protocols.
+
+## Related Documents
+-   [Incident Response Framework](../Framework.en.md)
+-   [Exploit Playbook](Exploit.en.md)
+-   [Supply Chain Attack Playbook](Supply_Chain_Attack.en.md)
+-   [Lateral Movement Playbook](Lateral_Movement.en.md)
+-   [Incident Report Template](../../templates/incident_report.en.md)
+-   [Shift Handover Log](../../templates/shift_handover.en.md)
+
+## References
+-   [MITRE ATT&CK T1190 — Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/)
+-   [MITRE ATT&CK T1203 — Exploitation for Client Execution](https://attack.mitre.org/techniques/T1203/)
+-   [CISA Known Exploited Vulnerabilities Catalog (KEV)](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
+-   [NIST NVD — National Vulnerability Database](https://nvd.nist.gov/)
+-   [FIRST — Guidelines for Coordinated Vulnerability Disclosure](https://www.first.org/global/sigs/vulnerability-coordination/)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md
+
+# Playbook: การตอบสนองต่อ Zero-Day Exploit (ช่องโหว่ที่ยังไม่มี Patch)
+
+**ความรุนแรง**: วิกฤต | **หมวดหมู่**: Vulnerability Exploitation
+
+## 1. การวิเคราะห์ (Triage)
+
+```mermaid
+flowchart TD
+    Start[แจ้งเตือน: สงสัย Zero-Day] --> Source{แหล่งข่าวกรอง}
+    Source --> |Vendor Advisory| Vendor[อ่าน Advisory + CVE]
+    Source --> |Threat Intel| TI[ตรวจ CISA KEV / Threat Feed]
+    Source --> |Anomaly Detection| Anomaly[สืบสวนพฤติกรรม Exploit ไม่รู้จัก]
+    Vendor --> Scope[ระบุ ผลิตภัณฑ์/เวอร์ชัน ที่ได้รับผลกระทบ]
+    TI --> Scope
+    Anomaly --> Scope
+    Scope --> Exposure[ประเมินความเสี่ยง — กี่ระบบ?]
+    Exposure --> |กำลังถูกโจมตีอยู่| Confirm[ยืนยัน Zero-Day Impact]
+    Exposure --> |ยังไม่ถูกโจมตี| Prep[เตรียม Mitigation — ก่อนมี Patch]
+    Confirm --> Contain[เริ่ม Emergency Containment]
+```
+
+-   **ประเมินช่องโหว่**: ดู CVE, CVSS Score, Attack Vector (เครือข่าย/โลคอล), ความซับซ้อน และต้อง Authentication หรือไม่
+-   **ระบุระบบเสี่ยง**: นับทุกระบบ บริการ และแอปพลิเคชันที่รันซอฟต์แวร์/เวอร์ชันที่มีช่องโหว่ ใช้ Asset Management และ Vulnerability Scanner
+-   **ตรวจการโจมตี**: ค้นหา IOC ที่เกี่ยวข้อง — Process ผิดปกติ, ไฟล์แปลก, Web Shell, Network Connection น่าสงสัย
+-   **ติดตาม Advisory**: ติดตาม Vendor Advisory, CISA KEV และนักวิจัยด้านความปลอดภัยอย่างต่อเนื่อง
+
+## 2. การจำกัดวง (Containment)
+-   **Mitigation ฉุกเฉิน**: ใช้ Workaround ที่ Vendor แนะนำทันทีถ้ายังไม่มี Patch:
+    -   ปิดฟีเจอร์/บริการที่มีช่องโหว่
+    -   จำกัดการเข้าถึงเครือข่ายของระบบที่ได้รับผลกระทบ (ACL/Firewall Rule)
+    -   ใช้ WAF Rule บล็อก Payload ที่ใช้โจมตี
+-   **แยกระบบที่ถูก Compromise**: ถ้ายืนยันว่าถูกโจมตีแล้ว Network-isolate ทันที
+-   **Virtual Patching**: Deploy IPS/WAF Signature จาก Security Vendor ที่ตรวจจับการโจมตี
+-   **เฝ้าระวังเข้มงวด**: เพิ่ม Detection Rule เฉพาะ และเพิ่ม Logging บนระบบที่เสี่ยง
+
+## 3. การแก้ไข (Remediation)
+-   **Patch ทันที**: ติดตั้ง Patch จาก Vendor ทันทีที่ออก — ถือเป็น Emergency Change (ข้ามขั้นตอนปกติ)
+-   **สืบสวน Forensic**: สำหรับระบบที่ยืนยันว่าถูก Compromise ให้ทำ Forensic Analysis เต็มรูปแบบ
+-   **เปลี่ยนรหัส**: Reset Credential สำหรับทุกบัญชีบนระบบที่ถูก Compromise
+-   **ล่า Backdoor**: ค้นหา Web Shell, Implant, Scheduled Task หรือ User Account ใหม่ที่ผู้โจมตีสร้างขึ้น
+
+## 4. การกู้คืน (Recovery)
+-   **Patch เป็นขั้น**: Patch ระบบที่เหลือตามลำดับความสำคัญ: Internet-facing → Internal สำคัญ → ทั้งหมด
+-   **ตรวจสอบ Patch**: ยืนยันว่า Patch ติดตั้งสำเร็จและช่องโหว่ถูกแก้ไขแล้ว
+-   **ตรวจหลัง Patch**: แม้ Patch แล้ว ยังต้องตรวจว่าไม่มี Compromise เหลือ (ผู้โจมตีอาจทำ Persistence ไว้แล้ว)
+-   **อัปเดต SBOM**: บันทึกช่องโหว่และการแก้ไขใน Software Inventory
+
+## 5. ข้อพิจารณาพิเศษ
+-   **การสื่อสาร**: แจ้ง CISO และผู้บริหารทันทีสำหรับ Zero-Day ระดับ Critical/High CVSS
+-   **กฎหมาย**: ถ้ายืนยันว่าข้อมูลรั่ว ให้เริ่มกระบวนการแจ้ง PDPA/GDPR ตามเวลาที่กำหนด
+-   **แชร์กับอุตสาหกรรม**: แชร์ IOC และวิธีตรวจจับกับ ISAC และองค์กรในอุตสาหกรรมผ่าน TLP:AMBER หรือ TLP:GREEN
+-   **ประสานงาน Vendor**: ถ้าค้นพบ Zero-Day ใหม่เอง ให้ทำตามขั้นตอน Coordinated Vulnerability Disclosure (CVD)
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [กรอบ Incident Response](../Framework.th.md)
+-   [Playbook: Exploit](Exploit.th.md)
+-   [Playbook: Supply Chain Attack](Supply_Chain_Attack.th.md)
+-   [Playbook: Lateral Movement](Lateral_Movement.th.md)
+-   [แบบฟอร์มรายงาน Incident](../../templates/incident_report.th.md)
+-   [แบบฟอร์มส่งมอบกะ](../../templates/shift_handover.th.md)
+
+## References
+-   [MITRE ATT&CK T1190 — Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/)
+-   [MITRE ATT&CK T1203 — Exploitation for Client Execution](https://attack.mitre.org/techniques/T1203/)
+-   [CISA Known Exploited Vulnerabilities Catalog (KEV)](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)
+-   [NIST NVD — National Vulnerability Database](https://nvd.nist.gov/)
+-   [FIRST — Guidelines for Coordinated Vulnerability Disclosure](https://www.first.org/global/sigs/vulnerability-coordination/)
 
 
 ---

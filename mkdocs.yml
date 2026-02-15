@@ -113,6 +113,11 @@ nav:
       - AWS S3 Compromise: 05_Incident_Response/Playbooks/AWS_S3_Compromise.en.md
       - Azure AD Compromise: 05_Incident_Response/Playbooks/Azure_AD_Compromise.en.md
       - Cloud IAM: 05_Incident_Response/Playbooks/Cloud_IAM.en.md
+      - Supply Chain Attack: 05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md
+      - API Abuse: 05_Incident_Response/Playbooks/API_Abuse.en.md
+      - Cryptomining: 05_Incident_Response/Playbooks/Cryptomining.en.md
+      - DNS Tunneling: 05_Incident_Response/Playbooks/DNS_Tunneling.en.md
+      - Zero-Day Exploit: 05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md
     - Playbooks (TH):
       - Phishing: 05_Incident_Response/Playbooks/Phishing.th.md
       - Ransomware: 05_Incident_Response/Playbooks/Ransomware.th.md
@@ -137,6 +142,11 @@ nav:
       - AWS S3 Compromise: 05_Incident_Response/Playbooks/AWS_S3_Compromise.th.md
       - Azure AD Compromise: 05_Incident_Response/Playbooks/Azure_AD_Compromise.th.md
       - Cloud IAM: 05_Incident_Response/Playbooks/Cloud_IAM.th.md
+      - Supply Chain Attack: 05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md
+      - API Abuse: 05_Incident_Response/Playbooks/API_Abuse.th.md
+      - Cryptomining: 05_Incident_Response/Playbooks/Cryptomining.th.md
+      - DNS Tunneling: 05_Incident_Response/Playbooks/DNS_Tunneling.th.md
+      - Zero-Day Exploit: 05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md
   - 📊 Operations:
     - SOC Team Structure: 06_Operations_Management/SOC_Team_Structure.en.md
     - โครงสร้างทีม (TH): 06_Operations_Management/SOC_Team_Structure.th.md

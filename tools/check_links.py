@@ -6,7 +6,7 @@ import urllib.parse
 
 # Configuration
 SOURCE_DIR = "../"
-EXCLUDE_DIRS = [".git", "tools", ".github", "node_modules", "vendor", "assets"]
+EXCLUDE_DIRS = [".git", "tools", ".github", "node_modules", "vendor", "assets", "docs", "site"]
 EXCLUDE_FILES = ["SOC_Manual_Consolidated.md"]
 
 def check_links():
