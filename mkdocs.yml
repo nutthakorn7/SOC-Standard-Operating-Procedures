@@ -79,6 +79,8 @@ nav:
     - คู่มือเริ่มต้น (TH): 00_Getting_Started/Quickstart_Guide.th.md
     - Glossary: 00_Getting_Started/Glossary.en.md
     - คำศัพท์ (TH): 00_Getting_Started/Glossary.th.md
+    - SOC Building Roadmap: 01_SOC_Fundamentals/SOC_Building_Roadmap.en.md
+    - แผนงานสร้าง SOC (TH): 01_SOC_Fundamentals/SOC_Building_Roadmap.th.md
   - 🏗️ Setup & Operations:
     - SOC Infrastructure Setup: 01_Onboarding/System_Activation.en.md
     - การติดตั้ง SOC (TH): 01_Onboarding/System_Activation.th.md
