@@ -119,6 +119,8 @@ nav:
     - แม่แบบ SOAR (TH): 05_Incident_Response/SOAR_Playbooks.th.md
     - Lessons Learned Template: 05_Incident_Response/Lessons_Learned_Template.en.md
     - แม่แบบ Lessons Learned (TH): 05_Incident_Response/Lessons_Learned_Template.th.md
+    - Playbook Development Guide: 05_Incident_Response/Playbook_Development_Guide.en.md
+    - คู่มือพัฒนา Playbook (TH): 05_Incident_Response/Playbook_Development_Guide.th.md
     - Threat Hunting Playbook: 05_Incident_Response/Threat_Hunting_Playbook.en.md
     - คู่มือการล่าภัยคุกคาม (TH): 05_Incident_Response/Threat_Hunting_Playbook.th.md
     - Escalation Matrix: 05_Incident_Response/Escalation_Matrix.en.md
@@ -217,6 +219,8 @@ nav:
     - แคตตาล็อก Automation (TH): 06_Operations_Management/SOC_Automation_Catalog.th.md
     - Alert Tuning SOP: 06_Operations_Management/Alert_Tuning.en.md
     - SOP การปรับจูน Alert (TH): 06_Operations_Management/Alert_Tuning.th.md
+    - SOC Capacity Planning: 06_Operations_Management/SOC_Capacity_Planning.en.md
+    - การวางแผนกำลังคน SOC (TH): 06_Operations_Management/SOC_Capacity_Planning.th.md
     # --- Security Monitoring ---
     - Network Security Monitoring: 06_Operations_Management/Network_Security_Monitoring.en.md
     - เฝ้าระวังเครือข่าย (TH): 06_Operations_Management/Network_Security_Monitoring.th.md
@@ -277,6 +281,8 @@ nav:
     - แผนที่ Compliance (TH): 10_Compliance/Compliance_Mapping.th.md
     - PDPA Incident Response: 10_Compliance/PDPA_Incident_Response.en.md
     - ตอบเหตุ PDPA (TH): 10_Compliance/PDPA_Incident_Response.th.md
+    - Compliance Gap Analysis: 10_Compliance/Compliance_Gap_Analysis.en.md
+    - วิเคราะห์ Gap Compliance (TH): 10_Compliance/Compliance_Gap_Analysis.th.md
   - 🎯 Testing & Training:
     - Simulation Guide: 08_Simulation_Testing/Simulation_Guide.en.md
     - คู่มือ Simulation (TH): 08_Simulation_Testing/Simulation_Guide.th.md

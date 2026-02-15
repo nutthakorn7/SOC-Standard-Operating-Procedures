@@ -91,6 +91,7 @@ Start here if you're building a brand-new SOC. Follow the numbered order.
 | **🏥 Disaster Recovery / BCP** | [Read](05_Incident_Response/Disaster_Recovery_BCP.en.md) | [อ่าน](05_Incident_Response/Disaster_Recovery_BCP.th.md) |
 | **SOAR Playbook Templates** (6) | [Read](05_Incident_Response/SOAR_Playbooks.en.md) | [อ่าน](05_Incident_Response/SOAR_Playbooks.th.md) |
 | **Lessons Learned Template** | [Read](05_Incident_Response/Lessons_Learned_Template.en.md) | [อ่าน](05_Incident_Response/Lessons_Learned_Template.th.md) |
+| **📘 Playbook Development Guide** | [Read](05_Incident_Response/Playbook_Development_Guide.en.md) | [อ่าน](05_Incident_Response/Playbook_Development_Guide.th.md) |
 
 ### 33 Playbooks — Grouped by Category
 
@@ -207,6 +208,7 @@ File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [
 | **Log Source Onboarding** | [Read](06_Operations_Management/Log_Source_Onboarding.en.md) | [อ่าน](06_Operations_Management/Log_Source_Onboarding.th.md) |
 | **🤖 SOC Automation Catalog** | [Read](06_Operations_Management/SOC_Automation_Catalog.en.md) | [อ่าน](06_Operations_Management/SOC_Automation_Catalog.th.md) |
 | **🔧 Alert Tuning SOP** | [Read](06_Operations_Management/Alert_Tuning.en.md) | [อ่าน](06_Operations_Management/Alert_Tuning.th.md) |
+| **📊 SOC Capacity Planning** | [Read](06_Operations_Management/SOC_Capacity_Planning.en.md) | [อ่าน](06_Operations_Management/SOC_Capacity_Planning.th.md) |
 
 ### 🔍 Security Monitoring / การเฝ้าระวัง
 
@@ -289,6 +291,7 @@ File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [
 |:---|:---:|:---:|
 | **Compliance Mapping** (ISO 27001 / NIST CSF / PCI DSS) | [Read](10_Compliance/Compliance_Mapping.en.md) | [อ่าน](10_Compliance/Compliance_Mapping.th.md) |
 | **PDPA Incident Response** (72-hr notification) | [Read](10_Compliance/PDPA_Incident_Response.en.md) | [อ่าน](10_Compliance/PDPA_Incident_Response.th.md) |
+| **📝 Compliance Gap Analysis** | [Read](10_Compliance/Compliance_Gap_Analysis.en.md) | [อ่าน](10_Compliance/Compliance_Gap_Analysis.th.md) |
 
 ### Reports & Dashboards
 

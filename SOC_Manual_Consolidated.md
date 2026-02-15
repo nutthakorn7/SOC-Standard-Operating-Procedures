@@ -9924,6 +9924,342 @@ gantt
 
 ---
 
+## File: 06_Operations_Management/SOC_Capacity_Planning.en.md
+
+# SOC Capacity Planning
+
+**Document ID**: OPS-SOP-026
+**Version**: 1.0
+**Classification**: Internal
+**Last Updated**: 2026-02-16
+
+> Framework for **planning SOC staffing, infrastructure, and budget** based on organizational growth, threat landscape changes, and operational requirements. Covers headcount modeling, infrastructure sizing, license planning, and budget forecasting.
+
+---
+
+## Staffing Model
+
+### Headcount Calculator
+
+```mermaid
+flowchart LR
+    A[Alert Volume] --> D[Headcount Model]
+    B[Operating Hours] --> D
+    C[Complexity Mix] --> D
+    D --> E[FTE Required]
+    E --> F[+ 20% for leave/training]
+    F --> G[Total Headcount]
+
+    style A fill:#3b82f6,color:#fff
+    style D fill:#f97316,color:#fff
+    style G fill:#22c55e,color:#fff
+```
+
+### Staffing by Coverage Model
+
+| Coverage Model | Shifts | Min Analysts | Lead/Manager | Total FTE |
+|:---|:---:|:---:|:---:|:---:|
+| **Business Hours** (8×5) | 1 | 2 | 1 | 3 |
+| **Extended** (16×5) | 2 | 4 | 1 | 5 |
+| **24/5** | 3 | 6 | 1 | 7 |
+| **24/7** | 4 | 8 | 2 | 10 |
+| **24/7 + Hunt** | 4 | 10 | 2 + 2 TH | 14 |
+
+### Role-Based Capacity
+
+| Role | Capacity per FTE | Notes |
+|:---|:---|:---|
+| **Tier 1 Analyst** | 30–50 alerts/shift | Triage and initial response |
+| **Tier 2 Analyst** | 5–10 investigations/day | Deep investigation |
+| **Tier 3 / Hunt** | 2–4 hunts/week | Proactive threat hunting |
+| **Detection Engineer** | 5–10 rules/week | Rule creation, tuning, testing |
+| **SOAR Engineer** | 2–3 playbooks/month | Automation development |
+| **SOC Manager** | 8–12 direct reports | Team management, reporting |
+
+---
+
+## Infrastructure Sizing
+
+### SIEM Sizing
+
+| Factor | Measurement | Sizing Impact |
+|:---|:---|:---|
+| **Events per second (EPS)** | Avg + peak EPS | CPU, memory, indexing |
+| **Daily ingest volume** | GB/day | Storage, license cost |
+| **Retention period** | Hot/warm/cold days | Total storage |
+| **Concurrent users** | Active searchers | Memory, CPU |
+| **Correlation rules** | Number of active rules | CPU |
+| **Searches/dashboards** | Concurrent queries | CPU, I/O |
+
+### SIEM Sizing Tiers
+
+| Tier | EPS | Daily Volume | Storage (1yr) | vCPU | RAM |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| **Small** | < 5K | < 50 GB | 18 TB | 8 | 32 GB |
+| **Medium** | 5–25K | 50–250 GB | 90 TB | 24 | 96 GB |
+| **Large** | 25–100K | 250 GB–1 TB | 365 TB | 64 | 256 GB |
+| **Enterprise** | > 100K | > 1 TB | 500+ TB | 128+ | 512+ GB |
+
+### Log Volume Planning
+
+| Log Source | Avg EPS / Device | Volume / Day | Growth Rate |
+|:---|:---:|:---:|:---:|
+| **Firewall** | 200–500 | 5–15 GB | 15%/yr |
+| **IDS/IPS** | 50–200 | 2–8 GB | 10%/yr |
+| **Endpoint (EDR)** | 10–50 / agent | 0.2–1 GB | 20%/yr |
+| **Windows Event Log** | 5–20 / host | 0.1–0.5 GB | 10%/yr |
+| **DNS** | 100–500 | 3–10 GB | 15%/yr |
+| **Proxy / Web** | 50–300 | 2–10 GB | 20%/yr |
+| **Cloud (AWS/Azure)** | 20–200 | 1–5 GB | 30%/yr |
+| **Email Gateway** | 10–50 | 0.5–3 GB | 10%/yr |
+| **VPN** | 5–20 | 0.1–0.5 GB | 15%/yr |
+
+---
+
+## License Planning
+
+### Core Platform Licenses
+
+| Platform | Metric | Typical Pricing Model |
+|:---|:---|:---|
+| **SIEM** | EPS / GB ingested / endpoints | Per GB/day or EPS tier |
+| **SOAR** | Actions/month or users | Per user or action volume |
+| **EDR** | Endpoints protected | Per endpoint/year |
+| **TI Platform** | Users + API calls | Per user + API tier |
+| **Vulnerability Scanner** | IPs / assets scanned | Per asset/year |
+| **CASB** | Users protected | Per user/year |
+| **Email Security** | Mailboxes | Per mailbox/year |
+
+### License Growth Forecast
+
+| Year | Endpoints | EPS | SIEM Storage | EDR Licenses | Est. Growth |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Current | _____ | _____ | _____ TB | _____ | Baseline |
+| +1 year | +15% | +20% | +25% | +15% | Organic |
+| +2 years | +35% | +45% | +55% | +35% | Organic + M&A |
+| +3 years | +60% | +75% | +90% | +60% | Strategic plan |
+
+---
+
+## Budget Planning
+
+### SOC Budget Categories
+
+| Category | % of SOC Budget | Components |
+|:---|:---:|:---|
+| **People** | 55–65% | Salaries, benefits, training, certifications |
+| **Technology** | 25–35% | SIEM, SOAR, EDR, TI, cloud services |
+| **Operations** | 5–10% | Facilities, power, network, travel |
+| **Professional Services** | 3–5% | Consulting, managed services, pentest |
+| **Contingency** | 3–5% | Incident response retainer, surge capacity |
+
+### Cost Per Alert Analysis
+
+| Component | Cost Factor | Calculation |
+|:---|:---|:---|
+| **Analyst time** | Avg salary ÷ alerts handled | ฿___ per alert |
+| **Tool cost** | License ÷ alerts processed | ฿___ per alert |
+| **Overhead** | Infrastructure ÷ total alerts | ฿___ per alert |
+| **Total cost per alert** | Sum of above | ฿___ per alert |
+
+### Automation ROI
+
+| Before Automation | After Automation | Savings |
+|:---|:---|:---|
+| 50 alerts/analyst/shift | 80 alerts/analyst/shift | 37.5% capacity gain |
+| 15 min avg triage time | 5 min with SOAR | 66% time reduction |
+| 3 analysts for triage | 2 analysts for triage | 1 FTE saved |
+| Manual enrichment 10 min | Auto enrichment 30 sec | 95% faster |
+
+---
+
+## Growth Triggers
+
+### When to Scale
+
+| Trigger | Indicator | Action |
+|:---|:---|:---|
+| **Alert volume > capacity** | Analysts consistently above 50/shift | Add analyst FTE |
+| **MTTD increasing** | MTTD trending above SLA | Add monitoring capacity |
+| **MTTR increasing** | MTTR trending above SLA | Add investigation capacity |
+| **Alert backlog growing** | Unresolved alerts > 24h SLA | Add triage capacity |
+| **New log sources** | EPS increase > 20% | Expand SIEM resources |
+| **M&A / expansion** | New business units | Staff + tool expansion |
+| **New compliance** | New framework requirement | Compliance + tool additions |
+| **High attrition** | Turnover > 15% | Compensation review + hire |
+
+### Scaling Decision Matrix
+
+| Scale Type | Timeline | Approval | Budget Impact |
+|:---|:---:|:---|:---|
+| **Add shift coverage** | 3–6 months | SOC Manager | 2–3 FTE |
+| **Expand SIEM** | 1–3 months | IT Director | Infrastructure + licensing |
+| **New tool deployment** | 3–6 months | CISO | Tool license + integration |
+| **Managed service augment** | 1–2 months | CISO | Service contract |
+| **Full SOC expansion** | 6–12 months | CxO | Major CAPEX + OPEX |
+
+---
+
+## Annual Planning Cycle
+
+| Month | Activity | Deliverable |
+|:---|:---|:---|
+| **Q4 (Oct–Nov)** | Capacity assessment, growth forecast | Current state report |
+| **Q4 (Nov)** | Budget request preparation | Budget proposal |
+| **Q4 (Dec)** | Budget negotiation, approval | Approved budget |
+| **Q1 (Jan)** | Hiring plan execution | Job postings, interviews |
+| **Q1–Q2** | Infrastructure procurement | POs, vendor contracts |
+| **Q2–Q3** | Deploy and onboard | New staff trained, tools live |
+| **Q3 (Sep)** | Mid-year review, adjust forecast | Updated forecast |
+
+---
+
+## Metrics
+
+| Metric | Target | Review Cycle |
+|:---|:---:|:---:|
+| Analyst utilization rate | 70–80% | Monthly |
+| Alert-to-analyst ratio | ≤ 50/shift | Weekly |
+| SIEM capacity headroom | ≥ 20% | Monthly |
+| Budget variance | ± 5% | Quarterly |
+| Attrition rate | < 15% | Quarterly |
+| Training hours per analyst | ≥ 40 hrs/year | Annual |
+| Automation coverage | ≥ 50% of triage | Quarterly |
+
+---
+
+## Related Documents
+
+-   [SOC Team Structure](SOC_Team_Structure.en.md) — Roles and responsibilities
+-   [SOC Metrics & KPIs](SOC_Metrics.en.md) — Performance measurement
+-   [KPI Dashboard Template](KPI_Dashboard_Template.en.md) — Dashboard building
+-   [SOC Maturity Assessment](SOC_Maturity_Assessment.en.md) — Capability levels
+-   [Log Source Matrix](Log_Source_Matrix.en.md) — Data volume sources
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Automation savings
+
+
+---
+
+## File: 06_Operations_Management/SOC_Capacity_Planning.th.md
+
+# SOC Capacity Planning / การวางแผนกำลังคน SOC
+
+**รหัสเอกสาร**: OPS-SOP-026
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน
+**อัปเดตล่าสุด**: 2026-02-16
+
+> กรอบการ **วางแผนกำลังคน, โครงสร้างพื้นฐาน, และงบประมาณ SOC** ตามการเติบโตองค์กร, การเปลี่ยนแปลงภัยคุกคาม, และข้อกำหนดงาน ครอบคลุม staffing, SIEM sizing, license, และ budget
+
+---
+
+## โมเดลกำลังคน
+
+### ตามรูปแบบ Coverage
+
+| รูปแบบ | กะ | Analysts ขั้นต่ำ | Lead/Manager | รวม FTE |
+|:---|:---:|:---:|:---:|:---:|
+| **เวลาทำการ** (8×5) | 1 | 2 | 1 | 3 |
+| **ขยาย** (16×5) | 2 | 4 | 1 | 5 |
+| **24/5** | 3 | 6 | 1 | 7 |
+| **24/7** | 4 | 8 | 2 | 10 |
+| **24/7 + Hunt** | 4 | 10 | 2 + 2 TH | 14 |
+
+### Capacity ต่อ FTE
+
+| Role | Capacity | หมายเหตุ |
+|:---|:---|:---|
+| **Tier 1** | 30–50 alerts/กะ | Triage + initial response |
+| **Tier 2** | 5–10 investigations/วัน | Deep investigation |
+| **Tier 3 / Hunt** | 2–4 hunts/สัปดาห์ | Proactive hunting |
+| **Detection Engineer** | 5–10 rules/สัปดาห์ | สร้าง + tune rules |
+| **SOAR Engineer** | 2–3 playbooks/เดือน | Automation dev |
+
+---
+
+## SIEM Sizing
+
+| Tier | EPS | ปริมาณ/วัน | Storage (1 ปี) | vCPU | RAM |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| **Small** | < 5K | < 50 GB | 18 TB | 8 | 32 GB |
+| **Medium** | 5–25K | 50–250 GB | 90 TB | 24 | 96 GB |
+| **Large** | 25–100K | 250 GB–1 TB | 365 TB | 64 | 256 GB |
+| **Enterprise** | > 100K | > 1 TB | 500+ TB | 128+ | 512+ GB |
+
+### ปริมาณ Log ต่อแหล่ง
+
+| แหล่ง | EPS เฉลี่ย/เครื่อง | ต่อวัน | อัตราเติบโต |
+|:---|:---:|:---:|:---:|
+| Firewall | 200–500 | 5–15 GB | 15%/ปี |
+| IDS/IPS | 50–200 | 2–8 GB | 10%/ปี |
+| EDR | 10–50/agent | 0.2–1 GB | 20%/ปี |
+| Windows Event | 5–20/host | 0.1–0.5 GB | 10%/ปี |
+| DNS | 100–500 | 3–10 GB | 15%/ปี |
+| Cloud | 20–200 | 1–5 GB | 30%/ปี |
+
+---
+
+## การวางแผนงบประมาณ
+
+### สัดส่วนงบ SOC
+
+| หมวด | % ของงบ SOC | รายละเอียด |
+|:---|:---:|:---|
+| **บุคลากร** | 55–65% | เงินเดือน, สวัสดิการ, ฝึกอบรม, certification |
+| **เทคโนโลยี** | 25–35% | SIEM, SOAR, EDR, TI, cloud |
+| **Operations** | 5–10% | สถานที่, ไฟฟ้า, เครือข่าย |
+| **Professional Services** | 3–5% | ที่ปรึกษา, pentest |
+| **Contingency** | 3–5% | IR retainer, surge capacity |
+
+### Automation ROI
+
+| ก่อน Automation | หลัง Automation | ประหยัด |
+|:---|:---|:---|
+| 50 alerts/analyst/กะ | 80 alerts/analyst/กะ | +37.5% capacity |
+| Triage เฉลี่ย 15 นาที | 5 นาที ด้วย SOAR | ลด 66% |
+| 3 analysts สำหรับ triage | 2 analysts | ลด 1 FTE |
+| Enrichment 10 นาที | Auto 30 วินาที | เร็วขึ้น 95% |
+
+---
+
+## Growth Triggers
+
+| Trigger | ตัวบ่งชี้ | Action |
+|:---|:---|:---|
+| Alert > capacity | Analysts ได้ > 50/กะ | เพิ่ม FTE |
+| MTTD เพิ่ม | เทรนด์เกิน SLA | เพิ่ม monitoring capacity |
+| MTTR เพิ่ม | เทรนด์เกิน SLA | เพิ่ม investigation capacity |
+| Alert backlog | Unresolved > 24 ชม. | เพิ่ม triage capacity |
+| Log sources ใหม่ | EPS เพิ่ม > 20% | ขยาย SIEM |
+| M&A / ขยายกิจการ | Business units ใหม่ | ขยาย staff + tools |
+| Attrition สูง | Turnover > 15% | ปรับค่าตอบแทน |
+
+---
+
+## ตัวชี้วัด
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---:|
+| Analyst utilization rate | 70–80% |
+| Alert-to-analyst ratio | ≤ 50/กะ |
+| SIEM capacity headroom | ≥ 20% |
+| Budget variance | ± 5% |
+| Attrition rate | < 15% |
+| Training hours/analyst | ≥ 40 ชม./ปี |
+| Automation coverage | ≥ 50% |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [SOC Team Structure](SOC_Team_Structure.en.md) — บทบาทและความรับผิดชอบ
+-   [SOC Metrics & KPIs](SOC_Metrics.en.md) — การวัดผล
+-   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลและปริมาณ
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — ลดภาระงาน
+
+
+---
+
 ## File: 06_Operations_Management/SOC_Checklists.en.md
 
 # SOC Operational Checklists — Daily / Weekly / Monthly
@@ -17349,6 +17685,376 @@ _อธิบาย root cause 2–3 ประโยค_
 SOC Manager: ____________________ วันที่: __________
 CISO:        ____________________ วันที่: __________
 ```
+
+
+---
+
+## File: 05_Incident_Response/Playbook_Development_Guide.en.md
+
+# Incident Playbook Development Guide
+
+**Document ID**: IR-SOP-015
+**Version**: 1.0
+**Classification**: Internal
+**Last Updated**: 2026-02-16
+
+> Guide for **creating, testing, and maintaining incident response playbooks**. Ensures consistency, quality, and completeness across all SOC playbooks. Covers structure standards, MITRE mapping, testing methodology, and lifecycle management.
+
+---
+
+## Playbook Architecture
+
+```mermaid
+graph TD
+    subgraph Inputs["📥 Inputs"]
+        A[Threat Intelligence]
+        B[Incident Lessons Learned]
+        C[New Detection Rules]
+        D[Framework Requirements]
+    end
+    
+    subgraph Development["🔨 Development"]
+        E[Draft Playbook]
+        F[Peer Review]
+        G[Tabletop Test]
+        H[Live Drill]
+    end
+    
+    subgraph Output["📤 Outputs"]
+        I[Published Playbook]
+        J[SOAR Automation]
+        K[Training Material]
+    end
+    
+    Inputs --> Development --> Output
+    
+    style E fill:#3b82f6,color:#fff
+    style H fill:#f97316,color:#fff
+    style I fill:#22c55e,color:#fff
+```
+
+---
+
+## Playbook Structure Standard
+
+Every playbook MUST contain these sections:
+
+| # | Section | Required | Description |
+|:---:|:---|:---:|:---|
+| 1 | **Metadata** | ✅ | ID, version, classification, MITRE mapping, last updated |
+| 2 | **Overview** | ✅ | What this playbook covers and when to use it |
+| 3 | **Severity mapping** | ✅ | How to determine P1/P2/P3/P4 for this incident type |
+| 4 | **Detection** | ✅ | How this incident is detected (alert sources, indicators) |
+| 5 | **Triage steps** | ✅ | Step-by-step initial analysis |
+| 6 | **Investigation** | ✅ | Deep-dive analysis procedures |
+| 7 | **Containment** | ✅ | Immediate actions to stop the attack |
+| 8 | **Eradication** | ✅ | Remove threat from environment |
+| 9 | **Recovery** | ✅ | Restore normal operations |
+| 10 | **Escalation criteria** | ✅ | When and to whom to escalate |
+| 11 | **Communication** | ✅ | Who to notify at each severity level |
+| 12 | **Evidence checklist** | ✅ | What to collect and preserve |
+| 13 | **Related playbooks** | ✅ | Links to related procedures |
+| 14 | **Automation hooks** | ⬜ | SOAR integration points |
+| 15 | **Metrics** | ⬜ | Playbook-specific KPIs |
+
+### Metadata Template
+
+```yaml
+---
+playbook_id: PB-XXX
+title: [Playbook Title]
+version: 1.0
+classification: Internal
+mitre_attack:
+  tactics: [TA0001, TA0003]
+  techniques: [T1566, T1566.001]
+severity_range: P1-P3
+last_updated: YYYY-MM-DD
+author: [Name]
+reviewer: [Name]
+approver: [SOC Lead]
+---
+```
+
+---
+
+## Development Process
+
+### Step-by-Step
+
+| Step | Activity | Owner | Deliverable | Duration |
+|:---:|:---|:---|:---|:---:|
+| 1 | **Identify need** | SOC Lead / TI Analyst | Justification document | 1 day |
+| 2 | **Research** | Analyst / Engineer | Threat research notes, MITRE mapping | 2–3 days |
+| 3 | **Draft playbook** | Assigned author | Draft EN version | 3–5 days |
+| 4 | **Peer review** | 2nd analyst + SOC Lead | Review feedback | 2 days |
+| 5 | **Revise** | Author | Updated draft | 1–2 days |
+| 6 | **Tabletop test** | SOC team | Test results, identified gaps | 1 day |
+| 7 | **Revise (final)** | Author | Final version | 1 day |
+| 8 | **Translate (TH)** | Assigned translator | Thai version | 2–3 days |
+| 9 | **Approval** | SOC Manager | Approved playbook | 1 day |
+| 10 | **Publish** | Author | Published + team notification | 1 day |
+| 11 | **SOAR integration** | SOAR Engineer | Automated workflow | 3–5 days |
+
+### Quality Checklist
+
+- [ ] All 13 required sections present
+- [ ] MITRE ATT&CK techniques mapped
+- [ ] Severity criteria clearly defined
+- [ ] Step-by-step triage with decision trees
+- [ ] Containment actions have rollback procedures
+- [ ] Escalation thresholds clearly stated
+- [ ] Communication matrix included
+- [ ] Evidence checklist complete
+- [ ] Related playbooks linked
+- [ ] Peer reviewed by ≥ 1 analyst
+- [ ] Tabletop tested with SOC team
+- [ ] Thai translation completed
+- [ ] Published to repository
+
+---
+
+## MITRE ATT&CK Mapping
+
+### Coverage Matrix
+
+| Tactic | Existing Playbooks | Coverage |
+|:---|:---|:---:|
+| **Initial Access** (TA0001) | PB-01 Phishing, PB-17 BEC, PB-18 Exploit | ✅ |
+| **Execution** (TA0002) | PB-11 Suspicious Script | 🟡 |
+| **Persistence** (TA0003) | PB-14 Insider Threat, PB-15 Rogue Admin | 🟡 |
+| **Privilege Escalation** (TA0004) | PB-07 Privilege Escalation | ✅ |
+| **Defense Evasion** (TA0005) | PB-20 Log Clearing | 🟡 |
+| **Credential Access** (TA0006) | PB-04 Brute Force, PB-05 Account Compromise, PB-26 MFA Bypass | ✅ |
+| **Discovery** (TA0007) | — | 🔴 Gap |
+| **Lateral Movement** (TA0008) | PB-12 Lateral Movement | ✅ |
+| **Collection** (TA0009) | — | 🔴 Gap |
+| **C2** (TA0011) | PB-13 C2, PB-24 DNS Tunneling | ✅ |
+| **Exfiltration** (TA0010) | PB-08 Data Exfiltration | ✅ |
+| **Impact** (TA0040) | PB-02 Ransomware, PB-09 DDoS, PB-23 Cryptomining | ✅ |
+
+---
+
+## Testing Methodology
+
+### Tabletop Test Procedure
+
+| Step | Activity | Duration |
+|:---:|:---|:---:|
+| 1 | Facilitator presents scenario | 5 min |
+| 2 | Team walks through playbook step-by-step | 20 min |
+| 3 | Identify gaps, ambiguities, missing steps | 15 min |
+| 4 | Discuss improvements | 10 min |
+| 5 | Document action items | 5 min |
+
+### Test Scoring
+
+| Criteria | 1 — Poor | 2 — Fair | 3 — Good | 4 — Excellent |
+|:---|:---|:---|:---|:---|
+| **Completeness** | Many steps missing | Some gaps | Minor omissions | Comprehensive |
+| **Clarity** | Ambiguous, confusing | Some confusion | Mostly clear | Crystal clear |
+| **Actionability** | Vague instructions | Some specifics | Mostly actionable | All steps actionable |
+| **Flow** | Illogical order | Some flow issues | Good flow | Perfect logical flow |
+| **Automation** | No SOAR hooks | Partial automation | Most steps automatable | Fully integrated |
+
+| Overall Score | Result | Action |
+|:---:|:---|:---|
+| 16–20 | ✅ Publish | Ready for production |
+| 11–15 | 🟡 Minor revisions | Address feedback, re-review |
+| 6–10 | 🟠 Major revisions | Significant rewrite needed |
+| 1–5 | 🔴 Reject | Start over with new approach |
+
+---
+
+## Lifecycle Management
+
+### Review Schedule
+
+| Trigger | Action | Owner |
+|:---|:---|:---|
+| **Quarterly** | Content review, update links | Playbook author |
+| **After major incident** | Update with lessons learned | IR Lead |
+| **New TI** | Add new IOCs, techniques | TI Analyst |
+| **MITRE update** | Re-map to updated framework | SOC Engineer |
+| **Tool change** | Update tool-specific steps | SOAR Engineer |
+| **Annual** | Full review, tabletop re-test | SOC Manager |
+
+### Version Control
+
+| Change Type | Version Bump | Approval |
+|:---|:---:|:---|
+| Typo / formatting | Patch (1.0.1) | Author |
+| Step update / clarification | Minor (1.1.0) | Peer review |
+| New section / major rewrite | Major (2.0.0) | SOC Manager |
+| New playbook | Initial (1.0.0) | SOC Manager |
+
+---
+
+## Metrics
+
+| Metric | Target |
+|:---|:---:|
+| Playbook coverage (MITRE tactics) | ≥ 90% |
+| Playbooks with tabletop test | 100% |
+| Playbooks reviewed within 12 months | 100% |
+| Average playbook development time | < 15 days |
+| Analyst satisfaction score | ≥ 4/5 |
+| Playbooks with SOAR integration | ≥ 60% |
+
+---
+
+## Related Documents
+
+-   [IR Framework](Framework.en.md) — NIST-based framework
+-   [Severity Matrix](Severity_Matrix.en.md) — P1–P4 definitions
+-   [Tier 1 Runbook](Tier1_Runbook.en.md) — Day-to-day procedures
+-   [SOAR Playbooks](SOAR_Playbooks.en.md) — Automation templates
+-   [Lessons Learned Template](Lessons_Learned_Template.en.md) — Post-incident review
+-   [SOC Automation Catalog](../06_Operations_Management/SOC_Automation_Catalog.en.md) — Automation inventory
+
+
+---
+
+## File: 05_Incident_Response/Playbook_Development_Guide.th.md
+
+# คู่มือการพัฒนา Playbook ตอบสนองเหตุการณ์
+
+**รหัสเอกสาร**: IR-SOP-015
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน
+**อัปเดตล่าสุด**: 2026-02-16
+
+> คู่มือ **สร้าง, ทดสอบ, และบำรุงรักษา IR playbooks** เพื่อความสม่ำเสมอ คุณภาพ และครบถ้วนทุก playbook ครอบคลุมมาตรฐานโครงสร้าง, MITRE mapping, วิธีทดสอบ, และ lifecycle management
+
+---
+
+## มาตรฐานโครงสร้าง Playbook
+
+ทุก playbook **ต้องมี** sections เหล่านี้:
+
+| # | Section | จำเป็น | คำอธิบาย |
+|:---:|:---|:---:|:---|
+| 1 | **Metadata** | ✅ | ID, version, MITRE mapping |
+| 2 | **ภาพรวม** | ✅ | ขอบเขตและเมื่อไรใช้ |
+| 3 | **Severity mapping** | ✅ | เกณฑ์ P1–P4 |
+| 4 | **การตรวจจับ** | ✅ | แหล่ง alert, indicators |
+| 5 | **Triage steps** | ✅ | ขั้นตอนวิเคราะห์เบื้องต้น |
+| 6 | **การสืบสวน** | ✅ | วิเคราะห์เชิงลึก |
+| 7 | **Containment** | ✅ | หยุดการโจมตี |
+| 8 | **Eradication** | ✅ | ลบภัยคุกคาม |
+| 9 | **Recovery** | ✅ | กู้คืนระบบ |
+| 10 | **เกณฑ์ Escalation** | ✅ | เมื่อไรเลื่อนระดับ |
+| 11 | **การสื่อสาร** | ✅ | แจ้งใครในแต่ละ severity |
+| 12 | **Evidence checklist** | ✅ | เก็บหลักฐานอะไร |
+| 13 | **Playbooks ที่เกี่ยวข้อง** | ✅ | Link เอกสารอื่น |
+
+---
+
+## กระบวนการพัฒนา
+
+| ขั้น | กิจกรรม | ผู้ดำเนินการ | ระยะเวลา |
+|:---:|:---|:---|:---:|
+| 1 | ระบุความจำเป็น | SOC Lead | 1 วัน |
+| 2 | Research + MITRE mapping | Analyst | 2–3 วัน |
+| 3 | ร่าง playbook (EN) | ผู้เขียน | 3–5 วัน |
+| 4 | Peer review | Analyst + SOC Lead | 2 วัน |
+| 5 | แก้ไข | ผู้เขียน | 1–2 วัน |
+| 6 | Tabletop test | ทีม SOC | 1 วัน |
+| 7 | แก้ไขรอบสุดท้าย | ผู้เขียน | 1 วัน |
+| 8 | แปลภาษาไทย | ผู้แปล | 2–3 วัน |
+| 9 | อนุมัติ | SOC Manager | 1 วัน |
+| 10 | เผยแพร่ | ผู้เขียน | 1 วัน |
+| 11 | SOAR integration | SOAR Engineer | 3–5 วัน |
+
+### Quality Checklist
+
+- [ ] ครบ 13 sections ที่จำเป็น
+- [ ] MITRE ATT&CK mapped
+- [ ] เกณฑ์ severity ชัดเจน
+- [ ] Triage steps เป็นขั้นตอน
+- [ ] Containment มี rollback
+- [ ] Escalation threshold ชัด
+- [ ] Communication matrix ครบ
+- [ ] Evidence checklist ครบ
+- [ ] Peer reviewed ≥ 1 คน
+- [ ] Tabletop tested
+- [ ] แปลไทยแล้ว
+- [ ] Publish ลง repository
+
+---
+
+## MITRE ATT&CK Coverage
+
+| Tactic | Playbooks ปัจจุบัน | Coverage |
+|:---|:---|:---:|
+| Initial Access | PB-01 Phishing, PB-17 BEC, PB-18 Exploit | ✅ |
+| Execution | PB-11 Suspicious Script | 🟡 |
+| Persistence | PB-14 Insider Threat, PB-15 Rogue Admin | 🟡 |
+| Privilege Escalation | PB-07 | ✅ |
+| Defense Evasion | PB-20 Log Clearing | 🟡 |
+| Credential Access | PB-04, PB-05, PB-26 | ✅ |
+| Discovery | — | 🔴 Gap |
+| Lateral Movement | PB-12 | ✅ |
+| Collection | — | 🔴 Gap |
+| C2 | PB-13, PB-24 | ✅ |
+| Exfiltration | PB-08 | ✅ |
+| Impact | PB-02, PB-09, PB-23 | ✅ |
+
+---
+
+## วิธีทดสอบ Tabletop
+
+| ขั้น | กิจกรรม | ระยะเวลา |
+|:---:|:---|:---:|
+| 1 | Facilitator นำเสนอ scenario | 5 นาที |
+| 2 | ทีมเดินตาม playbook ทีละขั้น | 20 นาที |
+| 3 | ระบุช่องว่าง, ความคลุมเครือ | 15 นาที |
+| 4 | อภิปรายปรับปรุง | 10 นาที |
+| 5 | บันทึก action items | 5 นาที |
+
+### เกณฑ์ให้คะแนน
+
+| คะแนนรวม | ผลลัพธ์ | การดำเนินการ |
+|:---:|:---|:---|
+| 16–20 | ✅ เผยแพร่ได้ | พร้อม production |
+| 11–15 | 🟡 ปรับแก้เล็กน้อย | แก้ไขตาม feedback |
+| 6–10 | 🟠 ปรับแก้มาก | เขียนใหม่บางส่วน |
+| 1–5 | 🔴 ไม่ผ่าน | เริ่มใหม่ |
+
+---
+
+## Lifecycle Management
+
+| Trigger | Action | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| รายไตรมาส | ทบทวน content, อัปเดต links | ผู้เขียน |
+| หลังเหตุการณ์สำคัญ | อัปเดตจาก lessons learned | IR Lead |
+| TI ใหม่ | เพิ่ม IOCs, techniques | TI Analyst |
+| MITRE update | Re-map framework | SOC Engineer |
+| เปลี่ยนเครื่องมือ | อัปเดตขั้นตอน | SOAR Engineer |
+| รายปี | ทบทวนทั้งหมด + ทดสอบ tabletop | SOC Manager |
+
+---
+
+## ตัวชี้วัด
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---:|
+| Playbook coverage (MITRE tactics) | ≥ 90% |
+| Playbooks ผ่าน tabletop | 100% |
+| Playbooks ทบทวนภายใน 12 เดือน | 100% |
+| เวลาพัฒนาเฉลี่ย | < 15 วัน |
+| ความพึงพอใจ analyst | ≥ 4/5 |
+| Playbooks มี SOAR | ≥ 60% |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [IR Framework](Framework.en.md) — กรอบงาน NIST
+-   [Severity Matrix](Severity_Matrix.en.md) — คำจำกัดความ P1–P4
+-   [SOAR Playbooks](SOAR_Playbooks.en.md) — Automation templates
+-   [SOC Automation Catalog](../06_Operations_Management/SOC_Automation_Catalog.en.md) — คลัง Automation
 
 
 ---
@@ -25375,6 +26081,348 @@ graph TD
 
 ## References
 -   [NIST SP 800-61 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+
+
+---
+
+## File: 10_Compliance/Compliance_Gap_Analysis.en.md
+
+# Compliance Gap Analysis SOP
+
+**Document ID**: COMP-SOP-003
+**Version**: 1.0
+**Classification**: Internal
+**Last Updated**: 2026-02-16
+
+> Procedures for **assessing organizational compliance posture** against regulatory frameworks, identifying gaps, prioritizing remediation, and tracking progress. Covers ISO 27001, NIST CSF, PCI DSS, PDPA, and GDPR mapping.
+
+---
+
+## Compliance Frameworks Matrix
+
+| Framework | Scope | Applicability | Review Cycle |
+|:---|:---|:---|:---:|
+| **ISO 27001:2022** | Information Security Management System | All organizations | Annual |
+| **NIST CSF 2.0** | Cybersecurity risk management | Critical infrastructure, voluntary | Annual |
+| **PCI DSS v4.0** | Cardholder data protection | Payment card processing | Quarterly + Annual |
+| **PDPA** | Personal data protection (Thailand) | All Thai data processing | Annual |
+| **GDPR** | Personal data protection (EU) | EU citizen data processing | Annual |
+| **CSA CCM v4** | Cloud security controls | Cloud service providers | Annual |
+
+---
+
+## Gap Analysis Process
+
+```mermaid
+flowchart TD
+    A[1. Define scope & frameworks] --> B[2. Inventory current controls]
+    B --> C[3. Map controls to requirements]
+    C --> D[4. Identify gaps]
+    D --> E[5. Risk-score gaps]
+    E --> F[6. Create remediation plan]
+    F --> G[7. Assign owners & timelines]
+    G --> H[8. Track & report progress]
+    H --> I[9. Re-assess]
+    I --> C
+
+    style A fill:#3b82f6,color:#fff
+    style D fill:#dc2626,color:#fff
+    style F fill:#22c55e,color:#fff
+```
+
+### Phase Details
+
+| Phase | Activities | Output | Duration |
+|:---|:---|:---|:---:|
+| **1. Scope** | Identify applicable frameworks, business units, systems | Scope document | 1 week |
+| **2. Inventory** | Document existing policies, processes, tools, controls | Control inventory | 2 weeks |
+| **3. Map** | Map each control to framework requirements | Control mapping matrix | 2 weeks |
+| **4. Identify** | Compare implemented vs required → find gaps | Gap register | 1 week |
+| **5. Risk-score** | Score each gap by impact × likelihood | Prioritized gap list | 1 week |
+| **6. Plan** | Define remediation actions, resources, budget | Remediation plan | 2 weeks |
+| **7. Assign** | Designate owners, set deadlines | RACI + timeline | 1 week |
+| **8. Track** | Monitor progress, report to stakeholders | Progress dashboard | Ongoing |
+| **9. Re-assess** | Validate remediation effectiveness | Updated gap register | Quarterly |
+
+---
+
+## SOC-Specific Control Areas
+
+### Detection & Response Controls
+
+| Control Area | ISO 27001 | NIST CSF | PCI DSS | Key Questions |
+|:---|:---:|:---:|:---:|:---|
+| **SIEM deployment** | A.8.15 | DE.CM | 10.6 | Is SIEM covering all critical log sources? |
+| **Log collection** | A.8.15 | DE.CM-3 | 10.2 | Are all required sources onboarded? |
+| **Alert monitoring** | A.8.16 | DE.AE | 10.6.1 | Is 24/7 monitoring in place? |
+| **Incident response plan** | A.5.24 | RS.RP | 12.10 | Is IR plan documented and tested? |
+| **Vulnerability scanning** | A.8.8 | DE.CM-8 | 11.3 | Is scanning running at required frequency? |
+| **Penetration testing** | A.8.8 | PR.IP | 11.4 | Is annual pentest conducted? |
+| **Access management** | A.8.2 | PR.AC | 7.1 | Is least privilege enforced? |
+| **MFA** | A.8.5 | PR.AC-7 | 8.4 | Is MFA enabled for all admin access? |
+| **Encryption** | A.8.24 | PR.DS-1 | 3.4 | Is data encrypted at rest and in transit? |
+| **Backup & recovery** | A.8.13 | PR.IP-4 | 9.5 | Are backups tested regularly? |
+
+### Data Protection Controls (PDPA/GDPR)
+
+| Control | PDPA Section | GDPR Article | Assessment Questions |
+|:---|:---:|:---:|:---|
+| **Lawful basis** | §24 | Art. 6 | Is lawful basis documented for each processing activity? |
+| **Consent management** | §19 | Art. 7 | Is consent freely given, specific, informed? |
+| **Data subject rights** | §30–36 | Art. 15–22 | Can requests be fulfilled within 30 days? |
+| **Breach notification** | §37 | Art. 33–34 | Can we notify within 72 hours? |
+| **DPO appointment** | §41 | Art. 37 | Is DPO appointed with adequate authority? |
+| **DPIA** | §26 | Art. 35 | Are DPIAs conducted for high-risk processing? |
+| **Cross-border transfer** | §28 | Art. 44–49 | Are adequate safeguards in place? |
+| **Records of processing** | §39 | Art. 30 | Are processing records maintained? |
+
+---
+
+## Gap Risk Scoring
+
+### Scoring Matrix
+
+| Factor | 1 — Low | 2 — Medium | 3 — High | 4 — Critical |
+|:---|:---|:---|:---|:---|
+| **Business impact** | Minimal disruption | Moderate impact | Significant loss | Business-critical failure |
+| **Regulatory risk** | Advisory finding | Minor non-compliance | Material non-compliance | Regulatory action / fine |
+| **Exploit likelihood** | Unlikely | Possible | Probable | Active exploitation |
+| **Data sensitivity** | Public data | Internal data | Confidential / PII | Restricted / regulated |
+
+### Risk Score Calculation
+
+| Combined Score | Priority | Remediation Timeline | Reporting |
+|:---:|:---|:---:|:---|
+| **13–16** | 🔴 Critical | < 30 days | Weekly to CISO |
+| **9–12** | 🟠 High | < 90 days | Monthly to CISO |
+| **5–8** | 🟡 Medium | < 180 days | Quarterly review |
+| **1–4** | 🟢 Low | Next audit cycle | Annual review |
+
+---
+
+## Remediation Tracking
+
+### Remediation Plan Template
+
+| Field | Value |
+|:---|:---|
+| **Gap ID** | GAP-____-_____ |
+| **Framework** | ISO 27001 / NIST / PCI / PDPA |
+| **Control Reference** | ______________ |
+| **Current State** | ______________ |
+| **Required State** | ______________ |
+| **Gap Description** | ______________ |
+| **Risk Score** | _____ / 16 |
+| **Remediation Action** | ______________ |
+| **Owner** | ______________ |
+| **Budget Required** | ฿____________ |
+| **Target Date** | ____-__-__ |
+| **Evidence Required** | ______________ |
+| **Status** | 🔴 Open / 🟡 In Progress / 🟢 Closed |
+
+### Progress Dashboard
+
+| Metric | Formula | Target |
+|:---|:---|:---:|
+| Overall compliance score | (Controls met ÷ Total controls) × 100 | ≥ 85% |
+| Critical gaps open | Count of score 13–16 open | 0 |
+| High gaps overdue | Count of score 9–12 past due | 0 |
+| Mean time to remediate (critical) | Avg days gap open → closed | < 30 days |
+| Mean time to remediate (high) | Avg days gap open → closed | < 90 days |
+| Gaps reopened | Gaps that failed re-validation | < 5% |
+
+---
+
+## Audit Preparation
+
+### Pre-Audit Checklist
+
+| Category | Items | Owner |
+|:---|:---|:---|
+| **Documentation** | Policies, procedures, standards current | Compliance Manager |
+| **Evidence** | Screenshots, logs, configurations collected | SOC Lead |
+| **Access** | Auditor accounts provisioned | IT Admin |
+| **Interviews** | Staff briefed on roles and processes | Department Heads |
+| **Testing** | Recent scan/pentest reports available | Security Engineer |
+| **Remediation** | Previous findings addressed with evidence | Control Owners |
+
+### Evidence Collection Matrix
+
+| Control Type | Acceptable Evidence | Collection Frequency |
+|:---|:---|:---:|
+| **Technical** | System configs, screenshots, tool exports | Real-time / daily |
+| **Administrative** | Policies, procedures, meeting minutes | As updated |
+| **Operational** | Logs, reports, incident records | Daily / weekly |
+| **Physical** | Photos, access logs, visitor records | Monthly |
+
+---
+
+## Reporting
+
+### Compliance Report Structure
+
+| Section | Content | Audience |
+|:---|:---|:---|
+| **Executive Summary** | Overall score, critical findings, trend | Board / CISO |
+| **Framework Status** | Per-framework compliance percentage | Management |
+| **Gap Register** | All open gaps with risk scores | Control owners |
+| **Remediation Progress** | Timeline tracking, overdue items | Project managers |
+| **Risk Heat Map** | Visual risk distribution | Board / CISO |
+| **Recommendations** | Prioritized next steps | Management |
+
+### Reporting Cadence
+
+| Report | Frequency | Audience |
+|:---|:---:|:---|
+| Critical gap alert | Immediate | CISO |
+| Compliance dashboard | Weekly | Security team |
+| Progress report | Monthly | Management |
+| Framework assessment | Quarterly | Board / CISO |
+| Full audit report | Annual | Board / External |
+
+---
+
+## Metrics
+
+| Metric | Target |
+|:---|:---:|
+| Overall compliance score | ≥ 85% |
+| Critical gaps open | 0 |
+| Gap remediation on-time rate | ≥ 90% |
+| Average remediation time (critical) | < 30 days |
+| Audit finding recurrence rate | < 10% |
+| Evidence availability | ≥ 95% |
+
+---
+
+## Related Documents
+
+-   [Compliance Mapping](Compliance_Mapping.en.md) — ISO 27001 / NIST CSF / PCI DSS mapping
+-   [PDPA Incident Response](PDPA_Incident_Response.en.md) — 72-hour notification SOP
+-   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md) — SOC capability assessment
+-   [Vulnerability Management](../06_Operations_Management/Vulnerability_Management.en.md) — Scanning & remediation
+-   [Third-Party Risk](../06_Operations_Management/Third_Party_Risk.en.md) — Vendor compliance
+
+
+---
+
+## File: 10_Compliance/Compliance_Gap_Analysis.th.md
+
+# Compliance Gap Analysis SOP / SOP การวิเคราะห์ช่องว่างด้าน Compliance
+
+**รหัสเอกสาร**: COMP-SOP-003
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน
+**อัปเดตล่าสุด**: 2026-02-16
+
+> ขั้นตอน **ประเมินสถานะ Compliance, ระบุช่องว่าง, จัดลำดับการแก้ไข, และติดตามความคืบหน้า** ครอบคลุม ISO 27001, NIST CSF, PCI DSS, PDPA, และ GDPR
+
+---
+
+## กรอบ Compliance
+
+| Framework | ขอบเขต | รอบทบทวน |
+|:---|:---|:---:|
+| **ISO 27001:2022** | ระบบจัดการความมั่นคงปลอดภัยสารสนเทศ | รายปี |
+| **NIST CSF 2.0** | บริหารจัดการ cybersecurity risk | รายปี |
+| **PCI DSS v4.0** | ปกป้องข้อมูลบัตรชำระเงิน | รายไตรมาส + รายปี |
+| **PDPA** | คุ้มครองข้อมูลส่วนบุคคล (ไทย) | รายปี |
+| **GDPR** | คุ้มครองข้อมูลส่วนบุคคล (EU) | รายปี |
+
+---
+
+## กระบวนการ Gap Analysis
+
+```mermaid
+flowchart TD
+    A[1. กำหนดขอบเขต] --> B[2. สำรวจ controls]
+    B --> C[3. Map controls กับข้อกำหนด]
+    C --> D[4. ระบุช่องว่าง]
+    D --> E[5. ประเมินความเสี่ยง]
+    E --> F[6. แผนการแก้ไข]
+    F --> G[7. มอบหมาย + timeline]
+    G --> H[8. ติดตาม + รายงาน]
+    H --> I[9. ประเมินซ้ำ]
+    I --> C
+
+    style A fill:#3b82f6,color:#fff
+    style D fill:#dc2626,color:#fff
+    style F fill:#22c55e,color:#fff
+```
+
+---
+
+## SOC-Specific Controls
+
+### Detection & Response
+
+| Control Area | ISO 27001 | NIST CSF | PCI DSS | คำถามหลัก |
+|:---|:---:|:---:|:---:|:---|
+| **SIEM** | A.8.15 | DE.CM | 10.6 | SIEM ครอบคลุม log sources ทั้งหมด? |
+| **Log collection** | A.8.15 | DE.CM-3 | 10.2 | Onboard log sources ที่จำเป็นครบ? |
+| **Alert monitoring** | A.8.16 | DE.AE | 10.6.1 | มี 24/7 monitoring? |
+| **IR plan** | A.5.24 | RS.RP | 12.10 | IR plan ทดสอบแล้ว? |
+| **Vuln scanning** | A.8.8 | DE.CM-8 | 11.3 | สแกนตามความถี่ที่กำหนด? |
+| **Pentest** | A.8.8 | PR.IP | 11.4 | ทดสอบเจาะระบบรายปี? |
+| **Access mgmt** | A.8.2 | PR.AC | 7.1 | Least privilege? |
+| **MFA** | A.8.5 | PR.AC-7 | 8.4 | MFA สำหรับ admin ทั้งหมด? |
+
+### Data Protection (PDPA/GDPR)
+
+| Control | PDPA | GDPR | คำถาม |
+|:---|:---:|:---:|:---|
+| **ฐานทางกฎหมาย** | §24 | Art. 6 | มีฐานกฎหมายครบทุกกิจกรรม? |
+| **ความยินยอม** | §19 | Art. 7 | Consent เป็น free, specific, informed? |
+| **สิทธิเจ้าของข้อมูล** | §30–36 | Art. 15–22 | ดำเนินการได้ภายใน 30 วัน? |
+| **แจ้งเหตุละเมิด** | §37 | Art. 33–34 | แจ้งได้ภายใน 72 ชม.? |
+| **DPO** | §41 | Art. 37 | แต่งตั้ง DPO แล้ว? |
+| **DPIA** | §26 | Art. 35 | ทำ DPIA สำหรับ high-risk? |
+
+---
+
+## การให้คะแนนความเสี่ยง
+
+| คะแนนรวม | Priority | แก้ไขภายใน | รายงาน |
+|:---:|:---|:---:|:---|
+| **13–16** | 🔴 Critical | < 30 วัน | รายสัปดาห์ถึง CISO |
+| **9–12** | 🟠 High | < 90 วัน | รายเดือนถึง CISO |
+| **5–8** | 🟡 Medium | < 180 วัน | รายไตรมาส |
+| **1–4** | 🟢 Low | Audit cycle ถัดไป | รายปี |
+
+---
+
+## การติดตามการแก้ไข
+
+| ตัวชี้วัด | สูตร | เป้าหมาย |
+|:---|:---|:---:|
+| Compliance score รวม | (Controls met ÷ Total) × 100 | ≥ 85% |
+| Critical gaps open | จำนวน score 13–16 ที่เปิด | 0 |
+| High gaps overdue | จำนวน score 9–12 เลยกำหนด | 0 |
+| MTTR (critical) | วันเฉลี่ยจากเปิด→ปิด | < 30 วัน |
+| MTTR (high) | วันเฉลี่ยจากเปิด→ปิด | < 90 วัน |
+| Gaps reopened | Gaps ที่ re-validate ไม่ผ่าน | < 5% |
+
+---
+
+## ตัวชี้วัด
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---:|
+| Overall compliance score | ≥ 85% |
+| Critical gaps open | 0 |
+| Gap remediation on-time | ≥ 90% |
+| Remediation time (critical) | < 30 วัน |
+| Audit finding recurrence | < 10% |
+| Evidence availability | ≥ 95% |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [Compliance Mapping](Compliance_Mapping.en.md) — ISO 27001 / NIST CSF / PCI DSS
+-   [PDPA Incident Response](PDPA_Incident_Response.en.md) — แจ้ง 72 ชม.
+-   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md) — ประเมิน SOC
+-   [Vulnerability Management](../06_Operations_Management/Vulnerability_Management.en.md) — การสแกนและแก้ไข
 
 
 ---
