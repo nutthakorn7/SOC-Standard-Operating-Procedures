@@ -4724,6 +4724,531 @@ All SOC tool access must be logged:
 
 ---
 
+## File: 06_Operations_Management/Alert_Tuning.en.md
+
+# Alert Tuning SOP
+
+**Document ID**: OPS-SOP-016
+**Version**: 1.0
+**Classification**: Internal
+**Last Updated**: 2026-02-15
+
+> Systematic approach to **reduce false positives**, **improve alert quality**, and **prevent analyst fatigue**. Every SOC should tune continuously — this SOP defines when, how, and what to tune.
+
+---
+
+## Why Tune?
+
+| Problem | Impact | Tuning Outcome |
+|:---|:---|:---|
+| High false positive rate (> 30%) | Analyst fatigue, missed real alerts | TP rate ≥ 80% |
+| Alert floods (> 200/analyst/day) | Cannot investigate properly | Manageable volume (< 50/day) |
+| Duplicate/redundant alerts | Wasted analyst time | Deduplicated, correlated |
+| Irrelevant alerts for environment | Noise, eroded trust in tools | Contextual, relevant alerts |
+| No severity differentiation | Everything looks the same | Prioritized, risk-scored |
+
+---
+
+## Tuning Lifecycle
+
+```mermaid
+graph TD
+    A[1. Identify Noisy Rules] --> B[2. Analyze Root Cause]
+    B --> C[3. Design Tuning Fix]
+    C --> D[4. Test in Staging]
+    D --> E[5. Deploy to Production]
+    E --> F[6. Monitor Impact]
+    F --> G{Improved?}
+    G -->|Yes| H[7. Document & Close]
+    G -->|No| B
+
+    style A fill:#3b82f6,color:#fff
+    style H fill:#22c55e,color:#fff
+```
+
+---
+
+## Step 1: Identify Noisy Rules
+
+### Metrics to Track
+
+| Metric | Threshold for Tuning | Data Source |
+|:---|:---:|:---|
+| **False positive rate** | > 30% per rule | SIEM + analyst feedback |
+| **Alert volume per rule** | > 50/day (single rule) | SIEM dashboard |
+| **Analyst close rate without action** | > 50% | Ticketing system |
+| **Average investigation time** | < 1 minute (auto-close) | Ticketing system |
+| **Duplicate alert ratio** | > 20% | SIEM correlation |
+
+### Weekly Tuning Report (Template)
+
+| Rank | Rule Name | Rule ID | TP | FP | Volume/Day | FP Rate | Action |
+|:---:|:---|:---|:---:|:---:|:---:|:---:|:---|
+| 1 | ______________ | _____ | _____ | _____ | _____ | ___% | Tune/Disable/Keep |
+| 2 | ______________ | _____ | _____ | _____ | _____ | ___% | Tune/Disable/Keep |
+| 3 | ______________ | _____ | _____ | _____ | _____ | ___% | Tune/Disable/Keep |
+
+> 📊 Generate this report weekly. Focus on top 10 noisiest rules.
+
+---
+
+## Step 2: Analyze Root Cause
+
+### Common FP Root Causes
+
+| Root Cause | Example | Typical Fix |
+|:---|:---|:---|
+| **Legitimate software** | AV flagging admin tools (PsExec, WinRM) | Allowlist by hash + source |
+| **Scheduled jobs** | Cron/scheduled task triggering process creation alerts | Time-based exclusion |
+| **Service accounts** | Service accounts triggering brute-force rules | Identity-based exclusion |
+| **Known infrastructure** | Vulnerability scanners triggering IDS | Source IP exclusion |
+| **Over-broad detection** | "Any PowerShell execution" rule | Narrow to suspicious cmdlets |
+| **Missing context** | Alert lacks user/host context | Add enrichment, refine conditions |
+| **Duplicate data sources** | Same event from Sysmon + EDR | Deduplicate sources |
+| **Threshold too low** | Failed login threshold = 3 | Raise to 10+ in 5 min |
+
+### Analysis Template
+
+```markdown
+## Tuning Request: [Rule Name]
+
+**Rule ID**: _____
+**Current FP Rate**: ____%
+**Alert Volume**: _____ /day
+**Analysis Period**: [date range]
+
+### False Positive Patterns
+- Pattern 1: _____________________________
+- Pattern 2: _____________________________
+
+### True Positive Examples
+- Example 1: _____________________________
+
+### Root Cause
+[  ] Legitimate software
+[  ] Scheduled jobs
+[  ] Service accounts
+[  ] Known infrastructure
+[  ] Over-broad detection
+[  ] Other: _____
+
+### Proposed Fix
+___________________________________________
+
+### Risk of Missing True Positives
+[  ] Low — fix is narrowly targeted
+[  ] Medium — some edge cases possible
+[  ] High — needs careful monitoring
+```
+
+---
+
+## Step 3: Design Tuning Fix
+
+### Tuning Techniques
+
+| Technique | When to Use | Example | Risk |
+|:---|:---|:---|:---:|
+| **Allowlist by entity** | Known safe source | Exclude scanner IP from IDS | Low |
+| **Allowlist by hash** | Known safe binary | Exclude signed PsExec | Low |
+| **Time-based exclusion** | Scheduled activity | Exclude backups 02:00–04:00 | Medium |
+| **Threshold adjustment** | Too sensitive | Failed logins: 3 → 10 in 5 min | Medium |
+| **Add conditions** | Rule too broad | PowerShell + encoded + unsigned | Low |
+| **Correlation rule** | Multi-stage attack | Alert only if followed by lateral movement | Medium |
+| **Severity downgrade** | Alert not P1-worthy | Move from P2 to P4 | Low |
+| **Deduplication** | Same alert repeated | Alert once per host per hour | Low |
+| **Enrichment-based** | Needs more context | Suppress if user is VIP with MFA | Medium |
+| **Disable rule** | Zero value for environment | Disable macOS rule on Windows-only | High |
+
+### Decision Matrix
+
+```mermaid
+flowchart TD
+    A[Noisy Rule Identified] --> B{Any TP in last 30 days?}
+    B -->|No| C{Relevant to our environment?}
+    C -->|No| D[🔴 DISABLE rule]
+    C -->|Yes| E[🟡 KEEP but add conditions]
+    B -->|Yes| F{FP rate > 50%?}
+    F -->|Yes| G{Can narrow detection logic?}
+    G -->|Yes| H[🟢 TUNE — add exclusions/conditions]
+    G -->|No| I[🟡 DOWNGRADE severity + add enrichment]
+    F -->|No| J{Volume > 50/day?}
+    J -->|Yes| K[🟢 Deduplicate + adjust threshold]
+    J -->|No| L[✅ KEEP — acceptable noise]
+
+    style D fill:#dc2626,color:#fff
+    style H fill:#22c55e,color:#fff
+    style K fill:#22c55e,color:#fff
+    style L fill:#3b82f6,color:#fff
+```
+
+---
+
+## Step 4: Test in Staging
+
+### Testing Checklist
+
+- [ ] Tuning change documented (what/why/how)
+- [ ] Applied to staging/test environment
+- [ ] Replay historical logs through tuned rule
+- [ ] Verify: known TP samples still detected
+- [ ] Verify: known FP patterns now suppressed
+- [ ] No unintended side effects on other rules
+- [ ] Peer review by another analyst
+- [ ] Change approved per change management process
+
+---
+
+## Step 5: Deploy to Production
+
+### Deployment Procedure
+
+| Step | Action | Owner |
+|:---:|:---|:---|
+| 1 | Create change ticket with tuning details | SOC Analyst |
+| 2 | Get approval from SOC Lead | SOC Lead |
+| 3 | Apply change during low-traffic window | Detection Engineer |
+| 4 | Tag rule with tuning metadata (date, analyst, ticket) | Detection Engineer |
+| 5 | Set 7-day monitoring window | SOC Lead |
+| 6 | Review impact after 7 days | SOC Analyst |
+| 7 | Close change ticket with results | SOC Analyst |
+
+### Rule Metadata Tags
+
+```yaml
+# Add to rule metadata after tuning
+tuning:
+  last_tuned: "2026-02-15"
+  tuned_by: "analyst@example.com"
+  ticket: "TUNE-001"
+  change_type: "exclusion_added"
+  fp_rate_before: 65%
+  fp_rate_after: 12%
+  next_review: "2026-05-15"
+```
+
+---
+
+## Step 6: Monitor Impact
+
+### 7-Day Review Template
+
+| Metric | Before Tuning | After Tuning (7 days) | Change |
+|:---|:---:|:---:|:---:|
+| Alert volume/day | _____ | _____ | ↓ ___% |
+| True positive count | _____ | _____ | Should be stable |
+| False positive count | _____ | _____ | ↓ ___% |
+| FP rate | ___% | ___% | ↓ ___pp |
+| Avg investigation time | ___ min | ___ min | ↓ ___% |
+| Missed detections | 0 | 0 | Must be 0 |
+
+> ⚠️ If **True Positive count drops**, investigate immediately — tuning may be too aggressive.
+
+---
+
+## Step 7: Document & Close
+
+### Tuning Record
+
+| Field | Value |
+|:---|:---|
+| Rule Name | ______________ |
+| Rule ID | _____ |
+| Tuning Date | ____-__-__ |
+| Analyst | ______________ |
+| Change Ticket | _____ |
+| FP Rate (before) | ___% |
+| FP Rate (after) | ___% |
+| Volume (before) | _____/day |
+| Volume (after) | _____/day |
+| Tuning Type | Exclusion / Threshold / Condition / Severity / Disable |
+| Next Review | ____-__-__ |
+
+---
+
+## Recurring Tuning Schedule
+
+| Activity | Frequency | Owner | Output |
+|:---|:---:|:---|:---|
+| Top 10 noisy rules review | **Weekly** | SOC Analyst (rotating) | Tuning requests |
+| New rule validation (7-day review) | **Per new rule** | Detection Engineer | Validation report |
+| Rule effectiveness review | **Monthly** | Detection Engineering Lead | Rule health report |
+| Full rule audit | **Quarterly** | SOC Lead + Security Engineer | Audit report + cleanup |
+| ATT&CK coverage gap + tuning sync | **Quarterly** | Detection Engineering | Coverage + tuning plan |
+
+---
+
+## Tuning Governance
+
+### Who Can Tune?
+
+| Role | Can Tune? | What |
+|:---|:---:|:---|
+| SOC Tier 1 | ❌ | Report FP patterns (via feedback form) |
+| SOC Tier 2 | ⚠️ | Propose tuning, requires SOC Lead approval |
+| SOC Tier 3 / Detection Engineer | ✅ | Design and implement tuning (with peer review) |
+| SOC Lead | ✅ | Approve and deploy tuning changes |
+| SOC Manager | ✅ | Override: disable/enable rules, approve high-risk changes |
+
+### Escalation for Risky Tuning
+
+| Risk Level | Criteria | Approval Required |
+|:---|:---|:---|
+| 🟢 Low | Allowlist specific entity, deduplication | Peer review |
+| 🟡 Medium | Threshold change, adding conditions | SOC Lead approval |
+| 🔴 High | Disabling rule, major logic change | SOC Manager + documented justification |
+
+---
+
+## Metrics
+
+| Metric | Target | Measurement |
+|:---|:---:|:---|
+| Overall TP rate (all rules) | ≥ 80% | Monthly SIEM report |
+| Rules with > 50% FP rate | 0 | Weekly noisy rules report |
+| Tuning requests completed within SLA | ≥ 90% | Ticketing system |
+| Time from tuning request to deployment | < 5 business days | Ticketing system |
+| Rules reviewed per quarter | 100% | Quarterly audit |
+| Alerts per analyst per day | < 50 | SIEM + shift report |
+
+---
+
+## Related Documents
+
+-   [Detection Rule Testing](Detection_Rule_Testing.en.md) — Testing methodology
+-   [SOC Metrics & KPIs](SOC_Metrics.en.md) — KPI definitions
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Auto-tuning automation
+-   [SOC Maturity Assessment](SOC_Maturity_Assessment.en.md) — Detection maturity
+-   [Log Source Matrix](Log_Source_Matrix.en.md) — Data source coverage
+-   [Change Management](Change_Management.en.md) — Change approval process
+-   [SOC Checklists](SOC_Checklists.en.md) — Operational checklists
+
+
+---
+
+## File: 06_Operations_Management/Alert_Tuning.th.md
+
+# Alert Tuning SOP / SOP การปรับจูน Alert
+
+**รหัสเอกสาร**: OPS-SOP-016
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน
+**อัปเดตล่าสุด**: 2026-02-15
+
+> แนวทางเป็นระบบในการ **ลด false positives**, **ปรับปรุงคุณภาพ alert**, และ **ป้องกัน analyst fatigue** SOC ทุกแห่งควร tune อย่างต่อเนื่อง — SOP นี้กำหนดว่าเมื่อไร, อย่างไร, และ tune อะไร
+
+---
+
+## ทำไมต้อง Tune?
+
+| ปัญหา | ผลกระทบ | ผลลัพธ์จากการ Tune |
+|:---|:---|:---|
+| FP rate สูง (> 30%) | Analyst fatigue, พลาด alert จริง | TP rate ≥ 80% |
+| Alert ท่วม (> 200/analyst/วัน) | ไม่สามารถสืบสวนได้ทั่วถึง | ปริมาณจัดการได้ (< 50/วัน) |
+| Alert ซ้ำ | เสียเวลา analyst | Deduplicate + correlate |
+| Alert ไม่เกี่ยวข้อง | เสียความเชื่อมั่นในเครื่องมือ | ตรงบริบท, เกี่ยวข้อง |
+
+---
+
+## วงจร Tuning
+
+```mermaid
+graph TD
+    A[1. ระบุ Rule ที่เสียงดัง] --> B[2. วิเคราะห์สาเหตุ]
+    B --> C[3. ออกแบบการแก้ไข]
+    C --> D[4. ทดสอบใน Staging]
+    D --> E[5. Deploy ไป Production]
+    E --> F[6. Monitor ผลกระทบ]
+    F --> G{ดีขึ้น?}
+    G -->|ใช่| H[7. บันทึก & ปิด]
+    G -->|ไม่| B
+
+    style A fill:#3b82f6,color:#fff
+    style H fill:#22c55e,color:#fff
+```
+
+---
+
+## ขั้นที่ 1: ระบุ Rule ที่มีปัญหา
+
+### ตัวชี้วัดที่ต้องติดตาม
+
+| ตัวชี้วัด | เกณฑ์ที่ต้อง Tune | แหล่งข้อมูล |
+|:---|:---:|:---|
+| **False positive rate** | > 30% ต่อ rule | SIEM + feedback จาก analyst |
+| **ปริมาณ alert ต่อ rule** | > 50/วัน (rule เดียว) | SIEM dashboard |
+| **อัตราปิด alert โดยไม่มี action** | > 50% | Ticketing |
+| **เวลาสืบสวนเฉลี่ย** | < 1 นาที (auto-close) | Ticketing |
+
+### รายงาน Tuning รายสัปดาห์
+
+| อันดับ | ชื่อ Rule | Rule ID | TP | FP | ปริมาณ/วัน | FP Rate | Action |
+|:---:|:---|:---|:---:|:---:|:---:|:---:|:---|
+| 1 | ______________ | _____ | _____ | _____ | _____ | ___% | Tune/Disable/Keep |
+| 2 | ______________ | _____ | _____ | _____ | _____ | ___% | Tune/Disable/Keep |
+| 3 | ______________ | _____ | _____ | _____ | _____ | ___% | Tune/Disable/Keep |
+
+---
+
+## ขั้นที่ 2: วิเคราะห์สาเหตุ FP
+
+### สาเหตุ FP ที่พบบ่อย
+
+| สาเหตุ | ตัวอย่าง | วิธีแก้ |
+|:---|:---|:---|
+| **ซอฟต์แวร์ปกติ** | AV flag admin tools (PsExec) | Allowlist โดย hash + source |
+| **งาน Schedule** | Cron/task ทำให้ process creation alert | exclusion ตามเวลา |
+| **Service accounts** | Service account ทำให้เกิด brute-force alert | exclusion ตาม identity |
+| **Infrastructure ที่รู้จัก** | Scanner ทำให้ IDS alert | exclusion ตาม source IP |
+| **Detection กว้างเกินไป** | "PowerShell ทุกคำสั่ง" | จำกัดเฉพาะ cmdlets ที่น่าสงสัย |
+| **Threshold ต่ำเกินไป** | Failed login threshold = 3 | เพิ่มเป็น 10+ ใน 5 นาที |
+
+---
+
+## ขั้นที่ 3: เทคนิคการ Tune
+
+| เทคนิค | เมื่อไรใช้ | ความเสี่ยง |
+|:---|:---|:---:|
+| **Allowlist by entity** | แหล่งที่ปลอดภัยที่รู้จัก | ต่ำ |
+| **Allowlist by hash** | Binary ที่ปลอดภัยที่รู้จัก | ต่ำ |
+| **Time-based exclusion** | กิจกรรมตาม schedule | ปานกลาง |
+| **ปรับ Threshold** | Rule อ่อนไหวเกินไป | ปานกลาง |
+| **เพิ่มเงื่อนไข** | Rule กว้างเกินไป | ต่ำ |
+| **Correlation rule** | โจมตีหลายขั้นตอน | ปานกลาง |
+| **ลดระดับ Severity** | Alert ไม่สมควรเป็น P1 | ต่ำ |
+| **Deduplication** | Alert เดิมซ้ำ | ต่ำ |
+| **ใช้ Enrichment** | ต้องการ context เพิ่ม | ปานกลาง |
+| **Disable rule** | ไม่มีคุณค่าสำหรับสภาพแวดล้อม | สูง |
+
+### Decision Matrix
+
+```mermaid
+flowchart TD
+    A[Rule มีปัญหา] --> B{มี TP ใน 30 วันที่ผ่านมา?}
+    B -->|ไม่| C{เกี่ยวข้องกับเรา?}
+    C -->|ไม่| D[🔴 DISABLE rule]
+    C -->|ใช่| E[🟡 KEEP แต่เพิ่มเงื่อนไข]
+    B -->|ใช่| F{FP rate > 50%?}
+    F -->|ใช่| G{จำกัด logic ได้?}
+    G -->|ใช่| H[🟢 TUNE — เพิ่ม exclusions]
+    G -->|ไม่| I[🟡 ลดระดับ severity + enrichment]
+    F -->|ไม่| J{ปริมาณ > 50/วัน?}
+    J -->|ใช่| K[🟢 Deduplicate + ปรับ threshold]
+    J -->|ไม่| L[✅ KEEP — เสียงยอมรับได้]
+
+    style D fill:#dc2626,color:#fff
+    style H fill:#22c55e,color:#fff
+    style K fill:#22c55e,color:#fff
+    style L fill:#3b82f6,color:#fff
+```
+
+---
+
+## ขั้นที่ 4: ทดสอบใน Staging
+
+- [ ] บันทึกรายละเอียดการเปลี่ยนแปลง (อะไร/ทำไม/อย่างไร)
+- [ ] Apply ใน staging environment
+- [ ] Replay historical logs ผ่าน rule ที่ tune แล้ว
+- [ ] ยืนยัน: TP samples ที่รู้จักยังตรวจพบได้
+- [ ] ยืนยัน: FP patterns ที่รู้จักถูก suppress แล้ว
+- [ ] ไม่มีผลข้างเคียงต่อ rule อื่น
+- [ ] Peer review โดย analyst อีกคน
+- [ ] อนุมัติตามกระบวนการ change management
+
+---
+
+## ขั้นที่ 5: Deploy ไป Production
+
+| ขั้น | การดำเนินการ | ผู้รับผิดชอบ |
+|:---:|:---|:---|
+| 1 | สร้าง change ticket พร้อมรายละเอียด | SOC Analyst |
+| 2 | ขออนุมัติจาก SOC Lead | SOC Lead |
+| 3 | Apply การเปลี่ยนแปลงในช่วง low-traffic | Detection Engineer |
+| 4 | Tag rule ด้วย tuning metadata | Detection Engineer |
+| 5 | กำหนดช่วง monitor 7 วัน | SOC Lead |
+| 6 | ทบทวนผลกระทบหลัง 7 วัน | SOC Analyst |
+
+---
+
+## ขั้นที่ 6: Monitor ผลกระทบ (7 วัน)
+
+| ตัวชี้วัด | ก่อน Tune | หลัง Tune (7 วัน) | เปลี่ยนแปลง |
+|:---|:---:|:---:|:---:|
+| ปริมาณ alert/วัน | _____ | _____ | ↓ ___% |
+| True positive count | _____ | _____ | ต้องคงที่ |
+| False positive count | _____ | _____ | ↓ ___% |
+| FP rate | ___% | ___% | ↓ ___pp |
+| เวลาสืบสวนเฉลี่ย | ___ นาที | ___ นาที | ↓ ___% |
+| Missed detections | 0 | 0 | ต้องเป็น 0 |
+
+> ⚠️ ถ้า **TP count ลดลง** ให้สืบสวนทันที — การ tune อาจรุนแรงเกินไป
+
+---
+
+## ขั้นที่ 7: บันทึก & ปิด
+
+| ฟิลด์ | ค่า |
+|:---|:---|
+| ชื่อ Rule | ______________ |
+| Rule ID | _____ |
+| วันที่ Tune | ____-__-__ |
+| Analyst | ______________ |
+| Change Ticket | _____ |
+| FP Rate (ก่อน) | ___% |
+| FP Rate (หลัง) | ___% |
+| ปริมาณ (ก่อน) | _____/วัน |
+| ปริมาณ (หลัง) | _____/วัน |
+| ประเภท Tune | Exclusion / Threshold / Condition / Severity / Disable |
+| ทบทวนครั้งต่อไป | ____-__-__ |
+
+---
+
+## ตาราง Tuning ประจำ
+
+| กิจกรรม | ความถี่ | ผู้รับผิดชอบ | ผลลัพธ์ |
+|:---|:---:|:---|:---|
+| ทบทวน 10 rules ที่เสียงดังที่สุด | **รายสัปดาห์** | SOC Analyst (หมุนเวียน) | Tuning requests |
+| ตรวจสอบ rule ใหม่ (7 วัน) | **ทุก rule ใหม่** | Detection Engineer | รายงาน validation |
+| ทบทวนประสิทธิภาพ rule | **รายเดือน** | Detection Engineering Lead | รายงาน rule health |
+| Audit rule ทั้งหมด | **รายไตรมาส** | SOC Lead + Security Engineer | รายงาน audit |
+
+---
+
+## Governance: ใครสามารถ Tune ได้?
+
+| บทบาท | Tune ได้? | อะไร |
+|:---|:---:|:---|
+| SOC Tier 1 | ❌ | รายงาน FP patterns (ผ่านแบบฟอร์ม) |
+| SOC Tier 2 | ⚠️ | เสนอ tuning, ต้องได้รับอนุมัติจาก SOC Lead |
+| SOC Tier 3 / Detection Engineer | ✅ | ออกแบบและ implement (พร้อม peer review) |
+| SOC Lead | ✅ | อนุมัติและ deploy |
+| SOC Manager | ✅ | Override: disable/enable rules, อนุมัติ high-risk |
+
+---
+
+## ตัวชี้วัด
+
+| ตัวชี้วัด | เป้าหมาย | วิธีวัด |
+|:---|:---:|:---|
+| TP rate รวม (ทุก rule) | ≥ 80% | SIEM report รายเดือน |
+| Rules ที่มี FP > 50% | 0 | รายงานรายสัปดาห์ |
+| Tuning requests เสร็จตาม SLA | ≥ 90% | Ticketing |
+| เวลาจาก request ถึง deploy | < 5 วันทำการ | Ticketing |
+| Alert ต่อ analyst ต่อวัน | < 50 | SIEM + shift report |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [Detection Rule Testing](Detection_Rule_Testing.en.md) — วิธีการทดสอบ
+-   [SOC Metrics & KPIs](SOC_Metrics.en.md) — นิยาม KPI
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Auto-tuning
+-   [SOC Maturity Assessment](SOC_Maturity_Assessment.en.md) — วุฒิภาวะ detection
+-   [Change Management](Change_Management.en.md) — กระบวนการอนุมัติ
+
+
+---
+
 ## File: 06_Operations_Management/Change_Management.en.md
 
 # SOC Change Management SOP
@@ -7966,6 +8491,454 @@ gantt
 - [คู่มือ Tier 1](../05_Incident_Response/Tier1_Runbook.th.md)
 - [ตัวชี้วัด SOC](SOC_Metrics.th.md)
 - [ส่งมอบกะ](Shift_Handoff.th.md)
+
+
+---
+
+## File: 06_Operations_Management/SOC_Maturity_Assessment.en.md
+
+# SOC Maturity Assessment
+
+**Document ID**: OPS-SOP-015
+**Version**: 1.0
+**Classification**: Internal
+**Last Updated**: 2026-02-15
+
+> A **self-assessment tool** to measure SOC capability maturity across 10 domains. Use quarterly to track progress, identify gaps, plan investments, and report to leadership. Based on SOC-CMM (SOC Capability Maturity Model) principles.
+
+---
+
+## Maturity Levels
+
+| Level | Name | Description |
+|:---:|:---|:---|
+| **0** | Non-existent | No capability, no awareness |
+| **1** | Initial | Ad-hoc, reactive, person-dependent, undocumented |
+| **2** | Managed | Basic processes defined, partially documented, inconsistently followed |
+| **3** | Defined | Standardized processes, documented SOPs, consistently followed |
+| **4** | Quantitative | Metrics-driven, KPIs tracked, continuous measurement |
+| **5** | Optimizing | Continuous improvement, automated, industry-leading |
+
+```mermaid
+graph LR
+    L0[0 Non-existent] --> L1[1 Initial]
+    L1 --> L2[2 Managed]
+    L2 --> L3[3 Defined]
+    L3 --> L4[4 Quantitative]
+    L4 --> L5[5 Optimizing]
+
+    style L0 fill:#dc2626,color:#fff
+    style L1 fill:#f97316,color:#fff
+    style L2 fill:#eab308,color:#000
+    style L3 fill:#22c55e,color:#fff
+    style L4 fill:#3b82f6,color:#fff
+    style L5 fill:#8b5cf6,color:#fff
+```
+
+---
+
+## Assessment Domains
+
+### Domain 1: People & Organization
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 1.1 | **Staffing** | Understaffed, single shift | 24×7 coverage, defined tiers | Flexible model, cross-trained | __/5 | __/5 |
+| 1.2 | **Roles & responsibilities** | Informal, unclear | Documented, RACI defined | Dynamic, skill-based routing | __/5 | __/5 |
+| 1.3 | **Training program** | No formal training | Annual training plan, certs tracked | CTF, purple team, career paths | __/5 | __/5 |
+| 1.4 | **Knowledge management** | Tribal knowledge | Wiki, runbooks documented | Searchable KB, auto-suggestions | __/5 | __/5 |
+| 1.5 | **Analyst retention** | High turnover (> 30%) | Moderate (15–30%) | Low (< 15%), clear growth path | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+### Domain 2: Process & Procedures
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 2.1 | **Alert triage process** | Ad-hoc, no standard | Documented runbook | Automated triage + ML scoring | __/5 | __/5 |
+| 2.2 | **Incident response** | Reactive, no playbooks | 15+ playbooks, exercised annually | 30+ playbooks, automated response | __/5 | __/5 |
+| 2.3 | **Escalation procedures** | Informal, person-dependent | Documented matrix, SLAs defined | Auto-escalation, SOAR-integrated | __/5 | __/5 |
+| 2.4 | **Change management** | No change process | CAB reviews, documented changes | Automated CI/CD for detection | __/5 | __/5 |
+| 2.5 | **Shift handoff** | Verbal only | Standardized template | Automated handoff with context | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+### Domain 3: Technology & Tools
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 3.1 | **SIEM** | Basic deployment, limited rules | Tuned rules, 80%+ log sources | Full ATT&CK coverage, ML models | __/5 | __/5 |
+| 3.2 | **EDR** | Antivirus only | EDR deployed, alerts in SIEM | XDR with auto-containment | __/5 | __/5 |
+| 3.3 | **SOAR** | No automation | Basic playbooks (5+) | Full automation catalog (30+) | __/5 | __/5 |
+| 3.4 | **Threat intelligence** | No TI feeds | 3+ feeds integrated, IOC matching | TI platform, automated hunting | __/5 | __/5 |
+| 3.5 | **Ticketing system** | Email/spreadsheet | Dedicated ticketing, SLA tracking | Integrated ITSM + SOAR | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+### Domain 4: Detection Engineering
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 4.1 | **Detection rules** | Vendor defaults only | Custom rules, tested | DaC pipeline, version-controlled | __/5 | __/5 |
+| 4.2 | **ATT&CK coverage** | < 20% techniques | 40–60% techniques | > 80% techniques | __/5 | __/5 |
+| 4.3 | **False positive management** | > 50% FP rate | < 30% FP rate, tuning process | < 10% FP, auto-tuning | __/5 | __/5 |
+| 4.4 | **Detection testing** | No testing | Annual purple team | Continuous BAS + automated testing | __/5 | __/5 |
+| 4.5 | **Rule lifecycle** | No lifecycle | Create/review/retire process | Metrics-driven, auto-deprecation | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+### Domain 5: Log Management & Visibility
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 5.1 | **Log source coverage** | < 30% of assets | 60–80% of assets | > 95% of assets | __/5 | __/5 |
+| 5.2 | **Log quality** | Raw, unparsed | Parsed, normalized | Enriched, correlated | __/5 | __/5 |
+| 5.3 | **Retention** | < 30 days | 90–180 days | 1+ year, tiered storage | __/5 | __/5 |
+| 5.4 | **Log source health** | No monitoring | Manual checks | Automated health alerts | __/5 | __/5 |
+| 5.5 | **Cloud visibility** | No cloud logs | Basic cloud logs (IAM, network) | Full cloud trail + CSPM | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+### Domain 6: Incident Response
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 6.1 | **Response time (MTTR)** | > 4 hours | 1–4 hours | < 30 minutes | __/5 | __/5 |
+| 6.2 | **Containment capability** | Manual, slow | Semi-automated | Fully automated containment | __/5 | __/5 |
+| 6.3 | **Forensics capability** | None | Basic (disk, logs) | Full (memory, network, malware RE) | __/5 | __/5 |
+| 6.4 | **Communication** | Ad-hoc notifications | Templates, stakeholder matrix | Automated notification workflows | __/5 | __/5 |
+| 6.5 | **Post-incident review** | None | Lessons learned per P1/P2 | Systematic, metrics-tracked | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+### Domain 7: Threat Intelligence
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 7.1 | **TI consumption** | No TI feeds | Multiple feeds, auto-ingested | TIP with scoring, prioritization | __/5 | __/5 |
+| 7.2 | **TI production** | No internal TI | IOCs from incidents shared | Full TI reports, industry sharing | __/5 | __/5 |
+| 7.3 | **Threat hunting** | No hunting | Quarterly hunts, hypothesis-based | Continuous, automated hunting | __/5 | __/5 |
+| 7.4 | **TI integration** | Manual lookups | Auto-enrichment in SIEM | TI drives detection + response | __/5 | __/5 |
+| 7.5 | **Threat landscape** | No awareness | Quarterly reports | Real-time landscape dashboard | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+### Domain 8: Metrics & Reporting
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 8.1 | **KPI tracking** | None | Monthly KPI report | Real-time dashboard | __/5 | __/5 |
+| 8.2 | **SLA measurement** | No SLAs | SLAs defined and measured | Automated SLA tracking + alerts | __/5 | __/5 |
+| 8.3 | **Executive reporting** | Ad-hoc | Monthly report template | Automated dashboards, board-ready | __/5 | __/5 |
+| 8.4 | **Trend analysis** | No trend data | 6-month trends | Predictive analytics | __/5 | __/5 |
+| 8.5 | **Benchmarking** | No benchmarks | Internal benchmarks | Industry benchmarks (peers) | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+### Domain 9: Compliance & Governance
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 9.1 | **Regulatory compliance** | Unknown status | Mapped to frameworks | Continuous compliance monitoring | __/5 | __/5 |
+| 9.2 | **Audit readiness** | Not audit-ready | Evidence collected, matrices ready | Always-on audit evidence | __/5 | __/5 |
+| 9.3 | **Data privacy** | No PDPA awareness | PDPA procedures documented | Automated PII detection + response | __/5 | __/5 |
+| 9.4 | **Policy enforcement** | No enforcement | Periodic reviews | Real-time policy monitoring | __/5 | __/5 |
+| 9.5 | **Risk management** | No risk tracking | Risk register maintained | Dynamic risk scoring | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+### Domain 10: Automation & Orchestration
+
+| # | Capability | Level 1 | Level 3 | Level 5 | Current | Target |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 10.1 | **Alert enrichment** | Manual lookups | Auto-enrichment (50%+ alerts) | Full auto-enrichment + scoring | __/5 | __/5 |
+| 10.2 | **Playbook automation** | No automation | 10+ SOAR playbooks | 30+ playbooks, self-healing | __/5 | __/5 |
+| 10.3 | **Automated response** | None | Auto-contain for P1 (with approval) | Full auto-response (most scenarios) | __/5 | __/5 |
+| 10.4 | **Integration maturity** | Siloed tools | Basic API integrations | Fully orchestrated tool ecosystem | __/5 | __/5 |
+| 10.5 | **AI/ML adoption** | None | Anomaly detection prototypes | Production ML models, analyst assist | __/5 | __/5 |
+
+**Domain Score**: \_\_/25
+
+---
+
+## Summary Scorecard
+
+| # | Domain | Score | Max | % | Level |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| 1 | People & Organization | _____ | 25 | ___% | L_ |
+| 2 | Process & Procedures | _____ | 25 | ___% | L_ |
+| 3 | Technology & Tools | _____ | 25 | ___% | L_ |
+| 4 | Detection Engineering | _____ | 25 | ___% | L_ |
+| 5 | Log Management & Visibility | _____ | 25 | ___% | L_ |
+| 6 | Incident Response | _____ | 25 | ___% | L_ |
+| 7 | Threat Intelligence | _____ | 25 | ___% | L_ |
+| 8 | Metrics & Reporting | _____ | 25 | ___% | L_ |
+| 9 | Compliance & Governance | _____ | 25 | ___% | L_ |
+| 10 | Automation & Orchestration | _____ | 25 | ___% | L_ |
+| | **TOTAL** | **_____** | **250** | **___%** | **L_** |
+
+### Level Interpretation
+
+| Score Range | Overall Level | Interpretation |
+|:---:|:---:|:---|
+| 0–50 (0–20%) | **Level 1** | Initial — Major gaps, reactive posture |
+| 51–100 (21–40%) | **Level 2** | Managed — Basic capabilities, significant improvement needed |
+| 101–150 (41–60%) | **Level 3** | Defined — Solid foundation, room for optimization |
+| 151–200 (61–80%) | **Level 4** | Quantitative — Metrics-driven, maturing well |
+| 201–250 (81–100%) | **Level 5** | Optimizing — Industry-leading, continuous improvement |
+
+---
+
+## Radar Chart Template
+
+```mermaid
+---
+config:
+  radar:
+    axisLabelFontSize: 12
+---
+radar-beta
+  axis People, Process, Technology, Detection, "Log Mgmt", IR, TI, Metrics, Compliance, Automation
+  curve "Current" { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+  curve "Target" { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+```
+
+> Replace zeros with actual percentage scores (0–100).
+
+---
+
+## Improvement Roadmap
+
+### Quick Wins (0–3 months)
+
+| Gap | Domain | Current | Target | Action | Effort |
+|:---|:---:|:---:|:---:|:---|:---:|
+| ______________ | _____ | L_ | L_ | ________________________ | ___ days |
+| ______________ | _____ | L_ | L_ | ________________________ | ___ days |
+
+### Medium-Term (3–6 months)
+
+| Gap | Domain | Current | Target | Action | Effort |
+|:---|:---:|:---:|:---:|:---|:---:|
+| ______________ | _____ | L_ | L_ | ________________________ | ___ weeks |
+| ______________ | _____ | L_ | L_ | ________________________ | ___ weeks |
+
+### Strategic (6–12 months)
+
+| Gap | Domain | Current | Target | Action | Effort | Budget |
+|:---|:---:|:---:|:---:|:---|:---:|:---:|
+| ______________ | _____ | L_ | L_ | ________________________ | ___ months | $_____ |
+
+---
+
+## Assessment Schedule
+
+| Activity | Frequency | Participants | Output |
+|:---|:---:|:---|:---|
+| Full maturity assessment | Quarterly | SOC Manager, Team Leads, CISO | Scorecard + roadmap |
+| Domain deep-dive | Monthly (rotating) | Domain leads | Domain improvement plan |
+| Benchmark comparison | Annually | External assessor | Industry comparison report |
+| Board presentation | Semi-annually | CISO | Executive maturity summary |
+
+---
+
+## Related Documents
+
+-   [SOC Metrics & KPIs](SOC_Metrics.en.md) — Performance measurement
+-   [KPI Dashboard Template](KPI_Dashboard_Template.en.md) — Monthly reporting
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Automation maturity
+-   [Log Source Matrix](Log_Source_Matrix.en.md) — Data source coverage
+-   [Compliance Mapping](../10_Compliance/Compliance_Mapping.en.md) — Framework compliance
+-   [Third-Party Risk](Third_Party_Risk.en.md) — Vendor risk management
+-   [Threat Landscape Report](Threat_Landscape_Report.en.md) — Threat awareness
+
+
+---
+
+## File: 06_Operations_Management/SOC_Maturity_Assessment.th.md
+
+# SOC Maturity Assessment / การประเมินวุฒิภาวะ SOC
+
+**รหัสเอกสาร**: OPS-SOP-015
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน
+**อัปเดตล่าสุด**: 2026-02-15
+
+> เครื่องมือ **ประเมินตนเอง** สำหรับวัดวุฒิภาวะ SOC ใน 10 ด้าน ใช้ทุกไตรมาสเพื่อติดตามความก้าวหน้า, หาช่องว่าง, วางแผนลงทุน, และรายงานผู้บริหาร อิงหลักการ SOC-CMM
+
+---
+
+## ระดับวุฒิภาวะ
+
+| ระดับ | ชื่อ | คำอธิบาย |
+|:---:|:---|:---|
+| **0** | ไม่มี | ไม่มีความสามารถ ไม่ตระหนัก |
+| **1** | เริ่มต้น | ทำเป็นครั้งคราว, reactive, ไม่มีเอกสาร |
+| **2** | จัดการ | กระบวนการพื้นฐาน, เอกสารบางส่วน |
+| **3** | มาตรฐาน | กระบวนการเป็นมาตรฐาน, มี SOP, ปฏิบัติสม่ำเสมอ |
+| **4** | วัดผลได้ | ขับเคลื่อนด้วย KPI, วัดผลต่อเนื่อง |
+| **5** | ปรับปรุงต่อเนื่อง | ปรับปรุงอัตโนมัติ, เป็นผู้นำอุตสาหกรรม |
+
+---
+
+## ด้านที่ 1: คนและองค์กร
+
+| # | ความสามารถ | ระดับ 1 | ระดับ 3 | ระดับ 5 | ปัจจุบัน | เป้าหมาย |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 1.1 | **อัตรากำลัง** | กำลังคนไม่พอ, กะเดียว | 24×7, กำหนด tier | ยืดหยุ่น, cross-trained | __/5 | __/5 |
+| 1.2 | **บทบาทหน้าที่** | ไม่เป็นทางการ | RACI กำหนดชัด | กำหนดตามทักษะแบบ dynamic | __/5 | __/5 |
+| 1.3 | **โปรแกรมฝึกอบรม** | ไม่มี | แผนรายปี, ติดตาม cert | CTF, purple team, career path | __/5 | __/5 |
+| 1.4 | **การจัดการความรู้** | ความรู้อยู่ในตัวบุคคล | Wiki, runbooks | KB ค้นหาได้, auto-suggest | __/5 | __/5 |
+| 1.5 | **การรักษา analyst** | ลาออก > 30% | 15–30% | < 15%, เส้นทางเติบโตชัด | __/5 | __/5 |
+
+**คะแนนด้าน**: \_\_/25
+
+---
+
+## ด้านที่ 2: กระบวนการ
+
+| # | ความสามารถ | ระดับ 1 | ระดับ 3 | ระดับ 5 | ปัจจุบัน | เป้าหมาย |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 2.1 | **Alert triage** | ไม่มีมาตรฐาน | Runbook, document | Auto triage + ML scoring | __/5 | __/5 |
+| 2.2 | **IR** | Reactive, ไม่มี playbook | 15+ playbooks | 30+ playbooks, automated | __/5 | __/5 |
+| 2.3 | **Escalation** | ไม่เป็นทางการ | Matrix + SLA | Auto-escalation + SOAR | __/5 | __/5 |
+| 2.4 | **Change management** | ไม่มี | CAB review | CI/CD สำหรับ detection | __/5 | __/5 |
+| 2.5 | **Shift handoff** | ปากเปล่า | Template มาตรฐาน | อัตโนมัติ + context | __/5 | __/5 |
+
+**คะแนนด้าน**: \_\_/25
+
+---
+
+## ด้านที่ 3: เทคโนโลยี
+
+| # | ความสามารถ | ระดับ 1 | ระดับ 3 | ระดับ 5 | ปัจจุบัน | เป้าหมาย |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 3.1 | **SIEM** | Deploy พื้นฐาน | Tuned rules, 80%+ log sources | ATT&CK ครบ, ML models | __/5 | __/5 |
+| 3.2 | **EDR** | Antivirus เท่านั้น | EDR + alerts ใน SIEM | XDR + auto-contain | __/5 | __/5 |
+| 3.3 | **SOAR** | ไม่มี automation | Playbooks 5+ | Catalog 30+ | __/5 | __/5 |
+| 3.4 | **Threat intelligence** | ไม่มี TI | 3+ feeds, IOC matching | TI platform, auto hunting | __/5 | __/5 |
+| 3.5 | **Ticketing** | Email/spreadsheet | Ticketing + SLA tracking | ITSM + SOAR integrated | __/5 | __/5 |
+
+**คะแนนด้าน**: \_\_/25
+
+---
+
+## ด้านที่ 4: Detection Engineering
+
+| # | ความสามารถ | ระดับ 1 | ระดับ 3 | ระดับ 5 | ปัจจุบัน | เป้าหมาย |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 4.1 | **Detection rules** | ค่าเริ่มต้น vendor | Custom rules, tested | DaC pipeline, version control | __/5 | __/5 |
+| 4.2 | **ATT&CK coverage** | < 20% | 40–60% | > 80% | __/5 | __/5 |
+| 4.3 | **False positive** | FP > 50% | FP < 30% | FP < 10%, auto-tune | __/5 | __/5 |
+| 4.4 | **Detection testing** | ไม่ทดสอบ | Purple team รายปี | BAS ต่อเนื่อง | __/5 | __/5 |
+| 4.5 | **Rule lifecycle** | ไม่มี lifecycle | Create/review/retire | Metrics-driven, auto-deprecate | __/5 | __/5 |
+
+**คะแนนด้าน**: \_\_/25
+
+---
+
+## ด้านที่ 5: Log Management
+
+| # | ความสามารถ | ระดับ 1 | ระดับ 3 | ระดับ 5 | ปัจจุบัน | เป้าหมาย |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 5.1 | **Log source coverage** | < 30% | 60–80% | > 95% | __/5 | __/5 |
+| 5.2 | **คุณภาพ log** | Raw, ไม่ parse | Parsed, normalized | Enriched, correlated | __/5 | __/5 |
+| 5.3 | **Retention** | < 30 วัน | 90–180 วัน | 1+ ปี, tiered storage | __/5 | __/5 |
+| 5.4 | **Log health** | ไม่ monitor | ตรวจ manual | Alert อัตโนมัติ | __/5 | __/5 |
+| 5.5 | **Cloud visibility** | ไม่มี cloud logs | IAM + network พื้นฐาน | Full cloud trail + CSPM | __/5 | __/5 |
+
+**คะแนนด้าน**: \_\_/25
+
+---
+
+## ด้านที่ 6–10: (สรุปย่อ)
+
+| # | ด้าน | คะแนน | สูงสุด |
+|:---:|:---|:---:|:---:|
+| 6 | **Incident Response** (MTTR, containment, forensics, comms, PIR) | _____ | 25 |
+| 7 | **Threat Intelligence** (consumption, production, hunting, integration, landscape) | _____ | 25 |
+| 8 | **Metrics & Reporting** (KPI, SLA, executive, trends, benchmarks) | _____ | 25 |
+| 9 | **Compliance & Governance** (regulatory, audit, privacy, policy, risk) | _____ | 25 |
+| 10 | **Automation & Orchestration** (enrichment, playbooks, auto-response, integration, AI/ML) | _____ | 25 |
+
+---
+
+## ตารางสรุปคะแนน
+
+| # | ด้าน | คะแนน | สูงสุด | % | ระดับ |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| 1 | คนและองค์กร | _____ | 25 | ___% | L_ |
+| 2 | กระบวนการ | _____ | 25 | ___% | L_ |
+| 3 | เทคโนโลยี | _____ | 25 | ___% | L_ |
+| 4 | Detection Engineering | _____ | 25 | ___% | L_ |
+| 5 | Log Management | _____ | 25 | ___% | L_ |
+| 6 | Incident Response | _____ | 25 | ___% | L_ |
+| 7 | Threat Intelligence | _____ | 25 | ___% | L_ |
+| 8 | Metrics & Reporting | _____ | 25 | ___% | L_ |
+| 9 | Compliance & Governance | _____ | 25 | ___% | L_ |
+| 10 | Automation & Orchestration | _____ | 25 | ___% | L_ |
+| | **รวม** | **_____** | **250** | **___%** | **L_** |
+
+### ตีความระดับ
+
+| ช่วงคะแนน | ระดับ | ความหมาย |
+|:---:|:---:|:---|
+| 0–50 | **Level 1** | เริ่มต้น — ช่องว่างสำคัญ, reactive |
+| 51–100 | **Level 2** | จัดการ — มีพื้นฐาน, ต้องปรับปรุงมาก |
+| 101–150 | **Level 3** | มาตรฐาน — พื้นฐานแข็ง, มีพื้นที่ optimize |
+| 151–200 | **Level 4** | วัดผลได้ — ขับเคลื่อนด้วย metrics |
+| 201–250 | **Level 5** | ปรับปรุงต่อเนื่อง — ผู้นำอุตสาหกรรม |
+
+---
+
+## แผนปรับปรุง
+
+### Quick Wins (0–3 เดือน)
+
+| ช่องว่าง | ด้าน | ปัจจุบัน | เป้าหมาย | การดำเนินการ |
+|:---|:---:|:---:|:---:|:---|
+| ______________ | _____ | L_ | L_ | ________________________ |
+
+### ระยะกลาง (3–6 เดือน)
+
+| ช่องว่าง | ด้าน | ปัจจุบัน | เป้าหมาย | การดำเนินการ |
+|:---|:---:|:---:|:---:|:---|
+| ______________ | _____ | L_ | L_ | ________________________ |
+
+### เชิงกลยุทธ์ (6–12 เดือน)
+
+| ช่องว่าง | ด้าน | ปัจจุบัน | เป้าหมาย | การดำเนินการ | งบประมาณ |
+|:---|:---:|:---:|:---:|:---|:---:|
+| ______________ | _____ | L_ | L_ | ________________________ | $_____ |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [SOC Metrics & KPIs](SOC_Metrics.en.md) — ตัวชี้วัด
+-   [KPI Dashboard Template](KPI_Dashboard_Template.en.md) — รายงานรายเดือน
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — วุฒิภาวะ automation
+-   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูล
+-   [Compliance Mapping](../10_Compliance/Compliance_Mapping.en.md) — การ comply กับ framework
+-   [Third-Party Risk](Third_Party_Risk.en.md) — ความเสี่ยง vendor
 
 
 ---
