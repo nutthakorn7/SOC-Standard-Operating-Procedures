@@ -176,7 +176,7 @@ gantt
 
 ## SOAR Playbook Quick Reference
 
-> These map to the [SOAR Playbook Templates](SOAR_Playbooks.en.md).
+> These map to the [SOAR Playbook Templates](../05_Incident_Response/SOAR_Playbooks.en.md).
 
 | Playbook | Trigger | Key Actions | Auto Level |
 |:---|:---|:---|:---:|
@@ -191,8 +191,8 @@ gantt
 
 ## Related Documents
 
--   [SOAR Playbooks](SOAR_Playbooks.en.md) — Detailed playbook templates
--   [Threat Hunting Playbook](Threat_Hunting_Playbook.en.md) — Proactive hunting
+-   [SOAR Playbooks](../05_Incident_Response/SOAR_Playbooks.en.md) — Detailed playbook templates
+-   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md) — Proactive hunting
 -   [Detection Rule Testing SOP](../06_Operations_Management/Detection_Rule_Testing.en.md)
 -   [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.en.md)
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
