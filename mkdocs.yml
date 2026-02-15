@@ -89,6 +89,8 @@ nav:
   - 🛡️ Incident Response:
     - IR Framework: 05_Incident_Response/Framework.en.md
     - กรอบ IR (TH): 05_Incident_Response/Framework.th.md
+    - Severity Matrix: 05_Incident_Response/Severity_Matrix.en.md
+    - ตารางความรุนแรง (TH): 05_Incident_Response/Severity_Matrix.th.md
     - Playbooks (EN):
       - Phishing: 05_Incident_Response/Playbooks/Phishing.en.md
       - Ransomware: 05_Incident_Response/Playbooks/Ransomware.en.md

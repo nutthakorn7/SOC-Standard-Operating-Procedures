@@ -41,6 +41,7 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | Document | English | ภาษาไทย |
 | :--- | :--- | :--- |
 | **Framework**: NIST-based IR | [Link](05_Incident_Response/Framework.en.md) | [ลิ้งค์](05_Incident_Response/Framework.th.md) |
+| **Severity Matrix** (P1–P4 Classification) | [Link](05_Incident_Response/Severity_Matrix.en.md) | [ลิ้งค์](05_Incident_Response/Severity_Matrix.th.md) |
 | **Playbook**: PB-01 Phishing | [Link](05_Incident_Response/Playbooks/Phishing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Phishing.th.md) |
 | **Playbook**: PB-02 Ransomware | [Link](05_Incident_Response/Playbooks/Ransomware.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Ransomware.th.md) |
 | **Playbook**: PB-03 Malware Infection | [Link](05_Incident_Response/Playbooks/Malware_Infection.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Malware_Infection.th.md) |
