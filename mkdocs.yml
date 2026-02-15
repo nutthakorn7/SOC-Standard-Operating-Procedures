@@ -92,6 +92,16 @@ nav:
     - Severity Matrix: 05_Incident_Response/Severity_Matrix.en.md
     - ตารางความรุนแรง (TH): 05_Incident_Response/Severity_Matrix.th.md
     - SOAR Playbook Templates: 05_Incident_Response/SOAR_Playbooks.en.md
+    - Tabletop Exercises: 05_Incident_Response/Tabletop_Exercises.en.md
+    - สถานการณ์จำลอง (TH): 05_Incident_Response/Tabletop_Exercises.th.md
+    - Tier 1 Runbook: 05_Incident_Response/Tier1_Runbook.en.md
+    - คู่มือ Tier 1 (TH): 05_Incident_Response/Tier1_Runbook.th.md
+    - Evidence Collection: 05_Incident_Response/Evidence_Collection.en.md
+    - คู่มือเก็บหลักฐาน (TH): 05_Incident_Response/Evidence_Collection.th.md
+    - Communication Templates: 05_Incident_Response/Communication_Templates.en.md
+    - แม่แบบการสื่อสาร (TH): 05_Incident_Response/Communication_Templates.th.md
+    - Purple Team Exercises: 05_Incident_Response/Purple_Team_Exercises.en.md
+    - การซ้อม Purple Team (TH): 05_Incident_Response/Purple_Team_Exercises.th.md
     - Playbooks (EN):
       - Phishing: 05_Incident_Response/Playbooks/Phishing.en.md
       - Ransomware: 05_Incident_Response/Playbooks/Ransomware.en.md
@@ -174,6 +184,8 @@ nav:
     - Threat Intelligence: 06_Operations_Management/Threat_Intelligence_Lifecycle.en.md
     - ข่าวกรองภัย (TH): 06_Operations_Management/Threat_Intelligence_Lifecycle.th.md
     - TI Feeds Integration: 06_Operations_Management/TI_Feeds_Integration.en.md
+    - Log Source Onboarding: 06_Operations_Management/Log_Source_Onboarding.en.md
+    - คู่มือ Onboard Log (TH): 06_Operations_Management/Log_Source_Onboarding.th.md
   - 🔧 Guides & Tools:
     - Detection Rules Index: 07_Detection_Rules/README.md
     - ดัชนี Detection Rules (TH): 07_Detection_Rules/README.th.md
