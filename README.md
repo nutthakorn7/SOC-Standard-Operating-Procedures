@@ -209,6 +209,7 @@ File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [
 | **🤖 SOC Automation Catalog** (NEW) | [Read](06_Operations_Management/SOC_Automation_Catalog.en.md) | [อ่าน](06_Operations_Management/SOC_Automation_Catalog.th.md) |
 | **📈 KPI Dashboard Template** (NEW) | [Read](06_Operations_Management/KPI_Dashboard_Template.en.md) | [อ่าน](06_Operations_Management/KPI_Dashboard_Template.th.md) |
 | **🌍 Threat Landscape Report** (NEW) | [Read](06_Operations_Management/Threat_Landscape_Report.en.md) | [อ่าน](06_Operations_Management/Threat_Landscape_Report.th.md) |
+| **🔗 Third-Party Risk** (NEW) | [Read](06_Operations_Management/Third_Party_Risk.en.md) | [อ่าน](06_Operations_Management/Third_Party_Risk.th.md) |
 | **Data Governance & Retention** | [Read](02_Platform_Operations/Database_Management.en.md) | [อ่าน](02_Platform_Operations/Database_Management.th.md) |
 | **Deployment Procedures** | [Read](02_Platform_Operations/Deployment_Procedures.en.md) | [อ่าน](02_Platform_Operations/Deployment_Procedures.th.md) |
 | **Integration Hub** | [Read](03_User_Guides/Integration_Hub.en.md) | [อ่าน](03_User_Guides/Integration_Hub.th.md) |

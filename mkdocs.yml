@@ -236,6 +236,8 @@ nav:
     - แม่แบบ Dashboard KPI (TH): 06_Operations_Management/KPI_Dashboard_Template.th.md
     - Threat Landscape Report: 06_Operations_Management/Threat_Landscape_Report.en.md
     - รายงานภูมิทัศน์ภัยคุกคาม (TH): 06_Operations_Management/Threat_Landscape_Report.th.md
+    - Third-Party Risk: 06_Operations_Management/Third_Party_Risk.en.md
+    - ความเสี่ยงบุคคลที่สาม (TH): 06_Operations_Management/Third_Party_Risk.th.md
   - 🔧 Guides & Tools:
     - Detection Rules Index: 07_Detection_Rules/README.md
     - ดัชนี Detection Rules (TH): 07_Detection_Rules/README.th.md
