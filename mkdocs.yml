@@ -121,6 +121,8 @@ nav:
     - แม่แบบ Lessons Learned (TH): 05_Incident_Response/Lessons_Learned_Template.th.md
     - Threat Hunting Playbook: 05_Incident_Response/Threat_Hunting_Playbook.en.md
     - คู่มือการล่าภัยคุกคาม (TH): 05_Incident_Response/Threat_Hunting_Playbook.th.md
+    - Escalation Matrix: 05_Incident_Response/Escalation_Matrix.en.md
+    - ตารางการส่งต่อ (TH): 05_Incident_Response/Escalation_Matrix.th.md
     - Playbooks (EN):
       - Phishing: 05_Incident_Response/Playbooks/Phishing.en.md
       - Ransomware: 05_Incident_Response/Playbooks/Ransomware.en.md
@@ -220,6 +222,8 @@ nav:
     - SOP การสื่อสาร (TH): 06_Operations_Management/Communication_SOP.th.md
     - Vendor Evaluation: 06_Operations_Management/Vendor_Evaluation.en.md
     - แม่แบบประเมินเครื่องมือ (TH): 06_Operations_Management/Vendor_Evaluation.th.md
+    - Log Source Matrix: 06_Operations_Management/Log_Source_Matrix.en.md
+    - ตารางแหล่ง Log (TH): 06_Operations_Management/Log_Source_Matrix.th.md
   - 🔧 Guides & Tools:
     - Detection Rules Index: 07_Detection_Rules/README.md
     - ดัชนี Detection Rules (TH): 07_Detection_Rules/README.th.md

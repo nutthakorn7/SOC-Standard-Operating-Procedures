@@ -5608,6 +5608,409 @@ python tools/sigma_validator.py path/to/rule.yml
 
 ---
 
+## File: 06_Operations_Management/Log_Source_Matrix.en.md
+
+# Log Source Matrix
+
+**Document ID**: OPS-SOP-010
+**Version**: 1.0
+**Classification**: Internal
+**Last Updated**: 2026-02-15
+
+> The Log Source Matrix provides a **single-page view** of all data sources ingested (or required) by the SOC. Use it as a gap analysis tool to identify blind spots in your detection coverage.
+
+---
+
+## How to Use This Document
+
+1. **Onboarding** → Verify all required log sources are connected
+2. **Gap Analysis** → Identify missing sources (❌) and plan remediation
+3. **Capacity Planning** → Estimate EPS and storage requirements
+4. **Compliance** → Map log sources to regulatory requirements (PDPA, PCI-DSS, ISO 27001)
+5. **Detection Tuning** → Correlate with MITRE ATT&CK coverage gaps
+
+---
+
+## Status Legend
+
+| Symbol | Status | Action Required |
+|:---:|:---|:---|
+| ✅ | Collected & parsed | None — healthy |
+| ⚠️ | Partial (collected but not parsed/normalized) | Needs parser development |
+| ❌ | Not collected | Plan for integration |
+| 🔜 | Planned / in progress | On roadmap |
+| N/A | Not applicable to environment | Skip |
+
+---
+
+## 1. Endpoint & Host Logs
+
+| # | Log Source | Type | Key Events | MITRE Coverage | EPS (est.) | Status |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 1.1 | **Windows Security Event Log** | Host | 4624/4625 (Logon), 4688 (Process), 4698 (Scheduled Task), 7045 (Service) | T1078, T1053, T1543 | 500–5K | ✅ |
+| 1.2 | **Windows Sysmon** | Host | Process create (1), Network (3), File create (11), Registry (13), DNS (22) | T1055, T1059, T1071 | 1K–10K | ✅ |
+| 1.3 | **Windows PowerShell** | Host | 4103 (Module), 4104 (Script Block), 4105/4106 (Start/Stop) | T1059.001, T1027 | 100–1K | ✅ |
+| 1.4 | **Linux Auditd / syslog** | Host | execve, file access, auth, sudo | T1548, T1059.004, T1070 | 200–2K | ✅ |
+| 1.5 | **macOS Unified Log** | Host | Process exec, auth, network, file | T1059, T1078, T1547 | 100–500 | ⚠️ |
+| 1.6 | **EDR Telemetry** (CrowdStrike / Defender / SentinelOne) | Endpoint | Process tree, file write, network, injection | Wide coverage (50+ TTPs) | 1K–20K | ✅ |
+| 1.7 | **Antivirus / EPP** | Endpoint | Detection, quarantine, scan results | T1204, T1566 | 50–500 | ✅ |
+
+---
+
+## 2. Network Logs
+
+| # | Log Source | Type | Key Events | MITRE Coverage | EPS (est.) | Status |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 2.1 | **Firewall** (Palo Alto / Fortinet / pfSense) | Network | Allow/Deny, NAT, VPN tunnel, threat log | T1071, T1090, T1572 | 1K–50K | ✅ |
+| 2.2 | **IDS/IPS** (Suricata / Snort) | Network | Signature alerts, protocol anomaly | T1190, T1071, T1040 | 100–5K | ✅ |
+| 2.3 | **DNS Logs** (AD DNS / Pi-hole / Infoblox) | Network | Query/Response, NXDomain, TXT record | T1071.004, T1048.003, T1568 | 500–10K | ✅ |
+| 2.4 | **Web Proxy / SWG** (Squid / Zscaler / Netskope) | Network | URL, user agent, response code, bytes | T1071.001, T1102, T1567 | 500–5K | ✅ |
+| 2.5 | **NetFlow / IPFIX** | Network | IP pairs, ports, bytes, duration | T1046, T1571, T1572 | 1K–100K | ⚠️ |
+| 2.6 | **DHCP Logs** | Network | Lease, MAC-to-IP binding | Asset identification | 10–100 | ⚠️ |
+| 2.7 | **VPN Gateway** | Network | Connect/disconnect, user, source IP, duration | T1133, T1078 | 10–500 | ✅ |
+| 2.8 | **Wireless Controller** | Network | Association, deauth, rogue AP | T1557, T1200 | 50–500 | ❌ |
+
+---
+
+## 3. Cloud & SaaS Logs
+
+| # | Log Source | Type | Key Events | MITRE Coverage | EPS (est.) | Status |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 3.1 | **AWS CloudTrail** | Cloud | API calls (all services), console sign-in | T1078.004, T1580, T1537 | 100–5K | ✅ |
+| 3.2 | **AWS GuardDuty** | Cloud | Threat findings, anomaly detection | Multiple techniques | 1–50 | ✅ |
+| 3.3 | **AWS VPC Flow Logs** | Cloud | Network flow within VPC | T1046, T1071 | 500–10K | ⚠️ |
+| 3.4 | **Azure AD Sign-in Logs** | Cloud | Login events, MFA status, conditional access | T1078.004, T1556 | 100–2K | ✅ |
+| 3.5 | **Azure Activity Log** | Cloud | Resource operations, RBAC changes | T1098, T1562 | 50–500 | ✅ |
+| 3.6 | **GCP Cloud Audit Logs** | Cloud | Admin activity, data access | T1078.004, T1530 | 50–1K | ❌ |
+| 3.7 | **Microsoft 365 UAL** | SaaS | Mail (Send/Receive/Forward), SharePoint, Teams | T1114, T1213, T1567 | 200–5K | ✅ |
+| 3.8 | **Google Workspace** | SaaS | Drive, Gmail, Admin console | T1114, T1530 | 100–1K | ❌ |
+| 3.9 | **Okta / Azure AD** (IdP) | Identity | Login, MFA challenge, app assignment | T1078, T1556, T1550 | 50–500 | ✅ |
+| 3.10 | **SaaS Apps** (Salesforce, Slack, etc.) | SaaS | User activity, file share, admin changes | T1213, T1567 | 10–200 | 🔜 |
+
+---
+
+## 4. Identity & Access Logs
+
+| # | Log Source | Type | Key Events | MITRE Coverage | EPS (est.) | Status |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 4.1 | **Active Directory** (DC Security) | Identity | 4720 (Account Created), 4728/4732 (Group Add), 4768/4769 (Kerberos) | T1078, T1098, T1558 | 200–5K | ✅ |
+| 4.2 | **LDAP Logs** | Identity | Bind, search, modify | T1087, T1018 | 50–500 | ⚠️ |
+| 4.3 | **PAM / Vault** (CyberArk / HashiCorp) | Identity | Session recording, credential checkout, rotation | T1078.002, T1555 | 10–100 | 🔜 |
+| 4.4 | **MFA Platform** | Identity | Challenge/Response, enrollment, bypass | T1556.006, T1621 | 10–200 | ✅ |
+| 4.5 | **Certificate Authority** | Identity | Cert issuance, revocation, template changes | T1649, T1553 | 1–50 | ❌ |
+
+---
+
+## 5. Application & Database Logs
+
+| # | Log Source | Type | Key Events | MITRE Coverage | EPS (est.) | Status |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 5.1 | **Web Server** (Apache / Nginx / IIS) | Application | Access log, error log, WAF events | T1190, T1505, T1136 | 100–10K | ✅ |
+| 5.2 | **WAF** (Cloudflare / AWS WAF / ModSecurity) | Application | Block, allow, challenge, bot score | T1190, T1595 | 100–5K | ✅ |
+| 5.3 | **Database Audit** (MySQL / PostgreSQL / MSSQL) | Database | Login, query, schema change, bulk export | T1213, T1565, T1530 | 50–2K | ⚠️ |
+| 5.4 | **Application Logs** (custom apps) | Application | Login, error, transaction, API call | T1078, T1190 | 50–5K | ⚠️ |
+| 5.5 | **Container / K8s Audit** | Application | Pod create/delete, exec, RBAC change | T1610, T1611, T1613 | 100–2K | ❌ |
+
+---
+
+## 6. Email & Communication Logs
+
+| # | Log Source | Type | Key Events | MITRE Coverage | EPS (est.) | Status |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 6.1 | **Email Gateway** (Exchange Online / Proofpoint / Mimecast) | Email | Send/receive, attachment, phishing verdict | T1566, T1534 | 50–2K | ✅ |
+| 6.2 | **Email DLP** | Email | Policy match, block, quarantine | T1048, T1567 | 10–200 | ✅ |
+| 6.3 | **Anti-Spam / Anti-Phishing** | Email | Detection, URL sandbox, attachment detonate | T1566.001, T1566.002 | 10–500 | ✅ |
+
+---
+
+## 7. Security Tool Logs
+
+| # | Log Source | Type | Key Events | MITRE Coverage | EPS (est.) | Status |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 7.1 | **SIEM Internal** | Security | Health, ingestion rate, rule triggers | N/A (operational) | 10–100 | ✅ |
+| 7.2 | **Vulnerability Scanner** (Qualys / Nessus / Rapid7) | Security | Scan results, new vuln, patch status | T1190, T1210 | 1–50 | ✅ |
+| 7.3 | **DLP** (Endpoint / Network) | Security | Policy violation, block, alert | T1048, T1567 | 10–200 | ⚠️ |
+| 7.4 | **CASB** (Netskope / Microsoft MCAS) | Security | Shadow IT, data exfil, anomalous usage | T1567, T1537, T1530 | 10–500 | 🔜 |
+| 7.5 | **Threat Intelligence Platform** | Security | IOC match, feed update | Various | 1–50 | ✅ |
+
+---
+
+## Coverage Summary
+
+```mermaid
+pie title Log Source Status
+    "Collected ✅" : 28
+    "Partial ⚠️" : 9
+    "Missing ❌" : 5
+    "Planned 🔜" : 3
+```
+
+### Gap Remediation Priority
+
+| Priority | Missing Source | Impact | Effort | Timeline |
+|:---:|:---|:---|:---:|:---|
+| 🔴 P1 | Container / K8s Audit | Blind to container-based attacks | Medium | Q1 |
+| 🔴 P1 | Certificate Authority | Cannot detect Golden Certificate (T1649) | Low | Q1 |
+| 🟡 P2 | GCP Cloud Audit | No visibility into GCP workloads | Medium | Q2 |
+| 🟡 P2 | Google Workspace | Missing email/drive monitoring for Google users | Medium | Q2 |
+| 🟢 P3 | Wireless Controller | Limited rogue AP detection | Low | Q3 |
+
+---
+
+## Capacity Planning
+
+| Tier | Typical Total EPS | SIEM License Impact | Storage (90 days) |
+|:---|:---:|:---|:---:|
+| **Small SOC** (< 500 hosts) | 5K–15K | Standard tier | 500 GB – 1.5 TB |
+| **Medium SOC** (500–5K hosts) | 15K–100K | Enterprise tier | 1.5 – 10 TB |
+| **Large SOC** (5K+ hosts) | 100K–1M+ | Premium tier | 10 – 100+ TB |
+
+### EPS Estimation Formula
+
+```
+Daily Events = EPS × 86,400
+Storage (GB/day) = Daily Events × Avg Event Size (bytes) / 1,073,741,824
+90-day Storage = Storage/day × 90
+```
+
+---
+
+## MITRE ATT&CK Mapping
+
+> This matrix shows which log sources contribute to detecting each ATT&CK tactic.
+
+| Tactic | Primary Sources | Secondary Sources |
+|:---|:---|:---|
+| **Initial Access** | Email Gateway, WAF, Proxy | Firewall, VPN |
+| **Execution** | EDR, Sysmon, PowerShell | App Logs |
+| **Persistence** | Windows Events, EDR, Cloud Audit | AD, DNS |
+| **Privilege Escalation** | Windows Events, EDR, AD | PAM, Sysmon |
+| **Defense Evasion** | EDR, Sysmon, PowerShell | Firewall |
+| **Credential Access** | AD, EDR, MFA Platform | PAM, Sysmon |
+| **Discovery** | AD, EDR, DNS | NetFlow |
+| **Lateral Movement** | Windows Events, EDR, Firewall | NetFlow, AD |
+| **Collection** | DLP, EDR, DB Audit | Email, SaaS |
+| **Command & Control** | DNS, Proxy, Firewall | IDS/IPS, NetFlow |
+| **Exfiltration** | DLP, Proxy, DNS | Firewall, Email |
+| **Impact** | EDR, App Logs, Cloud Audit | Backup Logs |
+
+---
+
+## Maintenance Schedule
+
+| Task | Frequency | Owner |
+|:---|:---:|:---|
+| Review log source health | Daily | SOC Tier 1 |
+| Validate EPS vs baseline | Weekly | SOC Engineering |
+| Update matrix (new sources) | Monthly | SOC Lead |
+| Full gap analysis review | Quarterly | SOC Manager + CISO |
+| Compliance mapping audit | Annually | GRC / Compliance |
+
+---
+
+## Related Documents
+
+-   [Threat Hunting Playbook](Threat_Hunting_Playbook.en.md)
+-   [Detection Rule Testing SOP](../06_Operations_Management/Detection_Rule_Testing.en.md)
+-   [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.en.md)
+-   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
+-   [Compliance Mapping](../10_Compliance/Compliance_Mapping.en.md)
+-   [Infrastructure Setup](../01_SOC_Fundamentals/Infrastructure_Setup.en.md)
+
+
+---
+
+## File: 06_Operations_Management/Log_Source_Matrix.th.md
+
+# Log Source Matrix / ตารางแหล่งข้อมูล Log
+
+**รหัสเอกสาร**: OPS-SOP-010
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน
+**อัปเดตล่าสุด**: 2026-02-15
+
+> Log Source Matrix แสดง **ภาพรวมหน้าเดียว** ของ data sources ทั้งหมดที่ SOC รับเข้าหรือต้องการ ใช้เป็นเครื่องมือ gap analysis เพื่อค้นหาจุดบอดในการตรวจจับ
+
+---
+
+## วิธีใช้เอกสารนี้
+
+1. **Onboarding** → ตรวจสอบว่าเชื่อมต่อ log sources ที่ต้องการครบแล้ว
+2. **Gap Analysis** → ระบุแหล่งที่ยังขาด (❌) และวางแผนแก้ไข
+3. **Capacity Planning** → ประมาณ EPS และความต้องการพื้นที่จัดเก็บ
+4. **Compliance** → แมป log sources กับข้อกำหนด (PDPA, PCI-DSS, ISO 27001)
+5. **Detection Tuning** → เชื่อมโยงกับ MITRE ATT&CK coverage gaps
+
+---
+
+## สัญลักษณ์สถานะ
+
+| สัญลักษณ์ | สถานะ | สิ่งที่ต้องทำ |
+|:---:|:---|:---|
+| ✅ | เก็บและ parse แล้ว | ไม่ต้องทำอะไร |
+| ⚠️ | บางส่วน (เก็บแต่ยังไม่ parse/normalize) | ต้องพัฒนา parser |
+| ❌ | ยังไม่ได้เก็บ | วางแผน integration |
+| 🔜 | วางแผนไว้ / กำลังดำเนินการ | อยู่ใน roadmap |
+| N/A | ไม่เกี่ยวข้องกับสภาพแวดล้อม | ข้าม |
+
+---
+
+## 1. Endpoint & Host Logs
+
+| # | Log Source | ประเภท | Event สำคัญ | MITRE Coverage | EPS (ประมาณ) | สถานะ |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 1.1 | **Windows Security Event Log** | Host | 4624/4625 (Logon), 4688 (Process), 4698 (Scheduled Task) | T1078, T1053, T1543 | 500–5K | ✅ |
+| 1.2 | **Windows Sysmon** | Host | Process create (1), Network (3), File (11), Registry (13) | T1055, T1059, T1071 | 1K–10K | ✅ |
+| 1.3 | **Windows PowerShell** | Host | 4103 (Module), 4104 (Script Block) | T1059.001, T1027 | 100–1K | ✅ |
+| 1.4 | **Linux Auditd / syslog** | Host | execve, file access, auth, sudo | T1548, T1059.004 | 200–2K | ✅ |
+| 1.5 | **macOS Unified Log** | Host | Process exec, auth, network | T1059, T1078 | 100–500 | ⚠️ |
+| 1.6 | **EDR Telemetry** | Endpoint | Process tree, file write, network, injection | 50+ TTPs | 1K–20K | ✅ |
+| 1.7 | **Antivirus / EPP** | Endpoint | Detection, quarantine, scan results | T1204, T1566 | 50–500 | ✅ |
+
+---
+
+## 2. Network Logs
+
+| # | Log Source | ประเภท | Event สำคัญ | MITRE Coverage | EPS (ประมาณ) | สถานะ |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 2.1 | **Firewall** | Network | Allow/Deny, NAT, VPN, threat log | T1071, T1090, T1572 | 1K–50K | ✅ |
+| 2.2 | **IDS/IPS** (Suricata / Snort) | Network | Signature alerts, protocol anomaly | T1190, T1071 | 100–5K | ✅ |
+| 2.3 | **DNS Logs** | Network | Query/Response, NXDomain, TXT | T1071.004, T1048.003 | 500–10K | ✅ |
+| 2.4 | **Web Proxy / SWG** | Network | URL, user agent, response code | T1071.001, T1102 | 500–5K | ✅ |
+| 2.5 | **NetFlow / IPFIX** | Network | IP pairs, ports, bytes, duration | T1046, T1571 | 1K–100K | ⚠️ |
+| 2.6 | **DHCP Logs** | Network | Lease, MAC-to-IP binding | ระบุ asset | 10–100 | ⚠️ |
+| 2.7 | **VPN Gateway** | Network | Connect/disconnect, user, source IP | T1133, T1078 | 10–500 | ✅ |
+| 2.8 | **Wireless Controller** | Network | Association, deauth, rogue AP | T1557, T1200 | 50–500 | ❌ |
+
+---
+
+## 3. Cloud & SaaS Logs
+
+| # | Log Source | ประเภท | Event สำคัญ | MITRE Coverage | EPS (ประมาณ) | สถานะ |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 3.1 | **AWS CloudTrail** | Cloud | API calls, console sign-in | T1078.004, T1580 | 100–5K | ✅ |
+| 3.2 | **AWS GuardDuty** | Cloud | Threat findings, anomaly | หลาย techniques | 1–50 | ✅ |
+| 3.3 | **AWS VPC Flow Logs** | Cloud | Network flow within VPC | T1046, T1071 | 500–10K | ⚠️ |
+| 3.4 | **Azure AD Sign-in Logs** | Cloud | Login, MFA, conditional access | T1078.004, T1556 | 100–2K | ✅ |
+| 3.5 | **Azure Activity Log** | Cloud | Resource ops, RBAC changes | T1098, T1562 | 50–500 | ✅ |
+| 3.6 | **GCP Cloud Audit** | Cloud | Admin activity, data access | T1078.004, T1530 | 50–1K | ❌ |
+| 3.7 | **Microsoft 365 UAL** | SaaS | Mail, SharePoint, Teams | T1114, T1213 | 200–5K | ✅ |
+| 3.8 | **Google Workspace** | SaaS | Drive, Gmail, Admin | T1114, T1530 | 100–1K | ❌ |
+| 3.9 | **Okta / Azure AD** (IdP) | Identity | Login, MFA, app assignment | T1078, T1556 | 50–500 | ✅ |
+| 3.10 | **SaaS Apps** | SaaS | User activity, file share | T1213, T1567 | 10–200 | 🔜 |
+
+---
+
+## 4. Identity & Access Logs
+
+| # | Log Source | ประเภท | Event สำคัญ | MITRE Coverage | EPS (ประมาณ) | สถานะ |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 4.1 | **Active Directory** | Identity | 4720 (สร้าง Account), 4728/4732 (เพิ่ม Group), Kerberos | T1078, T1098, T1558 | 200–5K | ✅ |
+| 4.2 | **LDAP Logs** | Identity | Bind, search, modify | T1087, T1018 | 50–500 | ⚠️ |
+| 4.3 | **PAM / Vault** | Identity | Session, credential checkout | T1078.002, T1555 | 10–100 | 🔜 |
+| 4.4 | **MFA Platform** | Identity | Challenge/Response, enrollment | T1556.006, T1621 | 10–200 | ✅ |
+| 4.5 | **Certificate Authority** | Identity | Cert issuance, revocation | T1649, T1553 | 1–50 | ❌ |
+
+---
+
+## 5. Application & Database Logs
+
+| # | Log Source | ประเภท | Event สำคัญ | MITRE Coverage | EPS (ประมาณ) | สถานะ |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 5.1 | **Web Server** | Application | Access log, error log, WAF | T1190, T1505 | 100–10K | ✅ |
+| 5.2 | **WAF** | Application | Block, allow, bot score | T1190, T1595 | 100–5K | ✅ |
+| 5.3 | **Database Audit** | Database | Login, query, schema change | T1213, T1565 | 50–2K | ⚠️ |
+| 5.4 | **Application Logs** | Application | Login, error, API call | T1078, T1190 | 50–5K | ⚠️ |
+| 5.5 | **Container / K8s Audit** | Application | Pod, exec, RBAC change | T1610, T1611 | 100–2K | ❌ |
+
+---
+
+## 6. Email & Communication Logs
+
+| # | Log Source | ประเภท | Event สำคัญ | MITRE Coverage | EPS (ประมาณ) | สถานะ |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 6.1 | **Email Gateway** | Email | Send/receive, phishing verdict | T1566, T1534 | 50–2K | ✅ |
+| 6.2 | **Email DLP** | Email | Policy match, block | T1048, T1567 | 10–200 | ✅ |
+| 6.3 | **Anti-Spam / Anti-Phishing** | Email | Detection, URL sandbox | T1566.001, T1566.002 | 10–500 | ✅ |
+
+---
+
+## 7. Security Tool Logs
+
+| # | Log Source | ประเภท | Event สำคัญ | MITRE Coverage | EPS (ประมาณ) | สถานะ |
+|:---:|:---|:---|:---|:---|:---:|:---:|
+| 7.1 | **SIEM Internal** | Security | Health, ingestion rate | N/A (operational) | 10–100 | ✅ |
+| 7.2 | **Vulnerability Scanner** | Security | Scan results, new vuln | T1190, T1210 | 1–50 | ✅ |
+| 7.3 | **DLP** | Security | Policy violation, block | T1048, T1567 | 10–200 | ⚠️ |
+| 7.4 | **CASB** | Security | Shadow IT, data exfil | T1567, T1537 | 10–500 | 🔜 |
+| 7.5 | **Threat Intelligence Platform** | Security | IOC match, feed update | หลากหลาย | 1–50 | ✅ |
+
+---
+
+## สรุป Coverage
+
+```mermaid
+pie title สถานะ Log Source
+    "เก็บแล้ว ✅" : 28
+    "บางส่วน ⚠️" : 9
+    "ยังไม่เก็บ ❌" : 5
+    "วางแผนไว้ 🔜" : 3
+```
+
+### ลำดับความสำคัญในการปิด Gap
+
+| ลำดับ | แหล่งที่ขาด | ผลกระทบ | ความยาก | กำหนด |
+|:---:|:---|:---|:---:|:---|
+| 🔴 P1 | Container / K8s Audit | มองไม่เห็น container-based attacks | ปานกลาง | Q1 |
+| 🔴 P1 | Certificate Authority | ตรวจจับ Golden Certificate (T1649) ไม่ได้ | ต่ำ | Q1 |
+| 🟡 P2 | GCP Cloud Audit | ไม่มี visibility ใน GCP workloads | ปานกลาง | Q2 |
+| 🟡 P2 | Google Workspace | ขาด email/drive monitoring สำหรับ Google | ปานกลาง | Q2 |
+| 🟢 P3 | Wireless Controller | ตรวจจับ rogue AP ได้จำกัด | ต่ำ | Q3 |
+
+---
+
+## การวางแผน Capacity
+
+| ระดับ | EPS รวม (ประมาณ) | SIEM License | Storage (90 วัน) |
+|:---|:---:|:---|:---:|
+| **SOC เล็ก** (< 500 hosts) | 5K–15K | Standard tier | 500 GB – 1.5 TB |
+| **SOC กลาง** (500–5K hosts) | 15K–100K | Enterprise tier | 1.5 – 10 TB |
+| **SOC ใหญ่** (5K+ hosts) | 100K–1M+ | Premium tier | 10 – 100+ TB |
+
+### สูตรคำนวณ EPS
+
+```
+Events ต่อวัน = EPS × 86,400
+Storage (GB/วัน) = Events ต่อวัน × ขนาดเฉลี่ยต่อ event (bytes) / 1,073,741,824
+Storage 90 วัน = Storage/วัน × 90
+```
+
+---
+
+## ตารางบำรุงรักษา
+
+| งาน | ความถี่ | ผู้รับผิดชอบ |
+|:---|:---:|:---|
+| ตรวจสอบสุขภาพ log source | ทุกวัน | SOC Tier 1 |
+| ตรวจสอบ EPS เทียบ baseline | ทุกสัปดาห์ | SOC Engineering |
+| อัปเดตตาราง (sources ใหม่) | ทุกเดือน | SOC Lead |
+| ทบทวน gap analysis ทั้งหมด | ทุกไตรมาส | SOC Manager + CISO |
+| ตรวจสอบการแมปกับ compliance | ทุกปี | GRC / Compliance |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md)
+-   [Detection Rule Testing SOP](Detection_Rule_Testing.en.md)
+-   [TI Feeds Integration](TI_Feeds_Integration.en.md)
+-   [SOC Metrics & KPIs](SOC_Metrics.en.md)
+-   [Compliance Mapping](../10_Compliance/Compliance_Mapping.en.md)
+-   [Infrastructure Setup](../01_SOC_Fundamentals/Infrastructure_Setup.en.md)
+
+
+---
+
 ## File: 06_Operations_Management/Log_Source_Onboarding.en.md
 
 # Log Source Onboarding Guide
@@ -8819,6 +9222,402 @@ Timeline + สาเหตุ + ผลกระทบ + สิ่งที่ด
 - [กรอบ IR](Framework.th.md)
 - [ตารางความรุนแรง](Severity_Matrix.th.md)
 - [สถานการณ์จำลอง](Tabletop_Exercises.th.md)
+
+
+---
+
+## File: 05_Incident_Response/Escalation_Matrix.en.md
+
+# Escalation Matrix
+
+**Document ID**: IR-SOP-015
+**Version**: 1.0
+**Classification**: Internal — Must be printed and posted in SOC
+**Last Updated**: 2026-02-15
+
+> **This is a ONE-PAGE reference.** Print it, laminate it, and keep it visible at every analyst workstation. When an incident occurs, this document tells you **WHO to call, WHEN, and HOW.**
+
+---
+
+## Escalation Flow
+
+```mermaid
+graph TD
+    ALERT[🔔 Alert Detected] --> T1[Tier 1 Analyst]
+    T1 -->|"P4/P3: Handle"| RESOLVE[Resolve & Close]
+    T1 -->|"P2: Escalate 30 min"| T2[Tier 2 Analyst]
+    T1 -->|"P1: Escalate IMMEDIATELY"| T2
+    T2 -->|"P2: Handle"| RESOLVE
+    T2 -->|"P1: Escalate 15 min"| LEAD[SOC Lead / IR Manager]
+    LEAD -->|"P1: Notify 30 min"| MGMT[Management / CISO]
+    LEAD -->|"Major Incident"| EXEC[Executive + Legal]
+    MGMT -->|"Data Breach / Regulatory"| EXT[Regulators / Law Enforcement]
+
+    style ALERT fill:#3b82f6,color:#fff
+    style T1 fill:#22c55e,color:#fff
+    style T2 fill:#f59e0b,color:#fff
+    style LEAD fill:#ef4444,color:#fff
+    style MGMT fill:#7c3aed,color:#fff
+    style EXEC fill:#dc2626,color:#fff
+    style EXT fill:#991b1b,color:#fff
+```
+
+---
+
+## Severity Definitions (Quick Reference)
+
+| Severity | Name | Examples | SLA (Respond) | SLA (Resolve) |
+|:---:|:---|:---|:---:|:---:|
+| **P1** 🔴 | **Critical** | Ransomware, active data breach, complete system compromise | **15 min** | **4 hours** |
+| **P2** 🟠 | **High** | Account compromise, lateral movement, confirmed malware, exfiltration attempt | **30 min** | **8 hours** |
+| **P3** 🟡 | **Medium** | Phishing (no click), policy violation, suspicious but contained activity | **2 hours** | **24 hours** |
+| **P4** 🔵 | **Low** | False positive, informational, scan result, known acceptable risk | **8 hours** | **72 hours** |
+
+---
+
+## Escalation Matrix — Who to Contact
+
+### 🔴 P1 Critical Incident
+
+| Step | Action | Who | Within | Contact Method |
+|:---:|:---|:---|:---:|:---|
+| 1 | Detect & triage | **Tier 1 Analyst** | 0 min | — |
+| 2 | Escalate to Tier 2 | **Tier 2 Analyst (on-call)** | **5 min** | Phone + Ticket |
+| 3 | Notify SOC Lead | **SOC Lead** | **15 min** | Phone + Slack #incident |
+| 4 | Activate IR team | **IR Manager** | **15 min** | Phone + War Room |
+| 5 | Notify CISO | **CISO** | **30 min** | Phone |
+| 6 | Notify executive (if data breach) | **CEO / CTO** | **1 hour** | Phone |
+| 7 | Notify legal (if PDPA/regulatory) | **Legal Counsel** | **2 hours** | Phone + Email |
+| 8 | Notify regulators (if required) | **DPO / Compliance** | **72 hours** | Official channel |
+
+### 🟠 P2 High Incident
+
+| Step | Action | Who | Within | Contact Method |
+|:---:|:---|:---|:---:|:---|
+| 1 | Detect & triage | **Tier 1 Analyst** | 0 min | — |
+| 2 | Escalate to Tier 2 | **Tier 2 Analyst** | **30 min** | Ticket + Slack |
+| 3 | Notify SOC Lead | **SOC Lead** | **1 hour** | Slack + Email |
+| 4 | Update management (if trend) | **SOC Manager** | **4 hours** | Email |
+
+### 🟡 P3 Medium Incident
+
+| Step | Action | Who | Within | Contact Method |
+|:---:|:---|:---|:---:|:---|
+| 1 | Detect & triage | **Tier 1 Analyst** | 0 min | — |
+| 2 | Handle or escalate to Tier 2 | **Tier 1/Tier 2** | **2 hours** | Ticket |
+| 3 | Update SOC Lead (if recurring) | **SOC Lead** | **End of shift** | Shift report |
+
+### 🔵 P4 Low Incident
+
+| Step | Action | Who | Within | Contact Method |
+|:---:|:---|:---|:---:|:---|
+| 1 | Detect & triage | **Tier 1 Analyst** | — | — |
+| 2 | Close or tune detection | **Tier 1 Analyst** | **8 hours** | Ticket |
+
+---
+
+## Contact Directory
+
+> ⚠️ **Replace with your actual contacts.** Keep this updated monthly.
+
+| Role | Name | Primary Phone | Secondary | Email | Availability |
+|:---|:---|:---|:---|:---|:---:|
+| **SOC Lead** | [Name] | [Phone] | Slack: @soc-lead | [email] | 24/7 on-call |
+| **IR Manager** | [Name] | [Phone] | Slack: @ir-manager | [email] | 24/7 on-call |
+| **CISO** | [Name] | [Phone] | WhatsApp | [email] | Business + on-call |
+| **CTO** | [Name] | [Phone] | — | [email] | Business hours |
+| **CEO** | [Name] | [Phone] | — | [email] | Via CISO |
+| **Legal Counsel** | [Name] | [Phone] | — | [email] | Business hours |
+| **DPO (PDPA)** | [Name] | [Phone] | — | [email] | Business hours |
+| **PR / Comms** | [Name] | [Phone] | — | [email] | Business hours |
+| **SOC Tier 2 (on-call)** | Rotating | See schedule | Slack: @soc-oncall | soc@company.com | 24/7 |
+| **External IR vendor** | [Company] | [Phone] | — | [email] | By contract |
+| **Law Enforcement** | Cyber Police | [Phone] | — | — | Business hours |
+
+---
+
+## Escalation Rules
+
+### Do's ✅
+- **Always escalate P1 by phone** — do NOT rely only on email or Slack
+- **Start containment while escalating** — don't wait for approval on P1
+- **Document everything** in the ticketing system as you go
+- **Over-escalate** if unsure — it's better to escalate and be wrong than to miss a real incident
+- **Use the phrase "CRITICAL INCIDENT"** in subject lines for P1 to bypass email filters
+
+### Don'ts ❌
+- **Never delay** a P1 escalation to "investigate more" — escalate first, investigate in parallel
+- **Never skip levels** — always inform your direct SOC Lead before going to CISO
+- **Never communicate externally** (press, regulators) without Legal/PR approval
+- **Never share IOCs publicly** without SOC Lead approval
+- **Never discuss incidents** on personal devices or unsecured channels
+
+---
+
+## Auto-Escalation Rules (SOAR)
+
+| Condition | Auto-Action | Escalate To |
+|:---|:---|:---|
+| P1 alert with no analyst response in 10 min | Auto-assign + page on-call | Tier 2 + SOC Lead |
+| P2 alert unacknowledged after 30 min | Auto-reassign + Slack notify | SOC Lead |
+| 3+ P3 alerts from same source in 1 hour | Auto-correlate + escalate to P2 | Tier 2 |
+| P1 ticket open > 2 hours without update | Auto-notify management | CISO |
+| Confirmed data breach indicator | Auto-notify Legal + DPO | Legal + Compliance |
+
+---
+
+## After-Hours Escalation
+
+| Time | Primary Contact | Backup |
+|:---|:---|:---|
+| **Business hours** (09:00–18:00) | SOC on-duty team | SOC Lead |
+| **After hours** (18:00–09:00) | On-call Tier 2 | SOC Lead (phone) |
+| **Weekends / Holidays** | On-call Tier 2 | SOC Lead → IR Manager |
+
+### On-Call Rotation
+
+| Week | Tier 2 On-Call | SOC Lead Backup |
+|:---|:---|:---|
+| Week 1 | Analyst A | Lead X |
+| Week 2 | Analyst B | Lead Y |
+| Week 3 | Analyst C | Lead X |
+| Week 4 | Analyst D | Lead Y |
+
+> 📋 Update the rotation schedule monthly. Post in Slack #soc-oncall.
+
+---
+
+## Communication Channels by Severity
+
+| Channel | P1 🔴 | P2 🟠 | P3 🟡 | P4 🔵 |
+|:---|:---:|:---:|:---:|:---:|
+| **Phone Call** | ✅ Required | If needed | ❌ | ❌ |
+| **Slack #incident** | ✅ | ✅ | ❌ | ❌ |
+| **Slack #soc-alerts** | ✅ | ✅ | ✅ | ✅ |
+| **Email** | ✅ (after phone) | ✅ | ✅ | ✅ |
+| **War Room** (virtual/physical) | ✅ Activated | If needed | ❌ | ❌ |
+| **Status Page** | If public-facing | ❌ | ❌ | ❌ |
+
+---
+
+## Regulatory Notification Deadlines
+
+| Regulation | Notification Deadline | Notify To | Trigger |
+|:---|:---:|:---|:---|
+| **PDPA (Thailand)** | **72 hours** | Office of Personal Data Protection Committee | Personal data breach |
+| **GDPR (EU)** | **72 hours** | Supervisory Authority + Data Subjects | Personal data breach |
+| **PCI-DSS** | **Immediately** | Acquirer + Card Brands | Cardholder data breach |
+| **SEC (US)** | **4 business days** | SEC (Form 8-K) | Material cybersecurity incident |
+| **BOT (Bank of Thailand)** | **Immediately** | BOT | Financial system disruption |
+
+---
+
+## Related Documents
+
+-   [Severity Matrix](Severity_Matrix.en.md) — Full severity definitions and examples
+-   [Communication Templates](Communication_Templates.en.md) — Pre-written notification templates
+-   [IR Framework](Framework.en.md) — Complete incident response lifecycle
+-   [PDPA Incident Response](../10_Compliance/PDPA_Incident_Response.en.md) — Thai data breach notification
+-   [SOC Communication SOP](../06_Operations_Management/SOC_Communication_SOP.en.md)
+-   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
+
+
+---
+
+## File: 05_Incident_Response/Escalation_Matrix.th.md
+
+# Escalation Matrix / ตารางการส่งต่อเหตุการณ์
+
+**รหัสเอกสาร**: IR-SOP-015
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน — ต้องพิมพ์และติดในห้อง SOC
+**อัปเดตล่าสุด**: 2026-02-15
+
+> **เอกสารนี้คือเอกสารอ้างอิงแบบหน้าเดียว** พิมพ์ เคลือบ และติดไว้ที่โต๊ะทำงานของ analyst ทุกคน เมื่อเกิดเหตุการณ์ เอกสารนี้บอกว่า **ต้องแจ้งใคร เมื่อไร และอย่างไร**
+
+---
+
+## ผังการส่งต่อ
+
+```mermaid
+graph TD
+    ALERT[🔔 พบ Alert] --> T1[Tier 1 Analyst]
+    T1 -->|"P4/P3: จัดการเอง"| RESOLVE[แก้ไข & ปิด]
+    T1 -->|"P2: ส่งต่อ 30 นาที"| T2[Tier 2 Analyst]
+    T1 -->|"P1: ส่งต่อทันที"| T2
+    T2 -->|"P2: จัดการ"| RESOLVE
+    T2 -->|"P1: ส่งต่อ 15 นาที"| LEAD[SOC Lead / IR Manager]
+    LEAD -->|"P1: แจ้ง 30 นาที"| MGMT[ผู้บริหาร / CISO]
+    LEAD -->|"เหตุการณ์ร้ายแรง"| EXEC[ผู้บริหารสูงสุด + ฝ่ายกฎหมาย]
+    MGMT -->|"ข้อมูลรั่ว / กฎหมาย"| EXT[หน่วยงานกำกับ / ตำรวจ]
+
+    style ALERT fill:#3b82f6,color:#fff
+    style T1 fill:#22c55e,color:#fff
+    style T2 fill:#f59e0b,color:#fff
+    style LEAD fill:#ef4444,color:#fff
+    style MGMT fill:#7c3aed,color:#fff
+    style EXEC fill:#dc2626,color:#fff
+    style EXT fill:#991b1b,color:#fff
+```
+
+---
+
+## นิยามระดับความรุนแรง (อ้างอิงด่วน)
+
+| ระดับ | ชื่อ | ตัวอย่าง | SLA (ตอบสนอง) | SLA (แก้ไข) |
+|:---:|:---|:---|:---:|:---:|
+| **P1** 🔴 | **วิกฤต** | Ransomware, ข้อมูลรั่วไหล, ระบบถูกบุกรุกทั้งหมด | **15 นาที** | **4 ชั่วโมง** |
+| **P2** 🟠 | **สูง** | บัญชีถูกบุกรุก, lateral movement, malware ยืนยัน | **30 นาที** | **8 ชั่วโมง** |
+| **P3** 🟡 | **ปานกลาง** | Phishing (ไม่มีคนคลิก), ละเมิดนโยบาย, น่าสงสัยแต่ควบคุมได้ | **2 ชั่วโมง** | **24 ชั่วโมง** |
+| **P4** 🔵 | **ต่ำ** | False positive, ข้อมูลแจ้งเตือน, ผล scan, ความเสี่ยงที่ยอมรับได้ | **8 ชั่วโมง** | **72 ชั่วโมง** |
+
+---
+
+## ตาราง Escalation — ใครต้องติดต่อ
+
+### 🔴 P1 เหตุการณ์ระดับวิกฤต
+
+| ขั้น | การดำเนินการ | ผู้รับผิดชอบ | ภายใน | ช่องทาง |
+|:---:|:---|:---|:---:|:---|
+| 1 | ตรวจจับ & Triage | **Tier 1 Analyst** | 0 นาที | — |
+| 2 | ส่งต่อ Tier 2 | **Tier 2 Analyst (on-call)** | **5 นาที** | โทรศัพท์ + Ticket |
+| 3 | แจ้ง SOC Lead | **SOC Lead** | **15 นาที** | โทรศัพท์ + Slack #incident |
+| 4 | เปิดใช้ IR team | **IR Manager** | **15 นาที** | โทรศัพท์ + War Room |
+| 5 | แจ้ง CISO | **CISO** | **30 นาที** | โทรศัพท์ |
+| 6 | แจ้งผู้บริหาร (ถ้าข้อมูลรั่ว) | **CEO / CTO** | **1 ชั่วโมง** | โทรศัพท์ |
+| 7 | แจ้งฝ่ายกฎหมาย (ถ้า PDPA) | **ที่ปรึกษากฎหมาย** | **2 ชั่วโมง** | โทรศัพท์ + Email |
+| 8 | แจ้งหน่วยงานกำกับ (ถ้าจำเป็น) | **DPO / Compliance** | **72 ชั่วโมง** | ช่องทางทางการ |
+
+### 🟠 P2 เหตุการณ์ระดับสูง
+
+| ขั้น | การดำเนินการ | ผู้รับผิดชอบ | ภายใน | ช่องทาง |
+|:---:|:---|:---|:---:|:---|
+| 1 | ตรวจจับ & Triage | **Tier 1 Analyst** | 0 นาที | — |
+| 2 | ส่งต่อ Tier 2 | **Tier 2 Analyst** | **30 นาที** | Ticket + Slack |
+| 3 | แจ้ง SOC Lead | **SOC Lead** | **1 ชั่วโมง** | Slack + Email |
+| 4 | อัปเดตผู้บริหาร (ถ้ามีแนวโน้ม) | **SOC Manager** | **4 ชั่วโมง** | Email |
+
+### 🟡 P3 เหตุการณ์ระดับปานกลาง
+
+| ขั้น | การดำเนินการ | ผู้รับผิดชอบ | ภายใน | ช่องทาง |
+|:---:|:---|:---|:---:|:---|
+| 1 | ตรวจจับ & Triage | **Tier 1 Analyst** | 0 นาที | — |
+| 2 | จัดการเอง หรือส่งต่อ Tier 2 | **Tier 1/Tier 2** | **2 ชั่วโมง** | Ticket |
+| 3 | อัปเดต SOC Lead (ถ้าเกิดซ้ำ) | **SOC Lead** | **สิ้นเวร** | รายงานเวร |
+
+### 🔵 P4 เหตุการณ์ระดับต่ำ
+
+| ขั้น | การดำเนินการ | ผู้รับผิดชอบ | ภายใน | ช่องทาง |
+|:---:|:---|:---|:---:|:---|
+| 1 | ตรวจจับ & Triage | **Tier 1 Analyst** | — | — |
+| 2 | ปิด หรือปรับ detection | **Tier 1 Analyst** | **8 ชั่วโมง** | Ticket |
+
+---
+
+## สมุดรายชื่อ (Contact Directory)
+
+> ⚠️ **แทนที่ด้วยข้อมูลจริงของคุณ** อัปเดตทุกเดือน
+
+| บทบาท | ชื่อ | โทรศัพท์หลัก | สำรอง | Email | ความพร้อม |
+|:---|:---|:---|:---|:---|:---:|
+| **SOC Lead** | [ชื่อ] | [เบอร์] | Slack: @soc-lead | [email] | 24/7 on-call |
+| **IR Manager** | [ชื่อ] | [เบอร์] | Slack: @ir-manager | [email] | 24/7 on-call |
+| **CISO** | [ชื่อ] | [เบอร์] | WhatsApp | [email] | เวลาทำงาน + on-call |
+| **CTO** | [ชื่อ] | [เบอร์] | — | [email] | เวลาทำงาน |
+| **CEO** | [ชื่อ] | [เบอร์] | — | [email] | ผ่าน CISO |
+| **ที่ปรึกษากฎหมาย** | [ชื่อ] | [เบอร์] | — | [email] | เวลาทำงาน |
+| **DPO (PDPA)** | [ชื่อ] | [เบอร์] | — | [email] | เวลาทำงาน |
+| **PR / สื่อสาร** | [ชื่อ] | [เบอร์] | — | [email] | เวลาทำงาน |
+| **SOC Tier 2 (on-call)** | หมุนเวียน | ดูตาราง | Slack: @soc-oncall | soc@company.com | 24/7 |
+| **External IR vendor** | [บริษัท] | [เบอร์] | — | [email] | ตามสัญญา |
+| **ตำรวจไซเบอร์** | กองบังคับการปราบปราม | [เบอร์] | — | — | เวลาราชการ |
+
+---
+
+## กฎการส่งต่อ
+
+### ทำ ✅
+- **P1 ต้องโทร** — อย่าพึ่ง email หรือ Slack อย่างเดียว
+- **เริ่ม containment ระหว่างส่งต่อ** — อย่ารออนุมัติสำหรับ P1
+- **บันทึกทุกอย่าง** ใน ticketing system ทันที
+- **ส่งต่อเกินไว้ดีกว่าพลาด** — ส่งต่อแล้วไม่มีอะไรดีกว่าไม่ส่งต่อแล้วพลาด
+- **ใช้คำว่า "CRITICAL INCIDENT"** ในหัวข้อ email สำหรับ P1
+
+### ห้าม ❌
+- **ห้ามชะลอ** P1 เพื่อ "สืบสวนเพิ่มเติม" — ส่งต่อก่อน, สืบสวนคู่ขนาน
+- **ห้ามข้ามลำดับ** — แจ้ง SOC Lead ก่อน CISO เสมอ
+- **ห้ามสื่อสารภายนอก** (สื่อ, หน่วยงานกำกับ) โดยไม่ได้รับอนุมัติจากฝ่ายกฎหมาย/PR
+- **ห้ามแบ่งปัน IOCs** สู่สาธารณะโดยไม่ได้รับอนุมัติ
+- **ห้ามคุยเรื่อง incident** บนอุปกรณ์ส่วนตัวหรือช่องทางที่ไม่ปลอดภัย
+
+---
+
+## กฎ Auto-Escalation (SOAR)
+
+| เงื่อนไข | การดำเนินการอัตโนมัติ | ส่งต่อไปยัง |
+|:---|:---|:---|
+| P1 ไม่มี analyst ตอบใน 10 นาที | Auto-assign + page on-call | Tier 2 + SOC Lead |
+| P2 ไม่มีคนรับใน 30 นาที | Auto-reassign + Slack notify | SOC Lead |
+| P3 จาก source เดียวกัน 3+ ครั้งใน 1 ชม. | Auto-correlate + ยกระดับเป็น P2 | Tier 2 |
+| P1 ticket เปิด > 2 ชม. ไม่มีอัปเดต | Auto-notify ผู้บริหาร | CISO |
+| มี indicator ของ data breach | Auto-notify กฎหมาย + DPO | Legal + Compliance |
+
+---
+
+## การส่งต่อนอกเวลาทำงาน
+
+| เวลา | ผู้ติดต่อหลัก | สำรอง |
+|:---|:---|:---|
+| **เวลาทำงาน** (09:00–18:00) | ทีม SOC ประจำเวร | SOC Lead |
+| **นอกเวลา** (18:00–09:00) | On-call Tier 2 | SOC Lead (โทร) |
+| **เสาร์-อาทิตย์ / วันหยุด** | On-call Tier 2 | SOC Lead → IR Manager |
+
+### ตารางหมุนเวียน On-Call
+
+| สัปดาห์ | Tier 2 On-Call | SOC Lead สำรอง |
+|:---|:---|:---|
+| สัปดาห์ 1 | Analyst A | Lead X |
+| สัปดาห์ 2 | Analyst B | Lead Y |
+| สัปดาห์ 3 | Analyst C | Lead X |
+| สัปดาห์ 4 | Analyst D | Lead Y |
+
+> 📋 อัปเดตตารางหมุนเวียนทุกเดือน โพสต์ใน Slack #soc-oncall
+
+---
+
+## ช่องทางการสื่อสารตามระดับความรุนแรง
+
+| ช่องทาง | P1 🔴 | P2 🟠 | P3 🟡 | P4 🔵 |
+|:---|:---:|:---:|:---:|:---:|
+| **โทรศัพท์** | ✅ ต้องโทร | ถ้าจำเป็น | ❌ | ❌ |
+| **Slack #incident** | ✅ | ✅ | ❌ | ❌ |
+| **Slack #soc-alerts** | ✅ | ✅ | ✅ | ✅ |
+| **Email** | ✅ (หลังโทร) | ✅ | ✅ | ✅ |
+| **War Room** | ✅ เปิดใช้ | ถ้าจำเป็น | ❌ | ❌ |
+| **Status Page** | ถ้ากระทบลูกค้า | ❌ | ❌ | ❌ |
+
+---
+
+## กำหนดแจ้งหน่วยงานกำกับ
+
+| กฎหมาย | กำหนดเวลา | แจ้งไปยัง | เงื่อนไข |
+|:---|:---:|:---|:---|
+| **PDPA (ไทย)** | **72 ชั่วโมง** | สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล | ข้อมูลส่วนบุคคลรั่วไหล |
+| **GDPR (EU)** | **72 ชั่วโมง** | Supervisory Authority + เจ้าของข้อมูล | ข้อมูลส่วนบุคคลรั่วไหล |
+| **PCI-DSS** | **ทันที** | Acquirer + Card Brands | ข้อมูลบัตรเครดิตรั่ว |
+| **SEC (US)** | **4 วันทำการ** | SEC (Form 8-K) | เหตุการณ์ไซเบอร์ที่มีนัยสำคัญ |
+| **ธปท. (ไทย)** | **ทันที** | ธนาคารแห่งประเทศไทย | ระบบการเงินหยุดชะงัก |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [Severity Matrix](Severity_Matrix.en.md) — นิยามระดับความรุนแรงฉบับเต็ม
+-   [Communication Templates](Communication_Templates.en.md) — แม่แบบการแจ้งเตือนสำเร็จรูป
+-   [IR Framework](Framework.en.md) — วงจรชีวิตการตอบสนองต่อเหตุการณ์
+-   [PDPA Incident Response](../10_Compliance/PDPA_Incident_Response.en.md) — การแจ้ง data breach ตาม PDPA
+-   [SOC Communication SOP](../06_Operations_Management/SOC_Communication_SOP.en.md)
+-   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
 
 
 ---

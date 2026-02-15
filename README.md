@@ -77,6 +77,7 @@ Start here if you're building a brand-new SOC. Follow the numbered order.
 | **Lessons Learned Template** | [Read](05_Incident_Response/Lessons_Learned_Template.en.md) | [อ่าน](05_Incident_Response/Lessons_Learned_Template.th.md) |
 | **Interview Guide** (T1/T2/Lead) | [Read](05_Incident_Response/Interview_Guide.en.md) | [อ่าน](05_Incident_Response/Interview_Guide.th.md) |
 | **🎯 Threat Hunting Playbook** (NEW) | [Read](05_Incident_Response/Threat_Hunting_Playbook.en.md) | [อ่าน](05_Incident_Response/Threat_Hunting_Playbook.th.md) |
+| **🚨 Escalation Matrix** (NEW) | [Read](05_Incident_Response/Escalation_Matrix.en.md) | [อ่าน](05_Incident_Response/Escalation_Matrix.th.md) |
 
 ### 33 Playbooks — Grouped by Category
 
@@ -201,6 +202,7 @@ File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [
 | **Communication SOP** | [Read](06_Operations_Management/Communication_SOP.en.md) | [อ่าน](06_Operations_Management/Communication_SOP.th.md) |
 | **Log Source Onboarding** | [Read](06_Operations_Management/Log_Source_Onboarding.en.md) | [อ่าน](06_Operations_Management/Log_Source_Onboarding.th.md) |
 | **Vendor/Tool Evaluation** | [Read](06_Operations_Management/Vendor_Evaluation.en.md) | [อ่าน](06_Operations_Management/Vendor_Evaluation.th.md) |
+| **📊 Log Source Matrix** (NEW) | [Read](06_Operations_Management/Log_Source_Matrix.en.md) | [อ่าน](06_Operations_Management/Log_Source_Matrix.th.md) |
 | **Data Governance & Retention** | [Read](02_Platform_Operations/Database_Management.en.md) | [อ่าน](02_Platform_Operations/Database_Management.th.md) |
 | **Deployment Procedures** | [Read](02_Platform_Operations/Deployment_Procedures.en.md) | [อ่าน](02_Platform_Operations/Deployment_Procedures.th.md) |
 | **Integration Hub** | [Read](03_User_Guides/Integration_Hub.en.md) | [อ่าน](03_User_Guides/Integration_Hub.th.md) |
