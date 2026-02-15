@@ -68,8 +68,8 @@ gantt
 
 | Topic | Duration | Presenter | Materials |
 |:---|:---:|:---|:---|
-| SOC mission, charter, and structure | 1 hr | SOC Manager | [SOC Charter](SOC_Charter.en.md) |
-| SOC tiers (1/2/3) and responsibilities | 1 hr | Team Lead | [Roles & Responsibilities](Roles_Responsibilities.en.md) |
+| SOC mission, charter, and structure | 1 hr | SOC Manager | SOC Charter |
+| SOC tiers (1/2/3) and responsibilities | 1 hr | Team Lead | Roles & Responsibilities |
 | Shift schedule and handoff process | 30 min | Shift Lead | [SOC Checklists](../06_Operations_Management/SOC_Checklists.en.md) |
 | Communication protocols | 30 min | SOC Lead | [Communication SOP](../06_Operations_Management/Communication_SOP.en.md) |
 | Escalation procedures | 1 hr | SOC Lead | [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) |
@@ -250,9 +250,9 @@ gantt
 
 ## Related Documents
 
--   [SOC Charter](SOC_Charter.en.md) — Mission and structure
--   [Roles & Responsibilities](Roles_Responsibilities.en.md) — Tier definitions
--   [Training Program](Training_Program.en.md) — Long-term training
+-   SOC Charter — Mission and structure
+-   Roles & Responsibilities — Tier definitions
+-   Training Program — Long-term training
 -   [Tier 1 Runbook](../05_Incident_Response/Tier1_Runbook.en.md) — Day-to-day procedures
 -   [IR Framework](../05_Incident_Response/Framework.en.md) — Incident response lifecycle
 -   [SOC Checklists](../06_Operations_Management/SOC_Checklists.en.md) — Operational checklists
