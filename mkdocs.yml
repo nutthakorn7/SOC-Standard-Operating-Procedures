@@ -119,6 +119,8 @@ nav:
     - แม่แบบ SOAR (TH): 05_Incident_Response/SOAR_Playbooks.th.md
     - Lessons Learned Template: 05_Incident_Response/Lessons_Learned_Template.en.md
     - แม่แบบ Lessons Learned (TH): 05_Incident_Response/Lessons_Learned_Template.th.md
+    - Threat Hunting Playbook: 05_Incident_Response/Threat_Hunting_Playbook.en.md
+    - คู่มือการล่าภัยคุกคาม (TH): 05_Incident_Response/Threat_Hunting_Playbook.th.md
     - Playbooks (EN):
       - Phishing: 05_Incident_Response/Playbooks/Phishing.en.md
       - Ransomware: 05_Incident_Response/Playbooks/Ransomware.en.md
