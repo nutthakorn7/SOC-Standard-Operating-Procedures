@@ -1,0 +1,345 @@
+{
+  "name": "SOC-SOP Coverage — 25 Playbooks + 28 Sigma Rules",
+  "versions": {
+    "attack": "14",
+    "navigator": "4.9.1",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "MITRE ATT&CK coverage heatmap for SOC-SOP repository. Color intensity = number of detection assets (playbooks + sigma rules) covering each technique.",
+  "filters": { "platforms": ["Windows", "Linux", "macOS", "Azure AD", "Office 365", "Google Workspace", "SaaS", "IaaS", "Network", "Containers"] },
+  "sorting": 3,
+  "layout": { "layout": "side", "aggregateFunction": "average", "showID": true, "showName": true, "showAggregateScores": true, "countUnscored": false },
+  "hideDisabled": false,
+  "gradient": {
+    "colors": ["#ce4220", "#f9a825", "#66bb6a"],
+    "minValue": 1,
+    "maxValue": 4
+  },
+  "legendItems": [
+    { "label": "1 asset (low coverage)", "color": "#ce4220" },
+    { "label": "2 assets", "color": "#f9a825" },
+    { "label": "3+ assets (strong coverage)", "color": "#66bb6a" }
+  ],
+  "metadata": [
+    { "name": "Repository", "value": "SOC-SOP" },
+    { "name": "Generated", "value": "2026-02-15" },
+    { "name": "Total Playbooks", "value": "25" },
+    { "name": "Total Sigma Rules", "value": "28" }
+  ],
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#205b8f",
+  "selectTechniquesAcrossTactics": true,
+  "selectSubtechniquesWithParent": false,
+  "selectVisibleTechniques": false,
+  "techniques": [
+    {
+      "techniqueID": "T1059",
+      "tactic": "execution",
+      "color": "#66bb6a",
+      "comment": "PB-01 Phishing, PB-11 Suspicious Script | proc_office_spawn_powershell, proc_powershell_encoded",
+      "score": 4,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-01, PB-11" },
+        { "name": "Sigma Rules", "value": "proc_office_spawn_powershell, proc_powershell_encoded" }
+      ]
+    },
+    {
+      "techniqueID": "T1059.001",
+      "tactic": "execution",
+      "color": "#66bb6a",
+      "comment": "PB-01 Phishing, PB-11 Suspicious Script | proc_office_spawn_powershell, proc_powershell_encoded",
+      "score": 4,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-01, PB-11" },
+        { "name": "Sigma Rules", "value": "proc_office_spawn_powershell, proc_powershell_encoded" }
+      ]
+    },
+    {
+      "techniqueID": "T1566",
+      "tactic": "initial-access",
+      "color": "#f9a825",
+      "comment": "PB-01 Phishing | proc_office_spawn_powershell",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-01" },
+        { "name": "Sigma Rules", "value": "proc_office_spawn_powershell" }
+      ]
+    },
+    {
+      "techniqueID": "T1486",
+      "tactic": "impact",
+      "color": "#f9a825",
+      "comment": "PB-02 Ransomware | file_bulk_renaming_ransomware",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-02" },
+        { "name": "Sigma Rules", "value": "file_bulk_renaming_ransomware" }
+      ]
+    },
+    {
+      "techniqueID": "T1204",
+      "tactic": "execution",
+      "color": "#f9a825",
+      "comment": "PB-03 Malware | proc_temp_folder_execution",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-03" },
+        { "name": "Sigma Rules", "value": "proc_temp_folder_execution" }
+      ]
+    },
+    {
+      "techniqueID": "T1204.002",
+      "tactic": "execution",
+      "color": "#f9a825",
+      "comment": "PB-03 Malware | proc_temp_folder_execution",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-03" },
+        { "name": "Sigma Rules", "value": "proc_temp_folder_execution" }
+      ]
+    },
+    {
+      "techniqueID": "T1110",
+      "tactic": "credential-access",
+      "color": "#f9a825",
+      "comment": "PB-04 Brute Force | win_multiple_failed_logins",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-04" },
+        { "name": "Sigma Rules", "value": "win_multiple_failed_logins" }
+      ]
+    },
+    {
+      "techniqueID": "T1078",
+      "tactic": "initial-access",
+      "color": "#66bb6a",
+      "comment": "PB-05, PB-06, PB-07, PB-16 | cloud_unusual_login, cloud_impossible_travel, win_domain_admin_group_add, cloud_root_login",
+      "score": 4,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-05, PB-06, PB-07, PB-16" },
+        { "name": "Sigma Rules", "value": "cloud_unusual_login, cloud_impossible_travel, win_domain_admin_group_add, cloud_root_login" }
+      ]
+    },
+    {
+      "techniqueID": "T1078.004",
+      "tactic": "initial-access",
+      "color": "#66bb6a",
+      "comment": "PB-05, PB-06 | cloud_unusual_login, cloud_impossible_travel, cloud_azure_risky_signin",
+      "score": 3,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-05, PB-06" },
+        { "name": "Sigma Rules", "value": "cloud_unusual_login, cloud_impossible_travel, cloud_azure_risky_signin" }
+      ]
+    },
+    {
+      "techniqueID": "T1048",
+      "tactic": "exfiltration",
+      "color": "#66bb6a",
+      "comment": "PB-08 Data Exfiltration, PB-24 DNS Tunneling | net_large_upload, file_bulk_usb_copy, net_dns_tunneling",
+      "score": 3,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-08, PB-24" },
+        { "name": "Sigma Rules", "value": "net_large_upload, file_bulk_usb_copy, net_dns_tunneling" }
+      ]
+    },
+    {
+      "techniqueID": "T1048.003",
+      "tactic": "exfiltration",
+      "color": "#f9a825",
+      "comment": "PB-24 DNS Tunneling | net_dns_tunneling",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-24" },
+        { "name": "Sigma Rules", "value": "net_dns_tunneling" }
+      ]
+    },
+    {
+      "techniqueID": "T1052",
+      "tactic": "exfiltration",
+      "color": "#f9a825",
+      "comment": "PB-08 Data Exfiltration | file_bulk_usb_copy",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-08" },
+        { "name": "Sigma Rules", "value": "file_bulk_usb_copy" }
+      ]
+    },
+    {
+      "techniqueID": "T1498",
+      "tactic": "impact",
+      "color": "#f9a825",
+      "comment": "PB-09 DDoS | web_high_rate_limit",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-09" },
+        { "name": "Sigma Rules", "value": "web_high_rate_limit" }
+      ]
+    },
+    {
+      "techniqueID": "T1190",
+      "tactic": "initial-access",
+      "color": "#66bb6a",
+      "comment": "PB-10, PB-18, PB-22, PB-25 | web_sqli_pattern, web_waf_exploit, web_api_abuse_auth_bypass, web_zero_day_exploit_attempt",
+      "score": 4,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-10 Web Attack, PB-18 Exploit, PB-22 API Abuse, PB-25 Zero-Day" },
+        { "name": "Sigma Rules", "value": "web_sqli_pattern, web_waf_exploit, web_api_abuse_auth_bypass, web_zero_day_exploit_attempt" }
+      ]
+    },
+    {
+      "techniqueID": "T1021",
+      "tactic": "lateral-movement",
+      "color": "#ce4220",
+      "comment": "PB-12 Lateral Movement | win_admin_share_access",
+      "score": 1,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-12" },
+        { "name": "Sigma Rules", "value": "win_admin_share_access" }
+      ]
+    },
+    {
+      "techniqueID": "T1021.002",
+      "tactic": "lateral-movement",
+      "color": "#f9a825",
+      "comment": "PB-12 Lateral Movement | win_admin_share_access",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-12" },
+        { "name": "Sigma Rules", "value": "win_admin_share_access" }
+      ]
+    },
+    {
+      "techniqueID": "T1071",
+      "tactic": "command-and-control",
+      "color": "#66bb6a",
+      "comment": "PB-13 C2, PB-24 DNS Tunneling | net_beaconing, net_dns_tunneling",
+      "score": 3,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-13, PB-24" },
+        { "name": "Sigma Rules", "value": "net_beaconing, net_dns_tunneling" }
+      ]
+    },
+    {
+      "techniqueID": "T1071.004",
+      "tactic": "command-and-control",
+      "color": "#f9a825",
+      "comment": "PB-24 DNS Tunneling | net_dns_tunneling",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-24" },
+        { "name": "Sigma Rules", "value": "net_dns_tunneling" }
+      ]
+    },
+    {
+      "techniqueID": "T1136",
+      "tactic": "persistence",
+      "color": "#f9a825",
+      "comment": "PB-15 Rogue Admin | win_new_user_created",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-15" },
+        { "name": "Sigma Rules", "value": "win_new_user_created" }
+      ]
+    },
+    {
+      "techniqueID": "T1530",
+      "tactic": "collection",
+      "color": "#ce4220",
+      "comment": "Cloud S3 Compromise | cloud_aws_s3_public_access",
+      "score": 1,
+      "metadata": [
+        { "name": "Playbooks", "value": "Cloud S3" },
+        { "name": "Sigma Rules", "value": "cloud_aws_s3_public_access" }
+      ]
+    },
+    {
+      "techniqueID": "T1114",
+      "tactic": "collection",
+      "color": "#f9a825",
+      "comment": "PB-17 BEC | cloud_email_inbox_rule",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-17" },
+        { "name": "Sigma Rules", "value": "cloud_email_inbox_rule" }
+      ]
+    },
+    {
+      "techniqueID": "T1114.003",
+      "tactic": "collection",
+      "color": "#f9a825",
+      "comment": "PB-17 BEC | cloud_email_inbox_rule",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-17" },
+        { "name": "Sigma Rules", "value": "cloud_email_inbox_rule" }
+      ]
+    },
+    {
+      "techniqueID": "T1070",
+      "tactic": "defense-evasion",
+      "color": "#ce4220",
+      "comment": "PB-20 Log Clearing | win_security_log_cleared",
+      "score": 1,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-20" },
+        { "name": "Sigma Rules", "value": "win_security_log_cleared" }
+      ]
+    },
+    {
+      "techniqueID": "T1070.001",
+      "tactic": "defense-evasion",
+      "color": "#f9a825",
+      "comment": "PB-20 Log Clearing | win_security_log_cleared",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-20" },
+        { "name": "Sigma Rules", "value": "win_security_log_cleared" }
+      ]
+    },
+    {
+      "techniqueID": "T1195",
+      "tactic": "initial-access",
+      "color": "#f9a825",
+      "comment": "PB-21 Supply Chain Attack | cloud_supply_chain_compromise",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-21" },
+        { "name": "Sigma Rules", "value": "cloud_supply_chain_compromise" }
+      ]
+    },
+    {
+      "techniqueID": "T1195.002",
+      "tactic": "initial-access",
+      "color": "#f9a825",
+      "comment": "PB-21 Supply Chain Attack | cloud_supply_chain_compromise",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-21" },
+        { "name": "Sigma Rules", "value": "cloud_supply_chain_compromise" }
+      ]
+    },
+    {
+      "techniqueID": "T1496",
+      "tactic": "impact",
+      "color": "#66bb6a",
+      "comment": "PB-23 Cryptomining | proc_cryptomining_indicators, cloud_aws_ec2_mining",
+      "score": 3,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-23" },
+        { "name": "Sigma Rules", "value": "proc_cryptomining_indicators, cloud_aws_ec2_mining" }
+      ]
+    },
+    {
+      "techniqueID": "T1203",
+      "tactic": "execution",
+      "color": "#f9a825",
+      "comment": "PB-25 Zero-Day Exploit | web_zero_day_exploit_attempt",
+      "score": 2,
+      "metadata": [
+        { "name": "Playbooks", "value": "PB-25" },
+        { "name": "Sigma Rules", "value": "web_zero_day_exploit_attempt" }
+      ]
+    }
+  ]
+}

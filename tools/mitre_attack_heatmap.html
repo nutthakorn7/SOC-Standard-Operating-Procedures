@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MITRE ATT&CK Coverage Heatmap — SOC-SOP</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0d1117;color:#c9d1d9;min-height:100vh}
+header{background:linear-gradient(135deg,#1a1b2e 0%,#16213e 50%,#0f3460 100%);padding:24px 32px;border-bottom:2px solid #30363d}
+header h1{font-size:1.6rem;background:linear-gradient(90deg,#58a6ff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header p{color:#8b949e;margin-top:4px;font-size:.9rem}
+.stats{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
+.stat{background:rgba(255,255,255,.05);border:1px solid #30363d;border-radius:8px;padding:8px 16px;font-size:.85rem}
+.stat strong{color:#58a6ff}
+.lang-toggle{position:absolute;top:24px;right:32px;background:#21262d;border:1px solid #30363d;color:#c9d1d9;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:.85rem}
+.lang-toggle:hover{background:#30363d}
+.legend{display:flex;gap:16px;padding:16px 32px;background:#161b22;border-bottom:1px solid #30363d;flex-wrap:wrap;align-items:center}
+.legend span{font-size:.8rem;color:#8b949e}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:.8rem}
+.legend-box{width:20px;height:14px;border-radius:3px}
+.matrix{padding:24px 32px;overflow-x:auto}
+.tactic-row{margin-bottom:24px}
+.tactic-header{font-size:.95rem;font-weight:600;color:#58a6ff;margin-bottom:8px;padding:6px 12px;background:#161b22;border-radius:6px;border-left:3px solid #58a6ff;display:flex;justify-content:space-between}
+.tactic-header .count{color:#8b949e;font-weight:400;font-size:.8rem}
+.tech-grid{display:flex;flex-wrap:wrap;gap:8px}
+.tech-card{border-radius:8px;padding:10px 14px;min-width:200px;max-width:280px;cursor:pointer;transition:all .2s;border:1px solid transparent;position:relative}
+.tech-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.4);border-color:#58a6ff}
+.tech-id{font-size:.75rem;font-weight:700;opacity:.8}
+.tech-name{font-size:.82rem;margin-top:2px;line-height:1.3}
+.tech-score{position:absolute;top:8px;right:10px;font-size:.7rem;background:rgba(0,0,0,.3);padding:2px 6px;border-radius:10px}
+.tech-card.s1{background:rgba(206,66,32,.25);border-color:rgba(206,66,32,.3)}
+.tech-card.s2{background:rgba(249,168,37,.2);border-color:rgba(249,168,37,.3)}
+.tech-card.s3,.tech-card.s4{background:rgba(102,187,106,.2);border-color:rgba(102,187,106,.3)}
+.uncovered{background:rgba(255,255,255,.03);border:1px dashed #30363d}
+.uncovered .tech-id,.uncovered .tech-name{opacity:.35}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;justify-content:center;align-items:center}
+.modal-overlay.active{display:flex}
+.modal{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px;max-width:480px;width:90%;max-height:80vh;overflow-y:auto}
+.modal h3{color:#58a6ff;margin-bottom:12px;font-size:1.1rem}
+.modal .tag{display:inline-block;background:#21262d;border:1px solid #30363d;border-radius:4px;padding:2px 8px;margin:2px;font-size:.75rem;color:#c9d1d9}
+.modal .section{margin-top:12px}
+.modal .section-title{font-size:.8rem;color:#8b949e;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.modal .close{float:right;background:none;border:none;color:#8b949e;font-size:1.2rem;cursor:pointer}
+.modal .close:hover{color:#c9d1d9}
+.gap-section{margin-top:32px;padding:24px 32px}
+.gap-section h2{color:#f85149;margin-bottom:12px;font-size:1.1rem}
+.gap-grid{display:flex;flex-wrap:wrap;gap:8px}
+.gap-item{background:rgba(248,81,73,.1);border:1px solid rgba(248,81,73,.2);border-radius:6px;padding:8px 12px;font-size:.8rem}
+.gap-item .gid{color:#f85149;font-weight:700}
+.gap-item .gname{color:#8b949e}
+footer{text-align:center;padding:24px;color:#484f58;font-size:.75rem;border-top:1px solid #21262d}
+</style>
+</head>
+<body>
+
+<header>
+<button class="lang-toggle" onclick="toggleLang()">🌐 TH</button>
+<h1 id="title">MITRE ATT&CK Coverage Heatmap</h1>
+<p id="subtitle">SOC-SOP Repository — 25 Playbooks + 28 Sigma Rules</p>
+<div class="stats">
+<div class="stat">🎯 Techniques Covered: <strong id="coveredCount">0</strong></div>
+<div class="stat">📊 Coverage: <strong id="coveragePct">0%</strong></div>
+<div class="stat">🟢 Strong (3+): <strong id="strongCount">0</strong></div>
+<div class="stat">🟡 Medium (2): <strong id="medCount">0</strong></div>
+<div class="stat">🔴 Low (1): <strong id="lowCount">0</strong></div>
+</div>
+</header>
+
+<div class="legend">
+<span id="legendLabel">Legend:</span>
+<div class="legend-item"><div class="legend-box" style="background:#66bb6a"></div> 3+ assets</div>
+<div class="legend-item"><div class="legend-box" style="background:#f9a825"></div> 2 assets</div>
+<div class="legend-item"><div class="legend-box" style="background:#ce4220"></div> 1 asset</div>
+<div class="legend-item"><div class="legend-box" style="background:rgba(255,255,255,.05);border:1px dashed #30363d"></div><span id="noCovLabel">No coverage</span></div>
+</div>
+
+<div class="matrix" id="matrix"></div>
+
+<div class="gap-section" id="gapSection">
+<h2 id="gapTitle">⚠️ Coverage Gaps — Key Techniques Without Detection</h2>
+<div class="gap-grid" id="gapGrid"></div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+<div class="modal" id="modal" onclick="event.stopPropagation()">
+<button class="close" onclick="document.getElementById('modalOverlay').classList.remove('active')">&times;</button>
+<h3 id="modalTitle"></h3>
+<div id="modalBody"></div>
+</div>
+</div>
+
+<footer>Generated 2026-02-15 | SOC-SOP MITRE ATT&CK Coverage Map | Based on ATT&CK v14</footer>
+
+<script>
+let lang = 'en';
+const i18n = {
+  en: {
+    title: 'MITRE ATT&CK Coverage Heatmap',
+    subtitle: 'SOC-SOP Repository — 25 Playbooks + 28 Sigma Rules',
+    legend: 'Legend:',
+    noCov: 'No coverage',
+    gapTitle: '⚠️ Coverage Gaps — Key Techniques Without Detection',
+    playbooks: 'Playbooks',
+    sigmaRules: 'Sigma Rules',
+    score: 'Coverage Score',
+    assets: 'assets'
+  },
+  th: {
+    title: 'แผนที่ Coverage — MITRE ATT&CK',
+    subtitle: 'SOC-SOP Repository — 25 Playbooks + 28 Sigma Rules',
+    legend: 'คำอธิบาย:',
+    noCov: 'ยังไม่มีการตรวจจับ',
+    gapTitle: '⚠️ ช่องโหว่ Coverage — เทคนิคที่ยังไม่มีการตรวจจับ',
+    playbooks: 'Playbooks',
+    sigmaRules: 'กฎ Sigma',
+    score: 'คะแนน Coverage',
+    assets: 'สินทรัพย์'
+  }
+};
+
+const tactics = [
+  { id: 'reconnaissance', name: 'Reconnaissance', nameTh: 'การสำรวจ' },
+  { id: 'resource-development', name: 'Resource Development', nameTh: 'การเตรียมทรัพยากร' },
+  { id: 'initial-access', name: 'Initial Access', nameTh: 'การเข้าถึงเบื้องต้น' },
+  { id: 'execution', name: 'Execution', nameTh: 'การรันคำสั่ง' },
+  { id: 'persistence', name: 'Persistence', nameTh: 'การคงอยู่ในระบบ' },
+  { id: 'privilege-escalation', name: 'Privilege Escalation', nameTh: 'การยกระดับสิทธิ์' },
+  { id: 'defense-evasion', name: 'Defense Evasion', nameTh: 'การหลบหลีกการป้องกัน' },
+  { id: 'credential-access', name: 'Credential Access', nameTh: 'การเข้าถึงข้อมูลรับรอง' },
+  { id: 'discovery', name: 'Discovery', nameTh: 'การสำรวจระบบ' },
+  { id: 'lateral-movement', name: 'Lateral Movement', nameTh: 'การเคลื่อนตัว' },
+  { id: 'collection', name: 'Collection', nameTh: 'การรวบรวมข้อมูล' },
+  { id: 'command-and-control', name: 'Command & Control', nameTh: 'การสั่งการและควบคุม' },
+  { id: 'exfiltration', name: 'Exfiltration', nameTh: 'การขโมยข้อมูล' },
+  { id: 'impact', name: 'Impact', nameTh: 'ผลกระทบ' }
+];
+
+const coveredTechniques = [
+  { id:'T1059', sub:'T1059.001', tactic:'execution', name:'Command and Scripting Interpreter: PowerShell', nameTh:'ตัวแปลคำสั่ง: PowerShell', score:4, pbs:'PB-01, PB-11', sigma:'proc_office_spawn_powershell, proc_powershell_encoded' },
+  { id:'T1566', tactic:'initial-access', name:'Phishing', nameTh:'ฟิชชิ่ง', score:2, pbs:'PB-01', sigma:'proc_office_spawn_powershell' },
+  { id:'T1486', tactic:'impact', name:'Data Encrypted for Impact', nameTh:'เข้ารหัสข้อมูลเพื่อสร้างผลกระทบ (Ransomware)', score:2, pbs:'PB-02', sigma:'file_bulk_renaming_ransomware' },
+  { id:'T1204', sub:'T1204.002', tactic:'execution', name:'User Execution: Malicious File', nameTh:'ผู้ใช้รันไฟล์อันตราย', score:2, pbs:'PB-03', sigma:'proc_temp_folder_execution' },
+  { id:'T1110', tactic:'credential-access', name:'Brute Force', nameTh:'การเดารหัสผ่าน (Brute Force)', score:2, pbs:'PB-04', sigma:'win_multiple_failed_logins' },
+  { id:'T1078', sub:'T1078.004', tactic:'initial-access', name:'Valid Accounts: Cloud Accounts', nameTh:'บัญชีที่ถูกต้อง: Cloud', score:4, pbs:'PB-05, PB-06, PB-07, PB-16', sigma:'cloud_unusual_login, cloud_impossible_travel, cloud_root_login, cloud_azure_risky_signin' },
+  { id:'T1048', sub:'T1048.003', tactic:'exfiltration', name:'Exfiltration Over Alternative Protocol', nameTh:'การขโมยข้อมูลผ่านโปรโตคอลอื่น', score:3, pbs:'PB-08, PB-24', sigma:'net_large_upload, file_bulk_usb_copy, net_dns_tunneling' },
+  { id:'T1052', tactic:'exfiltration', name:'Exfiltration Over Physical Medium', nameTh:'การขโมยข้อมูลผ่านสื่อทางกายภาพ (USB)', score:2, pbs:'PB-08', sigma:'file_bulk_usb_copy' },
+  { id:'T1498', tactic:'impact', name:'Network Denial of Service', nameTh:'การโจมตี DDoS', score:2, pbs:'PB-09', sigma:'web_high_rate_limit' },
+  { id:'T1190', tactic:'initial-access', name:'Exploit Public-Facing Application', nameTh:'โจมตีแอปพลิเคชันที่เปิดให้ภายนอก', score:4, pbs:'PB-10, PB-18, PB-22, PB-25', sigma:'web_sqli_pattern, web_waf_exploit, web_api_abuse_auth_bypass, web_zero_day_exploit_attempt' },
+  { id:'T1021', sub:'T1021.002', tactic:'lateral-movement', name:'Remote Services: SMB/Windows Admin Shares', nameTh:'บริการระยะไกล: SMB Admin Shares', score:2, pbs:'PB-12', sigma:'win_admin_share_access' },
+  { id:'T1071', sub:'T1071.004', tactic:'command-and-control', name:'Application Layer Protocol: DNS', nameTh:'โปรโตคอลชั้น Application: DNS', score:3, pbs:'PB-13, PB-24', sigma:'net_beaconing, net_dns_tunneling' },
+  { id:'T1136', tactic:'persistence', name:'Create Account', nameTh:'สร้างบัญชีผู้ใช้ใหม่', score:2, pbs:'PB-15', sigma:'win_new_user_created' },
+  { id:'T1530', tactic:'collection', name:'Data from Cloud Storage Object', nameTh:'ข้อมูลจาก Cloud Storage', score:1, pbs:'Cloud S3', sigma:'cloud_aws_s3_public_access' },
+  { id:'T1114', sub:'T1114.003', tactic:'collection', name:'Email Collection: Email Forwarding Rule', nameTh:'รวบรวมอีเมล: สร้างกฎส่งต่ออีเมล', score:2, pbs:'PB-17', sigma:'cloud_email_inbox_rule' },
+  { id:'T1070', sub:'T1070.001', tactic:'defense-evasion', name:'Indicator Removal: Clear Event Logs', nameTh:'ลบหลักฐาน: ล้าง Event Log', score:2, pbs:'PB-20', sigma:'win_security_log_cleared' },
+  { id:'T1195', sub:'T1195.002', tactic:'initial-access', name:'Supply Chain Compromise: Software', nameTh:'โจมตี Supply Chain: ซอฟต์แวร์', score:2, pbs:'PB-21', sigma:'cloud_supply_chain_compromise' },
+  { id:'T1496', tactic:'impact', name:'Resource Hijacking (Cryptomining)', nameTh:'ขโมยทรัพยากร (ขุดคริปโต)', score:3, pbs:'PB-23', sigma:'proc_cryptomining_indicators, cloud_aws_ec2_mining' },
+  { id:'T1203', tactic:'execution', name:'Exploitation for Client Execution', nameTh:'โจมตีช่องโหว่เพื่อรันโค้ด', score:2, pbs:'PB-25', sigma:'web_zero_day_exploit_attempt' }
+];
+
+const gaps = [
+  { id:'T1053', name:'Scheduled Task/Job', nameTh:'งานที่ตั้งเวลา (Scheduled Task)' },
+  { id:'T1055', name:'Process Injection', nameTh:'การแทรก Process' },
+  { id:'T1027', name:'Obfuscated Files or Information', nameTh:'ไฟล์หรือข้อมูลที่ถูกทำให้อ่านยาก' },
+  { id:'T1003', name:'OS Credential Dumping', nameTh:'การดึง Credential จาก OS' },
+  { id:'T1082', name:'System Information Discovery', nameTh:'การสำรวจข้อมูลระบบ' },
+  { id:'T1105', name:'Ingress Tool Transfer', nameTh:'การดาวน์โหลดเครื่องมือโจมตี' },
+  { id:'T1569', name:'System Services', nameTh:'บริการระบบ' },
+  { id:'T1047', name:'WMI', nameTh:'Windows Management Instrumentation' },
+  { id:'T1036', name:'Masquerading', nameTh:'การปลอมแปลงตัวตน' },
+  { id:'T1543', name:'Create or Modify System Process', nameTh:'สร้าง/แก้ไข System Process' }
+];
+
+function toggleLang() {
+  lang = lang === 'en' ? 'th' : 'en';
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? '🌐 TH' : '🌐 EN';
+  render();
+}
+
+function render() {
+  const t = i18n[lang];
+  document.getElementById('title').textContent = t.title;
+  document.getElementById('subtitle').textContent = t.subtitle;
+  document.getElementById('legendLabel').textContent = t.legend;
+  document.getElementById('noCovLabel').textContent = t.noCov;
+  document.getElementById('gapTitle').textContent = t.gapTitle;
+
+  let strong=0, med=0, low=0;
+  coveredTechniques.forEach(ct => { if(ct.score>=3) strong++; else if(ct.score===2) med++; else low++; });
+  document.getElementById('coveredCount').textContent = coveredTechniques.length;
+  document.getElementById('coveragePct').textContent = Math.round(coveredTechniques.length / (coveredTechniques.length + gaps.length) * 100) + '%';
+  document.getElementById('strongCount').textContent = strong;
+  document.getElementById('medCount').textContent = med;
+  document.getElementById('lowCount').textContent = low;
+
+  const matrix = document.getElementById('matrix');
+  matrix.innerHTML = '';
+  tactics.forEach(tac => {
+    const techs = coveredTechniques.filter(ct => ct.tactic === tac.id);
+    if (techs.length === 0) return;
+    const row = document.createElement('div');
+    row.className = 'tactic-row';
+    const tacName = lang === 'th' ? tac.nameTh : tac.name;
+    row.innerHTML = `<div class="tactic-header"><span>${tacName}</span><span class="count">${techs.length} technique${techs.length>1?'s':''}</span></div>`;
+    const grid = document.createElement('div');
+    grid.className = 'tech-grid';
+    techs.forEach(ct => {
+      const card = document.createElement('div');
+      const sc = Math.min(ct.score, 4);
+      card.className = `tech-card s${sc}`;
+      const name = lang === 'th' ? ct.nameTh : ct.name;
+      card.innerHTML = `<div class="tech-id">${ct.id}${ct.sub ? ' / '+ct.sub : ''}</div><div class="tech-name">${name}</div><div class="tech-score">${ct.score} ${t.assets}</div>`;
+      card.onclick = () => showModal(ct);
+      grid.appendChild(card);
+    });
+    row.appendChild(grid);
+    matrix.appendChild(row);
+  });
+
+  const gapGrid = document.getElementById('gapGrid');
+  gapGrid.innerHTML = '';
+  gaps.forEach(g => {
+    const name = lang === 'th' ? g.nameTh : g.name;
+    gapGrid.innerHTML += `<div class="gap-item"><span class="gid">${g.id}</span> <span class="gname">${name}</span></div>`;
+  });
+}
+
+function showModal(ct) {
+  const t = i18n[lang];
+  const name = lang === 'th' ? ct.nameTh : ct.name;
+  document.getElementById('modalTitle').textContent = `${ct.id} — ${name}`;
+  let html = `<div class="section"><div class="section-title">${t.score}</div><strong>${ct.score}</strong> ${t.assets}</div>`;
+  html += `<div class="section"><div class="section-title">${t.playbooks}</div>${ct.pbs.split(', ').map(p=>`<span class="tag">${p}</span>`).join('')}</div>`;
+  html += `<div class="section"><div class="section-title">${t.sigmaRules}</div>${ct.sigma.split(', ').map(s=>`<span class="tag">${s}</span>`).join('')}</div>`;
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function closeModal(e) { if(e.target===document.getElementById('modalOverlay')) e.target.classList.remove('active'); }
+
+render();
+</script>
+</body>
+</html>
