@@ -212,6 +212,8 @@ File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [
 | **🔗 Third-Party Risk** (NEW) | [Read](06_Operations_Management/Third_Party_Risk.en.md) | [อ่าน](06_Operations_Management/Third_Party_Risk.th.md) |
 | **🎯 SOC Maturity Assessment** (NEW) | [Read](06_Operations_Management/SOC_Maturity_Assessment.en.md) | [อ่าน](06_Operations_Management/SOC_Maturity_Assessment.th.md) |
 | **🔧 Alert Tuning SOP** (NEW) | [Read](06_Operations_Management/Alert_Tuning.en.md) | [อ่าน](06_Operations_Management/Alert_Tuning.th.md) |
+| **☁️ Cloud Security Monitoring** (NEW) | [Read](06_Operations_Management/Cloud_Security_Monitoring.en.md) | [อ่าน](06_Operations_Management/Cloud_Security_Monitoring.th.md) |
+| **🕵️ Insider Threat Program** (NEW) | [Read](06_Operations_Management/Insider_Threat_Program.en.md) | [อ่าน](06_Operations_Management/Insider_Threat_Program.th.md) |
 | **Data Governance & Retention** | [Read](02_Platform_Operations/Database_Management.en.md) | [อ่าน](02_Platform_Operations/Database_Management.th.md) |
 | **Deployment Procedures** | [Read](02_Platform_Operations/Deployment_Procedures.en.md) | [อ่าน](02_Platform_Operations/Deployment_Procedures.th.md) |
 | **Integration Hub** | [Read](03_User_Guides/Integration_Hub.en.md) | [อ่าน](03_User_Guides/Integration_Hub.th.md) |

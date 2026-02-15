@@ -5486,6 +5486,458 @@ graph TD
 
 ---
 
+## File: 06_Operations_Management/Cloud_Security_Monitoring.en.md
+
+# Cloud Security Monitoring SOP
+
+**Document ID**: OPS-SOP-018
+**Version**: 1.0
+**Classification**: Internal
+**Last Updated**: 2026-02-15
+
+> SOC procedures for monitoring **AWS, Azure, and GCP** environments. Covers log sources to collect, critical detections to build, cloud-native attack patterns, and response actions specific to cloud infrastructure.
+
+---
+
+## Cloud Shared Responsibility Model
+
+```mermaid
+graph TB
+    subgraph Customer["🏢 Customer Responsibility (SOC Focus)"]
+        A[Data & Content]
+        B[Applications & Workloads]
+        C[Identity & Access (IAM)]
+        D[OS & Network Config]
+        E[Client-Side Encryption]
+    end
+    
+    subgraph Provider["☁️ Cloud Provider Responsibility"]
+        F[Physical Infrastructure]
+        G[Hypervisor & Host OS]
+        H[Network Infrastructure]
+        I[Storage Infrastructure]
+    end
+    
+    style Customer fill:#3b82f6,color:#fff
+    style Provider fill:#6b7280,color:#fff
+```
+
+> The SOC is responsible for monitoring **everything above the hypervisor**.
+
+---
+
+## Cloud Log Sources
+
+### AWS
+
+| Log Source | Service | Key Events | Retention | Priority |
+|:---|:---|:---|:---:|:---:|
+| **CloudTrail** | All API calls | IAM changes, S3 access, EC2 actions | 90 days (default) | 🔴 Critical |
+| **CloudTrail Data Events** | S3 object-level, Lambda | GetObject, PutObject, Invoke | Custom | 🔴 Critical |
+| **GuardDuty** | Threat detection | Findings (crypto mining, recon, C2) | 90 days | 🔴 Critical |
+| **VPC Flow Logs** | Network traffic | Accept/reject, traffic patterns | Custom | 🟠 High |
+| **Config** | Resource changes | Configuration compliance | Custom | 🟡 Medium |
+| **IAM Access Analyzer** | Access analysis | Overly permissive policies | Continuous | 🟡 Medium |
+| **CloudWatch Logs** | Applications, OS | App errors, OS events | Custom | 🟡 Medium |
+| **Security Hub** | Aggregated findings | CIS benchmarks, best practices | 90 days | 🟡 Medium |
+| **WAF** | Web application | Blocked requests, rules matched | Custom | 🟡 Medium |
+| **Route 53 DNS** | DNS queries | Domain resolution logs | Custom | 🟢 Low |
+
+### Azure
+
+| Log Source | Service | Key Events | Retention | Priority |
+|:---|:---|:---|:---:|:---:|
+| **Azure Activity Log** | All resource operations | Create, delete, modify resources | 90 days | 🔴 Critical |
+| **Entra ID Sign-in Logs** | Authentication | Success, failure, MFA, locations | 30 days (free) | 🔴 Critical |
+| **Entra ID Audit Logs** | Identity changes | Role assignments, user management | 30 days (free) | 🔴 Critical |
+| **Microsoft Defender for Cloud** | Threat detection | Security alerts, recommendations | 30 days | 🔴 Critical |
+| **NSG Flow Logs** | Network traffic | Accept/deny, traffic flows | Custom | 🟠 High |
+| **Key Vault Diagnostics** | Secret access | Key/secret/cert operations | Custom | 🟠 High |
+| **Diagnostic Settings** | Platform logs | Resource-specific logs | Custom | 🟡 Medium |
+| **Azure Firewall Logs** | Firewall | App rules, network rules, threat intel | Custom | 🟡 Medium |
+
+### GCP
+
+| Log Source | Service | Key Events | Retention | Priority |
+|:---|:---|:---|:---:|:---:|
+| **Cloud Audit Logs** (Admin) | All admin operations | IAM, resource create/delete | 400 days | 🔴 Critical |
+| **Cloud Audit Logs** (Data) | Data access | BigQuery, GCS read/write | 30 days (default) | 🔴 Critical |
+| **Security Command Center** | Threat detection | Findings, vulnerabilities | Continuous | 🔴 Critical |
+| **VPC Flow Logs** | Network traffic | Source/dest, ports, protocols | Custom | 🟠 High |
+| **Cloud DNS Logs** | DNS queries | Domain resolution | Custom | 🟡 Medium |
+| **Cloud Armor** | WAF/DDoS | Blocked requests, rules matched | Custom | 🟡 Medium |
+| **Access Transparency** | Google access | Google staff access to your data | 400 days | 🟡 Medium |
+
+---
+
+## Critical Cloud Detections
+
+### Identity & Access (All Platforms)
+
+| Detection | Description | Log Source | Severity | MITRE |
+|:---|:---|:---|:---:|:---|
+| Root/global admin login | Root account or global admin used | CloudTrail / Entra ID / Audit | 🔴 P1 | T1078.004 |
+| MFA disabled for user | MFA removed from account | IAM / Entra ID / Audit | 🔴 P1 | T1556 |
+| New admin role assigned | Privilege escalation | IAM / Entra ID / Audit | 🔴 P1 | T1098 |
+| API key created | Long-lived credential exposed | CloudTrail / Audit / Audit Logs | 🟠 P2 | T1098.001 |
+| Login from unusual country | Impossible travel / new location | CloudTrail / Sign-in / Audit | 🟠 P2 | T1078.004 |
+| Excessive failed logins | Brute-force attempt | CloudTrail / Sign-in / Audit | 🟠 P2 | T1110 |
+| Service account key download | SA key exported | CloudTrail / Audit / Audit Logs | 🟡 P3 | T1552.001 |
+
+### Data Exfiltration
+
+| Detection | Description | Log Source | Severity | MITRE |
+|:---|:---|:---|:---:|:---|
+| S3/GCS bucket made public | Storage publicly accessible | CloudTrail / Activity / Audit | 🔴 P1 | T1537 |
+| Large data download | Unusual volume exported | S3 Data Events / Storage Logs | 🔴 P1 | T1530 |
+| Snapshot shared externally | Disk/DB snapshot shared to external account | CloudTrail / Activity / Audit | 🔴 P1 | T1537 |
+| Cross-account data transfer | Data moved to unfamiliar account | VPC Flow / Activity / Flow Logs | 🟠 P2 | T1537 |
+
+### Infrastructure Attacks
+
+| Detection | Description | Log Source | Severity | MITRE |
+|:---|:---|:---|:---:|:---|
+| Crypto mining detected | GuardDuty/Defender/SCC finding | GuardDuty / Defender / SCC | 🔴 P1 | T1496 |
+| Security group 0.0.0.0/0 | Wide-open inbound rule | CloudTrail / Activity / Audit | 🔴 P1 | T1562.007 |
+| Logging disabled | CloudTrail/audit logging stopped | CloudTrail / Activity / Audit | 🔴 P1 | T1562.008 |
+| EC2/VM in unusual region | Resource launched in new region | CloudTrail / Activity / Audit | 🟠 P2 | T1578.002 |
+| Lambda/Function created | Serverless function created | CloudTrail / Activity / Audit | 🟡 P3 | T1204 |
+
+---
+
+## Cloud Incident Response
+
+### Response Actions by Platform
+
+| Action | AWS | Azure | GCP |
+|:---|:---|:---|:---|
+| **Revoke session** | `aws iam delete-login-profile` | Revoke sessions in Entra | `gcloud auth revoke` |
+| **Disable API key** | `aws iam update-access-key --status Inactive` | Reset credentials in Entra | `gcloud iam service-accounts keys disable` |
+| **Isolate instance** | Replace SG with deny-all | Remove from subnet/NSG deny | Remove firewall rules |
+| **Block IP** | WAF/Security Group | NSG/Azure Firewall | Cloud Armor/Firewall |
+| **Preserve evidence** | Create EBS snapshot | Create disk snapshot | Create disk snapshot |
+| **Disable user** | `aws iam update-user --no-login` | Block sign-in in Entra | `gcloud iam update --disabled` |
+| **Revoke permissions** | Remove IAM policies | Remove role assignments | Remove IAM bindings |
+
+### Cloud IR Workflow
+
+```mermaid
+flowchart TD
+    A[Cloud Alert Triggered] --> B{Auto-remediation<br/>enabled?}
+    B -->|Yes| C[SOAR executes<br/>containment playbook]
+    B -->|No| D[SOC Analyst triages]
+    
+    C --> E[Notify SOC for review]
+    D --> F{Confirmed<br/>incident?}
+    
+    F -->|FP| G[Close + tune rule]
+    F -->|TP| H[Containment]
+    
+    H --> I[Revoke credentials]
+    H --> J[Isolate resource]
+    H --> K[Preserve evidence]
+    
+    I --> L[Investigation]
+    J --> L
+    K --> L
+    
+    L --> M[CloudTrail/Audit<br/>log analysis]
+    L --> N[Determine blast radius]
+    L --> O[Check data exposure]
+    
+    M --> P[Remediation]
+    N --> P
+    O --> P
+    
+    P --> Q[Fix root cause]
+    P --> R[Rotate all credentials]
+    P --> S[Post-incident review]
+
+    style A fill:#3b82f6,color:#fff
+    style H fill:#dc2626,color:#fff
+    style P fill:#22c55e,color:#fff
+```
+
+---
+
+## Cloud Security Posture Management (CSPM)
+
+### Daily Checks
+
+| Check | AWS Tool | Azure Tool | GCP Tool |
+|:---|:---|:---|:---|
+| Public S3/Blob/GCS buckets | S3 Access Analyzer | Defender for Storage | SCC Asset Discovery |
+| Overly permissive IAM | IAM Access Analyzer | Entra PIM | IAM Recommender |
+| Unencrypted storage | Config Rules | Defender for Cloud | SCC |
+| Open security groups | Config Rules | Defender for Cloud | SCC |
+| MFA not enabled | IAM Credential Report | Entra Reports | Org Policy |
+
+### Weekly Checks
+
+| Check | Tool |
+|:---|:---|
+| CIS benchmark compliance | AWS Config / Defender / SCC |
+| Unused resources (cost + risk) | Cost Explorer / Cost Management / Billing |
+| Expired/unused credentials | IAM Credential Report / Entra / IAM |
+| Cross-account access review | IAM Access Analyzer / PIM / IAM |
+
+---
+
+## Multi-Cloud SIEM Integration
+
+### Architecture
+
+```mermaid
+graph LR
+    subgraph AWS
+        CT[CloudTrail] --> S3A[S3 Bucket]
+        GD[GuardDuty] --> S3A
+    end
+    
+    subgraph Azure
+        AL[Activity Log] --> EH[Event Hub]
+        EID[Entra ID] --> EH
+    end
+    
+    subgraph GCP
+        CAL[Cloud Audit] --> PS[Pub/Sub]
+        SCC[SCC] --> PS
+    end
+    
+    S3A --> SIEM[🔍 SIEM]
+    EH --> SIEM
+    PS --> SIEM
+    
+    SIEM --> SOAR[⚡ SOAR]
+    SOAR --> |Auto-remediate| AWS
+    SOAR --> |Auto-remediate| Azure
+    SOAR --> |Auto-remediate| GCP
+
+    style SIEM fill:#3b82f6,color:#fff
+    style SOAR fill:#8b5cf6,color:#fff
+```
+
+### Log Ingestion Checklist
+
+- [ ] AWS CloudTrail → SIEM (via S3 + SQS)
+- [ ] AWS GuardDuty findings → SIEM
+- [ ] AWS VPC Flow Logs → SIEM (sampled)
+- [ ] Azure Activity Log → SIEM (via Event Hub)
+- [ ] Azure Entra ID logs → SIEM (via Event Hub)
+- [ ] Azure Defender alerts → SIEM
+- [ ] GCP Audit Logs → SIEM (via Pub/Sub)
+- [ ] GCP SCC findings → SIEM
+- [ ] GCP VPC Flow Logs → SIEM (sampled)
+
+---
+
+## Metrics
+
+| Metric | Target | Measurement |
+|:---|:---:|:---|
+| Cloud log ingestion uptime | ≥ 99.5% | SIEM health dashboard |
+| Cloud alerts MTTD | < 5 min | SIEM → alert time |
+| Cloud alerts MTTR | < 30 min for P1 | Ticket resolution time |
+| CSPM compliance score | ≥ 90% | Weekly CSPM report |
+| Public resource detection | < 15 min | Time from exposure to alert |
+| Cloud detection rule coverage | ≥ 70% of critical patterns | Monthly detection audit |
+
+---
+
+## Related Documents
+
+-   [Log Source Matrix](Log_Source_Matrix.en.md) — All data sources
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Cloud automations
+-   [Alert Tuning SOP](Alert_Tuning.en.md) — Tuning cloud alerts
+-   [Third-Party Risk](Third_Party_Risk.en.md) — Cloud vendor risk
+-   [Disaster Recovery / BCP](../05_Incident_Response/Disaster_Recovery_BCP.en.md) — Cloud DR
+-   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — Cloud forensics
+
+
+---
+
+## File: 06_Operations_Management/Cloud_Security_Monitoring.th.md
+
+# Cloud Security Monitoring SOP / SOP การเฝ้าระวัง Cloud Security
+
+**รหัสเอกสาร**: OPS-SOP-018
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน
+**อัปเดตล่าสุด**: 2026-02-15
+
+> ขั้นตอนสำหรับ SOC ในการเฝ้าระวัง **AWS, Azure และ GCP** ครอบคลุม log sources, critical detections, cloud attack patterns และ response actions เฉพาะ cloud
+
+---
+
+## Cloud Log Sources
+
+### AWS
+
+| Log Source | บริการ | เหตุการณ์สำคัญ | ลำดับ |
+|:---|:---|:---|:---:|
+| **CloudTrail** | API calls ทั้งหมด | IAM changes, S3 access, EC2 | 🔴 Critical |
+| **CloudTrail Data Events** | S3 object-level, Lambda | GetObject, PutObject, Invoke | 🔴 Critical |
+| **GuardDuty** | Threat detection | Crypto mining, recon, C2 | 🔴 Critical |
+| **VPC Flow Logs** | Network traffic | Accept/reject, traffic patterns | 🟠 High |
+| **Config** | Resource changes | Configuration compliance | 🟡 Medium |
+| **IAM Access Analyzer** | การวิเคราะห์สิทธิ์ | Policy ที่กว้างเกินไป | 🟡 Medium |
+| **Security Hub** | Findings รวม | CIS benchmarks | 🟡 Medium |
+
+### Azure
+
+| Log Source | บริการ | เหตุการณ์สำคัญ | ลำดับ |
+|:---|:---|:---|:---:|
+| **Activity Log** | Resource operations | Create, delete, modify | 🔴 Critical |
+| **Entra ID Sign-in** | Authentication | Success, failure, MFA | 🔴 Critical |
+| **Entra ID Audit** | Identity changes | Role assignments | 🔴 Critical |
+| **Defender for Cloud** | Threat detection | Security alerts | 🔴 Critical |
+| **NSG Flow Logs** | Network traffic | Accept/deny flows | 🟠 High |
+| **Key Vault Diagnostics** | Secret access | Key/secret operations | 🟠 High |
+
+### GCP
+
+| Log Source | บริการ | เหตุการณ์สำคัญ | ลำดับ |
+|:---|:---|:---|:---:|
+| **Cloud Audit Logs** (Admin) | Admin operations | IAM, resource create/delete | 🔴 Critical |
+| **Cloud Audit Logs** (Data) | Data access | BigQuery, GCS read/write | 🔴 Critical |
+| **Security Command Center** | Threat detection | Findings, vulnerabilities | 🔴 Critical |
+| **VPC Flow Logs** | Network traffic | Source/dest, ports | 🟠 High |
+
+---
+
+## Cloud Detections ที่สำคัญ
+
+### Identity & Access
+
+| Detection | คำอธิบาย | Severity | MITRE |
+|:---|:---|:---:|:---|
+| Root/global admin login | ใช้ root account หรือ global admin | 🔴 P1 | T1078.004 |
+| MFA ถูกปิด | MFA ถูกลบออกจาก account | 🔴 P1 | T1556 |
+| กำหนด admin role ใหม่ | Privilege escalation | 🔴 P1 | T1098 |
+| สร้าง API key | Long-lived credential | 🟠 P2 | T1098.001 |
+| Login จากประเทศผิดปกติ | Impossible travel | 🟠 P2 | T1078.004 |
+| Failed login มากเกินไป | Brute-force attempt | 🟠 P2 | T1110 |
+
+### Data Exfiltration
+
+| Detection | คำอธิบาย | Severity | MITRE |
+|:---|:---|:---:|:---|
+| Bucket ถูกเปิด public | Storage เข้าถึงได้จากภายนอก | 🔴 P1 | T1537 |
+| ดาวน์โหลดข้อมูลจำนวนมาก | ปริมาณผิดปกติ | 🔴 P1 | T1530 |
+| แชร์ Snapshot ภายนอก | Disk/DB snapshot ไปยัง account อื่น | 🔴 P1 | T1537 |
+
+### Infrastructure Attacks
+
+| Detection | คำอธิบาย | Severity | MITRE |
+|:---|:---|:---:|:---|
+| Crypto mining | GuardDuty/Defender/SCC finding | 🔴 P1 | T1496 |
+| Security group 0.0.0.0/0 | เปิด inbound ทั้งหมด | 🔴 P1 | T1562.007 |
+| Logging ถูกปิด | CloudTrail/audit ถูกหยุด | 🔴 P1 | T1562.008 |
+
+---
+
+## Cloud Incident Response
+
+### Response Actions ตาม Platform
+
+| Action | AWS | Azure | GCP |
+|:---|:---|:---|:---|
+| **ยกเลิก session** | `delete-login-profile` | Revoke sessions Entra | `gcloud auth revoke` |
+| **ปิด API key** | `update-access-key --status Inactive` | Reset credentials | `keys disable` |
+| **แยก instance** | เปลี่ยน SG เป็น deny-all | ลบ NSG deny | ลบ firewall rules |
+| **บล็อก IP** | WAF/Security Group | NSG/Azure Firewall | Cloud Armor |
+| **เก็บหลักฐาน** | สร้าง EBS snapshot | สร้าง disk snapshot | สร้าง disk snapshot |
+| **ปิด user** | `update-user --no-login` | Block sign-in Entra | `update --disabled` |
+
+### Cloud IR Workflow
+
+```mermaid
+flowchart TD
+    A[Cloud Alert] --> B{Auto-remediation?}
+    B -->|ใช่| C[SOAR containment]
+    B -->|ไม่| D[SOC Analyst triage]
+    C --> E[แจ้ง SOC review]
+    D --> F{ยืนยัน incident?}
+    F -->|FP| G[ปิด + tune rule]
+    F -->|TP| H[Containment]
+    H --> I[ยกเลิก credentials]
+    H --> J[แยก resource]
+    H --> K[เก็บหลักฐาน]
+    I --> L[สืบสวน]
+    J --> L
+    K --> L
+    L --> M[Remediation]
+    M --> N[แก้ root cause]
+    M --> O[หมุน credentials ทั้งหมด]
+    M --> P[Post-incident review]
+
+    style A fill:#3b82f6,color:#fff
+    style H fill:#dc2626,color:#fff
+    style M fill:#22c55e,color:#fff
+```
+
+---
+
+## CSPM ตรวจสอบประจำ
+
+### รายวัน
+
+| ตรวจสอบ | เครื่องมือ |
+|:---|:---|
+| Public buckets/storage | S3 Access Analyzer / Defender / SCC |
+| IAM ที่กว้างเกินไป | IAM Access Analyzer / Entra PIM / IAM Recommender |
+| Storage ไม่เข้ารหัส | Config / Defender / SCC |
+| Security groups เปิดกว้าง | Config / Defender / SCC |
+| MFA ไม่เปิด | IAM Credential Report / Entra / Org Policy |
+
+### รายสัปดาห์
+
+| ตรวจสอบ | เครื่องมือ |
+|:---|:---|
+| CIS benchmark compliance | AWS Config / Defender / SCC |
+| Resources ที่ไม่ได้ใช้ | Cost Explorer / Cost Management / Billing |
+| Credentials หมดอายุ/ไม่ได้ใช้ | IAM Credential Report / Entra / IAM |
+
+---
+
+## Multi-Cloud SIEM Integration
+
+### Log Ingestion Checklist
+
+- [ ] AWS CloudTrail → SIEM (ผ่าน S3 + SQS)
+- [ ] AWS GuardDuty → SIEM
+- [ ] AWS VPC Flow Logs → SIEM (sampled)
+- [ ] Azure Activity Log → SIEM (ผ่าน Event Hub)
+- [ ] Azure Entra ID → SIEM (ผ่าน Event Hub)
+- [ ] Azure Defender alerts → SIEM
+- [ ] GCP Audit Logs → SIEM (ผ่าน Pub/Sub)
+- [ ] GCP SCC findings → SIEM
+- [ ] GCP VPC Flow Logs → SIEM (sampled)
+
+---
+
+## ตัวชี้วัด
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---:|
+| Cloud log ingestion uptime | ≥ 99.5% |
+| Cloud alerts MTTD | < 5 นาที |
+| Cloud alerts MTTR (P1) | < 30 นาที |
+| CSPM compliance score | ≥ 90% |
+| Public resource detection | < 15 นาที |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Cloud automations
+-   [Alert Tuning SOP](Alert_Tuning.en.md) — การ tune cloud alerts
+-   [Third-Party Risk](Third_Party_Risk.en.md) — ความเสี่ยง cloud vendor
+
+
+---
+
 ## File: 06_Operations_Management/Communication_SOP.en.md
 
 # SOC Communication SOP
@@ -6129,6 +6581,502 @@ python tools/sigma_validator.py path/to/rule.yml
 
 - [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)
 - [ดัชนี Detection Rules](../07_Detection_Rules/README.md)
+
+
+---
+
+## File: 06_Operations_Management/Insider_Threat_Program.en.md
+
+# Insider Threat Program
+
+**Document ID**: OPS-SOP-019
+**Version**: 1.0
+**Classification**: Confidential
+**Last Updated**: 2026-02-15
+
+> A structured program for **detecting, investigating, and mitigating insider threats** — malicious, negligent, or compromised insiders. Covers behavioral indicators, detection use cases, investigation procedures, and prevention strategies.
+
+---
+
+## Insider Threat Categories
+
+| Category | Description | Intent | Example |
+|:---|:---|:---:|:---|
+| **Malicious** | Deliberate harmful actions for personal gain or revenge | Intentional | Data theft, sabotage before resignation |
+| **Negligent** | Unintentional harm through carelessness or policy violation | Unintentional | Sending PII to wrong recipient, weak passwords |
+| **Compromised** | External attacker using legitimate insider credentials | N/A (external) | Phished credentials, stolen laptop |
+| **Colluding** | Insider working with external threat actor | Intentional | Selling access, planting backdoors |
+
+```mermaid
+pie title Insider Threat Distribution (Industry Average)
+    "Negligent" : 56
+    "Malicious" : 26
+    "Compromised Credentials" : 18
+```
+
+---
+
+## Behavioral Indicators
+
+### High-Risk Indicators (Immediate Investigation)
+
+| # | Indicator | Data Source | Detection Method |
+|:---:|:---|:---|:---|
+| 1 | **Accessing data outside role** | DLP, CASB, file audit | UEBA anomaly |
+| 2 | **Bulk download/copy to USB** | EDR, DLP, print logs | Threshold rule |
+| 3 | **After-hours access to sensitive systems** | SIEM, badge logs | Time-based rule |
+| 4 | **Email to personal accounts with attachments** | Email gateway, DLP | DLP policy |
+| 5 | **Disabling security controls** | EDR, SIEM | Agent health monitoring |
+| 6 | **Unauthorized cloud storage uploads** | CASB, proxy | URL category + volume |
+| 7 | **Accessing terminated employee's data** | File audit, IAM | Access control monitoring |
+
+### Medium-Risk Indicators (Monitor & Correlate)
+
+| # | Indicator | Data Source | Detection Method |
+|:---:|:---|:---|:---|
+| 8 | **Frequent failed access attempts** | IAM, VPN, app logs | Threshold rule |
+| 9 | **Printing large volumes** | Print server logs | Threshold rule |
+| 10 | **VPN from unusual location** | VPN logs, GeoIP | GeoIP anomaly |
+| 11 | **Privilege escalation requests** | IAM, ticketing | Trend analysis |
+| 12 | **Working outside normal patterns** | Badge, VPN, SIEM | UEBA baseline |
+| 13 | **Excessive use of tools** | EDR, SIEM | UEBA anomaly |
+
+### Contextual Risk Multipliers
+
+| Context | Risk Multiplier | Source |
+|:---|:---:|:---|
+| **Resignation submitted** | ×3 | HR notification |
+| **PIP (Performance Improvement Plan)** | ×2 | HR notification |
+| **Access to crown jewels** | ×2 | Data classification |
+| **Privileged access (admin/root)** | ×2 | IAM roles |
+| **Contractor/temporary staff** | ×1.5 | HR/vendor records |
+| **Recent negative performance review** | ×1.5 | HR notification |
+| **Accessing competitor's job sites** | ×1.5 | Proxy logs |
+
+---
+
+## Detection Architecture
+
+```mermaid
+graph TD
+    subgraph DataSources["📊 Data Sources"]
+        A[DLP Alerts]
+        B[UEBA Anomalies]
+        C[EDR Events]
+        D[IAM / Badge Logs]
+        E[Email Gateway]
+        F[HR Notifications]
+    end
+    
+    subgraph CorrelationEngine["🔍 Correlation Engine"]
+        G[Risk Score Calculator]
+        H[Behavioral Baseline]
+        I[Context Enrichment]
+    end
+    
+    subgraph Response["⚡ Response"]
+        J[Score < 50: Monitor]
+        K[Score 50-80: Investigate]
+        L[Score > 80: Immediate Action]
+    end
+    
+    A --> G
+    B --> G
+    C --> G
+    D --> G
+    E --> G
+    F --> I
+    H --> G
+    I --> G
+    
+    G --> J
+    G --> K
+    G --> L
+
+    style CorrelationEngine fill:#3b82f6,color:#fff
+    style L fill:#dc2626,color:#fff
+```
+
+### SIEM Detection Rules
+
+| Rule | Logic | Severity | MITRE |
+|:---|:---|:---:|:---|
+| **Bulk data download** | > 500 MB downloaded in 1 hour by single user | P2 | T1530 |
+| **USB mass storage** | USB device with > 100 MB write | P2 | T1052.001 |
+| **Email to personal domain** | Attachment > 5 MB to non-corporate domain | P3 | T1567 |
+| **Cloud upload spike** | > 200% increase in cloud upload vs 30-day baseline | P2 | T1567.002 |
+| **Off-hours sensitive access** | Access to classified data 22:00–06:00 | P3 | T1530 |
+| **Resignation + data access** | HR flag + any data access within 14 days | P2 | T1530 |
+| **Multiple failed admin access** | > 5 failed admin login in 10 min | P2 | T1110 |
+| **Security tool tampering** | EDR agent stopped/uninstalled | P1 | T1562.001 |
+| **Printing sensitive docs** | Print job from classified document | P3 | T1052 |
+
+---
+
+## Investigation Procedures
+
+### Investigation Workflow
+
+```mermaid
+flowchart TD
+    A[Insider Threat Alert] --> B[Initial Assessment]
+    B --> C{Risk Score}
+    
+    C -->|< 50| D[Add to watchlist<br/>Passive monitoring]
+    C -->|50-80| E[Formal investigation<br/>Notify HR & Legal]
+    C -->|> 80| F[CRITICAL: Immediate<br/>containment + notify CISO]
+    
+    E --> G[Covert evidence collection]
+    F --> H[Emergency access revocation]
+    F --> G
+    H --> G
+    
+    G --> I[Timeline reconstruction]
+    I --> J[Interviews / HR process]
+    J --> K{Confirmed?}
+    
+    K -->|Malicious| L[Terminate + Legal action]
+    K -->|Negligent| M[Remediation + Training]
+    K -->|Compromised| N[Credential reset + forensics]
+    K -->|Not confirmed| O[Close case + document]
+    
+    L --> P[Lessons learned]
+    M --> P
+    N --> P
+    O --> P
+
+    style F fill:#dc2626,color:#fff
+    style L fill:#dc2626,color:#fff
+    style M fill:#eab308,color:#000
+    style N fill:#3b82f6,color:#fff
+```
+
+### Investigation Checklist
+
+- [ ] **Initial assessment** — Review alert details, check user context
+- [ ] **Identity verification** — Confirm user behind the activity (not shared account)
+- [ ] **HR notification** — Inform HR (mandatory for formal investigation)
+- [ ] **Legal consultation** — Verify investigation is legally compliant
+- [ ] **Evidence preservation** — Begin covert collection (do NOT alert subject)
+- [ ] **Access review** — Document all systems/data subject can access
+- [ ] **Timeline construction** — Build activity timeline (SIEM, email, badge, VPN)
+- [ ] **Data exposure assessment** — Determine what data was accessed/exfiltrated
+- [ ] **Interviews** — Coordinate with HR for subject interview
+- [ ] **Documentation** — Complete investigation report
+- [ ] **Remediation** — Implement corrective actions
+- [ ] **Lessons learned** — Update detection rules if gaps found
+
+### Evidence Sources (Priority Order)
+
+| # | Source | What to Collect | Covert? |
+|:---:|:---|:---|:---:|
+| 1 | **SIEM logs** | All activity for subject (30-90 days) | ✅ Yes |
+| 2 | **DLP alerts** | All DLP events for subject | ✅ Yes |
+| 3 | **Email logs** | Sent emails with attachments | ✅ Yes |
+| 4 | **Badge/physical access** | Entry/exit times, room access | ✅ Yes |
+| 5 | **VPN logs** | Connection times, source IPs | ✅ Yes |
+| 6 | **Proxy logs** | Web activity, cloud uploads | ✅ Yes |
+| 7 | **EDR telemetry** | Process execution, file access | ✅ Yes |
+| 8 | **Print server logs** | Print jobs, document names | ✅ Yes |
+| 9 | **Cloud audit logs** | Cloud resource access | ✅ Yes |
+| 10 | **Device forensics** | Disk image (only with legal approval) | ⚠️ Consult Legal |
+
+---
+
+## Prevention & Deterrence
+
+### Pre-Employment
+
+| Control | Description |
+|:---|:---|
+| Background checks | Verify identity, criminal record, employment history |
+| Reference checks | Validate previous employers |
+| NDA/Employment agreement | Include data handling obligations |
+
+### During Employment
+
+| Control | Description |
+|:---|:---|
+| **Least privilege access** | Only access needed for role |
+| **Regular access reviews** | Quarterly review of permissions |
+| **DLP policies** | Block/alert on sensitive data movement |
+| **Security awareness training** | Annual training on data protection |
+| **Clear desk / clean screen** | Physical security policies |
+| **Mandatory vacation** | 2+ consecutive weeks (detect fraud) |
+| **Separation of duties** | Critical actions require 2+ approvers |
+
+### Off-boarding (Critical)
+
+| Step | Timing | Owner |
+|:---|:---:|:---|
+| Disable all accounts | Within 1 hour of departure | IT |
+| Revoke physical access | Same day | Facilities |
+| Collect devices | Same day | IT |
+| Revoke VPN/remote access | Within 1 hour | IT |
+| Transfer data ownership | Within 1 week | Manager |
+| Review last 30 days activity | Within 1 week | SOC |
+| Archive mailbox | Within 1 day | IT |
+
+---
+
+## HR-SOC Integration
+
+### Mandatory HR Notifications to SOC
+
+| HR Event | Risk Level | SOC Action |
+|:---|:---:|:---|
+| **Resignation/termination notice** | 🔴 High | Enable enhanced monitoring for 14 days |
+| **Performance improvement plan (PIP)** | 🟠 Medium | Add to watchlist |
+| **Role change with access change** | 🟡 Low | Verify access adjustment |
+| **Contractor onboarding** | 🟡 Low | Verify access scope |
+| **Disciplinary action** | 🟠 Medium | Add to watchlist for 30 days |
+| **Security policy violation** | 🟠 Medium | Investigate, add to watchlist |
+
+### Notification Process
+
+```mermaid
+sequenceDiagram
+    participant HR
+    participant SOC as SOC Lead
+    participant SIEM
+    
+    HR->>SOC: Employee event notification (encrypted)
+    SOC->>SIEM: Create/update user risk profile
+    SIEM->>SIEM: Apply enhanced monitoring rules
+    SOC->>HR: Confirm monitoring activated
+    
+    Note over SOC,SIEM: Monitoring period (14-30 days)
+    
+    alt Suspicious activity detected
+        SIEM->>SOC: Alert triggered
+        SOC->>HR: Notify for investigation
+        SOC->>SOC: Begin formal investigation
+    else No activity
+        SIEM->>SOC: Monitoring period expired
+        SOC->>SOC: Remove enhanced monitoring
+        SOC->>HR: All clear notification
+    end
+```
+
+---
+
+## Metrics
+
+| Metric | Target | Measurement |
+|:---|:---:|:---|
+| Mean time to detect insider threat | < 48 hours | Alert timestamp vs first activity |
+| Investigation completion time | < 10 business days | Ticket timestamps |
+| False positive rate | < 40% | Confirmed vs total alerts |
+| Off-boarding compliance (accounts disabled < 1hr) | 100% | IT audit |
+| HR notification compliance | 100% | HR audit |
+| DLP policy coverage | > 90% of sensitive data | DLP coverage report |
+| Access review completion | 100% quarterly | IAM reports |
+
+---
+
+## Legal & Privacy Considerations
+
+> ⚠️ **IMPORTANT**: Always consult Legal before conducting insider threat investigations.
+
+| Topic | Guidance |
+|:---|:---|
+| **PDPA compliance** | Employee monitoring must be disclosed in privacy notice |
+| **Proportionality** | Monitoring scope must be proportionate to risk |
+| **Covert monitoring** | Requires legal authorization, document justification |
+| **Device monitoring** | Company-owned devices only (unless BYOD agreement) |
+| **Email review** | Only corporate email, with legal approval |
+| **Interview procedures** | HR must be present, follow labor law |
+| **Evidence admissibility** | Follow chain of custody for legal proceedings |
+
+---
+
+## Related Documents
+
+-   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — Evidence handling
+-   [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) — Severity classification
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — Escalation procedures
+-   [Alert Tuning SOP](Alert_Tuning.en.md) — UEBA tuning
+-   [Third-Party Risk](Third_Party_Risk.en.md) — Contractor/vendor risk
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Automated response
+
+
+---
+
+## File: 06_Operations_Management/Insider_Threat_Program.th.md
+
+# Insider Threat Program / โปรแกรม Insider Threat
+
+**รหัสเอกสาร**: OPS-SOP-019
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ลับ
+**อัปเดตล่าสุด**: 2026-02-15
+
+> โปรแกรมสำหรับ **ตรวจจับ, สืบสวน, และบรรเทา insider threats** — ทั้งแบบจงใจ, ประมาท, หรือถูกใช้เป็นเครื่องมือ ครอบคลุม behavioral indicators, detection use cases, ขั้นตอนสืบสวน, และกลยุทธ์ป้องกัน
+
+---
+
+## ประเภท Insider Threat
+
+| ประเภท | คำอธิบาย | เจตนา | ตัวอย่าง |
+|:---|:---|:---:|:---|
+| **Malicious** | กระทำเพื่อผลประโยชน์ส่วนตัว/แก้แค้น | จงใจ | ขโมยข้อมูลก่อนลาออก |
+| **Negligent** | ทำผิดพลาดจากประมาท | ไม่จงใจ | ส่ง PII ไปผิดคน, รหัสผ่านอ่อน |
+| **Compromised** | ถูกโจมตีจากภายนอกใช้ credentials ของ insider | ไม่มี (ภายนอก) | ถูก phish, แล็ปท็อปถูกขโมย |
+| **Colluding** | ร่วมมือกับ threat actor ภายนอก | จงใจ | ขายสิทธิ์เข้าถึง |
+
+---
+
+## Behavioral Indicators
+
+### ตัวบ่งชี้ความเสี่ยงสูง (สืบสวนทันที)
+
+| # | ตัวบ่งชี้ | แหล่งข้อมูล | วิธีตรวจจับ |
+|:---:|:---|:---|:---|
+| 1 | **เข้าถึงข้อมูลนอกบทบาท** | DLP, CASB, file audit | UEBA anomaly |
+| 2 | **ดาวน์โหลด/copy ข้อมูลจำนวนมากไป USB** | EDR, DLP, print logs | Threshold rule |
+| 3 | **เข้าถึงระบบ sensitive นอกเวลา** | SIEM, badge logs | Time-based rule |
+| 4 | **ส่ง email ไป personal account พร้อมไฟล์แนบ** | Email gateway, DLP | DLP policy |
+| 5 | **ปิด security controls** | EDR, SIEM | Agent health monitoring |
+| 6 | **Upload cloud storage โดยไม่ได้รับอนุญาต** | CASB, proxy | URL category + volume |
+
+### ตัวคูณความเสี่ยงตามบริบท
+
+| บริบท | ตัวคูณ | แหล่ง |
+|:---|:---:|:---|
+| **ยื่นลาออก** | ×3 | แจ้งจาก HR |
+| **อยู่ใน PIP** | ×2 | แจ้งจาก HR |
+| **เข้าถึง crown jewels** | ×2 | Data classification |
+| **สิทธิ์ privileged (admin/root)** | ×2 | IAM roles |
+| **ผู้รับเหมา/ชั่วคราว** | ×1.5 | HR/vendor records |
+| **ผลประเมินเชิงลบล่าสุด** | ×1.5 | แจ้งจาก HR |
+
+---
+
+## Detection Rules ใน SIEM
+
+| Rule | Logic | Severity | MITRE |
+|:---|:---|:---:|:---|
+| **Bulk data download** | > 500 MB ใน 1 ชม. | P2 | T1530 |
+| **USB mass storage** | USB เขียน > 100 MB | P2 | T1052.001 |
+| **Email ไป personal domain** | ไฟล์แนบ > 5 MB ไป non-corporate | P3 | T1567 |
+| **Cloud upload spike** | เพิ่ม > 200% vs 30-day baseline | P2 | T1567.002 |
+| **เข้าถึง sensitive นอกเวลา** | 22:00–06:00 | P3 | T1530 |
+| **ลาออก + data access** | HR flag + data access ภายใน 14 วัน | P2 | T1530 |
+| **Security tool tampering** | EDR agent ถูกหยุด/ลบ | P1 | T1562.001 |
+
+---
+
+## ขั้นตอนสืบสวน
+
+### Investigation Workflow
+
+```mermaid
+flowchart TD
+    A[Insider Threat Alert] --> B[ประเมินเบื้องต้น]
+    B --> C{Risk Score}
+    C -->|ต่ำ| D[เพิ่มใน watchlist]
+    C -->|ปานกลาง| E[สืบสวนจริงจัง<br/>แจ้ง HR & Legal]
+    C -->|สูง| F[CRITICAL: Contain ทันที<br/>แจ้ง CISO]
+    
+    E --> G[เก็บหลักฐานแบบลับ]
+    F --> H[ยกเลิกสิทธิ์ฉุกเฉิน]
+    F --> G
+    H --> G
+    
+    G --> I[สร้าง timeline]
+    I --> J[สัมภาษณ์ / กระบวนการ HR]
+    J --> K{ยืนยัน?}
+    
+    K -->|จงใจ| L[เลิกจ้าง + ดำเนินคดี]
+    K -->|ประมาท| M[แก้ไข + ฝึกอบรม]
+    K -->|ถูก Compromise| N[รีเซ็ต credentials + forensics]
+    K -->|ไม่ยืนยัน| O[ปิดเคส + บันทึก]
+
+    style F fill:#dc2626,color:#fff
+    style L fill:#dc2626,color:#fff
+```
+
+### Checklist สืบสวน
+
+- [ ] ประเมินเบื้องต้น — ตรวจสอบรายละเอียด alert, บริบทผู้ใช้
+- [ ] ยืนยันตัวตน — ไม่ใช่ shared account
+- [ ] แจ้ง HR — บังคับสำหรับการสืบสวนจริงจัง
+- [ ] ปรึกษา Legal — ตรวจสอบว่าสืบสวนถูกกฎหมาย
+- [ ] เก็บหลักฐาน — แบบลับ (**ห้ามแจ้งเป้าหมาย**)
+- [ ] ตรวจสิทธิ์ — เอกสารทุกระบบ/ข้อมูลที่เข้าถึงได้
+- [ ] สร้าง timeline — SIEM, email, badge, VPN
+- [ ] ประเมินผลกระทบ — ข้อมูลอะไรถูกเข้าถึง/ถูกส่งออก
+- [ ] สัมภาษณ์ — HR ต้องอยู่ด้วย
+- [ ] Remediation — ดำเนินการแก้ไข
+- [ ] Lessons learned — อัปเดต detection rules
+
+---
+
+## การป้องกัน
+
+### Off-boarding (สำคัญมาก)
+
+| ขั้นตอน | เวลา | ผู้รับผิดชอบ |
+|:---|:---:|:---|
+| ปิดทุก account | ภายใน 1 ชม. | IT |
+| ยกเลิก physical access | วันเดียวกัน | Facilities |
+| เก็บอุปกรณ์ | วันเดียวกัน | IT |
+| ยกเลิก VPN/remote access | ภายใน 1 ชม. | IT |
+| โอน data ownership | ภายใน 1 สัปดาห์ | ผู้จัดการ |
+| ตรวจ activity 30 วัน | ภายใน 1 สัปดาห์ | SOC |
+| Archive mailbox | ภายใน 1 วัน | IT |
+
+---
+
+## HR-SOC Integration
+
+### การแจ้งบังคับจาก HR ไป SOC
+
+| เหตุการณ์ HR | ระดับความเสี่ยง | SOC Action |
+|:---|:---:|:---|
+| **แจ้งลาออก/เลิกจ้าง** | 🔴 สูง | Enhanced monitoring 14 วัน |
+| **PIP** | 🟠 ปานกลาง | เพิ่มใน watchlist |
+| **เปลี่ยนบทบาท** | 🟡 ต่ำ | ตรวจสอบสิทธิ์ |
+| **Onboard ผู้รับเหมา** | 🟡 ต่ำ | ตรวจสอบขอบเขตสิทธิ์ |
+| **ดำเนินการทางวินัย** | 🟠 ปานกลาง | Watchlist 30 วัน |
+
+---
+
+## ข้อพิจารณาทางกฎหมาย
+
+> ⚠️ **สำคัญ**: ปรึกษา Legal ก่อนสืบสวน insider threat เสมอ
+
+| หัวข้อ | แนวทาง |
+|:---|:---|
+| **PDPA** | การ monitor พนักงานต้องแจ้งใน privacy notice |
+| **สมส่วน** | ขอบเขต monitoring ต้องเหมาะสมกับความเสี่ยง |
+| **Covert monitoring** | ต้องได้รับอนุญาต, บันทึกเหตุผล |
+| **Monitor อุปกรณ์** | เฉพาะอุปกรณ์บริษัท (ยกเว้นมี BYOD agreement) |
+| **ตรวจ email** | email บริษัทเท่านั้น, ต้องได้รับอนุมัติ Legal |
+| **สัมภาษณ์** | HR ต้องร่วม, ปฏิบัติตามกฎหมายแรงงาน |
+
+---
+
+## ตัวชี้วัด
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---:|
+| เวลาตรวจจับ insider threat | < 48 ชม. |
+| เวลาสืบสวนเสร็จ | < 10 วันทำการ |
+| False positive rate | < 40% |
+| Off-boarding compliance (ปิด account < 1 ชม.) | 100% |
+| HR notification compliance | 100% |
+| DLP policy coverage | > 90% |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — การเก็บหลักฐาน
+-   [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) — จำแนก severity
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — ขั้นตอน escalation
+-   [Alert Tuning SOP](Alert_Tuning.en.md) — การ tune UEBA
+-   [Third-Party Risk](Third_Party_Risk.en.md) — ความเสี่ยง contractor/vendor
 
 
 ---

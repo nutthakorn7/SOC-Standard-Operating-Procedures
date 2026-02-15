@@ -242,6 +242,10 @@ nav:
     - ประเมินวุฒิภาวะ SOC (TH): 06_Operations_Management/SOC_Maturity_Assessment.th.md
     - Alert Tuning SOP: 06_Operations_Management/Alert_Tuning.en.md
     - SOP การปรับจูน Alert (TH): 06_Operations_Management/Alert_Tuning.th.md
+    - Cloud Security Monitoring: 06_Operations_Management/Cloud_Security_Monitoring.en.md
+    - การเฝ้าระวัง Cloud Security (TH): 06_Operations_Management/Cloud_Security_Monitoring.th.md
+    - Insider Threat Program: 06_Operations_Management/Insider_Threat_Program.en.md
+    - โปรแกรม Insider Threat (TH): 06_Operations_Management/Insider_Threat_Program.th.md
   - 🔧 Guides & Tools:
     - Detection Rules Index: 07_Detection_Rules/README.md
     - ดัชนี Detection Rules (TH): 07_Detection_Rules/README.th.md
