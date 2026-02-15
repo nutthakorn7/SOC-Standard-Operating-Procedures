@@ -91,6 +91,7 @@ nav:
     - กรอบ IR (TH): 05_Incident_Response/Framework.th.md
     - Severity Matrix: 05_Incident_Response/Severity_Matrix.en.md
     - ตารางความรุนแรง (TH): 05_Incident_Response/Severity_Matrix.th.md
+    - SOAR Playbook Templates: 05_Incident_Response/SOAR_Playbooks.en.md
     - Playbooks (EN):
       - Phishing: 05_Incident_Response/Playbooks/Phishing.en.md
       - Ransomware: 05_Incident_Response/Playbooks/Ransomware.en.md
@@ -162,6 +163,7 @@ nav:
     - โปรโตคอลข้อมูล (TH): 06_Operations_Management/Data_Handling_Protocol.th.md
     - Threat Intelligence: 06_Operations_Management/Threat_Intelligence_Lifecycle.en.md
     - ข่าวกรองภัย (TH): 06_Operations_Management/Threat_Intelligence_Lifecycle.th.md
+    - TI Feeds Integration: 06_Operations_Management/TI_Feeds_Integration.en.md
   - 🔧 Guides & Tools:
     - Detection Rules Index: 07_Detection_Rules/README.md
     - ดัชนี Detection Rules (TH): 07_Detection_Rules/README.th.md
