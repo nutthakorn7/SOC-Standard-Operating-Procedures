@@ -347,11 +347,22 @@ For offline reading or printing, download the consolidated manual:
 
 ---
 
+## 📋 Version & Tracking / เวอร์ชันและการติดตาม
+
+| Resource | Description |
+|:---|:---|
+| **[📝 CHANGELOG.md](CHANGELOG.md)** | All changes by version (Keep a Changelog format) |
+| **[📋 VERSION_TRACKER.md](VERSION_TRACKER.md)** | Every document's version, last update, and next review date |
+| **Current Version** | **v2.3.0** (2026-02-16) |
+
+---
+
 ## Contributing / การมีส่วนร่วม
 
 1. **Standardization** — Keep procedures vendor-agnostic where possible
 2. **Bilingual** — Maintain both English (`.en.md`) and Thai (`.th.md`) versions
 3. **Review** — Changes should be reviewed by SOC Managers or Lead Engineers
+4. **Versioning** — Update `CHANGELOG.md` and `VERSION_TRACKER.md` with every change
 
 ---
 

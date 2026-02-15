@@ -355,6 +355,132 @@ When adding new documents:
 
 ---
 
+## File: CHANGELOG.md
+
+# Changelog
+
+All notable changes to the SOC Standard Operating Procedures will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+---
+
+## [2.3.0] - 2026-02-16
+
+### Added
+- **Compliance Gap Analysis** (EN+TH) — 6 frameworks, gap analysis process, SOC controls matrix
+- **Playbook Development Guide** (EN+TH) — Structure standard, MITRE coverage, tabletop testing
+- **SOC Capacity Planning** (EN+TH) — Staffing model, SIEM sizing, budget planning, automation ROI
+- **CHANGELOG.md** — This file
+- **VERSION_TRACKER.md** — Document version tracker with review status
+
+### Changed
+- None
+
+---
+
+## [2.2.0] - 2026-02-16
+
+### Added
+- **DLP SOP** (EN+TH) — Data classification, 10 policies, PDPA breach assessment
+- **Network Security Monitoring** (EN+TH) — 22 detections, zone matrix, DNS security
+
+### Changed
+- Reorganized README.md into logical sub-categories (6 Operations groups, 3 IR groups)
+- Reorganized mkdocs.yml navigation with YAML comment separators
+- Removed all `(NEW)` tags from README
+- Added bilingual sub-headings throughout
+
+---
+
+## [2.1.0] - 2026-02-15
+
+### Added
+- **Cloud Security Monitoring** (EN+TH) — Multi-cloud architecture, 20+ detections
+- **Insider Threat Program** (EN+TH) — Behavioral indicators, investigation workflow
+- **Vulnerability Management** (EN+TH) — CVSS scoring, patching SLA, scanning procedures
+- **Phishing Simulation Program** (EN+TH) — Campaign management, metrics, training
+
+### Fixed
+- Cross-directory links in Phishing_Simulation.en.md
+
+---
+
+## [2.0.0] - 2026-02-15
+
+### Added
+- **Threat Hunting Playbook** (EN+TH) — 8 hunt hypotheses, MITRE mapped
+- **Log Source Matrix** (EN+TH) — 20+ sources with priority and retention
+- **Escalation Matrix** (EN+TH) — P1–P4 escalation paths with SLAs
+- **Disaster Recovery / BCP** (EN+TH) — RTO/RPO targets, DR procedures
+- **Incident Classification** (EN+TH) — Taxonomy with 10 categories
+- **SOC Automation Catalog** (EN+TH) — 15+ automation use cases
+- **Forensic Investigation** (EN+TH) — Evidence handling, chain of custody
+- **KPI Dashboard Template** (EN+TH) — 8 key metrics with targets
+- **Threat Landscape Report** (EN+TH) — Regional threat analysis
+- **Third-Party Risk** (EN+TH) — Vendor assessment, monitoring
+- **SOC Maturity Assessment** (EN+TH) — 7 domains, scoring model
+- **Alert Tuning SOP** (EN+TH) — FP reduction, tuning lifecycle
+- **Purple Team Exercise Guide** (EN+TH) — 9 exercises, scoring
+- **SOC Analyst Onboarding** (EN+TH) — 90-day curriculum
+- `export_pdf.py` — Client-ready PDF/HTML export tool
+
+### Changed
+- Rewrote README.md for readability with collapsible playbook sections
+
+### Fixed
+- Broken links in SOC_Onboarding, SOC_Automation_Catalog
+- 3 broken cross-directory links
+
+---
+
+## [1.2.0] - 2026-02-15
+
+### Added
+- **Compliance Mapping** (EN+TH) — ISO 27001, NIST CSF, PCI DSS
+- **PDPA Incident Response** (EN+TH) — 72-hour notification
+- **Monthly SOC Report** template (EN+TH)
+- **Quarterly Business Review** template (EN+TH)
+- **Executive Dashboard** template (EN+TH)
+- 6 Budget/Staffing guides and Analyst Training Path (EN+TH)
+- SOC Checklists, Interview Guide, SLA Template (EN+TH)
+
+---
+
+## [1.1.0] - 2026-02-15
+
+### Added
+- SOC Building Roadmap (zero-to-SOC guide)
+- Technology Stack Selection, Infrastructure Setup, Use Case Prioritization (EN+TH)
+- PB-26 through PB-33 (MFA Bypass, Cloud Storage, Mobile, Shadow IT, OT/ICS, AWS, Azure)
+- SOAR Playbook Templates (6 templates)
+- TI Feeds Integration guide
+- Grafana (14 panels) + Kibana (11 panels) dashboards
+- 5 YARA rules + Sigma validator
+
+---
+
+## [1.0.0] - 2026-02-15
+
+### Added
+- Initial SOC SOP repository
+- Bilingual structure (EN/TH) for all documents
+- IR Framework (NIST-based), Severity Matrix
+- PB-01 through PB-25 (25 core playbooks)
+- 33 Sigma detection rules
+- Simulation & Testing Guide with Atomic Red Team mapping
+- SOC Metrics, Shift Handoff, Operational Templates
+- Incident Report, Shift Handover, RFC templates
+- SOC 101, Quickstart Guide, Glossary
+- `check_links.py`, `new_playbook.py`, `export_docs.py`, `validate_sigma.py`
+- SOC Maturity Scorer (interactive HTML)
+- MITRE ATT&CK Heatmap (interactive HTML)
+- MkDocs configuration for documentation site
+
+
+---
+
 ## File: CLAUDE.md
 
 # AGENTS.md — SOC Standard Operating Procedures Repository
@@ -700,6 +826,148 @@ When adding new documents:
 - ❌ Create deeply nested directories (max 2 levels deep)
 - ❌ Skip the Related Documents section (every file must cross-link)
 - ❌ Use inline HTML in Markdown (except README badges/footer)
+
+
+---
+
+## File: VERSION_TRACKER.md
+
+# 📋 Document Version Tracker
+
+> Track the version, last update, and review status of every document in the repository.
+>
+> **Review Policy**: All documents should be reviewed at least annually. Documents marked ⚠️ are due for review.
+
+---
+
+## 📍 Getting Started
+
+| Document | Version | Last Updated | Status | Next Review |
+|:---|:---:|:---:|:---:|:---:|
+| [SOC 101](00_Getting_Started/SOC_101.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Quickstart Guide](00_Getting_Started/Quickstart_Guide.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Glossary](00_Getting_Started/Glossary.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+
+## 🏗️ SOC Fundamentals
+
+| Document | Version | Last Updated | Status | Next Review |
+|:---|:---:|:---:|:---:|:---:|
+| [SOC Building Roadmap](01_SOC_Fundamentals/SOC_Building_Roadmap.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Budget & Staffing](01_SOC_Fundamentals/Budget_Staffing.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Technology Stack](01_SOC_Fundamentals/Technology_Stack.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Infrastructure Setup](01_SOC_Fundamentals/Infrastructure_Setup.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Use Case Prioritization](01_SOC_Fundamentals/Use_Case_Prioritization.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Analyst Training Path](01_SOC_Fundamentals/Analyst_Training_Path.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+
+## 🛡️ Incident Response — Core
+
+| Document | Version | Last Updated | Status | Next Review |
+|:---|:---:|:---:|:---:|:---:|
+| [IR Framework](05_Incident_Response/Framework.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Severity Matrix](05_Incident_Response/Severity_Matrix.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Incident Classification](05_Incident_Response/Incident_Classification.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Escalation Matrix](05_Incident_Response/Escalation_Matrix.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Tier 1 Runbook](05_Incident_Response/Tier1_Runbook.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Communication Templates](05_Incident_Response/Communication_Templates.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Forensic Investigation](05_Incident_Response/Forensic_Investigation.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Evidence Collection](05_Incident_Response/Evidence_Collection.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Threat Hunting Playbook](05_Incident_Response/Threat_Hunting_Playbook.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Interview Guide](05_Incident_Response/Interview_Guide.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Disaster Recovery / BCP](05_Incident_Response/Disaster_Recovery_BCP.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SOAR Playbooks](05_Incident_Response/SOAR_Playbooks.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Lessons Learned Template](05_Incident_Response/Lessons_Learned_Template.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Playbook Development Guide](05_Incident_Response/Playbook_Development_Guide.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+
+## 🛡️ Incident Response — Playbooks (33)
+
+| Playbook | Version | Last Updated | Status |
+|:---|:---:|:---:|:---:|
+| PB-01 Phishing → PB-10 Web Attack | 1.0 | 2026-02-15 | ✅ |
+| PB-11 Suspicious Script → PB-20 Log Clearing | 1.0 | 2026-02-15 | ✅ |
+| PB-21 Supply Chain → PB-25 Zero-Day | 1.0 | 2026-02-15 | ✅ |
+| PB-26 MFA Bypass → PB-30 OT/ICS | 1.0 | 2026-02-15 | ✅ |
+| PB-31 AWS EC2 → PB-33 Azure AD | 1.0 | 2026-02-15 | ✅ |
+
+## 📊 Operations Management
+
+| Document | Version | Last Updated | Status | Next Review |
+|:---|:---:|:---:|:---:|:---:|
+| [SOC Team Structure](06_Operations_Management/SOC_Team_Structure.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Shift Handoff](06_Operations_Management/Shift_Handoff.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SOC Checklists](06_Operations_Management/SOC_Checklists.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SOC Metrics & KPIs](06_Operations_Management/SOC_Metrics.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [KPI Dashboard Template](06_Operations_Management/KPI_Dashboard_Template.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Log Source Matrix](06_Operations_Management/Log_Source_Matrix.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Log Source Onboarding](06_Operations_Management/Log_Source_Onboarding.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SOC Automation Catalog](06_Operations_Management/SOC_Automation_Catalog.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Alert Tuning SOP](06_Operations_Management/Alert_Tuning.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SOC Capacity Planning](06_Operations_Management/SOC_Capacity_Planning.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [Network Security Monitoring](06_Operations_Management/Network_Security_Monitoring.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [Cloud Security Monitoring](06_Operations_Management/Cloud_Security_Monitoring.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [DLP SOP](06_Operations_Management/DLP_SOP.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [Insider Threat Program](06_Operations_Management/Insider_Threat_Program.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Threat Intelligence Lifecycle](06_Operations_Management/Threat_Intelligence_Lifecycle.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [TI Feeds Integration](06_Operations_Management/TI_Feeds_Integration.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Threat Landscape Report](06_Operations_Management/Threat_Landscape_Report.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Detection Rule Testing](06_Operations_Management/Detection_Rule_Testing.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Vulnerability Management](06_Operations_Management/Vulnerability_Management.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Third-Party Risk](06_Operations_Management/Third_Party_Risk.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SOC Maturity Assessment](06_Operations_Management/SOC_Maturity_Assessment.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SOC Assessment Checklist](06_Operations_Management/SOC_Assessment_Checklist.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SLA Template](06_Operations_Management/SLA_Template.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Vendor Evaluation](06_Operations_Management/Vendor_Evaluation.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Data Handling Protocol](06_Operations_Management/Data_Handling_Protocol.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Change Management](06_Operations_Management/Change_Management.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Access Control Policy](06_Operations_Management/Access_Control.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Communication SOP](06_Operations_Management/Communication_SOP.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+
+## 🎯 Testing & Training
+
+| Document | Version | Last Updated | Status | Next Review |
+|:---|:---:|:---:|:---:|:---:|
+| [Purple Team Exercise Guide](08_Simulation_Testing/Purple_Team_Exercise.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Phishing Simulation](08_Simulation_Testing/Phishing_Simulation.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Simulation Guide](08_Simulation_Testing/Simulation_Guide.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Atomic Test Map](08_Simulation_Testing/Atomic_Test_Map.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SOC Analyst Onboarding](01_SOC_Overview/SOC_Onboarding.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Analyst Onboarding Path](09_Training_Onboarding/Analyst_Onboarding_Path.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Training Checklist](09_Training_Onboarding/Training_Checklist.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+
+## 🏛️ Compliance
+
+| Document | Version | Last Updated | Status | Next Review |
+|:---|:---:|:---:|:---:|:---:|
+| [Compliance Mapping](10_Compliance/Compliance_Mapping.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [PDPA Incident Response](10_Compliance/PDPA_Incident_Response.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Compliance Gap Analysis](10_Compliance/Compliance_Gap_Analysis.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+
+## 📄 Reports & Templates
+
+| Document | Version | Last Updated | Status | Next Review |
+|:---|:---:|:---:|:---:|:---:|
+| [Monthly SOC Report](11_Reporting_Templates/Monthly_SOC_Report.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Quarterly Business Review](11_Reporting_Templates/Quarterly_Business_Review.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Executive Dashboard](11_Reporting_Templates/Executive_Dashboard.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Incident Report Template](templates/incident_report.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Shift Handover Template](templates/shift_handover.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Change Request (RFC)](templates/change_request_rfc.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+
+---
+
+## 📊 Summary
+
+| Category | Documents | All Current | Next Review |
+|:---|:---:|:---:|:---:|
+| Getting Started | 3 | ✅ | 2027-02 |
+| SOC Fundamentals | 6 | ✅ | 2027-02 |
+| Incident Response | 14 + 33 playbooks | ✅ | 2027-02 |
+| Operations Management | 28 | ✅ | 2027-02 |
+| Testing & Training | 7 | ✅ | 2027-02 |
+| Compliance | 3 | ✅ | 2027-02 |
+| Reports & Templates | 6 | ✅ | 2027-02 |
+| **Total** | **100+** | **✅ 100%** | **2027-02** |
+
+> **Last tracker update**: 2026-02-16 | **Repository version**: 2.3.0
 
 
 ---
@@ -26081,6 +26349,100 @@ graph TD
 
 ## References
 -   [NIST SP 800-61 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+
+
+---
+
+## File: .agent/workflows/update-docs.md
+
+---
+description: How to update documentation when adding, modifying, or removing SOC SOPs
+---
+
+# Update SOC Documentation Workflow
+
+When adding, modifying, or removing SOC SOP documents, follow these steps to keep versioning and tracking up to date.
+
+// turbo-all
+
+## 1. Create or modify the document
+
+- Create both EN (`.en.md`) and TH (`.th.md`) versions
+- Include standard metadata at the top of each document:
+  ```markdown
+  **Document ID**: [SECTION]-SOP-[NUMBER]
+  **Version**: 1.0
+  **Classification**: Internal
+  **Last Updated**: YYYY-MM-DD
+  ```
+- Place the file in the correct directory (e.g., `06_Operations_Management/`, `05_Incident_Response/`)
+
+## 2. Update README.md
+
+- Add the new document to the appropriate section table in `README.md`
+- Use the format: `| **📌 Document Name** | [Read](path/to/file.en.md) | [อ่าน](path/to/file.th.md) |`
+- Place it in the correct sub-group within the section
+
+## 3. Update mkdocs.yml
+
+- Add nav entries for both EN and TH versions under the appropriate section
+- Place them near related documents
+
+## 4. Update CHANGELOG.md
+
+- Add a new version entry at the top of `CHANGELOG.md` (below the header)
+- Follow [Keep a Changelog](https://keepachangelog.com) format:
+  ```markdown
+  ## [X.Y.Z] - YYYY-MM-DD
+
+  ### Added
+  - **Document Name** (EN+TH) — Brief description
+
+  ### Changed
+  - Description of any modifications to existing documents
+  ```
+- Version bump rules:
+  - **Patch** (X.Y.Z+1): Typo fixes, formatting
+  - **Minor** (X.Y+1.0): New documents, content updates
+  - **Major** (X+1.0.0): Major restructuring, breaking changes
+
+## 5. Update VERSION_TRACKER.md
+
+- Add a new row in the appropriate section table:
+  ```markdown
+  | [Document Name](path/to/file.en.md) | 1.0 | YYYY-MM-DD | ✅ Current | YYYY+1-MM-DD |
+  ```
+- If modifying an existing document, update its Version, Last Updated, and Next Review columns
+- Update the **Summary** table at the bottom if document counts changed
+- Update the `Repository version` and `Last tracker update` at the bottom
+
+## 6. Validate and push
+
+```bash
+cd /Users/pop7/Code/SOCSOP
+python3 tools/check_links.py
+python3 tools/export_docs.py
+git add -A
+git commit -m "feat: add [Document Name] (EN+TH)"
+git push
+```
+
+## 7. Tag version (for minor/major releases)
+
+```bash
+git tag -a vX.Y.Z -m "Description of changes"
+git push origin vX.Y.Z
+```
+
+## Quick Reference
+
+| File | When to update |
+|:---|:---|
+| `README.md` | Every new/removed document |
+| `mkdocs.yml` | Every new/removed document |
+| `CHANGELOG.md` | Every commit batch |
+| `VERSION_TRACKER.md` | Every new/modified document |
+| Git tag | Minor and major releases |
 
 
 ---

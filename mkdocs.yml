@@ -311,3 +311,6 @@ nav:
     - แบบฟอร์มส่งมอบกะ (TH): templates/shift_handover.th.md
     - Change Request (RFC): templates/change_request_rfc.en.md
     - แบบฟอร์ม RFC (TH): templates/change_request_rfc.th.md
+  - 📋 Version Tracking:
+    - Changelog: CHANGELOG.md
+    - Document Version Tracker: VERSION_TRACKER.md
