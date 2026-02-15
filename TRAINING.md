@@ -152,7 +152,7 @@
 | 3.4 | **Playbook: Account Compromise & Brute Force** — Credential analysis, MFA bypass, lateral movement | 1.0 |
 | 3.5 | **🔬 Lab: IR Simulation** — ตอบสนอง phishing → malware → lateral movement chain | 1.0 |
 
-> **Reference**: [IR Framework](05_Incident_Response/Framework.en.md) · [Phishing PB](05_Incident_Response/Playbooks/Phishing_Email.en.md) · [Ransomware PB](05_Incident_Response/Playbooks/Ransomware.en.md) · [Account Compromise PB](05_Incident_Response/Playbooks/Account_Compromise.en.md)
+> **Reference**: [IR Framework](05_Incident_Response/Framework.en.md) · [Phishing PB](05_Incident_Response/Playbooks/Phishing.en.md) · [Ransomware PB](05_Incident_Response/Playbooks/Ransomware.en.md) · [Account Compromise PB](05_Incident_Response/Playbooks/Account_Compromise.en.md)
 
 #### วันที่ 4 — Advanced Detection & Hunting
 
