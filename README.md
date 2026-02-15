@@ -51,6 +51,7 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | Document | English | ภาษาไทย |
 | :--- | :--- | :--- |
 | **Compliance Mapping** (ISO 27001 / NIST CSF / PCI DSS) | [Link](10_Compliance/Compliance_Mapping.en.md) | [ลิ้งค์](10_Compliance/Compliance_Mapping.th.md) |
+| **PDPA Incident Response** (72-hour notification) | [Link](10_Compliance/PDPA_Incident_Response.en.md) | [ลิ้งค์](10_Compliance/PDPA_Incident_Response.th.md) |
 
 ### 05_Incident_Response
 | Document | English | ภาษาไทย |
@@ -63,6 +64,8 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | **Tabletop Exercises** (5 scenarios) | [Link](05_Incident_Response/Tabletop_Exercises.en.md) | [ลิ้งค์](05_Incident_Response/Tabletop_Exercises.th.md) |
 | **Purple Team Exercises** (9 exercises) | [Link](05_Incident_Response/Purple_Team_Exercises.en.md) | [ลิ้งค์](05_Incident_Response/Purple_Team_Exercises.th.md) |
 | **Interview Guide** (T1/T2/Lead) | [Link](05_Incident_Response/Interview_Guide.en.md) | [ลิ้งค์](05_Incident_Response/Interview_Guide.th.md) |
+| **SOAR Playbook Templates** (6 workflows) | [Link](05_Incident_Response/SOAR_Playbooks.en.md) | [ลิ้งค์](05_Incident_Response/SOAR_Playbooks.th.md) |
+| **Lessons Learned Template** | [Link](05_Incident_Response/Lessons_Learned_Template.en.md) | [ลิ้งค์](05_Incident_Response/Lessons_Learned_Template.th.md) |
 | **Playbook**: PB-01 Phishing | [Link](05_Incident_Response/Playbooks/Phishing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Phishing.th.md) |
 | **Playbook**: PB-02 Ransomware | [Link](05_Incident_Response/Playbooks/Ransomware.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Ransomware.th.md) |
 | **Playbook**: PB-03 Malware Infection | [Link](05_Incident_Response/Playbooks/Malware_Infection.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Malware_Infection.th.md) |
@@ -93,6 +96,9 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | **Playbook**: PB-28 Mobile Device Compromise | [Link](05_Incident_Response/Playbooks/Mobile_Compromise.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Mobile_Compromise.th.md) |
 | **Playbook**: PB-29 Shadow IT | [Link](05_Incident_Response/Playbooks/Shadow_IT.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Shadow_IT.th.md) |
 | **Playbook**: PB-30 OT/ICS Incident | [Link](05_Incident_Response/Playbooks/OT_ICS_Incident.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/OT_ICS_Incident.th.md) |
+| **Playbook**: PB-31 AWS EC2 Compromise | [Link](05_Incident_Response/Playbooks/AWS_EC2_Compromise.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/AWS_EC2_Compromise.th.md) |
+| **Playbook**: PB-32 AWS S3 Compromise | [Link](05_Incident_Response/Playbooks/AWS_S3_Compromise.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/AWS_S3_Compromise.th.md) |
+| **Playbook**: PB-33 Azure AD Compromise | [Link](05_Incident_Response/Playbooks/Azure_AD_Compromise.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Azure_AD_Compromise.th.md) |
 
 ## 📂 Detection Rules (Sigma)
 
@@ -140,6 +146,12 @@ A structured 4-week curriculum to train new SOC Analysts using this repository.
 | **SOC Checklists** (Daily/Weekly/Monthly) | [Link](06_Operations_Management/SOC_Checklists.en.md) | [ลิ้งค์](06_Operations_Management/SOC_Checklists.th.md) |
 | **SLA Template** | [Link](06_Operations_Management/SLA_Template.en.md) | [ลิ้งค์](06_Operations_Management/SLA_Template.th.md) |
 | **Log Source Onboarding** | [Link](06_Operations_Management/Log_Source_Onboarding.en.md) | [ลิ้งค์](06_Operations_Management/Log_Source_Onboarding.th.md) |
+| **TI Feeds Integration** | [Link](06_Operations_Management/TI_Feeds_Integration.en.md) | [ลิ้งค์](06_Operations_Management/TI_Feeds_Integration.th.md) |
+| **Change Management SOP** | [Link](06_Operations_Management/Change_Management.en.md) | [ลิ้งค์](06_Operations_Management/Change_Management.th.md) |
+| **Access Control Policy** | [Link](06_Operations_Management/Access_Control.en.md) | [ลิ้งค์](06_Operations_Management/Access_Control.th.md) |
+| **Detection Rule Testing SOP** | [Link](06_Operations_Management/Detection_Rule_Testing.en.md) | [ลิ้งค์](06_Operations_Management/Detection_Rule_Testing.th.md) |
+| **Communication SOP** | [Link](06_Operations_Management/Communication_SOP.en.md) | [ลิ้งค์](06_Operations_Management/Communication_SOP.th.md) |
+| **Vendor/Tool Evaluation** | [Link](06_Operations_Management/Vendor_Evaluation.en.md) | [ลิ้งค์](06_Operations_Management/Vendor_Evaluation.th.md) |
 
 
 ## 🛠 Tools / เครื่องมือช่วยงาน
@@ -160,6 +172,7 @@ A structured 4-week curriculum to train new SOC Analysts using this repository.
 | **Incident Report** | [Link](templates/incident_report.en.md) | [ลิ้งค์](templates/incident_report.th.md) |
 | **Shift Handover Log** | [Link](templates/shift_handover.en.md) | [ลิ้งค์](templates/shift_handover.th.md) |
 | **Change Request (RFC)** | [Link](templates/change_request_rfc.en.md) | [ลิ้งค์](templates/change_request_rfc.th.md) |
+| **Executive Dashboard** | [Link](11_Reporting_Templates/Executive_Dashboard.en.md) | [ลิ้งค์](11_Reporting_Templates/Executive_Dashboard.th.md) |
 
 ## 📚 Full Manual / คู่มือฉบับเต็ม
 For offline reading or printing, download the consolidated manual:

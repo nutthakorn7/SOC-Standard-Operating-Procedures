@@ -4,7 +4,7 @@ import os
 # Configuration
 SOURCE_DIR = "../"
 OUTPUT_FILE = "../SOC_Manual_Consolidated.md"
-EXCLUDE_DIRS = [".git", "tools", ".github", "node_modules", "vendor"]
+EXCLUDE_DIRS = [".git", "tools", ".github", "node_modules", "vendor", "site", "docs", "assets"]
 EXCLUDE_FILES = ["README.md", "SOC_Manual_Consolidated.md"]
 
 def consolidate_docs():

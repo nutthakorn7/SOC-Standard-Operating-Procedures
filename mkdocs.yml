@@ -103,7 +103,6 @@ nav:
     - กรอบ IR (TH): 05_Incident_Response/Framework.th.md
     - Severity Matrix: 05_Incident_Response/Severity_Matrix.en.md
     - ตารางความรุนแรง (TH): 05_Incident_Response/Severity_Matrix.th.md
-    - SOAR Playbook Templates: 05_Incident_Response/SOAR_Playbooks.en.md
     - Tabletop Exercises: 05_Incident_Response/Tabletop_Exercises.en.md
     - สถานการณ์จำลอง (TH): 05_Incident_Response/Tabletop_Exercises.th.md
     - Tier 1 Runbook: 05_Incident_Response/Tier1_Runbook.en.md
@@ -116,6 +115,10 @@ nav:
     - การซ้อม Purple Team (TH): 05_Incident_Response/Purple_Team_Exercises.th.md
     - Interview Guide: 05_Incident_Response/Interview_Guide.en.md
     - คู่มือสัมภาษณ์ (TH): 05_Incident_Response/Interview_Guide.th.md
+    - SOAR Playbook Templates: 05_Incident_Response/SOAR_Playbooks.en.md
+    - แม่แบบ SOAR (TH): 05_Incident_Response/SOAR_Playbooks.th.md
+    - Lessons Learned Template: 05_Incident_Response/Lessons_Learned_Template.en.md
+    - แม่แบบ Lessons Learned (TH): 05_Incident_Response/Lessons_Learned_Template.th.md
     - Playbooks (EN):
       - Phishing: 05_Incident_Response/Playbooks/Phishing.en.md
       - Ransomware: 05_Incident_Response/Playbooks/Ransomware.en.md
@@ -198,16 +201,28 @@ nav:
     - Threat Intelligence: 06_Operations_Management/Threat_Intelligence_Lifecycle.en.md
     - ข่าวกรองภัย (TH): 06_Operations_Management/Threat_Intelligence_Lifecycle.th.md
     - TI Feeds Integration: 06_Operations_Management/TI_Feeds_Integration.en.md
+    - เชื่อมต่อ TI Feeds (TH): 06_Operations_Management/TI_Feeds_Integration.th.md
     - Log Source Onboarding: 06_Operations_Management/Log_Source_Onboarding.en.md
     - คู่มือ Onboard Log (TH): 06_Operations_Management/Log_Source_Onboarding.th.md
     - SOC Checklists: 06_Operations_Management/SOC_Checklists.en.md
     - รายการตรวจสอบ (TH): 06_Operations_Management/SOC_Checklists.th.md
     - SLA Template: 06_Operations_Management/SLA_Template.en.md
     - แม่แบบ SLA (TH): 06_Operations_Management/SLA_Template.th.md
+    - Change Management: 06_Operations_Management/Change_Management.en.md
+    - การจัดการเปลี่ยนแปลง (TH): 06_Operations_Management/Change_Management.th.md
+    - Access Control Policy: 06_Operations_Management/Access_Control.en.md
+    - นโยบายควบคุมการเข้าถึง (TH): 06_Operations_Management/Access_Control.th.md
+    - Detection Rule Testing: 06_Operations_Management/Detection_Rule_Testing.en.md
+    - SOP ทดสอบ Rule (TH): 06_Operations_Management/Detection_Rule_Testing.th.md
+    - Communication SOP: 06_Operations_Management/Communication_SOP.en.md
+    - SOP การสื่อสาร (TH): 06_Operations_Management/Communication_SOP.th.md
+    - Vendor Evaluation: 06_Operations_Management/Vendor_Evaluation.en.md
+    - แม่แบบประเมินเครื่องมือ (TH): 06_Operations_Management/Vendor_Evaluation.th.md
   - 🔧 Guides & Tools:
     - Detection Rules Index: 07_Detection_Rules/README.md
     - ดัชนี Detection Rules (TH): 07_Detection_Rules/README.th.md
     - YARA Rules Index: 07_Detection_Rules/yara/README.md
+    - File Signatures (YARA): 10_File_Signatures/README.md
     - Detection Engineering: 03_User_Guides/Content_Management.en.md
     - วิศวกรรมตรวจจับ (TH): 03_User_Guides/Content_Management.th.md
     - Integration Hub: 03_User_Guides/Integration_Hub.en.md
@@ -221,9 +236,13 @@ nav:
   - 🏛️ Compliance:
     - Compliance Mapping: 10_Compliance/Compliance_Mapping.en.md
     - แผนที่ Compliance (TH): 10_Compliance/Compliance_Mapping.th.md
+    - PDPA Incident Response: 10_Compliance/PDPA_Incident_Response.en.md
+    - ตอบเหตุ PDPA (TH): 10_Compliance/PDPA_Incident_Response.th.md
   - 🎯 Testing & Training:
     - Simulation Guide: 08_Simulation_Testing/Simulation_Guide.md
+    - คู่มือ Simulation (TH): 08_Simulation_Testing/Simulation_Guide.th.md
     - Atomic Test Map: 08_Simulation_Testing/Atomic_Test_Map.md
+    - ตาราง Atomic Test (TH): 08_Simulation_Testing/Atomic_Test_Map.th.md
     - Analyst Onboarding: 09_Training_Onboarding/Analyst_Onboarding_Path.en.md
     - หลักสูตร Analyst (TH): 09_Training_Onboarding/Analyst_Onboarding_Path.th.md
     - Training Checklist: 09_Training_Onboarding/Training_Checklist.en.md
@@ -233,6 +252,8 @@ nav:
     - รายงานรายเดือน (TH): 11_Reporting_Templates/Monthly_SOC_Report.th.md
     - Quarterly Review: 11_Reporting_Templates/Quarterly_Business_Review.en.md
     - รายงานรายไตรมาส (TH): 11_Reporting_Templates/Quarterly_Business_Review.th.md
+    - Executive Dashboard: 11_Reporting_Templates/Executive_Dashboard.en.md
+    - Dashboard ผู้บริหาร (TH): 11_Reporting_Templates/Executive_Dashboard.th.md
     - Incident Report Template: templates/incident_report.en.md
     - แบบฟอร์ม Incident (TH): templates/incident_report.th.md
     - Shift Handover Template: templates/shift_handover.en.md

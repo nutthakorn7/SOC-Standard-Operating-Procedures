@@ -1115,6 +1115,2927 @@ SOC ที่สมบูรณ์จำเป็นต้องมีองค�
 
 ---
 
+## File: 07_Detection_Rules/README.md
+
+# Detection Rules Index (Sigma)
+
+This directory contains **33 Sigma detection rules** mapped to the SOC Playbooks. Rules are organized by category and can be imported into any Sigma-compatible SIEM (Splunk, Elastic, Microsoft Sentinel, etc.).
+
+## How to Use
+
+1. **Import** the `.yml` files into your SIEM's Sigma converter (e.g., `sigmac`, `pySigma`, Uncoder.io)
+2. **Tune** the `falsepositives` and `level` fields to match your environment
+3. **Map** each rule to the corresponding Playbook for response procedures
+
+---
+
+## 📋 Detection Rules by Category
+
+### 🖥️ Process / Endpoint Detection
+
+| Rule File | Title | Level | MITRE ATT&CK | Playbook |
+|:---|:---|:---|:---|:---|
+| [proc_office_spawn_powershell.yml](proc_office_spawn_powershell.yml) | Office Application Spawning PowerShell | High | T1059.001 | PB-01 Phishing |
+| [proc_powershell_encoded.yml](proc_powershell_encoded.yml) | PowerShell Encoded Command | High | T1059.001 | PB-11 Suspicious Script |
+| [proc_temp_folder_execution.yml](proc_temp_folder_execution.yml) | Suspicious Execution from Temp/Downloads | Medium | T1204.002 | PB-03 Malware |
+| [proc_cryptomining_indicators.yml](proc_cryptomining_indicators.yml) | Cryptomining Process / Stratum Protocol | Critical | T1496 | PB-23 Cryptomining |
+
+### 📁 File Activity
+
+| Rule File | Title | Level | MITRE ATT&CK | Playbook |
+|:---|:---|:---|:---|:---|
+| [file_bulk_renaming_ransomware.yml](file_bulk_renaming_ransomware.yml) | Potential Ransomware Bulk File Renaming | Critical | T1486 | PB-02 Ransomware |
+| [file_bulk_usb_copy.yml](file_bulk_usb_copy.yml) | Bulk File Copy to USB Drive | Medium | T1052 | PB-08 Data Exfiltration |
+
+### 🌐 Network Detection
+
+| Rule File | Title | Level | MITRE ATT&CK | Playbook |
+|:---|:---|:---|:---|:---|
+| [net_beaconing.yml](net_beaconing.yml) | Network Beaconing Pattern | High | T1071 | PB-13 C2 Communication |
+| [net_large_upload.yml](net_large_upload.yml) | Large Upload to External IP (>500MB) | High | T1048 | PB-08 Data Exfiltration |
+| [net_dns_tunneling.yml](net_dns_tunneling.yml) | DNS Tunneling (High Volume / Long Queries) | High | T1071.004 | PB-24 DNS Tunneling |
+| [net_ot_ics_anomaly.yml](net_ot_ics_anomaly.yml) | OT/ICS Network Anomaly (Modbus/DNP3/OPC UA) | Critical | ICS T0813 | PB-30 OT/ICS Incident |
+
+### 🔐 Windows Security
+
+| Rule File | Title | Level | MITRE ATT&CK | Playbook |
+|:---|:---|:---|:---|:---|
+| [win_multiple_failed_logins.yml](win_multiple_failed_logins.yml) | Multiple Failed Login Attempts | Medium | T1110 | PB-04 Brute Force |
+| [win_admin_share_access.yml](win_admin_share_access.yml) | Access to Admin Shares (C$) | Medium | T1021.002 | PB-12 Lateral Movement |
+| [win_domain_admin_group_add.yml](win_domain_admin_group_add.yml) | User Added to Domain Admins | High | T1078 | PB-07 Privilege Escalation |
+| [win_new_user_created.yml](win_new_user_created.yml) | New Local User Created | Medium | T1136 | PB-15 Rogue Admin |
+| [win_security_log_cleared.yml](win_security_log_cleared.yml) | Windows Security Log Cleared | Critical | T1070.001 | PB-20 Log Clearing |
+
+### ☁️ Cloud Detection
+
+| Rule File | Title | Level | MITRE ATT&CK | Playbook |
+|:---|:---|:---|:---|:---|
+| [cloud_impossible_travel.yml](cloud_impossible_travel.yml) | Impossible Travel (Cloud/VPN) | High | T1078.004 | PB-06 Impossible Travel |
+| [cloud_unusual_login.yml](cloud_unusual_login.yml) | Login from Unusual Location | Medium | T1078.004 | PB-05 Account Compromise |
+| [cloud_root_login.yml](cloud_root_login.yml) | AWS Root Account Login | Critical | T1078 | PB-16 Cloud IAM |
+| [cloud_aws_ec2_mining.yml](cloud_aws_ec2_mining.yml) | AWS EC2 Crypto Mining Indicator | High | T1496 | PB-23 Cryptomining |
+| [cloud_aws_s3_public_access.yml](cloud_aws_s3_public_access.yml) | AWS S3 Public Access Enabled | High | T1530 | Cloud S3 Compromise |
+| [cloud_azure_risky_signin.yml](cloud_azure_risky_signin.yml) | Azure AD Risky Sign-in | High | T1078.004 | Azure AD Compromise |
+| [cloud_email_inbox_rule.yml](cloud_email_inbox_rule.yml) | Suspicious Inbox Rule Created | High | T1114.003 | PB-17 BEC |
+| [cloud_supply_chain_compromise.yml](cloud_supply_chain_compromise.yml) | Suspicious Package Manager Activity | High | T1195.002 | PB-21 Supply Chain |
+| [cloud_mfa_bypass.yml](cloud_mfa_bypass.yml) | MFA Bypass / AiTM Token Theft | High | T1556.006 | PB-26 MFA Bypass |
+| [cloud_storage_public_access.yml](cloud_storage_public_access.yml) | Cloud Storage Public Access (S3/Blob) | High | T1530 | PB-27 Cloud Storage |
+| [cloud_mobile_compromise.yml](cloud_mobile_compromise.yml) | Mobile Device Compromise (MDM) | Medium | T1456 | PB-28 Mobile Compromise |
+
+### 🌍 Web / Application
+
+| Rule File | Title | Level | MITRE ATT&CK | Playbook |
+|:---|:---|:---|:---|:---|
+| [web_high_rate_limit.yml](web_high_rate_limit.yml) | High Web Request Rate from Single IP | High | T1498 | PB-09 DDoS / PB-22 API Abuse |
+| [web_sqli_pattern.yml](web_sqli_pattern.yml) | Generic SQL Injection Pattern | High | T1190 | PB-10 Web Attack |
+| [web_waf_exploit.yml](web_waf_exploit.yml) | WAF Detected Exploit Attempt | High | T1190 | PB-18 Exploit |
+| [web_api_abuse_auth_bypass.yml](web_api_abuse_auth_bypass.yml) | API Auth Bypass / Enumeration | High | T1190 | PB-22 API Abuse |
+| [web_zero_day_exploit_attempt.yml](web_zero_day_exploit_attempt.yml) | Zero-Day Exploit Payload (Log4Shell, RCE) | Critical | T1190/T1203 | PB-25 Zero-Day |
+
+### 📱 MDM / Device
+
+| Rule File | Title | Level | MITRE ATT&CK | Playbook |
+|:---|:---|:---|:---|:---|
+| [mdm_device_offline.yml](mdm_device_offline.yml) | Device Offline for Extended Period | Low | — | PB-19 Lost Device |
+
+### 🔍 Proxy / CASB
+
+| Rule File | Title | Level | MITRE ATT&CK | Playbook |
+|:---|:---|:---|:---|:---|
+| [proxy_shadow_it.yml](proxy_shadow_it.yml) | Shadow IT / Unauthorized SaaS Usage | Low | T1567 | PB-29 Shadow IT |
+
+---
+
+## 🎯 YARA Rules (File-based Detection)
+
+In addition to Sigma rules, this directory contains **10 YARA rules** for file-based threat detection:
+
+| File | Rules | Detects | Playbook |
+|:---|:---:|:---|:---|
+| [ransomware_indicators.yar](yara/ransomware_indicators.yar) | 2 | Ransom notes, shadow copy deletion | PB-02 |
+| [webshell_generic.yar](yara/webshell_generic.yar) | 3 | PHP/JSP/ASPX webshells | PB-10, PB-18 |
+| [cryptominer_detection.yar](yara/cryptominer_detection.yar) | 2 | Mining pools, xmrig binaries | PB-23 |
+| [cobalt_strike_beacon.yar](yara/cobalt_strike_beacon.yar) | 2 | CS beacons & stagers | PB-13, PB-12 |
+| [malicious_document.yar](yara/malicious_document.yar) | 2 | Office macro malware, PDF JS | PB-01, PB-03 |
+
+📖 **Full YARA Index**: [yara/README.md](yara/README.md)
+
+---
+
+## References
+-   [Sigma Official Repository](https://github.com/SigmaHQ/sigma)
+-   [MITRE ATT&CK Framework](https://attack.mitre.org/)
+-   [Uncoder.io — Sigma Rule Converter](https://uncoder.io/)
+-   [YARA Official Documentation](https://yara.readthedocs.io/)
+
+
+---
+
+## File: 07_Detection_Rules/README.th.md
+
+# ดัชนี Detection Rules (Sigma) — ภาษาไทย
+
+ไดเรกทอรีนี้มี **Sigma Detection Rule 33 กฎ** ที่ map กับ SOC Playbook แต่ละชุด สามารถ Import เข้า SIEM ที่รองรับ Sigma ได้ (Splunk, Elastic, Microsoft Sentinel ฯลฯ)
+
+## วิธีใช้งาน
+
+1. **Import** ไฟล์ `.yml` เข้า Sigma Converter ของ SIEM (เช่น `sigmac`, `pySigma`, Uncoder.io)
+2. **ปรับแต่ง** ค่า `falsepositives` และ `level` ให้เหมาะกับสภาพแวดล้อมของคุณ
+3. **เชื่อมโยง** แต่ละกฎกับ Playbook ที่เกี่ยวข้องเพื่อขั้นตอนตอบสนอง
+
+---
+
+## 📋 Detection Rules แยกตามหมวดหมู่
+
+### 🖥️ Process / Endpoint Detection (การตรวจจับที่ Endpoint)
+
+| ไฟล์กฎ | ชื่อ (EN) | คำอธิบายภาษาไทย | ระดับ | MITRE | Playbook |
+|:---|:---|:---|:---|:---|:---|
+| [proc_office_spawn_powershell.yml](proc_office_spawn_powershell.yml) | Office Spawning PowerShell | ตรวจจับ Office (Word/Excel/Outlook) เปิด PowerShell — เทคนิค Phishing ทั่วไป | สูง | T1059.001 | PB-01 |
+| [proc_powershell_encoded.yml](proc_powershell_encoded.yml) | PowerShell Encoded Command | ตรวจจับ PowerShell ที่รันคำสั่งแบบ Encode เพื่อซ่อน Script อันตราย | สูง | T1059.001 | PB-11 |
+| [proc_temp_folder_execution.yml](proc_temp_folder_execution.yml) | Execution from Temp/Downloads | ตรวจจับไฟล์ที่รันจากโฟลเดอร์ Temp หรือ Downloads — น่าสงสัยว่าเป็นมัลแวร์ | ปานกลาง | T1204.002 | PB-03 |
+| [proc_cryptomining_indicators.yml](proc_cryptomining_indicators.yml) | Cryptomining Process / Stratum | ตรวจจับ Process ขุดเหมือง (xmrig, cpuminer) หรือการใช้ Stratum Protocol — ขุดคริปโตโดยไม่ได้รับอนุญาต | วิกฤต | T1496 | PB-23 |
+
+### 📁 File Activity (กิจกรรมไฟล์)
+
+| ไฟล์กฎ | ชื่อ (EN) | คำอธิบายภาษาไทย | ระดับ | MITRE | Playbook |
+|:---|:---|:---|:---|:---|:---|
+| [file_bulk_renaming_ransomware.yml](file_bulk_renaming_ransomware.yml) | Bulk File Renaming (Ransomware) | ตรวจจับการเปลี่ยนชื่อไฟล์จำนวนมากในเวลาสั้น (เช่น .enc, .lock, .crypt) — สัญญาณ Ransomware | วิกฤต | T1486 | PB-02 |
+| [file_bulk_usb_copy.yml](file_bulk_usb_copy.yml) | Bulk File Copy to USB | ตรวจจับการคัดลอกไฟล์จำนวนมากไปยัง USB Drive — อาจเป็นการขโมยข้อมูล | ปานกลาง | T1052 | PB-08 |
+
+### 🌐 Network Detection (การตรวจจับเครือข่าย)
+
+| ไฟล์กฎ | ชื่อ (EN) | คำอธิบายภาษาไทย | ระดับ | MITRE | Playbook |
+|:---|:---|:---|:---|:---|:---|
+| [net_beaconing.yml](net_beaconing.yml) | Network Beaconing Pattern | ตรวจจับการเชื่อมต่อเครือข่ายแบบสม่ำเสมอไปยังปลายทางเดิม — สัญญาณ C2 Beaconing | สูง | T1071 | PB-13 |
+| [net_large_upload.yml](net_large_upload.yml) | Large Upload >500MB | ตรวจจับการอัปโหลดข้อมูลมากกว่า 500MB ไปยัง IP ภายนอก — อาจเป็นการรั่วไหลข้อมูล | สูง | T1048 | PB-08 |
+| [net_dns_tunneling.yml](net_dns_tunneling.yml) | DNS Tunneling | ตรวจจับ DNS Query ที่มีความยาวผิดปกติ (>50 chars) หรือปริมาณ TXT/NULL record สูง — สัญญาณ DNS Tunneling | สูง | T1071.004 | PB-24 |
+
+### 🔐 Windows Security (ความปลอดภัย Windows)
+
+| ไฟล์กฎ | ชื่อ (EN) | คำอธิบายภาษาไทย | ระดับ | MITRE | Playbook |
+|:---|:---|:---|:---|:---|:---|
+| [win_multiple_failed_logins.yml](win_multiple_failed_logins.yml) | Multiple Failed Logins | ตรวจจับการ Login ล้มเหลวหลายครั้งในเวลาสั้น — สัญญาณ Brute Force | ปานกลาง | T1110 | PB-04 |
+| [win_admin_share_access.yml](win_admin_share_access.yml) | Admin Share Access (C$) | ตรวจจับการเข้าถึง Admin Share (Admin$, C$, D$) — ใช้ในการเคลื่อนตัวข้ามระบบ | ปานกลาง | T1021.002 | PB-12 |
+| [win_domain_admin_group_add.yml](win_domain_admin_group_add.yml) | User Added to Domain Admins | ตรวจจับการเพิ่มผู้ใช้เข้ากลุ่ม Domain Admins — การยกระดับสิทธิ์ | สูง | T1078 | PB-07 |
+| [win_new_user_created.yml](win_new_user_created.yml) | New Local User Created | ตรวจจับการสร้างบัญชีผู้ใช้ Local ใหม่ — อาจเป็น Backdoor | ปานกลาง | T1136 | PB-15 |
+| [win_security_log_cleared.yml](win_security_log_cleared.yml) | Security Log Cleared | ตรวจจับการลบ Windows Security Event Log — ตัวบ่งชี้สำคัญของการถูกบุกรุก | วิกฤต | T1070.001 | PB-20 |
+
+### ☁️ Cloud Detection (การตรวจจับ Cloud)
+
+| ไฟล์กฎ | ชื่อ (EN) | คำอธิบายภาษาไทย | ระดับ | MITRE | Playbook |
+|:---|:---|:---|:---|:---|:---|
+| [cloud_impossible_travel.yml](cloud_impossible_travel.yml) | Impossible Travel | ตรวจจับ Login จาก 2 สถานที่ที่เดินทางไม่ทันในเวลาที่กำหนด | สูง | T1078.004 | PB-06 |
+| [cloud_unusual_login.yml](cloud_unusual_login.yml) | Unusual Login Location | ตรวจจับ Login จากประเทศที่ไม่อยู่ในรายการอนุมัติ | ปานกลาง | T1078.004 | PB-05 |
+| [cloud_root_login.yml](cloud_root_login.yml) | AWS Root Account Login | ตรวจจับการ Login ด้วยบัญชี Root ของ AWS — ไม่ควรใช้ในการทำงานปกติ | วิกฤต | T1078 | PB-16 |
+| [cloud_aws_ec2_mining.yml](cloud_aws_ec2_mining.yml) | EC2 Crypto Mining | ตรวจจับ EC2 Instance ที่เชื่อมต่อกับ Mining Pool ผ่าน GuardDuty | สูง | T1496 | PB-23 |
+| [cloud_aws_s3_public_access.yml](cloud_aws_s3_public_access.yml) | S3 Public Access Enabled | ตรวจจับการปิด Block Public Access หรือ Bucket Policy ที่เปิดเป็น Public | สูง | T1530 | Cloud S3 |
+| [cloud_azure_risky_signin.yml](cloud_azure_risky_signin.yml) | Azure AD Risky Sign-in | ตรวจจับ Sign-in ที่ถูกแฟล็กว่า Impossible Travel หรือ Anonymized IP | สูง | T1078.004 | Azure AD |
+| [cloud_email_inbox_rule.yml](cloud_email_inbox_rule.yml) | Suspicious Inbox Rule | ตรวจจับการสร้าง Inbox Rule ที่ผู้โจมตีใช้ซ่อนอีเมล (เช่น ลบ, ย้ายไป RSS) | สูง | T1114.003 | PB-17 |
+| [cloud_supply_chain_compromise.yml](cloud_supply_chain_compromise.yml) | Supply Chain Package Tampering | ตรวจจับ Package Manager (npm, pip, gem) ที่ Install จาก Registry ไม่ปกติ — สัญญาณ Supply Chain Attack | สูง | T1195.002 | PB-21 |
+
+### 🌍 Web / Application (เว็บ / แอปพลิเคชัน)
+
+| ไฟล์กฎ | ชื่อ (EN) | คำอธิบายภาษาไทย | ระดับ | MITRE | Playbook |
+|:---|:---|:---|:---|:---|:---|
+| [web_high_rate_limit.yml](web_high_rate_limit.yml) | High Request Rate | ตรวจจับ IP เดียวส่ง HTTP Request จำนวนมากผิดปกติ — สัญญาณ DDoS หรือ Scanning | สูง | T1498 | PB-09/22 |
+| [web_sqli_pattern.yml](web_sqli_pattern.yml) | SQL Injection Pattern | ตรวจจับรูปแบบ SQL Injection ทั่วไปใน URL Parameter | สูง | T1190 | PB-10 |
+| [web_waf_exploit.yml](web_waf_exploit.yml) | WAF Exploit Attempt | ตรวจจับ WAF Event ที่แฟล็กการพยายามโจมตีด้วย CVE ที่รู้จัก | สูง | T1190 | PB-18 |
+| [web_api_abuse_auth_bypass.yml](web_api_abuse_auth_bypass.yml) | API Auth Bypass / Enumeration | ตรวจจับการโจมตี API แบบ BOLA/IDOR — วน ID ต่อเนื่องหรือ Auth Fail จำนวนมาก | สูง | T1190 | PB-22 |
+| [web_zero_day_exploit_attempt.yml](web_zero_day_exploit_attempt.yml) | Zero-Day Exploit Payload | ตรวจจับ Payload ที่ใช้โจมตีช่องโหว่ (Log4Shell, Spring4Shell, RCE) ใน Web Request | วิกฤต | T1190/T1203 | PB-25 |
+
+### 📱 MDM / Device (อุปกรณ์)
+
+| ไฟล์กฎ | ชื่อ (EN) | คำอธิบายภาษาไทย | ระดับ | MITRE | Playbook |
+|:---|:---|:---|:---|:---|:---|
+| [mdm_device_offline.yml](mdm_device_offline.yml) | Device Offline >30 Days | ตรวจจับอุปกรณ์ที่ไม่ Check-in กับ MDM Server มากกว่า 30 วัน | ต่ำ | — | PB-19 |
+
+---
+
+## ระดับความรุนแรง (Severity Level)
+
+| ระดับ | ความหมาย | การตอบสนอง |
+|:---|:---|:---|
+| 🔴 **วิกฤต (Critical)** | ตัวบ่งชี้การถูกบุกรุกที่ชัดเจน | ตอบสนองทันที — แจ้ง Tier 2+ |
+| 🟠 **สูง (High)** | มีโอกาสสูงที่เป็นเหตุการณ์จริง | ตรวจสอบภายใน 15 นาที |
+| 🟡 **ปานกลาง (Medium)** | ต้องตรวจสอบเพิ่มเติม | ตรวจสอบภายใน 1 ชั่วโมง |
+| 🟢 **ต่ำ (Low)** | ข้อมูลเสริม / ปกติ | ตรวจสอบในเวลาทำการ |
+
+## References
+-   [Sigma Official Repository](https://github.com/SigmaHQ/sigma)
+-   [MITRE ATT&CK Framework](https://attack.mitre.org/)
+-   [Uncoder.io — Sigma Rule Converter](https://uncoder.io/)
+
+
+---
+
+## File: 07_Detection_Rules/yara/README.md
+
+# YARA Detection Rules
+
+This directory contains **10 YARA rules** across 5 files for **file-based threat detection**. Use these rules with YARA-compatible tools (YARA CLI, ClamAV, THOR, Velociraptor, etc.) to scan endpoints and file shares.
+
+## How to Use
+
+1. **Install YARA**: `brew install yara` (macOS) or `apt install yara` (Linux)
+2. **Scan a file**: `yara -r ransomware_indicators.yar /path/to/suspect_file`
+3. **Scan a directory**: `yara -r *.yar /path/to/directory/`
+4. **Use in Velociraptor**: Import rules into `Yara.Scan` artifact for endpoint sweeps
+
+---
+
+## 📋 Rules Index
+
+| File | Rules | Threat Category | Severity | Playbook | MITRE |
+|:---|:---:|:---|:---:|:---|:---|
+| [ransomware_indicators.yar](ransomware_indicators.yar) | 2 | Ransomware (ransom notes, shadow delete) | Critical | PB-02 | T1486 |
+| [webshell_generic.yar](webshell_generic.yar) | 3 | Webshells (PHP, JSP, ASPX) | High | PB-10, PB-18 | T1505.003 |
+| [cryptominer_detection.yar](cryptominer_detection.yar) | 2 | Cryptominers (binary + script) | High | PB-23 | T1496 |
+| [cobalt_strike_beacon.yar](cobalt_strike_beacon.yar) | 2 | Cobalt Strike (beacon + stager) | Critical | PB-13, PB-12 | T1071.001 |
+| [malicious_document.yar](malicious_document.yar) | 2 | Malicious docs (Office macros, PDF JS) | High | PB-01, PB-03 | T1566.001 |
+
+**Total: 10 rules / 5 files**
+
+---
+
+## Rule Severity Guide
+
+| Severity | Action |
+|:---|:---|
+| **Critical** | Block immediately + escalate to Tier 2 |
+| **High** | Alert + quarantine + triage within 15 min |
+| **Medium** | Alert + investigate within 1 hour |
+
+---
+
+## Integration Examples
+
+### Velociraptor Artifact
+```yaml
+name: Custom.Yara.SOCScan
+sources:
+  - query: |
+      SELECT * FROM yara(
+        rules=read_file(filename="/path/to/yara/*.yar"),
+        files=glob(globs="/tmp/**")
+      )
+```
+
+### ClamAV
+```bash
+# Convert YARA to ClamAV signatures
+sigtool --convert-yara ransomware_indicators.yar > ransomware.ldb
+```
+
+### THOR (Nextron Systems)
+```bash
+# Drop .yar files into THOR's custom-signatures directory
+cp *.yar /opt/thor/custom-signatures/yara/
+```
+
+
+---
+
+## File: 01_SOC_Fundamentals/Analyst_Training_Path.en.md
+
+# SOC Analyst Training Path — From Zero to Competent
+
+> **Document ID:** TRAIN-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Audience:** New Analysts, SOC Managers, HR/L&D
+
+---
+
+## Training Philosophy
+
+```
+"You don't need a degree in cybersecurity to be a great SOC analyst.
+ You need curiosity, discipline, and the right training path."
+```
+
+This guide provides a **structured 6-month curriculum** to take someone from IT basics to a competent SOC Tier 1 analyst, and a **12-month advanced path** to Tier 2.
+
+---
+
+## Prerequisites Assessment
+
+Before starting, the candidate should be able to:
+
+| Skill | Required Level | How to Test |
+|:---|:---|:---|
+| Basic computer literacy | Can use CLI | "Open terminal, navigate to a folder" |
+| English reading | Intermediate | Security docs are mostly English |
+| Willingness to learn | High | Interview for motivation |
+
+If the candidate lacks these basics, add 4 weeks of pre-training (see Appendix).
+
+---
+
+## Phase 1: Foundations (Month 1–2)
+
+### Month 1: IT & Networking Foundations
+
+| Week | Topic | Resources | Hands-On Lab |
+|:---:|:---|:---|:---|
+| 1 | **Networking basics** — OSI model, TCP/IP, DNS, DHCP, NAT | CompTIA Network+ study guide, Professor Messer (YouTube) | Set up a home lab with VirtualBox |
+| 2 | **Linux fundamentals** — File system, CLI, permissions, services | TryHackMe "Linux Fundamentals" (free) | Navigate Linux, find files, read logs |
+| 3 | **Windows fundamentals** — AD basics, Event Viewer, services, registry | TryHackMe "Windows Fundamentals" (free) | Read Windows Event Logs, find services |
+| 4 | **Network tools** — Wireshark, nmap, tcpdump, netstat | Wireshark official tutorials | Capture traffic, identify protocols |
+
+**Assessment:** Written quiz + hands-on: "Given these packet captures, what happened?"
+
+### Month 2: Security Foundations
+
+| Week | Topic | Resources | Hands-On Lab |
+|:---:|:---|:---|:---|
+| 5 | **Security concepts** — CIA triad, authentication, encryption, hashing | CompTIA Security+ study guide | Hash a file, encrypt/decrypt with GPG |
+| 6 | **Common attacks** — Phishing, malware types, social engineering | MITRE ATT&CK overview, TryHackMe "Intro to Cyber Security" | Analyze a phishing email header |
+| 7 | **Vulnerability basics** — CVE, CVSS, patch management | NIST NVD, CVE.org | Look up a CVE, calculate CVSS score |
+| 8 | **Security architecture** — Firewalls, IDS/IPS, DMZ, VPN | Network diagrams, TryHackMe "Network Security" | Draw your org's network diagram |
+
+**Assessment:** CompTIA Security+ practice exam (target: >75%)
+
+---
+
+## Phase 2: SOC-Specific Skills (Month 3–4)
+
+### Month 3: SIEM & Log Analysis
+
+| Week | Topic | Resources | Hands-On Lab |
+|:---:|:---|:---|:---|
+| 9 | **SIEM fundamentals** — What is SIEM, how it works, data flow | Vendor training (Wazuh/Elastic/Splunk free courses) | Install Wazuh on a VM |
+| 10 | **Log analysis** — Windows logs (4624/4625/4688), Linux logs, syslog | TryHackMe "SOC Level 1" path | Investigate 10 real-format log entries |
+| 11 | **Search & query** — KQL, Lucene, SPL, regex basics | SIEM vendor documentation | Write 10 queries: find failed logins, process creation |
+| 12 | **Dashboard & visualization** — Build a SOC dashboard | Wazuh/Kibana dashboard tutorial | Create a dashboard with 5 panels |
+
+**Assessment:** "Given this SIEM data, find the brute force attack and document the timeline."
+
+### Month 4: Alert Triage & Investigation
+
+| Week | Topic | Resources | Hands-On Lab |
+|:---:|:---|:---|:---|
+| 13 | **Alert triage** — Severity classification, true vs false positive | [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md), [Tier 1 Runbook](../05_Incident_Response/Tier1_Runbook.en.md) | Triage 20 sample alerts |
+| 14 | **IOC enrichment** — VirusTotal, AbuseIPDB, URLhaus, Shodan | LetsDefend.io free labs | Enrich 10 IOCs using free tools |
+| 15 | **MITRE ATT&CK** — Tactics, techniques, procedures mapping | ATT&CK Navigator (online) | Map 5 alerts to ATT&CK techniques |
+| 16 | **Ticket writing** — Proper documentation, evidence preservation | [Communication Templates](../05_Incident_Response/Communication_Templates.en.md) | Write 5 incident tickets from sample data |
+
+**Assessment:** Full alert-to-ticket exercise — 10 alerts, complete triage pipeline.
+
+---
+
+## Phase 3: Incident Response (Month 5–6)
+
+### Month 5: IR Process & Playbooks
+
+| Week | Topic | Resources | Hands-On Lab |
+|:---:|:---|:---|:---|
+| 17 | **IR framework** — Preparation, Detection, Containment, Eradication, Recovery, Lessons | [IR Framework](../05_Incident_Response/Framework.en.md) | Walk through the IR framework with a scenario |
+| 18 | **Playbook drills** — PB-01 to PB-05 (Phishing, Ransomware, Malware, Brute Force, Account) | [Playbooks](../05_Incident_Response/Playbooks/) | Execute each playbook step-by-step with simulated data |
+| 19 | **Containment actions** — Isolate host, block IP, disable account, reset password | EDR/SIEM documentation | Practice containment in lab environment |
+| 20 | **Evidence handling** — Order of volatility, chain of custody, screenshots | [Evidence Collection](../05_Incident_Response/Evidence_Collection.en.md) | Collect evidence from a compromised VM |
+
+### Month 6: Advanced Topics & Certification
+
+| Week | Topic | Resources | Hands-On Lab |
+|:---:|:---|:---|:---|
+| 21 | **Threat intelligence** — IOC management, TI feeds, MISP basics | [TI Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.en.md) | Add IOCs to a TI platform |
+| 22 | **Tabletop exercise** — Participate in a group exercise | [Tabletop Exercises](../05_Incident_Response/Tabletop_Exercises.en.md) | Join a tabletop as a player |
+| 23 | **Cert prep** — CompTIA Security+ / CySA+ / SC-900 | Practice exams | Take 3 practice exams |
+| 24 | **Final assessment** — Full scenario test | Internal SOC team | Solo handle a multi-stage incident simulation |
+
+**Final Assessment:** Complete a 2-hour scenario: detect, triage, investigate, contain, document, and debrief. Score using [Tabletop Scoring Rubric](../05_Incident_Response/Tabletop_Exercises.en.md).
+
+---
+
+## Phase 4: Tier 2 Advanced Path (Month 7–12)
+
+| Month | Focus | Key Skills |
+|:---:|:---|:---|
+| 7 | **Deep Windows forensics** | Memory analysis (Volatility), registry forensics, prefetch, shimcache |
+| 8 | **Network forensics** | Zeek logs, full PCAP analysis, C2 detection patterns |
+| 9 | **Malware analysis (basic)** | Static analysis, sandbox usage, YARA rule writing |
+| 10 | **Cloud security** | AWS CloudTrail, Azure AD, M365 investigation |
+| 11 | **Detection engineering** | Sigma rule writing, tuning, coverage gap analysis |
+| 12 | **Threat hunting** | Hypothesis-driven hunting, data analysis, reporting |
+
+### Recommended T2 Certifications
+
+| Cert | Cost | Focus |
+|:---|:---:|:---|
+| CompTIA CySA+ | ~฿12K | SOC analyst skills |
+| BTL1 (Blue Team Level 1) | ~฿15K | Hands-on blue team |
+| SC-200 (Microsoft) | ~฿8K | Sentinel/Defender |
+| SANS GCIH | ~฿200K | Incident handling (gold standard) |
+| SANS GCFA | ~฿200K | Advanced forensics |
+
+---
+
+## Free Training Resources (Curated)
+
+| Resource | What You Learn | Cost | Level |
+|:---|:---|:---:|:---:|
+| [TryHackMe](https://tryhackme.com) | SOC Level 1 & 2 paths | Free tier | Beginner–Mid |
+| [LetsDefend](https://letsdefend.io) | SOC analyst simulation | Free tier | Beginner |
+| [CyberDefenders](https://cyberdefenders.org) | Blue team challenges | Free | Mid–Advanced |
+| [SANS Webcasts](https://sans.org/webcasts) | Expert sessions | Free | All |
+| [Malware Traffic Analysis](https://malware-traffic-analysis.net) | PCAP analysis exercises | Free | Mid |
+| [Blue Team Labs Online](https://blueteamlabs.online) | IR investigations | Free tier | Mid |
+| [AttackIQ Academy](https://academy.attackiq.com) | MITRE ATT&CK courses | Free | Beginner–Mid |
+| [Splunk Free Training](https://education.splunk.com) | Splunk fundamentals | Free | Beginner |
+| [Elastic Training](https://elastic.co/training) | Elastic/Kibana | Free | Beginner |
+| **This Repository** | Real SOPs, playbooks, rules | Free | All |
+
+---
+
+## Training Tracking Template
+
+### Individual Progress Card
+
+```
+Analyst Name: ____________________
+Start Date: ____________________
+Assigned Mentor: ____________________
+
+Phase 1: Foundations
+  □ Week 1:  Networking      [    /5  ]  Date: ________
+  □ Week 2:  Linux           [    /5  ]  Date: ________
+  □ Week 3:  Windows         [    /5  ]  Date: ________
+  □ Week 4:  Network Tools   [    /5  ]  Date: ________
+  □ Week 5:  Security Concepts[    /5  ]  Date: ________
+  □ Week 6:  Common Attacks   [    /5  ]  Date: ________
+  □ Week 7:  Vulnerabilities  [    /5  ]  Date: ________
+  □ Week 8:  Security Arch    [    /5  ]  Date: ________
+  ✎ Phase 1 Assessment: [    /100  ]  Pass: □ Yes □ No
+
+Phase 2: SOC Skills
+  □ Week 9:  SIEM Fundamentals[    /5  ]  Date: ________
+  □ Week 10: Log Analysis     [    /5  ]  Date: ________
+  □ Week 11: Search & Query   [    /5  ]  Date: ________
+  □ Week 12: Dashboards       [    /5  ]  Date: ________
+  □ Week 13: Alert Triage     [    /5  ]  Date: ________
+  □ Week 14: IOC Enrichment   [    /5  ]  Date: ________
+  □ Week 15: MITRE ATT&CK    [    /5  ]  Date: ________
+  □ Week 16: Ticket Writing   [    /5  ]  Date: ________
+  ✎ Phase 2 Assessment: [    /100  ]  Pass: □ Yes □ No
+
+Phase 3: IR
+  □ Week 17-20: Playbooks & Evidence  [    /5  ]
+  □ Week 21-24: TI, TTX, Cert prep   [    /5  ]
+  ✎ Final Assessment: [    /100  ]  Pass: □ Yes □ No
+  ✎ Certification: __________________  Date: ________
+
+Ready for Independent Work: □ Yes □ No
+  Signed by SOC Manager: __________________
+  Date: __________________
+```
+
+---
+
+## Manager's Quarterly Training Budget
+
+| Item | Per Person | 3 Analysts |
+|:---|:---:|:---:|
+| TryHackMe Premium | ฿5K/year | ฿15K |
+| CySA+ voucher | ฿12K one-time | ฿36K |
+| SANS OnDemand (1 course) | ฿130K | ฿390K |
+| Books & materials | ฿5K/year | ฿15K |
+| Conference (1/year) | ฿10–30K | ฿30–90K |
+| **Annual Total** | **฿162–182K** | **฿486–546K** |
+
+---
+
+## Related Documents
+
+- [SOC Building Roadmap](SOC_Building_Roadmap.en.md)
+- [Budget & Staffing](Budget_Staffing.en.md)
+- [Tier 1 Runbook](../05_Incident_Response/Tier1_Runbook.en.md)
+- [Interview Guide](../05_Incident_Response/Interview_Guide.en.md)
+- [Analyst Onboarding](../09_Training_Onboarding/Analyst_Onboarding_Path.en.md)
+
+
+---
+
+## File: 01_SOC_Fundamentals/Analyst_Training_Path.th.md
+
+# เส้นทางฝึก SOC Analyst — จากศูนย์สู่มืออาชีพ
+
+> **รหัสเอกสาร:** TRAIN-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **กลุ่มเป้าหมาย:** Analyst ใหม่, SOC Manager, HR
+
+---
+
+## หลักสูตร 6 เดือน → T1 Analyst | 12 เดือน → T2 Analyst
+
+---
+
+## เฟส 1: พื้นฐาน (เดือน 1–2)
+
+### เดือน 1: IT & Networking
+
+| สัปดาห์ | หัวข้อ | แหล่งเรียน | Lab |
+|:---:|:---|:---|:---|
+| 1 | **Networking** — OSI, TCP/IP, DNS | CompTIA Network+, YouTube | ตั้ง lab ด้วย VirtualBox |
+| 2 | **Linux** — CLI, permission, services | TryHackMe "Linux Fundamentals" | อ่าน log, หาไฟล์ |
+| 3 | **Windows** — AD, Event Viewer, registry | TryHackMe "Windows Fundamentals" | อ่าน Event Log |
+| 4 | **Network tools** — Wireshark, nmap, tcpdump | Wireshark tutorials | capture traffic |
+
+### เดือน 2: Security
+
+| สัปดาห์ | หัวข้อ | Lab |
+|:---:|:---|:---|
+| 5 | CIA triad, authentication, encryption | Hash ไฟล์, เข้ารหัส GPG |
+| 6 | ชนิดการโจมตี — phishing, malware | วิเคราะห์ email header |
+| 7 | CVE, CVSS, patch management | ค้น CVE, คำนวณ CVSS |
+| 8 | Firewall, IDS/IPS, DMZ, VPN | วาดแผนภาพ network |
+
+**สอบท้าย:** ข้อสอบ Security+ จำลอง (เป้า: >75%)
+
+---
+
+## เฟส 2: ทักษะ SOC (เดือน 3–4)
+
+### เดือน 3: SIEM & Log
+
+| สัปดาห์ | หัวข้อ | Lab |
+|:---:|:---|:---|
+| 9 | SIEM คืออะไร, data flow | ติดตั้ง Wazuh |
+| 10 | Log analysis — Windows/Linux | สืบสวน log 10 รายการ |
+| 11 | เขียน query — KQL/Lucene/regex | เขียน 10 queries |
+| 12 | สร้าง Dashboard | สร้าง dashboard 5 panels |
+
+### เดือน 4: Alert Triage
+
+| สัปดาห์ | หัวข้อ | Lab |
+|:---:|:---|:---|
+| 13 | จัดลำดับ alert, true/false positive | Triage 20 alerts |
+| 14 | IOC enrichment — VT, AbuseIPDB | Enrich 10 IOCs |
+| 15 | MITRE ATT&CK mapping | Map 5 alerts |
+| 16 | เขียน ticket | เขียน 5 tickets |
+
+**สอบท้าย:** Alert-to-ticket exercise 10 alerts
+
+---
+
+## เฟส 3: Incident Response (เดือน 5–6)
+
+| สัปดาห์ | หัวข้อ | Lab |
+|:---:|:---|:---|
+| 17 | IR Framework (NIST) | ซ้อมสถานการณ์ |
+| 18 | Playbook PB-01 ถึง PB-05 | ทำตาม playbook ทีละขั้น |
+| 19 | Containment — isolate, block, reset | ฝึกใน lab |
+| 20 | เก็บหลักฐาน, chain of custody | เก็บจาก VM ที่ถูกยึด |
+| 21 | Threat Intelligence, MISP | เพิ่ม IOC ใน TI platform |
+| 22 | ซ้อม Tabletop | เข้าร่วมเป็นผู้เล่น |
+| 23 | เตรียมสอบ Security+/CySA+ | ทำข้อสอบจำลอง 3 ชุด |
+| 24 | **สอบจบ** — สถานการณ์จำลองเต็มรูปแบบ | แก้เหตุเดี่ยว 2 ชม. |
+
+---
+
+## เฟส 4: เส้นทาง T2 (เดือน 7–12)
+
+| เดือน | สิ่งที่เรียน |
+|:---:|:---|
+| 7 | Windows forensics ลึก (Volatility, registry, prefetch) |
+| 8 | Network forensics (Zeek, PCAP, C2 patterns) |
+| 9 | Malware analysis เบื้องต้น (static, sandbox, YARA) |
+| 10 | Cloud security (AWS/Azure investigation) |
+| 11 | Detection engineering (Sigma rules, tuning) |
+| 12 | Threat hunting (hypothesis-driven) |
+
+---
+
+## Cert แนะนำ
+
+| Cert | ค่าใช้จ่าย | ระดับ |
+|:---|:---:|:---:|
+| CompTIA Security+ | ~฿10K | เริ่มต้น |
+| SC-900 (Microsoft) | ~฿5K | เริ่มต้น |
+| CySA+ | ~฿12K | กลาง |
+| BTL1 | ~฿15K | กลาง |
+| SC-200 | ~฿8K | กลาง |
+| SANS GCIH | ~฿200K | สูง |
+
+---
+
+## แหล่งเรียนฟรี (คัดมาแล้ว)
+
+| แหล่ง | เรียนอะไร | ระดับ |
+|:---|:---|:---:|
+| [TryHackMe](https://tryhackme.com) | SOC Level 1 & 2 | เริ่มต้น–กลาง |
+| [LetsDefend](https://letsdefend.io) | จำลอง SOC analyst | เริ่มต้น |
+| [CyberDefenders](https://cyberdefenders.org) | Blue team challenges | กลาง–สูง |
+| [SANS Webcasts](https://sans.org/webcasts) | Expert sessions | ทุกระดับ |
+| [Malware Traffic Analysis](https://malware-traffic-analysis.net) | วิเคราะห์ PCAP | กลาง |
+| [AttackIQ Academy](https://academy.attackiq.com) | MITRE ATT&CK | เริ่มต้น–กลาง |
+| **Repository นี้** | SOPs, playbooks, rules จริง | ทุกระดับ |
+
+---
+
+## แบบติดตามความก้าวหน้า
+
+```
+ชื่อ Analyst: ____________________
+วันเริ่ม: ____________________
+Mentor: ____________________
+
+เฟส 1: พื้นฐาน [    /100]  ผ่าน: □
+เฟส 2: ทักษะ SOC [    /100]  ผ่าน: □
+เฟส 3: IR [    /100]  ผ่าน: □
+Cert: __________________  วันที่ผ่าน: ________
+
+พร้อมทำงานอิสระ: □ ใช่  □ ยังไม่พร้อม
+ลงชื่อ SOC Manager: __________________
+```
+
+---
+
+## งบฝึกอบรมต่อปี
+
+| รายการ | ต่อคน | 3 คน |
+|:---|:---:|:---:|
+| TryHackMe Premium | ฿5K | ฿15K |
+| CySA+ voucher | ฿12K | ฿36K |
+| SANS 1 course | ฿130K | ฿390K |
+| หนังสือ + วัสดุ | ฿5K | ฿15K |
+| Conference 1 ครั้ง | ฿10–30K | ฿30–90K |
+| **รวม/ปี** | **~฿162–182K** | **~฿486–546K** |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)
+- [งบประมาณและจัดคน](Budget_Staffing.th.md)
+- [คู่มือ Tier 1](../05_Incident_Response/Tier1_Runbook.th.md)
+- [คู่มือสัมภาษณ์](../05_Incident_Response/Interview_Guide.th.md)
+
+
+---
+
+## File: 01_SOC_Fundamentals/Budget_Staffing.en.md
+
+# SOC Budget & Staffing Guide
+
+> **Document ID:** BUD-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Audience:** CISO, IT Director, Finance, SOC Manager
+
+---
+
+## How to Use This Guide
+
+This guide helps you build a business case for your SOC with realistic cost estimates, staffing models, and ROI calculations. Adjust numbers to your local market and organization size.
+
+---
+
+## Part 1: Staffing Models
+
+### Model A: Minimal SOC (8×5 Coverage)
+
+```
+Mon–Fri, 08:00–17:00 only
+After-hours: MSSP or on-call rotation
+
+┌─────────────────────────────┐
+│      SOC Manager (1)        │ ← Part-time if small org
+├─────────────────────────────┤
+│   T1 Analyst (1)  │  T1 (1) │ ← 2 analysts, alternate shifts
+├─────────────────────────────┤
+│   MSSP (after-hours)        │ ← Outsource nights/weekends
+└─────────────────────────────┘
+
+Headcount: 2–3 people
+Best for: < 500 employees, low-risk industry
+```
+
+### Model B: Extended SOC (16×5 Coverage)
+
+```
+Mon–Fri, 07:00–23:00 (two shifts)
+After-hours: MSSP or on-call
+
+        Morning Shift (07–15)    Evening Shift (15–23)
+       ┌──────────────────┐    ┌──────────────────┐
+       │ T1 Analyst (1)   │    │ T1 Analyst (1)   │
+       │ T2 Analyst (1)   │    │ T1 Analyst (1)   │
+       └──────────────────┘    └──────────────────┘
+                 │
+         SOC Manager (1) ← Day shift, oversees both
+         Detection Eng (1) ← Day shift, creates rules
+
+Headcount: 5–6 people
+Best for: 500–2,000 employees, moderate risk
+```
+
+### Model C: Full 24×7 SOC
+
+```
+24/7/365 coverage (three shifts + weekends)
+
+  Day (08–16)      Swing (16–00)     Night (00–08)
+┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+│ T1 (1)       │  │ T1 (1)       │  │ T1 (1)       │
+│ T2 (1)       │  │ T2 (1)       │  │ T1 (1)       │
+└──────────────┘  └──────────────┘  └──────────────┘
+       │
+ SOC Manager (1) ─── IR Lead (1)
+ Detection Eng (1) ─── Threat Intel (1)
+ Forensic Analyst (1)
+
+Headcount: 10–15 people (including backfills for PTO/sick)
+Best for: 2,000+ employees, regulated industry
+```
+
+### Staffing Calculator
+
+```
+Minimum analysts for 24/7 = 5.25 FTE per seat
+
+Formula:
+  365 days × 24 hours = 8,760 hours/year
+  1 FTE ≈ 1,670 working hours/year (after PTO, training, sick leave)
+  8,760 ÷ 1,670 = 5.25 FTE per 24/7 seat
+
+For 2 concurrent analysts 24/7:
+  5.25 × 2 = 10.5 FTE → hire 11 analysts minimum
+```
+
+---
+
+## Part 2: Role Definitions & Salary Ranges
+
+### Thailand Market (2025–2026)
+
+| Role | Level | Salary Range (฿/month) | Total Cost (฿/year) |
+|:---|:---:|:---:|:---:|
+| SOC Analyst T1 (Junior) | Entry | 25,000–45,000 | 300K–540K |
+| SOC Analyst T1 (1–2 yrs) | Junior | 35,000–60,000 | 420K–720K |
+| SOC Analyst T2 (3–5 yrs) | Mid | 50,000–80,000 | 600K–960K |
+| SOC Analyst T3 / IR (5+ yrs) | Senior | 70,000–120,000 | 840K–1.44M |
+| Detection Engineer | Mid-Senior | 60,000–100,000 | 720K–1.2M |
+| Threat Intelligence Analyst | Mid | 50,000–90,000 | 600K–1.08M |
+| Forensic Analyst | Mid-Senior | 60,000–100,000 | 720K–1.2M |
+| SOC Manager | Senior | 80,000–150,000 | 960K–1.8M |
+| CISO | Executive | 150,000–350,000 | 1.8M–4.2M |
+
+> **Note:** Add 15–25% for benefits (SSO, health insurance, provident fund, bonuses).
+
+### International Market (USD Reference)
+
+| Role | US Market | UK Market | Singapore |
+|:---|:---:|:---:|:---:|
+| T1 Analyst | $55–75K | £30–45K | S$48–72K |
+| T2 Analyst | $75–110K | £45–70K | S$72–108K |
+| SOC Manager | $120–180K | £75–120K | S$120–180K |
+
+---
+
+## Part 3: Budget Templates
+
+### Budget A: Minimal SOC (Open-Source Stack)
+
+| Category | Item | Year 1 (฿) | Year 2+ (฿) |
+|:---|:---|:---:|:---:|
+| **Staff** | SOC Manager (0.5 FTE) | 480K–900K | 500K–950K |
+| | T1 Analyst × 2 | 600K–1.08M | 640K–1.15M |
+| **Subtotal Staff** | | **1.08M–1.98M** | **1.14M–2.1M** |
+| **Technology** | SIEM (Wazuh — self-hosted) | 0 | 0 |
+| | Server hardware / Cloud VMs | 200K–500K | 100K–300K |
+| | EDR (Wazuh Agent) | 0 | 0 |
+| | Ticketing (TheHive) | 0 | 0 |
+| | TI (MISP) | 0 | 0 |
+| **Subtotal Technology** | | **200K–500K** | **100K–300K** |
+| **Services** | MSSP (after-hours) | 600K–1.2M | 600K–1.2M |
+| | Internet / connectivity | 60K–120K | 60K–120K |
+| **Subtotal Services** | | **660K–1.32M** | **660K–1.32M** |
+| **Training** | Certs + courses (2 people) | 100K–300K | 100K–300K |
+| **Contingency** | 10% buffer | 200K–400K | 200K–400K |
+| **GRAND TOTAL** | | **2.24M–4.5M** | **2.2M–4.42M** |
+
+### Budget B: Mid-Range SOC (Commercial + Open-Source)
+
+| Category | Item | Year 1 (฿) | Year 2+ (฿) |
+|:---|:---|:---:|:---:|
+| **Staff** | SOC Manager | 960K–1.8M | 1.0M–1.9M |
+| | T1 Analyst × 2 | 840K–1.44M | 900K–1.5M |
+| | T2 Analyst × 1 | 600K–960K | 640K–1.0M |
+| | Detection Engineer × 1 | 720K–1.2M | 760K–1.3M |
+| **Subtotal Staff** | | **3.12M–5.4M** | **3.3M–5.7M** |
+| **Technology** | SIEM (Elastic/Sentinel) | 1M–3M | 1M–3M |
+| | EDR (Defender/CrowdStrike) | 1M–3M | 1M–3M |
+| | Vuln Scanner | 500K–1M | 500K–1M |
+| | SOAR | 0–1M | 0–1M |
+| **Subtotal Technology** | | **2.5M–8M** | **2.5M–8M** |
+| **Services** | MSSP (night shift) | 1M–2M | 1M–2M |
+| **Training** | Certs + SANS (4 people) | 400K–800K | 300K–600K |
+| **Contingency** | 10% buffer | 700K–1.6M | 700K–1.6M |
+| **GRAND TOTAL** | | **7.72M–17.8M** | **7.8M–17.9M** |
+
+### Budget C: Enterprise 24/7 SOC
+
+| Category | Item | Year 1 (฿) |
+|:---|:---|:---:|
+| **Staff** (10–15 FTE) | All roles | 10M–25M |
+| **Technology** | Enterprise stack | 5M–15M |
+| **Services** | Consulting, TI feeds | 2M–5M |
+| **Training** | SANS, vendor certs | 1M–3M |
+| **Facility** | SOC room, monitors | 500K–2M |
+| **Contingency** | 10% | 2M–5M |
+| **GRAND TOTAL** | | **20.5M–55M** |
+
+---
+
+## Part 4: ROI & Business Case
+
+### Cost of NOT Having a SOC
+
+| Risk | Average Cost per Incident |
+|:---|:---:|
+| Data breach (ASEAN average) | ฿85–120M ($2.5–3.5M) |
+| Ransomware (mid-size org) | ฿10–50M ($300K–1.5M) |
+| BEC / wire fraud | ฿3–15M ($100K–500K) |
+| Regulatory fine (PDPA) | Up to ฿5M per offense |
+| Reputation damage | Unquantifiable |
+| Business downtime (per hour) | ฿100K–1M+ |
+
+### ROI Formula
+
+```
+ROI = (Risk Reduced - SOC Cost) / SOC Cost × 100%
+
+Example:
+  Without SOC: 2 incidents/year × ฿20M average = ฿40M risk
+  With SOC (95% detection): 0.1 incidents/year = ฿2M risk
+  SOC Cost: ฿8M/year
+
+  Risk Reduced = ฿40M - ฿2M = ฿38M
+  ROI = (฿38M - ฿8M) / ฿8M × 100% = 375%
+```
+
+### One-Page Business Case Template
+
+```
+EXECUTIVE SUMMARY
+━━━━━━━━━━━━━━━━━━
+Problem:    [Organization] has no dedicated security monitoring.
+            Average breach cost in our industry: ฿___M
+            Current annual security incidents: ___
+
+Proposal:   Build a [Model A/B/C] SOC
+            Estimated cost: ฿___M/year
+            Expected risk reduction: ____%
+
+ROI:        ___% return in year 1
+            Breakeven after ___ months
+
+Comparison:
+┌──────────────────┬────────────┬────────────┬────────────┐
+│                  │  Option A  │  Option B  │  Option C  │
+│                  │  Minimal   │  Mid-Range │  Enterprise│
+├──────────────────┼────────────┼────────────┼────────────┤
+│ Annual Cost      │ ฿2–5M     │ ฿8–18M    │ ฿20–55M   │
+│ Coverage         │ 8×5        │ 16×5       │ 24×7       │
+│ Detection Rate   │ ~60%       │ ~85%       │ ~95%       │
+│ MTTR             │ < 8 hrs    │ < 4 hrs    │ < 1 hr     │
+│ PDPA Compliance  │ Partial    │ Full       │ Full       │
+└──────────────────┴────────────┴────────────┴────────────┘
+
+Recommendation: [Option B] provides optimal balance of cost and coverage.
+
+APPROVAL
+□ Approved    □ Revision needed    □ Rejected
+
+Signed: ___________________ Date: ___________
+```
+
+---
+
+## Part 5: Hiring Timeline
+
+| Week | Activity |
+|:---:|:---|
+| 1–2 | Write job descriptions, post on JobThai/LinkedIn/TopDev |
+| 3–4 | Screen resumes, schedule interviews |
+| 5–6 | Technical interviews (use [Interview Guide](../05_Incident_Response/Interview_Guide.en.md)) |
+| 7 | Offers extended |
+| 8–9 | Notice period (Thai standard: 30 days) |
+| 10–12 | Onboarding + training (use [Training Path](Analyst_Training_Path.en.md)) |
+
+### Where to Post (Thailand)
+
+| Platform | Cost | Best For |
+|:---|:---|:---|
+| JobThai | ฿3–8K/post | Thai market, entry-level |
+| LinkedIn | ฿15–30K/post | Mid-senior, international |
+| TopDev | ฿5–10K/post | Tech talent |
+| University job fairs | Free–฿20K | Fresh graduates |
+| Cybersecurity communities | Free | Passionate candidates |
+| SANS/THCert events | Free | Specialized talent |
+
+---
+
+## Related Documents
+
+- [SOC Building Roadmap](SOC_Building_Roadmap.en.md)
+- [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md)
+- [Interview Guide](../05_Incident_Response/Interview_Guide.en.md)
+- [Analyst Training Path](Analyst_Training_Path.en.md)
+- [SLA Template](../06_Operations_Management/SLA_Template.en.md)
+
+
+---
+
+## File: 01_SOC_Fundamentals/Budget_Staffing.th.md
+
+# คู่มืองบประมาณและจัดคน SOC
+
+> **รหัสเอกสาร:** BUD-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **กลุ่มเป้าหมาย:** CISO, ผู้บริหาร IT, ฝ่ายการเงิน
+
+---
+
+## ส่วนที่ 1: โมเดลจัดคน
+
+### Model A: SOC ขนาดเล็ก (8×5)
+
+```
+จ–ศ 08:00–17:00 | นอกเวลา: MSSP
+
+SOC Manager (1) ← part-time ได้
+T1 Analyst (2)
+MSSP (นอกเวลา)
+
+คน: 2–3 | เหมาะ: <500 พนักงาน
+```
+
+### Model B: SOC ขนาดกลาง (16×5)
+
+```
+จ–ศ 07:00–23:00 (2 กะ) | นอกเวลา: MSSP
+
+กะเช้า: T1 + T2
+กะบ่าย: T1 × 2
++ SOC Manager + Detection Engineer
+
+คน: 5–6 | เหมาะ: 500–2,000 พนักงาน
+```
+
+### Model C: SOC 24/7
+
+```
+3 กะ + backup = 10–15 คน
+เหมาะ: 2,000+ พนักงาน, อุตสาหกรรมมีกฎระเบียบ
+```
+
+### สูตรคำนวณ
+
+```
+24/7 = 8,760 ชม./ปี
+1 คน = ~1,670 ชม./ปี (หลังหักลาพัก, ฝึก)
+ต้องการ 5.25 คน ต่อ 1 ที่นั่ง 24/7
+
+2 คนตลอด 24/7 = 11 คนขึ้นต่ำ
+```
+
+---
+
+## ส่วนที่ 2: เงินเดือน (ตลาดไทย)
+
+| ตำแหน่ง | ระดับ | เงินเดือน (฿/เดือน) | ต่อปี |
+|:---|:---:|:---:|:---:|
+| SOC Analyst T1 (มือใหม่) | Entry | 25K–45K | 300K–540K |
+| SOC Analyst T1 (1–2 ปี) | Junior | 35K–60K | 420K–720K |
+| SOC Analyst T2 (3–5 ปี) | Mid | 50K–80K | 600K–960K |
+| SOC Analyst T3/IR (5+ ปี) | Senior | 70K–120K | 840K–1.44M |
+| Detection Engineer | Mid-Senior | 60K–100K | 720K–1.2M |
+| Threat Intel Analyst | Mid | 50K–90K | 600K–1.08M |
+| SOC Manager | Senior | 80K–150K | 960K–1.8M |
+| CISO | ผู้บริหาร | 150K–350K | 1.8M–4.2M |
+
+> เพิ่ม 15–25% สำหรับสวัสดิการ (ประกันสังคม, ประกันสุขภาพ, PVD, โบนัส)
+
+---
+
+## ส่วนที่ 3: งบประมาณ
+
+### Budget A: SOC ประหยัด (Open-Source)
+
+| หมวด | ปีแรก (฿) |
+|:---|:---:|
+| คน (Manager 0.5 + T1 × 2) | 1.08M–1.98M |
+| เทคโนโลยี (Wazuh + VMs) | 200K–500K |
+| บริการ (MSSP + internet) | 660K–1.32M |
+| ฝึกอบรม | 100K–300K |
+| สำรอง 10% | 200K–400K |
+| **รวม** | **2.24M–4.5M** |
+
+### Budget B: SOC กลาง (เชิงพาณิชย์)
+
+| หมวด | ปีแรก (฿) |
+|:---|:---:|
+| คน (Manager + T1×2 + T2 + DetEng) | 3.12M–5.4M |
+| เทคโนโลยี (SIEM + EDR + Vuln) | 2.5M–8M |
+| MSSP (กะดึก) | 1M–2M |
+| ฝึกอบรม SANS | 400K–800K |
+| สำรอง 10% | 700K–1.6M |
+| **รวม** | **7.72M–17.8M** |
+
+### Budget C: SOC Enterprise 24/7
+
+| หมวด | ปีแรก (฿) |
+|:---|:---:|
+| คน (10–15 คน) | 10M–25M |
+| เทคโนโลยี | 5M–15M |
+| บริการ + ฝึก + ห้อง + สำรอง | 5.5M–15M |
+| **รวม** | **20.5M–55M** |
+
+---
+
+## ส่วนที่ 4: ROI & Business Case
+
+### ต้นทุนของการ "ไม่มี SOC"
+
+| ความเสี่ยง | ต้นทุนเฉลี่ย/ครั้ง |
+|:---|:---:|
+| Data breach (ASEAN) | ฿85–120M |
+| Ransomware | ฿10–50M |
+| BEC/โอนเงินหลอก | ฿3–15M |
+| ค่าปรับ PDPA | สูงสุด ฿5M/ครั้ง |
+| Downtime (ต่อชั่วโมง) | ฿100K–1M+ |
+
+### สูตร ROI
+
+```
+ROI = (ความเสี่ยงลด - ต้นทุน SOC) / ต้นทุน SOC × 100%
+
+ตัวอย่าง:
+  ไม่มี SOC: 2 เหตุ/ปี × ฿20M = ฿40M ความเสี่ยง
+  มี SOC (95%): 0.1 เหตุ/ปี = ฿2M
+  ต้นทุน SOC: ฿8M/ปี
+  ROI = (฿38M - ฿8M) / ฿8M = 375%
+```
+
+---
+
+## ส่วนที่ 5: Timeline การจ้าง
+
+| สัปดาห์ | กิจกรรม |
+|:---:|:---|
+| 1–2 | เขียน JD, โพสต์ JobThai/LinkedIn |
+| 3–4 | คัดกรอง, นัดสัมภาษณ์ |
+| 5–6 | สัมภาษณ์เทคนิค (ใช้ [คู่มือสัมภาษณ์](../05_Incident_Response/Interview_Guide.th.md)) |
+| 7 | ยื่นข้อเสนอ |
+| 8–9 | Notice period (30 วัน) |
+| 10–12 | Onboarding + ฝึกอบรม |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)
+- [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md)
+- [คู่มือสัมภาษณ์](../05_Incident_Response/Interview_Guide.th.md)
+- [เส้นทางฝึก Analyst](Analyst_Training_Path.th.md)
+
+
+---
+
+## File: 01_SOC_Fundamentals/Infrastructure_Setup.en.md
+
+# SOC Infrastructure Setup Guide — Hands-On Installation
+
+> **Document ID:** INFRA-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Prerequisite:** Read [Technology Stack Guide](Technology_Stack.en.md) to choose your stack
+
+---
+
+## This Guide Covers
+
+Step-by-step installation of the **Open-Source Stack (Stack A)** using Wazuh. This is the recommended starting point for beginners — zero cost, full functionality.
+
+> If you chose Microsoft Sentinel (Stack B), skip to [Sentinel Quick Setup](#sentinel-quick-setup).
+
+---
+
+## Part 1: Wazuh All-in-One Installation
+
+### Requirements
+
+| Item | Minimum | Recommended |
+|:---|:---|:---|
+| OS | Ubuntu 22.04 LTS / CentOS 8 | Ubuntu 22.04 LTS |
+| CPU | 4 cores | 8 cores |
+| RAM | 8 GB | 16 GB |
+| Disk | 50 GB | 200 GB+ (depends on log volume) |
+| Network | Static IP, port 1514/1515/443 open | Dedicated VLAN |
+
+### Step 1: Install Wazuh (Single-Node)
+
+```bash
+# Download and run Wazuh installer (automated)
+curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh
+curl -sO https://packages.wazuh.com/4.9/config.yml
+
+# Edit config.yml — set your server IP
+cat > config.yml << 'EOF'
+nodes:
+  indexer:
+    - name: wazuh-indexer
+      ip: "YOUR_SERVER_IP"
+  server:
+    - name: wazuh-server
+      ip: "YOUR_SERVER_IP"
+  dashboard:
+    - name: wazuh-dashboard
+      ip: "YOUR_SERVER_IP"
+EOF
+
+# Run installer (takes 5-10 minutes)
+sudo bash wazuh-install.sh -a
+
+# ⚠️ SAVE the admin password printed at the end!
+# Access dashboard: https://YOUR_SERVER_IP
+# Username: admin
+# Password: (shown in output)
+```
+
+### Step 2: Verify Installation
+
+```bash
+# Check all services running
+sudo systemctl status wazuh-manager
+sudo systemctl status wazuh-indexer
+sudo systemctl status wazuh-dashboard
+
+# Check Wazuh API
+curl -k -u admin:PASSWORD https://localhost:55000/?pretty
+
+# Open browser → https://YOUR_SERVER_IP
+# Login → You should see the Wazuh dashboard
+```
+
+### Step 3: Deploy Agents on Endpoints
+
+#### Windows Agent
+```powershell
+# Download from Wazuh dashboard → Agents → Deploy new agent
+# Or use PowerShell:
+Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi -OutFile wazuh-agent.msi
+
+# Install with server address
+msiexec.exe /i wazuh-agent.msi /q WAZUH_MANAGER="YOUR_SERVER_IP" WAZUH_AGENT_GROUP="default"
+
+# Start service
+net start WazuhSvc
+```
+
+#### Linux Agent
+```bash
+# Ubuntu/Debian
+curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | sudo gpg --dearmor -o /usr/share/keyrings/wazuh.gpg
+echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | sudo tee /etc/apt/sources.list.d/wazuh.list
+sudo apt update && sudo apt install wazuh-agent -y
+
+# Configure manager address
+sudo sed -i 's/MANAGER_IP/YOUR_SERVER_IP/' /var/ossec/etc/ossec.conf
+
+# Start agent
+sudo systemctl daemon-reload
+sudo systemctl enable wazuh-agent
+sudo systemctl start wazuh-agent
+```
+
+### Step 4: Verify Agents Connected
+
+```bash
+# On Wazuh server — list connected agents
+sudo /var/ossec/bin/agent_control -l
+
+# Expected output:
+# ID: 001, Name: web-server-01, Status: Active
+# ID: 002, Name: dc-01, Status: Active
+```
+
+---
+
+## Part 2: Configure Log Sources
+
+### Active Directory Logs → Wazuh
+
+On each Domain Controller, configure the Wazuh agent:
+
+```xml
+<!-- Add to agent ossec.conf on DC -->
+<ossec_config>
+  <localfile>
+    <location>Security</location>
+    <log_format>eventchannel</log_format>
+    <query>Event/System[EventID=4624 or EventID=4625 or EventID=4648 or
+           EventID=4672 or EventID=4688 or EventID=4720 or EventID=4726 or
+           EventID=4732 or EventID=4756 or EventID=1102]</query>
+  </localfile>
+  <localfile>
+    <location>Microsoft-Windows-Sysmon/Operational</location>
+    <log_format>eventchannel</log_format>
+  </localfile>
+</ossec_config>
+```
+
+### Firewall (Syslog) → Wazuh
+
+```xml
+<!-- Add to Wazuh server ossec.conf -->
+<ossec_config>
+  <remote>
+    <connection>syslog</connection>
+    <port>514</port>
+    <protocol>udp</protocol>
+    <allowed-ips>FIREWALL_IP</allowed-ips>
+  </remote>
+</ossec_config>
+```
+
+On your firewall, configure syslog output to `WAZUH_SERVER_IP:514`.
+
+### Linux Servers → Wazuh
+
+```xml
+<!-- Auto-monitored on agent install, but add custom logs: -->
+<ossec_config>
+  <localfile>
+    <location>/var/log/auth.log</location>
+    <log_format>syslog</log_format>
+  </localfile>
+  <localfile>
+    <location>/var/log/nginx/access.log</location>
+    <log_format>syslog</log_format>
+  </localfile>
+</ossec_config>
+```
+
+---
+
+## Part 3: Install Sysmon (Windows Enhanced Logging)
+
+Sysmon dramatically improves Windows detection capability:
+
+```powershell
+# Download Sysmon
+Invoke-WebRequest -Uri https://download.sysinternals.com/files/Sysmon.zip -OutFile Sysmon.zip
+Expand-Archive Sysmon.zip
+
+# Download recommended config (SwiftOnSecurity)
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/sysmonconfig-export.xml -OutFile sysmonconfig.xml
+
+# Install Sysmon with config
+.\Sysmon64.exe -accepteula -i sysmonconfig.xml
+
+# Verify
+Get-Service Sysmon64
+Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" -MaxEvents 5
+```
+
+---
+
+## Part 4: Import Sigma Rules into Wazuh
+
+```bash
+# Wazuh uses its own rule format, but you can create custom rules
+# based on Sigma detection logic
+
+# Example: Create a brute force detection rule
+sudo cat >> /var/ossec/etc/rules/local_rules.xml << 'EOF'
+<group name="authentication_failures,">
+  <rule id="100001" level="10" frequency="10" timeframe="300">
+    <if_matched_sid>60122</if_matched_sid>
+    <description>SOC: Brute force - 10+ login failures in 5 min (PB-04)</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>attack,brute_force,PB-04</group>
+  </rule>
+</group>
+EOF
+
+# Restart to apply
+sudo systemctl restart wazuh-manager
+
+# Validate rules
+sudo /var/ossec/bin/wazuh-logtest
+```
+
+---
+
+## Part 5: Set Up Alert Notifications
+
+### Email Alerts
+
+```xml
+<!-- Add to Wazuh server ossec.conf -->
+<ossec_config>
+  <global>
+    <email_notification>yes</email_notification>
+    <smtp_server>smtp.gmail.com</smtp_server>
+    <email_from>soc-alerts@company.com</email_from>
+    <email_to>soc-team@company.com</email_to>
+    <email_maxperhour>100</email_maxperhour>
+  </global>
+  
+  <email_alerts>
+    <email_to>soc-team@company.com</email_to>
+    <level>10</level>
+  </email_alerts>
+</ossec_config>
+```
+
+### Slack Integration
+
+```bash
+# Create a Wazuh integration script for Slack
+sudo cat > /var/ossec/integrations/custom-slack.py << 'PYEOF'
+#!/usr/bin/env python3
+import sys, json, requests
+
+SLACK_WEBHOOK = "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+
+def main():
+    alert_file = open(sys.argv[1])
+    alert = json.load(alert_file)
+    
+    msg = {
+        "text": f"🚨 *SOC Alert (Level {alert['rule']['level']})*\n"
+                f"Rule: {alert['rule']['description']}\n"
+                f"Agent: {alert.get('agent', {}).get('name', 'N/A')}\n"
+                f"Time: {alert['timestamp']}"
+    }
+    requests.post(SLACK_WEBHOOK, json=msg)
+
+if __name__ == "__main__":
+    main()
+PYEOF
+
+chmod 750 /var/ossec/integrations/custom-slack.py
+chown root:wazuh /var/ossec/integrations/custom-slack.py
+```
+
+---
+
+## Part 6: TheHive Installation (Ticketing)
+
+```bash
+# Install prerequisites
+sudo apt install -y openjdk-11-jre-headless
+
+# Add TheHive repository
+wget -qO- https://raw.githubusercontent.com/StrangeBeeCorp/Security/main/PGP%20keys/packages.key | sudo gpg --dearmor -o /usr/share/keyrings/strangebee-archive-keyring.gpg
+echo 'deb [signed-by=/usr/share/keyrings/strangebee-archive-keyring.gpg] https://deb.strangebee.com thehive-5.x main' | sudo tee /etc/apt/sources.list.d/strangebee.list
+
+sudo apt update && sudo apt install -y thehive
+
+# Start TheHive
+sudo systemctl enable thehive
+sudo systemctl start thehive
+
+# Access: http://YOUR_SERVER_IP:9000
+# Default login: admin@thehive.local / secret
+# ⚠️ CHANGE PASSWORD IMMEDIATELY
+```
+
+---
+
+## Sentinel Quick Setup
+
+If you chose **Stack B (Microsoft)**:
+
+```
+Step 1: Azure Portal → Create resource → Microsoft Sentinel
+Step 2: Create Log Analytics Workspace
+Step 3: Add Sentinel to workspace
+Step 4: Data connectors → Enable:
+        ✅ Microsoft 365 Defender
+        ✅ Azure Active Directory
+        ✅ Azure Activity
+        ✅ Microsoft Defender for Cloud
+Step 5: Analytics → Rule templates → Enable recommended rules
+Step 6: Done! You have a SIEM.
+```
+
+> Time estimate: **30 minutes** if you have Azure admin access.
+
+---
+
+## Verification Checklist
+
+After setup, verify everything works:
+
+```
+□ Wazuh dashboard accessible at https://SERVER_IP
+□ At least 3 agents connected and active
+□ Events visible in dashboard (real-time)
+□ AD login events appearing (Event ID 4624/4625)
+□ Firewall logs arriving via syslog
+□ Sysmon installed on Windows endpoints
+□ Custom brute-force rule triggers on test
+□ Email/Slack alerts received
+□ TheHive accessible and login works
+□ Take a screenshot and celebrate! 🎉
+```
+
+---
+
+## Troubleshooting
+
+| Problem | Solution |
+|:---|:---|
+| Agent can't connect | Check firewall: port 1514/1515 open? |
+| No data in dashboard | Wait 5 min, then check agent status |
+| Syslog not arriving | Check `tcpdump -i any port 514` on Wazuh server |
+| High disk usage | Reduce log retention or add disk |
+| Dashboard slow | Increase indexer RAM to 16 GB |
+| Agent shows "Disconnected" | Restart agent: `systemctl restart wazuh-agent` |
+
+---
+
+## Related Documents
+
+- [SOC Building Roadmap](SOC_Building_Roadmap.en.md)
+- [Technology Stack Guide](Technology_Stack.en.md)
+- [Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.en.md)
+- [Detection Rules Index](../07_Detection_Rules/README.md)
+
+
+---
+
+## File: 01_SOC_Fundamentals/Infrastructure_Setup.th.md
+
+# คู่มือติดตั้ง SOC Infrastructure — Hands-On
+
+> **รหัสเอกสาร:** INFRA-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **อ่านก่อน:** [คู่มือเลือก Technology Stack](Technology_Stack.th.md)
+
+---
+
+## คู่มือนี้ครอบคลุม
+
+การติดตั้ง **Open-Source Stack (Stack A)** ด้วย Wazuh ทีละขั้น — ค่าใช้จ่ายศูนย์ ฟังก์ชันครบ
+
+---
+
+## ส่วนที่ 1: ติดตั้ง Wazuh
+
+### ความต้องการขั้นต่ำ
+- Ubuntu 22.04 LTS
+- 4 cores / 8 GB RAM / 50 GB disk
+- Static IP
+
+### ติดตั้ง
+
+```bash
+# ดาวน์โหลดและรัน
+curl -sO https://packages.wazuh.com/4.9/wazuh-install.sh
+curl -sO https://packages.wazuh.com/4.9/config.yml
+
+# แก้ config.yml — ใส่ IP เซิร์ฟเวอร์
+# แล้วรัน:
+sudo bash wazuh-install.sh -a
+
+# ⚠️ จดรหัส admin ที่แสดงตอนจบ!
+# เข้า: https://YOUR_SERVER_IP
+```
+
+### ตรวจสอบ
+```bash
+sudo systemctl status wazuh-manager
+sudo systemctl status wazuh-indexer
+sudo systemctl status wazuh-dashboard
+```
+
+---
+
+## ส่วนที่ 2: ติดตั้ง Agent
+
+### Windows
+```powershell
+# ดาวน์โหลดจาก Wazuh Dashboard → Agents → Deploy
+# หรือ:
+Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.9.0-1.msi -OutFile wazuh-agent.msi
+msiexec.exe /i wazuh-agent.msi /q WAZUH_MANAGER="YOUR_SERVER_IP"
+net start WazuhSvc
+```
+
+### Linux
+```bash
+# Ubuntu/Debian
+curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | sudo gpg --dearmor -o /usr/share/keyrings/wazuh.gpg
+echo "deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main" | sudo tee /etc/apt/sources.list.d/wazuh.list
+sudo apt update && sudo apt install wazuh-agent -y
+sudo sed -i 's/MANAGER_IP/YOUR_SERVER_IP/' /var/ossec/etc/ossec.conf
+sudo systemctl enable --now wazuh-agent
+```
+
+---
+
+## ส่วนที่ 3: ตั้งค่า Log Sources
+
+### Active Directory
+```xml
+<!-- เพิ่มใน agent ossec.conf บน DC -->
+<localfile>
+  <location>Security</location>
+  <log_format>eventchannel</log_format>
+  <query>Event/System[EventID=4624 or EventID=4625 or EventID=4688 or EventID=4720 or EventID=1102]</query>
+</localfile>
+```
+
+### Firewall (Syslog)
+```xml
+<!-- เพิ่มใน Wazuh server ossec.conf -->
+<remote>
+  <connection>syslog</connection>
+  <port>514</port>
+  <protocol>udp</protocol>
+  <allowed-ips>FIREWALL_IP</allowed-ips>
+</remote>
+```
+
+---
+
+## ส่วนที่ 4: ติดตั้ง Sysmon (Windows)
+
+```powershell
+# เพิ่มความสามารถการตรวจจับ Windows อย่างมาก
+Invoke-WebRequest -Uri https://download.sysinternals.com/files/Sysmon.zip -OutFile Sysmon.zip
+Expand-Archive Sysmon.zip
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/sysmonconfig-export.xml -OutFile sysmonconfig.xml
+.\Sysmon64.exe -accepteula -i sysmonconfig.xml
+```
+
+---
+
+## ส่วนที่ 5: ตั้งค่า Alert (Slack)
+
+```bash
+# สร้าง Slack webhook → ตั้งค่า Wazuh integration
+# เมื่อมี alert level 10+ → ส่ง Slack ทันที
+```
+
+---
+
+## ส่วนที่ 6: Sentinel (ถ้าเลือก Stack B)
+
+```
+1. Azure Portal → สร้าง Microsoft Sentinel
+2. สร้าง Log Analytics Workspace
+3. เชื่อม Data Connectors: M365 Defender, Azure AD, Azure Activity
+4. เปิด Analytics Rules → ใช้ template
+5. เสร็จ! มี SIEM ใน 30 นาที
+```
+
+---
+
+## Checklist ตรวจสอบ
+
+```
+□ Wazuh Dashboard เข้าได้
+□ Agent เชื่อมต่อ ≥3 เครื่อง
+□ เห็น event real-time
+□ AD login events มาถึง
+□ Firewall logs มาถึง
+□ Sysmon ติดตั้งบน Windows
+□ Custom rule ทำงาน
+□ Alert ส่ง Email/Slack ได้
+□ 🎉 พร้อมเปิดปฏิบัติการ!
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)
+- [เลือก Technology Stack](Technology_Stack.th.md)
+- [คู่มือ Onboard Log](../06_Operations_Management/Log_Source_Onboarding.th.md)
+
+
+---
+
+## File: 01_SOC_Fundamentals/SOC_Building_Roadmap.en.md
+
+# SOC Building Roadmap — From Zero to Operational
+
+> **Document ID:** SOC-BUILD-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Audience:** IT Managers, CISOs, Security Leaders starting a SOC from scratch
+
+---
+
+## Who Is This For?
+
+You have **no SOC today**. Maybe you have a small IT team that handles security "when something happens." This guide walks you through building a Security Operations Center from nothing — step by step, phase by phase.
+
+---
+
+## The 4 Phases
+
+```
+Phase 1 (Month 1-3)     Phase 2 (Month 4-6)     Phase 3 (Month 7-12)    Phase 4 (Year 2+)
+┌──────────────┐   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+│  Foundation   │──▶│   Detection  │──▶│   Response   │──▶│  Maturity    │
+│              │   │              │   │              │   │              │
+│ • Buy tools  │   │ • Log sources│   │ • Playbooks  │   │ • Automation │
+│ • Hire people│   │ • First rules│   │ • IR process │   │ • Threat hunt│
+│ • Basic setup│   │ • Basic SOPs │   │ • Exercises   │   │ • SOAR       │
+└──────────────┘   └──────────────┘   └──────────────┘   └──────────────┘
+```
+
+---
+
+## Phase 1: Foundation (Month 1–3)
+
+### 1.1 Define Your SOC Mission
+
+Before buying anything, answer these questions:
+
+| Question | Why It Matters |
+|:---|:---|
+| What are we protecting? | Defines scope (servers, cloud, endpoints, OT?) |
+| What are our biggest risks? | Prioritizes what to detect first |
+| What regulations apply? | PDPA, PCI DSS, ISO 27001 affect requirements |
+| What's our budget? | Determines build vs buy vs outsource |
+| Who will staff it? | In-house vs MSSP vs hybrid |
+
+### 1.2 Choose Your Operating Model
+
+| Model | Team Size | Budget | Best For |
+|:---|:---:|:---:|:---|
+| 🟢 **Hybrid MSSP** | 1–2 internal + MSSP | ฿1.5–3M/yr | Small org, <500 employees |
+| 🟡 **Small In-house** | 3–5 analysts | ฿5–10M/yr | Mid-size, 500–2000 employees |
+| 🔴 **Full In-house** | 8–15+ people | ฿15–30M+/yr | Enterprise, 2000+ employees |
+
+> **Recommendation for beginners**: Start with **Hybrid MSSP** — outsource 24/7 monitoring, keep 1–2 people in-house for escalations and process building.
+
+### 1.3 Select Your Technology Stack
+
+#### SIEM (Security Information and Event Management) — Your #1 Tool
+
+| SIEM | Cost | Best For | Learning Curve |
+|:---|:---|:---|:---:|
+| **Wazuh** | Free (open-source) | Budget-conscious, learning | 🟡 Medium |
+| **Elastic Security** | Free tier available | Flexible, scalable | 🟡 Medium |
+| **Microsoft Sentinel** | Pay-per-GB | Azure/M365 shops | 🟢 Easy |
+| **Splunk** | $$$ per GB | Enterprise, any environment | 🔴 Hard |
+| **Google Chronicle** | Flat-rate | Google Cloud users | 🟡 Medium |
+
+> **Recommendation for beginners**: **Wazuh** (free, includes SIEM + EDR + compliance) or **Elastic Security** (free tier, powerful).
+
+#### EDR (Endpoint Detection & Response)
+
+| EDR | Cost | Key Feature |
+|:---|:---|:---|
+| **Wazuh Agent** | Free | Bundled with Wazuh SIEM |
+| **Microsoft Defender for Endpoint** | Included in M365 E5 | Already have it? Use it! |
+| **CrowdStrike Falcon** | $$$ | Best-in-class detection |
+| **SentinelOne** | $$ | Strong autonomous response |
+| **LimaCharlie** | Pay-per-agent | Flexible, affordable |
+
+#### Other Essential Tools
+
+| Category | Free Option | Paid Option |
+|:---|:---|:---|
+| **Ticketing** | TheHive, osTicket | ServiceNow, Jira |
+| **Threat Intel** | MISP, OTX | Recorded Future, Mandiant |
+| **Vulnerability Scanner** | OpenVAS/Greenbone | Tenable, Qualys |
+| **Network Monitoring** | Zeek, Suricata | Darktrace, Vectra |
+| **Email Security** | Built-in (M365/Google) | Proofpoint, Mimecast |
+| **SOAR** | Shuffle, n8n | Palo Alto XSOAR, Splunk SOAR |
+
+### 1.4 Minimum Viable Architecture
+
+```
+                    ┌─────────────┐
+                    │   Internet  │
+                    └──────┬──────┘
+                           │
+                    ┌──────┴──────┐
+                    │  Firewall   │ ← Logs to SIEM
+                    └──────┬──────┘
+                           │
+              ┌────────────┼────────────┐
+              │            │            │
+        ┌─────┴─────┐ ┌───┴───┐ ┌─────┴─────┐
+        │  Servers   │ │  VPN  │ │ Cloud     │
+        │ (EDR agent)│ │       │ │ (AWS/Azure)│
+        └────────────┘ └───────┘ └───────────┘
+              │            │            │
+              └────────────┼────────────┘
+                           │
+                    ┌──────┴──────┐
+                    │    SIEM     │ ← Wazuh / Elastic
+                    │  Dashboard  │
+                    └──────┬──────┘
+                           │
+                    ┌──────┴──────┐
+                    │  SOC Team   │ ← Monitors dashboards
+                    │  (Analysts) │    Reviews alerts
+                    └─────────────┘
+```
+
+### 1.5 Hire Your First Team
+
+#### Minimum Team (Hybrid Model)
+
+| Role | Count | Skills Needed | Salary Range (Thailand) |
+|:---|:---:|:---|:---|
+| SOC Lead / Manager | 1 | 5+ yrs security, IR experience | ฿80–150K/mo |
+| SOC Analyst (T1/T2) | 1–2 | SIEM, basic networking, willingness to learn | ฿30–60K/mo |
+
+#### Where to Find People
+- University security programs (KMUTT, Chula, KMITL)
+- Online communities (SANS, TryHackMe, HackTheBox graduates)
+- IT staff interested in transitioning to security
+- Fresh graduates + structured training (cheapest option)
+
+### 1.6 Phase 1 Checklist
+
+```
+□ SOC mission statement written
+□ Operating model chosen (hybrid/in-house)
+□ Budget approved
+□ SIEM selected and installed
+□ EDR deployed on critical servers
+□ First team member(s) hired
+□ Basic network diagram documented
+□ Management buy-in secured
+□ MSSP contract signed (if hybrid)
+```
+
+---
+
+## Phase 2: Detection (Month 4–6)
+
+### 2.1 Onboard Log Sources (Priority Order)
+
+Follow the [Log Source Onboarding Guide](../06_Operations_Management/Log_Source_Onboarding.en.md).
+
+| Week | Log Source | Why First |
+|:---:|:---|:---|
+| Week 1 | Active Directory / Azure AD | #1 attack target — logins, privilege changes |
+| Week 2 | Firewall logs | Network visibility — who goes where |
+| Week 3 | EDR / Endpoint logs | Malware, suspicious processes |
+| Week 4 | Email gateway | Phishing — #1 initial access vector |
+| Week 5–6 | Cloud (AWS/Azure) | Cloud misconfig is common |
+| Week 7–8 | DNS + Proxy | C2, tunneling, shadow IT |
+
+### 2.2 Deploy Your First Detection Rules
+
+Start with these 10 Sigma rules from this repo (highest ROI):
+
+| Priority | Rule | Detects | Playbook |
+|:---:|:---|:---|:---|
+| 1 | `win_multiple_failed_logins` | Brute force | PB-04 |
+| 2 | `proc_office_spawn_powershell` | Phishing payload | PB-01 |
+| 3 | `cloud_unusual_login` | Account compromise | PB-05 |
+| 4 | `cloud_impossible_travel` | Stolen credentials | PB-06 |
+| 5 | `file_bulk_renaming_ransomware` | Ransomware | PB-02 |
+| 6 | `proc_temp_folder_execution` | Malware | PB-03 |
+| 7 | `win_admin_share_access` | Lateral movement | PB-12 |
+| 8 | `net_beaconing` | C2 communication | PB-13 |
+| 9 | `win_security_log_cleared` | Cover tracks | PB-20 |
+| 10 | `cloud_email_inbox_rule` | BEC | PB-17 |
+
+### 2.3 Write Your First SOPs
+
+Start with these documents from this repo:
+
+1. ✅ [IR Framework](../05_Incident_Response/Framework.en.md) — How to handle incidents
+2. ✅ [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md) — P1/P2/P3/P4 classification
+3. ✅ [Tier 1 Runbook](../05_Incident_Response/Tier1_Runbook.en.md) — Day-to-day analyst guide
+4. ✅ [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md) — If running shifts
+5. ✅ [Communication Templates](../05_Incident_Response/Communication_Templates.en.md) — Who to notify
+
+### 2.4 Phase 2 Checklist
+
+```
+□ Top 5 log sources onboarded and validated
+□ 10 initial Sigma rules deployed
+□ IR Framework documented and distributed
+□ Severity Matrix agreed with management
+□ Tier 1 Runbook given to all analysts
+□ First false positive tuning completed
+□ Alert routing configured (email/Slack/ticket)
+□ Analysts can investigate basic alerts independently
+```
+
+---
+
+## Phase 3: Operational (Month 7–12)
+
+### 3.1 Expand Playbook Coverage
+
+Deploy playbooks in this priority order:
+
+| Wave | Playbooks | Why |
+|:---:|:---|:---|
+| Wave 1 (done in Phase 2) | PB-01 to PB-05 | Core threats |
+| Wave 2 | PB-06 to PB-10 | Common scenarios |
+| Wave 3 | PB-11 to PB-20 | Advanced threats |
+| Wave 4 | PB-21 to PB-30 | Specialized scenarios |
+
+### 3.2 Run Your First Tabletop Exercise
+
+Use [Tabletop Exercises](../05_Incident_Response/Tabletop_Exercises.en.md):
+- Start with **Scenario 1 (Ransomware)** — most likely real-world scenario
+- Include SOC team, IT Ops, and at least one manager
+- Score the exercise and document improvement areas
+
+### 3.3 Establish Metrics
+
+Track these 5 metrics from day 1 (see [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md)):
+
+| Metric | Target (Month 6) | Target (Year 1) |
+|:---|:---:|:---:|
+| MTTD (Mean Time to Detect) | < 4 hours | < 1 hour |
+| MTTR (Mean Time to Respond) | < 8 hours | < 4 hours |
+| Alert-to-Ticket ratio | > 50% | > 70% |
+| False Positive rate | < 70% | < 40% |
+| SLA compliance (P1 response) | > 80% | > 95% |
+
+### 3.4 Phase 3 Checklist
+
+```
+□ All 30 playbooks reviewed (deploy relevant ones)
+□ All 33 Sigma rules deployed
+□ First tabletop exercise completed
+□ SOC metrics dashboard created
+□ Monthly SOC report to management
+□ Evidence collection procedures tested
+□ PDPA notification process documented
+□ At least 1 real incident handled end-to-end
+```
+
+---
+
+## Phase 4: Maturity (Year 2+)
+
+### 4.1 Advanced Capabilities
+
+| Capability | When | How |
+|:---|:---|:---|
+| **Threat Hunting** | Month 12+ | Proactive searches beyond alert-driven |
+| **SOAR Automation** | Month 12+ | Automate repetitive tasks (enrichment, blocking) |
+| **Purple Teaming** | Month 15+ | Test your detections with [Purple Team Guide](../05_Incident_Response/Purple_Team_Exercises.en.md) |
+| **Threat Intelligence** | Month 12+ | Feed integration with [TI Guide](../06_Operations_Management/TI_Feeds_Integration.en.md) |
+| **Compliance Audit** | Month 18+ | Use [Compliance Mapping](../10_Compliance/Compliance_Mapping.en.md) |
+
+### 4.2 SOC Maturity Levels
+
+Use the [SOC Maturity Scorer](../tools/soc_maturity_scorer.html) to assess:
+
+| Level | Description | You're Here When... |
+|:---:|:---|:---|
+| 1 — Initial | Ad-hoc, reactive | No formal process |
+| 2 — Managed | Basic monitoring, some SOPs | End of Phase 2 |
+| 3 — Defined | Documented processes, metrics | End of Phase 3 |
+| 4 — Quantitative | Data-driven, KPIs tracked | Year 2 |
+| 5 — Optimizing | Continuous improvement, automation | Year 3+ |
+
+---
+
+## Budget Planning
+
+### Option A: Budget SOC (Open-Source Stack)
+
+| Item | Year 1 Cost | Notes |
+|:---|:---:|:---|
+| SIEM (Wazuh) | ฿0 | Self-hosted, open-source |
+| Server hardware / VM | ฿200K–500K | 2–3 servers or cloud VMs |
+| EDR (Wazuh Agent) | ฿0 | Included |
+| Threat Intel (MISP + OTX) | ฿0 | Open-source |
+| Ticketing (TheHive) | ฿0 | Open-source |
+| Staff (1 Lead + 1 Analyst) | ฿1.3–2.5M | Thai market rates |
+| Training / Certs | ฿100–300K | SANS, CompTIA, online courses |
+| **Total Year 1** | **฿1.6–3.3M** | |
+
+### Option B: Mid-Range SOC (Commercial + Open-Source)
+
+| Item | Year 1 Cost | Notes |
+|:---|:---:|:---|
+| SIEM (Elastic / Sentinel) | ฿500K–2M | Pay-per-GB or license |
+| EDR (Defender / CrowdStrike) | ฿500K–2M | Per-endpoint licensing |
+| Vuln Scanner (Tenable) | ฿500K–1M | Annual license |
+| Staff (1 Lead + 3 Analysts) | ฿3–5M | 8×5 or 16×5 coverage |
+| MSSP (after-hours) | ฿1–2M | Night/weekend coverage |
+| Training | ฿300–500K | SANS, vendor-specific |
+| **Total Year 1** | **฿5.8–12.5M** | |
+
+### Option C: Enterprise SOC
+
+| Item | Year 1 Cost |
+|:---|:---:|
+| SIEM (Splunk / Chronicle) | ฿3–10M |
+| EDR (CrowdStrike / SentinelOne) | ฿2–5M |
+| SOAR (XSOAR / Splunk SOAR) | ฿2–5M |
+| Staff (8–15 people, 24×7) | ฿10–25M |
+| Training + Certs | ฿1–2M |
+| **Total Year 1** | **฿18–47M** |
+
+---
+
+## Analyst Training Path
+
+### For Complete Beginners (Month 1–3)
+
+| Week | Topic | Resource |
+|:---:|:---|:---|
+| 1–2 | Networking fundamentals | CompTIA Network+ / YouTube |
+| 3–4 | Linux & Windows basics | TryHackMe "Pre-Security" path |
+| 5–6 | Security fundamentals | CompTIA Security+ study |
+| 7–8 | SIEM basics | Your SIEM vendor training (free) |
+| 9–10 | Log analysis | TryHackMe "SOC Level 1" path |
+| 11–12 | IR fundamentals | This repository + SANS webinars |
+
+### Recommended Certifications (Progressive)
+
+```
+Beginner        Intermediate      Advanced
+┌──────────┐   ┌──────────┐    ┌──────────┐
+│CompTIA   │──▶│ CySA+    │──▶│ SANS     │
+│Security+ │   │ BTL1     │   │ GCIH     │
+│SC-900    │   │ SC-200   │   │ GCFA     │
+└──────────┘   └──────────┘   └──────────┘
+   ~฿10K        ~฿15–30K       ~฿100–200K
+```
+
+### Free Training Resources
+
+| Resource | What You Learn |
+|:---|:---|
+| [TryHackMe](https://tryhackme.com) | SOC Level 1 & 2 paths (free tier) |
+| [LetsDefend](https://letsdefend.io) | SOC analyst simulation |
+| [CyberDefenders](https://cyberdefenders.org) | Blue team challenges |
+| [SANS Webcasts](https://sans.org/webcasts) | Free expert sessions |
+| **This Repository** | Real-world SOPs, playbooks, detection rules |
+
+---
+
+## Common Mistakes to Avoid
+
+| ❌ Mistake | ✅ Instead |
+|:---|:---|
+| Buying expensive SIEM before hiring people | Hire first, then choose tools with them |
+| Trying to monitor everything on day 1 | Start with top 5 log sources |
+| No playbooks, just "figure it out" | Use this repo's playbooks from day 1 |
+| Alert fatigue (too many noisy rules) | Start with 10 rules, tune, then add more |
+| No metrics — can't prove value | Track MTTD/MTTR from week 1 |
+| 24/7 with 2 people (burnout) | Use MSSP for after-hours until you can staff properly |
+| Skipping tabletop exercises | Run quarterly — cheapest way to find gaps |
+| No management reporting | Monthly 1-pager to CISO/CEO |
+
+---
+
+## Quick Start Checklist (30-Day Sprint)
+
+```
+Week 1:
+□ Read this entire guide
+□ Write your SOC mission statement (1 paragraph)
+□ Identify your crown jewels (most critical systems/data)
+□ Get budget approval
+
+Week 2:
+□ Install Wazuh or chosen SIEM on a VM
+□ Deploy 5 agents on critical servers
+□ Configure Active Directory log forwarding
+□ Read the Tier 1 Runbook
+
+Week 3:
+□ Import top 10 Sigma rules
+□ Test: can you see a failed login in the SIEM?
+□ Test: does an alert fire for 10+ failed logins?
+□ Set up email/Slack notifications for alerts
+
+Week 4:
+□ Print Severity Matrix and post it on the wall
+□ Assign someone to check alerts daily
+□ Handle your first alert end-to-end
+□ Document what you learned
+```
+
+---
+
+## This Repository — Your Reading Order
+
+If you're starting from zero, read these documents in this order:
+
+| Order | Document | Why |
+|:---:|:---|:---|
+| 1 | **This guide** (you're here!) | Overall roadmap |
+| 2 | [IR Framework](../05_Incident_Response/Framework.en.md) | How incidents work |
+| 3 | [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md) | P1/P2/P3/P4 |
+| 4 | [Tier 1 Runbook](../05_Incident_Response/Tier1_Runbook.en.md) | Daily operations |
+| 5 | [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md) | Roles & shifts |
+| 6 | [Detection Rules Index](../07_Detection_Rules/README.md) | What rules to deploy |
+| 7 | [Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.en.md) | How to add logs |
+| 8 | [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md) | Your first playbook |
+| 9 | [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md) | Measuring success |
+| 10 | [Tabletop Exercises](../05_Incident_Response/Tabletop_Exercises.en.md) | Testing readiness |
+
+---
+
+## Related Documents
+
+- [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md)
+- [SOC Maturity Scorer](../tools/soc_maturity_scorer.html)
+- [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
+- [Compliance Mapping](../10_Compliance/Compliance_Mapping.en.md)
+- [All 30 Playbooks](../05_Incident_Response/Playbooks/)
+
+
+---
+
+## File: 01_SOC_Fundamentals/SOC_Building_Roadmap.th.md
+
+# แผนงานสร้าง SOC จากศูนย์
+
+> **รหัสเอกสาร:** SOC-BUILD-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **กลุ่มเป้าหมาย:** IT Manager, CISO, ผู้บริหารที่ต้องการสร้าง SOC ใหม่
+
+---
+
+## เอกสารนี้สำหรับใคร?
+
+คุณ **ยังไม่มี SOC** วันนี้ อาจมีทีม IT เล็กๆ ที่ดูแลความปลอดภัย "เมื่อมีอะไรเกิดขึ้น" คู่มือนี้จะพาคุณสร้าง SOC ตั้งแต่ไม่มีอะไรเลย — ทีละขั้น ทีละ Phase
+
+---
+
+## 4 เฟส
+
+```
+เฟส 1 (เดือน 1-3)      เฟส 2 (เดือน 4-6)      เฟส 3 (เดือน 7-12)     เฟส 4 (ปีที่ 2+)
+┌──────────────┐   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+│  วางรากฐาน    │──▶│  ตรวจจับ      │──▶│  ปฏิบัติการ    │──▶│  พัฒนาต่อ     │
+│              │   │              │   │              │   │              │
+│ • ซื้อเครื่องมือ│   │ • เพิ่ม Log   │   │ • Playbooks  │   │ • Automation │
+│ • จ้างคน     │   │ • Rules แรก  │   │ • IR process │   │ • Threat hunt│
+│ • ติดตั้งพื้นฐาน│   │ • SOP พื้นฐาน │   │ • ซ้อม        │   │ • SOAR       │
+└──────────────┘   └──────────────┘   └──────────────┘   └──────────────┘
+```
+
+---
+
+## เฟส 1: วางรากฐาน (เดือน 1–3)
+
+### 1.1 ตอบคำถามพื้นฐาน
+
+| คำถาม | ทำไมสำคัญ |
+|:---|:---|
+| ปกป้องอะไร? | กำหนดขอบเขต |
+| ความเสี่ยงใหญ่สุดคืออะไร? | จัดลำดับว่า detect อะไรก่อน |
+| กฎหมายอะไรเกี่ยวข้อง? | PDPA, ISO, PCI |
+| งบเท่าไหร่? | กำหนด build vs buy vs outsource |
+
+### 1.2 เลือกโมเดล
+
+| โมเดล | ทีม | งบ/ปี | เหมาะกับ |
+|:---|:---:|:---:|:---|
+| 🟢 **Hybrid MSSP** | 1–2 คน + MSSP | ฿1.5–3M | องค์กรเล็ก <500 คน |
+| 🟡 **In-house เล็ก** | 3–5 คน | ฿5–10M | กลาง 500–2000 คน |
+| 🔴 **Full In-house** | 8–15+ คน | ฿15–30M+ | ใหญ่ 2000+ คน |
+
+> **แนะนำ**: เริ่มจาก **Hybrid MSSP** — outsource 24/7 monitoring เก็บ 1–2 คนไว้ดูแล escalation
+
+### 1.3 เลือกเครื่องมือ
+
+#### SIEM — เครื่องมือ #1
+
+| SIEM | ค่าใช้จ่าย | เหมาะกับ |
+|:---|:---|:---|
+| **Wazuh** | ฟรี (open-source) | งบจำกัด, เรียนรู้ |
+| **Elastic Security** | Free tier | ยืดหยุ่น, scale ได้ |
+| **Microsoft Sentinel** | จ่ายตาม GB | ใช้ Azure/M365 |
+| **Splunk** | แพง | Enterprise |
+
+> **แนะนำ**: **Wazuh** (ฟรี, รวม SIEM + EDR + Compliance)
+
+### 1.4 จ้างทีมแรก
+
+| ตำแหน่ง | จำนวน | เงินเดือน (ไทย) |
+|:---|:---:|:---|
+| SOC Lead | 1 | ฿80–150K/เดือน |
+| SOC Analyst | 1–2 | ฿30–60K/เดือน |
+
+---
+
+## เฟส 2: ตรวจจับ (เดือน 4–6)
+
+### เพิ่ม Log Source ตามลำดับ
+
+| สัปดาห์ | Log Source | ทำไมก่อน |
+|:---:|:---|:---|
+| 1 | Active Directory | เป้าโจมตี #1 |
+| 2 | Firewall | เห็น traffic |
+| 3 | EDR | malware, process |
+| 4 | Email gateway | phishing #1 |
+| 5–6 | Cloud (AWS/Azure) | misconfig |
+| 7–8 | DNS + Proxy | C2, shadow IT |
+
+### Deploy 10 Sigma Rules แรก
+
+เริ่มจาก `win_multiple_failed_logins`, `proc_office_spawn_powershell`, `cloud_unusual_login` + อ่าน [Tier 1 Runbook](../05_Incident_Response/Tier1_Runbook.th.md)
+
+---
+
+## เฟส 3: ปฏิบัติการ (เดือน 7–12)
+
+- Deploy playbooks ทั้ง 30 ชุด (ค่อยๆ ทำเป็น wave)
+- ซ้อม [Tabletop Exercise](../05_Incident_Response/Tabletop_Exercises.th.md) ครั้งแรก
+- เริ่มวัด metrics: MTTD < 4 ชม., MTTR < 8 ชม.
+
+---
+
+## เฟส 4: พัฒนา (ปีที่ 2+)
+
+- Threat Hunting, SOAR Automation, Purple Teaming
+- สอบ SOC Maturity — ใช้ [เครื่องมือวัดคะแนน](../tools/soc_maturity_scorer.html)
+- Compliance audit — ใช้ [Compliance Mapping](../10_Compliance/Compliance_Mapping.th.md)
+
+---
+
+## งบประมาณ
+
+| แบบ | งบปีแรก | หมายเหตุ |
+|:---|:---:|:---|
+| 🟢 Budget (Open-Source) | ฿1.6–3.3M | Wazuh + 2 คน |
+| 🟡 Mid-Range | ฿5.8–12.5M | Elastic/Sentinel + 4 คน + MSSP |
+| 🔴 Enterprise | ฿18–47M | Splunk + 10+ คน + 24/7 |
+
+---
+
+## เส้นทางฝึก Analyst
+
+### เดือน 1–3 (มือใหม่)
+| สัปดาห์ | เรียนอะไร | แหล่ง |
+|:---:|:---|:---|
+| 1–2 | พื้นฐาน Network | CompTIA Network+ / YouTube |
+| 3–4 | Linux & Windows | TryHackMe "Pre-Security" |
+| 5–6 | Security พื้นฐาน | CompTIA Security+ |
+| 7–10 | SIEM + Log Analysis | TryHackMe "SOC Level 1" |
+| 11–12 | IR พื้นฐาน | Repository นี้ |
+
+### Cert แนะนำ
+```
+เริ่มต้น → Security+ / SC-900 (~฿10K)
+กลาง   → CySA+ / BTL1 (~฿15–30K)
+สูง     → SANS GCIH / GCFA (~฿100–200K)
+```
+
+---
+
+## Quick Start 30 วัน
+
+```
+สัปดาห์ 1: อ่านคู่มือนี้ + เขียน SOC mission + ขออนุมัติงบ
+สัปดาห์ 2: ติดตั้ง SIEM + deploy agent 5 เครื่อง + เชื่อม AD
+สัปดาห์ 3: Import 10 Sigma rules + ทดสอบ alert แรก
+สัปดาห์ 4: พิมพ์ Severity Matrix + มอบหมายคนดู alert + handle alert แรก
+```
+
+---
+
+## ข้อผิดพลาดที่พบบ่อย
+
+| ❌ อย่าทำ | ✅ ทำแทน |
+|:---|:---|
+| ซื้อ SIEM แพงก่อนจ้างคน | จ้างคนก่อน แล้วเลือกเครื่องมือด้วยกัน |
+| พยายาม monitor ทุกอย่างวันแรก | เริ่มจาก 5 log sources |
+| ไม่มี playbook | ใช้ playbook จาก repo นี้ตั้งแต่วันแรก |
+| Alert ดังทั้งวัน (alert fatigue) | เริ่ม 10 rules, tune, แล้วค่อยเพิ่ม |
+| 24/7 ด้วย 2 คน (burnout) | ใช้ MSSP ดูนอกเวลา |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [กรอบ IR](../05_Incident_Response/Framework.th.md)
+- [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)
+- [คู่มือ Tier 1](../05_Incident_Response/Tier1_Runbook.th.md)
+- [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md)
+- [เครื่องมือวัด Maturity](../tools/soc_maturity_scorer.html)
+
+
+---
+
+## File: 01_SOC_Fundamentals/Technology_Stack.en.md
+
+# SOC Technology Stack Selection Guide
+
+> **Document ID:** TECH-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Prerequisite:** Read [SOC Building Roadmap](SOC_Building_Roadmap.en.md) first
+
+---
+
+## Decision Framework
+
+Choose technology based on **3 factors**:
+
+```
+                    ┌─────────────┐
+                    │   Budget    │
+                    └──────┬──────┘
+                           │
+              ┌────────────┼────────────┐
+              │            │            │
+        ┌─────┴─────┐ ┌───┴───┐ ┌─────┴─────┐
+        │  ฿ Free   │ │ ฿฿ Mid│ │ ฿฿฿ High  │
+        │ Open-Src  │ │ Mixed │ │ Enterprise│
+        └───────────┘ └───────┘ └───────────┘
+
+    ×   Existing Infrastructure (Azure? AWS? On-prem?)
+    ×   Team Skill Level (Beginner? Expert?)
+    =   Your Stack
+```
+
+---
+
+## Stack A: Full Open-Source (฿0 Licensing)
+
+**Best for:** Startups, small teams, learning, budget-conscious orgs
+
+| Layer | Tool | Notes |
+|:---|:---|:---|
+| **SIEM** | Wazuh 4.x | All-in-one: SIEM + XDR + Compliance |
+| **Endpoint** | Wazuh Agent | Built-in EDR, FIM, vulnerability scan |
+| **Network IDS** | Suricata | High-performance, rule-based |
+| **Network Metadata** | Zeek | Rich protocol analysis |
+| **Threat Intel** | MISP + OpenCTI | TI platform + feeds |
+| **Ticketing/IR** | TheHive + Cortex | IR case management + enrichment |
+| **SOAR** | Shuffle | Drag-and-drop automation |
+| **Vuln Scanner** | OpenVAS/Greenbone | Network vulnerability assessment |
+| **Log Shipping** | Filebeat / rsyslog | Lightweight log forwarding |
+
+### Architecture
+```
+Endpoints/Servers          Network              Cloud
+  [Wazuh Agent] ──┐    [Suricata] ──┐     [CloudTrail] ──┐
+  [Wazuh Agent] ──┤    [Zeek]     ──┤     [Flow Logs]  ──┤
+  [Wazuh Agent] ──┤                 │                    │
+                  ▼                 ▼                    ▼
+            ┌─────────────────────────────────────────────┐
+            │           Wazuh Manager + Indexer           │
+            │         (Elasticsearch / OpenSearch)        │
+            └──────────────────┬──────────────────────────┘
+                               │
+                    ┌──────────┴──────────┐
+                    │ Wazuh Dashboard     │ ← Analyst works here
+                    │ TheHive (Tickets)   │
+                    │ MISP (Threat Intel) │
+                    │ Shuffle (SOAR)      │
+                    └─────────────────────┘
+```
+
+### Server Requirements
+| Component | CPU | RAM | Disk | VMs |
+|:---|:---:|:---:|:---:|:---:|
+| Wazuh Manager | 4 cores | 8 GB | 50 GB | 1 |
+| Wazuh Indexer | 4 cores | 16 GB | 500 GB+ | 1–3 |
+| Wazuh Dashboard | 2 cores | 4 GB | 20 GB | 1 |
+| TheHive + Cortex | 4 cores | 8 GB | 100 GB | 1 |
+| MISP | 2 cores | 4 GB | 50 GB | 1 |
+| **Total (minimum)** | **16 cores** | **40 GB** | **720 GB** | **4–5** |
+
+### Pros and Cons
+| ✅ Pros | ❌ Cons |
+|:---|:---|
+| Zero license cost | Requires Linux admin skills |
+| Full control over data | Manual updates and patching |
+| Active community support | No vendor SLA / support |
+| Customize anything | Integration requires effort |
+
+---
+
+## Stack B: Microsoft-Centric (Already have M365)
+
+**Best for:** Organizations already using Microsoft 365 E3/E5 or Azure
+
+| Layer | Tool | License |
+|:---|:---|:---|
+| **SIEM** | Microsoft Sentinel | Pay-per-GB ingestion |
+| **Endpoint** | Microsoft Defender for Endpoint | M365 E5 or standalone |
+| **Identity** | Entra ID Protection | M365 E5 |
+| **Email** | Defender for Office 365 | M365 E5 |
+| **Cloud** | Defender for Cloud | Per-resource pricing |
+| **SOAR** | Sentinel Playbooks (Logic Apps) | Included with Sentinel |
+| **Threat Intel** | Defender Threat Intelligence | Included |
+| **Ticketing** | ServiceNow / Jira | Separate license |
+
+### Architecture
+```
+   M365 Users          Azure VMs         On-prem Servers
+   [Defender] ──┐    [Defender] ──┐    [AMA Agent] ──┐
+   [Entra ID] ──┤    [NSG Logs] ──┤    [Syslog]    ──┤
+                │                 │                   │
+                ▼                 ▼                   ▼
+           ┌──────────────────────────────────────────┐
+           │         Microsoft Sentinel               │
+           │      (Log Analytics Workspace)           │
+           └───────────────────┬──────────────────────┘
+                               │
+                    ┌──────────┴──────────┐
+                    │ Sentinel Workbooks  │
+                    │ Analytics Rules     │
+                    │ Playbooks (SOAR)    │
+                    │ Hunting Queries     │
+                    └─────────────────────┘
+```
+
+### Cost Estimate
+| Component | Monthly Cost (500 users) |
+|:---|:---|
+| M365 E5 license (500 users) | ~฿1.5M/mo |
+| Sentinel ingestion (50 GB/day) | ~฿150K/mo |
+| Defender for Cloud | ~฿30K/mo |
+| **Total** | **~฿1.7M/mo** |
+
+> **Tip:** If you already have M365 E5, you already have Defender. Just enable Sentinel and connect the data sources — you could have a working SIEM in 1 day.
+
+### Pros and Cons
+| ✅ Pros | ❌ Cons |
+|:---|:---|
+| Native integration with M365 | Vendor lock-in |
+| Fast to deploy | Costs scale with data volume |
+| AI-powered detection (Copilot) | Complex pricing model |
+| Strong identity protection | Limited multi-cloud support |
+
+---
+
+## Stack C: AWS-Centric
+
+**Best for:** Organizations running primarily on AWS
+
+| Layer | Tool | Notes |
+|:---|:---|:---|
+| **SIEM** | Amazon Security Lake + OpenSearch | Native AWS integration |
+| **Endpoint** | CrowdStrike / SentinelOne | Third-party (AWS doesn't have EDR) |
+| **Cloud Security** | GuardDuty | Threat detection for AWS |
+| **Config** | AWS Config + Security Hub | Compliance and config monitoring |
+| **Network** | VPC Flow Logs + Traffic Mirroring | Network visibility |
+| **WAF** | AWS WAF | Web application firewall |
+| **SOAR** | AWS Step Functions / Shuffle | Automation |
+
+---
+
+## Stack D: Elastic-Based (Flexible)
+
+**Best for:** Multi-cloud, hybrid, or vendor-neutral preference
+
+| Layer | Tool | Notes |
+|:---|:---|:---|
+| **SIEM** | Elastic Security (Free tier) | SIEM + Detection + Case management |
+| **Endpoint** | Elastic Agent (Defend) | Built-in EDR |
+| **Ingestion** | Elastic Agent / Beats | Hundreds of integrations |
+| **SOAR** | n8n / Shuffle / Tines | Automation |
+| **Threat Intel** | MISP + Elastic TI module | Feed integration |
+
+### Architecture
+```
+  Endpoints         Cloud APIs        Network
+  [Elastic Agent]   [AWS/Azure/GCP]   [Suricata/Zeek]
+       │                 │                 │
+       └────────────┬────┘─────────────────┘
+                    ▼
+         ┌──────────────────────┐
+         │   Elasticsearch      │
+         │   Kibana + Security  │
+         │   Fleet Server       │
+         └──────────┬───────────┘
+                    │
+             ┌──────┴──────┐
+             │  Detection  │
+             │  Rules      │
+             │  Cases      │
+             │  Timeline   │
+             └─────────────┘
+```
+
+---
+
+## Comparison Matrix
+
+| Feature | Stack A (Open) | Stack B (MS) | Stack C (AWS) | Stack D (Elastic) |
+|:---|:---:|:---:|:---:|:---:|
+| License cost | ฿0 | ฿฿฿ | ฿฿ | ฿ (Free tier) |
+| Setup difficulty | 🔴 Hard | 🟢 Easy | 🟡 Medium | 🟡 Medium |
+| Time to value | 2–4 weeks | 1–3 days | 1–2 weeks | 1–2 weeks |
+| Endpoint coverage | ✅ | ✅ | ⚠️ (need 3rd party) | ✅ |
+| Cloud coverage | ⚠️ | ✅ Azure | ✅ AWS | ✅ Multi-cloud |
+| SOAR built-in | ⚠️ (Shuffle) | ✅ | ⚠️ | ⚠️ |
+| Community size | Large | Very large | Large | Very large |
+| Vendor lock-in | None | High | High | Low |
+| Sigma rule support | ✅ | ✅ (via KQL) | ⚠️ | ✅ |
+| Best for | Learning, budget | M365 shops | AWS-heavy | Flexible orgs |
+
+---
+
+## Decision Tree
+
+```
+START
+  │
+  ├─ Already have Microsoft 365 E5?
+  │   ├─ YES → Stack B (Microsoft)
+  │   └─ NO ──┐
+  │            │
+  │   ├─ Primarily on AWS?
+  │   │   ├─ YES → Stack C (AWS)
+  │   │   └─ NO ──┐
+  │   │            │
+  │   │   ├─ Budget > ฿5M/year?
+  │   │   │   ├─ YES → Stack D (Elastic)
+  │   │   │   └─ NO → Stack A (Open-Source)
+```
+
+---
+
+## Essential Add-Ons (Any Stack)
+
+Regardless of which stack you choose, add these:
+
+| Category | Recommendation | Why |
+|:---|:---|:---|
+| **Password Manager** | Bitwarden (team) | SOC handles many credentials |
+| **Documentation** | MkDocs / Confluence | SOPs and runbooks (this repo!) |
+| **Communication** | Slack / Teams + dedicated channels | Incident war rooms |
+| **VPN** | WireGuard / existing enterprise VPN | Remote SOC access |
+| **MFA** | Duo / Microsoft Authenticator | Protect SOC accounts |
+| **Backup** | Veeam / Restic / AWS Backup | Evidence preservation |
+
+---
+
+## Related Documents
+
+- [SOC Building Roadmap](SOC_Building_Roadmap.en.md)
+- [Infrastructure Setup Guide](Infrastructure_Setup.en.md)
+- [Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.en.md)
+
+
+---
+
+## File: 01_SOC_Fundamentals/Technology_Stack.th.md
+
+# คู่มือเลือก Technology Stack สำหรับ SOC
+
+> **รหัสเอกสาร:** TECH-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **อ่านก่อน:** [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)
+
+---
+
+## เลือกตาม 3 ปัจจัย: งบ × Infrastructure × ทักษะทีม
+
+---
+
+## Stack A: Open-Source ทั้งหมด (฿0 License)
+
+**เหมาะกับ:** startup, ทีมเล็ก, งบจำกัด
+
+| ชั้น | เครื่องมือ |
+|:---|:---|
+| SIEM | Wazuh 4.x |
+| Endpoint | Wazuh Agent |
+| Network IDS | Suricata |
+| Threat Intel | MISP + OpenCTI |
+| Ticketing | TheHive + Cortex |
+| SOAR | Shuffle |
+| Vuln Scan | OpenVAS |
+
+**เซิร์ฟเวอร์ขั้นต่ำ:** 4–5 VMs, 16 cores, 40GB RAM, 720GB disk
+
+| ✅ ข้อดี | ❌ ข้อเสีย |
+|:---|:---|
+| ไม่มีค่า license | ต้องมีทักษะ Linux |
+| ควบคุมข้อมูลเองทั้งหมด | ต้องดูแล update เอง |
+| ปรับแต่งได้ทุกอย่าง | ไม่มี vendor support |
+
+---
+
+## Stack B: Microsoft (มี M365 อยู่แล้ว)
+
+| ชั้น | เครื่องมือ |
+|:---|:---|
+| SIEM | Microsoft Sentinel |
+| Endpoint | Defender for Endpoint |
+| Identity | Entra ID Protection |
+| Email | Defender for Office 365 |
+| SOAR | Sentinel Playbooks |
+
+**ค่าใช้จ่าย ~500 users:** ~฿1.7M/เดือน
+
+> **Tip:** ถ้ามี M365 E5 อยู่แล้ว เปิด Sentinel ได้เลย — มี SIEM ใน 1 วัน!
+
+---
+
+## Stack C: AWS-Centric
+
+| ชั้น | เครื่องมือ |
+|:---|:---|
+| SIEM | Security Lake + OpenSearch |
+| Cloud Security | GuardDuty |
+| Config | AWS Config + Security Hub |
+| EDR | CrowdStrike / SentinelOne (ซื้อเพิ่ม) |
+
+---
+
+## Stack D: Elastic (ยืดหยุ่น)
+
+| ชั้น | เครื่องมือ |
+|:---|:---|
+| SIEM | Elastic Security (Free tier) |
+| Endpoint | Elastic Agent (Defend) |
+| SOAR | n8n / Shuffle |
+| Threat Intel | MISP + Elastic TI module |
+
+---
+
+## ตารางเปรียบเทียบ
+
+| คุณสมบัติ | Open-Source | Microsoft | AWS | Elastic |
+|:---|:---:|:---:|:---:|:---:|
+| ค่า license | ฿0 | ฿฿฿ | ฿฿ | ฿ |
+| ตั้งค่ายากไหม | 🔴 ยาก | 🟢 ง่าย | 🟡 กลาง | 🟡 กลาง |
+| ใช้ได้เร็ว | 2–4 สัปดาห์ | 1–3 วัน | 1–2 สัปดาห์ | 1–2 สัปดาห์ |
+| Multi-cloud | ⚠️ | ⚠️ | ⚠️ | ✅ |
+| Vendor lock-in | ไม่มี | สูง | สูง | ต่ำ |
+
+---
+
+## ผังตัดสินใจ
+
+```
+เริ่ม
+ ├─ มี M365 E5 อยู่? → YES → Stack B (Microsoft)
+ └─ NO
+    ├─ ใช้ AWS เป็นหลัก? → YES → Stack C (AWS)
+    └─ NO
+       ├─ งบ > ฿5M/ปี? → YES → Stack D (Elastic)
+       └─ NO → Stack A (Open-Source)
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)
+- [คู่มือติดตั้ง Infrastructure](Infrastructure_Setup.th.md)
+- [คู่มือ Onboard Log](../06_Operations_Management/Log_Source_Onboarding.th.md)
+
+
+---
+
+## File: 01_SOC_Fundamentals/Use_Case_Prioritization.en.md
+
+# Detection Use Case Prioritization — What to Detect First
+
+> **Document ID:** UC-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Prerequisite:** SIEM installed, at least 3 log sources onboarded
+
+---
+
+## The Problem
+
+There are thousands of possible detection rules. You can't deploy them all at once. This guide tells you **what to detect first** based on real-world threat data and your available log sources.
+
+---
+
+## The Framework: MITRE ATT&CK Top 10
+
+Based on industry data (Mandiant M-Trends, Verizon DBIR, CrowdStrike threat reports), these are the most commonly used attack techniques:
+
+| Rank | Technique | ID | What It Is | How Common |
+|:---:|:---|:---|:---|:---:|
+| 1 | Phishing | T1566 | Malicious email (link/attachment) | 🔴🔴🔴 |
+| 2 | Valid Accounts | T1078 | Stolen/compromised credentials | 🔴🔴🔴 |
+| 3 | Command & Scripting | T1059 | PowerShell, cmd, bash abuse | 🔴🔴 |
+| 4 | Brute Force | T1110 | Password guessing/spraying | 🔴🔴 |
+| 5 | Data Encrypted (Ransomware) | T1486 | File encryption for ransom | 🔴🔴 |
+| 6 | Remote Services | T1021 | RDP, SSH, SMB lateral movement | 🔴🔴 |
+| 7 | Ingress Tool Transfer | T1105 | Download malware/tools | 🔴 |
+| 8 | Web Application Exploit | T1190 | SQLi, RCE against web apps | 🔴 |
+| 9 | Process Injection | T1055 | Living-off-the-land techniques | 🔴 |
+| 10 | Account Manipulation | T1098 | Persistence via account changes | 🔴 |
+
+---
+
+## Phase 1: Foundational Use Cases (Month 1–3)
+
+**Goal:** Catch the most common and most impactful attacks.
+
+### Deploy These 10 Rules First
+
+| # | Use Case | Log Source | Sigma Rule | Playbook | Priority |
+|:---:|:---|:---|:---|:---|:---:|
+| 1 | Multiple failed logins (brute force) | AD / Azure AD | `win_multiple_failed_logins` | PB-04 | 🔴 P1 |
+| 2 | Login from impossible location | Azure AD | `cloud_impossible_travel` | PB-06 | 🔴 P1 |
+| 3 | Office app spawns PowerShell | EDR / Sysmon | `proc_office_spawn_powershell` | PB-01 | 🔴 P1 |
+| 4 | Malware executed on endpoint | EDR | `proc_temp_folder_execution` | PB-03 | 🔴 P1 |
+| 5 | Bulk file rename (ransomware) | EDR / Sysmon | `file_bulk_renaming_ransomware` | PB-02 | 🔴 P1 |
+| 6 | New admin account created | AD | `win_new_admin_account` | PB-07 | 🟡 P2 |
+| 7 | Security log cleared | Windows | `win_security_log_cleared` | PB-20 | 🟡 P2 |
+| 8 | Login outside business hours | AD / Azure AD | `cloud_unusual_login` | PB-05 | 🟡 P2 |
+| 9 | Suspicious email forwarding rule | M365 | `cloud_email_inbox_rule` | PB-17 | 🟡 P2 |
+| 10 | Connection to known-bad IP | Firewall / Proxy | (custom rule) | PB-13 | 🟡 P2 |
+
+### Metrics to Track
+- How many alerts per day? (Target: < 50 for 1 analyst)
+- False positive rate? (Accept < 60% in Phase 1, tune to < 40%)
+- Mean time from alert to triage? (Target: < 30 min)
+
+---
+
+## Phase 2: Extended Coverage (Month 4–6)
+
+**Goal:** Catch lateral movement, persistence, and cloud-specific threats.
+
+### Add These 10 Rules
+
+| # | Use Case | Log Source | Playbook | Priority |
+|:---:|:---|:---|:---|:---:|
+| 11 | Admin share access (lateral movement) | Sysmon/EDR | PB-12 | 🟡 P2 |
+| 12 | Service installed (persistence) | Windows | PB-11 | 🟡 P2 |
+| 13 | Encoded PowerShell execution | Sysmon | PB-11 | 🟡 P2 |
+| 14 | DNS to suspicious TLD | DNS logs | PB-24 | 🟡 P2 |
+| 15 | Large data upload (exfiltration) | Proxy / DLP | PB-08 | 🟡 P2 |
+| 16 | Cloud IAM privilege escalation | CloudTrail / Azure | PB-16 | 🟡 P2 |
+| 17 | Scheduled task created remotely | Sysmon | PB-12 | 🟢 P3 |
+| 18 | Process injection (lsass.exe access) | Sysmon | PB-11 | 🟢 P3 |
+| 19 | USB mass storage connected | EDR | PB-14 | 🟢 P3 |
+| 20 | Failed MFA attempts (>5) | Azure AD | PB-26 | 🟢 P3 |
+
+### New Log Sources to Add
+- DNS resolver logs
+- Cloud audit logs (CloudTrail/Azure Activity)
+- Proxy/web gateway logs
+- DLP if available
+
+---
+
+## Phase 3: Advanced Detection (Month 7–12)
+
+**Goal:** Catch sophisticated, targeted attacks and insider threats.
+
+### Add These 10 Rules
+
+| # | Use Case | Log Source | Playbook | Priority |
+|:---:|:---|:---|:---|:---:|
+| 21 | Beaconing detection (regular intervals) | Proxy/NDR | PB-13 | 🟢 P3 |
+| 22 | DNS tunneling (high-volume/long domains) | DNS | PB-24 | 🟢 P3 |
+| 23 | S3/Blob made public | CloudTrail/Azure | PB-27 | 🟢 P3 |
+| 24 | Shadow IT / unauthorized SaaS | Proxy/CASB | PB-29 | 🟢 P3 |
+| 25 | Kerberoasting (SPN request anomaly) | AD | PB-15 | 🟢 P3 |
+| 26 | DCSync (replication request) | AD | PB-15 | 🟢 P3 |
+| 27 | Token/cookie theft (AiTM) | Azure AD | PB-26 | 🟢 P3 |
+| 28 | DLL side-loading | EDR/Sysmon | PB-11 | ⚪ P4 |
+| 29 | WMI remote execution | Sysmon | PB-12 | ⚪ P4 |
+| 30 | OT/ICS protocol anomaly | OT network | PB-30 | ⚪ P4 |
+
+---
+
+## Phase 4: Threat Hunting (Year 2+)
+
+Move from **alert-driven** to **hypothesis-driven** detection:
+
+| Hunt Hypothesis | Data Needed | Frequency |
+|:---|:---|:---:|
+| "Are there compromised service accounts?" | AD auth logs, UEBA | Monthly |
+| "Is anyone beaconing to C2?" | Proxy + DNS statistical analysis | Weekly |
+| "Are VPN credentials shared or stolen?" | VPN logs + geolocation | Monthly |
+| "Is sensitive data leaving the network?" | DLP + proxy + cloud storage | Weekly |
+| "Are there dormant admin accounts?" | AD account audit | Monthly |
+| "Are there unknown web shells on servers?" | Filesystem scan + YARA | Monthly |
+
+---
+
+## Use Case Template
+
+When creating a new detection use case:
+
+```markdown
+## UC-[###]: [Use Case Name]
+
+### Objective
+What are we trying to detect?
+
+### MITRE ATT&CK
+- Technique: T[####]
+- Tactic: [Initial Access / Execution / Persistence / ...]
+
+### Data Sources Required
+- [ ] Source 1 (event IDs or log types)
+- [ ] Source 2
+
+### Detection Logic
+```
+IF [condition]
+AND [condition]
+WITHIN [timeframe]
+THEN alert_level = [low/medium/high/critical]
+```
+
+### Playbook
+Reference: PB-[##]
+
+### False Positive Scenarios
+- [Expected benign behavior that may trigger this]
+- [How to filter/whitelist]
+
+### Tuning Notes
+- Threshold: [initial value]
+- Whitelist: [IPs/users/hosts to exclude]
+- Review after: [2 weeks of baseline data]
+```
+
+---
+
+## Coverage Heat Map
+
+Track your detection coverage across MITRE tactics:
+
+| Tactic | Phase 1 | Phase 2 | Phase 3 | Phase 4 |
+|:---|:---:|:---:|:---:|:---:|
+| Initial Access | ✅ | ✅ | ✅ | ✅ |
+| Execution | ✅ | ✅ | ✅ | ✅ |
+| Persistence | ⚠️ | ✅ | ✅ | ✅ |
+| Privilege Escalation | ⚠️ | ✅ | ✅ | ✅ |
+| Defense Evasion | ❌ | ⚠️ | ✅ | ✅ |
+| Credential Access | ⚠️ | ⚠️ | ✅ | ✅ |
+| Discovery | ❌ | ⚠️ | ⚠️ | ✅ |
+| Lateral Movement | ❌ | ✅ | ✅ | ✅ |
+| Collection | ❌ | ⚠️ | ✅ | ✅ |
+| Exfiltration | ❌ | ⚠️ | ✅ | ✅ |
+| Impact | ✅ | ✅ | ✅ | ✅ |
+
+✅ = Covered | ⚠️ = Partial | ❌ = Not yet
+
+---
+
+## Prioritization Scoring Formula
+
+If you need to prioritize beyond this guide, score each use case:
+
+```
+Score = (Likelihood × 3) + (Impact × 3) + (Data Readiness × 2) + (Effort × 2)
+
+Likelihood:     1 (rare) to 5 (happens weekly)
+Impact:         1 (low) to 5 (business-critical)
+Data Readiness: 1 (no data source) to 5 (data already in SIEM)
+Effort:         1 (weeks to build) to 5 (deploy in hours)
+
+Score range: 10-50 → Start with highest scoring use cases
+```
+
+---
+
+## Related Documents
+
+- [SOC Building Roadmap](SOC_Building_Roadmap.en.md)
+- [Detection Rules Index](../07_Detection_Rules/README.md)
+- [Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.en.md)
+- [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
+
+
+---
+
+## File: 01_SOC_Fundamentals/Use_Case_Prioritization.th.md
+
+# ลำดับความสำคัญ Detection Use Case — ตรวจจับอะไรก่อน
+
+> **รหัสเอกสาร:** UC-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เงื่อนไข:** ติดตั้ง SIEM แล้ว, มี log source ≥3
+
+---
+
+## ปัญหา
+
+มี detection rules นับพัน deploy ทีเดียวไม่ได้ คู่มือนี้บอกว่า **ตรวจจับอะไรก่อน** ตามข้อมูลภัยจริง
+
+---
+
+## MITRE ATT&CK Top 10 (เทคนิคที่พบบ่อยสุด)
+
+| ลำดับ | เทคนิค | คืออะไร | ความถี่ |
+|:---:|:---|:---|:---:|
+| 1 | Phishing (T1566) | Email อันตราย | 🔴🔴🔴 |
+| 2 | Valid Accounts (T1078) | Credential ถูกขโมย | 🔴🔴🔴 |
+| 3 | PowerShell/Script (T1059) | ใช้ script โจมตี | 🔴🔴 |
+| 4 | Brute Force (T1110) | เดารหัสผ่าน | 🔴🔴 |
+| 5 | Ransomware (T1486) | เข้ารหัสไฟล์เรียกค่าไถ่ | 🔴🔴 |
+
+---
+
+## เฟส 1: พื้นฐาน (เดือน 1–3) — 10 Rules แรก
+
+| # | Use Case | Playbook | ความสำคัญ |
+|:---:|:---|:---|:---:|
+| 1 | Failed login > 10 ครั้ง/5 นาที | PB-04 | 🔴 |
+| 2 | Login จากสถานที่เป็นไปไม่ได้ | PB-06 | 🔴 |
+| 3 | Office เปิด PowerShell | PB-01 | 🔴 |
+| 4 | Malware execute สำเร็จ | PB-03 | 🔴 |
+| 5 | ไฟล์ถูกเปลี่ยนชื่อจำนวนมาก (ransomware) | PB-02 | 🔴 |
+| 6 | สร้าง admin account ใหม่ | PB-07 | 🟡 |
+| 7 | ลบ Security log | PB-20 | 🟡 |
+| 8 | Login นอกเวลาทำงาน | PB-05 | 🟡 |
+| 9 | สร้าง email forwarding rule | PB-17 | 🟡 |
+| 10 | เชื่อมต่อ IP อันตราย | PB-13 | 🟡 |
+
+---
+
+## เฟส 2: ขยาย (เดือน 4–6) — เพิ่ม 10 Rules
+
+| # | Use Case | Playbook |
+|:---:|:---|:---|
+| 11 | Lateral movement (admin share) | PB-12 |
+| 12 | ติดตั้ง service ใหม่ (persistence) | PB-11 |
+| 13 | Encoded PowerShell | PB-11 |
+| 14 | DNS ไปโดเมนน่าสงสัย | PB-24 |
+| 15 | Upload ข้อมูลขนาดใหญ่ | PB-08 |
+| 16 | Cloud privilege escalation | PB-16 |
+| 17–20 | Scheduled task, process injection, USB, MFA fail | PB-11–26 |
+
+---
+
+## เฟส 3: ขั้นสูง (เดือน 7–12) — เพิ่ม 10 Rules
+
+| # | Use Case | Playbook |
+|:---:|:---|:---|
+| 21 | Beaconing (C2 callback) | PB-13 |
+| 22 | DNS tunneling | PB-24 |
+| 23 | Cloud storage เป็น public | PB-27 |
+| 24 | Shadow IT | PB-29 |
+| 25–30 | Kerberoasting, DCSync, AiTM, DLL sideload, WMI, OT/ICS | PB-15–30 |
+
+---
+
+## เฟส 4: Threat Hunting (ปีที่ 2+)
+
+| สมมติฐาน | ความถี่ |
+|:---|:---:|
+| มี service account ถูกยึดไหม? | รายเดือน |
+| มีใคร beacon ไป C2? | รายสัปดาห์ |
+| ข้อมูลสำคัญรั่วไหลไหม? | รายสัปดาห์ |
+| มี web shell ซ่อนอยู่ไหม? | รายเดือน |
+
+---
+
+## สูตรให้คะแนนลำดับ
+
+```
+คะแนน = (ความเป็นไปได้ × 3) + (ผลกระทบ × 3) + (ข้อมูลพร้อม × 2) + (ความง่าย × 2)
+
+ช่วง: 10–50 → เริ่มจากคะแนนสูงสุด
+```
+
+---
+
+## ตาราง Coverage
+
+| Tactic | เฟส 1 | เฟส 2 | เฟส 3 | เฟส 4 |
+|:---|:---:|:---:|:---:|:---:|
+| Initial Access | ✅ | ✅ | ✅ | ✅ |
+| Execution | ✅ | ✅ | ✅ | ✅ |
+| Persistence | ⚠️ | ✅ | ✅ | ✅ |
+| Lateral Movement | ❌ | ✅ | ✅ | ✅ |
+| Exfiltration | ❌ | ⚠️ | ✅ | ✅ |
+| Impact | ✅ | ✅ | ✅ | ✅ |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)
+- [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md)
+- [แผนที่ MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
+
+
+---
+
 ## File: 10_File_Signatures/README.md
 
 # YARA Rules (File Signatures)
@@ -1131,6 +4052,249 @@ This directory contains YARA rules for detecting malicious files. These rules ca
 ```bash
 yara -r 10_File_Signatures/ /path/to/scan
 ```
+
+
+---
+
+## File: 11_Reporting_Templates/Executive_Dashboard.en.md
+
+# SOC Executive Dashboard Template
+
+> **Document ID:** EXEC-DASH-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager  
+> **Audience:** CISO, VP Security, C-Suite, Board
+
+---
+
+## Purpose
+
+This template defines the metrics and visualizations for a SOC executive dashboard. Designed to communicate SOC value and posture to non-technical leadership in a concise, visual format.
+
+---
+
+## Dashboard Layout
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  🛡️ SOC Executive Dashboard — [Month Year]               │
+├──────────────┬──────────────┬──────────────┬─────────────┤
+│  Total       │  Incidents   │  MTTD        │  MTTR       │
+│  Alerts      │  Handled     │  (Detect)    │  (Respond)  │
+│  ████        │  ████        │  ████        │  ████       │
+│  vs last mo. │  vs last mo. │  vs last mo. │ vs last mo. │
+├──────────────┴──────────────┴──────────────┴─────────────┤
+│  📊 Alert Trend (30 days)                                │
+│  ▁▂▃▄▅▆▇█▇▆▅▄▃▂▁▂▃▄▅▆▇█▇▆▅▄▃▂▁                        │
+├──────────────────────────┬───────────────────────────────┤
+│  🎯 Severity Breakdown   │  📈 Top 5 Alert Categories    │
+│  P1: ██░░░  3            │  1. Phishing        150      │
+│  P2: ████░  8            │  2. Brute Force      89      │
+│  P3: ██████ 42           │  3. Malware          67      │
+│  P4: ██████ 120          │  4. Suspicious Login 45      │
+│                          │  5. Data Exfil       23      │
+├──────────────────────────┴───────────────────────────────┤
+│  🗺️ MITRE ATT&CK Coverage    │  SLA Compliance            │
+│  [Heatmap visualization]      │  P1: ✅ 100% met           │
+│                               │  P2: ✅ 95% met            │
+│                               │  P3: ⚠️ 87% met           │
+└──────────────────────────┴────────────────────────────────┘
+```
+
+---
+
+## Metrics Definitions
+
+### Tier 1: KPIs (Always Show)
+
+| Metric | Definition | Target | How to Present |
+|:---|:---|:---:|:---|
+| **Total Alerts** | Alerts ingested in period | — | Number + % change from last period |
+| **Incidents Handled** | Alerts escalated to incidents | — | Number + trend arrow |
+| **MTTD** (Mean Time to Detect) | Time from attack start to SOC detection | ≤ 60 min | Number + green/red indicator |
+| **MTTR** (Mean Time to Respond) | Time from detection to containment | ≤ 4 hrs | Number + green/red indicator |
+| **SLA Compliance** | % incidents meeting SLA by severity | ≥ 95% | % per severity level |
+| **False Positive Rate** | % alerts confirmed as false positive | ≤ 30% | % + trend |
+
+### Tier 2: Operational Insights (Show when available)
+
+| Metric | Definition | Target |
+|:---|:---|:---:|
+| **Alert-to-Incident Ratio** | % of alerts that become real incidents | 10–30% |
+| **Escalation Rate** | % incidents escalated from T1 to T2 | 20–40% |
+| **Reopened Incidents** | Incidents reopened after close | ≤ 5% |
+| **Automation Rate** | % alerts handled by SOAR (no human touch) | ≥ 40% |
+| **Coverage Hours** | SOC operational hours / total hours | 24/7 = 100% |
+
+### Tier 3: Strategic (Monthly/Quarterly)
+
+| Metric | Definition | Target |
+|:---|:---|:---:|
+| **MITRE ATT&CK Coverage** | % of relevant techniques with detection rules | ≥ 70% |
+| **Detection Rule Count** | Active detection rules | Growing |
+| **Log Source Coverage** | % of critical assets sending logs | ≥ 95% |
+| **Threat Intel Indicators** | Active IOCs in watchlists | Growing |
+| **Cost per Incident** | Total SOC cost ÷ incidents handled | Declining |
+| **Staff Utilization** | Active work time ÷ total shift time | 60–80% |
+
+---
+
+## Monthly Executive Summary Template
+
+```markdown
+# SOC Monthly Report — [Month Year]
+
+## Key Highlights
+- ✅ [Top achievement — e.g., "Detected and contained ransomware attempt in 22 minutes"]
+- ⚠️ [Notable concern — e.g., "Phishing attempts increased 34% month-over-month"]
+- 🔄 [Improvement — e.g., "New SOAR playbook reduced MTTR for brute force by 60%"]
+
+## By the Numbers
+| Metric | This Month | Last Month | Trend |
+|:---|:---:|:---:|:---:|
+| Total Alerts | 4,521 | 4,102 | ↑ 10% |
+| Confirmed Incidents | 173 | 156 | ↑ 11% |
+| MTTD | 38 min | 45 min | ✅ ↓ |
+| MTTR | 3.2 hrs | 4.1 hrs | ✅ ↓ |
+| SLA Compliance | 96% | 93% | ✅ ↑ |
+| FP Rate | 22% | 28% | ✅ ↓ |
+
+## Notable Incidents
+| Date | ID | Type | Severity | Impact | Resolution |
+|:---|:---|:---|:---:|:---|:---|
+| MM-DD | INC-001 | Ransomware | P1 | 0 systems lost | Isolated in 22 min |
+
+## Recommendations
+1. [Budget/tool request if any]
+2. [Staffing recommendation if any]
+3. [Process improvement planned]
+
+## Next Month Focus
+- [ ] [Key initiative 1]
+- [ ] [Key initiative 2]
+```
+
+---
+
+## Presentation Tips
+
+```
+📊 Executive Dashboard Best Practices:
+1. Lead with business impact, not technical details
+2. Use RED/AMBER/GREEN indicators — executives scan, don't read
+3. Always show trends (up/down vs last period)
+4. Keep to 1 page / 1 screen — less is more
+5. Highlight wins AND risks — balanced view builds trust
+6. Prepare 3 talking points before any meeting
+7. Have drill-down data ready but don't show it unless asked
+8. Translate "alerts" into "business risk prevented"
+```
+
+---
+
+## Related Documents
+
+- [SOC Metrics & KPIs](SOC_Metrics.en.md)
+- [Monthly SOC Report Template](../11_Reporting_Templates/Monthly_SOC_Report.en.md)
+- [Quarterly Business Review](../11_Reporting_Templates/Quarterly_Business_Review.en.md)
+- [SLA Template](SLA_Template.en.md)
+
+
+---
+
+## File: 11_Reporting_Templates/Executive_Dashboard.th.md
+
+# แม่แบบ Dashboard สำหรับผู้บริหาร
+
+> **รหัสเอกสาร:** EXEC-DASH-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **ผู้ใช้:** CISO, ผู้บริหาร, Board
+
+---
+
+## ตัวชี้วัดแนะนำ
+
+### Tier 1: KPI หลัก (แสดงเสมอ)
+
+| ตัวชี้วัด | คำจำกัดความ | เป้า | แสดง |
+|:---|:---|:---:|:---|
+| **Total Alerts** | Alert ทั้งหมดในช่วงเวลา | — | ตัวเลข + % เทียบเดือนก่อน |
+| **Incidents** | Alert ที่เป็นเหตุจริง | — | ตัวเลข + ทิศทาง |
+| **MTTD** | เวลาตรวจจับ | ≤ 60 นาที | เขียว/แดง |
+| **MTTR** | เวลาตอบสนอง | ≤ 4 ชม. | เขียว/แดง |
+| **SLA Compliance** | % ที่ผ่าน SLA | ≥ 95% | % ต่อ severity |
+| **FP Rate** | % false positive | ≤ 30% | % + trend |
+
+### Tier 2: Operational (เสริม)
+
+| ตัวชี้วัด | เป้า |
+|:---|:---:|
+| Alert-to-Incident Ratio | 10–30% |
+| Automation Rate (SOAR) | ≥ 40% |
+| Escalation Rate | 20–40% |
+| Coverage Hours | 24/7 |
+
+### Tier 3: Strategic (รายเดือน/ไตรมาส)
+
+| ตัวชี้วัด | เป้า |
+|:---|:---:|
+| MITRE ATT&CK Coverage | ≥ 70% |
+| Log Source Coverage | ≥ 95% |
+| Cost per Incident | ลดลง |
+
+---
+
+## แม่แบบสรุปรายเดือน
+
+```markdown
+# รายงาน SOC รายเดือน — [เดือน ปี]
+
+## Highlights
+- ✅ [ผลงานเด่น]
+- ⚠️ [ข้อกังวล]
+- 🔄 [การปรับปรุง]
+
+## ตัวเลข
+| ตัวชี้วัด | เดือนนี้ | เดือนก่อน | ทิศทาง |
+|:---|:---:|:---:|:---:|
+| Alerts | X,XXX | X,XXX | ↑/↓ X% |
+| Incidents | XXX | XXX | |
+| MTTD | XX นาที | XX นาที | |
+| MTTR | X.X ชม. | X.X ชม. | |
+| SLA | XX% | XX% | |
+
+## เหตุการณ์สำคัญ
+| วันที่ | ID | ประเภท | ระดับ | ผลกระทบ |
+|:---|:---|:---|:---:|:---|
+
+## ข้อเสนอ
+1. ___
+2. ___
+```
+
+---
+
+## Tips การนำเสนอ
+
+```
+1. นำด้วย business impact ไม่ใช่ technical details
+2. ใช้ เขียว/เหลือง/แดง — ผู้บริหารสแกน ไม่อ่าน
+3. แสดง trend เทียบเดือนก่อนเสมอ
+4. 1 หน้าจอ — น้อยกว่าคือดีกว่า
+5. บอกทั้งผลงานและความเสี่ยง — สมดุลสร้างความเชื่อมั่น
+6. เตรียม talking points 3 ข้อก่อนประชุม
+7. มีข้อมูล drill-down พร้อม แต่ไม่แสดงจนกว่าถูกถาม
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)
+- [รายงานรายเดือน](Monthly_SOC_Report.th.md)
+- [รายงานรายไตรมาส](Quarterly_Business_Review.th.md)
 
 
 ---
@@ -1353,6 +4517,747 @@ graph LR
 
 ---
 
+## File: 06_Operations_Management/Access_Control.en.md
+
+# SOC Access Control Policy
+
+> **Document ID:** ACC-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager / CISO
+
+---
+
+## Purpose
+
+Defines who can access SOC tools, at what privilege level, and how access is granted, reviewed, and revoked. The SOC must protect itself as rigorously as it protects the organization.
+
+---
+
+## Role-Based Access Matrix
+
+| SOC Tool | T1 Analyst | T2 Analyst | SOC Lead | SOC Manager | Detection Eng | External (MSSP) |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **SIEM — Read/Search** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ (limited) |
+| **SIEM — Create Rules** | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| **SIEM — Admin/Config** | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
+| **EDR — View Alerts** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ (limited) |
+| **EDR — Isolate Host** | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| **EDR — Uninstall Agent** | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| **Ticketing — Create** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Ticketing — Close P1/P2** | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ |
+| **Firewall — View Rules** | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| **Firewall — Block IP** | ❌ | ✅ (temp) | ✅ | ✅ | ❌ | ❌ |
+| **SOAR — Execute Playbook** | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| **SOAR — Edit Playbook** | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ |
+| **TI Platform (MISP)** | Read | Read/Write | Admin | Admin | Read/Write | Read |
+| **SOC Documentation** | Read | Read/Write | Admin | Admin | Read/Write | Read |
+
+---
+
+## Access Request Process
+
+```mermaid
+graph LR
+    Request[1. Submit Request] --> Manager[2. SOC Manager Review]
+    Manager --> IT[3. IT Provisions Access]
+    IT --> Verify[4. User Confirms]
+    Verify --> Log[5. Log in Access Register]
+```
+
+### Request Requirements
+
+| Field | Required |
+|:---|:---:|
+| Requester name | ✅ |
+| Tool/system requested | ✅ |
+| Access level (read/write/admin) | ✅ |
+| Business justification | ✅ |
+| Duration (permanent/temporary) | ✅ |
+| Manager approval | ✅ |
+
+---
+
+## Account Security Requirements
+
+| Control | Requirement |
+|:---|:---|
+| **Authentication** | MFA required for ALL SOC tools |
+| **Password** | Min 14 chars, complexity enforced, no reuse (12 history) |
+| **Session timeout** | 15 min inactive → lock, 8 hrs max → force re-auth |
+| **Service accounts** | Unique per tool, no shared passwords, rotate every 90 days |
+| **API keys** | Per-user, rotate every 90 days, stored in vault (not plaintext) |
+| **VPN/Zero Trust** | Required for remote access to SOC tools |
+| **Privileged access** | JIT (Just-In-Time) for admin access where possible |
+
+---
+
+## Access Review Schedule
+
+| Review Type | Frequency | Reviewer | Action |
+|:---|:---:|:---|:---|
+| Active accounts | Monthly | SOC Manager | Remove departed staff |
+| Privilege levels | Quarterly | SOC Manager + CISO | Right-size permissions |
+| Service accounts | Quarterly | SOC Engineer | Rotate credentials |
+| API keys | Quarterly | SOC Engineer | Rotate and audit usage |
+| MSSP access | Monthly | SOC Manager | Validate scope |
+| Full audit | Annually | CISO + Internal Audit | Comprehensive review |
+
+---
+
+## Offboarding Checklist
+
+When a SOC team member departs:
+
+```
+□ Disable AD/Azure AD account (within 1 hour of departure)
+□ Revoke SIEM access
+□ Revoke EDR access
+□ Revoke ticketing system access
+□ Revoke SOAR access
+□ Revoke VPN/remote access
+□ Revoke TI platform access
+□ Rotate any shared credentials the person had access to
+□ Remove from SOC communication channels (Slack/Teams)
+□ Remove from on-call/shift rotation
+□ Transfer ownership of dashboards/rules they created
+□ Document in Access Register
+```
+
+---
+
+## Audit Logging
+
+All SOC tool access must be logged:
+
+| Log Type | What to Capture | Retention |
+|:---|:---|:---:|
+| Login events | User, time, source IP, success/fail | 1 year |
+| Configuration changes | Who, what, when, before/after | 2 years |
+| Rule modifications | Rule name, author, old/new logic | 2 years |
+| Data exports | Who, dataset, volume, destination | 1 year |
+| Admin actions | All privileged operations | 2 years |
+
+---
+
+## Related Documents
+
+- [SOC Team Structure](SOC_Team_Structure.en.md)
+- [Change Management SOP](Change_Management.en.md)
+- [Data Handling Protocol](Data_Handling_Protocol.en.md)
+
+
+---
+
+## File: 06_Operations_Management/Access_Control.th.md
+
+# นโยบายควบคุมการเข้าถึง SOC
+
+> **รหัสเอกสาร:** ACC-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager / CISO
+
+---
+
+## ตาราง Access ตามบทบาท
+
+| เครื่องมือ | T1 | T2 | Lead | Manager | DetEng | MSSP |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|
+| SIEM อ่าน/ค้นหา | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ จำกัด |
+| SIEM สร้าง Rule | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| SIEM Admin | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
+| EDR ดู Alert | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ จำกัด |
+| EDR Isolate | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| Ticketing สร้าง | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Ticketing ปิด P1/P2 | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ |
+| Firewall Block IP | ❌ | ✅ ชั่วคราว | ✅ | ✅ | ❌ | ❌ |
+| SOAR แก้ Playbook | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ |
+
+---
+
+## ข้อกำหนดความปลอดภัยบัญชี
+
+| การควบคุม | ข้อกำหนด |
+|:---|:---|
+| **Authentication** | MFA บังคับทุกเครื่องมือ SOC |
+| **Password** | ≥ 14 ตัวอักษร, ไม่ซ้ำ 12 รอบ |
+| **Session timeout** | 15 นาที inactive → lock |
+| **Service accounts** | เฉพาะแต่ละเครื่องมือ, rotate 90 วัน |
+| **API keys** | ต่อคน, rotate 90 วัน, เก็บใน vault |
+| **Remote access** | VPN/Zero Trust บังคับ |
+
+---
+
+## ตารางทบทวน Access
+
+| ทบทวน | ความถี่ | ผู้รับผิดชอบ |
+|:---|:---:|:---|
+| บัญชี active | รายเดือน | SOC Manager |
+| ระดับสิทธิ์ | รายไตรมาส | SOC Manager + CISO |
+| Service accounts | รายไตรมาส | SOC Engineer |
+| MSSP access | รายเดือน | SOC Manager |
+| Full audit | รายปี | CISO + Internal Audit |
+
+---
+
+## Checklist เมื่อคนออก
+
+```
+□ ปิดบัญชี AD/Azure AD (ภายใน 1 ชม.)
+□ เพิกถอน SIEM, EDR, Ticketing, SOAR, VPN, TI access
+□ Rotate shared credentials ที่คนนั้นเข้าถึงได้
+□ ลบจาก Slack/Teams SOC
+□ ลบจาก on-call/shift rotation
+□ โอนย้าย dashboards/rules ที่สร้างไว้
+□ บันทึกใน Access Register
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [โครงสร้างทีม SOC](SOC_Team_Structure.th.md)
+- [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)
+- [โปรโตคอลข้อมูล](Data_Handling_Protocol.th.md)
+
+
+---
+
+## File: 06_Operations_Management/Change_Management.en.md
+
+# SOC Change Management SOP
+
+> **Document ID:** CHG-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager
+
+---
+
+## Purpose
+
+Defines the process for making changes to SOC tools, detection rules, playbooks, and infrastructure. Ensures changes are reviewed, tested, approved, and documented before deployment.
+
+---
+
+## Scope
+
+This SOP covers changes to:
+- Detection rules (Sigma, YARA, custom SIEM rules)
+- Playbooks and response procedures
+- SIEM configuration (parsers, dashboards, alerts)
+- EDR policies and exclusions
+- Firewall rules managed by SOC
+- SOAR workflows
+- TI feed configuration
+- SOC tooling (upgrades, patches, new tools)
+
+---
+
+## Change Categories
+
+| Category | Risk | Approval | Lead Time | Examples |
+|:---|:---:|:---|:---:|:---|
+| **Standard** | Low | SOC Lead | 1 day | New Sigma rule, whitelist entry, dashboard update |
+| **Normal** | Medium | SOC Manager | 3 days | SIEM parser change, new log source, playbook update |
+| **Emergency** | High | SOC Manager + CISO | Immediate | Critical vulnerability patch, active incident response |
+| **Major** | High | CAB (Change Advisory Board) | 5+ days | SIEM upgrade, new tool deployment, architecture change |
+
+---
+
+## Change Process
+
+```mermaid
+graph TD
+    Request[1. Submit Change Request] --> Review[2. Technical Review]
+    Review --> Test[3. Test in Staging]
+    Test --> Approve[4. Approval]
+    Approve --> Deploy[5. Deploy to Production]
+    Deploy --> Verify[6. Post-Deploy Verification]
+    Verify --> Close[7. Close & Document]
+    
+    Test -->|Failed| Fix[Fix Issues]
+    Fix --> Test
+    Verify -->|Issues| Rollback[Rollback]
+    Rollback --> Fix
+```
+
+### Step 1: Submit Change Request
+
+Use the [Change Request Template](../templates/change_request_rfc.en.md) and include:
+
+| Field | Required | Description |
+|:---|:---:|:---|
+| Change title | ✅ | Clear summary of the change |
+| Category | ✅ | Standard / Normal / Emergency / Major |
+| Requester | ✅ | Who is requesting |
+| Justification | ✅ | Why is this change needed? |
+| Impact assessment | ✅ | What could go wrong? Affected systems? |
+| Rollback plan | ✅ | How to undo if it fails |
+| Test plan | ✅ | How will you verify success? |
+| Target date | ✅ | When to deploy |
+
+### Step 2: Technical Review
+
+The assigned reviewer must verify:
+- [ ] Change is technically sound
+- [ ] No conflicts with existing rules/configs
+- [ ] Rollback plan is viable
+- [ ] Impact assessment is accurate
+
+### Step 3: Test in Staging
+
+**Detection Rules:**
+```bash
+# Validate Sigma rule syntax
+python tools/sigma_validator.py rules/new_rule.yml
+
+# Test against sample logs
+sigmac -t splunk new_rule.yml | splunk search
+
+# Verify no excessive false positives (run against 7 days of data)
+```
+
+**Playbook Changes:**
+- Walk through with a peer (tabletop)
+- Verify all referenced tools/contacts are accurate
+
+**SIEM Changes:**
+- Test in dev/staging SIEM instance
+- Verify log parsing is correct
+- Check performance impact
+
+### Step 4: Approval
+
+| Category | Approver | Method |
+|:---|:---|:---|
+| Standard | SOC Lead | Slack/Teams approval |
+| Normal | SOC Manager | Ticket approval |
+| Emergency | SOC Manager + CISO | Phone/verbal (document after) |
+| Major | CAB | Meeting + formal sign-off |
+
+### Step 5: Deploy to Production
+
+- Deploy during **maintenance window** (if applicable)
+- Use version control (git) for all rule/playbook changes
+- Tag the deployment in git: `git tag -a v1.x -m "CHG-XXX: description"`
+
+### Step 6: Post-Deploy Verification
+
+Within 24 hours of deployment:
+- [ ] Change is functioning as expected
+- [ ] No unexpected alerts or errors
+- [ ] No performance degradation
+- [ ] Relevant team members notified
+
+### Step 7: Close & Document
+
+- Update change ticket with results
+- Update relevant documentation
+- Close the change request
+
+---
+
+## Emergency Change Process
+
+```
+⚡ Emergency changes bypass normal lead time but MUST:
+   1. Be verbally approved by SOC Manager (or CISO if unavailable)
+   2. Be documented WITHIN 24 HOURS after deployment
+   3. Be reviewed in the next weekly SOC standup
+   4. Have a rollback plan (even if informal)
+```
+
+---
+
+## Change Log Template
+
+| Date | Change ID | Description | Category | Deployed By | Status |
+|:---|:---|:---|:---|:---|:---|
+| 2026-02-15 | CHG-001 | Add Sigma rule for DNS tunneling | Standard | @analyst1 | ✅ |
+| 2026-02-14 | CHG-002 | Update PB-01 Phishing playbook | Normal | @soc_lead | ✅ |
+
+---
+
+## Related Documents
+
+- [Change Request Template](../templates/change_request_rfc.en.md)
+- [Detection Rule Testing SOP](Detection_Rule_Testing.en.md)
+- [SOC Checklists](SOC_Checklists.en.md)
+
+
+---
+
+## File: 06_Operations_Management/Change_Management.th.md
+
+# SOP การจัดการเปลี่ยนแปลง SOC
+
+> **รหัสเอกสาร:** CHG-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager
+
+---
+
+## ขอบเขต
+
+ครอบคลุมการเปลี่ยนแปลง: Detection rules, Playbooks, SIEM config, EDR policies, Firewall rules, SOAR workflows, TI feeds, เครื่องมือ SOC
+
+---
+
+## ประเภทการเปลี่ยนแปลง
+
+| ประเภท | ความเสี่ยง | อนุมัติโดย | เวลา | ตัวอย่าง |
+|:---|:---:|:---|:---:|:---|
+| **Standard** | ต่ำ | SOC Lead | 1 วัน | Sigma rule ใหม่, whitelist |
+| **Normal** | กลาง | SOC Manager | 3 วัน | SIEM parser, log source ใหม่ |
+| **Emergency** | สูง | SOC Manager + CISO | ทันที | Patch เร่งด่วน, ตอบเหตุ |
+| **Major** | สูง | CAB | 5+ วัน | SIEM upgrade, เครื่องมือใหม่ |
+
+---
+
+## ขั้นตอน
+
+```mermaid
+graph TD
+    A[1. ส่ง Change Request] --> B[2. Review เทคนิค]
+    B --> C[3. ทดสอบ Staging]
+    C --> D[4. อนุมัติ]
+    D --> E[5. Deploy Production]
+    E --> F[6. ตรวจสอบหลัง Deploy]
+    F --> G[7. ปิด & บันทึก]
+```
+
+### ขั้นตอนสำคัญ:
+1. **ส่ง Change Request** — ใช้ [แม่แบบ](../templates/change_request_rfc.th.md)
+2. **Review เทคนิค** — ตรวจสอบความถูกต้อง, conflict, rollback plan
+3. **ทดสอบ** — Validate syntax, ทดสอบกับข้อมูลจริง 7 วัน
+4. **อนุมัติ** — ตามระดับประเภท
+5. **Deploy** — ใช้ version control (git), ติด tag
+6. **ตรวจหลัง Deploy** — ภายใน 24 ชม.
+7. **ปิด** — อัปเดตเอกสาร
+
+---
+
+## กรณีฉุกเฉิน
+
+```
+⚡ Emergency change:
+   1. ขออนุมัติปากเปล่าจาก SOC Manager
+   2. บันทึกภายใน 24 ชม.
+   3. ทบทวนใน standup ถัดไป
+   4. ต้องมี rollback plan เสมอ
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [แม่แบบ Change Request](../templates/change_request_rfc.th.md)
+- [SOP ทดสอบ Detection Rule](Detection_Rule_Testing.th.md)
+- [รายการตรวจสอบ SOC](SOC_Checklists.th.md)
+
+
+---
+
+## File: 06_Operations_Management/Communication_SOP.en.md
+
+# SOC Communication SOP
+
+> **Document ID:** COMM-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager
+
+---
+
+## Purpose
+
+Defines communication channels, escalation paths, and protocols for SOC teams during normal operations and incidents. Ensures the right people get the right information at the right time.
+
+---
+
+## Communication Channels
+
+### Channel Matrix
+
+| Channel | Use Case | Urgency | Platform |
+|:---|:---|:---:|:---|
+| **#soc-alerts** | Automated SIEM/EDR alerts | Low–Med | Slack / Teams |
+| **#soc-triage** | Active triage discussion | Medium | Slack / Teams |
+| **#soc-incidents** | Active incident coordination | High | Slack / Teams |
+| **#soc-general** | Team announcements, shift notes | Low | Slack / Teams |
+| **War Room** (voice) | P1/P2 incident bridge call | Critical | Teams / Zoom / Google Meet |
+| **Email** | Formal notifications, reports | Low | Corporate email |
+| **Phone/SMS** | Emergency escalation | Critical | Personal/on-call phone |
+| **Ticketing System** | All incident tracking | All | Jira / ServiceNow / TheHive |
+
+### Channel Rules
+
+```
+📌 Rules:
+1. ALL incidents MUST be tracked in the ticketing system (single source of truth)
+2. Slack/Teams is for real-time coordination — NOT the record of decision
+3. Sensitive IOCs, credentials, and PII must NEVER be shared in chat
+4. Use threads in #soc-incidents to avoid noise
+5. Pin important updates in the incident channel
+6. War Room is mandatory for all P1 incidents
+```
+
+---
+
+## Normal Operations Communication
+
+### Shift Handoff
+
+| Item | Detail |
+|:---|:---|
+| **When** | Start of each shift |
+| **Channel** | #soc-general + ticketing system |
+| **Duration** | 10–15 minutes |
+| **Format** | Use [Shift Handover Template](../templates/shift_handover.en.md) |
+| **Required** | Open incidents, pending actions, system health, queue volume |
+
+### Daily Standup
+
+| Item | Detail |
+|:---|:---|
+| **When** | Start of business (day shift) |
+| **Channel** | Voice/video + #soc-general |
+| **Duration** | 15 minutes max |
+| **Agenda** | Overnight highlights, pending P2/P3s, rule tuning needs, blockers |
+
+### Weekly SOC Meeting
+
+| Item | Detail |
+|:---|:---|
+| **When** | Weekly (e.g., Monday 10:00) |
+| **Attendees** | All SOC analysts + SOC Manager |
+| **Agenda** | KPI review, incident trends, detection gaps, training, process improvement |
+| **Output** | Action items tracked in ticketing system |
+
+---
+
+## Incident Communication Protocol
+
+### P1 — Critical Incident
+
+```mermaid
+graph TD
+    Detect[Alert Detected] --> Triage[T1 Triage<br>5 min max]
+    Triage --> Escalate[Escalate to T2/Lead<br>Immediately]
+    Escalate --> War[Open War Room<br>Voice bridge]
+    War --> Notify1[Notify SOC Manager<br>Phone + Slack]
+    Notify1 --> Notify2[Notify CISO<br>within 15 min]
+    Notify2 --> Status[Status updates<br>every 30 min]
+    Status --> Resolve[Resolution + <br>Post-Incident Report]
+```
+
+**War Room Setup:**
+1. Create dedicated incident channel: `#inc-YYYY-MM-DD-short-name`
+2. Start voice bridge (Teams/Zoom permanent link)
+3. Pin incident summary at top of channel
+4. Assign roles: **Incident Commander**, **Scribe**, **Technical Lead**
+
+**Status Update Template:**
+```
+🔴 INCIDENT UPDATE — [INC-YYYY-NNN]
+━━━━━━━━━━━━━━━━━━━━━━
+Time: HH:MM
+Status: Investigating / Containing / Eradicating / Recovering
+Summary: [1-2 sentences]
+Actions taken: [bullets]
+Next steps: [bullets]
+ETA to resolution: [estimate]
+━━━━━━━━━━━━━━━━━━━━━━
+```
+
+### P2 — High
+
+| Step | Action | Timeline |
+|:---|:---|:---:|
+| 1 | Post in #soc-incidents | Immediately |
+| 2 | Notify SOC Lead (Slack + mention) | < 15 min |
+| 3 | Status updates | Every 1 hour |
+| 4 | Notify SOC Manager | < 1 hour |
+
+### P3 — Medium
+
+| Step | Action | Timeline |
+|:---|:---|:---:|
+| 1 | Create ticket | Immediately |
+| 2 | Post summary in #soc-triage | < 30 min |
+| 3 | Handle during normal workflow | Business hours |
+
+### P4 — Low
+
+| Step | Action | Timeline |
+|:---|:---|:---:|
+| 1 | Create ticket | Next business day |
+| 2 | Track in queue | Normal priority |
+
+---
+
+## External Communication
+
+### Who Communicates Externally
+
+| Audience | Communicator | Approval Required |
+|:---|:---|:---|
+| Executive / Board | CISO | — |
+| Legal / Regulators (PDPA) | DPO + Legal | CISO |
+| Media / Public | PR/Comms | CISO + CEO |
+| Affected customers | Account team | CISO + Legal |
+| Law enforcement | CISO | CEO |
+| Insurance provider | CFO | CISO |
+
+> ⚠️ **SOC analysts must NEVER communicate externally about incidents** without explicit approval from SOC Manager or CISO.
+
+---
+
+## On-Call Communication
+
+| Item | Detail |
+|:---|:---|
+| **On-call schedule** | Maintained in PagerDuty / Opsgenie / shared calendar |
+| **Primary contact** | Phone call (not just Slack) |
+| **Response time** | Acknowledge within 15 minutes |
+| **Escalation** | If no response in 15 min → escalate to backup |
+| **Backup** | Always have a backup on-call designated |
+
+---
+
+## Communication Tools Checklist
+
+```
+□ Slack/Teams workspace configured with SOC channels
+□ Voice bridge (permanent meeting link) ready
+□ On-call rotation tool configured (PagerDuty/Opsgenie)
+□ Phone numbers for all SOC team members (secured)
+□ Distribution lists: soc-team@, soc-management@, incident-response@
+□ Incident channel naming convention documented
+□ Status update templates saved as snippets/bookmarks
+□ External contact list maintained (Legal, PR, DPO, Insurance)
+```
+
+---
+
+## Related Documents
+
+- [Shift Handoff SOP](Shift_Handoff.en.md)
+- [SLA Template](SLA_Template.en.md)
+- [Communication Templates (IR)](../05_Incident_Response/Communication_Templates.en.md)
+- [SOC Team Structure](SOC_Team_Structure.en.md)
+
+
+---
+
+## File: 06_Operations_Management/Communication_SOP.th.md
+
+# SOP การสื่อสาร SOC
+
+> **รหัสเอกสาร:** COMM-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager
+
+---
+
+## ช่องทางการสื่อสาร
+
+| ช่องทาง | ใช้เมื่อ | ความเร่งด่วน | Platform |
+|:---|:---|:---:|:---|
+| **#soc-alerts** | Alert อัตโนมัติจาก SIEM/EDR | ต่ำ–กลาง | Slack / Teams |
+| **#soc-triage** | ถกเรื่อง triage | กลาง | Slack / Teams |
+| **#soc-incidents** | ประสานเหตุการณ์ | สูง | Slack / Teams |
+| **War Room** (เสียง) | P1/P2 bridge call | วิกฤต | Teams / Zoom |
+| **โทรศัพท์/SMS** | Escalation ฉุกเฉิน | วิกฤต | โทรศัพท์ on-call |
+| **Ticketing** | ติดตามทุก incident | ทุกระดับ | Jira / TheHive |
+
+### กฎช่องทาง
+1. ทุก incident **ต้อง** track ใน ticketing system
+2. Slack/Teams ใช้ประสานงาน — ไม่ใช่บันทึกการตัดสินใจ
+3. **ห้าม** แชร์ IOC, credentials, PII ใน chat
+4. ใช้ thread ใน #soc-incidents เพื่อลด noise
+
+---
+
+## การสื่อสารปกติ
+
+| รายการ | รายละเอียด |
+|:---|:---|
+| **Shift Handoff** | ต้นกะทุกครั้ง, 10–15 นาที, ใช้[แม่แบบ](../templates/shift_handover.th.md) |
+| **Daily Standup** | ต้นวัน, 15 นาที, สรุปเหตุข้ามคืน + pending + blockers |
+| **Weekly Meeting** | ทุกสัปดาห์, KPI + trends + detection gaps + training |
+
+---
+
+## Protocol ตามระดับเหตุ
+
+### P1 — วิกฤต
+
+```mermaid
+graph TD
+    A[ตรวจพบ Alert] --> B[T1 Triage ≤ 5 นาที]
+    B --> C[Escalate T2/Lead ทันที]
+    C --> D[เปิด War Room]
+    D --> E[แจ้ง SOC Manager ทันที]
+    E --> F[แจ้ง CISO ≤ 15 นาที]
+    F --> G[อัปเดตทุก 30 นาที]
+```
+
+**War Room:**
+1. สร้างช่อง `#inc-YYYY-MM-DD-ชื่อย่อ`
+2. เปิดสาย voice bridge
+3. Pin สรุปเหตุที่หัวช่อง
+4. กำหนดบทบาท: **Incident Commander**, **Scribe**, **Technical Lead**
+
+### P2 — สูง
+- แจ้ง #soc-incidents ทันที
+- แจ้ง SOC Lead ≤ 15 นาที
+- อัปเดตทุก 1 ชม.
+
+### P3 — กลาง
+- สร้าง ticket, โพสต์ใน #soc-triage ≤ 30 นาที
+
+### P4 — ต่ำ
+- สร้าง ticket วันทำการถัดไป
+
+---
+
+## การสื่อสารภายนอก
+
+| ผู้รับ | ผู้สื่อสาร | ต้อง approve |
+|:---|:---|:---|
+| ผู้บริหาร/Board | CISO | — |
+| กฎหมาย/PDPA | DPO + Legal | CISO |
+| สื่อ/สาธารณะ | PR | CISO + CEO |
+| ลูกค้า | Account team | CISO + Legal |
+
+> ⚠️ SOC analyst **ห้ามสื่อสารภายนอกเรื่อง incident** โดยไม่ได้รับอนุญาต
+
+---
+
+## On-Call
+
+| รายการ | รายละเอียด |
+|:---|:---|
+| ตาราง | PagerDuty / Opsgenie / ปฏิทินร่วม |
+| ตอบรับ | ภายใน 15 นาที |
+| ถ้าไม่ตอบ | Escalate ไป backup |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [SOP ส่งมอบกะ](Shift_Handoff.th.md)
+- [แม่แบบ SLA](SLA_Template.th.md)
+- [แม่แบบการสื่อสาร IR](../05_Incident_Response/Communication_Templates.th.md)
+
+
+---
+
 ## File: 06_Operations_Management/Data_Handling_Protocol.en.md
 
 # Data Handling Protocol (TLP 2.0)
@@ -1483,6 +5388,850 @@ graph TD
 ## References
 -   [FIRST.org TLP 2.0 Standard](https://www.first.org/tlp/)
 -   [CISA Traffic Light Protocol](https://www.cisa.gov/tlp)
+
+
+---
+
+## File: 06_Operations_Management/Detection_Rule_Testing.en.md
+
+# Detection Rule Testing SOP
+
+> **Document ID:** DRT-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** Detection Engineer / SOC Lead
+
+---
+
+## Purpose
+
+Defines the process for testing detection rules (Sigma, YARA, custom SIEM) before deploying to production. Ensures rules detect real threats without excessive false positives.
+
+---
+
+## Testing Pipeline
+
+```mermaid
+graph LR
+    Write[1. Write Rule] --> Validate[2. Syntax Validate]
+    Validate --> BackTest[3. Backtest]
+    BackTest --> Stage[4. Staging Test]
+    Stage --> Peer[5. Peer Review]
+    Peer --> Deploy[6. Deploy]
+    Deploy --> Monitor[7. Monitor 7 Days]
+```
+
+### Step 1: Write Rule
+- Follow [Sigma specification](https://sigmahq.io/docs/basics/rules.html)
+- Include: title, description, author, date, MITRE ATT&CK mapping
+
+### Step 2: Syntax Validation
+
+```bash
+# Use the project's validator
+python tools/sigma_validator.py path/to/rule.yml
+
+# Or use sigmac directly
+sigmac -t splunk path/to/rule.yml
+```
+
+**Pass criteria:** Zero syntax errors, valid MITRE mapping.
+
+### Step 3: Backtest (Historical Data)
+
+Run the rule against **7–30 days** of historical logs:
+
+```bash
+# Splunk
+index=windows sourcetype=WinEventLog:Security
+| where [translate_sigma_to_spl]
+| stats count by ComputerName, User
+
+# Elastic
+GET /logs-*/_search
+{
+  "query": { ... translated sigma ... },
+  "aggs": { "per_host": { "terms": { "field": "host.name" } } }
+}
+```
+
+**Pass criteria:**
+- [ ] Detects known-bad events (if available in test data)
+- [ ] False positive rate ≤ 20% (review top 20 hits manually)
+- [ ] Alert volume ≤ 50/day (otherwise needs tuning)
+
+### Step 4: Staging Test
+
+If you have a staging SIEM:
+1. Deploy rule to staging
+2. Run Atomic Red Team test for the corresponding technique
+3. Verify alert triggers with correct severity and context
+
+If no staging:
+1. Deploy rule as **disabled** in production
+2. Run manually against live data for 24 hours
+3. Review results before enabling
+
+### Step 5: Peer Review
+
+Another detection engineer or T2 analyst reviews:
+- [ ] Logic is correct (no gaps, no over-matching)
+- [ ] Whitelist/exclusions are appropriate
+- [ ] MITRE mapping is accurate
+- [ ] Description is clear for T1 analysts
+- [ ] Related playbook is referenced
+
+### Step 6: Deploy via Change Management
+
+Follow [Change Management SOP](Change_Management.en.md):
+- Standard category for new rules
+- Git commit with descriptive message
+- Tag with version
+
+### Step 7: Monitor (7-Day Bake Period)
+
+After deployment, monitor for 7 days:
+
+| Metric | Target | Action if Failed |
+|:---|:---:|:---|
+| False positive rate | ≤ 20% | Tune whitelists |
+| Alert volume | ≤ 50/day | Adjust thresholds |
+| True positive detection | ≥ 1 (if applicable) | Verify by simulation |
+| Performance impact | ≤ 5% query time increase | Optimize query |
+
+---
+
+## Rule Quality Checklist
+
+```
+□ Title is descriptive and unique
+□ Description explains what the rule detects
+□ Author and date are set
+□ MITRE ATT&CK technique is mapped
+□ Level (severity) is appropriate
+□ Logsource is specified correctly
+□ Detection logic uses correct field names
+□ False positive section documents known FPs
+□ References include source/blog/CVE
+□ Tests pass: syntax, backtest, staging
+□ Peer review approved
+□ Change request submitted
+```
+
+---
+
+## Related Documents
+
+- [Change Management SOP](Change_Management.en.md)
+- [Detection Rules Index](../07_Detection_Rules/README.md)
+- [Use Case Prioritization](../01_SOC_Fundamentals/Use_Case_Prioritization.en.md)
+
+
+---
+
+## File: 06_Operations_Management/Detection_Rule_Testing.th.md
+
+# SOP ทดสอบ Detection Rule
+
+> **รหัสเอกสาร:** DRT-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** Detection Engineer / SOC Lead
+
+---
+
+## Pipeline การทดสอบ
+
+```mermaid
+graph LR
+    A[1. เขียน Rule] --> B[2. ตรวจ Syntax]
+    B --> C[3. Backtest]
+    C --> D[4. ทดสอบ Staging]
+    D --> E[5. Peer Review]
+    E --> F[6. Deploy]
+    F --> G[7. ติดตาม 7 วัน]
+```
+
+### ขั้นตอนสำคัญ:
+
+**2. ตรวจ Syntax:**
+```bash
+python tools/sigma_validator.py path/to/rule.yml
+```
+
+**3. Backtest (7–30 วัน):**
+- ตรวจจับ known-bad ได้ไหม?
+- FP rate ≤ 20%?
+- Alert ≤ 50/วัน?
+
+**4. Staging:**
+- Deploy เป็น disabled ก่อน
+- รัน Atomic Red Team test
+- ตรวจ alert trigger ถูกต้อง
+
+**5. Peer Review:**
+- [ ] Logic ถูกต้อง
+- [ ] Whitelist เหมาะสม
+- [ ] MITRE mapping ถูก
+- [ ] คำอธิบายชัดเจนสำหรับ T1
+
+**7. ติดตาม 7 วัน:**
+
+| ตัวชี้วัด | เป้า | ถ้าไม่ผ่าน |
+|:---|:---:|:---|
+| FP rate | ≤ 20% | ปรับ whitelist |
+| Alert volume | ≤ 50/วัน | ปรับ threshold |
+| Performance | ≤ 5% เพิ่ม | optimize query |
+
+---
+
+## Checklist คุณภาพ Rule
+
+```
+□ Title ชัดเจน
+□ มี MITRE ATT&CK mapping
+□ Level (severity) เหมาะสม
+□ Detection logic ใช้ field name ถูกต้อง
+□ มี false positive section
+□ ผ่านทดสอบ: syntax, backtest, staging
+□ Peer review อนุมัติแล้ว
+□ Submit Change Request แล้ว
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)
+- [ดัชนี Detection Rules](../07_Detection_Rules/README.md)
+
+
+---
+
+## File: 06_Operations_Management/Log_Source_Onboarding.en.md
+
+# Log Source Onboarding Guide
+
+> **Document ID:** LOG-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Engineering / Detection Engineering
+
+---
+
+## Purpose
+
+Step-by-step guide for onboarding new log sources into the SIEM. Proper onboarding ensures detection coverage, normalization, and alert quality.
+
+---
+
+## Onboarding Workflow
+
+```mermaid
+graph LR
+    A[Request] --> B[Assessment]
+    B --> C[Configure Source]
+    C --> D[Parse & Normalize]
+    D --> E[Validate]
+    E --> F[Build Detections]
+    F --> G[Document & Close]
+```
+
+---
+
+## Phase 1: Assessment Checklist
+
+Before onboarding any new log source:
+
+| Item | Details |
+|:---|:---|
+| **Log Source Name** | [System/application name] |
+| **Log Type** | Auth / Network / Endpoint / Cloud / Application |
+| **Volume Estimate** | [Events per second / per day] |
+| **Format** | Syslog (RFC 3164/5424) / JSON / CEF / CSV / Windows Event |
+| **Transport** | Syslog TCP/UDP / Filebeat / API / S3 / Kafka |
+| **Retention** | [Days to retain in hot/warm/cold storage] |
+| **Compliance** | Required by ISO/PCI/PDPA? |
+| **Playbooks** | Which playbooks will this data support? |
+| **Owner** | [Team responsible for the source system] |
+
+---
+
+## Phase 2: Configure by Source Type
+
+### Windows Event Logs
+```yaml
+# Winlogbeat config
+winlogbeat.event_logs:
+  - name: Security
+    event_id: 4624, 4625, 4648, 4672, 4688, 4720, 4726, 4732, 4756, 1102
+  - name: System
+    event_id: 7045, 7040
+  - name: Microsoft-Windows-Sysmon/Operational
+  - name: Microsoft-Windows-PowerShell/Operational
+    event_id: 4103, 4104
+
+output.elasticsearch:
+  hosts: ["siem.company.local:9200"]
+  index: "winlogbeat-%{+yyyy.MM.dd}"
+```
+
+### Linux Syslog
+```yaml
+# Filebeat config
+filebeat.inputs:
+  - type: log
+    paths:
+      - /var/log/auth.log
+      - /var/log/syslog
+      - /var/log/secure
+    fields:
+      log_type: linux_syslog
+    multiline:
+      pattern: '^\w{3}\s+\d{1,2}'
+      negate: true
+      match: after
+
+  - type: log
+    paths:
+      - /var/log/audit/audit.log
+    fields:
+      log_type: linux_audit
+```
+
+### Firewall (Palo Alto / Fortinet)
+```
+# Syslog config — send to SIEM
+# Palo Alto: Device > Server Profiles > Syslog
+Server IP:    [SIEM_IP]
+Port:         514 (UDP) or 6514 (TLS)
+Format:       BSD
+Facility:     LOG_USER
+
+# Fortinet FortiGate
+config log syslogd setting
+    set status enable
+    set server [SIEM_IP]
+    set port 514
+    set format cef
+    set facility local7
+end
+```
+
+### AWS CloudTrail
+```bash
+# Enable CloudTrail → S3 → SIEM
+aws cloudtrail create-trail \
+  --name soc-audit-trail \
+  --s3-bucket-name company-cloudtrail-logs \
+  --is-multi-region-trail \
+  --enable-log-file-validation
+
+# Enable CloudWatch Logs integration
+aws cloudtrail update-trail \
+  --name soc-audit-trail \
+  --cloud-watch-logs-log-group-arn arn:aws:logs:... \
+  --cloud-watch-logs-role-arn arn:aws:iam::...
+```
+
+### Azure Activity & Sign-in Logs
+```
+# Azure Portal → Azure AD → Diagnostic Settings
+# Export to:
+- Log Analytics Workspace (recommended)
+- Event Hub → SIEM
+- Storage Account
+
+# Key log categories:
+✅ AuditLogs
+✅ SignInLogs
+✅ NonInteractiveUserSignInLogs
+✅ ServicePrincipalSignInLogs
+✅ RiskyUsers
+✅ UserRiskEvents
+```
+
+### Office 365 / Microsoft 365
+```powershell
+# Enable Unified Audit Log
+Set-AdminAuditLogConfig -UnifiedAuditLogIngestionEnabled $true
+
+# Verify
+Get-AdminAuditLogConfig | FL UnifiedAuditLogIngestionEnabled
+
+# Key events to monitor:
+# - MailItemsAccessed
+# - New-InboxRule / Set-InboxRule
+# - FileDownloaded / FileUploaded (SharePoint/OneDrive)
+# - UserLoggedIn (from unusual locations)
+```
+
+### EDR (CrowdStrike / Defender / SentinelOne)
+```
+# Typically via API or Syslog streaming
+# CrowdStrike: SIEM Connector → Falcon Data Replicator
+# Defender: Microsoft 365 Defender → Streaming API
+# SentinelOne: Settings → Integrations → Syslog/CEF
+
+# Key events:
+✅ Detections / Alerts
+✅ Process execution
+✅ Network connections
+✅ File modifications
+✅ DNS queries
+```
+
+---
+
+## Phase 3: Parse & Normalize
+
+### Field Mapping Standard (ECS)
+
+Map all sources to Elastic Common Schema (ECS) or similar:
+
+| Standard Field | Description | Example |
+|:---|:---|:---|
+| `@timestamp` | Event time | 2026-02-15T08:30:00Z |
+| `event.category` | Category | authentication, network, process |
+| `event.action` | Action | login, file_create, dns_query |
+| `event.outcome` | Result | success, failure |
+| `source.ip` | Source IP | 10.0.1.50 |
+| `destination.ip` | Dest IP | 8.8.8.8 |
+| `user.name` | Username | john.doe |
+| `host.name` | Hostname | WS-JOHN-01 |
+| `process.name` | Process | powershell.exe |
+| `file.hash.sha256` | File hash | abc123... |
+
+---
+
+## Phase 4: Validation
+
+After onboarding, verify:
+
+```
+□ Logs are arriving (check last 5 min)
+□ Parsing is correct (spot-check 10 events)
+□ Timestamps are accurate (not off by timezone)
+□ Fields are normalized to standard schema
+□ No data loss (compare source count vs SIEM count, ±5%)
+□ Test search query returns expected results
+□ Volume matches estimate (not flooding or too low)
+□ Alert rules fire on test data
+```
+
+### Test Queries
+```
+# Check data arrival
+index=* sourcetype="new_source" earliest=-5m | stats count
+
+# Verify field extraction
+index=* sourcetype="new_source" | table _time, source.ip, user.name, event.action
+
+# Count vs expected volume
+index=* sourcetype="new_source" earliest=-1d | stats count
+```
+
+---
+
+## Phase 5: Build Detections
+
+After validation, create detection rules:
+
+1. Review which Sigma rules apply to this log source
+2. Convert relevant Sigma rules for your SIEM
+3. Test detection rules against historical data
+4. Set up alert routing (email, Slack, ticket)
+5. Document false positive baseline (first 2 weeks)
+
+---
+
+## Log Source Priority Matrix
+
+| Priority | Log Source | Playbooks Supported |
+|:---:|:---|:---|
+| 🔴 P1 | EDR / Endpoint | PB-01, PB-02, PB-03, PB-11, PB-12 |
+| 🔴 P1 | Active Directory / Azure AD | PB-04, PB-05, PB-06, PB-07, PB-15, PB-26 |
+| 🔴 P1 | Email Gateway | PB-01, PB-17 |
+| 🟡 P2 | Firewall / IDS | PB-09, PB-13, PB-24 |
+| 🟡 P2 | Cloud (AWS/Azure/GCP) | PB-16, PB-27 |
+| 🟡 P2 | Proxy / Web Gateway | PB-10, PB-22, PB-29 |
+| 🟢 P3 | DNS | PB-24 |
+| 🟢 P3 | DLP | PB-08, PB-14 |
+| 🟢 P3 | MDM | PB-19, PB-28 |
+| ⚪ P4 | Badge / Physical | PB-14 |
+| ⚪ P4 | OT/ICS | PB-30 |
+
+---
+
+## Related Documents
+
+- [Detection Rules Index](../07_Detection_Rules/README.md)
+- [Sigma Rule Validator](../tools/sigma_validator.py)
+- [SOC Metrics & KPIs](SOC_Metrics.en.md)
+
+
+---
+
+## File: 06_Operations_Management/Log_Source_Onboarding.th.md
+
+# คู่มือเพิ่ม Log Source เข้า SIEM
+
+> **รหัสเอกสาร:** LOG-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Engineering
+
+---
+
+## วัตถุประสงค์
+
+คู่มือทีละขั้นตอนสำหรับ onboard log source ใหม่เข้า SIEM เพื่อให้แน่ใจว่ามี detection coverage ถูกต้องและมีคุณภาพ
+
+---
+
+## ขั้นตอนการ Onboard
+
+```
+1. ประเมิน → 2. ตั้งค่า → 3. Parse → 4. ตรวจสอบ → 5. สร้าง Detection
+```
+
+---
+
+## ขั้นที่ 1: ประเมิน
+
+| รายการ | รายละเอียด |
+|:---|:---|
+| ชื่อ Log Source | [ชื่อระบบ] |
+| ประเภท | Auth / Network / Endpoint / Cloud |
+| ปริมาณ | [Events ต่อวัน] |
+| รูปแบบ | Syslog / JSON / CEF / Windows Event |
+| การส่ง | Syslog / Filebeat / API / S3 |
+| Retention | [จำนวนวัน] |
+| Playbooks | สนับสนุน playbook ไหนบ้าง? |
+
+---
+
+## ขั้นที่ 2: ตั้งค่า
+
+### Windows
+```yaml
+# Winlogbeat — Event IDs สำคัญ
+Security: 4624, 4625, 4648, 4672, 4688, 4720, 1102
+Sysmon: ทั้งหมด
+PowerShell: 4103, 4104
+```
+
+### Linux
+```yaml
+# Filebeat
+/var/log/auth.log, /var/log/syslog, /var/log/audit/audit.log
+```
+
+### Cloud
+```
+AWS: CloudTrail → S3 → SIEM
+Azure: Diagnostic Settings → Log Analytics / Event Hub
+O365: Unified Audit Log → Streaming API
+```
+
+---
+
+## ขั้นที่ 3: Normalize (ECS)
+
+| Field มาตรฐาน | คำอธิบาย |
+|:---|:---|
+| `@timestamp` | เวลาเกิดเหตุ |
+| `event.category` | หมวด (authentication, network) |
+| `source.ip` | IP ต้นทาง |
+| `user.name` | ชื่อผู้ใช้ |
+| `host.name` | ชื่อเครื่อง |
+
+---
+
+## ขั้นที่ 4: ตรวจสอบ
+
+```
+□ Log มาถึงแล้ว (ตรวจ 5 นาทีล่าสุด)
+□ Parse ถูกต้อง (spot-check 10 events)
+□ Timestamp ถูก timezone
+□ Fields normalize ตาม schema
+□ ปริมาณตรงกับที่ประเมิน (±5%)
+□ Alert rules ทำงาน
+```
+
+---
+
+## ลำดับความสำคัญ
+
+| ลำดับ | Log Source | Playbooks |
+|:---:|:---|:---|
+| 🔴 P1 | EDR / Endpoint | PB-01–03, PB-11–12 |
+| 🔴 P1 | AD / Azure AD | PB-04–07, PB-15, PB-26 |
+| 🔴 P1 | Email Gateway | PB-01, PB-17 |
+| 🟡 P2 | Firewall / IDS | PB-09, PB-13, PB-24 |
+| 🟡 P2 | Cloud (AWS/Azure) | PB-16, PB-27 |
+| 🟢 P3 | DNS / DLP / MDM | PB-08, PB-19, PB-24 |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md)
+- [Sigma Validator](../tools/sigma_validator.py)
+
+
+---
+
+## File: 06_Operations_Management/SLA_Template.en.md
+
+# SOC Service Level Agreement (SLA) Template
+
+> **Document ID:** SLA-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Between:** [SOC Team] and [Business Unit / Management]
+
+---
+
+## Purpose
+
+This SLA defines the expected service levels for the Security Operations Center, including response times, escalation procedures, and reporting commitments. This template can be customized for your organization.
+
+---
+
+## Scope of Services
+
+The SOC provides the following services:
+
+| Service | Coverage | Description |
+|:---|:---:|:---|
+| Security Monitoring | 24/7 or 8/5 | Continuous monitoring of security alerts |
+| Incident Response | 24/7 or 8/5 | Investigation and response to security incidents |
+| Threat Intelligence | Business hours | Threat landscape monitoring and IOC management |
+| Vulnerability Alerts | Business hours | Notification of critical vulnerabilities |
+| Compliance Monitoring | Business hours | Regulatory compliance monitoring |
+| Reporting | Monthly | Operational reports and metrics |
+
+> ⚠️ **Out of Scope:** Penetration testing, application development security review, physical security, IT helpdesk.
+
+---
+
+## Incident Severity Classification
+
+| Severity | Definition | Examples |
+|:---|:---|:---|
+| **P1 — Critical** | Active attack, data breach, business disruption | Ransomware, active data exfiltration, production down |
+| **P2 — High** | Confirmed compromise, potential data breach | Account takeover, malware execution, lateral movement |
+| **P3 — Medium** | Suspicious activity requiring investigation | Brute force attempts, policy violation, anomalous behavior |
+| **P4 — Low** | Informational, minor policy violation | Failed scans, low-risk alerts, misconfigurations |
+
+---
+
+## Response Time SLA
+
+### Initial Response Time
+
+| Severity | Response Time | Escalation Time | Resolution Target |
+|:---:|:---:|:---:|:---:|
+| **P1 — Critical** | ≤ 15 minutes | ≤ 30 minutes | ≤ 4 hours (containment) |
+| **P2 — High** | ≤ 30 minutes | ≤ 2 hours | ≤ 8 hours |
+| **P3 — Medium** | ≤ 4 hours | ≤ 8 hours | ≤ 3 business days |
+| **P4 — Low** | ≤ 8 hours | N/A | ≤ 5 business days |
+
+### Definition of Terms
+
+- **Response Time:** Time from alert detection to first analyst action
+- **Escalation Time:** Time from detection to notifying the appropriate management
+- **Resolution Target:** Time from detection to containment/resolution (best effort)
+
+### SLA Clock Rules
+
+- P1/P2: Clock runs **24/7** (no pause for weekends)
+- P3/P4: Clock runs **business hours** only (Mon–Fri 08:00–17:00)
+- Clock pauses when: waiting for customer input, approved maintenance window
+
+---
+
+## Escalation Matrix
+
+| Level | Who | When | Contact |
+|:---:|:---|:---|:---|
+| **L1** | SOC Analyst (T1) | All alerts | [SOC hotline / Slack] |
+| **L2** | Senior Analyst (T2) | T1 can't resolve in 30 min | [Name, phone] |
+| **L3** | IR Lead / SOC Manager | P1/P2 incidents | [Name, phone] |
+| **L4** | CISO / CTO | Data breach, business impact | [Name, phone] |
+| **L5** | CEO / Board | Regulatory notification required | [Name, phone] |
+
+---
+
+## Reporting Commitments
+
+| Report | Frequency | Audience | Delivery |
+|:---|:---:|:---|:---|
+| Incident Notification | Real-time (P1/P2) | Management | Slack/email |
+| Shift Handoff | Every shift | SOC team | Shared document |
+| Weekly Summary | Weekly | SOC Manager | Email |
+| Monthly SOC Report | Monthly | CISO, Management | Presentation + PDF |
+| Quarterly Executive Brief | Quarterly | Board / Executive team | Presentation |
+
+### Monthly Report Contents
+
+```
+1. Executive Summary
+2. Incidents by Severity (P1/P2/P3/P4 counts)
+3. MTTD / MTTR Trends
+4. Top 10 Alert Categories
+5. SLA Compliance %
+6. Notable Incidents Summary
+7. Detection Coverage Update
+8. Recommendations
+```
+
+---
+
+## Key Performance Indicators (KPIs)
+
+| KPI | Target | Measurement |
+|:---|:---:|:---|
+| SLA Compliance (P1 response) | ≥ 95% | % of P1s responded within 15 min |
+| SLA Compliance (P2 response) | ≥ 90% | % of P2s responded within 30 min |
+| MTTD | ≤ 1 hour | Average time to detect incidents |
+| MTTR | ≤ 4 hours | Average time to respond/contain |
+| False Positive Rate | ≤ 40% | % of alerts that are not true threats |
+| Alert Closure Rate | ≥ 95% | % of alerts processed within SLA |
+| Analyst Utilization | 60–80% | Optimal workload balance |
+
+---
+
+## Availability & Maintenance
+
+| Item | Commitment |
+|:---|:---|
+| SIEM availability | ≥ 99.5% uptime |
+| Planned maintenance | 4-hour window, monthly, with 48h notice |
+| Emergency maintenance | Justified, SOC remains operational |
+| Failover | Backup analyst on-call if primary unavailable |
+
+---
+
+## Review & Amendments
+
+| Item | Frequency |
+|:---|:---|
+| SLA review | Annually (or after major incident) |
+| KPI targets review | Semi-annually |
+| Contact information | Quarterly |
+| Services scope | Annually |
+
+---
+
+## Signatures
+
+```
+SOC Manager:         _________________________ Date: ___________
+CISO:                _________________________ Date: ___________
+Business Unit Head:  _________________________ Date: ___________
+```
+
+---
+
+## Related Documents
+
+- [Severity Matrix](Severity_Matrix.en.md)
+- [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md)
+- [Communication Templates](Communication_Templates.en.md)
+- [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md)
+
+
+---
+
+## File: 06_Operations_Management/SLA_Template.th.md
+
+# แม่แบบ SLA — ข้อตกลงระดับบริการ SOC
+
+> **รหัสเอกสาร:** SLA-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **ระหว่าง:** [ทีม SOC] กับ [หน่วยธุรกิจ / ผู้บริหาร]
+
+---
+
+## ขอบเขตบริการ
+
+| บริการ | เวลา | คำอธิบาย |
+|:---|:---:|:---|
+| Security Monitoring | 24/7 หรือ 8/5 | ตรวจจับ alert ต่อเนื่อง |
+| Incident Response | 24/7 หรือ 8/5 | สืบสวนและตอบสนอง |
+| Threat Intelligence | เวลาทำการ | ติดตามภัยคุกคาม |
+| รายงาน | รายเดือน | รายงานผลปฏิบัติการ |
+
+---
+
+## เวลาตอบสนอง SLA
+
+| ระดับ | ตอบสนอง | Escalate | แก้ไข |
+|:---:|:---:|:---:|:---:|
+| **P1 วิกฤต** | ≤ 15 นาที | ≤ 30 นาที | ≤ 4 ชม. |
+| **P2 สูง** | ≤ 30 นาที | ≤ 2 ชม. | ≤ 8 ชม. |
+| **P3 กลาง** | ≤ 4 ชม. | ≤ 8 ชม. | ≤ 3 วันทำการ |
+| **P4 ต่ำ** | ≤ 8 ชม. | N/A | ≤ 5 วันทำการ |
+
+**กฎเวลา:**
+- P1/P2: นับ **24/7** (ไม่หยุดวันหยุด)
+- P3/P4: นับ **เวลาทำการ** (จ-ศ 08:00–17:00)
+
+---
+
+## Escalation
+
+| ระดับ | ใคร | เมื่อไหร่ |
+|:---:|:---|:---|
+| L1 | SOC Analyst | Alert ทั้งหมด |
+| L2 | Senior Analyst | แก้ไม่ได้ใน 30 นาที |
+| L3 | IR Lead / SOC Manager | P1/P2 |
+| L4 | CISO / CTO | Data breach |
+| L5 | CEO / Board | ต้องแจ้งหน่วยงานกำกับ |
+
+---
+
+## KPIs
+
+| ตัวชี้วัด | เป้า |
+|:---|:---:|
+| SLA Compliance (P1) | ≥ 95% |
+| SLA Compliance (P2) | ≥ 90% |
+| MTTD | ≤ 1 ชม. |
+| MTTR | ≤ 4 ชม. |
+| False Positive | ≤ 40% |
+
+---
+
+## รายงาน
+
+| รายงาน | ความถี่ | กลุ่มเป้าหมาย |
+|:---|:---:|:---|
+| แจ้ง Incident | Real-time (P1/P2) | ผู้บริหาร |
+| สรุปรายสัปดาห์ | รายสัปดาห์ | SOC Manager |
+| รายงานเดือน | รายเดือน | CISO |
+| สรุปผู้บริหาร | รายไตรมาส | Board |
+
+---
+
+## ลงชื่อ
+
+```
+SOC Manager:    ____________________ วันที่: __________
+CISO:           ____________________ วันที่: __________
+หัวหน้าหน่วย:    ____________________ วันที่: __________
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)
+- [ตัวชี้วัด SOC](SOC_Metrics.th.md)
+- [โครงสร้างทีม SOC](SOC_Team_Structure.th.md)
 
 
 ---
@@ -1639,6 +6388,300 @@ graph LR
 -   [SOC-CMM (Capability Maturity Model)](https://www.soc-cmm.com/)
 -   [MITRE SOC Strategy](https://mitre.org/)
 -   14+: Level 4+
+
+
+---
+
+## File: 06_Operations_Management/SOC_Checklists.en.md
+
+# SOC Operational Checklists — Daily / Weekly / Monthly
+
+> **Document ID:** CHK-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager
+
+---
+
+## Daily Checklist (Every Shift)
+
+### Start of Shift
+```
+□ Read shift handoff notes from previous shift
+□ Check SIEM dashboard — any P1/P2 open incidents?
+□ Review alert queue — how many pending?
+□ Verify all log sources are active (no gaps in data)
+□ Check agent health — any endpoints disconnected?
+□ Review threat intel feed — new IOCs published?
+□ Confirm SOC communication channels operational (Slack/Teams)
+```
+
+### During Shift
+```
+□ Process all incoming alerts (target: queue < 30 min old)
+□ Escalate P1/P2 incidents within SLA
+□ Update open incident tickets with progress
+□ Document false positives for tuning review
+□ Monitor for recurring alerts (possible tuning opportunity)
+□ Check email for user-reported suspicious activity
+```
+
+### End of Shift
+```
+□ All alerts triaged — nothing pending > 30 min
+□ Open incidents updated with latest status
+□ Write shift handoff notes:
+  - Alerts processed (count)
+  - Incidents opened/closed
+  - Anything unusual
+  - Pending items for next shift
+□ Notify next shift of any ongoing P1/P2
+```
+
+---
+
+## Weekly Checklist (Every Monday)
+
+### Detection & Tuning
+```
+□ Review top 10 noisiest alert rules
+  - Any rules > 50% false positive? → Tune or disable
+  - Any new patterns to whitelist?
+□ Review rules that haven't fired in 30 days
+  - Are they still relevant? Or is data source missing?
+□ Check Sigma rule updates (community releases)
+□ Review threat landscape — any new techniques trending?
+```
+
+### Operations
+```
+□ SIEM storage usage check (disk space, retention)
+□ Review SOC metrics dashboard:
+  - MTTD / MTTR trends
+  - Alert volume trends
+  - SLA compliance
+□ Agent update status — any endpoints need patching?
+□ Review open incidents > 7 days (are they stuck?)
+□ Check backup status of SIEM/log data
+```
+
+### Team
+```
+□ Weekly SOC standup meeting (15 min):
+  - Incidents summary
+  - Tuning requests
+  - Knowledge sharing (interesting case of the week)
+□ Assign training/learning task to each analyst
+□ Review shift coverage for next week
+```
+
+---
+
+## Monthly Checklist (1st Week of Month)
+
+### Reporting
+```
+□ Generate monthly SOC report:
+  - Total alerts processed
+  - Incidents by severity (P1/P2/P3/P4)
+  - MTTD / MTTR averages
+  - Top 5 alert categories
+  - SLA compliance %
+  - Notable incidents summary
+  - Recommendations
+□ Present report to CISO/management
+□ Update SOC maturity scorecard
+```
+
+### Detection Engineering
+```
+□ Review and deploy new Sigma rules (community + custom)
+□ Validate detection coverage against MITRE ATT&CK heatmap
+□ Review YARA rules — any new malware families to add?
+□ Test 2 existing detection rules (do they still fire correctly?)
+□ Update IOC block lists (IP, domain, hash)
+```
+
+### Infrastructure
+```
+□ SIEM health check:
+  - Performance metrics (query speed, ingestion rate)
+  - Storage capacity planning (next 3 months)
+  - License usage review
+□ Check TLS certificates (expiring within 60 days?)
+□ Review user access — remove departed staff accounts
+□ Verify backup and restore process (test restore)
+□ Patch SOC tools (SIEM, EDR, ticketing)
+```
+
+### Process Improvement
+```
+□ Review closed incidents — any process gaps found?
+□ Update playbooks if needed (new techniques, tools, contacts)
+□ Schedule tabletop exercise (quarterly)
+□ Review compliance requirements (PDPA, ISO, PCI)
+□ Knowledge base — add any new SOPs or runbooks
+```
+
+### Team Development
+```
+□ 1-on-1 with each analyst (15 min):
+  - Workload okay?
+  - Training progress?
+  - Any concerns?
+□ Identify training needs for next month
+□ Review on-call/shift rotation fairness
+□ Recognize top performer (public acknowledgment)
+```
+
+---
+
+## Quarterly Checklist
+
+```
+□ Tabletop exercise (use Tabletop_Exercises guide)
+□ SOC maturity assessment (use soc_maturity_scorer.html)
+□ Purple team exercise (2 beginner-level minimum)
+□ Compliance audit review (quarterly controls check)
+□ Budget review — actuals vs planned
+□ Vendor/tool evaluation — any gaps to fill?
+□ Update SOC Building Roadmap progress
+□ Present quarterly report to Board/Executive team
+```
+
+---
+
+## Annual Checklist
+
+```
+□ Full SOC maturity assessment (all 7 domains)
+□ Major purple team / red team exercise
+□ Comprehensive MITRE ATT&CK coverage review
+□ All playbooks reviewed and updated
+□ All Sigma/YARA rules validated
+□ Staffing plan review (hiring, promotions, training budget)
+□ Technology stack review (renew, replace, or add tools)
+□ Business continuity / DR test for SOC operations
+□ Compliance audit (ISO 27001, PCI DSS, PDPA)
+□ Annual SOC report to Board
+```
+
+---
+
+## Related Documents
+
+- [Tier 1 Runbook](Tier1_Runbook.en.md)
+- [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md)
+- [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md)
+- [Tabletop Exercises](Tabletop_Exercises.en.md)
+- [Purple Team Exercises](Purple_Team_Exercises.en.md)
+
+
+---
+
+## File: 06_Operations_Management/SOC_Checklists.th.md
+
+# รายการตรวจสอบ SOC — รายวัน / รายสัปดาห์ / รายเดือน
+
+> **รหัสเอกสาร:** CHK-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager
+
+---
+
+## รายการประจำวัน (ทุกกะ)
+
+### เริ่มกะ
+```
+□ อ่าน handoff notes จากกะก่อน
+□ เช็ค SIEM dashboard — มี P1/P2 เปิดอยู่ไหม?
+□ ตรวจ alert queue — มีกี่ pending?
+□ ตรวจ log sources ทำงานครบไหม
+□ เช็ค agent health — มีเครื่องไหน disconnect ไหม?
+□ ตรวจ threat intel — มี IOC ใหม่ไหม?
+```
+
+### ระหว่างกะ
+```
+□ Process alerts ทั้งหมด (เป้า: queue ไม่เก่ากว่า 30 นาที)
+□ Escalate P1/P2 ตาม SLA
+□ อัปเดต ticket ที่เปิดอยู่
+□ บันทึก false positive เพื่อ tune
+```
+
+### จบกะ
+```
+□ Alert ทั้งหมดถูก triage แล้ว
+□ เขียน handoff notes
+□ แจ้งกะถัดไปเรื่อง P1/P2 ที่ยังเปิดอยู่
+```
+
+---
+
+## รายการประจำสัปดาห์ (ทุกวันจันทร์)
+
+```
+□ ตรวจ 10 rules ที่ดังสุด → tune ถ้า FP > 50%
+□ ตรวจ rules ที่ไม่ fire 30 วัน
+□ เช็ค Sigma rule updates ใหม่
+□ ตรวจ disk space / SIEM storage
+□ ตรวจ SOC metrics (MTTD/MTTR/SLA)
+□ ตรวจ incidents ที่เปิด > 7 วัน
+□ ประชุม SOC standup 15 นาที
+```
+
+---
+
+## รายการประจำเดือน (สัปดาห์แรก)
+
+```
+□ สร้างรายงาน SOC ประจำเดือน + present ให้ผู้บริหาร
+□ Deploy Sigma rules ใหม่
+□ ตรวจ MITRE ATT&CK coverage
+□ ทดสอบ detection rules 2 ตัว
+□ SIEM health check + capacity planning
+□ ตรวจ TLS certificates
+□ Review user access — ลบบัญชีคนออก
+□ ทดสอบ backup restore
+□ 1-on-1 กับ analyst ทุกคน (15 นาที)
+```
+
+---
+
+## รายการประจำไตรมาส
+
+```
+□ Tabletop exercise
+□ SOC maturity assessment
+□ Purple team exercise (2 ชุดขั้นต่ำ)
+□ ตรวจ compliance
+□ ตรวจ budget
+□ รายงานไตรมาสให้ผู้บริหาร
+```
+
+---
+
+## รายการประจำปี
+
+```
+□ Full maturity assessment
+□ Red/Purple team ใหญ่
+□ ตรวจ playbooks + rules ทั้งหมด
+□ ทบทวน staffing + training budget
+□ ทบทวน technology stack
+□ DR test
+□ Compliance audit (ISO/PCI/PDPA)
+□ รายงานประจำปีให้คณะกรรมการ
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [คู่มือ Tier 1](../05_Incident_Response/Tier1_Runbook.th.md)
+- [ตัวชี้วัด SOC](SOC_Metrics.th.md)
+- [ส่งมอบกะ](Shift_Handoff.th.md)
 
 
 ---
@@ -2161,6 +7204,514 @@ graph TD
 
 ---
 
+## File: 06_Operations_Management/TI_Feeds_Integration.en.md
+
+# Threat Intelligence Feeds Integration Guide
+
+> **Document ID:** TI-FEEDS-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Engineer / Threat Intel Analyst  
+
+---
+
+## Purpose
+
+This guide provides step-by-step instructions for integrating **Threat Intelligence (TI) feeds** into your SOC infrastructure. Covers free, open-source, and commercial feeds with configuration examples for major SIEM/SOAR platforms.
+
+---
+
+## Recommended TI Feeds
+
+### Free & Open Source
+
+| Feed | Type | Update Freq | Format | API Key | Use For |
+|:---|:---|:---:|:---|:---:|:---|
+| [AlienVault OTX](https://otx.alienvault.com/) | IP, Domain, Hash, URL | Real-time | STIX/JSON | ✅ Free | General threat intel |
+| [AbuseIPDB](https://www.abuseipdb.com/) | IP reputation | Real-time | JSON | ✅ Free | Brute force, scanning IPs |
+| [URLhaus](https://urlhaus.abuse.ch/) | Malicious URLs | Every 5 min | CSV/JSON | ❌ | Malware distribution URLs |
+| [MalwareBazaar](https://bazaar.abuse.ch/) | Malware samples | Real-time | JSON | ❌ | Hash lookups |
+| [ThreatFox](https://threatfox.abuse.ch/) | IOCs (IP, Domain, Hash) | Real-time | JSON | ❌ | C2, botnet IOCs |
+| [Feodo Tracker](https://feodotracker.abuse.ch/) | Botnet C2 IPs | Daily | CSV/JSON | ❌ | Banking trojan C2 |
+| [MISP Default Feeds](https://www.misp-project.org/) | Mixed IOCs | Varies | MISP JSON | ❌ | Comprehensive threat sharing |
+| [PhishTank](https://phishtank.org/) | Phishing URLs | Hourly | JSON/CSV | ✅ Free | Phishing detection |
+| [Emerging Threats](https://rules.emergingthreats.net/) | Snort/Suricata rules | Daily | Rules | ❌ | Network IDS |
+
+### Commercial (Recommended)
+
+| Feed | Specialty | Integrations |
+|:---|:---|:---|
+| [VirusTotal](https://www.virustotal.com/) | Multi-engine file/URL/IP | All SIEMs, EDR, SOAR |
+| [Recorded Future](https://www.recordedfuture.com/) | Risk scoring, APT tracking | Splunk, XSOAR, QRadar |
+| [CrowdStrike Falcon Intel](https://www.crowdstrike.com/) | APT attribution, malware | CrowdStrike, Splunk |
+| [Mandiant Advantage](https://www.mandiant.com/) | APT campaigns, vulnerabilities | Splunk, Sentinel, XSOAR |
+
+---
+
+## Integration Architecture
+
+```mermaid
+graph TB
+    subgraph "TI Sources"
+        OTX[AlienVault OTX]
+        ABUSE[abuse.ch feeds]
+        MISP[MISP Platform]
+        VT[VirusTotal]
+        CUSTOM[Custom Feeds]
+    end
+
+    subgraph "TI Platform"
+        MISP_LOCAL[MISP Instance]
+        OTX --> MISP_LOCAL
+        ABUSE --> MISP_LOCAL
+        MISP --> MISP_LOCAL
+        VT --> MISP_LOCAL
+        CUSTOM --> MISP_LOCAL
+    end
+
+    subgraph "Consumers"
+        SIEM[SIEM<br>Splunk / Elastic / Sentinel]
+        SOAR[SOAR<br>XSOAR / Shuffle]
+        FW[Firewall<br>Auto-block]
+        EDR[EDR<br>Hash blocklist]
+    end
+
+    MISP_LOCAL --> SIEM
+    MISP_LOCAL --> SOAR
+    MISP_LOCAL --> FW
+    MISP_LOCAL --> EDR
+```
+
+---
+
+## Setup Instructions
+
+### 1. MISP — Central TI Platform
+
+```bash
+# Docker deployment (recommended)
+git clone https://github.com/MISP/misp-docker.git
+cd misp-docker
+cp template.env .env
+# Edit .env with your settings
+docker-compose up -d
+```
+
+**Enable default feeds:**
+1. Login to MISP Web UI → **Sync Actions → Feeds**
+2. Click **Load default feed metadata**
+3. Enable: CIRCL OSINT, Botvrij.eu, URLhaus, abuse.ch
+4. Set **Pull frequency**: Every 1 hour
+5. Click **Fetch and store all feeds**
+
+### 2. AlienVault OTX
+
+```python
+# Python example — fetch OTX pulses
+from OTXv2 import OTXv2, IndicatorTypes
+
+API_KEY = "your_otx_api_key"
+otx = OTXv2(API_KEY)
+
+# Get subscribed pulses (last 7 days)
+pulses = otx.getall(modified_since="2026-02-08")
+
+for pulse in pulses:
+    print(f"Pulse: {pulse['name']}")
+    for indicator in pulse['indicators']:
+        print(f"  {indicator['type']}: {indicator['indicator']}")
+```
+
+**SIEM integration (Splunk):**
+```ini
+# inputs.conf — OTX Threat Intel
+[script://./bin/otx_feed.py]
+interval = 3600
+sourcetype = otx:pulses
+index = threat_intel
+```
+
+### 3. abuse.ch Feeds
+
+```bash
+# Download URLhaus feed (cron every 5 min)
+*/5 * * * * curl -s https://urlhaus.abuse.ch/downloads/csv_recent/ \
+  | tail -n +10 > /opt/ti/urlhaus_recent.csv
+
+# Download MalwareBazaar recent (hourly)
+0 * * * * curl -s -X POST https://mb-api.abuse.ch/api/v1/ \
+  -d "query=get_recent&selector=time" \
+  -o /opt/ti/malwarebazaar_recent.json
+
+# Download Feodo Tracker C2 IPs (daily)
+0 6 * * * curl -s https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.txt \
+  > /opt/ti/feodo_c2_ips.txt
+```
+
+### 4. AbuseIPDB
+
+```python
+# Python example — check IP reputation
+import requests
+
+API_KEY = "your_abuseipdb_key"
+
+def check_ip(ip):
+    resp = requests.get(
+        "https://api.abuseipdb.com/api/v2/check",
+        headers={"Key": API_KEY, "Accept": "application/json"},
+        params={"ipAddress": ip, "maxAgeInDays": 90}
+    )
+    data = resp.json()["data"]
+    return {
+        "ip": data["ipAddress"],
+        "score": data["abuseConfidenceScore"],
+        "country": data["countryCode"],
+        "reports": data["totalReports"],
+        "is_tor": data["isTor"]
+    }
+```
+
+### 5. VirusTotal
+
+```python
+# Python example — file hash lookup
+import requests
+
+API_KEY = "your_vt_api_key"
+
+def vt_hash_lookup(file_hash):
+    resp = requests.get(
+        f"https://www.virustotal.com/api/v3/files/{file_hash}",
+        headers={"x-apikey": API_KEY}
+    )
+    if resp.status_code == 200:
+        stats = resp.json()["data"]["attributes"]["last_analysis_stats"]
+        return {
+            "malicious": stats["malicious"],
+            "suspicious": stats["suspicious"],
+            "total": sum(stats.values())
+        }
+    return None
+```
+
+---
+
+## SIEM Integration Patterns
+
+### Elastic / OpenSearch
+
+```yaml
+# Filebeat — threat intel module
+filebeat.modules:
+  - module: threatintel
+    abuseurl:
+      enabled: true
+      interval: 5m
+    abusemalware:
+      enabled: true
+      interval: 1h
+    misp:
+      enabled: true
+      var.url: "https://misp.local"
+      var.api_token: "${MISP_API_TOKEN}"
+      interval: 1h
+    otx:
+      enabled: true
+      var.api_token: "${OTX_API_KEY}"
+      interval: 1h
+```
+
+### Splunk
+
+```ini
+# Splunk ES — Threat Intel Framework
+# Configure in Enterprise Security → Configure → Threat Intelligence
+
+[threatlist://urlhaus]
+url = https://urlhaus.abuse.ch/downloads/csv_recent/
+type = ip
+weight = 3
+interval = 300
+disabled = false
+
+[threatlist://feodo_c2]
+url = https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.txt
+type = ip
+weight = 5
+interval = 86400
+disabled = false
+```
+
+### Microsoft Sentinel
+
+```kusto
+// KQL — Match TI indicators against network logs
+let TI_IPs = ThreatIntelligenceIndicator
+    | where Active == true and ExpirationDateTime > now()
+    | where isnotempty(NetworkIP)
+    | summarize by NetworkIP;
+
+CommonSecurityLog
+| where TimeGenerated > ago(1d)
+| where DestinationIP in (TI_IPs) or SourceIP in (TI_IPs)
+| project TimeGenerated, SourceIP, DestinationIP, DeviceAction, Activity
+```
+
+---
+
+## Feed Lifecycle Management
+
+| Stage | Action | Frequency |
+|:---|:---|:---|
+| **Ingest** | Pull feeds into MISP/SIEM | Per feed schedule |
+| **Normalize** | Convert to standard format (STIX 2.1) | On ingest |
+| **Score** | Assign confidence score based on source reliability | On ingest |
+| **Correlate** | Match against live logs and alerts | Real-time |
+| **Expire** | Remove stale IOCs (default: 90 days) | Daily |
+| **Review** | Audit false positive rates per feed | Monthly |
+| **Prune** | Disable low-quality feeds | Quarterly |
+
+---
+
+## Related Documents
+
+- [Detection Rules (Sigma)](../07_Detection_Rules/README.md)
+- [SOAR Playbook Templates](SOAR_Playbooks.en.md)
+- [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.en.md)
+- [IOC Enrichment Sub-Playbook](SOAR_Playbooks.en.md#6-ioc-enrichment)
+
+
+---
+
+## File: 06_Operations_Management/TI_Feeds_Integration.th.md
+
+# คู่มือเชื่อมต่อ Threat Intelligence Feeds
+
+> **รหัสเอกสาร:** TI-FEEDS-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Engineer / Threat Intel Analyst  
+
+---
+
+## วัตถุประสงค์
+
+คู่มือนี้ให้คำแนะนำขั้นตอนการเชื่อมต่อ **Threat Intelligence (TI) feeds** เข้ากับโครงสร้าง SOC ครอบคลุมทั้งฟรี, open-source, และ commercial พร้อมตัวอย่าง config สำหรับ SIEM/SOAR หลัก
+
+---
+
+## TI Feeds ที่แนะนำ
+
+### ฟรี & Open Source
+
+| Feed | ประเภท | ความถี่ | Format | API Key | ใช้สำหรับ |
+|:---|:---|:---:|:---|:---:|:---|
+| [AlienVault OTX](https://otx.alienvault.com/) | IP, Domain, Hash, URL | Real-time | STIX/JSON | ✅ ฟรี | Threat intel ทั่วไป |
+| [AbuseIPDB](https://www.abuseipdb.com/) | IP reputation | Real-time | JSON | ✅ ฟรี | Brute force, scanning |
+| [URLhaus](https://urlhaus.abuse.ch/) | Malicious URLs | ทุก 5 นาที | CSV/JSON | ❌ | URL กระจาย malware |
+| [MalwareBazaar](https://bazaar.abuse.ch/) | ตัวอย่าง malware | Real-time | JSON | ❌ | ค้นหา hash |
+| [ThreatFox](https://threatfox.abuse.ch/) | IOCs | Real-time | JSON | ❌ | C2, botnet |
+| [Feodo Tracker](https://feodotracker.abuse.ch/) | Botnet C2 IPs | รายวัน | CSV/JSON | ❌ | Banking trojan C2 |
+| [MISP Default Feeds](https://www.misp-project.org/) | IOC รวม | แตกต่างกัน | MISP JSON | ❌ | แชร์ข้อมูลภัยครอบคลุม |
+| [PhishTank](https://phishtank.org/) | Phishing URLs | รายชั่วโมง | JSON/CSV | ✅ ฟรี | ตรวจจับ phishing |
+
+### Commercial (แนะนำ)
+
+| Feed | ความเชี่ยวชาญ | เชื่อมต่อ |
+|:---|:---|:---|
+| [VirusTotal](https://www.virustotal.com/) | Multi-engine file/URL/IP | ทุก SIEM, EDR, SOAR |
+| [Recorded Future](https://www.recordedfuture.com/) | Risk scoring, APT tracking | Splunk, XSOAR, QRadar |
+| [CrowdStrike](https://www.crowdstrike.com/) | APT attribution | CrowdStrike, Splunk |
+| [Mandiant](https://www.mandiant.com/) | APT campaigns | Splunk, Sentinel, XSOAR |
+
+---
+
+## สถาปัตยกรรมการเชื่อมต่อ
+
+```mermaid
+graph TB
+    subgraph "แหล่ง TI"
+        OTX[AlienVault OTX]
+        ABUSE[abuse.ch feeds]
+        MISP[MISP Platform]
+        VT[VirusTotal]
+    end
+
+    subgraph "TI Platform"
+        MISP_LOCAL[MISP Instance]
+        OTX --> MISP_LOCAL
+        ABUSE --> MISP_LOCAL
+        MISP --> MISP_LOCAL
+        VT --> MISP_LOCAL
+    end
+
+    subgraph "ผู้ใช้งาน"
+        SIEM[SIEM]
+        SOAR[SOAR]
+        FW[Firewall<br>Auto-block]
+        EDR[EDR<br>Hash blocklist]
+    end
+
+    MISP_LOCAL --> SIEM
+    MISP_LOCAL --> SOAR
+    MISP_LOCAL --> FW
+    MISP_LOCAL --> EDR
+```
+
+---
+
+## คำแนะนำการติดตั้ง
+
+### 1. MISP — ศูนย์กลาง TI
+
+```bash
+# Deploy ด้วย Docker (แนะนำ)
+git clone https://github.com/MISP/misp-docker.git
+cd misp-docker
+cp template.env .env
+# แก้ไข .env ตามต้องการ
+docker-compose up -d
+```
+
+**เปิด default feeds:**
+1. เข้า MISP Web UI → **Sync Actions → Feeds**
+2. คลิก **Load default feed metadata**
+3. เปิด: CIRCL OSINT, Botvrij.eu, URLhaus, abuse.ch
+4. ตั้ง **Pull frequency**: ทุก 1 ชั่วโมง
+5. คลิก **Fetch and store all feeds**
+
+### 2. AlienVault OTX
+
+```python
+# Python — ดึง OTX pulses
+from OTXv2 import OTXv2, IndicatorTypes
+
+API_KEY = "your_otx_api_key"
+otx = OTXv2(API_KEY)
+
+pulses = otx.getall(modified_since="2026-02-08")
+for pulse in pulses:
+    print(f"Pulse: {pulse['name']}")
+    for indicator in pulse['indicators']:
+        print(f"  {indicator['type']}: {indicator['indicator']}")
+```
+
+### 3. abuse.ch Feeds
+
+```bash
+# Cron สำหรับดึง feed อัตโนมัติ
+*/5 * * * * curl -s https://urlhaus.abuse.ch/downloads/csv_recent/ \
+  | tail -n +10 > /opt/ti/urlhaus_recent.csv
+
+0 * * * * curl -s -X POST https://mb-api.abuse.ch/api/v1/ \
+  -d "query=get_recent&selector=time" \
+  -o /opt/ti/malwarebazaar_recent.json
+
+0 6 * * * curl -s https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.txt \
+  > /opt/ti/feodo_c2_ips.txt
+```
+
+### 4. AbuseIPDB
+
+```python
+import requests
+
+API_KEY = "your_abuseipdb_key"
+
+def check_ip(ip):
+    resp = requests.get(
+        "https://api.abuseipdb.com/api/v2/check",
+        headers={"Key": API_KEY, "Accept": "application/json"},
+        params={"ipAddress": ip, "maxAgeInDays": 90}
+    )
+    data = resp.json()["data"]
+    return {
+        "ip": data["ipAddress"],
+        "score": data["abuseConfidenceScore"],
+        "country": data["countryCode"],
+        "reports": data["totalReports"]
+    }
+```
+
+---
+
+## รูปแบบเชื่อมต่อ SIEM
+
+### Elastic / OpenSearch
+
+```yaml
+filebeat.modules:
+  - module: threatintel
+    abuseurl:
+      enabled: true
+      interval: 5m
+    misp:
+      enabled: true
+      var.url: "https://misp.local"
+      var.api_token: "${MISP_API_TOKEN}"
+      interval: 1h
+    otx:
+      enabled: true
+      var.api_token: "${OTX_API_KEY}"
+      interval: 1h
+```
+
+### Splunk
+
+```ini
+[threatlist://urlhaus]
+url = https://urlhaus.abuse.ch/downloads/csv_recent/
+type = ip
+weight = 3
+interval = 300
+
+[threatlist://feodo_c2]
+url = https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.txt
+type = ip
+weight = 5
+interval = 86400
+```
+
+### Microsoft Sentinel
+
+```kusto
+let TI_IPs = ThreatIntelligenceIndicator
+    | where Active == true and ExpirationDateTime > now()
+    | where isnotempty(NetworkIP)
+    | summarize by NetworkIP;
+
+CommonSecurityLog
+| where TimeGenerated > ago(1d)
+| where DestinationIP in (TI_IPs) or SourceIP in (TI_IPs)
+| project TimeGenerated, SourceIP, DestinationIP, DeviceAction
+```
+
+---
+
+## วงจร Feed Management
+
+| ขั้นตอน | การดำเนินการ | ความถี่ |
+|:---|:---|:---|
+| **Ingest** | ดึง feeds เข้า MISP/SIEM | ตาม feed schedule |
+| **Normalize** | แปลงเป็น STIX 2.1 | เมื่อ ingest |
+| **Score** | ให้ confidence score | เมื่อ ingest |
+| **Correlate** | จับคู่กับ logs/alerts | Real-time |
+| **Expire** | ลบ IOC ที่เก่า (default: 90 วัน) | รายวัน |
+| **Review** | ตรวจ false positive rate | รายเดือน |
+| **Prune** | ปิด feed คุณภาพต่ำ | รายไตรมาส |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [Detection Rules (Sigma)](../07_Detection_Rules/README.md)
+- [SOAR Playbook Templates](../05_Incident_Response/SOAR_Playbooks.th.md)
+- [วงจร Threat Intelligence](Threat_Intelligence_Lifecycle.th.md)
+
+
+---
+
 ## File: 06_Operations_Management/Threat_Intelligence_Lifecycle.en.md
 
 # Threat Intelligence Lifecycle (CTI)
@@ -2304,153 +7855,269 @@ Indicators of Compromise (IoCs) ทุกตัวต้องผ่านกร
 
 ---
 
-## File: docs/README.md
+## File: 06_Operations_Management/Vendor_Evaluation.en.md
 
-# SOC Standard Operating Procedures
+# SOC Vendor & Tool Evaluation Template
 
-![SOC Hero](assets/soc_header.png)
-
-This repository contains **Standard Operating Procedures (SOPs)** for a modern Security Operations Center (SOC). These documents are designed to be vendor-agnostic and follow industry best practices (NIST, MITRE ATT&CK).
-
-เอกสารนี้รวบรวม **ระเบียบปฏิบัติมาตรฐาน (SOPs)** สำหรับศูนย์ปฏิบัติการความปลอดภัย (SOC) ออกแบบมาให้เป็นกลางทางเทคโนโลยีและปฏิบัติตามมาตรฐานอุตสาหกรรม
-
-## Directory Structure & Documents
-
-### 🚀 00_Getting_Started (New to SOC? Start Here!)
-| Document | English | ภาษาไทย |
-| :--- | :--- | :--- |
-| **SOC 101 — What is a SOC?** | [Link](00_Getting_Started/SOC_101.en.md) | [ลิ้งค์](00_Getting_Started/SOC_101.th.md) |
-| **Quickstart Guide** | [Link](00_Getting_Started/Quickstart_Guide.en.md) | [ลิ้งค์](00_Getting_Started/Quickstart_Guide.th.md) |
-| **Glossary of Terms** | [Link](00_Getting_Started/Glossary.en.md) | [ลิ้งค์](00_Getting_Started/Glossary.th.md) |
-
-### 01_Onboarding
-| Document | English | ภาษาไทย |
-| :--- | :--- | :--- |
-| **Setup**: SOC Infrastructure Setup | [Link](01_Onboarding/System_Activation.en.md) | [ลิ้งค์](01_Onboarding/System_Activation.th.md) |
-
-### 02_Platform_Operations
-| Document | English | ภาษาไทย |
-| :--- | :--- | :--- |
-| Data Governance & Retention | [Link](02_Platform_Operations/Database_Management.en.md) | [ลิ้งค์](02_Platform_Operations/Database_Management.th.md) |
-| Change Management & Deployment | [Link](02_Platform_Operations/Deployment_Procedures.en.md) | [ลิ้งค์](02_Platform_Operations/Deployment_Procedures.th.md) |
-
-### 03_User_Guides
-| Document | English | ภาษาไทย |
-| :--- | :--- | :--- |
-| Detection Engineering Lifecycle | [Link](03_User_Guides/Content_Management.en.md) | [ลิ้งค์](03_User_Guides/Content_Management.th.md) |
-| Tool Integration Strategy | [Link](03_User_Guides/Integration_Hub.en.md) | [ลิ้งค์](03_User_Guides/Integration_Hub.th.md) |
-
-### 04_Troubleshooting
-| Document | English | ภาษาไทย |
-| :--- | :--- | :--- |
-| Standard Methodology | [Link](04_Troubleshooting/Common_Issues.en.md) | [ลิ้งค์](04_Troubleshooting/Common_Issues.th.md) |
-
-### 05_Incident_Response
-| Document | English | ภาษาไทย |
-| :--- | :--- | :--- |
-| **Framework**: NIST-based IR | [Link](05_Incident_Response/Framework.en.md) | [ลิ้งค์](05_Incident_Response/Framework.th.md) |
-| **Playbook**: PB-01 Phishing | [Link](05_Incident_Response/Playbooks/Phishing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Phishing.th.md) |
-| **Playbook**: PB-02 Ransomware | [Link](05_Incident_Response/Playbooks/Ransomware.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Ransomware.th.md) |
-| **Playbook**: PB-03 Malware Infection | [Link](05_Incident_Response/Playbooks/Malware_Infection.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Malware_Infection.th.md) |
-| **Playbook**: PB-04 Brute Force | [Link](05_Incident_Response/Playbooks/Brute_Force.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Brute_Force.th.md) |
-| **Playbook**: PB-05 Account Compromise | [Link](05_Incident_Response/Playbooks/Account_Compromise.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Account_Compromise.th.md) |
-| **Playbook**: PB-06 Impossible Travel | [Link](05_Incident_Response/Playbooks/Impossible_Travel.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Impossible_Travel.th.md) |
-| **Playbook**: PB-07 Privilege Escalation | [Link](05_Incident_Response/Playbooks/Privilege_Escalation.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Privilege_Escalation.th.md) |
-| **Playbook**: PB-08 Data Exfiltration | [Link](05_Incident_Response/Playbooks/Data_Exfiltration.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Data_Exfiltration.th.md) |
-| **Playbook**: PB-09 DDoS Attack | [Link](05_Incident_Response/Playbooks/DDoS_Attack.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/DDoS_Attack.th.md) |
-| **Playbook**: PB-10 Web App Attack | [Link](05_Incident_Response/Playbooks/Web_Attack.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Web_Attack.th.md) |
-| **Playbook**: PB-11 Suspicious Script | [Link](05_Incident_Response/Playbooks/Suspicious_Script.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Suspicious_Script.th.md) |
-| **Playbook**: PB-12 Lateral Movement | [Link](05_Incident_Response/Playbooks/Lateral_Movement.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Lateral_Movement.th.md) |
-| **Playbook**: PB-13 C2 Communication | [Link](05_Incident_Response/Playbooks/C2_Communication.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/C2_Communication.th.md) |
-| **Playbook**: PB-14 Insider Threat | [Link](05_Incident_Response/Playbooks/Insider_Threat.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Insider_Threat.th.md) |
-| **Playbook**: PB-15 Rogue Admin | [Link](05_Incident_Response/Playbooks/Rogue_Admin.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Rogue_Admin.th.md) |
-| **Playbook**: PB-16 Cloud IAM Anomaly | [Link](05_Incident_Response/Playbooks/Cloud_IAM.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Cloud_IAM.th.md) |
-| **Playbook**: PB-17 BEC | [Link](05_Incident_Response/Playbooks/BEC.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/BEC.th.md) |
-| **Playbook**: PB-18 Exploit | [Link](05_Incident_Response/Playbooks/Exploit.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Exploit.th.md) |
-| **Playbook**: PB-19 Lost Device | [Link](05_Incident_Response/Playbooks/Lost_Device.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Lost_Device.th.md) |
-| **Playbook**: PB-20 Log Clearing | [Link](05_Incident_Response/Playbooks/Log_Clearing.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Log_Clearing.th.md) |
-| **Playbook**: PB-21 Supply Chain Attack | [Link](05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md) |
-| **Playbook**: PB-22 API Abuse | [Link](05_Incident_Response/Playbooks/API_Abuse.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/API_Abuse.th.md) |
-| **Playbook**: PB-23 Cryptomining | [Link](05_Incident_Response/Playbooks/Cryptomining.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Cryptomining.th.md) |
-| **Playbook**: PB-24 DNS Tunneling | [Link](05_Incident_Response/Playbooks/DNS_Tunneling.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/DNS_Tunneling.th.md) |
-| **Playbook**: PB-25 Zero-Day Exploit | [Link](05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md) | [ลิ้งค์](05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md) |
-
-## 📂 Detection Rules (Sigma)
-
-I have included standard Sigma rules corresponding to the Top 20 Playbooks to help you get started with detection.
-
-**Path**: `07_Detection_Rules/`
-
-| Playbook | Detection Rule |
-| :--- | :--- |
-| **Phishing** | [proc_office_spawn_powershell.yml](07_Detection_Rules/proc_office_spawn_powershell.yml) |
-| **Ransomware** | [file_bulk_renaming_ransomware.yml](07_Detection_Rules/file_bulk_renaming_ransomware.yml) |
-| **Malware** | [proc_temp_folder_execution.yml](07_Detection_Rules/proc_temp_folder_execution.yml) |
-| **Brute Force** | [win_multiple_failed_logins.yml](07_Detection_Rules/win_multiple_failed_logins.yml) |
-| **Privilege Escalation** | [win_domain_admin_group_add.yml](07_Detection_Rules/win_domain_admin_group_add.yml) |
-| *(And 15 more rules matching the Playbooks)* | |
-
-## 📂 Simulation & Testing (Purple Team)
-
-Validate your SOC's readiness by running simulated attacks mapped to our Playbooks.
-
-**Path**: `08_Simulation_Testing/`
-
-| Document | Description |
-| :--- | :--- |
-| **[Atomic_Test_Map.md](08_Simulation_Testing/Atomic_Test_Map.md)** | Mapping of PB-01...PB-20 to MITRE Atomic Red Team tests. |
-| **[Simulation_Guide.md](08_Simulation_Testing/Simulation_Guide.md)** | Guide on how to run Purple Team exercises. |
-
-## 📂 Training & Onboarding / การฝึกอบรม
-
-A structured 4-week curriculum to train new SOC Analysts using this repository.
-
-**Path**: `09_Training_Onboarding/`
-
-| Document | English | ภาษาไทย |
-| :--- | :--- | :--- |
-| **Curriculum** | [Link](09_Training_Onboarding/Analyst_Onboarding_Path.en.md) | [ลิ้งค์](09_Training_Onboarding/Analyst_Onboarding_Path.th.md) |
-| **Checklist** | [Link](09_Training_Onboarding/Training_Checklist.en.md) | [ลิ้งค์](09_Training_Onboarding/Training_Checklist.th.md) |
-
-### 06_Operations_Management
-| Document | English | ภาษาไทย |
-| :--- | :--- | :--- |
-| **SOC Team Structure** | [Link](06_Operations_Management/SOC_Team_Structure.en.md) | [ลิ้งค์](06_Operations_Management/SOC_Team_Structure.th.md) |
-| **Shift Handoff** | [Link](06_Operations_Management/Shift_Handoff.en.md) | [ลิ้งค์](06_Operations_Management/Shift_Handoff.th.md) |
-| **SOC KPI Standard** | [Link](06_Operations_Management/SOC_Metrics.en.md) | [ลิ้งค์](06_Operations_Management/SOC_Metrics.th.md) |
-
-
-## 🛠 Tools / เครื่องมือช่วยงาน
-
-| Tool | Script | Description |
-| :--- | :--- | :--- |
-| **Export Docs** | [export_docs.py](tools/export_docs.py) | Run `python3 tools/export_docs.py` to merge all docs into a single Markdown file (great for PDF export). |
-
-## 📂 Templates / แบบฟอร์มพร้อมใช้
-
-| Template | English | ภาษาไทย |
-| :--- | :--- | :--- |
-| **Incident Report** | [Link](templates/incident_report.en.md) | [ลิ้งค์](templates/incident_report.th.md) |
-| **Shift Handover Log** | [Link](templates/shift_handover.en.md) | [ลิ้งค์](templates/shift_handover.th.md) |
-| **Change Request (RFC)** | [Link](templates/change_request_rfc.en.md) | [ลิ้งค์](templates/change_request_rfc.th.md) |
-
-## 📚 Full Manual / คู่มือฉบับเต็ม
-For offline reading or printing, download the consolidated manual:
--   **[SOC_Manual_Consolidated.md](SOC_Manual_Consolidated.md)** (All 100+ pages in one file)
-
-## Contributing / การมีส่วนร่วม
-
-1.  **Standardization**: Ensure procedures remain vendor-agnostic where possible.
-2.  **Bilingual**: Maintain both English and Thai versions.
-3.  **Review**: Changes should be reviewed by SOC Managers or Lead Engineers.
+> **Document ID:** VENDOR-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager / CISO
 
 ---
 
-<p align="center">
-  <b>Built with 🛡️ by</b><br>
-  <a href="https://cyberdefense.co.th"><b>cyberdefense.co.th</b></a><br>
-  Line OA: <code>@cyberdefense</code>
-</p>
+## Purpose
+
+Provides a structured framework for evaluating and comparing SOC tools and vendor solutions. Use this template when considering new SIEM, EDR, SOAR, TI, or any security tool.
+
+---
+
+## Evaluation Process
+
+```mermaid
+graph LR
+    Need[1. Define Need] --> Research[2. Research Options]
+    Research --> Shortlist[3. Shortlist 3-5]
+    Shortlist --> POC[4. POC / Trial]
+    POC --> Score[5. Score & Compare]
+    Score --> Decide[6. Decision & Contract]
+```
+
+---
+
+## Evaluation Criteria (Scoring Matrix)
+
+Score each criterion **1–5** (1 = Poor, 5 = Excellent)
+
+### Core Capabilities
+
+| # | Criterion | Weight | Vendor A | Vendor B | Vendor C |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| 1 | **Detection accuracy** (true positive rate) | 3× | /5 | /5 | /5 |
+| 2 | **Log ingestion capacity** (EPS/GB per day) | 3× | /5 | /5 | /5 |
+| 3 | **Query performance** (search speed) | 2× | /5 | /5 | /5 |
+| 4 | **Alert customization** (rule creation flexibility) | 2× | /5 | /5 | /5 |
+| 5 | **MITRE ATT&CK coverage** (built-in detections) | 2× | /5 | /5 | /5 |
+| 6 | **Dashboard & visualization** quality | 1× | /5 | /5 | /5 |
+
+### Integration & Compatibility
+
+| # | Criterion | Weight | Vendor A | Vendor B | Vendor C |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| 7 | **API availability** (REST API, webhooks) | 2× | /5 | /5 | /5 |
+| 8 | **Integration with existing stack** | 3× | /5 | /5 | /5 |
+| 9 | **Log source support** (OS, cloud, network, app) | 2× | /5 | /5 | /5 |
+| 10 | **SOAR integration** (playbook automation) | 2× | /5 | /5 | /5 |
+
+### Operations & Management
+
+| # | Criterion | Weight | Vendor A | Vendor B | Vendor C |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| 11 | **Ease of deployment** | 1× | /5 | /5 | /5 |
+| 12 | **Administration overhead** | 2× | /5 | /5 | /5 |
+| 13 | **Scalability** | 2× | /5 | /5 | /5 |
+| 14 | **Documentation quality** | 1× | /5 | /5 | /5 |
+| 15 | **Training resources** (academy, videos, docs) | 1× | /5 | /5 | /5 |
+
+### Support & Vendor
+
+| # | Criterion | Weight | Vendor A | Vendor B | Vendor C |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| 16 | **Support SLA** (response time, 24/7) | 2× | /5 | /5 | /5 |
+| 17 | **Vendor stability** (market presence, funding) | 1× | /5 | /5 | /5 |
+| 18 | **Local support** (Thailand office/partner) | 2× | /5 | /5 | /5 |
+| 19 | **Community & ecosystem** | 1× | /5 | /5 | /5 |
+
+### Cost
+
+| # | Criterion | Weight | Vendor A | Vendor B | Vendor C |
+|:---:|:---|:---:|:---:|:---:|:---:|
+| 20 | **License cost** (per node/EPS/GB) | 3× | /5 | /5 | /5 |
+| 21 | **Implementation cost** | 2× | /5 | /5 | /5 |
+| 22 | **Ongoing maintenance cost** | 2× | /5 | /5 | /5 |
+| 23 | **Hidden costs** (storage, overages, add-ons) | 2× | /5 | /5 | /5 |
+| 24 | **Contract flexibility** (term, exit clause) | 1× | /5 | /5 | /5 |
+
+---
+
+## Total Score Calculation
+
+```
+Weighted Score = Σ (Score × Weight) for each criterion
+Max Score = Σ (5 × Weight) = 5 × total_weight
+Final % = (Weighted Score / Max Score) × 100
+
+Recommendation thresholds:
+  ≥ 80% → Strong recommendation
+  60-79% → Acceptable with caveats
+  < 60% → Not recommended
+```
+
+---
+
+## POC Checklist
+
+During the Proof-of-Concept trial (recommend 2–4 weeks):
+
+```
+□ Deploy in test/staging environment
+□ Ingest real log data (anonymized if needed)
+□ Create 5 detection rules
+□ Test alert workflow end-to-end
+□ Measure query performance vs current solution
+□ Test API integrations with existing tools
+□ Evaluate admin UI and daily workflow
+□ Test at expected data volume (EPS/GB)
+□ Get feedback from 2+ analysts who used it daily
+□ Document any bugs or limitations found
+□ Verify support response time (open a test ticket)
+```
+
+---
+
+## Cost Comparison Template
+
+| Cost Item | Vendor A | Vendor B | Vendor C |
+|:---|---:|---:|---:|
+| Year 1 License | ฿___ | ฿___ | ฿___ |
+| Implementation/Professional Services | ฿___ | ฿___ | ฿___ |
+| Training | ฿___ | ฿___ | ฿___ |
+| Infrastructure (servers/cloud) | ฿___ | ฿___ | ฿___ |
+| **Year 1 Total** | **฿___** | **฿___** | **฿___** |
+| Year 2+ Annual (license + support) | ฿___ | ฿___ | ฿___ |
+| **3-Year TCO** | **฿___** | **฿___** | **฿___** |
+
+---
+
+## Decision Record
+
+| Field | Detail |
+|:---|:---|
+| **Tool category** | (SIEM / EDR / SOAR / TI / Other) |
+| **Vendors evaluated** | Vendor A, Vendor B, Vendor C |
+| **Winner** | ___________ |
+| **Key reasons** | (top 3 differentiators) |
+| **Risks/concerns** | (known limitations to monitor) |
+| **Decision date** | YYYY-MM-DD |
+| **Approved by** | SOC Manager / CISO |
+| **Contract term** | ___ years |
+| **Go-live target** | YYYY-MM-DD |
+
+---
+
+## Related Documents
+
+- [Technology Stack Selection Guide](../01_SOC_Fundamentals/Technology_Stack.en.md)
+- [Budget & Staffing](../01_SOC_Fundamentals/Budget_Staffing.en.md)
+- [Change Management SOP](Change_Management.en.md)
+
+
+---
+
+## File: 06_Operations_Management/Vendor_Evaluation.th.md
+
+# แม่แบบประเมินเครื่องมือ SOC
+
+> **รหัสเอกสาร:** VENDOR-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager / CISO
+
+---
+
+## ขั้นตอนการประเมิน
+
+```mermaid
+graph LR
+    A[1. กำหนดความต้องการ] --> B[2. ค้นหาตัวเลือก]
+    B --> C[3. คัดเหลือ 3-5]
+    C --> D[4. POC / ทดลอง]
+    D --> E[5. ให้คะแนน]
+    E --> F[6. ตัดสินใจ]
+```
+
+---
+
+## เกณฑ์ให้คะแนน (1–5)
+
+### ความสามารถหลัก (Weight สูง)
+| # | เกณฑ์ | น้ำหนัก |
+|:---:|:---|:---:|
+| 1 | ความแม่นยำ detection | 3× |
+| 2 | รับ log ได้ (EPS/GB ต่อวัน) | 3× |
+| 3 | ความเร็ว query | 2× |
+| 4 | ปรับแต่ง rule ได้ | 2× |
+| 5 | MITRE ATT&CK coverage | 2× |
+
+### Integration
+| # | เกณฑ์ | น้ำหนัก |
+|:---:|:---|:---:|
+| 6 | API (REST, webhooks) | 2× |
+| 7 | เข้ากับ stack ปัจจุบัน | 3× |
+| 8 | รองรับ log source | 2× |
+| 9 | เชื่อม SOAR ได้ | 2× |
+
+### ต้นทุน
+| # | เกณฑ์ | น้ำหนัก |
+|:---:|:---|:---:|
+| 10 | ค่า license | 3× |
+| 11 | ค่า implement | 2× |
+| 12 | ค่า maintain ต่อเนื่อง | 2× |
+| 13 | ค่าใช้จ่ายแอบแฝง | 2× |
+
+### Support
+| # | เกณฑ์ | น้ำหนัก |
+|:---:|:---|:---:|
+| 14 | Support SLA (24/7?) | 2× |
+| 15 | มี office/partner ในไทย | 2× |
+| 16 | เสถียรภาพ vendor | 1× |
+
+---
+
+## คำนวณคะแนน
+
+```
+คะแนนรวม = Σ (คะแนน × น้ำหนัก)
+≥ 80% → แนะนำอย่างยิ่ง
+60-79% → รับได้ มีข้อจำกัด
+< 60% → ไม่แนะนำ
+```
+
+---
+
+## Checklist POC (2–4 สัปดาห์)
+
+```
+□ Deploy ในสภาพแวดล้อมทดสอบ
+□ ใส่ log จริง
+□ สร้าง 5 detection rules
+□ ทดสอบ alert workflow ตลอดสาย
+□ วัดความเร็ว query
+□ ทดสอบ API กับเครื่องมือที่มี
+□ ให้ analyst 2+ คนใช้จริง แล้วเก็บ feedback
+□ เปิด ticket ทดสอบ support response time
+```
+
+---
+
+## ตารางเปรียบเทียบต้นทุน
+
+| รายการ | Vendor A | Vendor B | Vendor C |
+|:---|---:|---:|---:|
+| License ปี 1 | ฿___ | ฿___ | ฿___ |
+| Implement | ฿___ | ฿___ | ฿___ |
+| Training | ฿___ | ฿___ | ฿___ |
+| **รวมปี 1** | **฿___** | **฿___** | **฿___** |
+| ปี 2+ ต่อปี | ฿___ | ฿___ | ฿___ |
+| **TCO 3 ปี** | **฿___** | **฿___** | **฿___** |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [คู่มือเลือกเครื่องมือ](../01_SOC_Fundamentals/Technology_Stack.th.md)
+- [งบประมาณและจัดคน](../01_SOC_Fundamentals/Budget_Staffing.th.md)
+- [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)
 
 
 ---
@@ -2498,6 +8165,11 @@ graph TD
 ## 5. Review & Deprecation
 -   **Quarterly Audit**: Review rules for relevance. Adversary tactics change; rules may become obsolete.
 -   **Deprecation**: retire rules that are noisy, ineffective, or duplicative.
+
+## Related Documents
+-   [Integration Hub](Integration_Hub.en.md)
+-   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
+-   [Detection Rules Index](../07_Detection_Rules/README.md)
 
 ## References
 -   [Detection Engineering Weekly](https://detectionengineering.net/)
@@ -2549,6 +8221,11 @@ graph TD
 ## 5. การทบทวนและยกเลิก (Review & Deprecation)
 -   **ตรวจสอบรายไตรมาส**: ทบทวนความเกี่ยวข้องของกฎ เทคนิคการโจมตีเปลี่ยนไป กฎอาจล้าสมัย
 -   **การยกเลิก (Deprecation)**: ยกเลิกกฎที่มีเสียงรบกวนมากเกินไป (Noisy), ไม่มีประสิทธิภาพ, หรือซ้ำซ้อน
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [ศูนย์รวมการเชื่อมต่อ](Integration_Hub.th.md)
+-   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
+-   [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md)
 
 ## References
 -   [Detection Engineering Weekly](https://detectionengineering.net/)
@@ -2671,6 +8348,830 @@ graph LR
 
 ---
 
+## File: 05_Incident_Response/Communication_Templates.en.md
+
+# Incident Communication Templates
+
+> **Document ID:** COMM-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager / IR Lead
+
+---
+
+## Communication Matrix
+
+| Severity | Internal Notify | Management | Legal | External | Regulator |
+|:---:|:---|:---|:---|:---|:---|
+| **P1 Critical** | Immediate | Immediate | Immediate | Within 4h | Per regulation |
+| **P2 High** | 15 min | 1h | If data breach | As needed | If required |
+| **P3 Medium** | 30 min | Daily report | No | No | No |
+| **P4 Low** | Next standup | Weekly report | No | No | No |
+
+---
+
+## Template 1: Initial Incident Notification (Internal)
+
+**Channel:** Slack / Teams / Email  
+**When:** Immediately upon P1/P2 confirmation
+
+```
+🚨 SECURITY INCIDENT — [P1/P2] — [Incident Type]
+
+Incident ID:    INC-[YYYY]-[###]
+Severity:       [P1 Critical / P2 High]
+Detected:       [YYYY-MM-DD HH:MM UTC]
+Affected:       [Systems / Users / Data]
+
+Summary:
+[1-2 sentences describing what happened]
+
+Current Status:
+- [ ] Containment in progress
+- [ ] Investigation underway
+- [ ] Affected users notified
+
+Next Update:    [Time — typically 30-60 min for P1]
+Incident Lead:  [Name]
+War Room:       [Slack channel / Teams link / Bridge number]
+
+⚠️ Do NOT discuss outside of this channel.
+```
+
+---
+
+## Template 2: Management Executive Brief
+
+**Channel:** Email / In-person  
+**When:** Within 1 hour (P1), 4 hours (P2)
+
+```
+Subject: 🔴 Security Incident Brief — [INC-ID] — [Type]
+
+To: [CISO, CTO, CEO as appropriate]
+
+EXECUTIVE SUMMARY
+━━━━━━━━━━━━━━━━━
+Incident:     [Brief description]
+Severity:     [P1/P2] — [Business impact in plain language]
+Started:      [When first detected]
+Status:       [Contained / Active / Investigating]
+
+IMPACT ASSESSMENT
+━━━━━━━━━━━━━━━━━
+Systems:      [X servers / Y endpoints affected]
+Data:         [Type of data potentially exposed]
+Users:        [Number of users impacted]
+Business:     [Revenue impact / operational disruption]
+
+WHAT WE'RE DOING
+━━━━━━━━━━━━━━━━━
+1. [Action being taken now]
+2. [Next planned step]
+3. [Estimated resolution time if known]
+
+DECISIONS NEEDED
+━━━━━━━━━━━━━━━━━
+- [Any decisions requiring management approval, e.g., paying ransom, public disclosure, system shutdown]
+
+NEXT UPDATE
+━━━━━━━━━━━
+[When the next update will be provided]
+
+Contact: [IR Lead Name, Phone]
+```
+
+---
+
+## Template 3: User Notification — Password Reset Required
+
+**Channel:** Email  
+**When:** After account compromise confirmed
+
+```
+Subject: Action Required: Security-Related Password Reset
+
+Dear [User/Team],
+
+Our security team has detected suspicious activity related to
+your account. As a precautionary measure, we have reset your
+password and revoked active sessions.
+
+REQUIRED ACTIONS:
+1. Reset your password at [link] using a NEW, unique password
+2. Re-enroll your MFA at [link]
+3. Review your recent account activity for anything unusual
+4. Report anything suspicious to security@company.com
+
+WHAT HAPPENED:
+[Brief, non-technical explanation without details that could
+help an attacker]
+
+If you did NOT initiate any unusual activity, no further
+action is needed beyond the steps above.
+
+Questions? Contact the IT Help Desk at [number/email].
+
+— Information Security Team
+```
+
+---
+
+## Template 4: Customer / External Notification — Data Breach
+
+**Channel:** Email  
+**When:** After legal review, within regulatory timeline (PDPA: 72h)
+
+```
+Subject: Important Security Notice from [Company Name]
+
+Dear Valued Customer,
+
+We are writing to inform you of a security incident that may
+affect your personal information.
+
+WHAT HAPPENED
+On [date], we discovered unauthorized access to [system].
+We immediately took action to contain the incident and began
+a thorough investigation.
+
+WHAT INFORMATION WAS INVOLVED
+The following types of information may have been affected:
+- [List specific data types: name, email, phone, etc.]
+
+WHAT WE ARE DOING
+- We engaged cybersecurity experts to investigate
+- We notified relevant authorities [สำนักงานคุ้มครองข้อมูลส่วนบุคคล / PDPC]
+- We implemented additional security measures
+- We are offering [credit monitoring / identity protection] at no cost
+
+WHAT YOU CAN DO
+- Change your password on our platform
+- Monitor your accounts for unusual activity
+- Be cautious of phishing emails claiming to be from us
+- [Enroll in free identity protection at: link]
+
+FOR MORE INFORMATION
+- Dedicated helpline: [phone number]
+- Email: [incident-response@company.com]
+- FAQ page: [link]
+
+We sincerely apologize for any inconvenience.
+
+[CEO/CISO Name]
+[Company Name]
+```
+
+---
+
+## Template 5: Regulator Notification (PDPA — Thailand)
+
+**Channel:** Official letter / Online form  
+**When:** Within 72 hours of discovery
+
+```
+TO:     สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (PDPC)
+FROM:   [Company Name] — Data Protection Officer
+DATE:   [Date]
+RE:     แจ้งเหตุละเมิดข้อมูลส่วนบุคคล (Personal Data Breach Notification)
+
+ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 มาตรา 37(4)
+
+1. ข้อมูลผู้แจ้ง
+   - ชื่อองค์กร: [Company]
+   - DPO: [Name, Contact]
+   - วันที่พบเหตุ: [Date]
+
+2. ลักษณะเหตุการณ์
+   - ประเภท: [Unauthorized access / Data leak / Ransomware]
+   - ระบบที่ได้รับผลกระทบ: [Systems]
+   - จำนวนเจ้าของข้อมูลที่ได้รับผลกระทบ: [Number]
+
+3. ประเภทข้อมูลที่เกี่ยวข้อง
+   - [x] ชื่อ-นามสกุล
+   - [ ] เลขบัตรประชาชน
+   - [ ] ข้อมูลการเงิน
+   - [x] อีเมล / เบอร์โทรศัพท์
+   - [ ] ข้อมูลสุขภาพ
+
+4. มาตรการที่ดำเนินการแล้ว
+   - [Containment actions taken]
+   - [Remediation in progress]
+
+5. การประเมินความเสี่ยง
+   - ระดับความเสี่ยง: [สูง/กลาง/ต่ำ]
+   - เหตุผล: [Justification]
+
+6. มาตรการป้องกันในอนาคต
+   - [Future prevention measures]
+
+ลงชื่อ: _______________
+ตำแหน่ง: Data Protection Officer
+```
+
+---
+
+## Template 6: Post-Incident Report (Summary)
+
+**Channel:** Email / Meeting  
+**When:** Within 5 business days after incident closure
+
+```
+Subject: Post-Incident Report — [INC-ID] — [Type]
+
+INCIDENT SUMMARY
+━━━━━━━━━━━━━━━━━
+ID:           [INC-YYYY-###]
+Type:         [Ransomware / Phishing / BEC / etc.]
+Severity:     [P1–P4]
+Duration:     [Start time] to [Resolution time]
+MTTD:         [Mean Time to Detect]
+MTTR:         [Mean Time to Respond]
+
+TIMELINE
+━━━━━━━━
+[HH:MM] Alert received
+[HH:MM] Triage completed
+[HH:MM] Containment executed
+[HH:MM] Investigation completed
+[HH:MM] Remediation applied
+[HH:MM] Recovery confirmed
+[HH:MM] Incident closed
+
+ROOT CAUSE
+━━━━━━━━━━
+[Technical root cause explanation]
+
+IMPACT
+━━━━━━
+- Systems: [List]
+- Data: [Was data compromised?]
+- Financial: [Cost estimate if applicable]
+- Reputation: [Any external impact?]
+
+WHAT WENT WELL
+━━━━━━━━━━━━━━
+1. [Positive observation]
+2. [Positive observation]
+
+WHAT TO IMPROVE
+━━━━━━━━━━━━━━━
+1. [Gap identified]
+2. [Gap identified]
+
+ACTION ITEMS
+━━━━━━━━━━━━
+| Action | Owner | Deadline | Status |
+|--------|-------|----------|--------|
+| [Fix]  | [Who] | [When]   | [ ]    |
+```
+
+---
+
+## Slack / Teams Channel Naming Convention
+
+```
+#inc-YYYY-NNN-brief-description
+Example: #inc-2026-042-ransomware-finance
+```
+
+| Channel | Purpose |
+|:---|:---|
+| `#inc-YYYY-NNN-*` | Active incident war room |
+| `#soc-alerts` | Alert notifications from SIEM |
+| `#soc-handoff` | Shift handoff notes |
+| `#soc-general` | Day-to-day SOC discussion |
+
+---
+
+## Related Documents
+
+- [IR Framework](Framework.en.md)
+- [Severity Matrix](Severity_Matrix.en.md)
+- [Tabletop Exercises](Tabletop_Exercises.en.md)
+
+
+---
+
+## File: 05_Incident_Response/Communication_Templates.th.md
+
+# แม่แบบการสื่อสารเหตุการณ์
+
+> **รหัสเอกสาร:** COMM-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager / IR Lead
+
+---
+
+## ตารางการแจ้ง
+
+| ระดับ | ภายใน | ผู้บริหาร | Legal | ภายนอก | หน่วยงานกำกับ |
+|:---:|:---|:---|:---|:---|:---|
+| **P1** | ทันที | ทันที | ทันที | 4 ชม. | ตามกฎหมาย |
+| **P2** | 15 นาที | 1 ชม. | ถ้ามีข้อมูลรั่ว | ตามจำเป็น | ถ้าจำเป็น |
+| **P3** | 30 นาที | รายงานรายวัน | ไม่ | ไม่ | ไม่ |
+| **P4** | standup ถัดไป | รายงานรายสัปดาห์ | ไม่ | ไม่ | ไม่ |
+
+---
+
+## แม่แบบ 1: แจ้งเตือนภายใน
+
+```
+🚨 เหตุการณ์ความปลอดภัย — [P1/P2] — [ประเภท]
+
+Incident ID:    INC-[YYYY]-[###]
+ความรุนแรง:      [P1 วิกฤต / P2 สูง]
+ตรวจพบ:         [วัน-เวลา]
+ระบบที่โดน:      [ระบบ / ผู้ใช้ / ข้อมูล]
+
+สรุป: [1-2 ประโยค]
+
+สถานะ:
+- [ ] กำลังควบคุมเหตุการณ์
+- [ ] กำลังสืบสวน
+- [ ] แจ้งผู้ใช้ที่ได้รับผลกระทบแล้ว
+
+อัปเดตถัดไป:    [เวลา]
+ผู้รับผิดชอบ:     [ชื่อ]
+ห้องปฏิบัติการ:   [Slack/Teams link]
+
+⚠️ ห้ามพูดคุยนอกช่องทางนี้
+```
+
+---
+
+## แม่แบบ 2: สรุปให้ผู้บริหาร
+
+```
+เรื่อง: 🔴 สรุปเหตุการณ์ — [INC-ID]
+
+เรียน CISO / CTO
+
+สรุป:       [คำอธิบายสั้น]
+ความรุนแรง:  [P1/P2] — [ผลกระทบธุรกิจ]
+สถานะ:      [ควบคุมได้ / กำลังดำเนินการ]
+
+ผลกระทบ:
+- ระบบ: [จำนวน]
+- ข้อมูล: [ประเภท]
+- ผู้ใช้: [จำนวน]
+
+สิ่งที่ดำเนินการ:
+1. [ตอนนี้]
+2. [ขั้นต่อไป]
+
+ต้องการอนุมัติ:
+- [ถ้ามี]
+
+อัปเดตถัดไป: [เวลา]
+```
+
+---
+
+## แม่แบบ 3: แจ้ง User รีเซ็ตรหัสผ่าน
+
+```
+เรื่อง: กรุณาดำเนินการ: รีเซ็ตรหัสผ่านเพื่อความปลอดภัย
+
+เรียน [ผู้ใช้],
+
+ทีมความปลอดภัยตรวจพบกิจกรรมผิดปกติในบัญชีของคุณ
+เราได้รีเซ็ตรหัสผ่านและยกเลิก session เป็นมาตรการป้องกัน
+
+สิ่งที่ต้องทำ:
+1. ตั้งรหัสผ่านใหม่ที่ [link]
+2. ลงทะเบียน MFA ใหม่
+3. ตรวจดูกิจกรรมล่าสุดในบัญชี
+4. แจ้ง security@company.com หากพบสิ่งผิดปกติ
+
+— ทีมรักษาความปลอดภัยข้อมูล
+```
+
+---
+
+## แม่แบบ 4: แจ้งลูกค้า — ข้อมูลรั่วไหล
+
+```
+เรื่อง: แจ้งเตือนด้านความปลอดภัยจาก [ชื่อบริษัท]
+
+เรียน ลูกค้า,
+
+เราขอแจ้งให้ทราบเกี่ยวกับเหตุการณ์ด้านความปลอดภัย:
+
+สิ่งที่เกิดขึ้น:
+[คำอธิบาย]
+
+ข้อมูลที่อาจได้รับผลกระทบ:
+- [รายการข้อมูล]
+
+สิ่งที่เราดำเนินการ:
+- แจ้งหน่วยงาน PDPC แล้ว
+- เสริมมาตรการป้องกัน
+- ให้บริการ identity protection ฟรี
+
+สิ่งที่คุณควรทำ:
+- เปลี่ยนรหัสผ่าน
+- ระวัง phishing email
+
+สายด่วน: [เบอร์]
+อีเมล: [incident@company.com]
+```
+
+---
+
+## แม่แบบ 5: แจ้ง PDPC (สำนักงานคุ้มครองข้อมูลส่วนบุคคล)
+
+```
+เรียน สำนักงาน PDPC
+
+ตาม พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 มาตรา 37(4)
+
+1. ข้อมูลผู้แจ้ง: [ชื่อองค์กร, DPO]
+2. ลักษณะเหตุการณ์: [ประเภท, ระบบ, จำนวนเจ้าของข้อมูล]
+3. ประเภทข้อมูล: [ชื่อ/อีเมล/การเงิน/สุขภาพ]
+4. มาตรการที่ดำเนินการ: [containment + remediation]
+5. ระดับความเสี่ยง: [สูง/กลาง/ต่ำ]
+6. แผนป้องกัน: [อนาคต]
+
+ลงชื่อ: DPO
+```
+
+---
+
+## แม่แบบ 6: รายงานหลังเหตุการณ์
+
+```
+สรุปเหตุการณ์ INC-[ID]
+ประเภท:  [Ransomware / BEC / etc.]
+ระดับ:    [P1-P4]
+ระยะเวลา: [เริ่ม] ถึง [จบ]
+MTTD:    [เวลาตรวจพบ]
+MTTR:    [เวลาแก้ไข]
+
+Timeline + สาเหตุ + ผลกระทบ + สิ่งที่ดี + สิ่งที่ปรับปรุง + Action Items
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [กรอบ IR](Framework.th.md)
+- [ตารางความรุนแรง](Severity_Matrix.th.md)
+- [สถานการณ์จำลอง](Tabletop_Exercises.th.md)
+
+
+---
+
+## File: 05_Incident_Response/Evidence_Collection.en.md
+
+# Evidence Collection Guide — Digital Forensics
+
+> **Document ID:** FOR-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** IR Lead / Forensic Analyst  
+> **Classification:** Internal
+
+---
+
+## Golden Rules of Evidence Collection
+
+1. **Don't modify evidence** — Work on copies, never originals
+2. **Document everything** — Who, what, when, where, why, how
+3. **Maintain chain of custody** — Every handoff is recorded
+4. **Prioritize volatile data** — Memory first, then disk
+5. **Use write blockers** — For physical disk acquisition
+
+---
+
+## Order of Volatility (Collect in This Order)
+
+| Priority | Source | Volatility | Tool |
+|:---:|:---|:---|:---|
+| 1 | **CPU Registers/Cache** | Seconds | N/A (rarely feasible) |
+| 2 | **RAM (Memory)** | Minutes | WinPMEM, LiME, Magnet RAM |
+| 3 | **Network Connections** | Minutes | netstat, ss, tcpdump |
+| 4 | **Running Processes** | Minutes | Velociraptor, GRR, tasklist |
+| 5 | **Disk (Live)** | Hours | FTK Imager, dc3dd |
+| 6 | **Logs (Remote)** | Days | SIEM export, syslog |
+| 7 | **Disk (Offline)** | Permanent | dd, FTK Imager |
+| 8 | **Backups/Archives** | Permanent | Backup system |
+
+---
+
+## Windows Evidence Collection
+
+### Memory Acquisition
+```powershell
+# WinPMEM (run as Administrator)
+winpmem_mini_x64.exe memory_dump.raw
+
+# Verify hash
+certutil -hashfile memory_dump.raw SHA256
+```
+
+### Live Triage Commands
+```powershell
+# Running processes with parent
+Get-CimInstance Win32_Process | Select ProcessId, Name, ParentProcessId, CommandLine | Export-Csv processes.csv
+
+# Network connections
+Get-NetTCPConnection | Where {$_.State -eq "Established"} | Export-Csv netconn.csv
+
+# Logged-on users
+query user
+
+# Scheduled tasks
+schtasks /query /fo CSV > scheduled_tasks.csv
+
+# Startup items
+Get-CimInstance Win32_StartupCommand | Export-Csv startup.csv
+
+# Recent file activity (last 24h)
+Get-ChildItem -Recurse -Path C:\ -ErrorAction SilentlyContinue | Where {$_.LastWriteTime -gt (Get-Date).AddHours(-24)} | Export-Csv recent_files.csv
+
+# DNS cache
+Get-DnsClientCache | Export-Csv dns_cache.csv
+
+# Event logs - Security (last 24h)
+Get-WinEvent -FilterHashtable @{LogName='Security'; StartTime=(Get-Date).AddHours(-24)} | Export-Csv security_events.csv
+```
+
+### Disk Imaging
+```powershell
+# FTK Imager CLI
+ftkimager.exe \\.\PhysicalDrive0 output_image --e01 --compress 6 --verify
+```
+
+---
+
+## Linux Evidence Collection
+
+### Memory Acquisition
+```bash
+# LiME kernel module
+sudo insmod lime.ko "path=/evidence/memory.lime format=lime"
+
+# Verify
+sha256sum /evidence/memory.lime > /evidence/memory.lime.sha256
+```
+
+### Live Triage Commands
+```bash
+# System info
+uname -a > system_info.txt
+date >> system_info.txt
+uptime >> system_info.txt
+
+# Running processes
+ps auxf > processes.txt
+
+# Network connections
+ss -tulnp > network.txt
+netstat -anp >> network.txt
+
+# Open files
+lsof > open_files.txt
+
+# Logged-in users
+w > users.txt
+last -100 >> users.txt
+
+# Cron jobs
+for user in $(cut -f1 -d: /etc/passwd); do echo "==$user=="; crontab -u $user -l 2>/dev/null; done > cron_jobs.txt
+
+# Recent file modifications (24h)
+find / -mtime -1 -ls 2>/dev/null > recent_files.txt
+
+# SSH authorized keys
+find / -name "authorized_keys" -exec cat {} \; > ssh_keys.txt
+
+# Bash history (all users)
+find /home -name ".bash_history" -exec echo "=={}" \; -exec cat {} \; > bash_history.txt
+```
+
+### Disk Imaging
+```bash
+# dd with hashing
+sudo dc3dd if=/dev/sda of=/evidence/disk.dd hash=sha256 log=/evidence/disk.log
+```
+
+---
+
+## Cloud Evidence (AWS)
+
+```bash
+# CloudTrail events (last 24h)
+aws cloudtrail lookup-events \
+  --start-time $(date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%SZ) \
+  --output json > cloudtrail_events.json
+
+# IAM credential report
+aws iam generate-credential-report
+aws iam get-credential-report --output text --query Content | base64 -d > iam_report.csv
+
+# S3 access logs
+aws s3 sync s3://your-access-log-bucket/ /evidence/s3_logs/
+
+# EC2 instance metadata
+aws ec2 describe-instances --output json > ec2_instances.json
+
+# Security group changes
+aws ec2 describe-security-groups --output json > security_groups.json
+
+# VPC Flow Logs
+aws logs get-log-events --log-group-name vpc-flow-logs --output json > vpc_flows.json
+```
+
+---
+
+## Network Evidence
+
+```bash
+# Packet capture (tcpdump)
+sudo tcpdump -i eth0 -w /evidence/capture.pcap -c 100000
+
+# Capture specific host
+sudo tcpdump -i eth0 host 10.0.1.50 -w /evidence/host_capture.pcap
+
+# DNS queries only
+sudo tcpdump -i eth0 port 53 -w /evidence/dns_capture.pcap
+```
+
+---
+
+## Chain of Custody Form
+
+```
+╔══════════════════════════════════════════════════╗
+║           CHAIN OF CUSTODY RECORD                ║
+╠══════════════════════════════════════════════════╣
+║ Case ID:      _______________                    ║
+║ Evidence ID:  _______________                    ║
+║ Description:  _______________                    ║
+║ Date/Time Collected: _______________             ║
+║ Collected By: _______________                    ║
+║ SHA256 Hash:  _______________                    ║
+║                                                  ║
+║ Custody Log:                                     ║
+║ Date       | From        | To          | Purpose ║
+║ __________ | ___________ | ___________ | _______ ║
+║ __________ | ___________ | ___________ | _______ ║
+║ __________ | ___________ | ___________ | _______ ║
+║                                                  ║
+║ Storage Location: _______________                ║
+║ Access Restricted To: _______________            ║
+╚══════════════════════════════════════════════════╝
+```
+
+---
+
+## Evidence Storage Requirements
+
+| Requirement | Standard |
+|:---|:---|
+| **Encryption** | AES-256 at rest |
+| **Access** | Named individuals only, need-to-know basis |
+| **Retention** | Minimum 1 year (or as required by regulation) |
+| **Integrity** | SHA-256 hash verified at every transfer |
+| **Location** | Dedicated forensic storage, not shared drives |
+| **Backup** | At least 2 copies on separate media |
+
+---
+
+## Related Documents
+
+- [IR Framework](../05_Incident_Response/Framework.en.md)
+- [Tabletop Exercises](../05_Incident_Response/Tabletop_Exercises.en.md)
+- [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
+
+
+---
+
+## File: 05_Incident_Response/Evidence_Collection.th.md
+
+# คู่มือเก็บหลักฐาน — Digital Forensics
+
+> **รหัสเอกสาร:** FOR-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** IR Lead / Forensic Analyst
+
+---
+
+## กฎทองของการเก็บหลักฐาน
+
+1. **อย่าแก้ไขหลักฐาน** — ทำงานกับสำเนาเท่านั้น
+2. **บันทึกทุกอย่าง** — ใคร ทำอะไร เมื่อไหร่ ที่ไหน ทำไม อย่างไร
+3. **รักษา Chain of Custody** — บันทึกทุกการส่งมอบ
+4. **เก็บข้อมูลที่หายง่ายก่อน** — Memory ก่อน Disk
+5. **ใช้ Write Blocker** — สำหรับ disk imaging
+
+---
+
+## ลำดับการเก็บ (เก็บตามลำดับนี้)
+
+| ลำดับ | แหล่ง | ความเร่งด่วน | เครื่องมือ |
+|:---:|:---|:---|:---|
+| 1 | **RAM (Memory)** | หายใน นาที | WinPMEM, LiME |
+| 2 | **Network Connections** | หายใน นาที | netstat, tcpdump |
+| 3 | **Running Processes** | หายใน นาที | Velociraptor, tasklist |
+| 4 | **Disk (Live)** | ชั่วโมง | FTK Imager, dc3dd |
+| 5 | **Logs** | วัน | SIEM export |
+| 6 | **Disk (Offline)** | ถาวร | dd, FTK Imager |
+
+---
+
+## คำสั่ง Windows
+
+### เก็บ Memory
+```powershell
+winpmem_mini_x64.exe memory_dump.raw
+certutil -hashfile memory_dump.raw SHA256
+```
+
+### Triage สด
+```powershell
+# Process ที่ทำงาน
+Get-CimInstance Win32_Process | Select ProcessId, Name, CommandLine | Export-Csv processes.csv
+
+# Network connections
+Get-NetTCPConnection | Where {$_.State -eq "Established"} | Export-Csv netconn.csv
+
+# Scheduled tasks
+schtasks /query /fo CSV > scheduled_tasks.csv
+
+# Event logs (24 ชม.)
+Get-WinEvent -FilterHashtable @{LogName='Security'; StartTime=(Get-Date).AddHours(-24)} | Export-Csv events.csv
+```
+
+---
+
+## คำสั่ง Linux
+
+```bash
+# Memory
+sudo insmod lime.ko "path=/evidence/memory.lime format=lime"
+
+# Process + Network
+ps auxf > processes.txt
+ss -tulnp > network.txt
+lsof > open_files.txt
+
+# ไฟล์ที่เปลี่ยนแปลง (24 ชม.)
+find / -mtime -1 -ls 2>/dev/null > recent_files.txt
+
+# Bash history
+find /home -name ".bash_history" -exec cat {} \; > bash_history.txt
+
+# Disk image
+sudo dc3dd if=/dev/sda of=/evidence/disk.dd hash=sha256
+```
+
+---
+
+## Cloud (AWS)
+
+```bash
+# CloudTrail
+aws cloudtrail lookup-events --start-time $(date -u -d '24 hours ago' +%Y-%m-%dT%H:%M:%SZ) > cloudtrail.json
+
+# IAM Report
+aws iam generate-credential-report && aws iam get-credential-report --output text --query Content | base64 -d > iam.csv
+```
+
+---
+
+## แบบฟอร์ม Chain of Custody
+
+```
+╔═══════════════════════════════════════╗
+║    บันทึกการครอบครองหลักฐาน           ║
+╠═══════════════════════════════════════╣
+║ Case ID:      _______________         ║
+║ Evidence ID:  _______________         ║
+║ รายละเอียด:   _______________         ║
+║ วันเวลาเก็บ:  _______________         ║
+║ ผู้เก็บ:       _______________         ║
+║ SHA256:       _______________         ║
+║                                       ║
+║ วันที่    | จาก     | ถึง    | วัตถุประสงค์ ║
+║ _______ | _______ | ______ | _________ ║
+╚═══════════════════════════════════════╝
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [กรอบ IR](Framework.th.md)
+- [สถานการณ์จำลอง](Tabletop_Exercises.th.md)
+- [ตารางความรุนแรง](Severity_Matrix.th.md)
+
+
+---
+
 ## File: 05_Incident_Response/Framework.en.md
 
 # Incident Response Framework
@@ -2784,6 +9285,2812 @@ graph LR
 -   [MITRE ATT&CK](https://attack.mitre.org/)
 
 -   [ISO/IEC 27035 (Information Security Incident Management)](https://www.iso.org/standard/60803.html)
+
+
+---
+
+## File: 05_Incident_Response/Interview_Guide.en.md
+
+# SOC Analyst Interview Guide
+
+> **Document ID:** HR-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Audience:** SOC Managers, HR, Hiring Teams
+
+---
+
+## How to Use This Guide
+
+Select questions based on the **tier level** you're hiring for. Include a mix of technical, scenario-based, and behavioral questions. Score each answer 1–5.
+
+---
+
+## Tier 1 — Junior SOC Analyst
+
+### Technical Questions
+
+**Q1: What is the difference between an IDS and an IPS?**
+> **Good answer:** IDS (Intrusion Detection System) monitors and alerts. IPS (Intrusion Prevention System) monitors AND blocks. IDS is passive, IPS is inline.
+
+**Q2: A user reports they clicked a suspicious link in an email. Walk me through your first 5 steps.**
+> **Good answer:**
+> 1. Don't panic — get details (email sender, URL, time clicked)
+> 2. Check email headers — is the sender spoofed?
+> 3. Check URL reputation (VirusTotal, URLhaus)
+> 4. Check EDR — did anything execute on the user's machine?
+> 5. If malicious → isolate endpoint, escalate to T2, block sender/URL
+
+**Q3: What is a false positive? Give an example.**
+> **Good answer:** An alert that fires but is not actually malicious. Example: vulnerability scanner triggering IDS alerts, or admin using PowerShell legitimately triggering a "suspicious script" alert.
+
+**Q4: What common ports should a SOC analyst know?**
+> **Good answer:** 80/443 (HTTP/HTTPS), 22 (SSH), 3389 (RDP), 53 (DNS), 25/587 (SMTP), 445 (SMB), 389/636 (LDAP), 88 (Kerberos)
+
+**Q5: You see 500 failed login attempts from one IP in 5 minutes. What do you do?**
+> **Good answer:** This is likely brute force (T1110). Check if any login succeeded after the failures. If external IP → block at firewall. If login succeeded → treat as account compromise, escalate. Check if other accounts targeted (password spray).
+
+### Hands-On Test (15 min)
+Give the candidate a sample SIEM alert (screenshot or mock) and ask:
+1. What is the severity?
+2. What would you investigate next?
+3. Would you escalate? To whom?
+
+---
+
+## Tier 2 — Senior SOC Analyst
+
+### Technical Questions
+
+**Q1: Explain the MITRE ATT&CK framework. How do you use it in your daily work?**
+> **Good answer:** Matrix of adversary tactics and techniques. Use it to: map alerts to techniques, identify coverage gaps, communicate with threat intel teams, prioritize detection rules.
+
+**Q2: What's the difference between EDR and SIEM? When do you use each?**
+> **Good answer:** SIEM aggregates logs from many sources, correlates events, provides broad visibility. EDR focuses on endpoints — process execution, file changes, network connections. Use SIEM for cross-source correlation, EDR for deep endpoint investigation and response (isolation, kill process).
+
+**Q3: You're investigating a compromised Windows server. What artifacts do you look for?**
+> **Good answer should include:**
+> - Event logs (4624/4625/4688/1102)
+> - Sysmon logs (process creation, network connections)
+> - Scheduled tasks, services, registry run keys (persistence)
+> - PowerShell history / transcript logs
+> - Browser history, recent files
+> - Memory dump (if available)
+> - Prefetch files, shimcache, amcache
+
+**Q4: What is Kerberoasting and how do you detect it?**
+> **Good answer:** Attacker requests TGS tickets for service accounts with SPNs, then cracks the ticket offline to get the service account password. Detect via: Event ID 4769 with encryption type 0x17 (RC4), anomalous TGS volume from single account.
+
+**Q5: Design a detection rule for lateral movement via PsExec.**
+> **Good answer should cover:**
+> - New service installed (Event ID 7045, service name "PSEXESVC")
+> - Named pipe creation (\\pipe\psexesvc)
+> - Remote process creation via admin share (\\target\ADMIN$)
+> - Network connection to port 445 followed by service creation
+
+### Scenario Test (30 min)
+Present a multi-stage attack scenario (phishing → execution → lateral movement) with simulated SIEM data. Ask the candidate to:
+1. Build a timeline
+2. Identify IOCs
+3. Determine the blast radius
+4. Recommend containment steps
+
+---
+
+## SOC Lead / Manager
+
+### Leadership Questions
+
+**Q1: How do you measure SOC effectiveness?**
+> **Good answer:** MTTD (Mean Time to Detect), MTTR (Mean Time to Respond), alert-to-ticket ratio, false positive rate, SLA compliance, coverage against MITRE ATT&CK, analyst satisfaction/retention.
+
+**Q2: Your team has 50% false positive rate. How do you reduce it?**
+> **Good answer:** 
+> 1. Analyze top 10 noisiest rules
+> 2. Work with detection engineering to tune thresholds/whitelists
+> 3. Implement tiered alerting (info vs warning vs critical)
+> 4. Establish a feedback loop — analysts flag FP → engineering tunes
+> 5. Track FP rate per rule, set improvement targets
+
+**Q3: How do you prevent analyst burnout in a 24/7 SOC?**
+> **Good answer:** Fair shift rotation, limit consecutive night shifts, automate repetitive tasks (SOAR), meaningful work (not just clicking "close"), training/certification opportunities, recognition, career path visibility.
+
+**Q4: You have a budget to add one tool. How do you decide what to buy?**
+> **Good answer:** 
+> 1. Assess current capability gaps (MITRE ATT&CK coverage)
+> 2. Interview analysts — what slows them down most?
+> 3. Evaluate: does this reduce MTTD, MTTR, or FP rate?
+> 4. Consider: build (open-source) vs buy (vendor)
+> 5. POC with top 2 vendors, test against real scenarios
+> 6. Calculate ROI (hours saved × analyst cost)
+
+---
+
+## Behavioral Questions (All Tiers)
+
+| Question | What You're Assessing |
+|:---|:---|
+| Tell me about a time you handled a stressful incident | Composure under pressure |
+| Describe a time you escalated something and were wrong | Humility, learning from mistakes |
+| How do you stay current on new threats? | Continuous learning |
+| What's the most interesting security incident you've worked on? | Passion, depth of experience |
+| How do you handle disagreements with colleagues about severity? | Communication, teamwork |
+
+---
+
+## Scoring Matrix
+
+| Criteria | Weight | Score (1-5) |
+|:---|:---:|:---:|
+| Technical knowledge | 30% | ___ |
+| Hands-on/scenario performance | 25% | ___ |
+| Communication skills | 15% | ___ |
+| Problem-solving approach | 15% | ___ |
+| Cultural fit / teamwork | 10% | ___ |
+| Learning mindset | 5% | ___ |
+| **Weighted Total** | **100%** | **___** |
+
+**Hiring threshold:** ≥ 3.5 weighted average
+
+---
+
+## Related Documents
+
+- [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md)
+- [SOC Building Roadmap](../01_SOC_Fundamentals/SOC_Building_Roadmap.en.md)
+- [Tier 1 Runbook](Tier1_Runbook.en.md)
+
+
+---
+
+## File: 05_Incident_Response/Interview_Guide.th.md
+
+# คู่มือสัมภาษณ์ SOC Analyst
+
+> **รหัสเอกสาร:** HR-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **กลุ่มเป้าหมาย:** SOC Manager, HR
+
+---
+
+## วิธีใช้
+
+เลือกคำถามตาม **ระดับ** ที่จ้าง ผสมคำถามเทคนิค + สถานการณ์จำลอง + พฤติกรรม ให้คะแนน 1–5
+
+---
+
+## Tier 1 — Junior Analyst
+
+### คำถามเทคนิค
+
+**Q1: IDS กับ IPS ต่างกันอย่างไร?**
+> IDS ตรวจจับ+แจ้งเตือน (passive), IPS ตรวจจับ+ป้องกัน (inline)
+
+**Q2: User แจ้งว่าคลิก link น่าสงสัยใน email คุณทำอะไร 5 ขั้นตอน?**
+> 1) ถามรายละเอียด 2) ตรวจ header 3) ตรวจ URL (VT) 4) ตรวจ EDR 5) ถ้าอันตราย → isolate + escalate
+
+**Q3: False Positive คืออะไร? ยกตัวอย่าง**
+> Alert ที่ fire แต่ไม่ใช่ภัยจริง เช่น vulnerability scanner trigger IDS
+
+**Q4: Port ที่ analyst ต้องรู้?**
+> 80/443, 22, 3389, 53, 25, 445, 389, 88
+
+**Q5: เห็น 500 failed logins จาก IP เดียวใน 5 นาที ทำอะไร?**
+> Brute force (T1110) → ตรวจว่ามี login สำเร็จไหม → Block IP → ถ้าสำเร็จ = compromise → escalate
+
+### Hands-On Test (15 นาที)
+ให้ดู SIEM alert จำลอง → ถามความรุนแรง, สืบต่ออะไร, escalate ไหม
+
+---
+
+## Tier 2 — Senior Analyst
+
+**Q1: อธิบาย MITRE ATT&CK และใช้อย่างไร?**
+
+**Q2: EDR กับ SIEM ต่างกันอย่างไร?**
+
+**Q3: สืบสวน Windows server ที่ถูก compromise — ดู artifact อะไร?**
+> Event logs, Sysmon, scheduled tasks, PowerShell history, registry run keys, memory dump
+
+**Q4: Kerberoasting คืออะไร? ตรวจจับอย่างไร?**
+
+**Q5: ออกแบบ detection rule สำหรับ PsExec lateral movement**
+
+### Scenario Test (30 นาที)
+ให้สถานการณ์ multi-stage attack → สร้าง timeline, หา IOC, กำหนด blast radius, แนะนำ containment
+
+---
+
+## SOC Lead / Manager
+
+**Q1: วัดประสิทธิภาพ SOC อย่างไร?**
+> MTTD, MTTR, FP rate, SLA, MITRE coverage, analyst retention
+
+**Q2: FP rate 50% — ลดอย่างไร?**
+
+**Q3: ป้องกัน analyst burnout อย่างไร?**
+
+**Q4: มีงบซื้อเครื่องมือ 1 ตัว — ตัดสินใจอย่างไร?**
+
+---
+
+## คำถามพฤติกรรม (ทุก Tier)
+
+| คำถาม | ประเมินอะไร |
+|:---|:---|
+| เล่าเรื่อง incident ที่กดดัน | ความสงบภายใต้แรงกดดัน |
+| เคย escalate ผิดไหม? | ความอ่อนน้อม เรียนรู้จากข้อผิดพลาด |
+| ติดตามภัยใหม่อย่างไร? | การเรียนรู้ต่อเนื่อง |
+| Incident ที่น่าสนใจที่สุด? | ความหลงใหล ประสบการณ์ |
+
+---
+
+## ตารางให้คะแนน
+
+| เกณฑ์ | น้ำหนัก | คะแนน (1-5) |
+|:---|:---:|:---:|
+| ความรู้เทคนิค | 30% | ___ |
+| Hands-on | 25% | ___ |
+| สื่อสาร | 15% | ___ |
+| แก้ปัญหา | 15% | ___ |
+| Teamwork | 10% | ___ |
+| การเรียนรู้ | 5% | ___ |
+
+**เกณฑ์ผ่าน:** ≥ 3.5 ค่าเฉลี่ยถ่วงน้ำหนัก
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md)
+- [แผนงานสร้าง SOC](../01_SOC_Fundamentals/SOC_Building_Roadmap.th.md)
+
+
+---
+
+## File: 05_Incident_Response/Lessons_Learned_Template.en.md
+
+# Incident Lessons Learned Template
+
+> **Document ID:** LL-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15
+
+---
+
+## Incident Summary
+
+| Field | Details |
+|:---|:---|
+| **Incident ID** | INC-YYYY-NNN |
+| **Date Detected** | YYYY-MM-DD HH:MM |
+| **Date Resolved** | YYYY-MM-DD HH:MM |
+| **Severity** | P1 / P2 / P3 / P4 |
+| **Type** | (Phishing / Ransomware / Account Compromise / etc.) |
+| **MITRE ATT&CK** | (T1xxx — Technique Name) |
+| **Affected Systems** | (hostnames, IPs, user accounts) |
+| **Blast Radius** | (number of systems/users affected) |
+| **Business Impact** | (downtime hours, data exposed, financial cost) |
+| **Lead Analyst** | (name) |
+| **Incident Commander** | (name) |
+
+---
+
+## Timeline
+
+| Time | Event | Source |
+|:---|:---|:---|
+| YYYY-MM-DD HH:MM | Initial indicator observed | SIEM alert |
+| | Alert triaged by T1 analyst | Ticket system |
+| | Escalated to T2 | Ticket system |
+| | Containment action taken | EDR / Firewall |
+| | Root cause identified | Investigation |
+| | Eradication completed | Manual / automated |
+| | Recovery and monitoring | SOC team |
+| | Incident closed | Ticket system |
+
+---
+
+## Key Metrics
+
+| Metric | Value | SLA Target | Met? |
+|:---|:---:|:---:|:---:|
+| **Time to Detect** (MTTD) | ___ min | ≤ 60 min | ✅/❌ |
+| **Time to Respond** (MTTR) | ___ min | ≤ 240 min | ✅/❌ |
+| **Time to Contain** | ___ min | ≤ 60 min (P1) | ✅/❌ |
+| **Time to Resolve** | ___ hours | Varies | ✅/❌ |
+
+---
+
+## What Went Well ✅
+
+1. ___ (e.g., "Detection rule fired within 3 minutes")
+2. ___ (e.g., "T1 analyst correctly escalated to T2")
+3. ___ (e.g., "EDR isolation prevented lateral movement")
+
+## What Didn't Go Well ❌
+
+1. ___ (e.g., "Alert was ignored for 2 hours due to queue volume")
+2. ___ (e.g., "Playbook had outdated contact information")
+3. ___ (e.g., "No Sigma rule for this specific attack vector")
+
+## Root Cause
+
+```
+Describe the root cause of the incident in 2-3 sentences.
+Example: "An employee clicked a phishing link containing a credential harvester. 
+The stolen credentials were used to access the VPN and move laterally to the 
+file server. The MFA bypass was possible due to legacy authentication protocols."
+```
+
+---
+
+## Action Items
+
+| # | Action | Owner | Due Date | Status |
+|:---:|:---|:---|:---:|:---:|
+| 1 | Create detection rule for ____ | Detection Eng | YYYY-MM-DD | ☐ |
+| 2 | Update playbook PB-XX with ____ | SOC Lead | YYYY-MM-DD | ☐ |
+| 3 | Implement MFA for ____ | IT Admin | YYYY-MM-DD | ☐ |
+| 4 | Add IOCs to blocklist | T2 Analyst | YYYY-MM-DD | ☐ |
+| 5 | Security awareness training on ____ | HR/Security | YYYY-MM-DD | ☐ |
+
+---
+
+## Detection Gap Analysis
+
+| Question | Answer |
+|:---|:---|
+| Did existing rules detect this? | Yes / No / Partially |
+| What rule/alert detected it? | (rule name or "none") |
+| Was it detected automatically or by human? | Auto / Manual / User report |
+| Detection gaps identified | (what was missing) |
+| New rules needed | (describe rule to create) |
+| MITRE ATT&CK coverage gap | (technique not covered) |
+
+---
+
+## Meeting Details
+
+| Field | Details |
+|:---|:---|
+| **Meeting Date** | YYYY-MM-DD |
+| **Attendees** | (names and roles) |
+| **Duration** | ___ minutes |
+| **Facilitator** | (name) |
+
+---
+
+## Sign-off
+
+```
+SOC Manager:    ____________________ Date: __________
+CISO:           ____________________ Date: __________
+IT Manager:     ____________________ Date: __________
+```
+
+---
+
+## Related Documents
+
+- [IR Framework](Framework.en.md)
+- [Communication Templates](Communication_Templates.en.md)
+- [Incident Report Template](../templates/incident_report.en.md)
+
+
+---
+
+## File: 05_Incident_Response/Lessons_Learned_Template.th.md
+
+# แม่แบบ Lessons Learned (บทเรียนจากเหตุการณ์)
+
+> **รหัสเอกสาร:** LL-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15
+
+---
+
+## สรุปเหตุการณ์
+
+| ข้อมูล | รายละเอียด |
+|:---|:---|
+| **Incident ID** | INC-YYYY-NNN |
+| **วันที่ตรวจพบ** | YYYY-MM-DD HH:MM |
+| **วันที่แก้ไขเสร็จ** | YYYY-MM-DD HH:MM |
+| **ระดับ** | P1 / P2 / P3 / P4 |
+| **ประเภท** | (Phishing / Ransomware / ฯลฯ) |
+| **ระบบที่ได้รับผลกระทบ** | |
+| **ผลกระทบทางธุรกิจ** | (downtime, ข้อมูลรั่ว, ค่าใช้จ่าย) |
+
+---
+
+## KPIs
+
+| ตัวชี้วัด | ค่า | เป้า SLA | ผ่าน? |
+|:---|:---:|:---:|:---:|
+| MTTD | ___ นาที | ≤ 60 นาที | ✅/❌ |
+| MTTR | ___ นาที | ≤ 240 นาที | ✅/❌ |
+| เวลา Contain | ___ นาที | ≤ 60 นาที | ✅/❌ |
+
+---
+
+## สิ่งที่ทำได้ดี ✅
+1. ___
+2. ___
+
+## สิ่งที่ต้องปรับปรุง ❌
+1. ___
+2. ___
+
+## สาเหตุรากเหง้า
+_อธิบาย root cause 2–3 ประโยค_
+
+---
+
+## รายการแก้ไข
+
+| # | สิ่งที่ต้องทำ | ผู้รับผิดชอบ | กำหนด | สถานะ |
+|:---:|:---|:---|:---:|:---:|
+| 1 | สร้าง detection rule สำหรับ ____ | DetEng | | ☐ |
+| 2 | อัปเดต playbook PB-XX | SOC Lead | | ☐ |
+| 3 | Implement MFA สำหรับ ____ | IT | | ☐ |
+
+---
+
+## ลงชื่อ
+
+```
+SOC Manager: ____________________ วันที่: __________
+CISO:        ____________________ วันที่: __________
+```
+
+
+---
+
+## File: 05_Incident_Response/Purple_Team_Exercises.en.md
+
+# Purple Team Exercise Guide
+
+> **Document ID:** PTX-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** Detection Engineering / SOC Manager
+
+---
+
+## Purpose
+
+Validate that your detection rules and playbooks actually work by simulating real-world attack techniques in a controlled environment. Purple teaming bridges the gap between Red Team (attack) and Blue Team (defense).
+
+---
+
+## How It Works
+
+```
+Red Team action → SOC should detect → Verify alert fired → Fix if not
+```
+
+| Phase | Who | What |
+|:---|:---|:---|
+| **Plan** | Both teams | Select MITRE techniques to test |
+| **Execute** | Red Team | Run controlled attack simulation |
+| **Detect** | Blue Team | Monitor for alerts in real-time |
+| **Evaluate** | Both teams | Did the detection fire? Correctly? On time? |
+| **Improve** | Detection Eng | Tune/create rules for gaps found |
+
+---
+
+## Exercise Catalog — By MITRE ATT&CK
+
+### 🟢 Beginner Exercises
+
+#### EX-01: Phishing Link Click (T1204.001)
+**Simulates:** User clicking a phishing link  
+**Playbook:** PB-01  
+**Sigma Rule:** `proc_office_spawn_powershell`
+
+```bash
+# Red Team: Send test phishing email with known-safe tracking link
+# Use GoPhish or similar platform
+# Target: Test mailbox (not real users)
+
+# Expected Blue Team Detection:
+# 1. Email gateway flags the email
+# 2. If click → proxy logs show access to known-bad URL category
+# 3. If payload → EDR blocks execution
+```
+
+**Pass Criteria:**
+- [ ] Email gateway detected phishing
+- [ ] Proxy blocked the URL
+- [ ] Alert created within 5 minutes
+
+---
+
+#### EX-02: Brute Force Login (T1110)
+**Simulates:** Password brute force attack  
+**Playbook:** PB-04  
+**Sigma Rule:** `win_multiple_failed_logins`
+
+```bash
+# Red Team: Generate 50 failed logins in 5 minutes
+# Linux:
+for i in $(seq 1 50); do 
+  smbclient //TARGET/share -U "testuser%wrongpass$i" 2>/dev/null
+done
+
+# Windows:
+1..50 | ForEach { net use \\TARGET\share /user:testuser "wrongpass$_" 2>$null }
+```
+
+**Pass Criteria:**
+- [ ] SIEM alert fires after threshold (e.g., 10 failures in 5 min)
+- [ ] Source IP identified correctly
+- [ ] Alert severity = Medium or higher
+
+---
+
+#### EX-03: Suspicious PowerShell (T1059.001)
+**Simulates:** Encoded PowerShell execution  
+**Playbook:** PB-11  
+**Sigma Rule:** `proc_powershell_encoded`
+
+```powershell
+# Red Team: Run encoded but BENIGN PowerShell
+$cmd = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes('Write-Host "Purple Team Test"'))
+powershell.exe -EncodedCommand $cmd
+```
+
+**Pass Criteria:**
+- [ ] EDR alerts on encoded PowerShell
+- [ ] Sysmon Event ID 1 captures command line
+- [ ] SIEM correlates with Sigma rule
+
+---
+
+### 🟡 Intermediate Exercises
+
+#### EX-04: Lateral Movement via SMB (T1021.002)
+**Simulates:** Admin share access to another host  
+**Playbook:** PB-12  
+**Sigma Rule:** `win_admin_share_access`
+
+```powershell
+# Red Team: Access admin share on target (authorized test account)
+net use \\TARGET\C$ /user:DOMAIN\testadmin <password>
+dir \\TARGET\C$\Windows\Temp
+net use \\TARGET\C$ /delete
+```
+
+**Pass Criteria:**
+- [ ] Event ID 5140/5145 logged for share access
+- [ ] SIEM alert fires for admin share access
+- [ ] Source/destination correctly identified
+
+---
+
+#### EX-05: Data Exfiltration via DNS (T1048.003)
+**Simulates:** DNS tunneling exfiltration  
+**Playbook:** PB-24  
+**Sigma Rule:** `net_dns_tunneling`
+
+```bash
+# Red Team: Generate high-volume DNS queries with long subdomains
+for i in $(seq 1 1000); do
+  nslookup $(head -c 60 /dev/urandom | base64 | tr -d '/+=' | head -c 50).test.example.com
+done
+```
+
+**Pass Criteria:**
+- [ ] DNS monitoring detects abnormal query volume
+- [ ] Long subdomain queries flagged
+- [ ] Alert references DNS tunneling
+
+---
+
+#### EX-06: Shadow Copy Deletion (T1490)
+**Simulates:** Pre-ransomware indicator  
+**Playbook:** PB-02  
+
+```powershell
+# Red Team: Run vssadmin (WILL NOT actually delete in test mode)
+# ⚠️ Run on ISOLATED test VM only!
+vssadmin list shadows
+# Log-only: DO NOT run "delete shadows" on production
+# Instead, verify Sysmon detects the vssadmin execution
+```
+
+**Pass Criteria:**
+- [ ] EDR detects vssadmin execution
+- [ ] Process tree shows parent process
+- [ ] Alert severity = High or Critical
+
+---
+
+### 🔴 Advanced Exercises
+
+#### EX-07: AiTM / MFA Bypass (T1556.006)
+**Simulates:** Adversary-in-the-Middle session theft  
+**Playbook:** PB-26  
+**Sigma Rule:** `cloud_mfa_bypass`
+
+```
+# Red Team: 
+# 1. Use Evilginx2 or similar on isolated lab
+# 2. Capture session token from test account
+# 3. Replay session token from different IP/region
+
+# Expected Detection:
+# Azure AD: "Anomalous Token" risk detection
+# Impossible travel between token use locations
+# Session from unusual client/browser fingerprint
+```
+
+**Pass Criteria:**
+- [ ] Azure AD risk detection fires
+- [ ] SOC identifies token reuse anomaly
+- [ ] Session revocation happens within 15 min
+
+---
+
+#### EX-08: Cloud Privilege Escalation (T1078.004)
+**Simulates:** IAM privilege escalation in AWS  
+**Playbook:** PB-16  
+
+```bash
+# Red Team (in test AWS account):
+aws iam create-user --user-name purple-test-user
+aws iam attach-user-policy --user-name purple-test-user \
+  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+aws iam create-access-key --user-name purple-test-user
+
+# Cleanup:
+aws iam detach-user-policy --user-name purple-test-user \
+  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+aws iam delete-user --user-name purple-test-user
+```
+
+**Pass Criteria:**
+- [ ] CloudTrail logs IAM changes
+- [ ] SIEM alert for admin policy attachment
+- [ ] SOC identifies the escalation within 30 min
+
+---
+
+#### EX-09: C2 Beaconing (T1071.001)
+**Simulates:** Command and control callbacks  
+**Playbook:** PB-13  
+**Sigma Rule:** `net_beaconing`
+
+```bash
+# Red Team: Simulate periodic callbacks (60-second intervals)
+while true; do
+  curl -s https://safe-c2-test.example.com/beacon?id=test123 > /dev/null
+  sleep $((55 + RANDOM % 10))  # Jitter: 55-65 seconds
+done
+```
+
+**Pass Criteria:**
+- [ ] Network monitoring detects periodic beaconing
+- [ ] Regular interval pattern identified
+- [ ] Destination flagged for investigation
+
+---
+
+## Results Tracking Template
+
+| Exercise | Technique | Detection? | Time to Detect | Alert Accurate? | Action |
+|:---|:---|:---:|:---:|:---:|:---|
+| EX-01 | T1204 | ✅ / ❌ | __ min | ✅ / ❌ | [tune/create/OK] |
+| EX-02 | T1110 | ✅ / ❌ | __ min | ✅ / ❌ | [tune/create/OK] |
+| EX-03 | T1059 | ✅ / ❌ | __ min | ✅ / ❌ | [tune/create/OK] |
+| ... | ... | ... | ... | ... | ... |
+
+---
+
+## Safety Rules
+
+> [!CAUTION]
+> 1. **NEVER run on production** without written approval and a rollback plan
+> 2. **Use isolated test environments** (VMs, lab networks, test cloud accounts)
+> 3. **Inform the SOC** that an exercise is happening (or test blind response)
+> 4. **Have a kill switch** — ability to stop immediately if something goes wrong
+> 5. **Document everything** — timestamped log of all actions taken
+
+---
+
+## Recommended Tools
+
+| Tool | Purpose | License |
+|:---|:---|:---|
+| [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team) | Pre-built MITRE ATT&CK test cases | MIT |
+| [Caldera](https://github.com/mitre/caldera) | Automated adversary emulation | Apache 2.0 |
+| [Infection Monkey](https://github.com/guardicore/monkey) | Network breach simulation | GPLv3 |
+| [Stratus Red Team](https://github.com/DataDog/stratus-red-team) | Cloud attack simulation | Apache 2.0 |
+| [GoPhish](https://github.com/gophish/gophish) | Phishing simulation | MIT |
+
+---
+
+## Exercise Calendar
+
+| Frequency | Exercise | Coverage |
+|:---:|:---|:---|
+| Monthly | 2 Beginner exercises | Core detections |
+| Quarterly | 2 Intermediate exercises | Advanced detections |
+| Semi-annual | 1 Advanced exercise | Full kill-chain |
+| Annual | Full purple team engagement | End-to-end |
+
+---
+
+## Related Documents
+
+- [Tabletop Exercises](Tabletop_Exercises.en.md)
+- [Detection Rules Index](../07_Detection_Rules/README.md)
+- [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
+- [Sigma Rule Validator](../tools/sigma_validator.py)
+
+
+---
+
+## File: 05_Incident_Response/Purple_Team_Exercises.th.md
+
+# คู่มือการซ้อม Purple Team
+
+> **รหัสเอกสาร:** PTX-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** Detection Engineering / SOC Manager
+
+---
+
+## วัตถุประสงค์
+
+ทดสอบว่า detection rules และ playbooks ทำงานจริง โดยจำลองเทคนิคโจมตีจริงในสภาพแวดล้อมที่ควบคุม Purple team = Red Team (โจมตี) + Blue Team (ตรวจจับ)
+
+---
+
+## วิธีทำงาน
+
+```
+Red Team ลงมือ → SOC ควรตรวจพบ → ตรวจว่า alert มา → แก้ไขถ้าไม่มา
+```
+
+---
+
+## แบบฝึกหัด
+
+### 🟢 เริ่มต้น
+
+#### EX-01: คลิก Phishing Link (T1204)
+- จำลองส่ง phishing → ตรวจว่า email gateway block ไหม
+- **ผ่าน**: Email ถูกจับ + URL ถูก block + Alert ใน 5 นาที
+
+#### EX-02: Brute Force Login (T1110)
+- สร้าง 50 failed logins ใน 5 นาที
+- **ผ่าน**: SIEM alert สำหรับ >10 failures
+
+#### EX-03: PowerShell เข้ารหัส (T1059.001)
+- รัน encoded PowerShell (ไม่อันตราย)
+- **ผ่าน**: EDR + SIEM จับได้
+
+### 🟡 ปานกลาง
+
+#### EX-04: Lateral Movement SMB (T1021.002)
+- เข้าถึง admin share ข้ามเครื่อง
+- **ผ่าน**: Event 5140/5145 + SIEM alert
+
+#### EX-05: DNS Tunneling (T1048.003)
+- สร้าง DNS query ปริมาณมาก + subdomain ยาว
+- **ผ่าน**: ตรวจพบ pattern ผิดปกติ
+
+#### EX-06: Shadow Copy Deletion (T1490)
+- ตรวจจับ vssadmin execution (สัญญาณ ransomware)
+- **ผ่าน**: EDR alert = High/Critical
+
+### 🔴 ขั้นสูง
+
+#### EX-07: MFA Bypass / AiTM (T1556.006)
+- จำลอง session token theft (ในแล็บ)
+- **ผ่าน**: Azure AD risk detection + session revoke <15 นาที
+
+#### EX-08: Cloud Privilege Escalation (T1078.004)
+- สร้าง IAM user + ให้ admin policy (test account)
+- **ผ่าน**: CloudTrail → SIEM alert <30 นาที
+
+#### EX-09: C2 Beaconing (T1071.001)
+- จำลอง periodic callback ทุก 60 วินาที
+- **ผ่าน**: Network monitoring จับ pattern
+
+---
+
+## ตารางบันทึกผล
+
+| แบบฝึก | Technique | ตรวจพบ? | เวลา | Alert ถูก? | แก้ไข |
+|:---|:---|:---:|:---:|:---:|:---|
+| EX-01 | T1204 | ✅/❌ | __ นาที | ✅/❌ | [tune/สร้าง/OK] |
+| EX-02 | T1110 | ✅/❌ | __ นาที | ✅/❌ | [tune/สร้าง/OK] |
+| ... | ... | ... | ... | ... | ... |
+
+---
+
+## ⚠️ กฎความปลอดภัย
+
+1. **ห้ามรันบน production** โดยไม่มีอนุมัติเป็นลายลักษณ์อักษร
+2. **ใช้สภาพแวดล้อมทดสอบ** (VM, lab, test cloud account)
+3. **แจ้ง SOC** ว่ากำลังซ้อม (หรือทดสอบแบบ blind)
+4. **มี kill switch** — หยุดได้ทันทีถ้ามีปัญหา
+5. **บันทึกทุกอย่าง** — timestamp ทุกการกระทำ
+
+---
+
+## เครื่องมือแนะนำ
+
+| เครื่องมือ | ใช้ทำอะไร |
+|:---|:---|
+| Atomic Red Team | ชุดทดสอบ MITRE ATT&CK สำเร็จรูป |
+| Caldera (MITRE) | จำลองผู้โจมตีอัตโนมัติ |
+| Stratus Red Team | จำลองโจมตี Cloud |
+| GoPhish | จำลอง Phishing |
+
+---
+
+## ปฏิทิน
+
+| ความถี่ | แบบฝึก | Coverage |
+|:---:|:---|:---|
+| รายเดือน | 2 แบบเริ่มต้น | Core detections |
+| รายไตรมาส | 2 แบบปานกลาง | Advanced detections |
+| ทุก 6 เดือน | 1 แบบขั้นสูง | Full kill-chain |
+| ประจำปี | Full purple team | End-to-end |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [สถานการณ์จำลอง](Tabletop_Exercises.th.md)
+- [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md)
+- [แผนที่ MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
+
+
+---
+
+## File: 05_Incident_Response/SOAR_Playbooks.en.md
+
+# SOAR Playbook Templates
+
+> **Document ID:** SOAR-TPL-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Engineer  
+
+---
+
+## Purpose
+
+Pre-built automation workflow templates for **Security Orchestration, Automation, and Response (SOAR)** platforms. These templates map directly to SOC Playbooks and can be imported into:
+
+- **Palo Alto XSOAR** (Cortex)
+- **Shuffle** (Open-source)
+- **TheHive / Cortex**
+- **Tines** / **Splunk SOAR**
+
+---
+
+## Template Index
+
+| # | Template | Playbook | Automation Level | Key Actions |
+|:---:|:---|:---|:---:|:---|
+| 1 | [Phishing Triage](#1-phishing-triage) | PB-01 | Full | Extract IOC → Sandbox → Block → Notify |
+| 2 | [Ransomware Response](#2-ransomware-response) | PB-02 | Semi | Isolate → Snapshot → Escalate |
+| 3 | [Brute Force Block](#3-brute-force-lockout) | PB-04 | Full | Check threshold → Lock account → Alert |
+| 4 | [Account Compromise](#4-account-compromise) | PB-05 | Full | Disable → Reset → Revoke sessions |
+| 5 | [Malware Quarantine](#5-malware-quarantine) | PB-03 | Full | Hash lookup → Quarantine → Block hash |
+| 6 | [IOC Enrichment](#6-ioc-enrichment) | All | Full | Multi-source enrichment → Verdict |
+
+---
+
+## 1. Phishing Triage
+
+**Trigger**: Email reported by user or email gateway alert  
+**Automation Level**: Full auto with analyst approval for blocking
+
+```yaml
+# XSOAR / Shuffle compatible workflow
+name: Phishing Auto Triage
+trigger:
+  type: email_report
+  source: phishing_mailbox OR email_gateway_alert
+
+steps:
+  - id: extract_indicators
+    action: extract_indicators
+    description: "Parse email for URLs, attachments, sender IP, headers"
+    inputs:
+      email_body: "{{incident.email_body}}"
+      attachments: "{{incident.attachments}}"
+    outputs: [urls, file_hashes, sender_ip, sender_domain]
+
+  - id: check_reputation
+    action: parallel
+    description: "Check all indicators against threat intel"
+    tasks:
+      - action: virustotal_lookup
+        inputs: { indicators: "{{extract_indicators.file_hashes}}" }
+      - action: urlscan_submit
+        inputs: { urls: "{{extract_indicators.urls}}" }
+      - action: abuseipdb_check
+        inputs: { ip: "{{extract_indicators.sender_ip}}" }
+      - action: whois_lookup
+        inputs: { domain: "{{extract_indicators.sender_domain}}" }
+
+  - id: sandbox_attachment
+    action: sandbox_detonate
+    condition: "{{extract_indicators.attachments | length > 0}}"
+    inputs:
+      files: "{{extract_indicators.attachments}}"
+      sandbox: "any.run OR hybrid_analysis"
+      timeout: 300
+
+  - id: calculate_verdict
+    action: decision
+    inputs:
+      vt_score: "{{check_reputation.virustotal.score}}"
+      sandbox_result: "{{sandbox_attachment.verdict}}"
+      url_scan: "{{check_reputation.urlscan.verdict}}"
+    rules:
+      - condition: "vt_score >= 5 OR sandbox_result == 'malicious'"
+        verdict: MALICIOUS
+      - condition: "vt_score >= 2 OR sandbox_result == 'suspicious'"
+        verdict: SUSPICIOUS
+      - default:
+        verdict: CLEAN
+
+  - id: respond_malicious
+    action: sequential
+    condition: "{{calculate_verdict.verdict == 'MALICIOUS'}}"
+    tasks:
+      - action: block_sender
+        inputs: { email: "{{extract_indicators.sender_email}}", platform: "exchange_or_gsuite" }
+      - action: delete_from_mailboxes
+        inputs: { message_id: "{{incident.message_id}}" }
+      - action: block_urls
+        inputs: { urls: "{{extract_indicators.urls}}", platform: "proxy_or_firewall" }
+      - action: block_hashes
+        inputs: { hashes: "{{extract_indicators.file_hashes}}", platform: "edr" }
+      - action: notify_user
+        inputs: { user: "{{incident.reported_by}}", template: "phishing_confirmed" }
+      - action: create_incident
+        inputs: { severity: "P2", playbook: "PB-01", title: "Confirmed Phishing" }
+
+  - id: respond_clean
+    action: sequential
+    condition: "{{calculate_verdict.verdict == 'CLEAN'}}"
+    tasks:
+      - action: close_alert
+        inputs: { verdict: "false_positive", notes: "No malicious indicators found" }
+      - action: notify_user
+        inputs: { user: "{{incident.reported_by}}", template: "phishing_clean" }
+```
+
+---
+
+## 2. Ransomware Response
+
+**Trigger**: EDR alert for ransomware behavior  
+**Automation Level**: Semi-auto (isolate immediately, escalate to human)
+
+```yaml
+name: Ransomware Emergency Response
+trigger:
+  type: edr_alert
+  rule: "ransomware_behavior OR file_bulk_encryption"
+
+steps:
+  - id: immediate_isolate
+    action: edr_isolate_host
+    description: "Network-isolate the affected endpoint IMMEDIATELY"
+    inputs:
+      hostname: "{{alert.hostname}}"
+      platform: "crowdstrike OR sentinelone OR defender"
+    priority: CRITICAL
+    auto_execute: true
+
+  - id: snapshot_evidence
+    action: parallel
+    tasks:
+      - action: edr_collect_forensics
+        inputs: { hostname: "{{alert.hostname}}", artifacts: ["memory_dump", "running_processes", "network_connections"] }
+      - action: cloud_snapshot
+        inputs: { instance_id: "{{alert.cloud_instance_id}}" }
+        condition: "{{alert.is_cloud_instance}}"
+
+  - id: check_lateral
+    action: edr_hunt
+    description: "Hunt for same IOCs across all endpoints"
+    inputs:
+      iocs: "{{alert.file_hashes}}"
+      process_names: "{{alert.process_name}}"
+      time_range: "24h"
+
+  - id: escalate
+    action: escalate_incident
+    inputs:
+      severity: "P1"
+      playbook: "PB-02"
+      notify: ["soc_lead", "incident_commander", "ciso"]
+      channel: "slack_or_teams"
+      message: |
+        🔴 RANSOMWARE DETECTED
+        Host: {{alert.hostname}}
+        User: {{alert.username}}
+        Process: {{alert.process_name}}
+        Status: Host isolated, forensics collecting
+        Lateral movement check: {{check_lateral.result_count}} additional hosts
+
+  - id: block_iocs
+    action: parallel
+    tasks:
+      - action: block_hashes
+        inputs: { hashes: "{{alert.file_hashes}}", platform: "edr" }
+      - action: block_ips
+        inputs: { ips: "{{alert.c2_ips}}", platform: "firewall" }
+        condition: "{{alert.c2_ips | length > 0}}"
+```
+
+---
+
+## 3. Brute Force Lockout
+
+**Trigger**: SIEM alert for N+ failed logins in T minutes  
+**Automation Level**: Full auto
+
+```yaml
+name: Brute Force Auto-Lockout
+trigger:
+  type: siem_alert
+  rule: "brute_force_threshold"
+  threshold: "10 failures in 5 minutes"
+
+steps:
+  - id: enrich_source
+    action: parallel
+    tasks:
+      - action: geoip_lookup
+        inputs: { ip: "{{alert.source_ip}}" }
+      - action: abuseipdb_check
+        inputs: { ip: "{{alert.source_ip}}" }
+      - action: internal_asset_check
+        inputs: { ip: "{{alert.source_ip}}" }
+
+  - id: decide_action
+    action: decision
+    rules:
+      - condition: "{{enrich_source.is_internal}} == true"
+        action: alert_only
+        note: "Internal IP — may be misconfigured service"
+      - condition: "{{enrich_source.abuseipdb_score}} >= 80"
+        action: block_and_lock
+      - condition: "{{enrich_source.geoip.country}} NOT IN allowed_countries"
+        action: block_and_lock
+      - default:
+        action: temporary_block
+
+  - id: execute_block
+    action: sequential
+    condition: "{{decide_action.action == 'block_and_lock'}}"
+    tasks:
+      - action: firewall_block_ip
+        inputs: { ip: "{{alert.source_ip}}", duration: "24h" }
+      - action: lock_account
+        inputs: { username: "{{alert.target_user}}", platform: "ad_or_azure" }
+        condition: "{{alert.any_success}} == true"
+      - action: create_incident
+        inputs: { severity: "P3", playbook: "PB-04" }
+```
+
+---
+
+## 4. Account Compromise
+
+**Trigger**: Impossible travel, token theft, or confirmed credential leak  
+**Automation Level**: Full auto
+
+```yaml
+name: Account Compromise Auto-Response
+trigger:
+  type: identity_alert
+  rules: ["impossible_travel", "token_anomaly", "credential_leak"]
+
+steps:
+  - id: disable_account
+    action: identity_disable_user
+    auto_execute: true
+    inputs:
+      username: "{{alert.username}}"
+      platform: "azure_ad OR okta OR google"
+
+  - id: revoke_sessions
+    action: parallel
+    tasks:
+      - action: revoke_oauth_tokens
+        inputs: { user: "{{alert.username}}" }
+      - action: revoke_active_sessions
+        inputs: { user: "{{alert.username}}" }
+      - action: revoke_mfa_bypass
+        inputs: { user: "{{alert.username}}" }
+
+  - id: audit_actions
+    action: query_audit_log
+    inputs:
+      user: "{{alert.username}}"
+      time_range: "72h"
+      actions: ["file_download", "permission_change", "email_forward_rule", "mailbox_delegation"]
+
+  - id: remediate
+    action: sequential
+    tasks:
+      - action: reset_password
+        inputs: { user: "{{alert.username}}", force_change: true }
+      - action: re_enroll_mfa
+        inputs: { user: "{{alert.username}}" }
+      - action: remove_suspicious_rules
+        inputs: { rules: "{{audit_actions.forwarding_rules}}" }
+        condition: "{{audit_actions.forwarding_rules | length > 0}}"
+
+  - id: notify
+    action: parallel
+    tasks:
+      - action: notify_user_manager
+        inputs: { user: "{{alert.username}}", template: "account_compromised" }
+      - action: create_incident
+        inputs: { severity: "P2", playbook: "PB-05" }
+```
+
+---
+
+## 5. Malware Quarantine
+
+**Trigger**: EDR malware detection alert  
+**Automation Level**: Full auto
+
+```yaml
+name: Malware Auto-Quarantine
+trigger:
+  type: edr_alert
+  category: malware_detection
+
+steps:
+  - id: quarantine_file
+    action: edr_quarantine_file
+    auto_execute: true
+    inputs:
+      file_path: "{{alert.file_path}}"
+      hostname: "{{alert.hostname}}"
+
+  - id: check_hash
+    action: parallel
+    tasks:
+      - action: virustotal_hash_lookup
+        inputs: { hash: "{{alert.file_hash}}" }
+      - action: malwarebazaar_lookup
+        inputs: { hash: "{{alert.file_hash}}" }
+
+  - id: enterprise_block
+    action: block_hash_enterprise
+    condition: "{{check_hash.virustotal.positives}} >= 5"
+    inputs:
+      hash: "{{alert.file_hash}}"
+      platform: "edr"
+      scope: "organization"
+
+  - id: hunt_enterprise
+    action: edr_hunt
+    inputs:
+      hash: "{{alert.file_hash}}"
+      scope: "all_endpoints"
+    outputs: [affected_hosts]
+
+  - id: mass_quarantine
+    action: edr_quarantine_file
+    condition: "{{hunt_enterprise.affected_hosts | length > 0}}"
+    inputs:
+      file_hash: "{{alert.file_hash}}"
+      hosts: "{{hunt_enterprise.affected_hosts}}"
+
+  - id: close
+    action: create_incident
+    inputs:
+      severity: "{{alert.severity}}"
+      playbook: "PB-03"
+      affected_hosts: "{{hunt_enterprise.affected_hosts}}"
+```
+
+---
+
+## 6. IOC Enrichment
+
+**Trigger**: Called by any playbook needing indicator enrichment  
+**Automation Level**: Full auto (sub-playbook)
+
+```yaml
+name: IOC Multi-Source Enrichment
+trigger:
+  type: sub_playbook
+  called_by: any
+
+inputs:
+  indicator_type: "ip | domain | hash | url"
+  indicator_value: "<value>"
+
+steps:
+  - id: enrich
+    action: parallel
+    tasks:
+      - action: virustotal_lookup
+        inputs: { indicator: "{{indicator_value}}", type: "{{indicator_type}}" }
+      - action: abuseipdb_check
+        inputs: { ip: "{{indicator_value}}" }
+        condition: "{{indicator_type == 'ip'}}"
+      - action: urlscan_lookup
+        inputs: { url: "{{indicator_value}}" }
+        condition: "{{indicator_type == 'url'}}"
+      - action: urlhaus_lookup
+        inputs: { indicator: "{{indicator_value}}" }
+      - action: threatfox_lookup
+        inputs: { indicator: "{{indicator_value}}" }
+      - action: shodan_lookup
+        inputs: { ip: "{{indicator_value}}" }
+        condition: "{{indicator_type == 'ip'}}"
+      - action: whois_lookup
+        inputs: { domain: "{{indicator_value}}" }
+        condition: "{{indicator_type == 'domain'}}"
+
+  - id: calculate_score
+    action: scoring
+    inputs:
+      vt_score: "{{enrich.virustotal.positives}}"
+      abuse_score: "{{enrich.abuseipdb.score}}"
+      urlhaus_status: "{{enrich.urlhaus.status}}"
+      threatfox_ioc: "{{enrich.threatfox.found}}"
+    rules:
+      - condition: "vt_score >= 10 OR abuse_score >= 90 OR threatfox_ioc"
+        verdict: MALICIOUS
+        confidence: HIGH
+      - condition: "vt_score >= 3 OR abuse_score >= 50"
+        verdict: SUSPICIOUS
+        confidence: MEDIUM
+      - default:
+        verdict: CLEAN
+        confidence: LOW
+
+outputs:
+  verdict: "{{calculate_score.verdict}}"
+  confidence: "{{calculate_score.confidence}}"
+  enrichment_data: "{{enrich}}"
+```
+
+---
+
+## Import Guide
+
+### XSOAR (Cortex)
+1. Convert YAML to XSOAR playbook via Marketplace or custom content pack
+2. Upload via **Settings → Content → Upload Content Pack**
+3. Map integrations (VirusTotal, EDR, Firewall) in **Settings → Integrations**
+
+### Shuffle
+1. Import YAML directly via **Workflows → Import**
+2. Configure app connections for each integration
+3. Set triggers via webhook or SIEM integration
+
+### TheHive
+1. Create Responders based on each step's action
+2. Build Case Templates matching playbook workflows
+3. Link Cortex Analyzers for enrichment steps
+
+---
+
+## Related Documents
+
+- [IR Playbooks](../05_Incident_Response/Playbooks/)
+- [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
+- [Detection Rules](../07_Detection_Rules/README.md)
+
+
+---
+
+## File: 05_Incident_Response/SOAR_Playbooks.th.md
+
+# แม่แบบ SOAR Playbook
+
+> **รหัสเอกสาร:** SOAR-TPL-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Engineer  
+
+---
+
+## วัตถุประสงค์
+
+แม่แบบ workflow อัตโนมัติสำหรับ **SOAR** สามารถ import เข้า:
+- **Palo Alto XSOAR** (Cortex)
+- **Shuffle** (Open-source)
+- **TheHive / Cortex**
+- **Tines** / **Splunk SOAR**
+
+---
+
+## ดัชนีแม่แบบ
+
+| # | แม่แบบ | Playbook | ระดับอัตโนมัติ | การดำเนินการหลัก |
+|:---:|:---|:---|:---:|:---|
+| 1 | Phishing Triage | PB-01 | เต็ม | Extract IOC → Sandbox → Block → แจ้ง |
+| 2 | Ransomware Response | PB-02 | กึ่งอัตโนมัติ | Isolate → Snapshot → Escalate |
+| 3 | Brute Force Block | PB-04 | เต็ม | ตรวจ threshold → Lock → Alert |
+| 4 | Account Compromise | PB-05 | เต็ม | Disable → Reset → Revoke sessions |
+| 5 | Malware Quarantine | PB-03 | เต็ม | ค้น hash → Quarantine → Block |
+| 6 | IOC Enrichment | ทั้งหมด | เต็ม | Enrichment หลายแหล่ง → Verdict |
+
+---
+
+## 1. Phishing Triage
+
+**Trigger**: User แจ้ง email น่าสงสัย หรือ email gateway alert  
+**อัตโนมัติ**: เต็มรูปแบบ (ต้อง approve ก่อน block)
+
+```yaml
+name: Phishing Auto Triage
+trigger:
+  type: email_report
+  source: phishing_mailbox OR email_gateway_alert
+
+steps:
+  - id: extract_indicators
+    action: extract_indicators
+    description: "แยก URLs, attachments, sender IP จาก email"
+
+  - id: check_reputation
+    action: parallel
+    tasks:
+      - action: virustotal_lookup
+      - action: urlscan_submit
+      - action: abuseipdb_check
+
+  - id: sandbox_attachment
+    action: sandbox_detonate
+    condition: "มี attachment"
+    timeout: 300
+
+  - id: calculate_verdict
+    action: decision
+    rules:
+      - "VT ≥ 5 OR sandbox = malicious" → MALICIOUS
+      - "VT ≥ 2 OR sandbox = suspicious" → SUSPICIOUS
+      - default → CLEAN
+
+  - id: respond_malicious
+    condition: "MALICIOUS"
+    tasks:
+      - block_sender
+      - delete_from_mailboxes
+      - block_urls (proxy/firewall)
+      - block_hashes (EDR)
+      - notify_user → "ยืนยัน phishing"
+      - create_incident → P2, PB-01
+```
+
+---
+
+## 2. Ransomware Response
+
+**Trigger**: EDR alert พฤติกรรม ransomware  
+**อัตโนมัติ**: กึ่ง (isolate ทันที, ส่งต่อคน)
+
+```yaml
+name: Ransomware Emergency Response
+steps:
+  - id: immediate_isolate
+    action: edr_isolate_host
+    auto_execute: true  # ← ตัดเน็ตทันที ไม่ต้องรอ
+
+  - id: snapshot_evidence
+    tasks:
+      - edr_collect_forensics (memory, processes, network)
+      - cloud_snapshot (ถ้าเป็น cloud)
+
+  - id: check_lateral
+    action: edr_hunt  # ← ค้นหา IOC เดียวกันทั้งองค์กร
+
+  - id: escalate
+    severity: P1, playbook: PB-02
+    notify: [soc_lead, incident_commander, ciso]
+```
+
+---
+
+## 3. Brute Force Lockout
+
+**Trigger**: SIEM alert ≥ 10 failed logins ใน 5 นาที  
+**อัตโนมัติ**: เต็มรูปแบบ
+
+```yaml
+name: Brute Force Auto-Lockout
+steps:
+  - id: enrich_source
+    tasks:
+      - geoip_lookup
+      - abuseipdb_check
+      - internal_asset_check
+
+  - id: decide_action
+    rules:
+      - IP ภายใน → แจ้งเตือนเท่านั้น
+      - AbuseIPDB ≥ 80 → block + lock
+      - ประเทศไม่อนุญาต → block + lock
+      - อื่นๆ → block ชั่วคราว
+
+  - id: execute_block
+    tasks:
+      - firewall_block_ip (24 ชม.)
+      - lock_account (ถ้า login สำเร็จแล้ว)
+      - create_incident → P3, PB-04
+```
+
+---
+
+## 4. Account Compromise
+
+**Trigger**: Impossible travel, token theft, credential leak  
+**อัตโนมัติ**: เต็มรูปแบบ
+
+```yaml
+name: Account Compromise Auto-Response
+steps:
+  - id: disable_account → ทันที
+  - id: revoke_sessions → OAuth + active sessions + MFA bypass
+  - id: audit_actions → ตรวจ 72 ชม. ย้อนหลัง
+  - id: remediate → reset password + re-enroll MFA + ลบ forwarding rules
+  - id: notify → แจ้งหัวหน้าผู้ใช้ + สร้าง incident P2
+```
+
+---
+
+## 5. Malware Quarantine
+
+**Trigger**: EDR ตรวจพบ malware  
+**อัตโนมัติ**: เต็มรูปแบบ
+
+```yaml
+name: Malware Auto-Quarantine
+steps:
+  - id: quarantine_file → กักไฟล์ทันที
+  - id: check_hash → VT + MalwareBazaar
+  - id: enterprise_block → block hash ทั้งองค์กร (ถ้า VT ≥ 5)
+  - id: hunt_enterprise → ค้นหาเครื่องอื่นที่มีไฟล์เดียวกัน
+  - id: mass_quarantine → กักทุกเครื่องที่พบ
+```
+
+---
+
+## 6. IOC Enrichment (Sub-playbook)
+
+**Trigger**: เรียกโดย playbook อื่น  
+**อัตโนมัติ**: เต็มรูปแบบ
+
+```yaml
+name: IOC Multi-Source Enrichment
+inputs: indicator_type (ip|domain|hash|url), indicator_value
+
+steps:
+  - id: enrich (ขนานกัน)
+    - virustotal_lookup
+    - abuseipdb_check (ถ้า IP)
+    - urlscan_lookup (ถ้า URL)
+    - urlhaus_lookup
+    - threatfox_lookup
+    - shodan_lookup (ถ้า IP)
+    - whois_lookup (ถ้า domain)
+
+  - id: calculate_score
+    rules:
+      VT ≥ 10 OR AbuseIPDB ≥ 90 → MALICIOUS (HIGH)
+      VT ≥ 3 OR AbuseIPDB ≥ 50 → SUSPICIOUS (MED)
+      อื่นๆ → CLEAN (LOW)
+
+outputs: verdict, confidence, enrichment_data
+```
+
+---
+
+## คู่มือ Import
+
+### XSOAR (Cortex)
+1. แปลง YAML เป็น XSOAR playbook
+2. Upload ที่ **Settings → Content → Upload Content Pack**
+3. Map integrations ที่ **Settings → Integrations**
+
+### Shuffle
+1. Import YAML ที่ **Workflows → Import**
+2. ตั้ง app connections
+3. ตั้ง triggers จาก webhook/SIEM
+
+### TheHive
+1. สร้าง Responders ตามแต่ละ step
+2. สร้าง Case Templates ตาม workflow
+3. เชื่อม Cortex Analyzers สำหรับ enrichment
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [IR Playbooks](Playbooks/)
+- [ตารางความรุนแรง](Severity_Matrix.th.md)
+- [Detection Rules](../07_Detection_Rules/README.md)
+
+
+---
+
+## File: 05_Incident_Response/Severity_Matrix.en.md
+
+# Incident Severity Matrix
+
+> **Document ID:** SEV-MATRIX-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager  
+
+---
+
+## Purpose
+
+This matrix defines the **severity classification** (P1–P4) for all security incidents handled by the SOC. It standardizes response times, escalation paths, and team assignments to ensure consistent and timely incident handling.
+
+---
+
+## Severity Levels Overview
+
+| Priority | Severity | Impact | Examples |
+|:---:|:---|:---|:---|
+| 🔴 **P1** | **Critical** | Business-stopping, data breach in progress, active ransomware | Ransomware encryption active, confirmed data exfiltration, critical infrastructure compromise, active APT intrusion |
+| 🟠 **P2** | **High** | Significant impact, potential data loss, service degradation | Account compromise with lateral movement, malware outbreak (>5 hosts), DDoS affecting production, insider threat confirmed |
+| 🟡 **P3** | **Medium** | Limited impact, contained threat, single-system compromise | Single endpoint malware, phishing (credentials entered but reset), unauthorized access attempt blocked, suspicious DNS activity |
+| 🟢 **P4** | **Low** | Minimal impact, informational, policy violation | Failed login attempts, policy violation (USB usage), low-confidence alert, vulnerability scan detected |
+
+---
+
+## Service Level Agreements (SLA)
+
+| Metric | 🔴 P1 Critical | 🟠 P2 High | 🟡 P3 Medium | 🟢 P4 Low |
+|:---|:---:|:---:|:---:|:---:|
+| **Acknowledgment** | ≤ 5 min | ≤ 15 min | ≤ 1 hour | ≤ 4 hours |
+| **Initial Triage** | ≤ 15 min | ≤ 30 min | ≤ 2 hours | ≤ 8 hours |
+| **Containment Start** | ≤ 30 min | ≤ 1 hour | ≤ 4 hours | Next business day |
+| **Status Update Frequency** | Every 30 min | Every 1 hour | Every 4 hours | Daily |
+| **Resolution Target** | ≤ 4 hours | ≤ 8 hours | ≤ 24 hours | ≤ 72 hours |
+| **Post-Incident Review** | Within 24 hours | Within 48 hours | Within 1 week | Monthly batch review |
+
+---
+
+## Escalation Matrix
+
+### P1 — Critical
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  T+0 min   │ SOC Analyst (Tier 1) detects & acknowledges       │
+│  T+5 min   │ Escalate → Tier 2 Analyst + SOC Lead              │
+│  T+15 min  │ Escalate → Incident Commander + CISO              │
+│  T+30 min  │ Notify → CTO / CEO / Legal / PR (if data breach)  │
+│  T+60 min  │ Activate → Full IR Team + External DFIR (if needed)│
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### P2 — High
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  T+0 min   │ SOC Analyst (Tier 1) detects & acknowledges       │
+│  T+15 min  │ Escalate → Tier 2 Analyst                         │
+│  T+30 min  │ Escalate → SOC Lead                               │
+│  T+2 hours │ Notify → SOC Manager + CISO (if not contained)    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### P3 — Medium
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  T+0 min   │ SOC Analyst (Tier 1) detects & acknowledges       │
+│  T+1 hour  │ Triage and investigate                            │
+│  T+4 hours │ Escalate → Tier 2 (if complex or unresolved)      │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### P4 — Low
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  T+0       │ SOC Analyst (Tier 1) detects & acknowledges       │
+│  T+8 hours │ Investigate during normal working hours            │
+│  Monthly   │ Batch review with SOC Lead                         │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Response Team Composition
+
+| Role | P1 | P2 | P3 | P4 |
+|:---|:---:|:---:|:---:|:---:|
+| SOC Analyst (Tier 1) | ✅ | ✅ | ✅ | ✅ |
+| SOC Analyst (Tier 2) | ✅ | ✅ | On-demand | — |
+| SOC Lead | ✅ | ✅ | — | — |
+| Incident Commander | ✅ | On-demand | — | — |
+| CISO | ✅ | Notify | — | — |
+| IT Operations | ✅ | ✅ | On-demand | — |
+| Legal / Compliance | ✅ (if PII) | On-demand | — | — |
+| PR / Communications | ✅ (if public) | — | — | — |
+| External DFIR | On-demand | — | — | — |
+
+---
+
+## Severity Classification Decision Tree
+
+```mermaid
+graph TD
+    A[New Alert / Incident] --> B{Active data destruction<br>or exfiltration?}
+    B -->|Yes| P1[🔴 P1 Critical]
+    B -->|No| C{Multiple systems<br>affected?}
+    C -->|Yes| D{Business service<br>impacted?}
+    D -->|Yes| P2H[🟠 P2 High]
+    D -->|No| E{Lateral movement<br>detected?}
+    E -->|Yes| P2H
+    E -->|No| P3M[🟡 P3 Medium]
+    C -->|No| F{Confirmed<br>compromise?}
+    F -->|Yes| G{Credentials or<br>sensitive data?}
+    G -->|Yes| P2H
+    G -->|No| P3M
+    F -->|No| H{Blocked by<br>controls?}
+    H -->|Yes| P4L[🟢 P4 Low]
+    H -->|No| P3M
+```
+
+---
+
+## Communication Templates
+
+### P1 Initial Notification (to Management)
+
+```
+SUBJECT: [P1-CRITICAL] Security Incident — Immediate Action Required
+
+INCIDENT ID: INC-YYYY-XXXX
+SEVERITY: P1 — CRITICAL
+TIME DETECTED: [timestamp]
+AFFECTED SYSTEMS: [list]
+CURRENT STATUS: [Triage | Containment | Eradication]
+
+SUMMARY:
+[Brief description of what happened]
+
+IMMEDIATE ACTIONS TAKEN:
+1. [Action 1]
+2. [Action 2]
+
+NEXT UPDATE: [timestamp — within 30 minutes]
+
+INCIDENT COMMANDER: [Name]
+CONTACT: [Phone/Slack]
+```
+
+### P2–P4 Status Update
+
+```
+SUBJECT: [P2-HIGH] Incident Update — INC-YYYY-XXXX
+
+STATUS: [In Progress | Contained | Resolved]
+TIME ELAPSED: [X hours since detection]
+
+PROGRESS:
+- [What was done since last update]
+
+NEXT STEPS:
+- [Planned actions]
+
+NEXT UPDATE: [timestamp]
+```
+
+---
+
+## Severity Reclassification
+
+Incidents may be **upgraded or downgraded** during investigation:
+
+| Trigger | Action |
+|:---|:---|
+| Lateral movement discovered | Upgrade to P1 or P2 |
+| Data exfiltration confirmed | Upgrade to P1 |
+| Threat contained, no spread | Downgrade one level |
+| False positive confirmed | Close or downgrade to P4 |
+| Additional systems compromised | Upgrade one level |
+| Regulatory data (PII/PHI) involved | Minimum P2 |
+
+> **Rule:** Any severity change must be documented in the incident ticket with justification.
+
+---
+
+## Related Documents
+
+- [Incident Response Playbooks](../05_Incident_Response/Playbooks/)
+- [Shift Handover Template](../templates/shift_handover.en.md)
+- [Incident Report Template](../templates/incident_report.en.md)
+- [MITRE ATT&CK Coverage Heatmap](../tools/mitre_attack_heatmap.html)
+
+## References
+
+- [NIST SP 800-61r2 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [SANS Incident Handler's Handbook](https://www.sans.org/white-papers/33901/)
+- [FIRST — Common Vulnerability Scoring System (CVSS)](https://www.first.org/cvss/)
+
+
+---
+
+## File: 05_Incident_Response/Severity_Matrix.th.md
+
+# Incident Severity Matrix — ตารางระดับความรุนแรงของเหตุการณ์
+
+> **รหัสเอกสาร:** SEV-MATRIX-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager  
+
+---
+
+## วัตถุประสงค์
+
+ตารางนี้กำหนด **ระดับความรุนแรง** (P1–P4) สำหรับเหตุการณ์ด้านความปลอดภัยทั้งหมดที่ SOC รับผิดชอบ เพื่อให้การตอบสนอง, การ Escalate และการมอบหมายทีมเป็นมาตรฐานเดียวกัน
+
+---
+
+## ภาพรวมระดับความรุนแรง
+
+| ลำดับ | ระดับ | ผลกระทบ | ตัวอย่าง |
+|:---:|:---|:---|:---|
+| 🔴 **P1** | **วิกฤต (Critical)** | ธุรกิจหยุดชะงัก, กำลังมีข้อมูลรั่วไหล, Ransomware กำลังทำงาน | Ransomware เข้ารหัสไฟล์อยู่, ยืนยันว่ามีข้อมูลรั่วไหล, ระบบโครงสร้างพื้นฐานถูกบุกรุก, APT กำลังทำงาน |
+| 🟠 **P2** | **สูง (High)** | ผลกระทบมาก, มีโอกาสสูญเสียข้อมูล, บริการลดลง | บัญชีถูกยึดครองพร้อมเคลื่อนตัว, มัลแวร์ระบาด (>5 เครื่อง), DDoS กระทบ Production, ยืนยัน Insider Threat |
+| 🟡 **P3** | **ปานกลาง (Medium)** | ผลกระทบจำกัด, ภัยคุกคามถูกควบคุม, ติดเครื่องเดียว | มัลแวร์ 1 เครื่อง, ฟิชชิ่ง (กรอกรหัสแล้วแต่รีเซ็ตทัน), การเข้าถึงโดยไม่ได้รับอนุญาตถูกบล็อก, DNS น่าสงสัย |
+| 🟢 **P4** | **ต่ำ (Low)** | ผลกระทบน้อยมาก, ข้อมูลเสริม, ละเมิดนโยบาย | Login ล้มเหลว, ละเมิดนโยบาย (ใช้ USB), Alert ที่มั่นใจต่ำ, ตรวจจับ Vulnerability Scan |
+
+---
+
+## ข้อตกลงระดับบริการ (SLA)
+
+| เมตริก | 🔴 P1 วิกฤต | 🟠 P2 สูง | 🟡 P3 ปานกลาง | 🟢 P4 ต่ำ |
+|:---|:---:|:---:|:---:|:---:|
+| **รับทราบ (Acknowledge)** | ≤ 5 นาที | ≤ 15 นาที | ≤ 1 ชั่วโมง | ≤ 4 ชั่วโมง |
+| **คัดกรองเบื้องต้น (Triage)** | ≤ 15 นาที | ≤ 30 นาที | ≤ 2 ชั่วโมง | ≤ 8 ชั่วโมง |
+| **เริ่มควบคุม (Containment)** | ≤ 30 นาที | ≤ 1 ชั่วโมง | ≤ 4 ชั่วโมง | วันทำการถัดไป |
+| **อัปเดตสถานะ** | ทุก 30 นาที | ทุก 1 ชั่วโมง | ทุก 4 ชั่วโมง | รายวัน |
+| **เป้าหมายแก้ไข (Resolution)** | ≤ 4 ชั่วโมง | ≤ 8 ชั่วโมง | ≤ 24 ชั่วโมง | ≤ 72 ชั่วโมง |
+| **ทบทวนหลังเหตุการณ์ (PIR)** | ภายใน 24 ชั่วโมง | ภายใน 48 ชั่วโมง | ภายใน 1 สัปดาห์ | ทบทวนรวมรายเดือน |
+
+---
+
+## ตาราง Escalation
+
+### P1 — วิกฤต
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  T+0 นาที   │ SOC Analyst (Tier 1) ตรวจจับ & รับทราบ                │
+│  T+5 นาที   │ Escalate → Tier 2 Analyst + SOC Lead                 │
+│  T+15 นาที  │ Escalate → Incident Commander + CISO                 │
+│  T+30 นาที  │ แจ้ง → CTO / CEO / Legal / PR (ถ้าข้อมูลรั่วไหล)       │
+│  T+60 นาที  │ เปิดใช้ → ทีม IR เต็มรูปแบบ + DFIR ภายนอก (ถ้าจำเป็น) │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### P2 — สูง
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  T+0 นาที     │ SOC Analyst (Tier 1) ตรวจจับ & รับทราบ              │
+│  T+15 นาที    │ Escalate → Tier 2 Analyst                           │
+│  T+30 นาที    │ Escalate → SOC Lead                                 │
+│  T+2 ชั่วโมง  │ แจ้ง → SOC Manager + CISO (ถ้ายังควบคุมไม่ได้)       │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### P3 — ปานกลาง
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  T+0 นาที     │ SOC Analyst (Tier 1) ตรวจจับ & รับทราบ              │
+│  T+1 ชั่วโมง  │ คัดกรองและสืบสวน                                     │
+│  T+4 ชั่วโมง  │ Escalate → Tier 2 (ถ้าซับซ้อนหรือแก้ไม่ได้)         │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### P4 — ต่ำ
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  T+0         │ SOC Analyst (Tier 1) ตรวจจับ & รับทราบ               │
+│  T+8 ชั่วโมง │ สืบสวนในเวลาทำการปกติ                                │
+│  รายเดือน    │ ทบทวนรวมกับ SOC Lead                                 │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## องค์ประกอบทีมตอบสนอง
+
+| บทบาท | P1 | P2 | P3 | P4 |
+|:---|:---:|:---:|:---:|:---:|
+| SOC Analyst (Tier 1) | ✅ | ✅ | ✅ | ✅ |
+| SOC Analyst (Tier 2) | ✅ | ✅ | ตามความจำเป็น | — |
+| SOC Lead | ✅ | ✅ | — | — |
+| Incident Commander | ✅ | ตามความจำเป็น | — | — |
+| CISO | ✅ | แจ้งให้ทราบ | — | — |
+| IT Operations | ✅ | ✅ | ตามความจำเป็น | — |
+| Legal / Compliance | ✅ (ถ้ามี PII) | ตามความจำเป็น | — | — |
+| PR / สื่อสารองค์กร | ✅ (ถ้าเป็นข่าว) | — | — | — |
+| DFIR ภายนอก | ตามความจำเป็น | — | — | — |
+
+---
+
+## แผนผังการจำแนกระดับความรุนแรง
+
+```mermaid
+graph TD
+    A[Alert / เหตุการณ์ใหม่] --> B{มีการทำลายข้อมูล<br>หรือรั่วไหลอยู่?}
+    B -->|ใช่| P1[🔴 P1 วิกฤต]
+    B -->|ไม่| C{หลายระบบ<br>ได้รับผลกระทบ?}
+    C -->|ใช่| D{บริการธุรกิจ<br>ได้รับผลกระทบ?}
+    D -->|ใช่| P2H[🟠 P2 สูง]
+    D -->|ไม่| E{ตรวจจับการเคลื่อนตัว<br>Lateral Movement?}
+    E -->|ใช่| P2H
+    E -->|ไม่| P3M[🟡 P3 ปานกลาง]
+    C -->|ไม่| F{ยืนยันว่าถูก<br>บุกรุกแล้ว?}
+    F -->|ใช่| G{มี Credentials หรือ<br>ข้อมูลสำคัญเกี่ยวข้อง?}
+    G -->|ใช่| P2H
+    G -->|ไม่| P3M
+    F -->|ไม่| H{ถูกบล็อกโดย<br>ระบบป้องกัน?}
+    H -->|ใช่| P4L[🟢 P4 ต่ำ]
+    H -->|ไม่| P3M
+```
+
+---
+
+## เทมเพลตการสื่อสาร
+
+### P1 การแจ้งเตือนเบื้องต้น (ถึงผู้บริหาร)
+
+```
+หัวข้อ: [P1-วิกฤต] เหตุการณ์ด้านความปลอดภัย — ต้องดำเนินการทันที
+
+รหัสเหตุการณ์: INC-YYYY-XXXX
+ระดับความรุนแรง: P1 — วิกฤต
+เวลาตรวจจับ: [timestamp]
+ระบบที่ได้รับผลกระทบ: [รายการ]
+สถานะปัจจุบัน: [คัดกรอง | ควบคุม | กำจัด]
+
+สรุป:
+[คำอธิบายสั้นๆ ว่าเกิดอะไรขึ้น]
+
+การดำเนินการเร่งด่วน:
+1. [การดำเนินการ 1]
+2. [การดำเนินการ 2]
+
+อัปเดตครั้งถัดไป: [timestamp — ภายใน 30 นาที]
+
+ผู้บัญชาการเหตุการณ์: [ชื่อ]
+ติดต่อ: [โทรศัพท์/Slack]
+```
+
+---
+
+## การเปลี่ยนระดับความรุนแรง
+
+เหตุการณ์อาจถูก **เลื่อนระดับขึ้นหรือลดลง** ระหว่างการสืบสวน:
+
+| ปัจจัย | การดำเนินการ |
+|:---|:---|
+| ตรวจจับ Lateral Movement | เลื่อนเป็น P1 หรือ P2 |
+| ยืนยันว่ามีข้อมูลรั่วไหล | เลื่อนเป็น P1 |
+| ภัยคุกคามถูกควบคุม ไม่แพร่กระจาย | ลดลง 1 ระดับ |
+| ยืนยันว่าเป็น False Positive | ปิด หรือลดเป็น P4 |
+| พบระบบเพิ่มเติมถูกบุกรุก | เลื่อนขึ้น 1 ระดับ |
+| มีข้อมูล PII/PHI ที่อยู่ภายใต้กฎหมาย | ไม่ต่ำกว่า P2 |
+
+> **กฎ:** การเปลี่ยนระดับทุกครั้งต้องบันทึกใน Ticket พร้อมเหตุผล
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [Incident Response Playbooks](../05_Incident_Response/Playbooks/)
+- [แบบฟอร์มส่งมอบกะ](../templates/shift_handover.th.md)
+- [แบบฟอร์มรายงานเหตุการณ์](../templates/incident_report.th.md)
+- [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
+
+## References
+
+- [NIST SP 800-61r2 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [SANS Incident Handler's Handbook](https://www.sans.org/white-papers/33901/)
+- [FIRST — Common Vulnerability Scoring System (CVSS)](https://www.first.org/cvss/)
+
+
+---
+
+## File: 05_Incident_Response/Tabletop_Exercises.en.md
+
+# Tabletop Exercise Scenarios — SOC Incident Response Training
+
+> **Document ID:** TTX-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager / IR Lead  
+> **Frequency:** Quarterly (minimum)
+
+---
+
+## Purpose
+
+Structured tabletop exercises (TTX) to test and improve SOC incident response capabilities. Each scenario is designed for **60–90 minute sessions** with progressive difficulty levels (injects).
+
+---
+
+## How to Run a Tabletop Exercise
+
+1. **Assign Roles**: Facilitator (reads injects), SOC Analysts (T1/T2), IR Lead, Management observer
+2. **Set Ground Rules**: No wrong answers, focus on process not tools, time-boxed discussion per inject
+3. **Walk Through Injects**: Facilitator reads each inject sequentially, team discusses response
+4. **Document Decisions**: Record who does what, escalation paths taken, tools used
+5. **Debrief (15 min)**: What went well? What gaps? What to improve?
+6. **Action Items**: Assign owners and deadlines for improvements
+
+---
+
+## Scenario 1: Ransomware Attack on Finance Server
+
+**Difficulty**: 🔴 Hard | **Duration**: 90 min | **Playbooks**: PB-02, PB-08, PB-12
+
+### Background
+Your organization is a mid-size financial services company. It's Friday 16:30. Most senior staff are leaving for the weekend.
+
+### Inject 1 — Initial Alert (16:30)
+> A Tier 1 analyst receives an EDR alert: `"Suspicious process: vssadmin.exe delete shadows /all"` on server `FIN-SVR-03` (Finance department file server).
+
+**Discussion Points:**
+- What is the severity? Who do you escalate to?
+- Should you isolate the server immediately or investigate first?
+- What additional data do you check in the SIEM?
+
+### Inject 2 — Spreading (16:45)
+> While investigating, two more alerts fire: `FIN-SVR-05` and `HR-SVR-01` show the same behavior. Users in Finance report they cannot open their files — filenames now end in `.locked`.
+
+**Discussion Points:**
+- How do you contain lateral movement? Which tools?
+- Do you isolate the entire Finance VLAN or individual hosts?
+- Who do you notify? (CISO, Legal, Management)
+
+### Inject 3 — Ransom Note (17:00)
+> A ransom note appears on `FIN-SVR-03`: "Your files are encrypted by BlackCat. Pay 50 BTC within 72 hours. Contact us at darkweb.onion..."
+
+**Discussion Points:**
+- Do you engage with the attacker? Why or why not?
+- What is your communication plan? (Internal, customers, regulators)
+- How do you assess backup integrity?
+
+### Inject 4 — Data Exfiltration (17:15)
+> Network team discovers 200GB was uploaded to an external IP over the past 48 hours from `FIN-SVR-03`. The data appears to include customer PII.
+
+**Discussion Points:**
+- This is now a data breach — what regulatory obligations apply? (PDPA 72-hour notification)
+- How do you preserve evidence while restoring operations?
+- Do you involve law enforcement?
+
+### Inject 5 — Recovery Decision (17:30)
+> Backups exist from Wednesday night. The CEO calls asking: "When will we be back online?"
+
+**Discussion Points:**
+- Can you restore from backup? What about Thursday/Friday data?
+- What testing do you do before declaring recovery?
+- How do you communicate the timeline to management?
+
+### Expected Outcomes
+- [ ] Incident severity correctly classified as P1
+- [ ] Host isolation executed within 15 minutes
+- [ ] CISO and Legal notified within 30 minutes
+- [ ] Backup integrity verified before restoration
+- [ ] PDPA notification timeline understood (72 hours)
+
+---
+
+## Scenario 2: Business Email Compromise (BEC)
+
+**Difficulty**: 🟡 Medium | **Duration**: 60 min | **Playbooks**: PB-17, PB-05, PB-26
+
+### Background
+Monday morning, 09:00. Your CEO is traveling abroad for a conference.
+
+### Inject 1 — Suspicious Email (09:00)
+> The CFO receives an urgent email from what appears to be the CEO's email address: "I need you to process an urgent wire transfer of $250,000 to vendor account XXXX. NDA — don't discuss with anyone. Handle ASAP."
+
+**Discussion Points:**
+- How does the SOC become aware of this? (User report, email gateway, DLP?)
+- What indicators do you check? (Headers, Reply-to, sending IP)
+- Is this a phishing or BEC scenario? How do they differ?
+
+### Inject 2 — It's Real... Almost (09:30)
+> Investigation reveals the email came from `ceo@your-company.co` (not `.com`). The domain was registered 2 days ago. Two other executives received similar emails.
+
+**Discussion Points:**
+- How do you block the lookalike domain?
+- Do you search for other emails from this domain?
+- Should you alert all staff? How without causing panic?
+
+### Inject 3 — Account Compromise Found (10:00)
+> While investigating, you discover the CEO's real email account has a new forwarding rule sending all mail to an external Gmail address. MFA was bypassed using a stolen session token (AiTM attack).
+
+**Discussion Points:**
+- How do you remediate the compromised account? (PB-26)
+- What data was potentially exposed via email forwarding?
+- How do you check if the attacker accessed other systems via the CEO's credentials?
+
+### Inject 4 — Money Already Sent (10:30)
+> The CFO admits they already initiated one wire transfer of $85,000 before the SOC alert.
+
+**Discussion Points:**
+- How do you work with Finance to attempt fund recovery?
+- What is the legal reporting process?
+- How do you update your BEC detection procedures?
+
+### Expected Outcomes
+- [ ] Email headers analyzed correctly
+- [ ] Lookalike domain blocked and reported
+- [ ] Account compromise remediation completed (session revoke, MFA re-enroll)
+- [ ] Forwarding rules identified and removed
+- [ ] Financial fraud response process followed
+
+---
+
+## Scenario 3: Insider Threat — Data Theft
+
+**Difficulty**: 🟡 Medium | **Duration**: 60 min | **Playbooks**: PB-14, PB-08
+
+### Background
+Wednesday. HR has confidentially informed the SOC that a senior engineer ("Alex") has submitted their resignation, effective in 2 weeks. Alex has access to source code and customer databases.
+
+### Inject 1 — Enhanced Monitoring (Day 1)
+> SOC is asked to enable enhanced monitoring on Alex's account. What do you monitor?
+
+**Discussion Points:**
+- What data sources do you enable/review? (DLP, CASB, endpoint, email)
+- How do you do this without tipping off the employee?
+- What legal/HR guidelines must you follow?
+
+### Inject 2 — Suspicious Activity (Day 3)
+> DLP alerts show Alex downloaded 2.5GB from the customer database via SQL query export. Alex also accessed the source code repository and cloned 3 repos not related to their current project.
+
+**Discussion Points:**
+- Is this conclusive or could it be legitimate?
+- Do you confront Alex or continue monitoring?
+- How do you preserve evidence chain of custody?
+
+### Inject 3 — USB and Cloud (Day 5)
+> Endpoint monitoring shows Alex connected a personal USB drive and copied files. CASB logs show uploads to a personal Google Drive from a corporate laptop.
+
+**Discussion Points:**
+- Do you revoke access immediately?
+- How do you coordinate with HR and Legal?
+- What evidence do you need for potential legal action?
+
+### Inject 4 — Confrontation (Day 7)
+> HR decides to have a meeting with Alex. They deny everything. Legal asks SOC: "Can you prove what was taken?"
+
+**Discussion Points:**
+- How do you compile a forensic report?
+- What chain of custody requirements apply?
+- How do you prevent the data from being used externally?
+
+### Expected Outcomes
+- [ ] Enhanced monitoring activated without detection by subject
+- [ ] DLP alerts triaged correctly
+- [ ] Evidence preserved with proper chain of custody
+- [ ] HR/Legal coordination followed corporate policy
+- [ ] Post-incident access review completed
+
+---
+
+## Scenario 4: Cloud Infrastructure Compromise
+
+**Difficulty**: 🔴 Hard | **Duration**: 90 min | **Playbooks**: PB-16, PB-27, PB-07
+
+### Background
+Thursday, 02:00 AM. An automated alert fires from AWS GuardDuty.
+
+### Inject 1 — GuardDuty Alert (02:00)
+> GuardDuty: `"UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.OutsideAWS"` — IAM credentials from EC2 instance `prod-api-01` used from an IP in Eastern Europe.
+
+**Discussion Points:**
+- What is the severity at 2 AM? How do you handle after-hours escalation?
+- What do you check first? (CloudTrail, VPC Flow Logs)
+- Should you rotate credentials immediately or investigate first?
+
+### Inject 2 — Privilege Escalation (02:30)
+> CloudTrail shows: The compromised role was used to call `iam:CreateUser`, `iam:AttachUserPolicy`, and `iam:CreateAccessKey` — a new admin user was created.
+
+**Discussion Points:**
+- How do you contain without breaking production?
+- What is the blast radius? Which services does this role have access to?
+- How do you identify the initial access vector? (SSRF? Leaked key?)
+
+### Inject 3 — Crypto Mining + S3 Exposure (03:00)
+> 20 new `c5.4xlarge` instances are spinning up in `us-east-1`. Also, S3 bucket `prod-customer-data` policy was changed to public.
+
+**Discussion Points:**
+- How do you stop the cryptomining instances AND secure the S3 bucket?
+- Is customer data exposed? How do you assess?
+- Cost implications — who do you notify about unexpected AWS charges?
+
+### Inject 4 — Root Cause (04:00)
+> Investigation reveals an SSRF vulnerability in the API allowed accessing the EC2 instance metadata service (`169.254.169.254`), leaking IAM credentials.
+
+**Discussion Points:**
+- How do you fix the SSRF immediately?
+- Should you move to IMDSv2?
+- What other EC2 instances might be vulnerable?
+
+### Expected Outcomes
+- [ ] After-hours escalation plan executed
+- [ ] Compromised credentials rotated
+- [ ] Unauthorized IAM user removed
+- [ ] S3 bucket re-secured and access logs reviewed
+- [ ] Root cause (SSRF) identified and remediated
+
+---
+
+## Scenario 5: OT/ICS — Water Treatment Attack
+
+**Difficulty**: 🔴🔴 Critical | **Duration**: 90 min | **Playbooks**: PB-30
+
+### Background
+Your organization operates a water treatment plant. Saturday, 06:00 AM.
+
+### Inject 1 — HMI Anomaly (06:00)
+> Night shift operator notices the HMI showing sodium hydroxide (NaOH) dosing levels were changed from 100ppm to 1,100ppm. No operator made this change.
+
+**Discussion Points:**
+- **SAFETY FIRST**: What is the immediate physical safety action?
+- How do you engage the OT engineer?
+- Is this a cyber incident or an equipment malfunction?
+
+### Inject 2 — IT-OT Boundary (06:30)
+> Investigation shows a VPN connection from an unknown IP to the engineering workstation at 04:00 AM. The TeamViewer service was running on the workstation.
+
+**Discussion Points:**
+- How did the attacker get VPN credentials?
+- What is the IT-OT network segmentation? Was it breached?
+- Do you shut down VPN access entirely?
+
+### Inject 3 — Regulatory and Public (07:00)
+> Local government health authority calls — they received an anonymous tip about "contaminated water." Media coverage is starting.
+
+**Discussion Points:**
+- Who handles external communications?
+- What are your regulatory reporting obligations?
+- How do you assure the public while investigation is ongoing?
+
+### Inject 4 — Recovery (08:00)
+> The NaOH levels were corrected manually. PLC logs show the change originated from the engineering workstation. Water quality tests confirm no contamination reached the distribution system.
+
+**Discussion Points:**
+- How do you verify PLC logic integrity?
+- What enhanced monitoring do you implement?
+- How do you rebuild the engineering workstation?
+
+### Expected Outcomes
+- [ ] Physical safety activated immediately
+- [ ] OT engineer engaged within 15 minutes
+- [ ] IT-OT access severed during investigation
+- [ ] Regulatory notification made per requirements
+- [ ] PLC logic validated against golden baseline
+
+---
+
+## Scoring Rubric
+
+Use this rubric to evaluate team performance after each exercise:
+
+| Category | Score 1–5 | What to Assess |
+|:---|:---:|:---|
+| **Detection Speed** | _/5 | How quickly was the threat identified? |
+| **Escalation Accuracy** | _/5 | Correct severity? Right people notified? |
+| **Containment** | _/5 | Effective isolation without breaking things? |
+| **Communication** | _/5 | Clear internal/external comms? |
+| **Evidence Handling** | _/5 | Proper preservation and chain of custody? |
+| **Recovery Planning** | _/5 | Realistic timeline? Tested before restoring? |
+| **Process Adherence** | _/5 | Followed playbooks? Used correct tools? |
+
+**Total: ___/35**
+
+| Score | Rating |
+|:---:|:---|
+| 30–35 | 🟢 Excellent — minor improvements only |
+| 22–29 | 🟡 Good — some gaps to address |
+| 15–21 | 🟠 Developing — significant process gaps |
+| <15 | 🔴 Needs Work — fundamental issues to fix |
+
+---
+
+## Exercise Calendar Template
+
+| Quarter | Scenario | Focus Area | Participants |
+|:---:|:---|:---|:---|
+| Q1 | Ransomware (#1) | Containment + Recovery | SOC + IT Ops + Management |
+| Q2 | BEC (#2) | Detection + Communication | SOC + Finance + Legal |
+| Q3 | Insider Threat (#3) | Monitoring + Evidence | SOC + HR + Legal |
+| Q4 | Cloud Compromise (#4) | Cloud IR + Escalation | SOC + Cloud Team + DevOps |
+| Annual | OT/ICS (#5) | Safety + OT Coordination | SOC + OT Engineers + Safety |
+
+---
+
+## Related Documents
+
+- [IR Framework](Framework.en.md)
+- [Severity Matrix](Severity_Matrix.en.md)
+- [SOAR Playbook Templates](SOAR_Playbooks.en.md)
+- [All Playbooks (PB-01 to PB-30)](Playbooks/)
+
+
+---
+
+## File: 05_Incident_Response/Tabletop_Exercises.th.md
+
+# สถานการณ์จำลองการซ้อม — SOC Incident Response Training
+
+> **รหัสเอกสาร:** TTX-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager / IR Lead  
+> **ความถี่:** ทุกไตรมาส (อย่างน้อย)
+
+---
+
+## วัตถุประสงค์
+
+สถานการณ์จำลอง Tabletop Exercise (TTX) เพื่อทดสอบและพัฒนาความสามารถในการตอบสนองเหตุการณ์ของ SOC แต่ละสถานการณ์ใช้เวลา **60–90 นาที** พร้อมระดับความยากที่เพิ่มขึ้นตามลำดับ
+
+---
+
+## วิธีจัดการซ้อม
+
+1. **กำหนดบทบาท**: ผู้ดำเนินรายการ (อ่าน inject), SOC Analysts, IR Lead, ผู้สังเกตการณ์จากผู้บริหาร
+2. **กฎ**: ไม่มีคำตอบผิด, โฟกัสที่กระบวนการ, จำกัดเวลาแต่ละ inject
+3. **เดินตาม Inject**: ผู้ดำเนินรายการอ่านแต่ละ inject ทีมอภิปรายแนวทาง
+4. **บันทึก**: ใครทำอะไร, escalation path, เครื่องมือที่ใช้
+5. **สรุป (15 นาที)**: อะไรดี? ขาดอะไร? ปรับอะไร?
+6. **Action Items**: กำหนดผู้รับผิดชอบและกำหนดเวลา
+
+---
+
+## สถานการณ์ 1: Ransomware โจมตีเซิร์ฟเวอร์การเงิน
+
+**ระดับ**: 🔴 ยาก | **เวลา**: 90 นาที | **Playbooks**: PB-02, PB-08, PB-12
+
+### Inject 1 — แจ้งเตือนแรก (16:30)
+> Analyst ได้รับ EDR alert: `"vssadmin.exe delete shadows /all"` บนเซิร์ฟเวอร์ `FIN-SVR-03` (File server ฝ่ายการเงิน) วันศุกร์ 16:30
+
+**คำถามอภิปราย:**
+- ระดับความรุนแรงเท่าไหร่? แจ้งใคร?
+- ควร isolate ทันทีหรือสืบสวนก่อน?
+- ตรวจข้อมูลอะไรเพิ่มใน SIEM?
+
+### Inject 2 — แพร่กระจาย (16:45)
+> Alert เพิ่มอีก 2 เครื่อง: `FIN-SVR-05` และ `HR-SVR-01` ผู้ใช้ฝ่ายการเงินแจ้งเปิดไฟล์ไม่ได้ — ชื่อไฟล์ลงท้ายด้วย `.locked`
+
+**คำถามอภิปราย:**
+- จะหยุด lateral movement อย่างไร?
+- Isolate ทั้ง VLAN หรือเฉพาะเครื่อง?
+- แจ้ง CISO, Legal, ผู้บริหารตอนไหน?
+
+### Inject 3 — จดหมายเรียกค่าไถ่ (17:00)
+> Ransom note ปรากฏ: "ไฟล์ของคุณถูกเข้ารหัสโดย BlackCat จ่าย 50 BTC ภายใน 72 ชั่วโมง"
+
+**คำถามอภิปราย:**
+- ติดต่อผู้โจมตีหรือไม่? เพราะอะไร?
+- แผนสื่อสารเป็นอย่างไร?
+- ตรวจสอบ backup สมบูรณ์ไหม?
+
+### Inject 4 — ข้อมูลรั่วไหล (17:15)
+> พบว่ามีการอัพโหลดข้อมูล 200GB ไปยัง IP ภายนอกใน 48 ชม.ที่ผ่านมา รวมถึง PII ลูกค้า
+
+**คำถามอภิปราย:**
+- ข้อกำหนด PDPA แจ้งเตือนภายในกี่ชั่วโมง?
+- เก็บหลักฐานอย่างไรพร้อมกับกู้คืนระบบ?
+- ต้องแจ้งหน่วยงานบังคับใช้กฎหมายไหม?
+
+### ผลลัพธ์ที่คาดหวัง
+- [ ] จำแนกความรุนแรง P1 ถูกต้อง
+- [ ] Isolate เครื่องภายใน 15 นาที
+- [ ] แจ้ง CISO+Legal ภายใน 30 นาที
+- [ ] ตรวจสอบ backup ก่อนกู้คืน
+- [ ] เข้าใจ timeline แจ้ง PDPA (72 ชม.)
+
+---
+
+## สถานการณ์ 2: Business Email Compromise (BEC)
+
+**ระดับ**: 🟡 ปานกลาง | **เวลา**: 60 นาที | **Playbooks**: PB-17, PB-05, PB-26
+
+### Inject 1 — Email น่าสงสัย (09:00)
+> CFO ได้รับ email เร่งด่วนจาก "CEO": "ต้องการให้โอนเงิน 250,000 ดอลลาร์ไปยังบัญชี XXXX ด่วน NDA — อย่าบอกใคร"
+
+### Inject 2 — โดเมนปลอม (09:30)
+> พบว่า email มาจาก `ceo@your-company.co` (ไม่ใช่ `.com`) โดเมนลงทะเบียนเมื่อ 2 วันก่อน
+
+### Inject 3 — บัญชีจริงถูกยึด (10:00)
+> พบ forwarding rule ใน email จริงของ CEO ส่งต่อ email ทั้งหมดไป Gmail ภายนอก MFA ถูก bypass ด้วย AiTM
+
+### Inject 4 — โอนเงินไปแล้ว (10:30)
+> CFO ยอมรับว่าโอนเงินไปแล้ว $85,000 ก่อน SOC จะแจ้งเตือน
+
+---
+
+## สถานการณ์ 3: Insider Threat — ขโมยข้อมูล
+
+**ระดับ**: 🟡 ปานกลาง | **เวลา**: 60 นาที | **Playbooks**: PB-14, PB-08
+
+- Inject 1: HR แจ้ง SOC ว่าวิศวกรอาวุโสลาออก — เปิด enhanced monitoring
+- Inject 2: DLP พบดาวน์โหลดข้อมูลลูกค้า 2.5GB + clone repo ที่ไม่เกี่ยวข้อง
+- Inject 3: เสียบ USB ส่วนตัว + อัพโหลดไป Google Drive
+- Inject 4: HR เรียกประชุม — พนักงานปฏิเสธ, Legal ต้องการหลักฐาน
+
+---
+
+## สถานการณ์ 4: Cloud Infrastructure ถูกบุกรุก
+
+**ระดับ**: 🔴 ยาก | **เวลา**: 90 นาที | **Playbooks**: PB-16, PB-27, PB-07
+
+- Inject 1: GuardDuty alert — IAM credentials ใช้จาก IP ยุโรปตะวันออก (ตี 2)
+- Inject 2: Privilege escalation — สร้าง admin user ใหม่
+- Inject 3: ปั่น EC2 ขุด crypto + เปิด S3 เป็น public
+- Inject 4: Root cause = SSRF vulnerability ขโมย metadata credentials
+
+---
+
+## สถานการณ์ 5: OT/ICS — โจมตีโรงบำบัดน้ำ
+
+**ระดับ**: 🔴🔴 วิกฤต | **เวลา**: 90 นาที | **Playbooks**: PB-30
+
+- Inject 1: HMI แสดงค่า NaOH เปลี่ยนจาก 100ppm เป็น 1,100ppm โดยไม่มีผู้ปฏิบัติงานทำ
+- Inject 2: พบ VPN connection จาก IP ไม่รู้จัก + TeamViewer บน engineering workstation
+- Inject 3: หน่วยงานสาธารณสุขโทรมา + สื่อเริ่มรายงานข่าว
+- Inject 4: แก้ไขค่า NaOH แล้ว ต้องตรวจสอบ PLC logic
+
+---
+
+## ตารางให้คะแนน (Scoring Rubric)
+
+| หมวด | คะแนน 1–5 |
+|:---|:---:|
+| ความเร็วในการตรวจจับ | _/5 |
+| ความถูกต้องในการ Escalate | _/5 |
+| การควบคุมเหตุการณ์ | _/5 |
+| การสื่อสาร | _/5 |
+| การจัดการหลักฐาน | _/5 |
+| การวางแผนกู้คืน | _/5 |
+| การปฏิบัติตามกระบวนการ | _/5 |
+
+**คะแนนรวม: ___/35** → 🟢 30+ ดีเยี่ยม | 🟡 22–29 ดี | 🟠 15–21 พัฒนาได้ | 🔴 <15 ต้องปรับปรุง
+
+---
+
+## ปฏิทินการซ้อม
+
+| ไตรมาส | สถานการณ์ | จุดเน้น | ผู้เข้าร่วม |
+|:---:|:---|:---|:---|
+| Q1 | Ransomware (#1) | Containment + Recovery | SOC + IT Ops + ผู้บริหาร |
+| Q2 | BEC (#2) | Detection + สื่อสาร | SOC + Finance + Legal |
+| Q3 | Insider Threat (#3) | Monitoring + หลักฐาน | SOC + HR + Legal |
+| Q4 | Cloud Compromise (#4) | Cloud IR + Escalation | SOC + Cloud Team |
+| ประจำปี | OT/ICS (#5) | ความปลอดภัย + OT | SOC + วิศวกร OT |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [กรอบ IR](Framework.th.md)
+- [ตารางความรุนแรง](Severity_Matrix.th.md)
+- [Playbook ทั้งหมด (PB-01 ถึง PB-30)](Playbooks/)
+
+
+---
+
+## File: 05_Incident_Response/Tier1_Runbook.en.md
+
+# SOC Tier 1 Analyst Runbook
+
+> **Document ID:** RB-T1-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager  
+> **Audience:** Tier 1 / Junior SOC Analysts
+
+---
+
+## Your Daily Workflow
+
+```
+08:00  Shift start → Read handoff notes → Check dashboards
+08:15  Review overnight alerts queue → Triage by severity
+08:30  Begin alert processing (target: 12–15 alerts/hour)
+       ↓ Continuous cycle ↓
+       Triage → Investigate → Escalate or Close
+12:00  Midday review with T2 lead
+16:00  Prepare shift handoff notes
+16:30  Handoff to next shift
+```
+
+---
+
+## Alert Triage — The First 5 Minutes
+
+### Step 1: Read the Alert
+| Check | What to Look For |
+|:---|:---|
+| **Source** | Which tool generated this? (EDR, SIEM, IDS, email gateway) |
+| **Severity** | How did the tool classify it? (Critical/High/Medium/Low) |
+| **Asset** | What system is affected? (server, workstation, cloud resource) |
+| **User** | Who is associated? (employee, service account, admin) |
+| **Timestamp** | When did it happen? (business hours? weekend?) |
+
+### Step 2: Quick Context Check (2 min)
+```
+□ Is this a known false positive? → Check FP runbook
+□ Is this asset in maintenance? → Check change calendar
+□ Has this user/host triggered similar alerts recently? → Check SIEM history (7 days)
+□ Is this a repeat of an existing incident? → Check open tickets
+```
+
+### Step 3: Decide
+| Decision | Action | Time Limit |
+|:---|:---|:---:|
+| ✅ **True Positive** | Create incident ticket → Escalate to T2 | 15 min |
+| ⚠️ **Needs More Investigation** | Enrich IOCs → Pivot search → Then decide | 30 min |
+| ❌ **False Positive** | Document reason → Close → Update tuning list | 5 min |
+| 🔴 **Critical / P1** | **Escalate IMMEDIATELY** to T2/IR Lead | 0 min |
+
+---
+
+## Escalation Triggers — ALWAYS Escalate These
+
+🚨 **Immediately escalate to T2/IR Lead if you see ANY of these:**
+
+- Ransomware indicators (file encryption, shadow copy deletion)
+- Active data exfiltration (large uploads to external IPs)
+- Executive/VIP account compromise
+- Multiple hosts showing same malicious behavior
+- Production server compromise
+- Confirmed malware execution
+- Any OT/ICS alerts
+- You don't understand the alert after 30 minutes
+
+---
+
+## Common Alert Types & Quick Actions
+
+### 🎣 Phishing Email Alert
+```
+1. DO NOT click any links/attachments in the email
+2. Check email headers → Is sender spoofed?
+3. Check URL reputation → VirusTotal, URLhaus
+4. Check if other users received the same email → SIEM search
+5. If malicious → Block sender + URL → Escalate to T2
+6. Playbook: PB-01
+```
+
+### 🔐 Failed Login Alert (Brute Force)
+```
+1. Check source IP → Internal or external?
+2. Count failed attempts → How many? Over what period?
+3. Check if any login succeeded after failures
+4. If external + >10 attempts → Block IP at firewall
+5. If succeeded after failures → Escalate to T2 (possible compromise)
+6. Playbook: PB-04
+```
+
+### 🦠 Malware/EDR Alert
+```
+1. Check detection name → What type of malware?
+2. Was it blocked or did it execute?
+3. Check process tree → What launched it?
+4. If EXECUTED → Escalate to T2 immediately
+5. If BLOCKED → Verify quarantine → Check for other instances
+6. Playbook: PB-03
+```
+
+### 🌐 Web Attack / WAF Alert
+```
+1. Check attack type → SQLi, XSS, RCE?
+2. Check response code → 200 (possible success) vs 403/WAF blocked
+3. Check source IP → Known scanner or targeted?
+4. If response=200 + payload looks successful → Escalate to T2
+5. If blocked → Log and monitor for persistence
+6. Playbook: PB-10
+```
+
+### ☁️ Cloud Alert (AWS/Azure)
+```
+1. What action triggered the alert?
+2. Which IAM user/role?
+3. From what IP/region?
+4. Is this a known admin action?
+5. If unusual region + privileged action → Escalate to T2
+6. Playbook: PB-16
+```
+
+---
+
+## IOC Enrichment — Quick Reference
+
+| IOC Type | Where to Check | Free Tools |
+|:---|:---|:---|
+| IP Address | Reputation, Geolocation, ASN | VirusTotal, AbuseIPDB, Shodan |
+| Domain | WHOIS, DNS, Reputation | VirusTotal, URLhaus, DomainTools |
+| File Hash | Malware database | VirusTotal, MalwareBazaar, Hybrid Analysis |
+| URL | Reputation, Redirect chain | VirusTotal, URLScan.io, URLhaus |
+| Email Address | Breach databases, reputation | Have I Been Pwned, EmailRep |
+
+### VirusTotal Quick Check
+```
+IP:   https://www.virustotal.com/gui/ip-address/{IP}
+Hash: https://www.virustotal.com/gui/file/{HASH}
+URL:  https://www.virustotal.com/gui/url/{URL}
+```
+
+---
+
+## Ticket Documentation Template
+
+Every alert you process should be documented:
+
+```
+## Alert Summary
+- Alert ID: [from SIEM]
+- Timestamp: [when alert fired]
+- Source Tool: [EDR/SIEM/IDS/other]
+- Affected Asset: [hostname/IP]
+- Affected User: [username]
+- Alert Type: [phishing/malware/brute-force/etc]
+
+## Investigation Steps
+1. [What you checked first]
+2. [What you found]
+3. [Additional context gathered]
+
+## IOC Summary
+- IP: x.x.x.x (VT score: X/90)
+- Hash: abc123... (VT score: X/70)
+- Domain: evil.com (registered: yesterday)
+
+## Decision
+- [x] True Positive → Escalated to T2 (ticket #XXX)
+- [ ] False Positive → Closed (reason: known scanner)
+- [ ] Needs Further Investigation
+
+## Actions Taken
+- Blocked IP at firewall
+- Quarantined file on endpoint
+- Notified user
+```
+
+---
+
+## Shift Handoff Checklist
+
+Before ending your shift:
+
+```
+□ All alerts triaged (none pending >30 min)
+□ Open incidents updated with latest status
+□ Escalated items confirmed received by T2
+□ Handoff notes written in shared document:
+  - Number of alerts processed
+  - Any ongoing incidents
+  - Anything unusual or concerning
+  - Any systems in degraded state
+□ Dashboard screenshots saved if anomalies noted
+```
+
+---
+
+## Do's and Don'ts
+
+| ✅ Do | ❌ Don't |
+|:---|:---|
+| Ask for help if unsure | Sit on an alert for >30 min without acting |
+| Document everything | Close alerts without investigation notes |
+| Escalate early if P1 | Try to handle P1 incidents alone |
+| Check for related alerts | Look at alerts in isolation |
+| Use the playbooks | Rely only on memory |
+| Communicate status updates | Go silent during incidents |
+
+---
+
+## Key Contacts
+
+| Role | When to Contact |
+|:---|:---|
+| T2 Analyst | Any alert you can't resolve in 30 min |
+| IR Lead | Confirmed P1/P2 incidents |
+| SOC Manager | Operational issues, tool outages |
+| IT Ops | Server/network issues during investigation |
+| HR | Insider threat cases |
+| Legal | Data breach confirmed |
+
+---
+
+## Related Documents
+
+- [IR Framework](Framework.en.md)
+- [Severity Matrix](Severity_Matrix.en.md)
+- [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md)
+- [All Playbooks (PB-01 to PB-30)](Playbooks/)
+
+
+---
+
+## File: 05_Incident_Response/Tier1_Runbook.th.md
+
+# คู่มือปฏิบัติงาน SOC Tier 1
+
+> **รหัสเอกสาร:** RB-T1-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager  
+> **กลุ่มเป้าหมาย:** Tier 1 / SOC Analyst มือใหม่
+
+---
+
+## ขั้นตอนการทำงานประจำวัน
+
+```
+08:00  เริ่มกะ → อ่าน handoff notes → เช็ค dashboard
+08:15  ตรวจสอบ alert queue → จัดลำดับตามความรุนแรง
+08:30  เริ่ม process alerts (เป้าหมาย: 12–15 alerts/ชม.)
+       ↓ วนซ้ำ ↓
+       Triage → สืบสวน → Escalate หรือ Close
+12:00  Review กลางวันกับ T2 lead
+16:00  เตรียม handoff notes
+16:30  ส่งมอบกะ
+```
+
+---
+
+## Alert Triage — 5 นาทีแรก
+
+### ขั้นที่ 1: อ่าน Alert
+| ตรวจอะไร | มองหาอะไร |
+|:---|:---|
+| **แหล่ง** | เครื่องมือไหนแจ้ง? (EDR, SIEM, IDS, email gateway) |
+| **ความรุนแรง** | ระบบจัดลำดับอย่างไร? |
+| **ระบบ** | เครื่องไหนโดน? (server, workstation, cloud) |
+| **ผู้ใช้** | ใครเกี่ยวข้อง? (พนักงาน, service account, admin) |
+
+### ขั้นที่ 2: ตรวจบริบท (2 นาที)
+```
+□ เป็น false positive ที่รู้จักไหม?
+□ ระบบอยู่ในช่วง maintenance ไหม?
+□ user/host นี้เคยมี alert คล้ายกันหรือเปล่า? (ดูย้อน 7 วัน)
+□ ซ้ำกับ incident ที่เปิดอยู่ไหม?
+```
+
+### ขั้นที่ 3: ตัดสินใจ
+| ตัดสินใจ | ทำอะไร | เวลา |
+|:---|:---|:---:|
+| ✅ True Positive | สร้าง ticket → Escalate T2 | 15 นาที |
+| ⚠️ ต้องสืบเพิ่ม | Enrich IOC → Pivot → ตัดสินใจ | 30 นาที |
+| ❌ False Positive | บันทึกเหตุผล → Close | 5 นาที |
+| 🔴 P1 วิกฤต | **Escalate ทันที** | 0 นาที |
+
+---
+
+## 🚨 ต้อง Escalate เสมอ เมื่อเจอ:
+
+- สัญญาณ Ransomware (เข้ารหัสไฟล์, ลบ shadow copy)
+- ข้อมูลกำลังรั่ว (upload ขนาดใหญ่ไป IP นอก)
+- บัญชีผู้บริหารถูกยึด
+- หลายเครื่องโดนพร้อมกัน
+- Production server ถูกบุกรุก
+- Malware ทำงานสำเร็จ
+- Alert จาก OT/ICS
+- ไม่เข้าใจ alert หลังจาก 30 นาที
+
+---
+
+## Alert ที่พบบ่อย
+
+### 🎣 Phishing → PB-01
+```
+1. ห้ามคลิก link/เปิดไฟล์แนบ
+2. ตรวจ email header → ปลอมแปลงไหม?
+3. ตรวจ URL → VirusTotal, URLhaus
+4. ค้นหาว่าคนอื่นได้ email เดียวกันไหม
+5. ถ้าอันตราย → Block sender + URL → Escalate T2
+```
+
+### 🔐 Failed Login → PB-04
+```
+1. IP มาจากไหน?
+2. นับจำนวนครั้งและช่วงเวลา
+3. มี login สำเร็จหลังจาก fail หรือเปล่า?
+4. ถ้า external + >10 ครั้ง → Block IP
+5. ถ้า login สำเร็จหลัง fail → อาจถูก compromise → Escalate
+```
+
+### 🦠 Malware → PB-03
+```
+1. ตรวจชื่อ detection → malware ประเภทใด?
+2. ถูก block หรือทำงานสำเร็จ?
+3. ดู process tree → อะไร launch มัน?
+4. ถ้า EXECUTE สำเร็จ → Escalate ทันที
+5. ถ้า BLOCK → ยืนยัน quarantine → หาเครื่องอื่น
+```
+
+---
+
+## IOC Enrichment
+
+| ประเภท | ใช้เครื่องมือ |
+|:---|:---|
+| IP | VirusTotal, AbuseIPDB, Shodan |
+| Domain | VirusTotal, URLhaus, WHOIS |
+| Hash | VirusTotal, MalwareBazaar |
+| URL | URLScan.io, URLhaus |
+
+---
+
+## Template บันทึก Ticket
+
+```
+## สรุป Alert
+- Alert ID: [จาก SIEM]
+- เวลา: [เมื่อไหร่]
+- เครื่องมือ: [EDR/SIEM/IDS]
+- ระบบที่โดน: [hostname/IP]
+- ผู้ใช้: [username]
+
+## สิ่งที่ตรวจสอบ
+1. [ตรวจอะไรก่อน]
+2. [พบอะไร]
+3. [บริบทเพิ่มเติม]
+
+## IOC
+- IP: x.x.x.x (VT: X/90)
+- Hash: abc123...
+
+## ตัดสินใจ
+- [x] True Positive → Escalate T2
+- [ ] False Positive → Close
+
+## สิ่งที่ทำ
+- Block IP
+- Quarantine file
+- แจ้งผู้ใช้
+```
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [กรอบ IR](Framework.th.md)
+- [ตารางความรุนแรง](Severity_Matrix.th.md)
+- [ส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md)
+- [Playbook ทั้งหมด](Playbooks/)
 
 
 ---
@@ -3787,6 +13094,110 @@ graph TD
 ## References
 -   [MITRE ATT&CK T1098 (Cloud Account Manipulation)](https://attack.mitre.org/techniques/T1098/)
 -   [AWS Security Incident Response Guide](https://docs.aws.amazon.com/whitepapers/latest/aws-security-incident-response-guide/welcome.html)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Cloud_Storage_Exposure.en.md
+
+# Playbook: Cloud Storage Exposure (PB-27)
+
+**Severity**: High | **Category**: Cloud Security | **MITRE**: T1530, T1537
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: Public Cloud Storage Detected] --> Type{Storage Type}
+    Type --> |AWS S3| S3[Check S3 Bucket Policy & ACL]
+    Type --> |Azure Blob| Blob[Check Container Access Level]
+    Type --> |GCP GCS| GCS[Check IAM & allUsers binding]
+    S3 --> Data{Sensitive Data?}
+    Blob --> Data
+    GCS --> Data
+    Data --> |Yes - PII/Secrets| P1[Escalate P1/P2]
+    Data --> |No| P3[Handle as P3]
+    P1 --> Contain[Immediate Containment]
+```
+
+-   **Identify Scope**: Which storage resource is exposed — S3 bucket, Azure Blob container, GCP Cloud Storage bucket.
+-   **Classify Data**: Determine if exposed data contains PII, credentials, secrets, financial data, or source code.
+-   **Access Logs**: Review cloud access logs (CloudTrail, Azure Monitor, GCP Audit Logs) for unauthorized data access or download.
+-   **Duration**: Determine how long the storage was publicly accessible.
+
+## 2. Containment
+-   **Remove Public Access Immediately**:
+    -   AWS: `aws s3api put-public-access-block --bucket <name> --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true`
+    -   Azure: Set container access level to `Private`
+    -   GCP: Remove `allUsers` and `allAuthenticatedUsers` bindings
+-   **Revoke Exposed Credentials**: If secrets/keys were exposed, rotate immediately.
+-   **Enable Versioning**: Preserve evidence of any modifications.
+
+## 3. Remediation
+-   **Credential Rotation**: Rotate all credentials, API keys, and tokens found in exposed storage.
+-   **Data Impact Assessment**: If PII exposed, assess regulatory notification requirements (PDPA, GDPR).
+-   **IAM Review**: Audit who has permission to change storage access policies.
+-   **Enable Preventive Controls**:
+    -   AWS: S3 Block Public Access (account-level), SCPs
+    -   Azure: Azure Policy to deny public blob access
+    -   GCP: Organization policy constraint `storage.publicAccessPrevention`
+
+## 4. Recovery
+-   **CSPM Deployment**: Deploy Cloud Security Posture Management (Wiz, Prisma Cloud, AWS Security Hub).
+-   **Continuous Monitoring**: Enable alerts for public storage creation or policy changes.
+-   **Data Classification**: Tag sensitive data and enforce encryption requirements.
+
+## 5. Lessons Learned
+-   Enforce infrastructure-as-code (Terraform/CloudFormation) with security guardrails for storage provisioning.
+-   Implement SCPs/Organization Policies to prevent public storage at the account level.
+-   Regular storage access audits (weekly scan).
+
+## References
+-   [MITRE ATT&CK T1530 — Data from Cloud Storage](https://attack.mitre.org/techniques/T1530/)
+-   [AWS S3 Security Best Practices](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html)
+-   [Azure Blob Storage Security](https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Cloud_Storage_Exposure.th.md
+
+# Playbook: Cloud Storage เปิด Public (PB-27)
+
+**ความรุนแรง**: สูง | **หมวด**: Cloud Security | **MITRE**: T1530, T1537
+
+## 1. วิเคราะห์ (Triage)
+-   **ระบุขอบเขต**: Storage ไหนเปิด public — S3 bucket, Azure Blob, GCP GCS
+-   **จำแนกข้อมูล**: ข้อมูลที่เปิดเผยมี PII, credentials, secrets, ข้อมูลการเงิน หรือ source code หรือไม่
+-   **ตรวจ Access Logs**: ดู CloudTrail/Azure Monitor ว่ามีใครเข้าถึงหรือดาวน์โหลดข้อมูลไปบ้าง
+-   **ระยะเวลา**: เปิด public มานานเท่าไหร่
+
+## 2. ควบคุม (Containment)
+-   **ปิด Public Access ทันที**:
+    -   AWS: `aws s3api put-public-access-block --bucket <name> --public-access-block-configuration BlockPublicAcls=true,...`
+    -   Azure: ตั้ง container เป็น `Private`
+    -   GCP: ลบ `allUsers` binding
+-   **หมุน Credentials**: ถ้ามี secrets/keys ถูกเปิดเผย ให้ rotate ทันที
+-   **เปิด Versioning**: เก็บหลักฐานการเปลี่ยนแปลง
+
+## 3. แก้ไข (Remediation)
+-   **หมุน Credentials ทั้งหมด**: API keys, tokens ที่อยู่ใน storage ที่เปิดเผย
+-   **ประเมินผลกระทบข้อมูล**: ถ้า PII รั่วไหล ประเมินข้อกำหนดการแจ้ง PDPA/GDPR
+-   **ตรวจสอบ IAM**: ใครมีสิทธิ์เปลี่ยน storage access policy
+-   **เปิด Preventive Controls**: S3 Block Public Access, Azure Policy, GCP Organization Policy
+
+## 4. กู้คืน (Recovery)
+-   Deploy CSPM (Cloud Security Posture Management)
+-   เปิด alert สำหรับการสร้าง public storage ใหม่
+-   Tag ข้อมูลสำคัญและบังคับ encryption
+
+## 5. บทเรียน
+-   บังคับใช้ IaC (Terraform) พร้อม security guardrails
+-   Implement SCPs/Organization Policy ป้องกัน public storage ระดับ account
+-   สแกน storage access ทุกสัปดาห์
+
+## References
+-   [MITRE ATT&CK T1530](https://attack.mitre.org/techniques/T1530/)
 
 
 ---
@@ -4823,6 +14234,108 @@ graph TD
 
 ---
 
+## File: 05_Incident_Response/Playbooks/MFA_Bypass.en.md
+
+# Playbook: MFA Bypass / Token Theft (PB-26)
+
+**Severity**: High | **Category**: Identity & Access | **MITRE**: T1556.006, T1539
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: AiTM / Session Token Anomaly] --> Check{Check Alert Source}
+    Check --> |AiTM Proxy Detected| Phish[Identify Phishing Landing Page]
+    Check --> |Stolen Session Token| Token[Analyze Token Usage Pattern]
+    Check --> |MFA Fatigue| Fatigue[Check Push Notification Volume]
+    Phish --> Scope[Identify Affected Users]
+    Token --> Scope
+    Fatigue --> Scope
+    Scope --> Confirm[Verify Unauthorized Access]
+    Confirm --> Contain[Start Containment]
+```
+
+-   **Identify Attack Type**: AiTM (Adversary-in-the-Middle) proxy, MFA fatigue bombing, SIM swap, or session cookie theft.
+-   **Check Identity Logs**: Review Azure AD / Okta sign-in logs for suspicious token replay — different IP but same session ID, impossible geo.
+-   **Unusual OAuth Grants**: Check for newly added OAuth app permissions or consent grants.
+-   **Email Rules**: Look for inbox forwarding rules or delegates added post-compromise.
+
+## 2. Containment
+-   **Revoke All Sessions**: Force sign-out from all devices via IdP (Azure AD: `Revoke-AzureADUserAllRefreshToken`).
+-   **Block Compromised Token**: If session cookie identified, add to blocklist.
+-   **Disable Account Temporarily**: If active abuse confirmed.
+-   **Block AiTM Infrastructure**: Add phishing proxy domain/IP to firewall and proxy blocklist.
+-   **Quarantine Email**: Remove phishing email from all mailboxes.
+
+## 3. Remediation
+-   **Reset Credentials**: Force password change with verified alternate channel.
+-   **Re-enroll MFA**: Remove existing MFA factors, re-register from verified device with FIDO2/phishing-resistant method.
+-   **Remove Malicious OAuth Apps**: Revoke any suspicious app consent (Enterprise Applications → Permissions).
+-   **Remove Email Rules**: Delete forwarding rules, delegates, and mail flow rules created by attacker.
+-   **Review Audit Trail**: Check for data access, file downloads, or privilege changes during compromised period.
+
+## 4. Recovery
+-   **Upgrade to Phishing-Resistant MFA**: Migrate to FIDO2 security keys or passkeys.
+-   **Conditional Access**: Enforce compliant device + managed app requirements.
+-   **Token Lifetime**: Reduce token lifetime and enable Continuous Access Evaluation (CAE).
+-   **Monitor**: Enhanced monitoring for 30 days on affected accounts.
+
+## 5. Lessons Learned
+-   **MFA Method Assessment**: Evaluate vulnerability of current MFA methods to AiTM attacks.
+-   **User Training**: Train users to recognize AiTM proxy phishing pages (look for URL discrepancies).
+-   **Detection Gap**: Add Sigma rules for session token anomalies and AiTM proxy indicators.
+
+## References
+-   [MITRE ATT&CK T1556.006 — MFA Modification](https://attack.mitre.org/techniques/T1556/006/)
+-   [MITRE ATT&CK T1539 — Steal Web Session Cookie](https://attack.mitre.org/techniques/T1539/)
+-   [Microsoft — Token theft playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/MFA_Bypass.th.md
+
+# Playbook: MFA Bypass / ขโมย Token (PB-26)
+
+**ความรุนแรง**: สูง | **หมวด**: Identity & Access | **MITRE**: T1556.006, T1539
+
+## 1. วิเคราะห์ (Triage)
+
+-   **ระบุประเภทการโจมตี**: AiTM proxy, MFA fatigue (กด push จนเหยื่อยอม), SIM swap หรือขโมย session cookie
+-   **ตรวจ Identity Logs**: ดู Azure AD / Okta sign-in logs — IP ต่างแต่ session เดียวกัน, geo ผิดปกติ
+-   **ตรวจ OAuth**: ดูว่ามี app consent ใหม่ถูกเพิ่มหลังถูกโจมตีหรือไม่
+-   **ตรวจ Email Rules**: มี forwarding rule หรือ delegate ถูกเพิ่มหรือไม่
+
+## 2. ควบคุม (Containment)
+-   **ยกเลิก Session ทั้งหมด**: Force sign-out จากทุกอุปกรณ์
+-   **บล็อก Token**: ถ้าระบุ session cookie ได้ ให้เพิ่มใน blocklist
+-   **ปิดบัญชีชั่วคราว**: ถ้ายืนยันว่าถูกใช้งานโดยผู้โจมตี
+-   **บล็อก AiTM**: เพิ่ม phishing proxy domain/IP ใน firewall
+-   **กักกัน Email**: ลบ phishing email ออกจากทุก mailbox
+
+## 3. แก้ไข (Remediation)
+-   **รีเซ็ตรหัสผ่าน**: บังคับเปลี่ยนผ่านช่องทางที่ยืนยันแล้ว
+-   **ลงทะเบียน MFA ใหม่**: ลบ MFA เก่า, ลงทะเบียนใหม่ด้วย FIDO2/passkey
+-   **ลบ OAuth Apps**: ยกเลิก consent ที่น่าสงสัย
+-   **ลบ Email Rules**: ลบ forwarding rules และ delegates ที่ผู้โจมตีสร้าง
+-   **ตรวจ Audit Trail**: ดูการเข้าถึงข้อมูล, ดาวน์โหลดไฟล์, เปลี่ยนสิทธิ์ระหว่างถูกโจมตี
+
+## 4. กู้คืน (Recovery)
+-   **อัปเกรดเป็น Phishing-Resistant MFA**: ย้ายไปใช้ FIDO2 security key หรือ passkey
+-   **Conditional Access**: บังคับ compliant device + managed app
+-   **ลด Token Lifetime**: เปิด Continuous Access Evaluation (CAE)
+
+## 5. บทเรียน
+-   ประเมินความเสี่ยงของ MFA method ปัจจุบันต่อ AiTM
+-   ฝึก user ให้จำ AiTM proxy phishing pages
+
+## References
+-   [MITRE ATT&CK T1556.006](https://attack.mitre.org/techniques/T1556/006/)
+-   [MITRE ATT&CK T1539](https://attack.mitre.org/techniques/T1539/)
+
+
+---
+
 ## File: 05_Incident_Response/Playbooks/Malware_Infection.en.md
 
 # Playbook: Malware Infection
@@ -4921,6 +14434,225 @@ graph TD
 ## References
 -   [MITRE ATT&CK T1204 (User Execution)](https://attack.mitre.org/techniques/T1204/)
 -   [NIST SP 800-83 (Guide to Malware Incident Prevention and Handling)](https://csrc.nist.gov/publications/detail/sp/800-83/rev-1/final)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Mobile_Compromise.en.md
+
+# Playbook: Mobile Device Compromise (PB-28)
+
+**Severity**: High | **Category**: Endpoint Security | **MITRE**: T1456, T1474
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: Mobile Device Anomaly] --> Type{Compromise Type}
+    Type --> |Spyware/Stalkerware| Spy[Check MDM for Rogue Profiles]
+    Type --> |Jailbreak/Root| JB[Detect Jailbreak Indicators]
+    Type --> |Malicious App| App[Identify Rogue Application]
+    Type --> |SIM Swap| SIM[Verify with Carrier]
+    Spy --> Scope[Assess Data Exposure]
+    JB --> Scope
+    App --> Scope
+    SIM --> Scope
+    Scope --> Contain[Containment]
+```
+
+-   **MDM Telemetry**: Check MDM (Intune, Jamf, VMware WS1) for non-compliant device status, new profiles, or jailbreak detection.
+-   **App Analysis**: Identify unknown or sideloaded apps not from official app stores.
+-   **Network Activity**: Review unusual data transfers, connections to suspicious IPs from mobile device.
+-   **Account Access**: Check corporate email, VPN, and SaaS access logs from the device.
+
+## 2. Containment
+-   **Remote Lock**: Lock the device via MDM immediately.
+-   **Revoke Corporate Access**: Remove device from conditional access / compliance policies.
+-   **Disable Corporate Apps**: Selective wipe of corporate data (Intune App Protection).
+-   **Block Network**: Remove device from corporate WiFi and VPN.
+-   **SIM Swap**: If SIM swap confirmed, work with carrier to restore number and lock account.
+
+## 3. Remediation
+-   **Full Device Wipe**: If spyware/rootkit confirmed, factory reset the device.
+-   **Re-enroll**: Fresh enrollment into MDM with security policies applied.
+-   **Credential Reset**: Reset all corporate credentials used on the device.
+-   **MFA Re-enrollment**: Remove device from MFA trusted devices, re-enroll.
+-   **App Vetting**: Review approved app list in MDM.
+
+## 4. Recovery
+-   **Restore from Backup**: Only restore user data (not apps) from known-clean backup.
+-   **Enhanced MDM Policies**: Enforce app allowlisting, block sideloading, require OS updates.
+-   **Monitoring**: 30-day enhanced monitoring on restored device.
+
+## 5. Lessons Learned
+-   Evaluate MDM coverage for all BYOD and corporate devices.
+-   Implement mobile threat defense (MTD) solution.
+-   User training on mobile security (sideloading risks, public WiFi).
+
+## References
+-   [MITRE ATT&CK Mobile — T1456](https://attack.mitre.org/techniques/T1456/)
+-   [NIST SP 800-124 — Guidelines for Managing Mobile Devices](https://csrc.nist.gov/publications/detail/sp/800-124/rev-2/final)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Mobile_Compromise.th.md
+
+# Playbook: อุปกรณ์มือถือถูกบุกรุก (PB-28)
+
+**ความรุนแรง**: สูง | **หมวด**: Endpoint Security | **MITRE**: T1456, T1474
+
+## 1. วิเคราะห์ (Triage)
+-   **ตรวจ MDM**: ดู Intune/Jamf สำหรับสถานะ non-compliant, profile แปลก, หรือ jailbreak
+-   **วิเคราะห์แอป**: ตรวจหาแอปที่ไม่รู้จักหรือ sideload จากนอก App Store
+-   **Network Activity**: ดูการส่งข้อมูลผิดปกติหรือเชื่อมต่อ IP น่าสงสัย
+-   **ตรวจการเข้าถึง**: ดู log การเข้า email, VPN, SaaS จากอุปกรณ์
+
+## 2. ควบคุม (Containment)
+-   **ล็อคอุปกรณ์**: Remote lock ผ่าน MDM ทันที
+-   **ยกเลิกการเข้าถึงองค์กร**: ลบอุปกรณ์จาก conditional access
+-   **ปิดแอปองค์กร**: Selective wipe เฉพาะข้อมูลองค์กร
+-   **บล็อกเครือข่าย**: ลบจาก WiFi และ VPN องค์กร
+
+## 3. แก้ไข (Remediation)
+-   **Factory Reset**: ถ้ายืนยัน spyware/rootkit ให้ wipe ทั้งเครื่อง
+-   **ลงทะเบียน MDM ใหม่**: Enroll ใหม่พร้อม security policy
+-   **รีเซ็ต Credentials**: เปลี่ยนรหัสผ่านทุกบัญชีที่ใช้บนอุปกรณ์
+-   **MFA ใหม่**: ลบอุปกรณ์จาก trusted devices, ลงทะเบียนใหม่
+
+## 4. กู้คืน (Recovery)
+-   Restore เฉพาะข้อมูลผู้ใช้ (ไม่ใช่แอป) จาก backup ที่สะอาด
+-   บังคับ app allowlist, บล็อก sideloading, บังคับ OS update
+
+## 5. บทเรียน
+-   ประเมิน MDM coverage สำหรับ BYOD ทั้งหมด
+-   พิจารณา Mobile Threat Defense (MTD)
+-   ฝึกอบรมผู้ใช้เรื่องความปลอดภัยมือถือ
+
+## References
+-   [MITRE ATT&CK Mobile — T1456](https://attack.mitre.org/techniques/T1456/)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/OT_ICS_Incident.en.md
+
+# Playbook: OT/ICS Security Incident (PB-30)
+
+**Severity**: Critical | **Category**: Operational Technology | **MITRE ICS**: T0813, T0831
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: OT/ICS Anomaly] --> Type{Incident Type}
+    Type --> |IT-OT Crossover| Cross[Malware reached OT network]
+    Type --> |Direct OT Attack| Direct[PLC/HMI manipulation detected]
+    Type --> |Reconnaissance| Recon[OT protocol scanning detected]
+    Cross --> Safety{Physical Safety Risk?}
+    Direct --> Safety
+    Recon --> Monitor[Enhanced monitoring + alert OT team]
+    Safety --> |Yes| Immediate[IMMEDIATE: Activate Safety Systems]
+    Safety --> |No| Contain[Standard Containment]
+```
+
+> ⚠️ **CRITICAL**: In OT/ICS incidents, **physical safety takes absolute priority** over investigation. If there is any risk to human life, equipment, or environment — activate safety instrumented systems (SIS) first.
+
+-   **Identify Affected Systems**: PLCs, HMIs, SCADA servers, RTUs, engineering workstations.
+-   **IT-OT Boundary**: Determine if the threat crossed from IT to OT or originated in OT.
+-   **Safety Assessment**: Is there physical safety risk? Check safety instrumented systems.
+-   **OT Protocol Analysis**: Review OT-specific protocols (Modbus, DNP3, OPC UA, EtherNet/IP) for anomalous commands.
+
+## 2. Containment
+-   **⚡ Safety First**: If physical process risk, activate emergency shutdown or manual override.
+-   **Isolate IT-OT Boundary**: Disable/restrict the IT-OT DMZ firewall connections.
+-   **Do NOT Patch OT In-Place**: Avoid rebooting or patching OT systems during active incident — may cause process disruption.
+-   **Network Segmentation**: Isolate affected OT zones (Purdue Model Level segregation).
+-   **Preserve Evidence**: Capture network traffic (PCAP) on OT network — do NOT install agents on PLCs.
+
+## 3. Remediation
+-   **Restore from Known-Good**: Use verified PLC programs and HMI configurations from offline backups.
+-   **Validate Logic**: Compare PLC ladder logic / function blocks against golden baseline.
+-   **Credential Rotation**: Change default and compromised credentials on OT devices.
+-   **Firmware Verification**: Verify firmware integrity on PLCs and RTUs.
+-   **IT-Side Cleanup**: Address the IT-side root cause (malware, compromised jump host, etc.).
+
+## 4. Recovery
+-   **Staged Restart**: Restore OT processes in phases with OT engineers supervising.
+-   **Continuous Monitoring**: Deploy OT-specific monitoring (Claroty, Nozomi, Dragos) if not already in place.
+-   **IT-OT Firewall Hardening**: Review and restrict firewall rules between IT and OT networks.
+
+## 5. Lessons Learned
+-   **Purdue Model Review**: Ensure proper network segmentation between IT and OT.
+-   **OT Asset Inventory**: Maintain complete inventory of all OT devices, firmware versions, and PLC programs.
+-   **Joint Tabletop**: Conduct IT+OT joint incident response exercises.
+-   **Detection Gaps**: Deploy OT-specific IDS for protocol anomaly detection.
+
+## Important Contacts
+| Role | When to Engage |
+|:---|:---|
+| OT/Plant Engineer | Immediately — all OT incidents |
+| Safety Officer | If physical safety risk |
+| Vendor Support | PLC/SCADA vendor for firmware/logic validation |
+| Regulator | If critical infrastructure (energy, water, transport) |
+
+## References
+-   [MITRE ATT&CK for ICS](https://attack.mitre.org/matrices/ics/)
+-   [NIST SP 800-82 — Guide to ICS Security](https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final)
+-   [IEC 62443 — Industrial Cybersecurity Standard](https://www.iec.ch/cyber-security)
+-   [CISA — ICS-CERT Advisories](https://www.cisa.gov/topics/industrial-control-systems)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/OT_ICS_Incident.th.md
+
+# Playbook: เหตุการณ์ OT/ICS (PB-30)
+
+**ความรุนแรง**: วิกฤต | **หมวด**: Operational Technology | **MITRE ICS**: T0813, T0831
+
+> ⚠️ **สำคัญมาก**: ในเหตุการณ์ OT/ICS **ความปลอดภัยทางกายภาพมาก่อนทุกอย่าง** ถ้ามีความเสี่ยงต่อชีวิต อุปกรณ์ หรือสิ่งแวดล้อม — เปิดระบบ Safety (SIS) ก่อนเลย
+
+## 1. วิเคราะห์ (Triage)
+-   **ระบุระบบที่ได้รับผลกระทบ**: PLC, HMI, SCADA server, RTU, engineering workstation
+-   **ขอบเขต IT-OT**: ภัยข้ามจาก IT มา OT หรือเกิดใน OT
+-   **ประเมินความปลอดภัย**: มีความเสี่ยงทางกายภาพไหม
+-   **วิเคราะห์ OT Protocol**: ตรวจ Modbus, DNP3, OPC UA สำหรับคำสั่งผิดปกติ
+
+## 2. ควบคุม (Containment)
+-   **⚡ ความปลอดภัยก่อน**: ถ้ามีความเสี่ยงกระบวนการ ให้ emergency shutdown
+-   **แยก IT-OT**: ปิด/จำกัดการเชื่อมต่อ IT-OT DMZ
+-   **อย่า Patch OT**: ห้าม reboot หรือ patch ระบบ OT ขณะเหตุการณ์ — อาจทำให้กระบวนการหยุด
+-   **แบ่งส่วนเครือข่าย**: Isolate OT zone ที่ได้รับผลกระทบ
+-   **เก็บหลักฐาน**: Capture PCAP บนเครือข่าย OT — ห้ามติดตั้ง agent บน PLC
+
+## 3. แก้ไข (Remediation)
+-   **Restore จาก Known-Good**: ใช้ PLC program และ HMI config จาก offline backup ที่ยืนยันแล้ว
+-   **ตรวจสอบ Logic**: เปรียบเทียบ PLC ladder logic กับ golden baseline
+-   **หมุน Credentials**: เปลี่ยนรหัสผ่าน default และที่ถูกบุกรุกบน OT devices
+-   **ตรวจสอบ Firmware**: ยืนยันความถูกต้องของ firmware บน PLC/RTU
+
+## 4. กู้คืน (Recovery)
+-   Restart OT เป็นขั้นตอน โดยมี OT engineer ดูแล
+-   Deploy OT monitoring (Claroty, Nozomi, Dragos) ถ้ายังไม่มี
+-   ปรับปรุง firewall rules ระหว่าง IT-OT
+
+## 5. บทเรียน
+-   ทบทวน Purdue Model — แบ่งส่วนเครือข่ายระหว่าง IT-OT
+-   ทำ asset inventory ระบบ OT ทั้งหมด
+-   ซ้อม IR ร่วม IT+OT
+
+## ผู้ที่ต้องแจ้ง
+| บทบาท | เมื่อไหร่ |
+|:---|:---|
+| วิศวกร OT/โรงงาน | ทันที — ทุกเหตุการณ์ OT |
+| เจ้าหน้าที่ความปลอดภัย | ถ้ามีความเสี่ยงทางกายภาพ |
+| Vendor Support | สำหรับยืนยัน firmware/logic |
+| หน่วยงานกำกับ | ถ้าเป็น critical infrastructure |
+
+## References
+-   [MITRE ATT&CK for ICS](https://attack.mitre.org/matrices/ics/)
+-   [NIST SP 800-82](https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final)
 
 
 ---
@@ -5322,6 +15054,100 @@ graph TD
 ## References
 -   [MITRE ATT&CK T1098 (Account Manipulation)](https://attack.mitre.org/techniques/T1098/)
 -   [Microsoft Securing Privileged Access](https://learn.microsoft.com/en-us/security/compass/securing-privileged-access)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Shadow_IT.en.md
+
+# Playbook: Shadow IT / Unauthorized SaaS (PB-29)
+
+**Severity**: Medium | **Category**: Governance & Compliance | **MITRE**: T1567, T1537
+
+## 1. Analysis (Triage)
+
+```mermaid
+flowchart TD
+    Start[Alert: Unauthorized SaaS / Cloud Service] --> Detect{Detection Source}
+    Detect --> |CASB Alert| CASB[Review CASB Logs]
+    Detect --> |DNS/Proxy Logs| DNS[Analyze Domain Categories]
+    Detect --> |DLP Alert| DLP[Check Data Transfer Volume]
+    CASB --> Risk{Risk Assessment}
+    DNS --> Risk
+    DLP --> Risk
+    Risk --> |Data Uploaded| High[P2 — Data Exposure Risk]
+    Risk --> |Usage Only| Med[P3 — Policy Violation]
+    High --> Contain[Containment]
+    Med --> Educate[User Education]
+```
+
+-   **Identify the Service**: What unauthorized SaaS/cloud service is being used (file sharing, AI tools, project management, etc.).
+-   **User Scope**: How many users are using it? Single user or department-wide.
+-   **Data Classification**: Has corporate data been uploaded? What classification level?
+-   **Authentication**: Did users sign up with corporate email? Are corporate credentials at risk?
+
+## 2. Containment
+-   **Block Service**: Add domain to proxy/firewall blocklist (if risk warrants blocking).
+-   **Revoke OAuth**: If the SaaS was connected via OAuth to corporate identity, revoke access.
+-   **DLP Enforcement**: Enable DLP to prevent data upload to uncategorized cloud services.
+-   **Preserve Evidence**: Capture CASB/proxy logs showing data transfer details.
+
+## 3. Remediation
+-   **Data Retrieval**: Export and delete corporate data from unauthorized service.
+-   **Account Cleanup**: Users delete accounts or change passwords if corporate credentials were reused.
+-   **Evaluate Need**: Assess if there is a legitimate business need — consider sanctioning the tool with proper security controls.
+-   **Policy Update**: Update acceptable use policy with explicit guidance on unauthorized SaaS.
+
+## 4. Recovery
+-   **Approved Alternatives**: Provide sanctioned alternatives that meet business needs.
+-   **CASB Enhancement**: Tune CASB policies for continuous shadow IT discovery.
+-   **Regular Audits**: Monthly review of unsanctioned SaaS usage from proxy/DNS logs.
+
+## 5. Lessons Learned
+-   Shadow IT often emerges because approved tools don't meet user needs — address root cause.
+-   Implement SaaS governance framework with clear request/approval process.
+-   Awareness training on data security risks of unauthorized cloud services.
+
+## References
+-   [MITRE ATT&CK T1567 — Exfiltration Over Web Service](https://attack.mitre.org/techniques/T1567/)
+-   [NIST SP 800-144 — Cloud Computing Guidelines](https://csrc.nist.gov/publications/detail/sp/800-144/final)
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Shadow_IT.th.md
+
+# Playbook: Shadow IT / SaaS ไม่ได้รับอนุญาต (PB-29)
+
+**ความรุนแรง**: ปานกลาง | **หมวด**: Governance | **MITRE**: T1567, T1537
+
+## 1. วิเคราะห์ (Triage)
+-   **ระบุบริการ**: SaaS อะไรที่ถูกใช้โดยไม่ได้รับอนุญาต (file sharing, AI tools, PM tools)
+-   **ขอบเขตผู้ใช้**: กี่คนใช้? คนเดียวหรือทั้งแผนก
+-   **จำแนกข้อมูล**: มีข้อมูลองค์กรถูกอัพโหลดหรือไม่ ระดับ classification อะไร
+-   **การยืนยันตัวตน**: ใช้ email องค์กรสมัครหรือไม่ credentials เสี่ยงหรือไม่
+
+## 2. ควบคุม (Containment)
+-   **บล็อกบริการ**: เพิ่ม domain ใน proxy/firewall blocklist
+-   **ยกเลิก OAuth**: ถ้าเชื่อมต่อผ่าน OAuth กับ corporate identity
+-   **เปิด DLP**: ป้องกันการอัพโหลดข้อมูลไปบริการ cloud ที่ไม่จัดหมวด
+
+## 3. แก้ไข (Remediation)
+-   **ดึงข้อมูลกลับ**: Export แล้วลบข้อมูลองค์กรจากบริการที่ไม่ได้รับอนุญาต
+-   **ล้าง Account**: ให้ user ลบบัญชีหรือเปลี่ยนรหัสถ้าใช้ password ซ้ำ
+-   **ประเมินความต้องการ**: มี business need จริงหรือไม่ — พิจารณาอนุมัติพร้อม security controls
+-   **อัปเดต Policy**: เพิ่มแนวทางเรื่อง unauthorized SaaS ใน acceptable use policy
+
+## 4. กู้คืน (Recovery)
+-   จัดหาทางเลือกที่อนุมัติแล้วให้ตอบโจทย์ business needs
+-   ปรับ CASB สำหรับ Shadow IT discovery ต่อเนื่อง
+
+## 5. บทเรียน
+-   Shadow IT มักเกิดเพราะเครื่องมือที่อนุมัติไม่ตอบโจทย์ — แก้ที่ต้นเหตุ
+-   สร้าง SaaS governance framework พร้อมกระบวนการขอ-อนุมัติ
+
+## References
+-   [MITRE ATT&CK T1567](https://attack.mitre.org/techniques/T1567/)
 
 
 ---
@@ -7060,6 +16886,15 @@ graph TD
 -   [ ] Approved by: [Name]
 -   [ ] Date: [Date]
 
+## Related Documents
+-   [Deployment Procedures](../02_Platform_Operations/Deployment_Procedures.en.md)
+-   [Incident Report Template](incident_report.en.md)
+-   [SOC Assessment Checklist](../06_Operations_Management/SOC_Assessment_Checklist.en.md)
+
+## References
+-   [ITIL Change Management](https://www.axelos.com/certifications/itil-service-management)
+-   [NIST SP 800-128 — Configuration Management](https://csrc.nist.gov/publications/detail/sp/800-128/final)
+
 
 ---
 
@@ -7091,6 +16926,15 @@ graph TD
 ## 5. การอนุมัติ (Approval - CAB)
 -   [ ] อนุมัติโดย: [ชื่อ]
 -   [ ] วันที่: [วันที่]
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [ขั้นตอนการ Deploy](../02_Platform_Operations/Deployment_Procedures.th.md)
+-   [แบบฟอร์มรายงาน Incident](incident_report.th.md)
+-   [แบบประเมิน SOC](../06_Operations_Management/SOC_Assessment_Checklist.th.md)
+
+## References
+-   [ITIL Change Management](https://www.axelos.com/certifications/itil-service-management)
+-   [NIST SP 800-128 — Configuration Management](https://csrc.nist.gov/publications/detail/sp/800-128/final)
 
 
 ---
@@ -7132,6 +16976,15 @@ graph TD
 -   [ ] Action 1: Patch vulnerability X.
 -   [ ] Action 2: Update detection rule Y to prevent recurrence.
 
+## Related Documents
+-   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
+-   [Shift Handover Template](shift_handover.en.md)
+-   [Change Request (RFC)](change_request_rfc.en.md)
+
+## References
+-   [NIST SP 800-61 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+-   [SANS Incident Report Template](https://www.sans.org/information-security-policy/)
+
 
 ---
 
@@ -7172,6 +17025,15 @@ graph TD
 -   [ ] การดำเนินการ 1: Patch ช่องโหว่ X
 -   [ ] การดำเนินการ 2: อัปเดตกฎตรวจจับ Y เพื่อป้องกันการเกิดซ้ำ
 
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
+-   [แบบฟอร์มส่งมอบกะ](shift_handover.th.md)
+-   [แบบฟอร์ม RFC](change_request_rfc.th.md)
+
+## References
+-   [NIST SP 800-61 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+-   [SANS Incident Report Template](https://www.sans.org/information-security-policy/)
+
 
 ---
 
@@ -7202,6 +17064,14 @@ graph TD
 -   [ ] Task 1: Check status of Ticket #456.
 -   [ ] Task 2: Review new rule deployment in Staging.
 
+## Related Documents
+-   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
+-   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
+-   [Incident Report Template](incident_report.en.md)
+
+## References
+-   [NIST SP 800-61 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+
 
 ---
 
@@ -7231,6 +17101,693 @@ graph TD
 ## 4. งานค้าง / สิ่งที่ต้องติดตาม (Pending Tasks)
 -   [ ] งานที่ 1: ตรวจสอบสถานะ Ticket #456
 -   [ ] งานที่ 2: รีวิวกฎใหม่ใน Staging
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
+-   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.th.md)
+-   [แบบฟอร์มรายงาน Incident](incident_report.th.md)
+
+## References
+-   [NIST SP 800-61 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+
+
+---
+
+## File: 10_Compliance/Compliance_Mapping.en.md
+
+# Compliance Mapping — SOC Playbooks × Frameworks
+
+> **Document ID:** COMP-MAP-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Owner:** SOC Manager / Compliance Officer  
+
+---
+
+## Purpose
+
+This document maps all **30 SOC Playbooks**, **33 Sigma Detection Rules**, and key SOC operational controls to three major compliance frameworks:
+
+- **ISO/IEC 27001:2022** — Information Security Management System
+- **NIST Cybersecurity Framework (CSF) 2.0** — Identify, Protect, Detect, Respond, Recover
+- **PCI DSS v4.0** — Payment Card Industry Data Security Standard
+
+Use this mapping for **audit preparation**, **gap analysis**, and **demonstrating SOC coverage** to auditors and regulators.
+
+---
+
+## Playbook → Framework Mapping
+
+### PB-01 to PB-10 (Core Playbooks)
+
+| Playbook | ISO 27001:2022 | NIST CSF 2.0 | PCI DSS v4.0 |
+|:---|:---|:---|:---|
+| **PB-01** Phishing | A.5.23 (Information security for cloud), A.8.7 (Malware protection) | DE.AE-2, DE.AE-3, RS.AN-1, RS.MI-1 | 5.3, 12.10.5 |
+| **PB-02** Ransomware | A.8.7 (Malware protection), A.8.13 (Information backup), A.8.14 (Redundancy) | DE.AE-3, RS.MI-1, RS.MI-2, RC.RP-1 | 5.2, 5.3, 12.10.5 |
+| **PB-03** Malware Infection | A.8.7 (Malware protection), A.8.23 (Web filtering) | DE.CM-4, DE.AE-3, RS.MI-1 | 5.2, 5.3, 11.5.1 |
+| **PB-04** Brute Force | A.8.5 (Secure authentication), A.5.17 (Authentication info) | DE.CM-1, DE.AE-2, PR.AC-7 | 8.2.4, 8.3.4, 10.7 |
+| **PB-05** Account Compromise | A.5.16 (Identity management), A.8.5 (Secure authentication) | DE.AE-3, RS.AN-1, PR.AC-1 | 8.2, 8.3, 10.6.1 |
+| **PB-06** Impossible Travel | A.8.5 (Secure authentication), A.8.15 (Logging) | DE.AE-2, DE.AE-5, RS.AN-1 | 10.6.1, 10.7 |
+| **PB-07** Privilege Escalation | A.8.2 (Privileged access rights), A.8.18 (Use of privileged utility) | DE.CM-3, DE.AE-3, PR.AC-4 | 7.1, 7.2, 10.2.1 |
+| **PB-08** Data Exfiltration | A.8.12 (Data leakage prevention), A.8.10 (Information deletion) | DE.AE-3, DE.CM-7, RS.MI-1 | 3.4, 10.6.1, 12.10.5 |
+| **PB-09** DDoS Attack | A.8.20 (Network security), A.8.22 (Segregation of networks) | DE.AE-1, RS.MI-1, RS.MI-2 | 11.5.1, 12.10.5 |
+| **PB-10** Web App Attack | A.8.26 (Application security requirements), A.8.28 (Secure coding) | DE.CM-6, DE.AE-3, RS.MI-1 | 6.2, 6.4, 11.5.1 |
+
+### PB-11 to PB-20 (Advanced Playbooks)
+
+| Playbook | ISO 27001:2022 | NIST CSF 2.0 | PCI DSS v4.0 |
+|:---|:---|:---|:---|
+| **PB-11** Suspicious Script | A.8.7 (Malware protection), A.8.19 (Installation of software) | DE.CM-4, DE.AE-3, RS.AN-1 | 5.3, 11.5.1 |
+| **PB-12** Lateral Movement | A.8.22 (Segregation of networks), A.8.20 (Network security) | DE.CM-1, DE.CM-7, RS.MI-1 | 1.3, 11.4, 11.5.1 |
+| **PB-13** C2 Communication | A.8.20 (Network security), A.8.23 (Web filtering) | DE.CM-1, DE.AE-2, RS.AN-1 | 1.3, 10.6.1, 11.5.1 |
+| **PB-14** Insider Threat | A.5.9 (Inventory of information), A.6.1 (Screening) | DE.CM-3, DE.AE-5, RS.AN-1 | 7.1, 7.2, 10.2.1 |
+| **PB-15** Rogue Admin | A.8.2 (Privileged access rights), A.5.18 (Access rights) | DE.CM-3, DE.AE-3, PR.AC-4 | 7.1, 7.2, 10.2.1 |
+| **PB-16** Cloud IAM Anomaly | A.5.23 (Cloud services), A.8.2 (Privileged access rights) | DE.AE-2, DE.CM-3, PR.AC-4 | 7.1, 8.3, 10.6.1 |
+| **PB-17** Business Email Compromise | A.5.14 (Information transfer), A.8.7 (Malware protection) | DE.AE-3, RS.AN-1, RS.MI-1 | 5.3, 12.10.5 |
+| **PB-18** Exploit | A.8.8 (Technical vulnerability management), A.8.28 (Secure coding) | DE.CM-8, DE.AE-3, RS.MI-1 | 6.3.3, 11.3, 11.5.1 |
+| **PB-19** Lost/Stolen Device | A.7.9 (Security of assets off-premises), A.8.1 (User endpoint devices) | RS.MI-1, RS.AN-1, PR.DS-3 | 9.4, 9.5, 12.10.5 |
+| **PB-20** Log Clearing | A.8.15 (Logging), A.8.17 (Clock synchronization) | DE.CM-3, DE.AE-5, PR.PT-1 | 10.3, 10.5, 10.7 |
+
+### PB-21 to PB-25 (New Playbooks)
+
+| Playbook | ISO 27001:2022 | NIST CSF 2.0 | PCI DSS v4.0 |
+|:---|:---|:---|:---|
+| **PB-21** Supply Chain Attack | A.5.21 (ICT supply chain), A.5.22 (Supplier monitoring) | ID.SC-1, ID.SC-2, DE.CM-6, RS.MI-1 | 6.3.2, 12.8, 12.9 |
+| **PB-22** API Abuse | A.8.26 (Application security), A.8.25 (Secure development lifecycle) | DE.CM-6, DE.AE-2, PR.AC-7 | 6.2, 6.4, 11.5.1 |
+| **PB-23** Cryptomining | A.8.7 (Malware protection), A.8.20 (Network security) | DE.CM-4, DE.AE-3, RS.MI-1 | 5.2, 5.3, 11.5.1 |
+| **PB-24** DNS Tunneling | A.8.20 (Network security), A.8.23 (Web filtering) | DE.CM-1, DE.AE-2, RS.MI-1 | 1.3, 10.6.1, 11.5.1 |
+| **PB-25** Zero-Day Exploit | A.8.8 (Vulnerability management), A.5.7 (Threat intelligence) | DE.CM-8, RS.AN-5, RS.MI-1 | 6.3.3, 11.3, 12.10.5 |
+
+### PB-26 to PB-30 (Coverage Expansion)
+
+| Playbook | ISO 27001:2022 | NIST CSF 2.0 | PCI DSS v4.0 |
+|:---|:---|:---|:---|
+| **PB-26** MFA Bypass / Token Theft | A.8.5 (Secure authentication), A.5.17 (Authentication info) | DE.AE-2, DE.CM-3, PR.AC-7 | 8.3, 8.4, 8.5 |
+| **PB-27** Cloud Storage Exposure | A.5.23 (Cloud services), A.8.10 (Information deletion) | DE.CM-7, RS.MI-1, PR.DS-1 | 3.4, 3.5, 10.6.1 |
+| **PB-28** Mobile Device Compromise | A.8.1 (User endpoint devices), A.7.9 (Off-premises assets) | DE.CM-4, RS.MI-1, PR.AC-3 | 9.4, 9.5, 12.3 |
+| **PB-29** Shadow IT | A.5.23 (Cloud services), A.8.23 (Web filtering) | DE.CM-7, ID.AM-2, PR.AC-4 | 6.4, 12.8, 12.10.5 |
+| **PB-30** OT/ICS Incident | A.8.20 (Network security), A.8.22 (Network segregation) | DE.CM-1, RS.RP-1, PR.AC-5 | 1.3, 11.4, 11.5.1 |
+
+---
+
+## SOC Operational Controls Mapping
+
+| SOC Control | ISO 27001:2022 | NIST CSF 2.0 | PCI DSS v4.0 |
+|:---|:---|:---|:---|
+| **24/7 SOC Monitoring** | A.8.16 (Monitoring activities) | DE.CM-1, DE.CM-6, DE.CM-7 | 10.6.1, 10.6.3, 12.10 |
+| **Incident Response Framework** | A.5.24 (IR planning), A.5.26 (Response to incidents) | RS.RP-1, RS.CO-1, RS.AN-1 | 12.10.1, 12.10.2 |
+| **Severity Classification (P1–P4)** | A.5.25 (Assessment of incidents) | RS.AN-4, RS.CO-3 | 12.10.1, 12.10.4 |
+| **Escalation Procedures** | A.5.26 (Response to incidents) | RS.CO-2, RS.CO-4, RS.RP-1 | 12.10.1, 12.10.6 |
+| **Shift Handover Process** | A.5.37 (Documented operating procedures) | PR.IP-9, RS.CO-1 | 12.10.2 |
+| **Detection Rules (Sigma)** | A.8.16 (Monitoring activities) | DE.CM-1, DE.DP-2, DE.DP-5 | 10.6.1, 11.5.1 |
+| **MITRE ATT&CK Mapping** | A.5.7 (Threat intelligence) | ID.RA-2, DE.AE-1 | 12.10.5 |
+| **Post-Incident Review** | A.5.27 (Learning from incidents) | RS.IM-1, RS.IM-2 | 12.10.6 |
+| **Log Retention (≥1 year)** | A.8.15 (Logging) | PR.PT-1, DE.CM-3 | 10.5, 10.7 |
+| **Vulnerability Management** | A.8.8 (Technical vulnerability management) | DE.CM-8, ID.RA-1 | 6.3.3, 11.3 |
+| **Access Control / IAM** | A.8.2, A.8.3, A.5.15 | PR.AC-1, PR.AC-4 | 7.1, 7.2, 8.2 |
+| **Security Awareness Training** | A.6.3 (Information security awareness) | PR.AT-1, PR.AT-2 | 12.6.1, 12.6.2 |
+| **Data Classification** | A.5.12 (Classification of information) | ID.AM-5, PR.DS-1 | 3.2, 3.4, 9.6 |
+| **Backup & Recovery** | A.8.13 (Information backup) | PR.IP-4, RC.RP-1 | 12.10.1 |
+
+---
+
+## Framework Coverage Summary
+
+### ISO 27001:2022 Coverage
+
+| Annex A Domain | Controls Covered | Key Controls |
+|:---|:---:|:---|
+| A.5 Organizational | 12 / 37 | A.5.7, A.5.12, A.5.21, A.5.24–A.5.27 |
+| A.6 People | 2 / 8 | A.6.1, A.6.3 |
+| A.7 Physical | 1 / 14 | A.7.9 |
+| A.8 Technological | 18 / 34 | A.8.2, A.8.5, A.8.7, A.8.8, A.8.12, A.8.15, A.8.16, A.8.20 |
+
+### NIST CSF 2.0 Coverage
+
+| Function | Categories Covered | SOC Coverage Level |
+|:---|:---:|:---|
+| **Identify (ID)** | ID.AM, ID.RA, ID.SC | 🟡 Partial — asset inventory & supply chain |
+| **Protect (PR)** | PR.AC, PR.AT, PR.DS, PR.IP, PR.PT | 🟡 Partial — access control & training |
+| **Detect (DE)** | DE.AE, DE.CM, DE.DP | 🟢 Strong — 28 Sigma rules + monitoring |
+| **Respond (RS)** | RS.RP, RS.CO, RS.AN, RS.MI, RS.IM | 🟢 Strong — 30 playbooks + severity matrix |
+| **Recover (RC)** | RC.RP, RC.IM, RC.CO | 🟡 Partial — backup & communication |
+
+### PCI DSS v4.0 Coverage
+
+| Requirement | SOC Coverage |
+|:---|:---|
+| Req 1 — Network Security Controls | 🟢 PB-12, PB-13, PB-24 |
+| Req 3 — Protect Stored Account Data | 🟡 PB-08, Data Classification |
+| Req 5 — Malware Protection | 🟢 PB-01, PB-02, PB-03, PB-23 |
+| Req 6 — Secure Development | 🟢 PB-10, PB-18, PB-21, PB-22, PB-25 |
+| Req 7 — Restrict Access | 🟢 PB-07, PB-14, PB-15, PB-16 |
+| Req 8 — Identify Users | 🟢 PB-04, PB-05, PB-06 |
+| Req 9 — Physical Access | 🟡 PB-19 |
+| Req 10 — Log & Monitor | 🟢 28 Sigma rules + SOC monitoring |
+| Req 11 — Test Security | 🟢 Detection rules + simulation guide |
+| Req 12 — Security Policies | 🟢 IR framework + severity matrix |
+
+---
+
+## Audit Quick Reference
+
+### For ISO 27001 Auditors
+
+> "Show me your incident response procedures."  
+→ [IR Framework](05_Incident_Response/Framework.en.md) + [Severity Matrix](05_Incident_Response/Severity_Matrix.en.md) + any Playbook (PB-01 to PB-30)
+
+> "Show me your monitoring and detection capabilities."  
+→ [Detection Rules Index](07_Detection_Rules/README.md) (33 Sigma rules) + [MITRE ATT&CK Heatmap](tools/mitre_attack_heatmap.html)
+
+> "Show me evidence of incident learning."  
+→ [Post-Incident Review section](05_Incident_Response/Framework.en.md) in all playbooks
+
+### For PCI DSS QSA
+
+> "Requirement 10.6.1 — Daily log reviews?"  
+→ [SOC Metrics & KPIs](06_Operations_Management/SOC_Metrics.en.md) + 24/7 monitoring procedures
+
+> "Requirement 12.10.1 — Incident response plan?"  
+→ [IR Framework](05_Incident_Response/Framework.en.md) + [Severity Matrix](05_Incident_Response/Severity_Matrix.en.md)
+
+> "Requirement 11.5.1 — Intrusion detection?"  
+→ [33 Sigma Detection Rules](07_Detection_Rules/README.md) with MITRE ATT&CK mapping
+
+---
+
+## Related Documents
+
+- [IR Framework](05_Incident_Response/Framework.en.md)
+- [Severity Matrix](05_Incident_Response/Severity_Matrix.en.md)
+- [Detection Rules Index](07_Detection_Rules/README.md)
+- [MITRE ATT&CK Heatmap](tools/mitre_attack_heatmap.html)
+- [SOC Maturity Scorer](tools/soc_maturity_scorer.html)
+
+## References
+
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)
+- [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)
+- [PCI DSS v4.0](https://www.pcisecuritystandards.org/document_library/)
+- [MITRE ATT&CK Framework](https://attack.mitre.org/)
+
+
+---
+
+## File: 10_Compliance/Compliance_Mapping.th.md
+
+# Compliance Mapping — SOC Playbooks × Frameworks (ภาษาไทย)
+
+> **รหัสเอกสาร:** COMP-MAP-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **เจ้าของ:** SOC Manager / Compliance Officer  
+
+---
+
+## วัตถุประสงค์
+
+เอกสารนี้ map **SOC Playbook 30 ชุด**, **Sigma Detection Rule 33 กฎ** และ SOC Controls ต่างๆ เข้ากับ 3 กรอบมาตรฐาน:
+
+- **ISO/IEC 27001:2022** — ระบบจัดการความมั่นคงปลอดภัยสารสนเทศ
+- **NIST Cybersecurity Framework (CSF) 2.0** — กรอบไซเบอร์สหรัฐฯ
+- **PCI DSS v4.0** — มาตรฐานความปลอดภัยอุตสาหกรรมบัตรชำระเงิน
+
+ใช้สำหรับ **เตรียม Audit**, **วิเคราะห์ช่องว่าง** และ **แสดงหลักฐาน** ต่อผู้ตรวจสอบ
+
+---
+
+## Playbook → Framework Mapping
+
+### PB-01 ถึง PB-10 (Playbooks หลัก)
+
+| Playbook | ISO 27001:2022 | NIST CSF 2.0 | PCI DSS v4.0 |
+|:---|:---|:---|:---|
+| **PB-01** ฟิชชิ่ง | A.5.23, A.8.7 (ป้องกันมัลแวร์) | DE.AE-2, DE.AE-3, RS.AN-1, RS.MI-1 | 5.3, 12.10.5 |
+| **PB-02** แรนซัมแวร์ | A.8.7, A.8.13 (สำรองข้อมูล), A.8.14 | DE.AE-3, RS.MI-1, RS.MI-2, RC.RP-1 | 5.2, 5.3, 12.10.5 |
+| **PB-03** มัลแวร์ | A.8.7 (ป้องกันมัลแวร์), A.8.23 | DE.CM-4, DE.AE-3, RS.MI-1 | 5.2, 5.3, 11.5.1 |
+| **PB-04** Brute Force | A.8.5 (การยืนยันตัวตน), A.5.17 | DE.CM-1, DE.AE-2, PR.AC-7 | 8.2.4, 8.3.4, 10.7 |
+| **PB-05** บัญชีถูกยึดครอง | A.5.16 (จัดการตัวตน), A.8.5 | DE.AE-3, RS.AN-1, PR.AC-1 | 8.2, 8.3, 10.6.1 |
+| **PB-06** Impossible Travel | A.8.5, A.8.15 (การบันทึก Log) | DE.AE-2, DE.AE-5, RS.AN-1 | 10.6.1, 10.7 |
+| **PB-07** ยกระดับสิทธิ์ | A.8.2 (สิทธิ์ Privileged), A.8.18 | DE.CM-3, DE.AE-3, PR.AC-4 | 7.1, 7.2, 10.2.1 |
+| **PB-08** ข้อมูลรั่วไหล | A.8.12 (ป้องกันข้อมูลรั่ว), A.8.10 | DE.AE-3, DE.CM-7, RS.MI-1 | 3.4, 10.6.1, 12.10.5 |
+| **PB-09** DDoS | A.8.20 (ความปลอดภัยเครือข่าย), A.8.22 | DE.AE-1, RS.MI-1, RS.MI-2 | 11.5.1, 12.10.5 |
+| **PB-10** โจมตีเว็บ | A.8.26 (ข้อกำหนดแอป), A.8.28 | DE.CM-6, DE.AE-3, RS.MI-1 | 6.2, 6.4, 11.5.1 |
+
+### PB-11 ถึง PB-20 (Playbooks ขั้นสูง)
+
+| Playbook | ISO 27001:2022 | NIST CSF 2.0 | PCI DSS v4.0 |
+|:---|:---|:---|:---|
+| **PB-11** Script น่าสงสัย | A.8.7, A.8.19 (ติดตั้งซอฟต์แวร์) | DE.CM-4, DE.AE-3, RS.AN-1 | 5.3, 11.5.1 |
+| **PB-12** เคลื่อนตัวข้ามระบบ | A.8.22 (แบ่งแยกเครือข่าย), A.8.20 | DE.CM-1, DE.CM-7, RS.MI-1 | 1.3, 11.4, 11.5.1 |
+| **PB-13** C2 Communication | A.8.20, A.8.23 (กรอง Web) | DE.CM-1, DE.AE-2, RS.AN-1 | 1.3, 10.6.1, 11.5.1 |
+| **PB-14** Insider Threat | A.5.9, A.6.1 (การคัดกรอง) | DE.CM-3, DE.AE-5, RS.AN-1 | 7.1, 7.2, 10.2.1 |
+| **PB-15** Admin ชั่วร้าย | A.8.2 (สิทธิ์ Privileged), A.5.18 | DE.CM-3, DE.AE-3, PR.AC-4 | 7.1, 7.2, 10.2.1 |
+| **PB-16** Cloud IAM | A.5.23 (Cloud), A.8.2 | DE.AE-2, DE.CM-3, PR.AC-4 | 7.1, 8.3, 10.6.1 |
+| **PB-17** BEC | A.5.14, A.8.7 | DE.AE-3, RS.AN-1, RS.MI-1 | 5.3, 12.10.5 |
+| **PB-18** Exploit | A.8.8 (จัดการช่องโหว่), A.8.28 | DE.CM-8, DE.AE-3, RS.MI-1 | 6.3.3, 11.3, 11.5.1 |
+| **PB-19** อุปกรณ์หาย | A.7.9 (สินทรัพย์นอกสถานที่), A.8.1 | RS.MI-1, RS.AN-1, PR.DS-3 | 9.4, 9.5, 12.10.5 |
+| **PB-20** ลบ Log | A.8.15 (การบันทึก Log), A.8.17 | DE.CM-3, DE.AE-5, PR.PT-1 | 10.3, 10.5, 10.7 |
+
+### PB-21 ถึง PB-25 (Playbooks ใหม่)
+
+| Playbook | ISO 27001:2022 | NIST CSF 2.0 | PCI DSS v4.0 |
+|:---|:---|:---|:---|
+| **PB-21** Supply Chain | A.5.21 (ห่วงโซ่อุปทาน ICT), A.5.22 | ID.SC-1, ID.SC-2, DE.CM-6, RS.MI-1 | 6.3.2, 12.8, 12.9 |
+| **PB-22** API Abuse | A.8.26 (ข้อกำหนดแอป), A.8.25 | DE.CM-6, DE.AE-2, PR.AC-7 | 6.2, 6.4, 11.5.1 |
+| **PB-23** ขุดคริปโต | A.8.7 (ป้องกันมัลแวร์), A.8.20 | DE.CM-4, DE.AE-3, RS.MI-1 | 5.2, 5.3, 11.5.1 |
+| **PB-24** DNS Tunneling | A.8.20, A.8.23 (กรอง Web) | DE.CM-1, DE.AE-2, RS.MI-1 | 1.3, 10.6.1, 11.5.1 |
+| **PB-25** Zero-Day | A.8.8 (จัดการช่องโหว่), A.5.7 | DE.CM-8, RS.AN-5, RS.MI-1 | 6.3.3, 11.3, 12.10.5 |
+
+### PB-26 ถึง PB-30 (ขยาย Coverage)
+
+| Playbook | ISO 27001:2022 | NIST CSF 2.0 | PCI DSS v4.0 |
+|:---|:---|:---|:---|
+| **PB-26** MFA Bypass / Token Theft | A.8.5 (การยืนยันตัวตน), A.5.17 | DE.AE-2, DE.CM-3, PR.AC-7 | 8.3, 8.4, 8.5 |
+| **PB-27** Cloud Storage เปิด Public | A.5.23 (Cloud), A.8.10 | DE.CM-7, RS.MI-1, PR.DS-1 | 3.4, 3.5, 10.6.1 |
+| **PB-28** อุปกรณ์มือถือถูกบุกรุก | A.8.1 (อุปกรณ์ผู้ใช้), A.7.9 | DE.CM-4, RS.MI-1, PR.AC-3 | 9.4, 9.5, 12.3 |
+| **PB-29** Shadow IT | A.5.23 (Cloud), A.8.23 (กรอง Web) | DE.CM-7, ID.AM-2, PR.AC-4 | 6.4, 12.8, 12.10.5 |
+| **PB-30** เหตุการณ์ OT/ICS | A.8.20 (เครือข่าย), A.8.22 | DE.CM-1, RS.RP-1, PR.AC-5 | 1.3, 11.4, 11.5.1 |
+
+---
+
+## สรุป Coverage ตามแต่ละ Framework
+
+### NIST CSF 2.0
+
+| Function | ระดับ Coverage | คำอธิบาย |
+|:---|:---:|:---|
+| **Identify (ระบุ)** | 🟡 | ครอบคลุมบางส่วน — สินทรัพย์ & Supply Chain |
+| **Protect (ป้องกัน)** | 🟡 | ครอบคลุมบางส่วน — Access Control & การฝึกอบรม |
+| **Detect (ตรวจจับ)** | 🟢 | ครอบคลุมดี — 33 Sigma Rules + การเฝ้าระวัง |
+| **Respond (ตอบสนอง)** | 🟢 | ครอบคลุมดี — 30 Playbooks + ตารางระดับความรุนแรง |
+| **Recover (กู้คืน)** | 🟡 | ครอบคลุมบางส่วน — สำรองข้อมูล & สื่อสาร |
+
+### PCI DSS v4.0
+
+| ข้อกำหนด | ระดับ Coverage |
+|:---|:---:|
+| Req 1 — ควบคุมเครือข่าย | 🟢 |
+| Req 5 — ป้องกันมัลแวร์ | 🟢 |
+| Req 6 — พัฒนาปลอดภัย | 🟢 |
+| Req 7 — ควบคุมการเข้าถึง | 🟢 |
+| Req 8 — ระบุตัวตนผู้ใช้ | 🟢 |
+| Req 10 — บันทึก Log & เฝ้าระวัง | 🟢 |
+| Req 11 — ทดสอบความปลอดภัย | 🟢 |
+| Req 12 — นโยบายความปลอดภัย | 🟢 |
+
+---
+
+## Quick Reference สำหรับ Auditor
+
+### ผู้ตรวจ ISO 27001 ถาม:
+
+> "แสดงขั้นตอนการตอบสนองเหตุการณ์"  
+→ [IR Framework](../05_Incident_Response/Framework.en.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md) + Playbook ใดก็ได้ (PB-01 ถึง PB-30)
+
+> "แสดงความสามารถในการเฝ้าระวังและตรวจจับ"  
+→ [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md) (33 กฎ Sigma) + [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
+
+### QSA ตรวจ PCI DSS ถาม:
+
+> "Req 10.6.1 — ตรวจ Log รายวัน?"  
+→ [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md) + ขั้นตอนเฝ้าระวัง 24/7
+
+> "Req 12.10.1 — แผนตอบสนองเหตุการณ์?"  
+→ [IR Framework](../05_Incident_Response/Framework.en.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [IR Framework](../05_Incident_Response/Framework.en.md)
+- [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)
+- [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md)
+- [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
+- [เครื่องมือวัดคะแนน SOC Maturity](../tools/soc_maturity_scorer.html)
+
+## References
+
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)
+- [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)
+- [PCI DSS v4.0](https://www.pcisecuritystandards.org/document_library/)
+- [MITRE ATT&CK Framework](https://attack.mitre.org/)
+
+
+---
+
+## File: 10_Compliance/PDPA_Incident_Response.en.md
+
+# PDPA Incident Response Guide
+
+> **Document ID:** PDPA-IR-001  
+> **Version:** 1.0  
+> **Last Updated:** 2026-02-15  
+> **Applicable Law:** พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)
+
+---
+
+## Purpose
+
+This guide provides SOC-specific procedures for handling incidents involving **Personal Data** under Thailand's Personal Data Protection Act (PDPA). Covers the **72-hour notification** requirement, data breach classification, and regulatory reporting.
+
+---
+
+## When PDPA Applies
+
+A PDPA incident occurs when:
+
+| Trigger | Example |
+|:---|:---|
+| Personal data is **accessed** by unauthorized persons | Attacker reads customer database |
+| Personal data is **exfiltrated** | Data sent to external server |
+| Personal data is **modified** without authorization | Database records altered |
+| Personal data is **destroyed/lost** | Ransomware encrypts customer data |
+| Personal data is **disclosed** unintentionally | Email sent to wrong recipient |
+
+### What is "Personal Data" under PDPA?
+
+| Category | Examples |
+|:---|:---|
+| **Identifiers** | Thai national ID, passport number, driver's license |
+| **Contact info** | Name, address, phone, email |
+| **Financial** | Bank account, credit card, salary |
+| **Health** | Medical records, health insurance |
+| **Biometric** | Fingerprint, face recognition data |
+| **Online** | IP address (when linkable to person), cookies, device ID |
+| **Sensitive** | Religion, political opinion, criminal record, sexual orientation |
+
+> ⚠️ **Sensitive personal data** has stricter requirements and higher penalties.
+
+---
+
+## 72-Hour Notification Timeline
+
+```
+Hour 0:   Data breach DETECTED
+          ↓
+Hour 0-4: Confirm breach involves personal data → YES → activate PDPA process
+          ↓
+Hour 4-24: Assess scope, blast radius, types of data affected
+          ↓
+Hour 24-48: Prepare notification to PDPC
+          ↓
+Hour 48-72: Submit notification to PDPC ← LEGAL DEADLINE
+          ↓
+ASAP after PDPC: Notify affected data subjects (if high risk)
+```
+
+### When to Notify
+
+| Scenario | Notify PDPC? | Notify Data Subjects? |
+|:---|:---:|:---:|
+| Encrypted data stolen (encryption intact) | ⚠️ Assess | Usually no |
+| Unencrypted PII exfiltrated | ✅ Yes | ✅ Yes |
+| Ransomware encrypts PII | ✅ Yes | ✅ If no backup |
+| Employee accesses unauthorized records | ✅ Yes | ⚠️ Assess risk |
+| Phishing captures user credentials | ✅ If data accessed | ⚠️ Assess |
+| Database exposed but no evidence of access | ✅ Yes | ⚠️ Assess risk |
+
+---
+
+## SOC Response Procedure
+
+### Step 1: Detection & Initial Assessment (Hour 0–4)
+
+```
+□ Confirm incident involves personal data
+□ Classify severity:
+  - P1: Mass breach (>1,000 records) or sensitive data
+  - P2: Limited breach (<1,000 records) or non-sensitive data
+□ Notify SOC Manager immediately
+□ Notify DPO (Data Protection Officer) immediately
+□ Begin evidence preservation (per Evidence Collection SOP)
+□ DO NOT attempt to hide, minimize, or delay reporting
+```
+
+### Step 2: Scope Assessment (Hour 4–24)
+
+```
+□ Identify what data was compromised:
+  - Type of personal data (identifiers, financial, health, sensitive)
+  - Number of data subjects affected
+  - Geographic scope (Thai citizens? Cross-border?)
+□ Identify how the breach occurred:
+  - Attack vector
+  - Vulnerability exploited
+  - Duration of exposure
+□ Determine if data was:
+  - Viewed only vs. copied/exfiltrated
+  - Encrypted at rest (breach may be less severe)
+□ Check for secondary compromise
+□ Document everything in incident ticket
+```
+
+### Step 3: Containment & Legal Preparation (Hour 24–48)
+
+```
+□ Contain the breach (isolate, block, patch)
+□ Prepare PDPC notification with DPO/Legal:
+
+Required information for PDPC:
+  1. Name and contact of data controller
+  2. Name and contact of DPO
+  3. Nature of the breach
+  4. Categories and approximate number of data subjects
+  5. Categories and approximate number of data records
+  6. Likely consequences of the breach
+  7. Measures taken or proposed to address the breach
+  8. Measures to mitigate adverse effects
+
+□ Prepare data subject notification (if applicable):
+  - Clear, plain language (Thai)
+  - What happened
+  - What data was affected
+  - What they should do (change passwords, monitor accounts)
+  - Who to contact for more information
+  - What you are doing to prevent recurrence
+```
+
+### Step 4: Notification (Hour 48–72)
+
+```
+□ Submit notification to PDPC (Office of the Personal Data Protection Committee)
+  - Email: complaint@pdpc.or.th
+  - Online: https://www.pdpc.or.th
+  - Reference: Section 37(4) PDPA
+□ If high risk → notify affected data subjects ASAP
+□ If cross-border → assess notification requirements in other jurisdictions
+□ Keep copy of all notifications sent
+```
+
+### Step 5: Post-Breach (After 72 hours)
+
+```
+□ Continue investigation and remediation
+□ Respond to any PDPC follow-up requests
+□ Conduct Lessons Learned (use Lessons Learned Template)
+□ Implement corrective measures
+□ Update breach register
+□ Report to management/board
+□ Consider voluntary disclosure to media (PR/Legal decision)
+```
+
+---
+
+## PDPA Penalties Reference
+
+| Violation | Administrative Fine | Criminal Penalty |
+|:---|:---:|:---:|
+| Failure to notify breach to PDPC | Up to ฿5,000,000 | — |
+| Failure to notify data subjects | Up to ฿5,000,000 | — |
+| Unlawful processing of personal data | Up to ฿5,000,000 | Up to 1 year / ฿1,000,000 |
+| Unlawful processing of sensitive data | Up to ฿5,000,000 | Up to 1 year / ฿1,000,000 |
+| Cross-border transfer without safeguards | Up to ฿5,000,000 | — |
+| Compensatory damages | Court-determined | — |
+| Punitive damages | Up to 2× actual damages | — |
+
+---
+
+## Breach Register Template
+
+Maintain a register of all data breaches (required by PDPA):
+
+| Date | Incident ID | Description | Records Affected | Data Types | PDPC Notified | Subjects Notified | Status |
+|:---|:---|:---|:---:|:---|:---:|:---:|:---|
+| | | | | | ☐ | ☐ | |
+
+---
+
+## Key Contacts
+
+| Role | Name | Contact |
+|:---|:---|:---|
+| Data Protection Officer (DPO) | ___________ | ___________ |
+| Legal Counsel | ___________ | ___________ |
+| CISO | ___________ | ___________ |
+| PR/Communications | ___________ | ___________ |
+| PDPC Hotline | — | 02-142-1033 |
+| PDPC Email | — | complaint@pdpc.or.th |
+
+---
+
+## Related Documents
+
+- [IR Framework](Framework.en.md)
+- [Evidence Collection](Evidence_Collection.en.md)
+- [Communication Templates](Communication_Templates.en.md)
+- [Lessons Learned Template](Lessons_Learned_Template.en.md)
+- [Compliance Mapping](../10_Compliance/Compliance_Mapping.en.md)
+
+
+---
+
+## File: 10_Compliance/PDPA_Incident_Response.th.md
+
+# คู่มือตอบเหตุข้อมูลรั่วตาม PDPA
+
+> **รหัสเอกสาร:** PDPA-IR-001  
+> **เวอร์ชัน:** 1.0  
+> **อัปเดตล่าสุด:** 2026-02-15  
+> **กฎหมาย:** พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
+
+---
+
+## เมื่อไหร่ที่ PDPA เกี่ยวข้อง?
+
+เมื่อเกิดการ **เข้าถึง / ส่งออก / แก้ไข / ทำลาย / เปิดเผย** ข้อมูลส่วนบุคคลโดยไม่ได้รับอนุญาต
+
+### ข้อมูลส่วนบุคคลตาม PDPA
+
+| หมวด | ตัวอย่าง |
+|:---|:---|
+| ข้อมูลระบุตัวตน | เลขบัตรประชาชน, หนังสือเดินทาง |
+| ข้อมูลติดต่อ | ชื่อ, ที่อยู่, เบอร์โทร, email |
+| ข้อมูลการเงิน | บัญชีธนาคาร, บัตรเครดิต, เงินเดือน |
+| ข้อมูลสุขภาพ | ประวัติการแพทย์, ประกันสุขภาพ |
+| ข้อมูลชีวมิติ | ลายนิ้วมือ, สแกนใบหน้า |
+| **ข้อมูลอ่อนไหว** | ศาสนา, ความเห็นทางการเมือง, ประวัติอาชญากรรม |
+
+---
+
+## Timeline การแจ้ง 72 ชั่วโมง
+
+```
+ชม. 0:      ตรวจพบ data breach
+ชม. 0–4:    ยืนยันว่ามีข้อมูลส่วนบุคคลเกี่ยวข้อง
+ชม. 4–24:   ประเมินขอบเขต, จำนวนเจ้าของข้อมูล, ประเภทข้อมูล
+ชม. 24–48:  เตรียมเอกสารแจ้ง สคส.
+ชม. 48–72:  ส่งแจ้ง สคส. ← กำหนดตามกฎหมาย
+หลังแจ้ง:    แจ้งเจ้าของข้อมูล (ถ้ามีความเสี่ยงสูง)
+```
+
+---
+
+## ขั้นตอนสำหรับ SOC
+
+### ขั้นที่ 1: ตรวจพบ & ประเมินเบื้องต้น (ชม. 0–4)
+
+```
+□ ยืนยันว่า incident เกี่ยวข้องกับข้อมูลส่วนบุคคล
+□ จัดระดับ:
+  - P1: รั่วมาก (>1,000 records) หรือข้อมูลอ่อนไหว
+  - P2: รั่วจำกัด (<1,000 records)
+□ แจ้ง SOC Manager ทันที
+□ แจ้ง DPO ทันที
+□ เริ่มเก็บหลักฐาน
+□ ห้ามปิดบัง ลดความสำคัญ หรือล่าช้า
+```
+
+### ขั้นที่ 2: ประเมินขอบเขต (ชม. 4–24)
+
+```
+□ ข้อมูลอะไรรั่ว? (ระบุตัวตน, การเงิน, สุขภาพ, อ่อนไหว)
+□ จำนวนเจ้าของข้อมูลที่ได้รับผลกระทบ
+□ ขอบเขตทางภูมิศาสตร์ (คนไทย? ข้ามพรมแดน?)
+□ ข้อมูลถูกดูเท่านั้น vs คัดลอก/ส่งออก
+□ ข้อมูลถูกเข้ารหัสอยู่แล้วหรือไม่
+```
+
+### ขั้นที่ 3: Contain & เตรียมเอกสาร (ชม. 24–48)
+
+```
+□ Contain (isolate, block, patch)
+□ เตรียมแจ้ง สคส. ร่วมกับ DPO/กฎหมาย:
+  1. ชื่อ+ติดต่อผู้ควบคุมข้อมูล
+  2. ชื่อ+ติดต่อ DPO
+  3. ธรรมชาติของ breach
+  4. ประเภท+จำนวนเจ้าของข้อมูล
+  5. ประเภท+จำนวน records
+  6. ผลกระทบที่อาจเกิดขึ้น
+  7. มาตรการที่ดำเนินการแล้ว
+  8. มาตรการบรรเทาผลกระทบ
+
+□ เตรียมแจ้งเจ้าของข้อมูล (ภาษาไทยเข้าใจง่าย):
+  - เกิดอะไรขึ้น
+  - ข้อมูลอะไรได้รับผลกระทบ
+  - ควรทำอะไร (เปลี่ยนรหัส, ตรวจบัญชี)
+  - ติดต่อใครได้
+```
+
+### ขั้นที่ 4: แจ้งเตือน (ชม. 48–72)
+
+```
+□ ส่งแจ้ง สคส. (สำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล)
+  - Email: complaint@pdpc.or.th
+  - เว็บ: https://www.pdpc.or.th
+  - อ้างอิง: มาตรา 37(4) พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล
+□ ถ้าเสี่ยงสูง → แจ้งเจ้าของข้อมูลทันที
+□ เก็บสำเนาทุกการแจ้ง
+```
+
+### ขั้นที่ 5: หลัง 72 ชม.
+
+```
+□ สืบสวนและแก้ไขต่อ
+□ ตอบคำถาม สคส. (ถ้ามี)
+□ ทำ Lessons Learned
+□ อัปเดต breach register
+□ รายงานผู้บริหาร/คณะกรรมการ
+```
+
+---
+
+## บทลงโทษ PDPA
+
+| การละเมิด | ค่าปรับทางปกครอง | โทษอาญา |
+|:---|:---:|:---:|
+| ไม่แจ้ง breach ให้ สคส. | สูงสุด ฿5,000,000 | — |
+| ไม่แจ้งเจ้าของข้อมูล | สูงสุด ฿5,000,000 | — |
+| ประมวลผลโดยมิชอบ | สูงสุด ฿5,000,000 | จำคุก 1 ปี / ฿1,000,000 |
+| ส่งข้อมูลข้ามแดนไม่มีมาตรการ | สูงสุด ฿5,000,000 | — |
+| ค่าเสียหาย + ค่าเสียหายเชิงลงโทษ | ศาลกำหนด (สูงสุด 2 เท่า) | — |
+
+---
+
+## ทะเบียน Breach
+
+| วันที่ | Incident ID | คำอธิบาย | Records | ประเภทข้อมูล | แจ้ง สคส. | แจ้งเจ้าของ | สถานะ |
+|:---|:---|:---|:---:|:---|:---:|:---:|:---|
+| | | | | | ☐ | ☐ | |
+
+---
+
+## ผู้ติดต่อ
+
+| บทบาท | ชื่อ | ติดต่อ |
+|:---|:---|:---|
+| DPO | ___________ | ___________ |
+| ที่ปรึกษากฎหมาย | ___________ | ___________ |
+| CISO | ___________ | ___________ |
+| สคส. | — | 02-142-1033 / complaint@pdpc.or.th |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+- [IR Framework](../05_Incident_Response/Framework.th.md)
+- [เก็บหลักฐาน](../05_Incident_Response/Evidence_Collection.th.md)
+- [แม่แบบ Lessons Learned](../05_Incident_Response/Lessons_Learned_Template.th.md)
+- [Compliance Mapping](Compliance_Mapping.th.md)
 
 
 ---
@@ -7307,6 +17864,11 @@ gantt
     -   Task: Run `Invoke-AtomicTest T1059.001` (Phishing Simulation) in the Test Lab.
     -   Task: Triage the alert in SIEM.
     -   Task: Submit a mock [Incident Report](../templates/incident_report.en.md).
+
+## Related Documents
+-   [Training Checklist](Training_Checklist.en.md)
+-   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
+-   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md)
 
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
@@ -7388,6 +17950,11 @@ gantt
     -   งาน: Triage Alert ใน SIEM
     -   งาน: ส่ง [Incident Report](../templates/incident_report.th.md) จำลอง
 
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [Training Checklist](Training_Checklist.th.md)
+-   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
+-   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.md)
+
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
 -   [NICE Cybersecurity Workforce Framework](https://niccs.cisa.gov/workforce-development/nice-framework)
@@ -7427,6 +17994,11 @@ gantt
 - [ ] Submit: Mock Incident Report
 - [ ] **Final Sign-off**: Ready for Production Rotation. (Manager: ________)
 
+## Related Documents
+-   [Analyst Onboarding Path](Analyst_Onboarding_Path.en.md)
+-   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md)
+-   [Incident Report Template](../templates/incident_report.en.md)
+
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
 -   [CompTIA CySA+ Certification](https://www.comptia.org/certifications/cybersecurity-analyst)
@@ -7465,6 +18037,11 @@ gantt
 - [ ] ปฏิบัติ: รัน Atomic Red Team Test (T1059.001)
 - [ ] ส่งงาน: รายงาน Incident จำลอง
 - [ ] **การอนุมัติผ่านโปร**: พร้อมเข้ากะปฏิบัติงานจริง (ผู้จัดการ: ________)
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [เส้นทางการเตรียมความพร้อม Analyst](Analyst_Onboarding_Path.th.md)
+-   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.md)
+-   [แบบฟอร์มรายงาน Incident](../templates/incident_report.th.md)
 
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
@@ -7529,6 +18106,61 @@ graph LR
 
 ---
 
+## File: 08_Simulation_Testing/Atomic_Test_Map.th.md
+
+# ตาราง Atomic Red Team Mapping (ทดสอบ)
+
+เอกสารนี้จับคู่ **Playbooks** กับ **Atomic Red Team** tests (MITRE ATT&CK) ใช้สำหรับทดสอบ detection rules และ response procedures
+
+| Playbook | ชื่อ | MITRE ID | Atomic Test |
+| :--- | :--- | :--- | :--- |
+| **PB-01** | Phishing | T1059.001 | `PowerShell - Spearphishing Attachment` |
+| **PB-02** | Ransomware | T1486 | `Data Encrypted for Impact` |
+| **PB-03** | Malware Infection | T1204.002 | `Malicious File Execution` |
+| **PB-04** | Brute Force | T1110.001 | `Password Guessing` |
+| **PB-05** | Account Compromise | T1078 | `Valid Accounts: Local Accounts` |
+| **PB-06** | Impossible Travel | T1078.004 | `Cloud Accounts` |
+| **PB-07** | Privilege Escalation | T1098 | `Account Manipulation: Add to Admin` |
+| **PB-08** | Data Exfiltration | T1048 | `Exfil Over Alternative Protocol` |
+| **PB-09** | DDoS Attack | T1498 | `Network Denial of Service` |
+| **PB-10** | Web App Attack | T1190 | `Exploit Public-Facing App` |
+| **PB-11** | Suspicious Script | T1059.001 | `PowerShell: Encoded Command` |
+| **PB-12** | Lateral Movement | T1021.002 | `SMB/Windows Admin Shares` |
+| **PB-13** | C2 Communication | T1071.001 | `Web Protocols` |
+| **PB-14** | Insider Threat | T1052.001 | `Exfil over Physical Medium` |
+| **PB-15** | Rogue Admin | T1136.001 | `Create Account: Local` |
+| **PB-16** | Cloud IAM Anomaly | T1078 | `Valid Accounts: Cloud` |
+| **PB-17** | BEC | T1114.003 | `Email Forwarding Rule` |
+| **PB-18** | Exploit | T1210 | `Exploitation of Remote Services` |
+| **PB-19** | Lost Device | T1098 | `Account Manipulation` |
+| **PB-20** | Log Clearing | T1070.001 | `Clear Windows Event Logs` |
+
+## วิธีใช้
+
+```mermaid
+graph LR
+    Install[ติดตั้ง Atomic RT] --> Run[รัน Test]
+    Run --> Check[ตรวจ SIEM Alert]
+    Check --> Follow[ทำตาม Playbook]
+    Follow --> Tune[ปรับแต่ง Rules/Playbook]
+```
+
+1. ติดตั้ง [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team) ใน **เครื่องทดสอบ**
+2. รัน test: `Invoke-AtomicTest T1059.001`
+3. ตรวจ SIEM: Alert trigger ไหม?
+4. ทำตาม Playbook: ขั้นตอนทำงานไหม?
+
+## เอกสารที่เกี่ยวข้อง
+- [คู่มือ Simulation & Purple Teaming](Simulation_Guide.th.md)
+- [IR Framework](../05_Incident_Response/Framework.th.md)
+
+## อ้างอิง
+- [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)
+- [MITRE ATT&CK](https://attack.mitre.org/techniques/enterprise/)
+
+
+---
+
 ## File: 08_Simulation_Testing/Simulation_Guide.md
 
 # Simulation & Purple Teaming Guide
@@ -7588,3 +18220,60 @@ Recommended Validation Schedule:
 ## References
 -   [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)
 -   [MITRE ATT&CK](https://attack.mitre.org/)
+
+
+---
+
+## File: 08_Simulation_Testing/Simulation_Guide.th.md
+
+# คู่มือ Simulation & Purple Teaming
+
+คู่มือนี้อธิบายวิธีทำ **Purple Team Exercise** (Red Team โจมตี + Blue Team ป้องกัน) เพื่อทดสอบความพร้อมของ SOC
+
+## สิ่งที่ต้องมี
+1. **สภาพแวดล้อมทดสอบ**: VM หรือ Lab เฉพาะ (ห้ามรันใน Production)
+2. **เครื่องมือ**:
+   - **Atomic Red Team**: สำหรับจำลองการโจมตี
+   - **Caldera** (ตัวเลือก): สำหรับ campaign อัตโนมัติ
+   - **SIEM**: สำหรับดู alert
+
+## วงจรการทำงาน (Feedback Loop)
+
+```mermaid
+graph TD
+    Execute["1. โจมตี (Red)"] --> Detect["2. ตรวจจับ (Blue)"]
+    Detect --> Respond["3. ตอบสนอง (Blue)"]
+    Respond --> Improve["4. ปรับปรุง (Purple)"]
+    Improve --> Execute
+```
+
+### ขั้นตอน 1: โจมตี (Red)
+รัน Atomic Test ที่ตรงกับ Playbook ที่ต้องการทดสอบ
+```powershell
+Invoke-AtomicTest T1059.001
+```
+
+### ขั้นตอน 2: ตรวจจับ (Blue)
+ตรวจ SIEM Dashboard:
+- Alert trigger ไหม?
+- Severity ถูกต้องไหม?
+- มี context ครบไหม? (User, Host, Command Line)
+
+### ขั้นตอน 3: ตอบสนอง (Blue)
+เปิด Playbook แล้วทำตาม:
+- วิเคราะห์ → Contain → กำจัด
+- **Gap Analysis**: Playbook ขาดขั้นตอนอะไรไหม?
+
+### ขั้นตอน 4: ปรับปรุง (Purple)
+- **Tune Rule**: ถ้า alert ไม่ fire → ปรับ Sigma rule
+- **Update Playbook**: เพิ่มขั้นตอนที่พบว่าขาด
+
+## ตารางเวลาแนะนำ
+- **รายสัปดาห์**: ทดสอบ 1 Playbook สำคัญ (Ransomware, Phishing)
+- **รายเดือน**: ทดสอบ 3–5 Playbooks แบบสุ่ม
+- **รายไตรมาส**: จำลอง full chain (Phishing → Lateral Mov → Exfil)
+
+## เอกสารที่เกี่ยวข้อง
+- [Atomic Test Map](Atomic_Test_Map.md)
+- [IR Framework](../05_Incident_Response/Framework.th.md)
+- [Detection Engineering](../03_User_Guides/Content_Management.th.md)
