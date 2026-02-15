@@ -198,7 +198,7 @@ Storage (GB/day) = Daily Events × Avg Event Size (bytes) / 1,073,741,824
 
 ## Related Documents
 
--   [Threat Hunting Playbook](Threat_Hunting_Playbook.en.md)
+-   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md)
 -   [Detection Rule Testing SOP](../06_Operations_Management/Detection_Rule_Testing.en.md)
 -   [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.en.md)
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)

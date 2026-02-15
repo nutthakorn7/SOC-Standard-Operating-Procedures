@@ -5810,7 +5810,7 @@ Storage (GB/day) = Daily Events × Avg Event Size (bytes) / 1,073,741,824
 
 ## Related Documents
 
--   [Threat Hunting Playbook](Threat_Hunting_Playbook.en.md)
+-   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md)
 -   [Detection Rule Testing SOP](../06_Operations_Management/Detection_Rule_Testing.en.md)
 -   [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.en.md)
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
@@ -9418,7 +9418,7 @@ graph TD
 -   [Communication Templates](Communication_Templates.en.md) — Pre-written notification templates
 -   [IR Framework](Framework.en.md) — Complete incident response lifecycle
 -   [PDPA Incident Response](../10_Compliance/PDPA_Incident_Response.en.md) — Thai data breach notification
--   [SOC Communication SOP](../06_Operations_Management/SOC_Communication_SOP.en.md)
+-   [SOC Communication SOP](../06_Operations_Management/Communication_SOP.en.md)
 -   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
 
 
@@ -9616,7 +9616,7 @@ graph TD
 -   [Communication Templates](Communication_Templates.en.md) — แม่แบบการแจ้งเตือนสำเร็จรูป
 -   [IR Framework](Framework.en.md) — วงจรชีวิตการตอบสนองต่อเหตุการณ์
 -   [PDPA Incident Response](../10_Compliance/PDPA_Incident_Response.en.md) — การแจ้ง data breach ตาม PDPA
--   [SOC Communication SOP](../06_Operations_Management/SOC_Communication_SOP.en.md)
+-   [SOC Communication SOP](../06_Operations_Management/Communication_SOP.en.md)
 -   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
 
 

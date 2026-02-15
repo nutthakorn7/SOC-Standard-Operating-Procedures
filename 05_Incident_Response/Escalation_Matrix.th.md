@@ -188,5 +188,5 @@ graph TD
 -   [Communication Templates](Communication_Templates.en.md) — แม่แบบการแจ้งเตือนสำเร็จรูป
 -   [IR Framework](Framework.en.md) — วงจรชีวิตการตอบสนองต่อเหตุการณ์
 -   [PDPA Incident Response](../10_Compliance/PDPA_Incident_Response.en.md) — การแจ้ง data breach ตาม PDPA
--   [SOC Communication SOP](../06_Operations_Management/SOC_Communication_SOP.en.md)
+-   [SOC Communication SOP](../06_Operations_Management/Communication_SOP.en.md)
 -   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
