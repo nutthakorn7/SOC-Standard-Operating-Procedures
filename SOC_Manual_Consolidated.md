@@ -923,6 +923,131 @@ A standardized handoff ensures no incident falls through the cracks. The outgoin
 
 ---
 
+## File: 06_Operations_Management/Threat_Intelligence_Lifecycle.en.md
+
+# Threat Intelligence Lifecycle (CTI)
+
+**Version**: 1.0
+**Owner**: CTI Analyst / SOC Manager
+
+## 1. Overview
+Cyber Threat Intelligence (CTI) is the process of collecting, analyzing, and disseminating information about current and potential attacks. This standard ensures our SOC moves from "Reactive" to "Proactive".
+
+```mermaid
+graph TD
+    Direction[1. Direction] --> Collection[2. Collection]
+    Collection --> Processing[3. Processing]
+    Processing --> Analysis[4. Analysis]
+    Analysis --> Dissemination[5. Dissemination]
+    Dissemination --> Feedback[6. Feedback]
+    Feedback --> Direction
+```
+
+## 2. Phases
+
+### Phase 1: Direction (Requirement)
+-   **Goal**: Define what we are protecting and what questions we need answered.
+-   **Key Intelligence Questions (KIQs)**:
+    -   "Is the new 'ABC Ransomware' targeting our industry?"
+    -   "Do we have exposure to the CVE-2026-XXXX vulnerability?"
+
+### Phase 2: Collection
+-   **Internal Sources**: SIEM Logs, Incident Tickets, EDR Alerts.
+-   **External Sources**:
+    -   **Open Source (OSINT)**: Twitter, Blogs, CISA Alerts.
+    -   **Commercial Feeds**: Vendor reports, Paid API feeds.
+    -   **Communities**: ISACs, CERTs, Trusted Partner Peers.
+
+### Phase 3: Processing
+-   **Normalization**: Converting raw data (PDFs, Tweets) into standard formats (STIX/TAXII, CSV).
+-   **Validation**: Confirming that an Indicator of Compromise (IoC) is valid and not a False Positive (e.g., verifying a "malicious IP" isn't actually Google DNS).
+
+### Phase 4: Analysis
+-   **Contextualization**: Adding "So What?".
+    -   *Raw Data*: "IP 1.2.3.4 is bad."
+    -   *Intelligence*: "IP 1.2.3.4 is a C2 server for APT29 targeting Banks. We are a Bank. Severity = Critical."
+
+### Phase 5: Dissemination
+-   **Tactical**: IoCs sent to SIEM/Firewall for blocking (TLP:GREEN).
+-   **Operational**: Reports sent to SOC Manager for awareness (TLP:AMBER).
+-   **Strategic**: Trend reports sent to CISO/Board (TLP:CLEAR/WHITE).
+
+### Phase 6: Feedback
+-   **Review**: Did the intel help? Did it cause false positives?
+-   **Action**: Tune sources or refine requirements.
+
+## 3. IoC Management Policy
+All Indicators of Compromise (IoCs) must go through the **Review Process** before blocking:
+1.  Analyst collects IoC.
+2.  Analyst checks reputation (VirusTotal / internal logs).
+3.  Analyst updates reference list in SIEM (Test Mode).
+4.  If stable > 24 hours, move to Block Mode.
+
+
+---
+
+## File: 06_Operations_Management/Threat_Intelligence_Lifecycle.th.md
+
+# วงจรข่าวกรองภัยคุกคาม (Threat Intelligence Lifecycle)
+
+**เวอร์ชัน**: 1.0
+**ผู้รับผิดชอบ**: CTI Analyst / SOC Manager
+
+## 1. ภาพรวม
+Cyber Threat Intelligence (CTI) คือกระบวนการรวบรวม วิเคราะห์ และแจกจ่ายข้อมูลเกี่ยวกับภัยคุกคาม เพื่อให้ SOC สามารถป้องกันตนเองได้ก่อนที่จะเกิดเหตุ (Proactive)
+
+```mermaid
+graph TD
+    Direction[1. กำหนดทิศทาง] --> Collection[2. รวบรวมข้อมูล]
+    Collection --> Processing[3. ประมวลผล]
+    Processing --> Analysis[4. วิเคราะห์]
+    Analysis --> Dissemination[5. แจกจ่าย]
+    Dissemination --> Feedback[6. ข้อเสนอแนะ]
+    Feedback --> Direction
+```
+
+## 2. ขั้นตอนการทำงาน (Phases)
+
+### Phase 1: Direction (กำหนดโจทย์)
+-   **เป้าหมาย**: ระบุว่าเราต้องการรู้อะไร?
+-   **คำถามหลัก (KIQs)**:
+    -   "กลุ่มแฮกเกอร์ ABC กำลังโจมตีธุรกิจประเภทเดียวกับเราหรือไม่?"
+    -   "เรามีความเสี่ยงต่อช่องโหว่ใหม่ CVE-2026-XXXX หรือไม่?"
+
+### Phase 2: Collection (รวบรวม)
+-   **แหล่งภายใน**: SIEM Logs, เคสเก่าๆ
+-   **แหล่งภายนอก**:
+    -   **OSINT**: Twitter, ข่าวความปลอดภัย, CISA
+    -   **Commercial**: Feed ที่เสียเงินซื้อ
+    -   **Communities**: กลุ่ม ThaiCERT, TB-CERT
+
+### Phase 3: Processing (ประมวลผล)
+-   **จัดระเบียบ**: แปลงข้อมูลจากข่าว/PDF ให้เป็น Format ที่คอมพิวเตอร์อ่านได้ (STIX, CSV)
+-   **ตรวจสอบ**: ยืนยันว่าข้อมูลถูกต้อง (Validation) เพื่อลด False Positive
+
+### Phase 4: Analysis (วิเคราะห์)
+-   **การให้บริบท**: เปลี่ยน "ข้อมูลดิบ" เป็น "ข่าวกรอง"
+    -   *ข้อมูลดิบ*: "IP 1.2.3.4 เป็นอันตราย"
+    -   *ข่าวกรอง*: "IP 1.2.3.4 เป็น C2 ของ APT29 ที่เล็งเป้าธนาคาร และเราเป็นธนาคาร ดังนั้นความเสี่ยง = สูงมาก"
+
+### Phase 5: Dissemination (แจกจ่าย)
+-   **Tactical**: ส่ง IP/Hash ลง SIEM/Firewall เพื่อบล็อก (TLP:GREEN)
+-   **Operational**: ส่งรายงานให้หัวหน้าทีม SOC (TLP:AMBER)
+-   **Strategic**: ส่งสรุปแนวโน้มให้ผู้บริหาร (TLP:CLEAR/WHITE)
+
+### Phase 6: Feedback (ปรับปรุง)
+-   **ทบทวน**: ข่าวกรองที่ได้มามีประโยชน์ไหม? แจ้งเตือนมั่วซั่วหรือไม่?
+
+## 3. นโยบายการจัดการ IoC
+Indicators of Compromise (IoCs) ทุกตัวต้องผ่านกระบวนการตรวจสอบก่อนบล็อก:
+1.  Analyst รวบรวม IoC
+2.  ตรวจสอบค่าชื่อเสียง (Reputation Check)
+3.  ใส่ใน SIEM ระบบ Test Mode (Monitor Only)
+4.  ถ้าไม่มี False Positive นาน 24 ชม. จึงเปิด Block Mode
+
+
+---
+
 ## File: 03_User_Guides/Content_Management.en.md
 
 # Detection Engineering Lifecycle

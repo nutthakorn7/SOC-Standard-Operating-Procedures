@@ -57,6 +57,7 @@ nav:
     - 'SOC Metrics': 06_Operations_Management/SOC_Metrics.en.md
     - 'Data Protocol (TLP)': 06_Operations_Management/Data_Handling_Protocol.en.md
     - 'Maturity (SOC-CMM)': 06_Operations_Management/SOC_Assessment_Checklist.en.md
+    - 'Threat Intelligence (CTI)': 06_Operations_Management/Threat_Intelligence_Lifecycle.en.md
   - Incident Response:
     - 'Framework': 05_Incident_Response/Framework.en.md
     - 'Playbooks':
