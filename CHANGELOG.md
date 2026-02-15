@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.4.0] - 2026-02-16
+
+### Added
+- **TRAINING.md** — Comprehensive 6-course training catalog with modules, labs, outcomes, deliverables
+- **CONTRIBUTING.md** — Contribution guide with document standards, naming conventions, checklist
+- README dynamic badges (Stars, Last Commit, CI Status, Docs, Training)
+- Personal brand section (About the Author, services, contact badges)
+
+### Changed
+- Updated `mkdocs.yml` site_author to personal name
+- Added Training Course Catalog to mkdocs navigation
+
+---
+
 ## [2.3.0] - 2026-02-16
 
 ### Added

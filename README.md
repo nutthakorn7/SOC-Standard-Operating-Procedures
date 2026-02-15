@@ -16,6 +16,14 @@
   <img src="https://img.shields.io/badge/🌐_Bilingual-EN%2FTH-green?style=for-the-badge" alt="Bilingual">
 </p>
 
+<p align="center">
+  <a href="https://github.com/nutthakorn7/SOC-SOP/stargazers"><img src="https://img.shields.io/github/stars/nutthakorn7/SOC-SOP?style=flat-square&logo=github&label=Stars" alt="Stars"></a>
+  <a href="https://github.com/nutthakorn7/SOC-SOP/commits/main"><img src="https://img.shields.io/github/last-commit/nutthakorn7/SOC-SOP?style=flat-square&logo=github&label=Last%20Commit" alt="Last Commit"></a>
+  <a href="https://github.com/nutthakorn7/SOC-SOP/actions/workflows/docs-ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/nutthakorn7/SOC-SOP/docs-ci.yml?style=flat-square&logo=githubactions&label=CI" alt="CI"></a>
+  <a href="https://nutthakorn7.github.io/SOC-SOP/"><img src="https://img.shields.io/badge/📖_Docs-Live-brightgreen?style=flat-square" alt="Docs"></a>
+  <a href="TRAINING.md"><img src="https://img.shields.io/badge/🎓_Training-Course_Catalog-purple?style=flat-square" alt="Training"></a>
+</p>
+
 ---
 
 ## 📍 Start Here / เริ่มต้นที่นี่
@@ -353,7 +361,7 @@ For offline reading or printing, download the consolidated manual:
 |:---|:---|
 | **[📝 CHANGELOG.md](CHANGELOG.md)** | All changes by version (Keep a Changelog format) |
 | **[📋 VERSION_TRACKER.md](VERSION_TRACKER.md)** | Every document's version, last update, and next review date |
-| **Current Version** | **v2.3.0** (2026-02-16) |
+| **Current Version** | **v2.4.0** (2026-02-16) |
 
 ---
 
