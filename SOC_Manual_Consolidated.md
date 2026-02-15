@@ -70,7 +70,7 @@ SOCSOP/
 | English docs end with `.en.md` | `Phishing.en.md` |
 | Thai docs end with `.th.md` | `Phishing.th.md` |
 | Bilingual docs **always** come in pairs (EN + TH) | `Framework.en.md` + `Framework.th.md` |
-| Language-neutral docs use plain `.md` | `Atomic_Test_Map.md`, `README.md` |
+| Language-neutral docs use plain `.md` | `README.md` |
 | Use `PascalCase_With_Underscores` for filenames | `SOC_Team_Structure.en.md` |
 | Detection rules use lowercase with underscores | `win_multiple_failed_logins.yml` |
 | YARA rules use lowercase with underscores | `ransomware_extensions.yar` |
@@ -419,7 +419,7 @@ SOCSOP/
 | English docs end with `.en.md` | `Phishing.en.md` |
 | Thai docs end with `.th.md` | `Phishing.th.md` |
 | Bilingual docs **always** come in pairs (EN + TH) | `Framework.en.md` + `Framework.th.md` |
-| Language-neutral docs use plain `.md` | `Atomic_Test_Map.md`, `README.md` |
+| Language-neutral docs use plain `.md` | `README.md` |
 | Use `PascalCase_With_Underscores` for filenames | `SOC_Team_Structure.en.md` |
 | Detection rules use lowercase with underscores | `win_multiple_failed_logins.yml` |
 | YARA rules use lowercase with underscores | `ransomware_extensions.yar` |
@@ -4195,10 +4195,10 @@ This template defines the metrics and visualizations for a SOC executive dashboa
 
 ## Related Documents
 
-- [SOC Metrics & KPIs](SOC_Metrics.en.md)
+- [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
 - [Monthly SOC Report Template](../11_Reporting_Templates/Monthly_SOC_Report.en.md)
 - [Quarterly Business Review](../11_Reporting_Templates/Quarterly_Business_Review.en.md)
-- [SLA Template](SLA_Template.en.md)
+- [SLA Template](../06_Operations_Management/SLA_Template.en.md)
 
 
 ---
@@ -6137,9 +6137,9 @@ Business Unit Head:  _________________________ Date: ___________
 
 ## Related Documents
 
-- [Severity Matrix](Severity_Matrix.en.md)
+- [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
 - [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md)
-- [Communication Templates](Communication_Templates.en.md)
+- [Communication Templates](../05_Incident_Response/Communication_Templates.en.md)
 - [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md)
 
 
@@ -6570,11 +6570,11 @@ graph LR
 
 ## Related Documents
 
-- [Tier 1 Runbook](Tier1_Runbook.en.md)
+- [Tier 1 Runbook](../05_Incident_Response/Tier1_Runbook.en.md)
 - [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md)
 - [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md)
-- [Tabletop Exercises](Tabletop_Exercises.en.md)
-- [Purple Team Exercises](Purple_Team_Exercises.en.md)
+- [Tabletop Exercises](../05_Incident_Response/Tabletop_Exercises.en.md)
+- [Purple Team Exercises](../05_Incident_Response/Purple_Team_Exercises.en.md)
 
 
 ---
@@ -7477,9 +7477,9 @@ CommonSecurityLog
 ## Related Documents
 
 - [Detection Rules (Sigma)](../07_Detection_Rules/README.md)
-- [SOAR Playbook Templates](SOAR_Playbooks.en.md)
+- [SOAR Playbook Templates](../05_Incident_Response/SOAR_Playbooks.en.md)
 - [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.en.md)
-- [IOC Enrichment Sub-Playbook](SOAR_Playbooks.en.md#6-ioc-enrichment)
+- [IOC Enrichment Sub-Playbook](../05_Incident_Response/SOAR_Playbooks.en.md#6-ioc-enrichment)
 
 
 ---
@@ -16428,7 +16428,7 @@ graph LR
 - [ ] Implement all 20 Playbooks from this repository
 - [ ] Hire Tier 2 Incident Responders
 - [ ] Set up EDR on all endpoints
-- [ ] Conduct first Purple Team exercise ([Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md))
+- [ ] Conduct first Purple Team exercise ([Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md))
 - [ ] Implement SOC KPIs: MTTD, MTTR, False Positive Rate
 - [ ] Begin monthly executive reporting
 
@@ -16478,7 +16478,7 @@ This repository contains everything you need to operate a SOC. Here's the recomm
 | 6 | 🔍 Deploy detection rules | [Detection Rules](../07_Detection_Rules/) |
 | 7 | ⏰ Set up shift operations | [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md) |
 | 8 | 📊 Measure your KPIs | [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md) |
-| 9 | 🎯 Run simulations | [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md) |
+| 9 | 🎯 Run simulations | [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md) |
 | 10 | 🎓 Train new analysts | [Analyst Onboarding Path](../09_Training_Onboarding/Analyst_Onboarding_Path.en.md) |
 
 ## Related Documents
@@ -16647,7 +16647,7 @@ graph LR
 - [ ] ใช้ Playbook ทั้ง 20 ชุดจาก Repository นี้
 - [ ] จ้าง Tier 2 Incident Responders
 - [ ] ติดตั้ง EDR บนทุก Endpoint
-- [ ] จัด Purple Team ครั้งแรก ([Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md))
+- [ ] จัด Purple Team ครั้งแรก ([Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md))
 - [ ] เริ่มวัด KPI: MTTD, MTTR, False Positive Rate
 - [ ] ส่งรายงานรายเดือนให้ผู้บริหาร
 
@@ -16695,7 +16695,7 @@ graph LR
 | 6 | 🔍 Deploy Detection Rules | [Detection Rules](../07_Detection_Rules/) |
 | 7 | ⏰ จัดระบบกะ | [มาตรฐานส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md) |
 | 8 | 📊 วัด KPI | [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md) |
-| 9 | 🎯 จำลองการโจมตี | [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md) |
+| 9 | 🎯 จำลองการโจมตี | [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md) |
 | 10 | 🎓 ฝึกอบรม Analyst ใหม่ | [หลักสูตร Analyst](../09_Training_Onboarding/Analyst_Onboarding_Path.th.md) |
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
@@ -17254,34 +17254,34 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 ### For ISO 27001 Auditors
 
 > "Show me your incident response procedures."  
-→ [IR Framework](05_Incident_Response/Framework.en.md) + [Severity Matrix](05_Incident_Response/Severity_Matrix.en.md) + any Playbook (PB-01 to PB-30)
+→ [IR Framework](../05_Incident_Response/Framework.en.md) + [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md) + any Playbook (PB-01 to PB-30)
 
 > "Show me your monitoring and detection capabilities."  
-→ [Detection Rules Index](07_Detection_Rules/README.md) (33 Sigma rules) + [MITRE ATT&CK Heatmap](tools/mitre_attack_heatmap.html)
+→ [Detection Rules Index](../07_Detection_Rules/README.md) (33 Sigma rules) + [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
 
 > "Show me evidence of incident learning."  
-→ [Post-Incident Review section](05_Incident_Response/Framework.en.md) in all playbooks
+→ [Post-Incident Review section](../05_Incident_Response/Framework.en.md) in all playbooks
 
 ### For PCI DSS QSA
 
 > "Requirement 10.6.1 — Daily log reviews?"  
-→ [SOC Metrics & KPIs](06_Operations_Management/SOC_Metrics.en.md) + 24/7 monitoring procedures
+→ [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md) + 24/7 monitoring procedures
 
 > "Requirement 12.10.1 — Incident response plan?"  
-→ [IR Framework](05_Incident_Response/Framework.en.md) + [Severity Matrix](05_Incident_Response/Severity_Matrix.en.md)
+→ [IR Framework](../05_Incident_Response/Framework.en.md) + [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
 
 > "Requirement 11.5.1 — Intrusion detection?"  
-→ [33 Sigma Detection Rules](07_Detection_Rules/README.md) with MITRE ATT&CK mapping
+→ [33 Sigma Detection Rules](../07_Detection_Rules/README.md) with MITRE ATT&CK mapping
 
 ---
 
 ## Related Documents
 
-- [IR Framework](05_Incident_Response/Framework.en.md)
-- [Severity Matrix](05_Incident_Response/Severity_Matrix.en.md)
-- [Detection Rules Index](07_Detection_Rules/README.md)
-- [MITRE ATT&CK Heatmap](tools/mitre_attack_heatmap.html)
-- [SOC Maturity Scorer](tools/soc_maturity_scorer.html)
+- [IR Framework](../05_Incident_Response/Framework.en.md)
+- [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
+- [Detection Rules Index](../07_Detection_Rules/README.md)
+- [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
+- [SOC Maturity Scorer](../tools/soc_maturity_scorer.html)
 
 ## References
 
@@ -17632,10 +17632,10 @@ Maintain a register of all data breaches (required by PDPA):
 
 ## Related Documents
 
-- [IR Framework](Framework.en.md)
-- [Evidence Collection](Evidence_Collection.en.md)
-- [Communication Templates](Communication_Templates.en.md)
-- [Lessons Learned Template](Lessons_Learned_Template.en.md)
+- [IR Framework](../05_Incident_Response/Framework.en.md)
+- [Evidence Collection](../05_Incident_Response/Evidence_Collection.en.md)
+- [Communication Templates](../05_Incident_Response/Communication_Templates.en.md)
+- [Lessons Learned Template](../05_Incident_Response/Lessons_Learned_Template.en.md)
 - [Compliance Mapping](../10_Compliance/Compliance_Mapping.en.md)
 
 
@@ -17858,8 +17858,8 @@ gantt
 **Goal**: Prove your skills by defending against a simulated attack.
 
 -   **Day 1: Testing Tools**
-    -   Read: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md).
-    -   Read: [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.md).
+    -   Read: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md).
+    -   Read: [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md).
 -   **Day 2: Final Exam (Drill)**
     -   Task: Run `Invoke-AtomicTest T1059.001` (Phishing Simulation) in the Test Lab.
     -   Task: Triage the alert in SIEM.
@@ -17868,7 +17868,7 @@ gantt
 ## Related Documents
 -   [Training Checklist](Training_Checklist.en.md)
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
--   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md)
+-   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
 
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
@@ -17943,8 +17943,8 @@ gantt
 **เป้าหมาย**: พิสูจน์ทักษะของคุณโดยการป้องกันการโจมตีจำลอง
 
 -   **วันที่ 1: เครื่องมือทดสอบ**
-    -   อ่าน: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md)
-    -   อ่าน: [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.md)
+    -   อ่าน: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
+    -   อ่าน: [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md)
 -   **วันที่ 2: การสอบปฏิบัติ (Drill)**
     -   งาน: รัน `Invoke-AtomicTest T1059.001` (Phishing Simulation) ในห้อง Lab
     -   งาน: Triage Alert ใน SIEM
@@ -17953,7 +17953,7 @@ gantt
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [Training Checklist](Training_Checklist.th.md)
 -   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
--   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.md)
+-   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.en.md)
 
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
@@ -17996,7 +17996,7 @@ gantt
 
 ## Related Documents
 -   [Analyst Onboarding Path](Analyst_Onboarding_Path.en.md)
--   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md)
+-   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
 -   [Incident Report Template](../templates/incident_report.en.md)
 
 ## References
@@ -18040,7 +18040,7 @@ gantt
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [เส้นทางการเตรียมความพร้อม Analyst](Analyst_Onboarding_Path.th.md)
--   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.md)
+-   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.en.md)
 -   [แบบฟอร์มรายงาน Incident](../templates/incident_report.th.md)
 
 ## References
@@ -18050,7 +18050,7 @@ gantt
 
 ---
 
-## File: 08_Simulation_Testing/Atomic_Test_Map.md
+## File: 08_Simulation_Testing/Atomic_Test_Map.en.md
 
 # Atomic Red Team Mapping (Validation)
 
@@ -18095,7 +18095,7 @@ graph LR
 4.  Follow the Playbook: Did the steps work?
 
 ## Related Documents
--   [Simulation & Purple Teaming Guide](Simulation_Guide.md)
+-   [Simulation & Purple Teaming Guide](Simulation_Guide.en.md)
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
 -   [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md)
 
@@ -18161,7 +18161,7 @@ graph LR
 
 ---
 
-## File: 08_Simulation_Testing/Simulation_Guide.md
+## File: 08_Simulation_Testing/Simulation_Guide.en.md
 
 # Simulation & Purple Teaming Guide
 
@@ -18213,7 +18213,7 @@ Recommended Validation Schedule:
 -   **Quarterly**: Full Chain simulation (Phishing -> Lateral Mov -> Exfil).
 
 ## Related Documents
--   [Atomic Test Map](Atomic_Test_Map.md)
+-   [Atomic Test Map](Atomic_Test_Map.en.md)
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
 -   [Detection Engineering Lifecycle](../03_User_Guides/Content_Management.en.md)
 
@@ -18274,6 +18274,6 @@ Invoke-AtomicTest T1059.001
 - **รายไตรมาส**: จำลอง full chain (Phishing → Lateral Mov → Exfil)
 
 ## เอกสารที่เกี่ยวข้อง
-- [Atomic Test Map](Atomic_Test_Map.md)
+- [Atomic Test Map](Atomic_Test_Map.en.md)
 - [IR Framework](../05_Incident_Response/Framework.th.md)
 - [Detection Engineering](../03_User_Guides/Content_Management.th.md)

@@ -30,7 +30,7 @@
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [เส้นทางการเตรียมความพร้อม Analyst](Analyst_Onboarding_Path.th.md)
--   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.md)
+-   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.en.md)
 -   [แบบฟอร์มรายงาน Incident](../templates/incident_report.th.md)
 
 ## References

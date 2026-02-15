@@ -30,7 +30,7 @@
 
 ## Related Documents
 -   [Analyst Onboarding Path](Analyst_Onboarding_Path.en.md)
--   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md)
+-   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
 -   [Incident Report Template](../templates/incident_report.en.md)
 
 ## References

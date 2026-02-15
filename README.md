@@ -123,8 +123,8 @@ Validate your SOC's readiness by running simulated attacks mapped to our Playboo
 
 | Document | Description |
 | :--- | :--- |
-| **[Atomic_Test_Map.md](08_Simulation_Testing/Atomic_Test_Map.md)** | Mapping of PB-01...PB-20 to MITRE Atomic Red Team tests. |
-| **[Simulation_Guide.md](08_Simulation_Testing/Simulation_Guide.md)** | Guide on how to run Purple Team exercises. |
+| **[Atomic_Test_Map.en.md](08_Simulation_Testing/Atomic_Test_Map.en.md)** | Mapping of PB-01...PB-20 to MITRE Atomic Red Team tests. |
+| **[Simulation_Guide.en.md](08_Simulation_Testing/Simulation_Guide.en.md)** | Guide on how to run Purple Team exercises. |
 
 ## 📂 Training & Onboarding / การฝึกอบรม
 

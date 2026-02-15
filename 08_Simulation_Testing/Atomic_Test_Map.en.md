@@ -41,7 +41,7 @@ graph LR
 4.  Follow the Playbook: Did the steps work?
 
 ## Related Documents
--   [Simulation & Purple Teaming Guide](Simulation_Guide.md)
+-   [Simulation & Purple Teaming Guide](Simulation_Guide.en.md)
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
 -   [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md)
 

@@ -48,7 +48,7 @@ Recommended Validation Schedule:
 -   **Quarterly**: Full Chain simulation (Phishing -> Lateral Mov -> Exfil).
 
 ## Related Documents
--   [Atomic Test Map](Atomic_Test_Map.md)
+-   [Atomic Test Map](Atomic_Test_Map.en.md)
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
 -   [Detection Engineering Lifecycle](../03_User_Guides/Content_Management.en.md)
 

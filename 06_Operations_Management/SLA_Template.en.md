@@ -151,7 +151,7 @@ Business Unit Head:  _________________________ Date: ___________
 
 ## Related Documents
 
-- [Severity Matrix](Severity_Matrix.en.md)
+- [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
 - [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md)
-- [Communication Templates](Communication_Templates.en.md)
+- [Communication Templates](../05_Incident_Response/Communication_Templates.en.md)
 - [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md)

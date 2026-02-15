@@ -193,8 +193,8 @@ Maintain a register of all data breaches (required by PDPA):
 
 ## Related Documents
 
-- [IR Framework](Framework.en.md)
-- [Evidence Collection](Evidence_Collection.en.md)
-- [Communication Templates](Communication_Templates.en.md)
-- [Lessons Learned Template](Lessons_Learned_Template.en.md)
+- [IR Framework](../05_Incident_Response/Framework.en.md)
+- [Evidence Collection](../05_Incident_Response/Evidence_Collection.en.md)
+- [Communication Templates](../05_Incident_Response/Communication_Templates.en.md)
+- [Lessons Learned Template](../05_Incident_Response/Lessons_Learned_Template.en.md)
 - [Compliance Mapping](../10_Compliance/Compliance_Mapping.en.md)

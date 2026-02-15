@@ -46,6 +46,6 @@ Invoke-AtomicTest T1059.001
 - **รายไตรมาส**: จำลอง full chain (Phishing → Lateral Mov → Exfil)
 
 ## เอกสารที่เกี่ยวข้อง
-- [Atomic Test Map](Atomic_Test_Map.md)
+- [Atomic Test Map](Atomic_Test_Map.en.md)
 - [IR Framework](../05_Incident_Response/Framework.th.md)
 - [Detection Engineering](../03_User_Guides/Content_Management.th.md)

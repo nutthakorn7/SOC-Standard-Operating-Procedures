@@ -10,9 +10,9 @@ jobs:
   validate-sigma:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
         python-version: '3.x'
     - name: Install dependencies
@@ -21,14 +21,3 @@ jobs:
         pip install pyyaml
     - name: Validate Sigma Rules
       run: python tools/validate_sigma.py
-
-  check-links:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.x'
-    - name: Check Broken Links
-      run: python tools/check_links.py

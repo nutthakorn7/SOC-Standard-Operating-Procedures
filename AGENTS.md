@@ -60,7 +60,7 @@ SOCSOP/
 | English docs end with `.en.md` | `Phishing.en.md` |
 | Thai docs end with `.th.md` | `Phishing.th.md` |
 | Bilingual docs **always** come in pairs (EN + TH) | `Framework.en.md` + `Framework.th.md` |
-| Language-neutral docs use plain `.md` | `Atomic_Test_Map.md`, `README.md` |
+| Language-neutral docs use plain `.md` | `README.md` |
 | Use `PascalCase_With_Underscores` for filenames | `SOC_Team_Structure.en.md` |
 | Detection rules use lowercase with underscores | `win_multiple_failed_logins.yml` |
 | YARA rules use lowercase with underscores | `ransomware_extensions.yar` |

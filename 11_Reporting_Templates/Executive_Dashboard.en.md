@@ -135,7 +135,7 @@ This template defines the metrics and visualizations for a SOC executive dashboa
 
 ## Related Documents
 
-- [SOC Metrics & KPIs](SOC_Metrics.en.md)
+- [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
 - [Monthly SOC Report Template](../11_Reporting_Templates/Monthly_SOC_Report.en.md)
 - [Quarterly Business Review](../11_Reporting_Templates/Quarterly_Business_Review.en.md)
-- [SLA Template](SLA_Template.en.md)
+- [SLA Template](../06_Operations_Management/SLA_Template.en.md)

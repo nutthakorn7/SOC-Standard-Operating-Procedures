@@ -1,8 +1,8 @@
 site_name: SOC Standard Operating Procedures
 site_description: Vendor-agnostic SOC Standard Operating Procedures — Bilingual (EN/TH)
 site_author: Cyber Defense (cyberdefense.co.th)
-site_url: https://nutthakorn7.github.io/SOC-Standard-Operating-Procedures/
-repo_url: https://github.com/nutthakorn7/SOC-Standard-Operating-Procedures
+site_url: https://nutthakorn7.github.io/SOC-SOP/
+repo_url: https://github.com/nutthakorn7/SOC-SOP
 repo_name: SOC-SOP
 docs_dir: docs
 site_dir: site
@@ -239,9 +239,9 @@ nav:
     - PDPA Incident Response: 10_Compliance/PDPA_Incident_Response.en.md
     - ตอบเหตุ PDPA (TH): 10_Compliance/PDPA_Incident_Response.th.md
   - 🎯 Testing & Training:
-    - Simulation Guide: 08_Simulation_Testing/Simulation_Guide.md
+    - Simulation Guide: 08_Simulation_Testing/Simulation_Guide.en.md
     - คู่มือ Simulation (TH): 08_Simulation_Testing/Simulation_Guide.th.md
-    - Atomic Test Map: 08_Simulation_Testing/Atomic_Test_Map.md
+    - Atomic Test Map: 08_Simulation_Testing/Atomic_Test_Map.en.md
     - ตาราง Atomic Test (TH): 08_Simulation_Testing/Atomic_Test_Map.th.md
     - Analyst Onboarding: 09_Training_Onboarding/Analyst_Onboarding_Path.en.md
     - หลักสูตร Analyst (TH): 09_Training_Onboarding/Analyst_Onboarding_Path.th.md
