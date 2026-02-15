@@ -1293,6 +1293,178 @@ graph LR
 
 ---
 
+## File: 05_Incident_Response/Playbooks/AWS_EC2_Compromise.en.md
+
+# Incident Response Playbook: AWS EC2 Compromise
+
+**ID**: PB-22
+**Severity**: Critical
+**TLP**: AMBER
+
+## 1. Detection
+-   **Trigger**: GuardDuty finding `CryptoCurrency:EC2/BitcoinTool`.
+-   **Trigger**: Abnormal CPU Usage (100% flatline).
+-   **Trigger**: Outbound connection to known C2 IP.
+
+## 2. Analysis
+-   [ ] **Verify Instance**: Identify Instance ID, Region, and Owner tag.
+-   [ ] **Isolate Logic**: Is this a production web server or a dev box?
+-   [ ] **Inspect Netflow**: Check VPC Flow Logs. Is it talking to a mining pool?
+
+## 3. Containment
+-   [ ] **Snapshot**: Create an EBS Snapshot for forensics.
+-   [ ] **Isolate**: Attach a restrictive Security Group (Deny All Inbound/Outbound, allow only Forensics IP).
+-   [ ] **Deregister**: Remove from Auto Scaling Group (ASG) and Load Balancer (ELB).
+
+## 4. Eradication
+-   [ ] **Terminate**: If stateless, terminate the instance.
+-   [ ] **Rebuild**: Redeploy from a clean, patched AMI (Golden Image).
+-   [ ] **Patch**: Fix the vulnerability that allowed entry (e.g., SSH open to world).
+
+## 5. Recovery
+-   [ ] **Validate**: Scan the new instance for vulnerabilities.
+-   [ ] **Restore**: Add back to Load Balancer.
+
+## 6. Root Cause Analysis (VERIS)
+-   **Actor**: [External]
+-   **Action**: [Malware / Hacking]
+-   **Asset**: [EC2 Instance]
+-   **Attribute**: [Integrity / Availability]
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/AWS_EC2_Compromise.th.md
+
+# Incident Response Playbook: เครื่อง AWS EC2 ถูกขุดเหมือง/ควบคุม (AWS EC2 Compromise)
+
+**ID**: PB-22
+**ความรุนแรง**: วิกฤต (Critical)
+**TLP**: AMBER
+
+## 1. การตรวจจับ (Detection)
+-   **Trigger**: GuardDuty แจ้งเตือน `CryptoCurrency:EC2/BitcoinTool`
+-   **Trigger**: CPU พุ่งสูงผิดปกติ (100% ตลอดเวลา)
+-   **Trigger**: การเชื่อมต่อออกไปยัง C2 Server ที่รู้จัก
+
+## 2. การวิเคราะห์ (Analysis)
+-   [ ] **ระบุเครื่อง**: หา Instance ID, Region, และเจ้าของเครื่อง
+-   [ ] **แยกแยะ**: เป็น Web Server ขายของ หรือเครื่อง Test?
+-   [ ] **ดู Flow**: เช็ค VPC Flow Logs ว่ามีการคุยกับ Mining Pool หรือไม่?
+
+## 3. การจำกัดวง (Containment)
+-   [ ] **Snapshot**: สำรองข้อมูล EBS Snapshot ทันทีเพื่อเก็บหลักฐาน
+-   [ ] **กักกัน**: เปลี่ยน Security Group ให้ Block All Inbound/Outbound (ยกเว้น IP ของทีม Forensics)
+-   [ ] **ตัดออก**: ถอดออกจาก Auto Scaling Group (ASG) และ Load Balancer (ELB)
+
+## 4. การกำจัดภัย (Eradication)
+-   [ ] **ทำลาย**: หากเป็นเครื่อง Stateless ให้ Terminate ทิ้งทันที
+-   [ ] **สร้างใหม่**: Deploy ใหม่จาก Image ต้นฉบับที่สะอาด (Golden Image)
+-   [ ] **อุดช่องโหว่**: แก้ไขจุดที่แฮกเกอร์เข้า (เช่น ปิด Port SSH ที่เปิด Public)
+
+## 5. การกู้คืน (Recovery)
+-   [ ] **ตรวจสอบ**: Scan ช่องโหว่เครื่องใหม่ก่อนใช้งานจริง
+-   [ ] **คืนสภาพ**: นำกลับเข้า Load Balancer
+
+## 6. วิเคราะห์สาเหตุ (VERIS)
+-   **ผู้กระทำ**: [External]
+-   **การกระทำ**: [Malware / Hacking]
+-   **สินทรัพย์**: [EC2 Instance]
+-   **ผลกระทบ**: [Integrity / Availability]
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/AWS_S3_Compromise.en.md
+
+# Incident Response Playbook: AWS S3 Bucket Compromise
+
+**ID**: PB-21
+**Severity**: High
+**TLP**: AMBER
+
+## 1. Detection
+-   **Trigger**: CloudTrail alerts for `PutBucketPolicy` allowing public access.
+-   **Trigger**: GuardDuty finding `S3/PublicAccess`.
+-   **Trigger**: Massive data egress from a specific bucket.
+
+## 2. Analysis
+-   [ ] **Verify Config**: Check bucket permissions in AWS Console > S3.
+    -   Is "Block Public Access" turned off?
+    -   Is there a Bucket Policy allowing `"Principal": "*"`?
+-   [ ] **Review Access Logs**:
+    -   Who modified the policy? (Identify IAM User/Role).
+    -   What IP address made the change?
+    -   Did any external IP download data? (List objects accessed).
+
+## 3. Containment
+-   [ ] **Block Access**: Immediately enable "Block Public Access" at the account or bucket level.
+-   [ ] **Quarantine IAM**: Disable the IAM User/Role keys that made the change.
+-   [ ] **Tag Resources**: Tag the bucket as `Compromised` for forensic review.
+
+## 4. Eradication
+-   [ ] **Revert Policy**: Restore the known-good Bucket Policy (Infrastructure as Code).
+-   [ ] **Rotate Credentials**: Rotate Access Keys for the affected IAM user.
+
+## 5. Recovery
+-   [ ] **Validate**: Confirm public access is blocked via AWS Config.
+-   [ ] **Notify**: Inform Data Privacy Officer if PII was accessed.
+-   [ ] **Monitor**: Watch for re-attempted access for 24 hours.
+
+## 6. Root Cause Analysis (VERIS)
+-   **Actor**: [External / Internal / Partner]
+-   **Action**: [Misconfiguration / Hacking]
+-   **Asset**: [S3 Bucket]
+-   **Attribute**: [Confidentiality]
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/AWS_S3_Compromise.th.md
+
+# Incident Response Playbook: เจาะระบบ AWS S3 (AWS S3 Bucket Compromise)
+
+**ID**: PB-21
+**ความรุนแรง**: สูง (High)
+**TLP**: AMBER
+
+## 1. การตรวจจับ (Detection)
+-   **Trigger**: แจ้งเตือน CloudTrail พบ `PutBucketPolicy` ที่อนุญาต Public Access
+-   **Trigger**: GuardDuty แจ้งเตือน `S3/PublicAccess`
+-   **Trigger**: ปริมาณการดาวน์โหลดข้อมูล (Egress) สูงผิดปกติจาก Bucket
+
+## 2. การวิเคราะห์ (Analysis)
+-   [ ] **ตรวจสอบการตั้งค่า**: ดูสิทธิ์ใน AWS Console > S3
+    -   "Block Public Access" ถูกปิดอยู่หรือไม่?
+    -   Bucket Policy อนุญาต `"Principal": "*"` หรือไม่?
+-   [ ] **ตรวจสอบ Log**:
+    -   ใครเป็นคนแก้ Policy? (ระบุ IAM User/Role)
+    -   IP Address ไหนเป็นคนทำ?
+    -   มี IP ภายนอกเข้ามาดาวน์โหลดไฟล์หรือไม่? (ลิสต์รายการไฟล์ที่โดนดูด)
+
+## 3. การจำกัดวง (Containment)
+-   [ ] **บล็อกทันที**: เปิด "Block Public Access" ที่ระดับ Account หรือ Bucket ทันที
+-   [ ] **ระงับผู้ใช้**: Disable Access Key ของ IAM User/Role ที่ก่อเหตุ
+-   [ ] **ติดป้าย**: Tag Bucket ว่า `Compromised` เพื่อรอตรวจสอบ
+
+## 4. การกำจัดภัย (Eradication)
+-   [ ] **แก้คืน**: นำ Bucket Policy เดิมที่ปลอดภัยกลับมาใช้ (Revert)
+-   [ ] **เปลี่ยนกุญแจ**: Rotate Access Key ของผู้ใช้ที่เกี่ยวข้อง
+
+## 5. การกู้คืน (Recovery)
+-   [ ] **ยืนยันผล**: ใช้ AWS Config ตรวจสอบว่า Public Access ถูกปิดแล้ว
+-   [ ] **แจ้งเตือน**: แจ้งผูดูแลข้อมูลส่วนบุคคล (DPO) หากมีข้อมูลลูกค้าหลุด
+-   [ ] **เฝ้าระวัง**: ดูแลต่อเนื่อง 24 ชม.
+
+## 6. วิเคราะห์สาเหตุ (VERIS)
+-   **ผู้กระทำ**: [External / Internal / Partner]
+-   **การกระทำ**: [Misconfiguration / Hacking]
+-   **สินทรัพย์**: [S3 Bucket]
+-   **ผลกระทบ**: [Confidentiality]
+
+
+---
+
 ## File: 05_Incident_Response/Playbooks/Account_Compromise.en.md
 
 # Playbook: Account Compromise / Unauthorized Access
@@ -1347,6 +1519,86 @@ graph LR
 ## 4. การกู้คืน (Recovery)
 -   [ ] **เปิดใช้งานบัญชี**: คืนสิทธิ์การใช้งาน
 -   [ ] **การเฝ้าระวัง**: เพิ่มชื่อผู้ใช้ในกลุ่ม "High Risk" เพื่อจับตาดูเป็นพิเศษ 48 ชั่วโมง
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Azure_AD_Compromise.en.md
+
+# Incident Response Playbook: Azure AD Identity Risk
+
+**ID**: PB-23
+**Severity**: High
+**TLP**: AMBER
+
+## 1. Detection
+-   **Trigger**: Azure AD Identity Protection alerts ("Impossible Travel", "Unfamiliar Sign-in Properties").
+-   **Trigger**: Sign-in from Tor Exit Node.
+-   **Trigger**: MFA Fatigue (User denies multiple requests, then accepts one).
+
+## 2. Analysis
+-   [ ] **Contact User**: Out-of-band verification (Call/Slack). "Did you just login from Nigeria?"
+-   [ ] **Review Sign-ins**: Check Azure AD Sign-in Logs. Were there failed attempts before the success?
+-   [ ] **Check Device**: Was the device Compliant/Hybrid Joined?
+
+## 3. Containment
+-   [ ] **Revoke Sessions**: In Azure Portal > Users > [User] > "Revoke Sessions".
+-   [ ] **Reset Password**: Force password reset.
+-   [ ] **Disable Account**: If threat is confirmed and active, Block Sign-in.
+
+## 4. Eradication
+-   [ ] **Enforce MFA**: Ensure MFA is enabled and Phishing-Resistant (Number Matching).
+-   [ ] **Scan Device**: Make user run a full AV scan on their endpoint.
+
+## 5. Recovery
+-   [ ] **Unblock**: Restore access after verification.
+-   [ ] **Monitor**: Watch account for 48 hours.
+
+## 6. Root Cause Analysis (VERIS)
+-   **Actor**: [External]
+-   **Action**: [Hacking / Social]
+-   **Asset**: [Person / Cloud Identity]
+-   **Attribute**: [Integrity / Confidentiality]
+
+
+---
+
+## File: 05_Incident_Response/Playbooks/Azure_AD_Compromise.th.md
+
+# Incident Response Playbook: บัญชี Azure AD ถูกยึด (Azure AD Identity Risk)
+
+**ID**: PB-23
+**ความรุนแรง**: สูง (High)
+**TLP**: AMBER
+
+## 1. การตรวจจับ (Detection)
+-   **Trigger**: Azure AD Identity Protection แจ้งเตือน ("Impossible Travel", "Unfamiliar Sign-in")
+-   **Trigger**: ล็อกอินมาจาก Tor Exit Node
+-   **Trigger**: MFA Fatigue (User ปฏิเสธหลายครั้ง แล้วเผลอกดรับหนึ่งครั้ง)
+
+## 2. การวิเคราะห์ (Analysis)
+-   [ ] **ติดต่อเจ้าตัว**: โทรหาหรือแชทถาม "คุณได้ล็อกอินจากไนจีเรียหรือไม่?"
+-   [ ] **ดูประวัติ**: เช็ค Sign-in Logs มีการเดารหัสผิดก่อนหน้านั้นไหม?
+-   [ ] **เช็คอุปกรณ์**: อุปกรณ์ที่ใช้ล็อกอินเป็นของบริษัท (Compliant) หรือไม่?
+
+## 3. การจำกัดวง (Containment)
+-   [ ] **ตัด Session**: ไปที่ Azure Portal > Users > [User] > "Revoke Sessions"
+-   [ ] **รีเซ็ตรหัส**: บังคับ Reset Password ทันที
+-   [ ] **ระงับบัญชี**: ถ้ายังไม่แน่ใจ ให้กด "Block Sign-in" ไว้ก่อน
+
+## 4. การกำจัดภัย (Eradication)
+-   [ ] **บังคับ MFA**: ตรวจสอบว่า MFA เปิดอยู่ และใช้แบบ Number Matching (กันกดพลาด)
+-   [ ] **สแกนเครื่อง**: ให้ User สแกนไวรัสในเครื่องตัวเอง
+
+## 5. การกู้คืน (Recovery)
+-   [ ] **ปลดบล็อก**: คืนสิทธิ์การใช้งานเมื่อปลอดภัย
+-   [ ] **เฝ้าระวัง**: จับตาดูบัญชีนี้เป็นพิเศษ 48 ชม.
+
+## 6. วิเคราะห์สาเหตุ (VERIS)
+-   **ผู้กระทำ**: [External]
+-   **การกระทำ**: [Hacking / Social]
+-   **สินทรัพย์**: [Person / Cloud Identity]
+-   **ผลกระทบ**: [Integrity / Confidentiality]
 
 
 ---

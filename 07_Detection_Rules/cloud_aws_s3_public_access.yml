@@ -1,0 +1,25 @@
+title: AWS S3 Public Access Enabled
+id: cloud_aws_s3_public_access
+status: experimental
+description: Detects when "Block Public Access" is disabled or a bucket policy allows public access.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: aws
+    service: cloudtrail
+detection:
+    selection:
+        eventName: 
+            - PutBucketPublicAccessBlock
+            - PutBucketPolicy
+        requestParameters:
+            PublicAccessBlockConfiguration:
+                BlockPublicAcls: false
+                IgnorePublicAcls: false
+                BlockPublicPolicy: false
+                RestrictPublicBuckets: false
+    condition: selection
+level: high
+tags:
+    - attack.initial_access
+    - attack.exfiltration

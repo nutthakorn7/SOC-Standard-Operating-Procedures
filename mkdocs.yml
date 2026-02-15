@@ -67,6 +67,11 @@ nav:
       - 'PB-04 Brute Force': 05_Incident_Response/Playbooks/Brute_Force.en.md
       - 'PB-05 Account Compromise': 05_Incident_Response/Playbooks/Account_Compromise.en.md
       # ... (Other playbooks would be listed here dynamically by mkdocs if folder is used)
+      - 'PB-19: Lost Device': 05_Incident_Response/Playbooks/Lost_Device.en.md
+      - 'PB-20: Log Clearing': 05_Incident_Response/Playbooks/Log_Clearing.en.md
+      - 'PB-21: AWS S3 Compromise': 05_Incident_Response/Playbooks/AWS_S3_Compromise.en.md
+      - 'PB-22: AWS EC2 Compromise': 05_Incident_Response/Playbooks/AWS_EC2_Compromise.en.md
+      - 'PB-23: Azure AD Risk': 05_Incident_Response/Playbooks/Azure_AD_Compromise.en.md
   - Detection Engineering:
     - 'Lifecycle': 03_User_Guides/Content_Management.en.md
     - 'Integration': 03_User_Guides/Integration_Hub.en.md
