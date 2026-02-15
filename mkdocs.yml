@@ -246,6 +246,8 @@ nav:
     - การเฝ้าระวัง Cloud Security (TH): 06_Operations_Management/Cloud_Security_Monitoring.th.md
     - Insider Threat Program: 06_Operations_Management/Insider_Threat_Program.en.md
     - โปรแกรม Insider Threat (TH): 06_Operations_Management/Insider_Threat_Program.th.md
+    - Vulnerability Management: 06_Operations_Management/Vulnerability_Management.en.md
+    - การจัดการช่องโหว่ (TH): 06_Operations_Management/Vulnerability_Management.th.md
   - 🔧 Guides & Tools:
     - Detection Rules Index: 07_Detection_Rules/README.md
     - ดัชนี Detection Rules (TH): 07_Detection_Rules/README.th.md
@@ -273,6 +275,8 @@ nav:
     - ตาราง Atomic Test (TH): 08_Simulation_Testing/Atomic_Test_Map.th.md
     - Purple Team Exercise Guide: 08_Simulation_Testing/Purple_Team_Exercise.en.md
     - คู่มือ Purple Team (TH): 08_Simulation_Testing/Purple_Team_Exercise.th.md
+    - Phishing Simulation Program: 08_Simulation_Testing/Phishing_Simulation.en.md
+    - โปรแกรมจำลอง Phishing (TH): 08_Simulation_Testing/Phishing_Simulation.th.md
     - Analyst Onboarding: 09_Training_Onboarding/Analyst_Onboarding_Path.en.md
     - หลักสูตร Analyst (TH): 09_Training_Onboarding/Analyst_Onboarding_Path.th.md
     - Training Checklist: 09_Training_Onboarding/Training_Checklist.en.md

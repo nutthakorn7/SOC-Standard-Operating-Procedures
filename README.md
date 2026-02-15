@@ -214,6 +214,7 @@ File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [
 | **🔧 Alert Tuning SOP** (NEW) | [Read](06_Operations_Management/Alert_Tuning.en.md) | [อ่าน](06_Operations_Management/Alert_Tuning.th.md) |
 | **☁️ Cloud Security Monitoring** (NEW) | [Read](06_Operations_Management/Cloud_Security_Monitoring.en.md) | [อ่าน](06_Operations_Management/Cloud_Security_Monitoring.th.md) |
 | **🕵️ Insider Threat Program** (NEW) | [Read](06_Operations_Management/Insider_Threat_Program.en.md) | [อ่าน](06_Operations_Management/Insider_Threat_Program.th.md) |
+| **🛡️ Vulnerability Management** (NEW) | [Read](06_Operations_Management/Vulnerability_Management.en.md) | [อ่าน](06_Operations_Management/Vulnerability_Management.th.md) |
 | **Data Governance & Retention** | [Read](02_Platform_Operations/Database_Management.en.md) | [อ่าน](02_Platform_Operations/Database_Management.th.md) |
 | **Deployment Procedures** | [Read](02_Platform_Operations/Deployment_Procedures.en.md) | [อ่าน](02_Platform_Operations/Deployment_Procedures.th.md) |
 | **Integration Hub** | [Read](03_User_Guides/Integration_Hub.en.md) | [อ่าน](03_User_Guides/Integration_Hub.th.md) |
@@ -232,6 +233,7 @@ File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [
 | **Simulation Guide** | [Read](08_Simulation_Testing/Simulation_Guide.en.md) | [อ่าน](08_Simulation_Testing/Simulation_Guide.th.md) |
 | **Atomic Test Map** (MITRE) | [Read](08_Simulation_Testing/Atomic_Test_Map.en.md) | [อ่าน](08_Simulation_Testing/Atomic_Test_Map.th.md) |
 | **🟣 Purple Team Exercise Guide** (NEW) | [Read](08_Simulation_Testing/Purple_Team_Exercise.en.md) | [อ่าน](08_Simulation_Testing/Purple_Team_Exercise.th.md) |
+| **🍣 Phishing Simulation Program** (NEW) | [Read](08_Simulation_Testing/Phishing_Simulation.en.md) | [อ่าน](08_Simulation_Testing/Phishing_Simulation.th.md) |
 
 ### Analyst Training
 

@@ -12222,6 +12222,417 @@ graph LR
 
 ---
 
+## File: 06_Operations_Management/Vulnerability_Management.en.md
+
+# Vulnerability Management SOP
+
+**Document ID**: OPS-SOP-020
+**Version**: 1.0
+**Classification**: Internal
+**Last Updated**: 2026-02-15
+
+> SOC procedures for **vulnerability scanning, prioritization, tracking, and remediation validation**. Integrates with patching teams, IT operations, and risk management to ensure vulnerabilities are addressed within SLA.
+
+---
+
+## Vulnerability Management Lifecycle
+
+```mermaid
+graph LR
+    A[1. Discover] --> B[2. Assess]
+    B --> C[3. Prioritize]
+    C --> D[4. Remediate]
+    D --> E[5. Verify]
+    E --> F[6. Report]
+    F --> A
+
+    style A fill:#3b82f6,color:#fff
+    style C fill:#f97316,color:#fff
+    style E fill:#22c55e,color:#fff
+```
+
+---
+
+## Scanning Schedule
+
+| Scan Type | Scope | Frequency | Tool | Owner |
+|:---|:---|:---:|:---|:---|
+| **Network vulnerability** | All IP ranges | Weekly | Nessus / Qualys / OpenVAS | Vuln Management |
+| **Web application** | All web apps | Monthly | Burp Suite / OWASP ZAP | AppSec |
+| **Cloud posture** | AWS / Azure / GCP | Daily | CSPM tool | Cloud Security |
+| **Container images** | CI/CD pipeline | Per build | Trivy / Grype | DevSecOps |
+| **Configuration audit** | Servers, endpoints | Monthly | CIS Benchmarks | IT Operations |
+| **AD/Identity** | Active Directory | Monthly | PingCastle / BloodHound | Identity team |
+| **External attack surface** | Public-facing assets | Weekly | EASM tool | SOC |
+
+---
+
+## Severity Classification (CVSS + Context)
+
+### Base CVSS → SOC Priority
+
+| CVSS Score | Base Severity | SOC Priority | Remediation SLA |
+|:---:|:---|:---:|:---:|
+| 9.0–10.0 | 🔴 Critical | **P1** | 24 hours |
+| 7.0–8.9 | 🟠 High | **P2** | 7 days |
+| 4.0–6.9 | 🟡 Medium | **P3** | 30 days |
+| 0.1–3.9 | 🟢 Low | **P4** | 90 days |
+| 0.0 | ⬜ Informational | **P5** | Best effort |
+
+### Contextual Risk Adjustments
+
+| Factor | Adjustment | Example |
+|:---|:---:|:---|
+| **Internet-facing asset** | +1 Priority | CVSS 7.5 High → P1 |
+| **Contains PII / payment data** | +1 Priority | CVSS 5.0 Med → P2 |
+| **Active exploitation (CISA KEV)** | → P1 regardless | Any CVE in KEV list |
+| **Compensating control in place** | −1 Priority | WAF blocking exploit |
+| **Isolated network** | −1 Priority | Air-gapped system |
+| **End-of-life system** | +1 Priority | Unpatched, no vendor support |
+
+### Priority Decision Matrix
+
+```mermaid
+flowchart TD
+    A[New Vulnerability] --> B{In CISA KEV?}
+    B -->|Yes| C[🔴 P1 — 24hr SLA]
+    B -->|No| D{CVSS Score?}
+    
+    D -->|9.0+| E{Internet-facing?}
+    E -->|Yes| C
+    E -->|No| F[🟠 P2 — 7 day SLA]
+    
+    D -->|7.0-8.9| G{Contains sensitive data?}
+    G -->|Yes| F
+    G -->|No| H{Compensating control?}
+    H -->|Yes| I[🟡 P3 — 30 day SLA]
+    H -->|No| F
+    
+    D -->|4.0-6.9| I
+    D -->|< 4.0| J[🟢 P4 — 90 day SLA]
+
+    style C fill:#dc2626,color:#fff
+    style F fill:#f97316,color:#fff
+    style I fill:#eab308,color:#000
+    style J fill:#22c55e,color:#fff
+```
+
+---
+
+## SOC Role in Vulnerability Management
+
+### What SOC Does
+
+| Activity | Description | Frequency |
+|:---|:---|:---:|
+| **Monitor for zero-days** | Track advisories, CISA KEV, vendor bulletins | Daily |
+| **Correlate vulns with threats** | Match CVEs to active threat campaigns | Per advisory |
+| **Validate exploitability** | Test if vulnerability is exploitable in our env | Per P1/P2 |
+| **Track remediation** | Monitor patching progress vs SLA | Weekly |
+| **Verify remediation** | Re-scan after patch to confirm fix | Per remediation |
+| **Detect exploitation** | SIEM rules for known exploit patterns | Continuous |
+| **Report metrics** | Vulnerability posture to management | Monthly |
+
+### What SOC Does NOT Do
+
+| Activity | Responsible Team |
+|:---|:---|
+| Apply patches | IT Operations / System Admins |
+| Deploy WAF rules | Network Security |
+| Fix application code | Development teams |
+| Manage VM scanner infrastructure | Vulnerability Management team |
+
+---
+
+## Zero-Day Response Procedure
+
+```mermaid
+flowchart TD
+    A[Zero-Day Announced] --> B[SOC assesses exposure]
+    B --> C{Are we affected?}
+    
+    C -->|No| D[Document, close]
+    C -->|Unknown| E[Run asset scan]
+    C -->|Yes| F[🔴 Declare P1 Vulnerability]
+    
+    E --> C
+    
+    F --> G[Notify CISO + IT Ops]
+    F --> H[Create detection rules]
+    F --> I[Assess compensating controls]
+    
+    G --> J[Emergency patch / mitigate]
+    H --> K[Monitor for exploitation]
+    I --> J
+    
+    J --> L[Verify fix]
+    K --> L
+    L --> M[Post-incident review]
+
+    style F fill:#dc2626,color:#fff
+    style J fill:#22c55e,color:#fff
+```
+
+### Zero-Day Checklist
+
+- [ ] Advisory received and reviewed
+- [ ] Affected asset inventory completed
+- [ ] Impact assessment documented
+- [ ] CISO notified (if P1)
+- [ ] Detection rules deployed
+- [ ] Compensating controls assessed/applied
+- [ ] Emergency patching initiated
+- [ ] Exploitation monitoring active
+- [ ] Re-scan completed post-patch
+- [ ] Stakeholders updated
+
+---
+
+## Remediation Tracking
+
+### Remediation Ticket Template
+
+| Field | Value |
+|:---|:---|
+| **CVE ID** | CVE-____-_____ |
+| **CVSS Score** | ___._ |
+| **SOC Priority** | P_ |
+| **Affected Assets** | ______________ (count: ___) |
+| **Asset Criticality** | Critical / High / Medium / Low |
+| **SLA Deadline** | ____-__-__ |
+| **Current Status** | Open / In Progress / Patched / Verified / Closed |
+| **Assigned To** | ______________ (team) |
+| **Compensating Control** | ______________ (if any) |
+| **Verification Scan Date** | ____-__-__ |
+| **Verified Fixed** | ⬜ Yes / ⬜ No |
+
+### SLA Tracking Dashboard
+
+| Priority | Total Open | Within SLA | Overdue | % Compliant |
+|:---:|:---:|:---:|:---:|:---:|
+| 🔴 P1 | _____ | _____ | _____ | ___% |
+| 🟠 P2 | _____ | _____ | _____ | ___% |
+| 🟡 P3 | _____ | _____ | _____ | ___% |
+| 🟢 P4 | _____ | _____ | _____ | ___% |
+| **Total** | **_____** | **_____** | **_____** | **___%** |
+
+### Exception/Risk Acceptance Process
+
+| Step | Owner | Output |
+|:---:|:---|:---|
+| 1 | Asset owner requests exception | Exception request form |
+| 2 | SOC validates risk and compensating controls | Risk assessment |
+| 3 | Risk Manager reviews | Risk acceptance recommendation |
+| 4 | CISO approves (P1/P2) or Security Manager (P3/P4) | Signed acceptance |
+| 5 | SOC adds to exception tracker | Tracked with review date |
+| 6 | Re-review at expiration (max 90 days) | Renewed or remediated |
+
+---
+
+## Detection Rules for Known Exploits
+
+| CVE Category | Detection Approach | Source |
+|:---|:---|:---|
+| **Web exploits** | WAF signatures + SIEM correlation | WAF logs + IDS |
+| **RCE exploits** | Process execution anomalies post-exploit | EDR + Sysmon |
+| **Privilege escalation** | Unexpected privilege changes | Windows Event logs |
+| **Credential theft** | Post-exploitation lateral movement | EDR + AD logs |
+| **Supply chain** | Unexpected outbound connections from updated software | Proxy + DNS |
+
+### Threat Intel Integration
+
+```
+[Vendor Advisory] → [CVE Published] → [SOC Reviews]
+                                            ↓
+[CISA KEV Update] → [Auto-priority P1] → [SOC Deploys Detection]
+                                            ↓
+[Exploit-DB / PoC] → [SOC Validates] → [Update Detection Rules]
+```
+
+---
+
+## Metrics
+
+| Metric | Target | Measurement |
+|:---|:---:|:---|
+| P1 remediation within SLA | ≥ 95% | Ticket tracking |
+| P2 remediation within SLA | ≥ 90% | Ticket tracking |
+| Mean time to remediate (P1) | < 24 hours | Ticket timestamps |
+| Mean time to remediate (P2) | < 7 days | Ticket timestamps |
+| Scan coverage (assets scanned / total) | ≥ 95% | VM tool reports |
+| Re-scan compliance (verified post-patch) | ≥ 90% | Re-scan reports |
+| Open P1/P2 vulnerabilities (current) | 0 beyond SLA | Dashboard |
+| Exception count (active) | < 10 | Exception tracker |
+| Detection rule coverage for KEV | 100% | Detection audit |
+
+---
+
+## Related Documents
+
+-   [Threat Landscape Report](Threat_Landscape_Report.en.md) — CVE tracking
+-   [Log Source Matrix](Log_Source_Matrix.en.md) — Scan data sources
+-   [Cloud Security Monitoring](Cloud_Security_Monitoring.en.md) — Cloud vulns
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Auto-scan automation
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — Zero-day escalation
+-   [KPI Dashboard Template](KPI_Dashboard_Template.en.md) — Vuln reporting
+
+
+---
+
+## File: 06_Operations_Management/Vulnerability_Management.th.md
+
+# Vulnerability Management SOP / SOP การจัดการช่องโหว่
+
+**รหัสเอกสาร**: OPS-SOP-020
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน
+**อัปเดตล่าสุด**: 2026-02-15
+
+> ขั้นตอน SOC สำหรับ **สแกนช่องโหว่, จัดลำดับ, ติดตาม, และตรวจสอบการแก้ไข** ประสานกับทีม patching, IT operations, และ risk management
+
+---
+
+## วงจร Vulnerability Management
+
+```mermaid
+graph LR
+    A[1. ค้นหา] --> B[2. ประเมิน]
+    B --> C[3. จัดลำดับ]
+    C --> D[4. แก้ไข]
+    D --> E[5. ตรวจสอบ]
+    E --> F[6. รายงาน]
+    F --> A
+
+    style A fill:#3b82f6,color:#fff
+    style C fill:#f97316,color:#fff
+    style E fill:#22c55e,color:#fff
+```
+
+---
+
+## ตาราง Scan
+
+| ประเภท Scan | ขอบเขต | ความถี่ | เครื่องมือ |
+|:---|:---|:---:|:---|
+| **Network vulnerability** | ทุก IP range | รายสัปดาห์ | Nessus / Qualys / OpenVAS |
+| **Web application** | ทุก web app | รายเดือน | Burp Suite / OWASP ZAP |
+| **Cloud posture** | AWS / Azure / GCP | รายวัน | CSPM tool |
+| **Container images** | CI/CD pipeline | ทุก build | Trivy / Grype |
+| **Configuration audit** | Servers, endpoints | รายเดือน | CIS Benchmarks |
+| **AD/Identity** | Active Directory | รายเดือน | PingCastle / BloodHound |
+| **External attack surface** | Public-facing assets | รายสัปดาห์ | EASM tool |
+
+---
+
+## การจำแนก Severity
+
+### CVSS → SOC Priority
+
+| CVSS | Severity | Priority | SLA แก้ไข |
+|:---:|:---|:---:|:---:|
+| 9.0–10.0 | 🔴 Critical | **P1** | 24 ชม. |
+| 7.0–8.9 | 🟠 High | **P2** | 7 วัน |
+| 4.0–6.9 | 🟡 Medium | **P3** | 30 วัน |
+| 0.1–3.9 | 🟢 Low | **P4** | 90 วัน |
+
+### การปรับตามบริบท
+
+| ปัจจัย | การปรับ | ตัวอย่าง |
+|:---|:---:|:---|
+| **Internet-facing** | +1 Priority | CVSS 7.5 High → P1 |
+| **มี PII / payment data** | +1 Priority | CVSS 5.0 Med → P2 |
+| **อยู่ใน CISA KEV** | → P1 เสมอ | ทุก CVE ใน KEV list |
+| **มี compensating control** | −1 Priority | WAF บล็อก exploit |
+| **เครือข่ายแยก** | −1 Priority | Air-gapped system |
+
+---
+
+## ขั้นตอนตอบสนอง Zero-Day
+
+```mermaid
+flowchart TD
+    A[Zero-Day ประกาศ] --> B[SOC ประเมินผลกระทบ]
+    B --> C{ได้รับผลกระทบ?}
+    C -->|ไม่| D[บันทึก, ปิด]
+    C -->|ไม่แน่ใจ| E[สแกน asset]
+    C -->|ใช่| F[🔴 ประกาศ P1]
+    E --> C
+    F --> G[แจ้ง CISO + IT]
+    F --> H[สร้าง detection rules]
+    G --> I[Emergency patch]
+    H --> J[เฝ้าระวังการโจมตี]
+    I --> K[ตรวจสอบการแก้ไข]
+    J --> K
+
+    style F fill:#dc2626,color:#fff
+    style I fill:#22c55e,color:#fff
+```
+
+### Checklist Zero-Day
+
+- [ ] ได้รับและทบทวน advisory
+- [ ] สำรวจ asset ที่ได้รับผลกระทบ
+- [ ] ประเมินผลกระทบ
+- [ ] แจ้ง CISO (ถ้า P1)
+- [ ] Deploy detection rules
+- [ ] ประเมิน/ใช้ compensating controls
+- [ ] เริ่ม emergency patching
+- [ ] เปิด exploitation monitoring
+- [ ] สแกนซ้ำหลัง patch
+- [ ] อัปเดต stakeholders
+
+---
+
+## การติดตามการแก้ไข
+
+### SLA Tracking Dashboard
+
+| Priority | เปิดอยู่ | ตาม SLA | เลย SLA | % Compliant |
+|:---:|:---:|:---:|:---:|:---:|
+| 🔴 P1 | _____ | _____ | _____ | ___% |
+| 🟠 P2 | _____ | _____ | _____ | ___% |
+| 🟡 P3 | _____ | _____ | _____ | ___% |
+| 🟢 P4 | _____ | _____ | _____ | ___% |
+
+### กระบวนการ Exception / Risk Acceptance
+
+| ขั้น | ผู้รับผิดชอบ | ผลลัพธ์ |
+|:---:|:---|:---|
+| 1 | เจ้าของ asset ขอ exception | แบบฟอร์ม exception |
+| 2 | SOC ประเมินความเสี่ยงและ compensating controls | การประเมินความเสี่ยง |
+| 3 | Risk Manager ทบทวน | คำแนะนำ |
+| 4 | CISO อนุมัติ (P1/P2) หรือ Security Manager (P3/P4) | ลงนาม |
+| 5 | SOC เพิ่มใน exception tracker | ติดตามพร้อมวันทบทวน |
+| 6 | ทบทวนเมื่อหมดอายุ (สูงสุด 90 วัน) | ต่อหรือแก้ไข |
+
+---
+
+## ตัวชี้วัด
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---:|
+| แก้ไข P1 ตาม SLA | ≥ 95% |
+| แก้ไข P2 ตาม SLA | ≥ 90% |
+| เวลาเฉลี่ยแก้ไข P1 | < 24 ชม. |
+| เวลาเฉลี่ยแก้ไข P2 | < 7 วัน |
+| Scan coverage | ≥ 95% |
+| ตรวจสอบหลัง patch | ≥ 90% |
+| P1/P2 เปิดเกิน SLA | 0 |
+| Detection rule coverage สำหรับ KEV | 100% |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [Threat Landscape Report](Threat_Landscape_Report.en.md) — การติดตาม CVE
+-   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูล scan
+-   [Cloud Security Monitoring](Cloud_Security_Monitoring.en.md) — Cloud vulns
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Auto-scan
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — Zero-day escalation
+
+
+---
+
 ## File: 03_User_Guides/Content_Management.en.md
 
 # Detection Engineering Lifecycle
@@ -25237,6 +25648,433 @@ graph LR
 ## อ้างอิง
 - [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)
 - [MITRE ATT&CK](https://attack.mitre.org/techniques/enterprise/)
+
+
+---
+
+## File: 08_Simulation_Testing/Phishing_Simulation.en.md
+
+# Security Awareness & Phishing Simulation Program
+
+**Document ID**: OPS-SOP-021
+**Version**: 1.0
+**Classification**: Internal
+**Last Updated**: 2026-02-15
+
+> A structured program for **testing employee resilience** against social engineering attacks through realistic phishing simulations, measuring results, providing targeted training, and reducing human risk over time.
+
+---
+
+## Program Overview
+
+```mermaid
+graph TD
+    A[📋 Plan Campaign] --> B[🎣 Execute Simulation]
+    B --> C[📊 Collect Metrics]
+    C --> D[📚 Train & Educate]
+    D --> E[📈 Report & Improve]
+    E --> A
+
+    style A fill:#3b82f6,color:#fff
+    style B fill:#dc2626,color:#fff
+    style D fill:#22c55e,color:#fff
+```
+
+---
+
+## Phishing Simulation Types
+
+| Type | Difficulty | Description | Frequency |
+|:---|:---:|:---|:---:|
+| **Mass campaign** | 🟢 Easy–Medium | Same template sent to all employees | Monthly |
+| **Targeted spear-phish** | 🟠 Hard | Customized per department/role | Quarterly |
+| **Vishing (voice)** | 🟠 Hard | Phone-based social engineering | Semi-annual |
+| **Smishing (SMS)** | 🟡 Medium | SMS/messaging-based | Semi-annual |
+| **USB drop** | 🔴 Very Hard | Malicious USB left in common areas | Annual |
+| **QR code phish** | 🟡 Medium | Malicious QR in poster/email | Quarterly |
+| **BEC simulation** | 🔴 Very Hard | Fake CEO/CFO wire transfer request | Quarterly |
+
+---
+
+## Campaign Planning
+
+### Pre-Campaign Checklist
+
+- [ ] Define campaign objective and KPIs
+- [ ] Select target groups (all employees, department, VIPs)
+- [ ] Choose simulation type and difficulty
+- [ ] Design email template (brand-aligned, realistic)
+- [ ] Set up landing page (credential harvest / file download)
+- [ ] Configure tracking (open, click, submit, report)
+- [ ] Get management approval
+- [ ] Coordinate with IT (whitelist simulation IPs/domains)
+- [ ] Set campaign duration (typically 72 hours)
+- [ ] Prepare training content for failures
+
+### Template Categories
+
+| Category | Example Lure | Risk Level | Target |
+|:---|:---|:---:|:---|
+| **IT/Helpdesk** | "Password expiring, click to reset" | 🟡 Medium | All employees |
+| **HR/Benefits** | "Open enrollment deadline — review benefits" | 🟡 Medium | All employees |
+| **Finance/Invoice** | "Invoice #9384 attached — please review" | 🟠 High | Finance team |
+| **CEO/Executive** | "Urgent wire transfer needed" | 🔴 Very High | Finance/exec assistants |
+| **Package delivery** | "Your package couldn't be delivered" | 🟢 Low | All employees |
+| **Cloud/SaaS** | "Shared document — click to view" | 🟡 Medium | All employees |
+| **Seasonal** | "Holiday bonus — confirm your details" | 🟡 Medium | All employees |
+| **Current events** | "COVID/tax season update — action required" | 🟠 High | All employees |
+
+---
+
+## Metrics Collection
+
+### Per-Campaign Metrics
+
+| Metric | Definition | Target |
+|:---|:---|:---:|
+| **Delivery rate** | Emails delivered / sent | ≥ 98% |
+| **Open rate** | Unique opens / delivered | Baseline only |
+| **Click rate** | Unique clicks / delivered | < 10% |
+| **Submission rate** | Credentials submitted / delivered | < 3% |
+| **Report rate** | Reported as phishing / delivered | > 30% |
+| **Time to first click** | Time from send to first click | Tracking only |
+| **Time to first report** | Time from send to first report | Tracking only |
+| **Repeat offender rate** | Users who clicked in 2+ campaigns | < 5% |
+
+### Department Leaderboard
+
+| Department | Employees | Click Rate | Submit Rate | Report Rate | Risk Score |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| Engineering | _____ | ___% | ___% | ___% | ___/100 |
+| Finance | _____ | ___% | ___% | ___% | ___/100 |
+| HR | _____ | ___% | ___% | ___% | ___/100 |
+| Sales | _____ | ___% | ___% | ___% | ___/100 |
+| Marketing | _____ | ___% | ___% | ___% | ___/100 |
+| Executive | _____ | ___% | ___% | ___% | ___/100 |
+| IT | _____ | ___% | ___% | ___% | ___/100 |
+| **Average** | **_____** | **___%** | **___%** | **___%** | **___/100** |
+
+### Risk Score Calculation
+
+```
+Risk Score = (Click Rate × 3) + (Submit Rate × 5) − (Report Rate × 2)
+```
+
+| Risk Level | Score | Action |
+|:---|:---:|:---|
+| 🟢 Low | 0–20 | Standard training |
+| 🟡 Medium | 21–40 | Enhanced awareness training |
+| 🟠 High | 41–60 | Mandatory remedial training + retest |
+| 🔴 Critical | 61+ | 1-on-1 coaching + manager notification |
+
+---
+
+## Post-Simulation Training
+
+### Training Tiers
+
+| Tier | Trigger | Training Content | Delivery | Completion SLA |
+|:---|:---|:---|:---|:---:|
+| **Tier 0** | All employees (baseline) | Annual security awareness course | LMS | Annual |
+| **Tier 1** | Opened phishing email | 5-minute micro-learning module | Auto-email | 7 days |
+| **Tier 2** | Clicked phishing link | 15-minute interactive training | LMS assignment | 5 days |
+| **Tier 3** | Submitted credentials | 30-minute deep-dive + quiz | LMS + manager notify | 3 days |
+| **Tier 4** | Repeat offender (3+ times) | 1-on-1 with security team | In-person/virtual | 5 days |
+
+### Teachable Moment Content
+
+Displayed immediately after user clicks phishing link:
+
+| Element | Content |
+|:---|:---|
+| **Header** | "⚠️ This was a phishing simulation" |
+| **What happened** | "You clicked a simulated phishing link in an email from [sender]" |
+| **Red flags** | 3-5 specific indicators they should have noticed |
+| **What to do next** | "Complete the training module sent to your inbox" |
+| **Real attack** | "If this was real, your credentials could be compromised" |
+| **Report button** | "Report suspicious emails using the [Phish Alert Button]" |
+
+---
+
+## Annual Campaign Calendar
+
+| Month | Campaign Type | Template | Difficulty | Target |
+|:---|:---|:---|:---:|:---|
+| Jan | Mass | IT: Password reset | 🟢 Easy | All |
+| Feb | Targeted | Finance: Invoice | 🟠 Hard | Finance |
+| Mar | Mass | HR: Benefits enrollment | 🟡 Medium | All |
+| Apr | Mass | Tax season | 🟠 High | All |
+| May | QR Code | WiFi QR poster | 🟡 Medium | Office staff |
+| Jun | BEC Simulation | CEO wire transfer | 🔴 Very Hard | Finance + EA |
+| Jul | Mass | Cloud: Shared document | 🟡 Medium | All |
+| Aug | Vishing | IT helpdesk call | 🟠 Hard | Random sample |
+| Sep | Mass | Package delivery | 🟢 Easy | All |
+| Oct | Targeted + USB | Cybersecurity month special | 🔴 Very Hard | Random |
+| Nov | Mass | Holiday bonus | 🟡 Medium | All |
+| Dec | Smishing | End-of-year benefits SMS | 🟡 Medium | All |
+
+---
+
+## Repeat Offender Program
+
+### Escalation Ladder
+
+```mermaid
+flowchart TD
+    A[1st Failure] --> B[Teachable moment + Tier 1/2/3 training]
+    B --> C[2nd Failure within 12 months]
+    C --> D[Manager notification + enhanced training]
+    D --> E[3rd Failure within 12 months]
+    E --> F[1-on-1 security coaching session]
+    F --> G[4th Failure within 12 months]
+    G --> H[HR involvement + access review]
+
+    style A fill:#22c55e,color:#fff
+    style C fill:#eab308,color:#000
+    style E fill:#f97316,color:#fff
+    style G fill:#dc2626,color:#fff
+```
+
+### Repeat Offender Tracker
+
+| Employee | Dept | Failures (12mo) | Last Failure | Training | Status |
+|:---|:---|:---:|:---|:---|:---|
+| ____________ | ____ | _____ | ____-__-__ | __________ | Active/Resolved |
+
+---
+
+## Phish Alert Button (PAB)
+
+### Implementation
+
+| Aspect | Detail |
+|:---|:---|
+| **Tool** | KnowBe4 PAB / Microsoft Report Message / custom add-in |
+| **Location** | Outlook/Gmail toolbar — always visible |
+| **Action when clicked** | Forward to `phishing@company.com` + auto-delete from inbox |
+| **SOC workflow** | Auto-classify → if simulation: mark as reported; if real: triage |
+| **User feedback** | Automated reply: "Thanks for reporting! This is being reviewed." |
+
+### PAB Metrics
+
+| Metric | Target |
+|:---|:---:|
+| PAB installation rate | ≥ 95% of employees |
+| Report rate (simulated phishing) | ≥ 30% |
+| Report rate (real phishing) | Tracking only |
+| False report rate (legitimate email) | < 5% |
+| Time from report to SOC review | < 15 minutes |
+
+---
+
+## Program Metrics (Annual)
+
+| Metric | Target | Formula |
+|:---|:---:|:---|
+| Annual average click rate | < 10% | Mean of all campaigns |
+| Annual average submit rate | < 3% | Mean of all campaigns |
+| Annual average report rate | > 30% | Mean of all campaigns |
+| Repeat offender rate | < 5% | Users failed 2+ / total |
+| Training completion rate | ≥ 95% | Completed / assigned |
+| Year-over-year click reduction | > 20% | (Y1 − Y2) / Y1 |
+| Security awareness quiz score | ≥ 80% | Annual quiz average |
+
+---
+
+## Legal & Communication Considerations
+
+| Topic | Guidance |
+|:---|:---|
+| **Employee notification** | Inform employees that simulations may occur (via policy, not timing) |
+| **No punitive action** | Simulations are educational, not disciplinary (until repeat offender) |
+| **Data privacy** | Individual results are confidential; share only aggregated data publicly |
+| **Manager reporting** | Managers receive department-level stats, not individual names (except repeat offenders) |
+| **PDPA compliance** | Processing of simulation data is disclosed in employee privacy notice |
+| **Positive reinforcement** | Recognize employees/departments with highest report rates |
+
+---
+
+## Related Documents
+
+-   [Insider Threat Program](Insider_Threat_Program.en.md) — Human risk reduction
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — Real phishing escalation
+-   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Phishing auto-triage
+-   [KPI Dashboard Template](KPI_Dashboard_Template.en.md) — Awareness metrics
+-   [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) — Phishing classification
+
+
+---
+
+## File: 08_Simulation_Testing/Phishing_Simulation.th.md
+
+# Security Awareness & Phishing Simulation Program / โปรแกรมจำลอง Phishing
+
+**รหัสเอกสาร**: OPS-SOP-021
+**เวอร์ชัน**: 1.0
+**การจัดชั้นความลับ**: ใช้ภายใน
+**อัปเดตล่าสุด**: 2026-02-15
+
+> โปรแกรมสำหรับ **ทดสอบการตอบสนองของพนักงาน** ต่อ social engineering ผ่านจำลอง phishing จริง, วัดผล, ฝึกอบรมเป้าหมาย, และลดความเสี่ยงมนุษย์
+
+---
+
+## ประเภทการจำลอง
+
+| ประเภท | ความยาก | คำอธิบาย | ความถี่ |
+|:---|:---:|:---|:---:|
+| **Mass campaign** | 🟢 ง่าย–กลาง | template เดียวส่งทุกคน | รายเดือน |
+| **Targeted spear-phish** | 🟠 ยาก | ปรับแต่งตามแผนก/ตำแหน่ง | รายไตรมาส |
+| **Vishing (โทรศัพท์)** | 🟠 ยาก | Social engineering ผ่านโทรศัพท์ | ปีละ 2 ครั้ง |
+| **Smishing (SMS)** | 🟡 กลาง | SMS/messaging | ปีละ 2 ครั้ง |
+| **USB drop** | 🔴 ยากมาก | USB ทิ้งในพื้นที่ส่วนกลาง | รายปี |
+| **QR code phish** | 🟡 กลาง | QR ปลอมบนโปสเตอร์/email | รายไตรมาส |
+| **BEC simulation** | 🔴 ยากมาก | ปลอม CEO/CFO ขอโอนเงิน | รายไตรมาส |
+
+---
+
+## Checklist ก่อนทำ Campaign
+
+- [ ] กำหนดวัตถุประสงค์และ KPIs
+- [ ] เลือกกลุ่มเป้าหมาย
+- [ ] เลือกประเภทและความยาก
+- [ ] ออกแบบ email template (สมจริง)
+- [ ] ตั้งค่า landing page (credential harvest / file download)
+- [ ] ตั้งค่า tracking (เปิด, คลิก, กรอก, รายงาน)
+- [ ] ได้รับอนุมัติจากผู้บริหาร
+- [ ] ประสาน IT (whitelist simulation IPs/domains)
+- [ ] กำหนดระยะเวลา (72 ชม.)
+
+---
+
+## ตัวชี้วัดต่อ Campaign
+
+| ตัวชี้วัด | นิยาม | เป้าหมาย |
+|:---|:---|:---:|
+| **Delivery rate** | ส่งถึง / ส่งทั้งหมด | ≥ 98% |
+| **Click rate** | คลิก / ส่งถึง | < 10% |
+| **Submission rate** | กรอก credentials / ส่งถึง | < 3% |
+| **Report rate** | รายงานเป็น phishing / ส่งถึง | > 30% |
+| **Repeat offender rate** | คลิกใน 2+ campaigns | < 5% |
+
+### การคำนวณ Risk Score
+
+```
+Risk Score = (Click Rate × 3) + (Submit Rate × 5) − (Report Rate × 2)
+```
+
+| ระดับ | Score | Action |
+|:---|:---:|:---|
+| 🟢 ต่ำ | 0–20 | เทรน standard |
+| 🟡 กลาง | 21–40 | Enhanced awareness training |
+| 🟠 สูง | 41–60 | บังคับเทรนเพิ่ม + ทดสอบซ้ำ |
+| 🔴 วิกฤต | 61+ | 1-on-1 coaching + แจ้งหัวหน้า |
+
+---
+
+## การฝึกอบรมหลังจำลอง
+
+| Tier | เงื่อนไข | เนื้อหา | ระยะ SLA |
+|:---|:---|:---|:---:|
+| **Tier 0** | พนักงานทุกคน | หลักสูตร awareness ประจำปี | รายปี |
+| **Tier 1** | เปิด phishing email | Micro-learning 5 นาที | 7 วัน |
+| **Tier 2** | คลิก phishing link | Interactive training 15 นาที | 5 วัน |
+| **Tier 3** | กรอก credentials | Deep-dive 30 นาที + quiz | 3 วัน |
+| **Tier 4** | ทำผิดซ้ำ (3+ ครั้ง) | 1-on-1 กับทีม security | 5 วัน |
+
+---
+
+## ปฏิทิน Campaign รายปี
+
+| เดือน | ประเภท | Template | ความยาก | เป้าหมาย |
+|:---|:---|:---|:---:|:---|
+| ม.ค. | Mass | IT: Password reset | 🟢 ง่าย | ทุกคน |
+| ก.พ. | Targeted | Finance: Invoice | 🟠 ยาก | Finance |
+| มี.ค. | Mass | HR: สวัสดิการ | 🟡 กลาง | ทุกคน |
+| เม.ย. | Mass | ภาษี | 🟠 ยาก | ทุกคน |
+| พ.ค. | QR Code | QR WiFi poster | 🟡 กลาง | พนักงาน office |
+| มิ.ย. | BEC | CEO wire transfer | 🔴 ยากมาก | Finance + EA |
+| ก.ค. | Mass | Cloud: Shared document | 🟡 กลาง | ทุกคน |
+| ส.ค. | Vishing | IT helpdesk call | 🟠 ยาก | สุ่ม |
+| ก.ย. | Mass | Package delivery | 🟢 ง่าย | ทุกคน |
+| ต.ค. | Targeted + USB | Cybersecurity month | 🔴 ยากมาก | สุ่ม |
+| พ.ย. | Mass | Holiday bonus | 🟡 กลาง | ทุกคน |
+| ธ.ค. | Smishing | สวัสดิการสิ้นปี SMS | 🟡 กลาง | ทุกคน |
+
+---
+
+## Repeat Offender Program
+
+### บันไดการ Escalate
+
+```mermaid
+flowchart TD
+    A["ผิดครั้งที่ 1"] --> B[Teachable moment + เทรน]
+    B --> C["ผิดครั้งที่ 2 ภายใน 12 เดือน"]
+    C --> D[แจ้งหัวหน้า + enhanced training]
+    D --> E["ผิดครั้งที่ 3"]
+    E --> F[1-on-1 security coaching]
+    F --> G["ผิดครั้งที่ 4"]
+    G --> H[HR involvement + ตรวจสิทธิ์]
+
+    style A fill:#22c55e,color:#fff
+    style C fill:#eab308,color:#000
+    style E fill:#f97316,color:#fff
+    style G fill:#dc2626,color:#fff
+```
+
+---
+
+## Phish Alert Button (PAB)
+
+| ด้าน | รายละเอียด |
+|:---|:---|
+| **เครื่องมือ** | KnowBe4 PAB / Microsoft Report Message |
+| **ตำแหน่ง** | Outlook/Gmail toolbar — เห็นตลอด |
+| **เมื่อคลิก** | Forward ไป `phishing@company.com` + ลบ auto |
+| **SOC workflow** | ถ้าจำลอง: mark reported, ถ้าจริง: triage |
+| **Feedback** | ตอบกลับอัตโนมัติ: "ขอบคุณที่แจ้ง กำลังตรวจสอบ" |
+
+### PAB Metrics
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---:|
+| PAB installation rate | ≥ 95% |
+| Report rate (จำลอง) | ≥ 30% |
+| False report rate | < 5% |
+| เวลาจาก report ถึง SOC review | < 15 นาที |
+
+---
+
+## เป้าหมายรายปี
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---:|
+| Click rate เฉลี่ยรายปี | < 10% |
+| Submit rate เฉลี่ยรายปี | < 3% |
+| Report rate เฉลี่ยรายปี | > 30% |
+| Repeat offender rate | < 5% |
+| Training completion rate | ≥ 95% |
+| ลดลง YoY click rate | > 20% |
+
+---
+
+## ข้อพิจารณาทางกฎหมาย
+
+| หัวข้อ | แนวทาง |
+|:---|:---|
+| **แจ้งพนักงาน** | แจ้งว่าอาจมีจำลอง (ผ่านนโยบาย ไม่แจ้งเวลา) |
+| **ไม่ลงโทษ** | จำลองเพื่อการศึกษา ไม่ใช่ทางวินัย (ยกเว้นทำซ้ำ) |
+| **ความเป็นส่วนตัว** | ผลรายบุคคลเป็นความลับ, แชร์เฉพาะรวม |
+| **PDPA** | การประมวลผลข้อมูลจำลองแจ้งใน privacy notice |
+| **เสริมแรงเชิงบวก** | ชมเชยแผนกที่ report rate สูงสุด |
+
+---
+
+## เอกสารที่เกี่ยวข้อง
+
+-   [Insider Threat Program](../06_Operations_Management/Insider_Threat_Program.en.md) — ลดความเสี่ยงมนุษย์
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — Escalation phishing จริง
+-   [SOC Automation Catalog](../06_Operations_Management/SOC_Automation_Catalog.en.md) — Phishing auto-triage
 
 
 ---
