@@ -126,6 +126,8 @@ A structured 4-week curriculum to train new SOC Analysts using this repository.
 | **SOC Maturity Scorer** | [soc_maturity_scorer.html](tools/soc_maturity_scorer.html) | Interactive self-assessment tool — 7 domains, 56 questions, bilingual EN/TH, scored 1–5 maturity levels. |
 | **MITRE ATT&CK Heatmap** | [mitre_attack_heatmap.html](tools/mitre_attack_heatmap.html) | Interactive coverage map — 19 techniques covered, gap analysis, bilingual EN/TH, click-to-detail. |
 | **ATT&CK Navigator Layer** | [mitre_attack_navigator.json](tools/mitre_attack_navigator.json) | Import into [ATT&CK Navigator](https://mitre-attack.github.io/attack-navigator/) for official MITRE view. |
+| **Grafana Dashboard** | [grafana_soc_operations.json](tools/dashboards/grafana_soc_operations.json) | 14-panel Grafana dashboard — KPIs, alert trends, MITRE hits, geo map. Import via Dashboards → Import. |
+| **Kibana Dashboard** | [kibana_soc_operations.ndjson](tools/dashboards/kibana_soc_operations.ndjson) | 11-panel Kibana dashboard — metrics, trends, severity. Import via Saved Objects → Import. |
 
 ## 📂 Templates / แบบฟอร์มพร้อมใช้
 

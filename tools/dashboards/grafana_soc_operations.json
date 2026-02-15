@@ -1,0 +1,244 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "id": 1,
+      "title": "🔴 Open P1/P2 Incidents",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 4, "x": 0, "y": 0 },
+      "targets": [{ "expr": "soc_incidents_open{severity=~\"P1|P2\"}", "legendFormat": "{{severity}}" }],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": { "steps": [
+            { "color": "green", "value": null },
+            { "color": "yellow", "value": 1 },
+            { "color": "red", "value": 3 }
+          ]}
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "📊 Total Alerts Today",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 4, "x": 4, "y": 0 },
+      "targets": [{ "expr": "increase(soc_alerts_total[24h])", "legendFormat": "Alerts" }],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": { "steps": [
+            { "color": "green", "value": null },
+            { "color": "yellow", "value": 100 },
+            { "color": "orange", "value": 500 },
+            { "color": "red", "value": 1000 }
+          ]}
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "⏱️ MTTA (Mean Time to Acknowledge)",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 4, "x": 8, "y": 0 },
+      "targets": [{ "expr": "avg(soc_mtta_seconds) / 60", "legendFormat": "Minutes" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": { "mode": "thresholds" },
+          "thresholds": { "steps": [
+            { "color": "green", "value": null },
+            { "color": "yellow", "value": 10 },
+            { "color": "red", "value": 30 }
+          ]}
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "⏱️ MTTR (Mean Time to Respond)",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 4, "x": 12, "y": 0 },
+      "targets": [{ "expr": "avg(soc_mttr_seconds) / 3600", "legendFormat": "Hours" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "h",
+          "color": { "mode": "thresholds" },
+          "thresholds": { "steps": [
+            { "color": "green", "value": null },
+            { "color": "yellow", "value": 4 },
+            { "color": "red", "value": 8 }
+          ]}
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "🎯 True Positive Rate",
+      "type": "gauge",
+      "gridPos": { "h": 4, "w": 4, "x": 16, "y": 0 },
+      "targets": [{ "expr": "soc_true_positive_rate * 100", "legendFormat": "TP %" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0, "max": 100,
+          "thresholds": { "steps": [
+            { "color": "red", "value": null },
+            { "color": "yellow", "value": 60 },
+            { "color": "green", "value": 80 }
+          ]}
+        }
+      }
+    },
+    {
+      "id": 6,
+      "title": "📉 SLA Breach Rate",
+      "type": "gauge",
+      "gridPos": { "h": 4, "w": 4, "x": 20, "y": 0 },
+      "targets": [{ "expr": "soc_sla_breach_rate * 100", "legendFormat": "Breach %" }],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0, "max": 100,
+          "thresholds": { "steps": [
+            { "color": "green", "value": null },
+            { "color": "yellow", "value": 5 },
+            { "color": "red", "value": 15 }
+          ]}
+        }
+      }
+    },
+    {
+      "id": 10,
+      "title": "📈 Alert Volume Trend (7 Days)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+      "targets": [
+        { "expr": "increase(soc_alerts_total[1h])", "legendFormat": "Total Alerts" },
+        { "expr": "increase(soc_alerts_total{verdict=\"true_positive\"}[1h])", "legendFormat": "True Positive" },
+        { "expr": "increase(soc_alerts_total{verdict=\"false_positive\"}[1h])", "legendFormat": "False Positive" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 15, "gradientMode": "scheme" }
+        }
+      },
+      "options": { "tooltip": { "mode": "multi" } }
+    },
+    {
+      "id": 11,
+      "title": "🏷️ Incidents by Severity (7 Days)",
+      "type": "piechart",
+      "gridPos": { "h": 8, "w": 6, "x": 12, "y": 4 },
+      "targets": [
+        { "expr": "increase(soc_incidents_total{severity=\"P1\"}[7d])", "legendFormat": "P1 Critical" },
+        { "expr": "increase(soc_incidents_total{severity=\"P2\"}[7d])", "legendFormat": "P2 High" },
+        { "expr": "increase(soc_incidents_total{severity=\"P3\"}[7d])", "legendFormat": "P3 Medium" },
+        { "expr": "increase(soc_incidents_total{severity=\"P4\"}[7d])", "legendFormat": "P4 Low" }
+      ],
+      "fieldConfig": {
+        "overrides": [
+          { "matcher": { "id": "byName", "options": "P1 Critical" }, "properties": [{ "id": "color", "value": { "fixedColor": "#FF4444", "mode": "fixed" } }] },
+          { "matcher": { "id": "byName", "options": "P2 High" }, "properties": [{ "id": "color", "value": { "fixedColor": "#FF8C00", "mode": "fixed" } }] },
+          { "matcher": { "id": "byName", "options": "P3 Medium" }, "properties": [{ "id": "color", "value": { "fixedColor": "#FFD700", "mode": "fixed" } }] },
+          { "matcher": { "id": "byName", "options": "P4 Low" }, "properties": [{ "id": "color", "value": { "fixedColor": "#32CD32", "mode": "fixed" } }] }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "title": "📋 Top 10 Alert Types",
+      "type": "barchart",
+      "gridPos": { "h": 8, "w": 6, "x": 18, "y": 4 },
+      "targets": [{ "expr": "topk(10, increase(soc_alerts_total[7d]))", "legendFormat": "{{rule_name}}" }],
+      "options": { "orientation": "horizontal" }
+    },
+    {
+      "id": 20,
+      "title": "🗺️ MITRE ATT&CK Technique Hits (30 Days)",
+      "type": "barchart",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 },
+      "targets": [{ "expr": "topk(15, increase(soc_mitre_technique_hits_total[30d]))", "legendFormat": "{{technique_id}} {{technique_name}}" }],
+      "options": { "orientation": "horizontal", "barWidth": 0.7 }
+    },
+    {
+      "id": 21,
+      "title": "👥 Analyst Workload Distribution",
+      "type": "barchart",
+      "gridPos": { "h": 8, "w": 6, "x": 12, "y": 12 },
+      "targets": [
+        { "expr": "soc_analyst_open_tickets", "legendFormat": "{{analyst}}" }
+      ],
+      "options": { "orientation": "horizontal" }
+    },
+    {
+      "id": 22,
+      "title": "⏱️ MTTA/MTTR Trend (30 Days)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 6, "x": 18, "y": 12 },
+      "targets": [
+        { "expr": "avg_over_time(soc_mtta_seconds[1d]) / 60", "legendFormat": "MTTA (min)" },
+        { "expr": "avg_over_time(soc_mttr_seconds[1d]) / 3600", "legendFormat": "MTTR (hr)" }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": { "lineWidth": 2, "fillOpacity": 10 }
+        }
+      }
+    },
+    {
+      "id": 30,
+      "title": "🌍 Alert Source Geo Map",
+      "type": "geomap",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 20 },
+      "targets": [{ "expr": "soc_alerts_by_country", "legendFormat": "{{country}}" }],
+      "options": { "view": { "id": "coords", "lat": 13.75, "lon": 100.5, "zoom": 3 } }
+    },
+    {
+      "id": 31,
+      "title": "📊 Playbook Usage (30 Days)",
+      "type": "barchart",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 20 },
+      "targets": [{ "expr": "topk(25, increase(soc_playbook_executions_total[30d]))", "legendFormat": "{{playbook}}" }],
+      "options": { "orientation": "horizontal", "barWidth": 0.6 }
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": ["soc", "security", "monitoring"],
+  "templating": {
+    "list": [
+      {
+        "name": "severity",
+        "type": "custom",
+        "options": [
+          { "text": "All", "value": "" },
+          { "text": "P1", "value": "P1" },
+          { "text": "P2", "value": "P2" },
+          { "text": "P3", "value": "P3" },
+          { "text": "P4", "value": "P4" }
+        ],
+        "current": { "text": "All", "value": "" }
+      },
+      {
+        "name": "analyst",
+        "type": "query",
+        "query": "label_values(soc_analyst_open_tickets, analyst)",
+        "refresh": 2
+      }
+    ]
+  },
+  "time": { "from": "now-7d", "to": "now" },
+  "timepicker": {},
+  "timezone": "Asia/Bangkok",
+  "title": "SOC Operations Dashboard",
+  "uid": "soc-ops-dashboard-001",
+  "version": 1
+}

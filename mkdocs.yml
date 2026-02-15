@@ -175,6 +175,7 @@ nav:
   - 🧰 Interactive Tools:
     - SOC Maturity Scorer: tools/soc_maturity_scorer.html
     - MITRE ATT&CK Heatmap: tools/mitre_attack_heatmap.html
+    - SOC Dashboards (Grafana/Kibana): tools/dashboards/README.md
   - 🏛️ Compliance:
     - Compliance Mapping: 10_Compliance/Compliance_Mapping.en.md
     - แผนที่ Compliance (TH): 10_Compliance/Compliance_Mapping.th.md
