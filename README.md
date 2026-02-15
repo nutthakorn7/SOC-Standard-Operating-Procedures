@@ -366,8 +366,43 @@ For offline reading or printing, download the consolidated manual:
 
 ---
 
+## 👤 About the Author / ผู้เขียน
+
 <p align="center">
-  <b>Built with 🛡️ by</b><br>
-  <a href="https://cyberdefense.co.th"><b>cyberdefense.co.th</b></a><br>
-  Line OA: <code>@cyberdefense</code>
+  <b>Nutthakorn Chalaemwongwan [Pop]</b><br>
+  🛡️ SOC Architect · Cybersecurity Educator · Open-Source Advocate
+</p>
+
+> *"Security is a process, not a product."* — I created this repository to democratize SOC knowledge, making enterprise-grade security operations accessible to everyone — in both English and Thai.
+
+### 🎓 Training & Consulting / อบรมและที่ปรึกษา
+
+Looking to build, improve, or scale your Security Operations Center? I offer hands-on, practical training and consulting services:
+
+| 🎯 Service | Description |
+|:---|:---|
+| **🏗️ SOC Building Workshop** | ออกแบบและจัดตั้ง SOC ตั้งแต่ศูนย์ — architecture, staffing, tools, processes |
+| **📚 SOC Analyst Bootcamp** | หลักสูตร intensive สำหรับ Tier 1–3 — triage, investigation, hunting, SOAR |
+| **🔥 Incident Response Drill** | ซ้อม tabletop exercise + purple team ด้วย scenario จริง |
+| **📊 SOC Maturity Assessment** | ประเมิน SOC ปัจจุบัน 7 domains พร้อมแผน roadmap ปรับปรุง |
+| **📋 Compliance & Gap Analysis** | ประเมิน ISO 27001 / NIST CSF / PDPA gap พร้อม remediation plan |
+| **🎤 Speaking & Workshops** | บรรยาย, workshop, guest lecture ด้าน cybersecurity |
+
+### 📬 Contact / ช่องทางติดต่อ
+
+<p align="center">
+  <a href="mailto:nutthakorn.ch@kmitl.ac.th"><img src="https://img.shields.io/badge/📧_Email-nutthakorn.ch@kmitl.ac.th-blue?style=for-the-badge" alt="Email"></a>
+  <a href="https://www.linkedin.com/in/nutthakorn/"><img src="https://img.shields.io/badge/💼_LinkedIn-Nutthakorn-0A66C2?style=for-the-badge&logo=linkedin" alt="LinkedIn"></a>
+  <a href="https://line.me/ti/p/~pop7"><img src="https://img.shields.io/badge/💬_Line-pop7-00C300?style=for-the-badge&logo=line" alt="Line"></a>
+</p>
+
+<p align="center">
+  <i>📌 View my full profile, certifications, and experience on <a href="https://www.linkedin.com/in/nutthakorn/">LinkedIn</a></i>
+</p>
+
+---
+
+<p align="center">
+  <b>⭐ If this repository helps your SOC, please give it a star!</b><br>
+  <i>สร้างด้วย 🛡️ เพื่อ SOC community ไทยและทั่วโลก</i>
 </p>
