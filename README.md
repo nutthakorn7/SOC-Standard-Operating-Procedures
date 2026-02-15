@@ -37,6 +37,11 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 | :--- | :--- | :--- |
 | Standard Methodology | [Link](04_Troubleshooting/Common_Issues.en.md) | [ลิ้งค์](04_Troubleshooting/Common_Issues.th.md) |
 
+### 10_Compliance
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **Compliance Mapping** (ISO 27001 / NIST CSF / PCI DSS) | [Link](10_Compliance/Compliance_Mapping.en.md) | [ลิ้งค์](10_Compliance/Compliance_Mapping.th.md) |
+
 ### 05_Incident_Response
 | Document | English | ภาษาไทย |
 | :--- | :--- | :--- |

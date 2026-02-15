@@ -165,6 +165,7 @@ nav:
   - 🔧 Guides & Tools:
     - Detection Rules Index: 07_Detection_Rules/README.md
     - ดัชนี Detection Rules (TH): 07_Detection_Rules/README.th.md
+    - YARA Rules Index: 07_Detection_Rules/yara/README.md
     - Detection Engineering: 03_User_Guides/Content_Management.en.md
     - วิศวกรรมตรวจจับ (TH): 03_User_Guides/Content_Management.th.md
     - Integration Hub: 03_User_Guides/Integration_Hub.en.md
@@ -174,6 +175,9 @@ nav:
   - 🧰 Interactive Tools:
     - SOC Maturity Scorer: tools/soc_maturity_scorer.html
     - MITRE ATT&CK Heatmap: tools/mitre_attack_heatmap.html
+  - 🏛️ Compliance:
+    - Compliance Mapping: 10_Compliance/Compliance_Mapping.en.md
+    - แผนที่ Compliance (TH): 10_Compliance/Compliance_Mapping.th.md
   - 🎯 Testing & Training:
     - Simulation Guide: 08_Simulation_Testing/Simulation_Guide.md
     - Atomic Test Map: 08_Simulation_Testing/Atomic_Test_Map.md

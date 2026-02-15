@@ -77,7 +77,24 @@ This directory contains **28 Sigma detection rules** mapped to the SOC Playbooks
 
 ---
 
+## 🎯 YARA Rules (File-based Detection)
+
+In addition to Sigma rules, this directory contains **10 YARA rules** for file-based threat detection:
+
+| File | Rules | Detects | Playbook |
+|:---|:---:|:---|:---|
+| [ransomware_indicators.yar](yara/ransomware_indicators.yar) | 2 | Ransom notes, shadow copy deletion | PB-02 |
+| [webshell_generic.yar](yara/webshell_generic.yar) | 3 | PHP/JSP/ASPX webshells | PB-10, PB-18 |
+| [cryptominer_detection.yar](yara/cryptominer_detection.yar) | 2 | Mining pools, xmrig binaries | PB-23 |
+| [cobalt_strike_beacon.yar](yara/cobalt_strike_beacon.yar) | 2 | CS beacons & stagers | PB-13, PB-12 |
+| [malicious_document.yar](yara/malicious_document.yar) | 2 | Office macro malware, PDF JS | PB-01, PB-03 |
+
+📖 **Full YARA Index**: [yara/README.md](yara/README.md)
+
+---
+
 ## References
 -   [Sigma Official Repository](https://github.com/SigmaHQ/sigma)
 -   [MITRE ATT&CK Framework](https://attack.mitre.org/)
 -   [Uncoder.io — Sigma Rule Converter](https://uncoder.io/)
+-   [YARA Official Documentation](https://yara.readthedocs.io/)
