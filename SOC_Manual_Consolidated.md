@@ -6,6 +6,704 @@
 
 ---
 
+## File: AGENTS.md
+
+# AGENTS.md — SOC Standard Operating Procedures Repository
+
+> This file is the **single source of truth** for all AI agents and human contributors working on this repository.
+> It is symlinked to: `CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`
+
+---
+
+## 🎯 Project Identity
+
+### WHY — Purpose
+This repository provides **vendor-agnostic, production-ready SOC Standard Operating Procedures** that any organization can adopt to build or mature their Security Operations Center. All content follows NIST, MITRE ATT&CK, and ISO 27001/27035 frameworks.
+
+### WHAT — Scope
+- 20 Incident Response Playbooks (PB-01 to PB-20)
+- Operations Management (Shift Handoff, KPIs, Team Structure, CTI, TLP)
+- Detection Engineering (Sigma rules, YARA signatures)
+- Simulation & Purple Teaming
+- Training & Onboarding Curriculum
+- Executive Reporting Templates
+- All content is **bilingual** (English + Thai)
+
+### HOW — Technology
+- **Format**: Markdown (`.md`) with Mermaid diagrams
+- **Diagrams**: Mermaid.js (rendered natively on GitHub)
+- **Detection Rules**: Sigma YAML, YARA
+- **Quality Tools**: `python3 tools/check_links.py`, `python3 tools/export_docs.py`
+- **No build system required** — raw Markdown works on GitHub directly
+
+**Maintained by**: [cyberdefense.co.th](https://cyberdefense.co.th) | Line OA: `@cyberdefense`
+
+---
+
+## 📁 Directory Structure
+
+```
+SOCSOP/
+├── 01_Onboarding/           # SOC infrastructure setup
+├── 02_Platform_Operations/   # Data governance, deployment procedures
+├── 03_User_Guides/           # Detection engineering, tool integration
+├── 04_Troubleshooting/       # Standard troubleshooting methodology
+├── 05_Incident_Response/     # IR Framework + 20 Playbooks
+│   └── Playbooks/            # Individual incident playbooks (PB-01 to PB-20)
+├── 06_Operations_Management/ # Shift handoff, metrics, team structure, TLP, CTI
+├── 07_Detection_Rules/       # Sigma detection rules (.yml)
+├── 08_Simulation_Testing/    # Purple team guides, Atomic Red Team maps
+├── 09_Training_Onboarding/   # Analyst curriculum, training checklists
+├── 10_File_Signatures/       # YARA rules
+├── 11_Reporting_Templates/   # Monthly/quarterly executive reports
+├── templates/                # Incident report, shift handover, RFC forms
+├── tools/                    # Utility scripts (export, link check)
+└── assets/                   # Images (hero banner, etc.)
+```
+
+---
+
+## 📛 File Naming Conventions
+
+| Rule | Example |
+|---|---|
+| English docs end with `.en.md` | `Phishing.en.md` |
+| Thai docs end with `.th.md` | `Phishing.th.md` |
+| Bilingual docs **always** come in pairs (EN + TH) | `Framework.en.md` + `Framework.th.md` |
+| Language-neutral docs use plain `.md` | `Atomic_Test_Map.md`, `README.md` |
+| Use `PascalCase_With_Underscores` for filenames | `SOC_Team_Structure.en.md` |
+| Detection rules use lowercase with underscores | `win_multiple_failed_logins.yml` |
+| YARA rules use lowercase with underscores | `ransomware_extensions.yar` |
+
+---
+
+## 📄 Document Structure Requirements
+
+Every SOP document **MUST** contain these sections in this exact order:
+
+### 1. Title & Metadata
+```markdown
+# Document Title
+
+**ID**: PB-XX (for playbooks)
+**Severity**: Low/Medium/High/Critical (for playbooks)
+**Trigger**: What causes this playbook to activate
+```
+
+### 2. Mermaid Flowchart
+Every document must include at least one `mermaid` diagram visualizing the process or workflow.
+
+````markdown
+```mermaid
+graph TD
+    A[Start] --> B[Step 1]
+    B --> C{Decision}
+    C -->|Yes| D[Action]
+    C -->|No| E[Other Action]
+```
+````
+
+**Mermaid rules**:
+- Thai versions must have **localized labels** (not English copy-pasted)
+- Use `graph TD` (top-down) for process flows
+- Use `graph LR` (left-right) for timelines/career paths
+- Keep diagrams concise (max ~10 nodes)
+- Use `style` for color coding when useful
+
+### 3. Main Content
+Structured with numbered sections (`## 1.`, `## 2.`, etc.) and actionable checklists:
+```markdown
+-   [ ] **Action Item**: Description of what to do.
+```
+
+### 4. Related Documents (Cross-Links)
+Cross-links to other documents in the repository. Insert **before** References.
+
+```
+## Related Documents          <!-- English -->
+## เอกสารที่เกี่ยวข้อง (Related Documents)  <!-- Thai -->
+
+-   Document Name → relative/path/to/file.en.md
+```
+
+**Cross-link rules**:
+- Playbooks → IR Framework, Incident Report Template, related Playbooks
+- Operations docs → SOC Metrics, Assessment Checklist, IR Framework
+- Always use **relative paths** (e.g., `../05_Incident_Response/Framework.en.md`)
+- Every file must link to at least 2 other internal documents
+
+### 5. References
+External links to authoritative sources. Always include at least 2 references.
+
+```markdown
+## References
+-   [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+-   [MITRE ATT&CK](https://attack.mitre.org/)
+```
+
+**Preferred reference sources** (in order of priority):
+1. NIST (SP 800-61, 800-53, CSF)
+2. MITRE ATT&CK
+3. CISA
+4. SANS
+5. OWASP
+6. ISO 27001/27035
+7. SOC-CMM
+8. FIRST CSIRT Services Framework
+
+---
+
+## 🌐 Bilingual Content Rules
+
+| Rule | Details |
+|---|---|
+| Every EN doc must have a TH counterpart | No orphaned single-language files |
+| Thai docs are **localized**, not literal translations | Adapt terminology naturally |
+| Mermaid labels must be localized | `Alert[แจ้งเตือน]` not `Alert[Alert]` |
+| Section headers include Thai + English | `## 1. นิยามปัญหา (Defining the Problem)` |
+| Keep technical terms untranslated | SIEM, MITRE ATT&CK, IOC, TLP, YARA, Sigma |
+| References section header stays as `## References` | Same in both EN and TH versions |
+| Related Documents header is bilingual in TH | `## เอกสารที่เกี่ยวข้อง (Related Documents)` |
+
+---
+
+## 🎨 Tone & Style Guide
+
+### Writing Style
+- **Actionable**: Write procedures as clear, step-by-step instructions
+- **Imperative mood**: "Check the logs" not "The logs should be checked"
+- **Concise**: Short bullet points, no long paragraphs
+- **Professional**: Suitable for SOC analysts and CISO-level readers
+
+### Formatting Rules
+- Use `-   ` (3 spaces after dash) for bullet points
+- Use `**Bold**` for key terms and action items
+- Use backticks for commands, tools, and technical identifiers: `nslookup`, `SIEM`, `T1566`
+- Tables for structured data (KPIs, staffing models, severity matrices)
+- Numbered sections for sequential processes (`## 1.`, `## 2.`)
+
+---
+
+## 🛡️ Playbook Conventions
+
+| Property | Rule |
+|---|---|
+| **ID Format** | `PB-XX` (e.g., PB-01, PB-02 ... PB-20) |
+| **Standard Sections** | Analysis → Containment → Eradication → Recovery |
+| **Mermaid Flow** | Must visualize the triage/decision process |
+| **MITRE ATT&CK** | Reference relevant Technique IDs (e.g., T1566, T1078) |
+| **Severity Levels** | Low, Medium, High, Critical |
+| **Checklists** | Use `- [ ]` for operational steps |
+| **Cross-Links** | Link to IR Framework, Incident Report template, related PBs |
+
+### Playbook Index (PB-01 to PB-20)
+```
+PB-01 Phishing               PB-11 Suspicious Script
+PB-02 Ransomware             PB-12 Lateral Movement
+PB-03 Malware Infection      PB-13 C2 Communication
+PB-04 Brute Force            PB-14 Insider Threat
+PB-05 Account Compromise     PB-15 Log Clearing
+PB-06 Impossible Travel      PB-16 Lost Device
+PB-07 Privilege Escalation   PB-17 Rogue Admin
+PB-08 Data Exfiltration      PB-18 BEC (Business Email Compromise)
+PB-09 DDoS Attack            PB-19 Web Application Attack
+PB-10 Exploit/Vulnerability  PB-20 Cloud-specific (AWS/Azure)
+```
+
+---
+
+## 🔍 Detection Rules
+
+### Sigma Rules (`07_Detection_Rules/`)
+- **Format**: Sigma YAML specification v2
+- **Naming**: `<category>_<description>.yml` (e.g., `win_multiple_failed_logins.yml`)
+- **Required fields**: `title`, `status`, `description`, `logsource`, `detection`, `level`, `tags`
+- **Tags**: Must include MITRE ATT&CK technique IDs (e.g., `attack.t1110`)
+
+### YARA Rules (`10_File_Signatures/`)
+- **Format**: YARA rule syntax
+- **Naming**: `<family>_<indicator>.yar`
+- **Required**: `meta`, `strings`, `condition` blocks
+
+---
+
+## ✅ Verification & Quality Checks
+
+### Before Every Commit
+```bash
+# 1. Check all internal links are valid
+python3 tools/check_links.py
+
+# 2. Regenerate consolidated manual
+python3 tools/export_docs.py
+```
+
+### Pre-Commit Checklist
+- [ ] `check_links.py` passes ✅ (no broken internal links)
+- [ ] `export_docs.py` regenerates `SOC_Manual_Consolidated.md`
+- [ ] Both EN and TH versions updated if content changed
+- [ ] Mermaid diagrams render correctly
+- [ ] Related Documents section present with cross-links
+- [ ] References section present with at least 2 credible sources
+- [ ] README.md updated if new documents were added
+- [ ] No duplicate lines (known issue — scan after batch edits)
+
+---
+
+## 📝 Git Commit Conventions
+
+**Pattern**: `<Action> <What> (<Details>)`
+
+```
+Add SOC Team Structure document (EN/TH) with org chart, roles, career path
+Fix duplicate lines from flow insertion, regenerate consolidated manual
+Add cross-links between all documents (Related Documents sections)
+Standardize Operations Management docs: Add flows and references
+```
+
+**Actions**: `Add`, `Fix`, `Update`, `Remove`, `Refactor`, `Standardize`
+
+---
+
+## 📖 README Maintenance
+
+When adding new documents:
+1. Add a row to the relevant section table in `README.md`
+2. Follow the existing table format with English and Thai links
+3. Keep the table alphabetically sorted within each section
+
+---
+
+## ⚠️ Known Pitfalls & Gotchas
+
+| Pitfall | Solution |
+|---|---|
+| `multi_replace` tool duplicates lines when inserting flows | Scan for duplicate lines after batch edits with `grep` |
+| Mermaid nodes with parentheses break rendering | Use `["text with (parens)"]` square bracket syntax |
+| Thai text in Mermaid can overflow | Keep labels short, use abbreviations |
+| Symlinks not followed on some Git platforms | Verify CLAUDE.md, .cursorrules render on GitHub |
+| `check_links.py` only validates internal links | External URLs (References) are NOT checked automatically |
+| `SOC_Manual_Consolidated.md` must be regenerated | Always run `export_docs.py` after any content change |
+
+---
+
+## 🔒 Security & Confidentiality Rules
+
+- **NEVER** commit real credentials, API keys, or tokens
+- **NEVER** include client-specific data (company names, IPs, domains)
+- **NEVER** reference internal infrastructure details
+- All examples must use **placeholder values**: `[COMPANY]`, `[IP_ADDRESS]`, `[YYYY-MM-DD]`
+- Keep all content **vendor-agnostic** — no Splunk, QRadar, Sentinel-specific content
+- Use generic terms: "SIEM query" not "SPL query", "EDR" not "CrowdStrike"
+
+---
+
+## 🚀 Common Workflows
+
+### Adding a New Playbook
+```
+1. Create `05_Incident_Response/Playbooks/<Name>.en.md`
+2. Create `05_Incident_Response/Playbooks/<Name>.th.md`
+3. Include: Metadata, Mermaid flow, Analysis/Containment/Eradication/Recovery
+4. Add Related Documents (→ Framework, → Incident Report Template)
+5. Add References (MITRE ATT&CK technique + 1 more)
+6. Update README.md table
+7. Run: python3 tools/check_links.py
+8. Run: python3 tools/export_docs.py
+9. Commit with: "Add PB-XX <Name> playbook (EN/TH)"
+```
+
+### Adding a New Operations Document
+```
+1. Create `06_Operations_Management/<Name>.en.md`
+2. Create `06_Operations_Management/<Name>.th.md`
+3. Include: Mermaid flow, structured content, checklists
+4. Add Related Documents (→ SOC Metrics, → Assessment Checklist)
+5. Add References (NIST/SOC-CMM/SANS)
+6. Update README.md table
+7. Run verification scripts
+8. Commit with: "Add <Name> document (EN/TH)"
+```
+
+### Updating Existing Documents
+```
+1. Edit both EN and TH versions
+2. Verify Mermaid diagrams still render
+3. Verify cross-links still work
+4. Run: python3 tools/check_links.py
+5. Run: python3 tools/export_docs.py
+6. Commit with: "Update <Name>: <what changed>"
+```
+
+---
+
+## ❌ Do NOT
+
+- ❌ Use vendor-specific terminology (`"Splunk query"` → use `"SIEM query"`)
+- ❌ Create single-language documents (always EN + TH pair)
+- ❌ Skip the Mermaid flowchart in any SOP document
+- ❌ Use absolute file paths in cross-links (always relative)
+- ❌ Commit without running `check_links.py` and `export_docs.py`
+- ❌ Leave References section empty (minimum 2 sources)
+- ❌ Hardcode organization-specific details (keep vendor-agnostic)
+- ❌ Include real credentials, client data, or internal infrastructure info
+- ❌ Modify `SOC_Manual_Consolidated.md` directly (it's auto-generated)
+- ❌ Create deeply nested directories (max 2 levels deep)
+- ❌ Skip the Related Documents section (every file must cross-link)
+- ❌ Use inline HTML in Markdown (except README badges/footer)
+
+
+---
+
+## File: CLAUDE.md
+
+# AGENTS.md — SOC Standard Operating Procedures Repository
+
+> This file is the **single source of truth** for all AI agents and human contributors working on this repository.
+> It is symlinked to: `CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`
+
+---
+
+## 🎯 Project Identity
+
+### WHY — Purpose
+This repository provides **vendor-agnostic, production-ready SOC Standard Operating Procedures** that any organization can adopt to build or mature their Security Operations Center. All content follows NIST, MITRE ATT&CK, and ISO 27001/27035 frameworks.
+
+### WHAT — Scope
+- 20 Incident Response Playbooks (PB-01 to PB-20)
+- Operations Management (Shift Handoff, KPIs, Team Structure, CTI, TLP)
+- Detection Engineering (Sigma rules, YARA signatures)
+- Simulation & Purple Teaming
+- Training & Onboarding Curriculum
+- Executive Reporting Templates
+- All content is **bilingual** (English + Thai)
+
+### HOW — Technology
+- **Format**: Markdown (`.md`) with Mermaid diagrams
+- **Diagrams**: Mermaid.js (rendered natively on GitHub)
+- **Detection Rules**: Sigma YAML, YARA
+- **Quality Tools**: `python3 tools/check_links.py`, `python3 tools/export_docs.py`
+- **No build system required** — raw Markdown works on GitHub directly
+
+**Maintained by**: [cyberdefense.co.th](https://cyberdefense.co.th) | Line OA: `@cyberdefense`
+
+---
+
+## 📁 Directory Structure
+
+```
+SOCSOP/
+├── 01_Onboarding/           # SOC infrastructure setup
+├── 02_Platform_Operations/   # Data governance, deployment procedures
+├── 03_User_Guides/           # Detection engineering, tool integration
+├── 04_Troubleshooting/       # Standard troubleshooting methodology
+├── 05_Incident_Response/     # IR Framework + 20 Playbooks
+│   └── Playbooks/            # Individual incident playbooks (PB-01 to PB-20)
+├── 06_Operations_Management/ # Shift handoff, metrics, team structure, TLP, CTI
+├── 07_Detection_Rules/       # Sigma detection rules (.yml)
+├── 08_Simulation_Testing/    # Purple team guides, Atomic Red Team maps
+├── 09_Training_Onboarding/   # Analyst curriculum, training checklists
+├── 10_File_Signatures/       # YARA rules
+├── 11_Reporting_Templates/   # Monthly/quarterly executive reports
+├── templates/                # Incident report, shift handover, RFC forms
+├── tools/                    # Utility scripts (export, link check)
+└── assets/                   # Images (hero banner, etc.)
+```
+
+---
+
+## 📛 File Naming Conventions
+
+| Rule | Example |
+|---|---|
+| English docs end with `.en.md` | `Phishing.en.md` |
+| Thai docs end with `.th.md` | `Phishing.th.md` |
+| Bilingual docs **always** come in pairs (EN + TH) | `Framework.en.md` + `Framework.th.md` |
+| Language-neutral docs use plain `.md` | `Atomic_Test_Map.md`, `README.md` |
+| Use `PascalCase_With_Underscores` for filenames | `SOC_Team_Structure.en.md` |
+| Detection rules use lowercase with underscores | `win_multiple_failed_logins.yml` |
+| YARA rules use lowercase with underscores | `ransomware_extensions.yar` |
+
+---
+
+## 📄 Document Structure Requirements
+
+Every SOP document **MUST** contain these sections in this exact order:
+
+### 1. Title & Metadata
+```markdown
+# Document Title
+
+**ID**: PB-XX (for playbooks)
+**Severity**: Low/Medium/High/Critical (for playbooks)
+**Trigger**: What causes this playbook to activate
+```
+
+### 2. Mermaid Flowchart
+Every document must include at least one `mermaid` diagram visualizing the process or workflow.
+
+````markdown
+```mermaid
+graph TD
+    A[Start] --> B[Step 1]
+    B --> C{Decision}
+    C -->|Yes| D[Action]
+    C -->|No| E[Other Action]
+```
+````
+
+**Mermaid rules**:
+- Thai versions must have **localized labels** (not English copy-pasted)
+- Use `graph TD` (top-down) for process flows
+- Use `graph LR` (left-right) for timelines/career paths
+- Keep diagrams concise (max ~10 nodes)
+- Use `style` for color coding when useful
+
+### 3. Main Content
+Structured with numbered sections (`## 1.`, `## 2.`, etc.) and actionable checklists:
+```markdown
+-   [ ] **Action Item**: Description of what to do.
+```
+
+### 4. Related Documents (Cross-Links)
+Cross-links to other documents in the repository. Insert **before** References.
+
+```
+## Related Documents          <!-- English -->
+## เอกสารที่เกี่ยวข้อง (Related Documents)  <!-- Thai -->
+
+-   Document Name → relative/path/to/file.en.md
+```
+
+**Cross-link rules**:
+- Playbooks → IR Framework, Incident Report Template, related Playbooks
+- Operations docs → SOC Metrics, Assessment Checklist, IR Framework
+- Always use **relative paths** (e.g., `../05_Incident_Response/Framework.en.md`)
+- Every file must link to at least 2 other internal documents
+
+### 5. References
+External links to authoritative sources. Always include at least 2 references.
+
+```markdown
+## References
+-   [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+-   [MITRE ATT&CK](https://attack.mitre.org/)
+```
+
+**Preferred reference sources** (in order of priority):
+1. NIST (SP 800-61, 800-53, CSF)
+2. MITRE ATT&CK
+3. CISA
+4. SANS
+5. OWASP
+6. ISO 27001/27035
+7. SOC-CMM
+8. FIRST CSIRT Services Framework
+
+---
+
+## 🌐 Bilingual Content Rules
+
+| Rule | Details |
+|---|---|
+| Every EN doc must have a TH counterpart | No orphaned single-language files |
+| Thai docs are **localized**, not literal translations | Adapt terminology naturally |
+| Mermaid labels must be localized | `Alert[แจ้งเตือน]` not `Alert[Alert]` |
+| Section headers include Thai + English | `## 1. นิยามปัญหา (Defining the Problem)` |
+| Keep technical terms untranslated | SIEM, MITRE ATT&CK, IOC, TLP, YARA, Sigma |
+| References section header stays as `## References` | Same in both EN and TH versions |
+| Related Documents header is bilingual in TH | `## เอกสารที่เกี่ยวข้อง (Related Documents)` |
+
+---
+
+## 🎨 Tone & Style Guide
+
+### Writing Style
+- **Actionable**: Write procedures as clear, step-by-step instructions
+- **Imperative mood**: "Check the logs" not "The logs should be checked"
+- **Concise**: Short bullet points, no long paragraphs
+- **Professional**: Suitable for SOC analysts and CISO-level readers
+
+### Formatting Rules
+- Use `-   ` (3 spaces after dash) for bullet points
+- Use `**Bold**` for key terms and action items
+- Use backticks for commands, tools, and technical identifiers: `nslookup`, `SIEM`, `T1566`
+- Tables for structured data (KPIs, staffing models, severity matrices)
+- Numbered sections for sequential processes (`## 1.`, `## 2.`)
+
+---
+
+## 🛡️ Playbook Conventions
+
+| Property | Rule |
+|---|---|
+| **ID Format** | `PB-XX` (e.g., PB-01, PB-02 ... PB-20) |
+| **Standard Sections** | Analysis → Containment → Eradication → Recovery |
+| **Mermaid Flow** | Must visualize the triage/decision process |
+| **MITRE ATT&CK** | Reference relevant Technique IDs (e.g., T1566, T1078) |
+| **Severity Levels** | Low, Medium, High, Critical |
+| **Checklists** | Use `- [ ]` for operational steps |
+| **Cross-Links** | Link to IR Framework, Incident Report template, related PBs |
+
+### Playbook Index (PB-01 to PB-20)
+```
+PB-01 Phishing               PB-11 Suspicious Script
+PB-02 Ransomware             PB-12 Lateral Movement
+PB-03 Malware Infection      PB-13 C2 Communication
+PB-04 Brute Force            PB-14 Insider Threat
+PB-05 Account Compromise     PB-15 Log Clearing
+PB-06 Impossible Travel      PB-16 Lost Device
+PB-07 Privilege Escalation   PB-17 Rogue Admin
+PB-08 Data Exfiltration      PB-18 BEC (Business Email Compromise)
+PB-09 DDoS Attack            PB-19 Web Application Attack
+PB-10 Exploit/Vulnerability  PB-20 Cloud-specific (AWS/Azure)
+```
+
+---
+
+## 🔍 Detection Rules
+
+### Sigma Rules (`07_Detection_Rules/`)
+- **Format**: Sigma YAML specification v2
+- **Naming**: `<category>_<description>.yml` (e.g., `win_multiple_failed_logins.yml`)
+- **Required fields**: `title`, `status`, `description`, `logsource`, `detection`, `level`, `tags`
+- **Tags**: Must include MITRE ATT&CK technique IDs (e.g., `attack.t1110`)
+
+### YARA Rules (`10_File_Signatures/`)
+- **Format**: YARA rule syntax
+- **Naming**: `<family>_<indicator>.yar`
+- **Required**: `meta`, `strings`, `condition` blocks
+
+---
+
+## ✅ Verification & Quality Checks
+
+### Before Every Commit
+```bash
+# 1. Check all internal links are valid
+python3 tools/check_links.py
+
+# 2. Regenerate consolidated manual
+python3 tools/export_docs.py
+```
+
+### Pre-Commit Checklist
+- [ ] `check_links.py` passes ✅ (no broken internal links)
+- [ ] `export_docs.py` regenerates `SOC_Manual_Consolidated.md`
+- [ ] Both EN and TH versions updated if content changed
+- [ ] Mermaid diagrams render correctly
+- [ ] Related Documents section present with cross-links
+- [ ] References section present with at least 2 credible sources
+- [ ] README.md updated if new documents were added
+- [ ] No duplicate lines (known issue — scan after batch edits)
+
+---
+
+## 📝 Git Commit Conventions
+
+**Pattern**: `<Action> <What> (<Details>)`
+
+```
+Add SOC Team Structure document (EN/TH) with org chart, roles, career path
+Fix duplicate lines from flow insertion, regenerate consolidated manual
+Add cross-links between all documents (Related Documents sections)
+Standardize Operations Management docs: Add flows and references
+```
+
+**Actions**: `Add`, `Fix`, `Update`, `Remove`, `Refactor`, `Standardize`
+
+---
+
+## 📖 README Maintenance
+
+When adding new documents:
+1. Add a row to the relevant section table in `README.md`
+2. Follow the existing table format with English and Thai links
+3. Keep the table alphabetically sorted within each section
+
+---
+
+## ⚠️ Known Pitfalls & Gotchas
+
+| Pitfall | Solution |
+|---|---|
+| `multi_replace` tool duplicates lines when inserting flows | Scan for duplicate lines after batch edits with `grep` |
+| Mermaid nodes with parentheses break rendering | Use `["text with (parens)"]` square bracket syntax |
+| Thai text in Mermaid can overflow | Keep labels short, use abbreviations |
+| Symlinks not followed on some Git platforms | Verify CLAUDE.md, .cursorrules render on GitHub |
+| `check_links.py` only validates internal links | External URLs (References) are NOT checked automatically |
+| `SOC_Manual_Consolidated.md` must be regenerated | Always run `export_docs.py` after any content change |
+
+---
+
+## 🔒 Security & Confidentiality Rules
+
+- **NEVER** commit real credentials, API keys, or tokens
+- **NEVER** include client-specific data (company names, IPs, domains)
+- **NEVER** reference internal infrastructure details
+- All examples must use **placeholder values**: `[COMPANY]`, `[IP_ADDRESS]`, `[YYYY-MM-DD]`
+- Keep all content **vendor-agnostic** — no Splunk, QRadar, Sentinel-specific content
+- Use generic terms: "SIEM query" not "SPL query", "EDR" not "CrowdStrike"
+
+---
+
+## 🚀 Common Workflows
+
+### Adding a New Playbook
+```
+1. Create `05_Incident_Response/Playbooks/<Name>.en.md`
+2. Create `05_Incident_Response/Playbooks/<Name>.th.md`
+3. Include: Metadata, Mermaid flow, Analysis/Containment/Eradication/Recovery
+4. Add Related Documents (→ Framework, → Incident Report Template)
+5. Add References (MITRE ATT&CK technique + 1 more)
+6. Update README.md table
+7. Run: python3 tools/check_links.py
+8. Run: python3 tools/export_docs.py
+9. Commit with: "Add PB-XX <Name> playbook (EN/TH)"
+```
+
+### Adding a New Operations Document
+```
+1. Create `06_Operations_Management/<Name>.en.md`
+2. Create `06_Operations_Management/<Name>.th.md`
+3. Include: Mermaid flow, structured content, checklists
+4. Add Related Documents (→ SOC Metrics, → Assessment Checklist)
+5. Add References (NIST/SOC-CMM/SANS)
+6. Update README.md table
+7. Run verification scripts
+8. Commit with: "Add <Name> document (EN/TH)"
+```
+
+### Updating Existing Documents
+```
+1. Edit both EN and TH versions
+2. Verify Mermaid diagrams still render
+3. Verify cross-links still work
+4. Run: python3 tools/check_links.py
+5. Run: python3 tools/export_docs.py
+6. Commit with: "Update <Name>: <what changed>"
+```
+
+---
+
+## ❌ Do NOT
+
+- ❌ Use vendor-specific terminology (`"Splunk query"` → use `"SIEM query"`)
+- ❌ Create single-language documents (always EN + TH pair)
+- ❌ Skip the Mermaid flowchart in any SOP document
+- ❌ Use absolute file paths in cross-links (always relative)
+- ❌ Commit without running `check_links.py` and `export_docs.py`
+- ❌ Leave References section empty (minimum 2 sources)
+- ❌ Hardcode organization-specific details (keep vendor-agnostic)
+- ❌ Include real credentials, client data, or internal infrastructure info
+- ❌ Modify `SOC_Manual_Consolidated.md` directly (it's auto-generated)
+- ❌ Create deeply nested directories (max 2 levels deep)
+- ❌ Skip the Related Documents section (every file must cross-link)
+- ❌ Use inline HTML in Markdown (except README badges/footer)
+
+
+---
+
 ## File: 02_Platform_Operations/Database_Management.en.md
 
 # Data Governance & Retention Policy
@@ -4299,6 +4997,1093 @@ graph TD
 ## References
 -   [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 -   [MITRE ATT&CK T1190 (Exploit Public-Facing Application)](https://attack.mitre.org/techniques/T1190/)
+
+
+---
+
+## File: 00_Getting_Started/Glossary.en.md
+
+# Glossary of Cybersecurity & SOC Terms
+
+A beginner-friendly dictionary of terms used throughout this repository. Terms are organized alphabetically.
+
+---
+
+## A
+
+| Term | Definition |
+|---|---|
+| **Active Directory (AD)** | Microsoft's directory service that manages users, computers, and permissions in a Windows network. A primary target for attackers. |
+| **Alert** | A notification generated by a security tool (e.g., SIEM) when suspicious activity is detected. Alerts require triage by a SOC analyst. |
+| **APT (Advanced Persistent Threat)** | A highly sophisticated, well-funded attacker (often nation-state) that targets specific organizations over long periods. |
+| **ATT&CK** | See **MITRE ATT&CK**. |
+
+## B
+
+| Term | Definition |
+|---|---|
+| **BEC (Business Email Compromise)** | An attack where criminals impersonate executives via email to trick employees into transferring money or sensitive data. |
+| **Blue Team** | The defensive security team responsible for protecting the organization. SOC analysts are blue team members. |
+| **Brute Force** | An attack that tries many password combinations until one works. Often seen in login attempts. |
+
+## C
+
+| Term | Definition |
+|---|---|
+| **C2 (Command and Control)** | Infrastructure used by attackers to remotely control compromised systems. Also written as C&C. |
+| **CISA** | Cybersecurity and Infrastructure Security Agency — the U.S. federal agency for cybersecurity guidance. |
+| **CISO (Chief Information Security Officer)** | The executive responsible for an organization's overall security strategy. The SOC Manager typically reports to the CISO. |
+| **CSIRT (Computer Security Incident Response Team)** | A team dedicated to responding to computer security incidents. SOC is a type of CSIRT. |
+| **CTI (Cyber Threat Intelligence)** | Information about threats, threat actors, and their tactics, collected and analyzed to improve defenses. |
+| **CVE (Common Vulnerabilities and Exposures)** | A unique identifier for publicly known security vulnerabilities (e.g., CVE-2021-44228 for Log4Shell). |
+
+## D
+
+| Term | Definition |
+|---|---|
+| **DDoS (Distributed Denial of Service)** | An attack that floods a target with traffic from many sources, making it unavailable to legitimate users. |
+| **Detection Rule** | A logic statement (e.g., Sigma rule) that defines what suspicious activity looks like in log data. When matched, it generates an alert. |
+
+## E
+
+| Term | Definition |
+|---|---|
+| **EDR (Endpoint Detection and Response)** | Software installed on computers/servers that monitors for and responds to malicious activity. Examples: CrowdStrike, SentinelOne, Wazuh. |
+| **Endpoint** | Any device connected to the network — laptops, desktops, servers, mobile phones. |
+| **Escalation** | The process of passing an alert or incident from a lower tier analyst to a higher tier for deeper investigation. |
+| **Exfiltration** | The unauthorized transfer of data out of an organization. The attacker's goal in many breaches. |
+
+## F
+
+| Term | Definition |
+|---|---|
+| **False Positive (FP)** | An alert that triggers on benign (non-malicious) activity. Reducing FPs is a key SOC efficiency metric. |
+| **False Negative (FN)** | A real attack that the detection system fails to detect. Much more dangerous than a False Positive. |
+| **Firewall** | A network device that controls incoming and outgoing traffic based on security rules. |
+| **Forensics** | The process of collecting and analyzing digital evidence after a security incident. |
+
+## G-H
+
+| Term | Definition |
+|---|---|
+| **GDPR (General Data Protection Regulation)** | EU regulation for data privacy. Organizations must report breaches within 72 hours. |
+| **Hash** | A fixed-length string generated from a file (e.g., MD5, SHA-256). Used to identify malware without needing the actual file. |
+| **Honeypot** | A decoy system designed to attract attackers, allowing the SOC to study their techniques. |
+
+## I
+
+| Term | Definition |
+|---|---|
+| **IDS/IPS** | **Intrusion Detection System** (monitors and alerts) / **Intrusion Prevention System** (monitors and blocks). |
+| **Incident** | A confirmed security event that requires response. Not all alerts become incidents. |
+| **IOC (Indicator of Compromise)** | Evidence that an attack has occurred — malicious IP addresses, domain names, file hashes, URLs. |
+| **IR (Incident Response)** | The process of detecting, analyzing, containing, and recovering from security incidents. |
+
+## K-L
+
+| Term | Definition |
+|---|---|
+| **Kill Chain** | A model describing the stages of a cyber attack: Recon → Weaponize → Deliver → Exploit → Install → C2 → Actions. |
+| **Lateral Movement** | When an attacker moves from one compromised system to another within the same network. |
+| **Log** | A recorded event from a system (firewall log, login log, application log). Logs are the raw data SOC analysts analyze. |
+
+## M
+
+| Term | Definition |
+|---|---|
+| **Malware** | Malicious software — viruses, trojans, ransomware, worms, spyware. |
+| **MISP** | Open-source Threat Intelligence Platform for sharing IOCs between organizations. |
+| **MITRE ATT&CK** | A knowledge base of adversary Tactics, Techniques, and Procedures (TTPs). The global standard for categorizing attacks. |
+| **MTTD (Mean Time To Detect)** | Average time from an attack starting to the SOC detecting it. Lower is better. |
+| **MTTR (Mean Time To Respond)** | Average time from detection to containment of an incident. Lower is better. |
+
+## N-O
+
+| Term | Definition |
+|---|---|
+| **NDR (Network Detection and Response)** | Technology that monitors network traffic for threats. Complements EDR (which monitors endpoints). |
+| **NIST** | National Institute of Standards and Technology — the U.S. agency that publishes cybersecurity frameworks and guidelines (SP 800 series). |
+| **OSINT (Open Source Intelligence)** | Intelligence gathered from publicly available sources (social media, websites, public databases). |
+
+## P
+
+| Term | Definition |
+|---|---|
+| **PDPA** | Thailand's Personal Data Protection Act — similar to GDPR. Requires organizations to protect personal data. |
+| **Phishing** | An attack using fake emails, messages, or websites to trick people into revealing credentials or installing malware. |
+| **Playbook** | A step-by-step procedure for responding to a specific type of security incident (e.g., Phishing Playbook). |
+| **Purple Team** | A collaborative exercise where Red Team (attackers) and Blue Team (defenders) work together to test and improve defenses. |
+
+## R
+
+| Term | Definition |
+|---|---|
+| **Ransomware** | Malware that encrypts files and demands payment (ransom) to decrypt them. One of the most damaging attack types. |
+| **RCA (Root Cause Analysis)** | The process of identifying the fundamental cause of an incident to prevent recurrence. |
+| **Red Team** | The offensive security team that simulates attacks to test the organization's defenses. |
+| **Runbook** | See **Playbook** (terms are often used interchangeably). |
+
+## S
+
+| Term | Definition |
+|---|---|
+| **SIEM (Security Information and Event Management)** | The central platform that collects logs from all sources, correlates events, and generates alerts. The "brain" of a SOC. Examples: Splunk, Microsoft Sentinel, Wazuh. |
+| **Sigma** | A generic and open signature format for SIEM detection rules. Write once, convert to any SIEM query language. |
+| **SOAR (Security Orchestration, Automation, and Response)** | A platform that automates repetitive SOC tasks (e.g., auto-blocking an IP, auto-enriching alerts). |
+| **SOC (Security Operations Center)** | A team and facility dedicated to monitoring, detecting, and responding to cybersecurity threats 24/7. |
+| **SOC-CMM** | SOC Capability Maturity Model — a framework to assess and improve SOC maturity across 5 levels. |
+| **STIX/TAXII** | Standards for sharing threat intelligence data between organizations. STIX defines the format; TAXII defines the transport. |
+
+## T
+
+| Term | Definition |
+|---|---|
+| **Threat Hunting** | Proactive searching for hidden threats in the environment that have evaded automated detection. Performed by Tier 3 analysts. |
+| **Tier 1 / Tier 2 / Tier 3** | SOC analyst levels. Tier 1 = triage, Tier 2 = investigation, Tier 3 = hunting and advanced analysis. |
+| **TLP (Traffic Light Protocol)** | A system for classifying how sensitive information can be shared: TLP:RED (restricted), TLP:AMBER (limited), TLP:GREEN (community), TLP:CLEAR (public). |
+| **True Positive (TP)** | An alert that correctly identifies a real security threat. The opposite of False Positive. |
+| **TTP (Tactics, Techniques, and Procedures)** | The behavior patterns of an attacker — what they do (Tactic), how they do it (Technique), and the specific steps (Procedure). |
+
+## V-W
+
+| Term | Definition |
+|---|---|
+| **Vulnerability** | A weakness in a system that an attacker can exploit. Tracked by CVE identifiers. |
+| **VPN (Virtual Private Network)** | An encrypted tunnel for secure remote access to the organization's network. |
+| **YARA** | A tool and rule format for identifying and classifying malware based on patterns in files. |
+
+## X-Z
+
+| Term | Definition |
+|---|---|
+| **XDR (Extended Detection and Response)** | An evolution of EDR that integrates data from endpoints, network, cloud, and email into a single detection platform. |
+| **Zero-Day** | A vulnerability that is unknown to the vendor and has no patch available. Extremely dangerous because no defense exists yet. |
+
+---
+
+## Related Documents
+-   [SOC 101](SOC_101.en.md)
+-   [Quickstart Guide](Quickstart_Guide.en.md)
+-   [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md)
+-   [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.en.md)
+
+## References
+-   [MITRE ATT&CK Glossary](https://attack.mitre.org/resources/)
+-   [NIST Glossary of Key Information Security Terms](https://csrc.nist.gov/glossary)
+-   [FIRST — CSIRT Services Framework](https://www.first.org/standards/frameworks/)
+-   [SANS Glossary of Security Terms](https://www.sans.org/security-resources/glossary-of-terms/)
+
+
+---
+
+## File: 00_Getting_Started/Glossary.th.md
+
+# คำศัพท์ด้านไซเบอร์ซีเคียวริตี้และ SOC (Glossary)
+
+พจนานุกรมศัพท์เทคนิคที่ใช้ตลอดทั้ง Repository นี้ อธิบายแบบเข้าใจง่ายสำหรับผู้เริ่มต้น เรียงตามตัวอักษร
+
+---
+
+## A
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **Active Directory (AD)** | ระบบจัดการผู้ใช้, คอมพิวเตอร์ และสิทธิ์ในเครือข่าย Windows ของ Microsoft เป็นเป้าหมายหลักของผู้โจมตี |
+| **Alert (แจ้งเตือน)** | การแจ้งเตือนจากเครื่องมือรักษาความปลอดภัย (เช่น SIEM) เมื่อพบกิจกรรมน่าสงสัย ต้องให้ SOC Analyst คัดกรอง |
+| **APT (Advanced Persistent Threat)** | ผู้โจมตีระดับสูงที่มีทรัพยากรมาก (มักเป็นระดับรัฐ) โจมตีองค์กรเป้าหมายเป็นระยะเวลานาน |
+| **ATT&CK** | ดู **MITRE ATT&CK** |
+
+## B
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **BEC (Business Email Compromise)** | การโจมตีที่แฮกเกอร์ปลอมเป็นผู้บริหาร ส่งอีเมลหลอกพนักงานให้โอนเงินหรือส่งข้อมูลสำคัญ |
+| **Blue Team (ทีมน้ำเงิน)** | ทีมป้องกันความปลอดภัย SOC Analyst อยู่ในทีม Blue Team |
+| **Brute Force** | การโจมตีที่ลองรหัสผ่านจำนวนมากจนกว่าจะถูก มักเห็นในการ Login |
+
+## C
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **C2 (Command and Control)** | โครงสร้างพื้นฐานที่ผู้โจมตีใช้ควบคุมเครื่องที่ถูกแฮกจากระยะไกล เขียนว่า C&C ก็ได้ |
+| **CISA** | Cybersecurity and Infrastructure Security Agency — หน่วยงานด้านไซเบอร์ของสหรัฐอเมริกา |
+| **CISO** | Chief Information Security Officer — ผู้บริหารที่รับผิดชอบกลยุทธ์ความปลอดภัยทั้งหมดขององค์กร |
+| **CSIRT** | Computer Security Incident Response Team — ทีมตอบสนองเหตุการณ์ด้านไซเบอร์ SOC เป็น CSIRT ประเภทหนึ่ง |
+| **CTI (Cyber Threat Intelligence)** | ข่าวกรองเกี่ยวกับภัยคุกคาม ผู้โจมตี และเทคนิคของพวกเขา เพื่อปรับปรุงการป้องกัน |
+| **CVE** | รหัสเฉพาะสำหรับช่องโหว่ที่เปิดเผยต่อสาธารณะ (เช่น CVE-2021-44228 สำหรับ Log4Shell) |
+
+## D
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **DDoS (Distributed Denial of Service)** | การโจมตีที่ส่ง Traffic จำนวนมหาศาลจากหลายแหล่งไปยังเป้าหมาย ทำให้ระบบใช้งานไม่ได้ |
+| **Detection Rule (กฎตรวจจับ)** | ตรรกะ (เช่น Sigma Rule) ที่กำหนดว่ากิจกรรมน่าสงสัยหน้าตาเป็นอย่างไรใน Log เมื่อตรงกันจะสร้าง Alert |
+
+## E
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **EDR (Endpoint Detection and Response)** | ซอฟต์แวร์ที่ติดตั้งบนเครื่องคอมพิวเตอร์/เซิร์ฟเวอร์ เฝ้าดูและตอบสนองต่อกิจกรรมอันตราย ตัวอย่าง: CrowdStrike, SentinelOne, Wazuh |
+| **Endpoint** | อุปกรณ์ที่เชื่อมต่อกับเครือข่าย — แล็ปท็อป, เดสก์ท็อป, เซิร์ฟเวอร์, มือถือ |
+| **Escalation (ส่งต่อ)** | กระบวนการส่ง Alert หรือ Incident จาก Analyst ระดับต่ำไปยังระดับสูงเพื่อสืบสวนเชิงลึก |
+| **Exfiltration (นำข้อมูลออก)** | การถ่ายโอนข้อมูลออกจากองค์กรโดยไม่ได้รับอนุญาต เป็นเป้าหมายของผู้โจมตีในการแฮกหลายครั้ง |
+
+## F
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **False Positive (FP)** | Alert ที่แจ้งเตือนผิด — เป็นกิจกรรมปกติแต่ถูกตรวจจับว่าเป็นภัย การลด FP เป็นตัวชี้วัดสำคัญ |
+| **False Negative (FN)** | การโจมตีจริงที่ระบบตรวจไม่พบ อันตรายกว่า False Positive มาก |
+| **Firewall** | อุปกรณ์เครือข่ายที่ควบคุม Traffic ขาเข้าและขาออกตามกฎรักษาความปลอดภัย |
+| **Forensics (นิติวิทยาศาสตร์ดิจิทัล)** | กระบวนการรวบรวมและวิเคราะห์หลักฐานดิจิทัลหลังจากเกิดเหตุการณ์ด้านความปลอดภัย |
+
+## G-H
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **GDPR** | General Data Protection Regulation — กฎหมายคุ้มครองข้อมูลส่วนบุคคลของสหภาพยุโรป ต้องรายงานข้อมูลรั่วไหลภายใน 72 ชั่วโมง |
+| **Hash** | ค่าความยาวคงที่ที่สร้างจากไฟล์ (เช่น MD5, SHA-256) ใช้ระบุมัลแวร์โดยไม่ต้องมีไฟล์จริง |
+| **Honeypot (กับดัก)** | ระบบหลอกล่อที่ออกแบบมาเพื่อดึงดูดผู้โจมตี ให้ SOC ศึกษาเทคนิคของพวกเขา |
+
+## I
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **IDS/IPS** | **Intrusion Detection System** (ตรวจจับและแจ้งเตือน) / **Intrusion Prevention System** (ตรวจจับและบล็อก) |
+| **Incident (เหตุการณ์)** | เหตุการณ์ด้านความปลอดภัยที่ยืนยันแล้วและต้องตอบสนอง ไม่ใช่ทุก Alert จะกลายเป็น Incident |
+| **IOC (Indicator of Compromise)** | หลักฐานว่าเกิดการโจมตี — IP อันตราย, ชื่อโดเมน, Hash ไฟล์, URL |
+| **IR (Incident Response)** | กระบวนการตรวจจับ วิเคราะห์ จำกัดวง และกู้คืนจากเหตุการณ์ด้านความปลอดภัย |
+
+## K-L
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **Kill Chain** | โมเดลอธิบายขั้นตอนการโจมตี: สำรวจ → สร้างอาวุธ → ส่ง → แทรก → ติดตั้ง → ควบคุม → ดำเนินการ |
+| **Lateral Movement (เคลื่อนที่ด้านข้าง)** | เมื่อผู้โจมตีย้ายจากเครื่องที่ถูกแฮกไปยังเครื่องอื่นในเครือข่ายเดียวกัน |
+| **Log (บันทึก)** | เหตุการณ์ที่ถูกบันทึกจากระบบ (Log Firewall, Log การ Login, Log แอปพลิเคชัน) เป็นข้อมูลดิบที่ SOC วิเคราะห์ |
+
+## M
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **Malware (มัลแวร์)** | ซอฟต์แวร์อันตราย — ไวรัส, Trojan, Ransomware, Worm, Spyware |
+| **MISP** | แพลตฟอร์ม Threat Intelligence แบบ Open Source สำหรับแชร์ IOC ระหว่างองค์กร |
+| **MITRE ATT&CK** | ฐานข้อมูลความรู้เกี่ยวกับ Tactic, Technique และ Procedure ของผู้โจมตี เป็นมาตรฐานสากลในการจัดหมวดหมู่การโจมตี |
+| **MTTD (Mean Time To Detect)** | เวลาเฉลี่ยตั้งแต่เกิดการโจมตีจนกว่า SOC จะตรวจพบ ยิ่งต่ำยิ่งดี |
+| **MTTR (Mean Time To Respond)** | เวลาเฉลี่ยตั้งแต่ตรวจพบจนจำกัดวง Incident ได้ ยิ่งต่ำยิ่งดี |
+
+## N-O
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **NDR (Network Detection and Response)** | เทคโนโลยีเฝ้าดู Traffic เครือข่ายเพื่อหาภัยคุกคาม เสริม EDR (ที่ดูเครื่อง Endpoint) |
+| **NIST** | National Institute of Standards and Technology — หน่วยงานสหรัฐที่เผยแพร่กรอบและแนวปฏิบัติด้าน Cybersecurity (ชุด SP 800) |
+| **OSINT (Open Source Intelligence)** | ข่าวกรองจากแหล่งข้อมูลสาธารณะ (โซเชียลมีเดีย, เว็บไซต์, ฐานข้อมูลสาธารณะ) |
+
+## P
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **PDPA** | พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล ของประเทศไทย คล้าย GDPR ของยุโรป กำหนดให้องค์กรต้องปกป้องข้อมูลส่วนบุคคล |
+| **Phishing** | การโจมตีด้วยอีเมล, ข้อความ หรือเว็บไซต์ปลอม หลอกให้เหยื่อเปิดเผยรหัสผ่านหรือติดตั้งมัลแวร์ |
+| **Playbook (คู่มือปฏิบัติ)** | ขั้นตอนการรับมือเหตุการณ์ด้านความปลอดภัยแต่ละประเภท (เช่น Phishing Playbook) |
+| **Purple Team (ทีมม่วง)** | การฝึกซ้อมร่วมระหว่าง Red Team (โจมตี) และ Blue Team (ป้องกัน) เพื่อทดสอบและปรับปรุงการป้องกัน |
+
+## R
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **Ransomware** | มัลแวร์ที่เข้ารหัสไฟล์และเรียกค่าไถ่เพื่อถอดรหัส เป็นการโจมตีที่สร้างความเสียหายมากที่สุดประเภทหนึ่ง |
+| **RCA (Root Cause Analysis)** | กระบวนการหาสาเหตุรากฐานของ Incident เพื่อป้องกันไม่ให้เกิดซ้ำ |
+| **Red Team (ทีมแดง)** | ทีมโจมตีเชิงรุกที่จำลองการโจมตีเพื่อทดสอบการป้องกันขององค์กร |
+
+## S
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **SIEM** | Security Information and Event Management — แพลตฟอร์มหลักที่รวม Log จากทุกแหล่ง สร้าง Alert เป็น "สมอง" ของ SOC ตัวอย่าง: Splunk, Microsoft Sentinel, Wazuh |
+| **Sigma** | รูปแบบเขียนกฎตรวจจับแบบเปิดสำหรับ SIEM เขียนครั้งเดียวแปลงเป็น Query ของ SIEM ใดก็ได้ |
+| **SOAR** | Security Orchestration, Automation, and Response — แพลตฟอร์มทำงาน SOC ซ้ำๆ อัตโนมัติ (เช่น บล็อก IP อัตโนมัติ) |
+| **SOC** | Security Operations Center — ทีมและสถานที่เฝ้าระวัง ตรวจจับ และตอบสนองต่อภัยคุกคาม 24/7 |
+| **SOC-CMM** | SOC Capability Maturity Model — กรอบประเมินและปรับปรุงระดับวุฒิภาวะ SOC 5 ระดับ |
+| **STIX/TAXII** | มาตรฐานแชร์ข้อมูล Threat Intelligence ระหว่างองค์กร STIX กำหนดรูปแบบ, TAXII กำหนดการส่ง |
+
+## T
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **Threat Hunting (ล่าภัยคุกคาม)** | การค้นหาภัยคุกคามที่ซ่อนอยู่ในระบบเชิงรุก ที่ระบบอัตโนมัติตรวจไม่พบ ทำโดย Tier 3 Analyst |
+| **Tier 1 / Tier 2 / Tier 3** | ระดับของ SOC Analyst — Tier 1 = คัดกรอง, Tier 2 = สืบสวน, Tier 3 = ล่าภัยและวิเคราะห์ขั้นสูง |
+| **TLP (Traffic Light Protocol)** | ระบบจัดระดับความลับของข้อมูล: TLP:RED (จำกัดสูง), TLP:AMBER (จำกัด), TLP:GREEN (ชุมชน), TLP:CLEAR (สาธารณะ) |
+| **True Positive (TP)** | Alert ที่ถูกต้อง ตรวจจับภัยจริงได้ ตรงข้ามกับ False Positive |
+| **TTP (Tactics, Techniques, and Procedures)** | รูปแบบพฤติกรรมของผู้โจมตี — ทำอะไร (Tactic), ทำอย่างไร (Technique), ขั้นตอนเฉพาะ (Procedure) |
+
+## V-W
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **Vulnerability (ช่องโหว่)** | จุดอ่อนในระบบที่ผู้โจมตีสามารถใช้ประโยชน์ได้ ติดตามด้วยรหัส CVE |
+| **VPN** | Virtual Private Network — อุโมงค์เข้ารหัสสำหรับเข้าถึงเครือข่ายขององค์กรจากระยะไกลอย่างปลอดภัย |
+| **YARA** | เครื่องมือและรูปแบบกฎสำหรับระบุและจัดประเภทมัลแวร์จาก Pattern ในไฟล์ |
+
+## X-Z
+
+| คำศัพท์ | คำอธิบาย |
+|---|---|
+| **XDR (Extended Detection and Response)** | วิวัฒนาการของ EDR ที่รวมข้อมูลจาก Endpoint, เครือข่าย, Cloud และอีเมลเข้าเป็นแพลตฟอร์มตรวจจับเดียว |
+| **Zero-Day** | ช่องโหว่ที่ยังไม่มีใครรู้ (รวมถึงผู้ผลิต) และยังไม่มี Patch แก้ไข อันตรายมากเพราะยังไม่มีการป้องกัน |
+
+---
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [SOC 101](SOC_101.th.md)
+-   [คู่มือเริ่มต้นด่วน](Quickstart_Guide.th.md)
+-   [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md)
+-   [วงจรชีวิต Threat Intelligence](../06_Operations_Management/Threat_Intelligence_Lifecycle.th.md)
+
+## References
+-   [MITRE ATT&CK Glossary](https://attack.mitre.org/resources/)
+-   [NIST Glossary of Key Information Security Terms](https://csrc.nist.gov/glossary)
+-   [FIRST — CSIRT Services Framework](https://www.first.org/standards/frameworks/)
+-   [SANS Glossary of Security Terms](https://www.sans.org/security-resources/glossary-of-terms/)
+
+
+---
+
+## File: 00_Getting_Started/Quickstart_Guide.en.md
+
+# Quickstart Guide — Your SOC in 30 Minutes
+
+This guide shows you the **fastest path** through this repository. Follow the numbered steps to understand and implement a SOC from scratch.
+
+## Reading Roadmap
+
+```mermaid
+graph TD
+    START[🚀 START HERE] --> S1[1. SOC 101]
+    S1 --> S2[2. Team Structure]
+    S2 --> S3[3. Infrastructure Setup]
+    S3 --> S4[4. IR Framework]
+    S4 --> S5[5. Your First 5 Playbooks]
+    S5 --> S6[6. Detection Rules]
+    S6 --> S7[7. Shift Operations]
+    S7 --> S8[8. KPIs & Reporting]
+    S8 --> S9[9. Purple Team Testing]
+    S9 --> S10[10. Train New Analysts]
+
+    style START fill:#e74c3c,color:#fff
+    style S5 fill:#2ecc71,color:#fff
+    style S10 fill:#3498db,color:#fff
+```
+
+## Step-by-Step Reading Order
+
+### 🔴 Week 1 — Understand (Read Only)
+
+| Step | Time | Document | What You'll Learn |
+|:---:|:---:|---|---|
+| 1 | 15 min | [SOC 101](SOC_101.en.md) | What a SOC is, core components, maturity phases |
+| 2 | 10 min | [Glossary](Glossary.en.md) | Key terminology (SIEM, EDR, IOC, TTP, etc.) |
+| 3 | 10 min | [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md) | Roles, staffing model, career path |
+
+### 🟠 Week 2 — Plan (Design Your SOC)
+
+| Step | Time | Document | What You'll Learn |
+|:---:|:---:|---|---|
+| 4 | 15 min | [Infrastructure Setup](../01_Onboarding/System_Activation.en.md) | What systems you need to deploy |
+| 5 | 10 min | [Data Governance](../02_Platform_Operations/Database_Management.en.md) | How to manage log data and retention |
+| 6 | 10 min | [SOC Assessment Checklist](../06_Operations_Management/SOC_Assessment_Checklist.en.md) | Gap analysis for your current state |
+
+### 🟡 Week 3 — Build (Implement Core Processes)
+
+| Step | Time | Document | What You'll Learn |
+|:---:|:---:|---|---|
+| 7 | 20 min | [IR Framework](../05_Incident_Response/Framework.en.md) | How to handle incidents end-to-end |
+| 8 | 30 min | **Top 5 Playbooks** (see below) | How to respond to common attacks |
+| 9 | 15 min | [Detection Rules](../07_Detection_Rules/) | Pre-built Sigma rules to deploy |
+| 10 | 10 min | [Integration Hub](../03_User_Guides/Integration_Hub.en.md) | How to connect tools together |
+
+### 🟢 Week 4 — Operate (Go Live)
+
+| Step | Time | Document | What You'll Learn |
+|:---:|:---:|---|---|
+| 11 | 10 min | [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md) | How to run 24/7 operations |
+| 12 | 10 min | [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md) | MTTD, MTTR, False Positive Rate |
+| 13 | 15 min | [Monthly Report Template](../11_Reporting_Templates/Monthly_SOC_Report.en.md) | Reporting to leadership |
+| 14 | 10 min | [Analyst Onboarding Path](../09_Training_Onboarding/Analyst_Onboarding_Path.en.md) | How to train new hires |
+
+## Top 5 Playbooks to Start With
+
+Start with these — they cover 80% of real-world incidents:
+
+| Priority | Playbook | Why Start Here |
+|:---:|---|---|
+| 1️⃣ | [Phishing](../05_Incident_Response/Playbooks/Phishing.en.md) | #1 most common attack vector |
+| 2️⃣ | [Malware Infection](../05_Incident_Response/Playbooks/Malware_Infection.en.md) | Most frequent escalation from Phishing |
+| 3️⃣ | [Brute Force](../05_Incident_Response/Playbooks/Brute_Force.en.md) | Easy to detect, good for training Tier 1 |
+| 4️⃣ | [Account Compromise](../05_Incident_Response/Playbooks/Account_Compromise.en.md) | Growing attack surface with cloud adoption |
+| 5️⃣ | [Ransomware](../05_Incident_Response/Playbooks/Ransomware.en.md) | Highest business impact |
+
+## SOC Maturity Roadmap
+
+```mermaid
+graph TD
+    subgraph Phase1["Phase 1: CRAWL (Month 1-3)"]
+        A1[Deploy SIEM]
+        A2[Onboard Top 10 Log Sources]
+        A3[Hire 3-5 Staff]
+        A4[Basic Escalation Process]
+    end
+
+    subgraph Phase2["Phase 2: WALK (Month 3-6)"]
+        B1[10 Detection Rules Live]
+        B2[5 Playbooks Active]
+        B3["Shift Schedule (8x5)"]
+        B4["FP Rate < 30%"]
+    end
+
+    subgraph Phase3["Phase 3: RUN (Month 6-12)"]
+        C1[All 20 Playbooks]
+        C2[EDR on All Endpoints]
+        C3[First Purple Team Exercise]
+        C4[Monthly KPI Reporting]
+    end
+
+    subgraph Phase4["Phase 4: SPRINT (Year 1-2)"]
+        D1[Threat Hunting Program]
+        D2[Threat Intel Feeds]
+        D3[SOAR Automation]
+        D4[MITRE ATT&CK Coverage Map]
+    end
+
+    subgraph Phase5["Phase 5: FLY (Year 2+)"]
+        E1["SOC-CMM Level 3+"]
+        E2["80%+ Automated Triage"]
+        E3[Detection-as-Code CI/CD]
+        E4[Annual SOC Assessment]
+    end
+
+    Phase1 --> Phase2 --> Phase3 --> Phase4 --> Phase5
+
+    style Phase1 fill:#e74c3c,color:#fff
+    style Phase2 fill:#e67e22,color:#fff
+    style Phase3 fill:#f1c40f,color:#000
+    style Phase4 fill:#2ecc71,color:#fff
+    style Phase5 fill:#3498db,color:#fff
+```
+
+## Minimum Viable SOC Checklist
+
+The absolute minimum you need to start — your "Day 1" checklist:
+
+- [ ] **1 SIEM deployed** (Wazuh recommended for budget-conscious orgs)
+- [ ] **3 log sources onboarded** (Firewall, Active Directory, Email)
+- [ ] **3 people hired** (2 Tier 1 Analysts + 1 Manager)
+- [ ] **5 detection rules enabled** (from our `07_Detection_Rules/`)
+- [ ] **1 Playbook ready** (start with Phishing)
+- [ ] **1 ticketing system** (TheHive or Jira)
+- [ ] **1 escalation path defined** (Tier 1 → Manager → CISO)
+- [ ] **1 communication channel** (Slack/Teams for SOC team)
+
+> ✅ If you can check all 8 boxes above, you have a functioning SOC!
+
+## Related Documents
+-   [SOC 101](SOC_101.en.md)
+-   [Glossary of Terms](Glossary.en.md)
+-   [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md)
+-   [Analyst Onboarding Path](../09_Training_Onboarding/Analyst_Onboarding_Path.en.md)
+
+## References
+-   [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
+-   [SOC-CMM — SOC Capability Maturity Model](https://www.soc-cmm.com/)
+-   [SANS SOC Survey](https://www.sans.org/white-papers/soc-survey/)
+
+
+---
+
+## File: 00_Getting_Started/Quickstart_Guide.th.md
+
+# คู่มือเริ่มต้นด่วน — สร้าง SOC ใน 30 นาที (Quickstart Guide)
+
+คู่มือนี้แสดง **เส้นทางที่เร็วที่สุด** ในการอ่านเอกสารทั้ง Repository ทำตามขั้นตอนเพื่อทำความเข้าใจและตั้ง SOC ตั้งแต่เริ่มต้น
+
+## แผนที่การอ่าน (Reading Roadmap)
+
+```mermaid
+graph TD
+    START[🚀 เริ่มตรงนี้] --> S1[1. SOC 101]
+    S1 --> S2[2. โครงสร้างทีม]
+    S2 --> S3[3. ติดตั้งโครงสร้างพื้นฐาน]
+    S3 --> S4[4. กรอบ IR]
+    S4 --> S5[5. Playbook 5 ชุดแรก]
+    S5 --> S6[6. กฎตรวจจับ]
+    S6 --> S7[7. ระบบกะ]
+    S7 --> S8[8. KPI และรายงาน]
+    S8 --> S9[9. ทดสอบ Purple Team]
+    S9 --> S10[10. ฝึกอบรม Analyst]
+
+    style START fill:#e74c3c,color:#fff
+    style S5 fill:#2ecc71,color:#fff
+    style S10 fill:#3498db,color:#fff
+```
+
+## ขั้นตอนการอ่าน (Step-by-Step Reading Order)
+
+### 🔴 สัปดาห์ที่ 1 — ทำความเข้าใจ (อ่านอย่างเดียว)
+
+| ขั้นตอน | เวลา | เอกสาร | สิ่งที่จะเรียนรู้ |
+|:---:|:---:|---|---|
+| 1 | 15 นาที | [SOC 101](SOC_101.th.md) | SOC คืออะไร องค์ประกอบหลัก ขั้นตอนการเติบโต |
+| 2 | 10 นาที | [คำศัพท์สำคัญ](Glossary.th.md) | ศัพท์เทคนิค (SIEM, EDR, IOC, TTP เป็นต้น) |
+| 3 | 10 นาที | [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md) | บทบาท จำนวนคน เส้นทางอาชีพ |
+
+### 🟠 สัปดาห์ที่ 2 — วางแผน (ออกแบบ SOC ของคุณ)
+
+| ขั้นตอน | เวลา | เอกสาร | สิ่งที่จะเรียนรู้ |
+|:---:|:---:|---|---|
+| 4 | 15 นาที | [การติดตั้ง SOC](../01_Onboarding/System_Activation.th.md) | ต้อง Deploy ระบบอะไรบ้าง |
+| 5 | 10 นาที | [นโยบายข้อมูล](../02_Platform_Operations/Database_Management.th.md) | การจัดการ Log Data และ Retention |
+| 6 | 10 นาที | [แบบประเมิน SOC](../06_Operations_Management/SOC_Assessment_Checklist.th.md) | วิเคราะห์ Gap ของสถานะปัจจุบัน |
+
+### 🟡 สัปดาห์ที่ 3 — สร้าง (ทำกระบวนการหลัก)
+
+| ขั้นตอน | เวลา | เอกสาร | สิ่งที่จะเรียนรู้ |
+|:---:|:---:|---|---|
+| 7 | 20 นาที | [กรอบ IR](../05_Incident_Response/Framework.th.md) | วิธีจัดการ Incident ตั้งแต่ต้นจนจบ |
+| 8 | 30 นาที | **Playbook 5 ชุดแรก** (ดูด้านล่าง) | วิธีตอบสนองต่อการโจมตีที่พบบ่อย |
+| 9 | 15 นาที | [Detection Rules](../07_Detection_Rules/) | กฎ Sigma สำเร็จรูปพร้อม Deploy |
+| 10 | 10 นาที | [Integration Hub](../03_User_Guides/Integration_Hub.th.md) | วิธีเชื่อมต่อเครื่องมือเข้าด้วยกัน |
+
+### 🟢 สัปดาห์ที่ 4 — เปิดใช้งาน (Go Live)
+
+| ขั้นตอน | เวลา | เอกสาร | สิ่งที่จะเรียนรู้ |
+|:---:|:---:|---|---|
+| 11 | 10 นาที | [มาตรฐานส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md) | การทำงาน 24/7 |
+| 12 | 10 นาที | [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md) | MTTD, MTTR, False Positive Rate |
+| 13 | 15 นาที | [รายงานรายเดือน](../11_Reporting_Templates/Monthly_SOC_Report.th.md) | การรายงานให้ผู้บริหาร |
+| 14 | 10 นาที | [หลักสูตร Analyst](../09_Training_Onboarding/Analyst_Onboarding_Path.th.md) | วิธีฝึก Analyst ใหม่ |
+
+## Playbook 5 ชุดที่ต้องเริ่มก่อน
+
+เริ่มจากชุดนี้ — ครอบคลุม 80% ของ Incident ในโลกจริง:
+
+| ลำดับ | Playbook | ทำไมต้องเริ่มที่นี่ |
+|:---:|---|---|
+| 1️⃣ | [Phishing](../05_Incident_Response/Playbooks/Phishing.th.md) | ช่องทางโจมตีอันดับ 1 ที่พบมากที่สุด |
+| 2️⃣ | [Malware Infection](../05_Incident_Response/Playbooks/Malware_Infection.th.md) | Escalation ที่พบบ่อยที่สุดจาก Phishing |
+| 3️⃣ | [Brute Force](../05_Incident_Response/Playbooks/Brute_Force.th.md) | ตรวจจับง่าย เหมาะฝึก Tier 1 |
+| 4️⃣ | [Account Compromise](../05_Incident_Response/Playbooks/Account_Compromise.th.md) | พื้นที่โจมตีขยายตัวจากการใช้ Cloud |
+| 5️⃣ | [Ransomware](../05_Incident_Response/Playbooks/Ransomware.th.md) | ผลกระทบต่อธุรกิจสูงสุด |
+
+## SOC Maturity Roadmap
+
+```mermaid
+graph TD
+    subgraph Phase1["Phase 1: คลาน (เดือน 1-3)"]
+        A1[Deploy SIEM]
+        A2[นำเข้า Log 10 แหล่ง]
+        A3[จ้างคน 3-5 คน]
+        A4[กำหนดขั้นตอน Escalation]
+    end
+
+    subgraph Phase2["Phase 2: เดิน (เดือน 3-6)"]
+        B1[เปิดใช้ Detection Rules 10 กฎ]
+        B2[เปิดใช้ Playbook 5 ชุด]
+        B3["จัดตารางกะ (8x5)"]
+        B4["FP Rate < 30%"]
+    end
+
+    subgraph Phase3["Phase 3: วิ่ง (เดือน 6-12)"]
+        C1[ใช้ Playbook ครบ 20 ชุด]
+        C2[EDR ครบทุก Endpoint]
+        C3[Purple Team ครั้งแรก]
+        C4[รายงาน KPI รายเดือน]
+    end
+
+    subgraph Phase4["Phase 4: วิ่งเร็ว (ปี 1-2)"]
+        D1[โปรแกรม Threat Hunting]
+        D2[Threat Intel Feeds]
+        D3[SOAR Automation]
+        D4[MITRE ATT&CK Coverage Map]
+    end
+
+    subgraph Phase5["Phase 5: บิน (ปี 2+)"]
+        E1["SOC-CMM Level 3+"]
+        E2["Triage อัตโนมัติ 80%+"]
+        E3[Detection-as-Code CI/CD]
+        E4[SOC Assessment ประจำปี]
+    end
+
+    Phase1 --> Phase2 --> Phase3 --> Phase4 --> Phase5
+
+    style Phase1 fill:#e74c3c,color:#fff
+    style Phase2 fill:#e67e22,color:#fff
+    style Phase3 fill:#f1c40f,color:#000
+    style Phase4 fill:#2ecc71,color:#fff
+    style Phase5 fill:#3498db,color:#fff
+```
+
+## Minimum Viable SOC Checklist
+
+สิ่งที่ต้องมีอย่างน้อยที่สุดเพื่อเริ่มต้น — "Day 1" ของคุณ:
+
+- [ ] **SIEM 1 ตัว** (แนะนำ Wazuh สำหรับองค์กรงบจำกัด)
+- [ ] **Log Source 3 แหล่ง** (Firewall, Active Directory, Email)
+- [ ] **คน 3 คน** (Tier 1 Analyst 2 คน + Manager 1 คน)
+- [ ] **Detection Rules 5 กฎ** (จาก `07_Detection_Rules/`)
+- [ ] **Playbook 1 ชุด** (เริ่มจาก Phishing)
+- [ ] **ระบบ Ticketing 1 ตัว** (TheHive หรือ Jira)
+- [ ] **เส้นทาง Escalation 1 เส้น** (Tier 1 → Manager → CISO)
+- [ ] **ช่องทางสื่อสาร 1 ช่อง** (Slack/Teams สำหรับทีม SOC)
+
+> ✅ ถ้าทำครบ 8 ข้อข้างบน คุณก็มี SOC ที่ทำงานได้แล้ว!
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [SOC 101](SOC_101.th.md)
+-   [คำศัพท์สำคัญ](Glossary.th.md)
+-   [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md)
+-   [หลักสูตร Analyst](../09_Training_Onboarding/Analyst_Onboarding_Path.th.md)
+
+## References
+-   [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
+-   [SOC-CMM — SOC Capability Maturity Model](https://www.soc-cmm.com/)
+-   [SANS SOC Survey](https://www.sans.org/white-papers/soc-survey/)
+
+
+---
+
+## File: 00_Getting_Started/SOC_101.en.md
+
+# SOC 101 — What is a Security Operations Center?
+
+This document explains what a SOC is, why organizations need one, and what it takes to build one from scratch. No prior cybersecurity knowledge required.
+
+## 1. What is a SOC?
+
+```mermaid
+graph LR
+    Threats[🌐 Cyber Threats] --> SOC[🛡️ SOC]
+    SOC --> Detect[Detect]
+    SOC --> Respond[Respond]
+    SOC --> Recover[Recover]
+    Detect --> Safe[✅ Organization Protected]
+    Respond --> Safe
+    Recover --> Safe
+```
+
+A **Security Operations Center (SOC)** is a team of cybersecurity professionals who **monitor, detect, and respond** to security threats targeting an organization — 24 hours a day, 7 days a week.
+
+Think of it as:
+-   🏥 **Hospital Emergency Room** — but for cyber incidents instead of medical emergencies
+-   🚒 **Fire Station** — always ready, watching for fires (attacks), and responding immediately
+-   🗼 **Air Traffic Control Tower** — monitoring everything, coordinating responses, preventing disasters
+
+### What Does a SOC Protect?
+-   **Data**: Customer records, financial data, intellectual property
+-   **Systems**: Servers, networks, cloud infrastructure, endpoints (laptops/desktops)
+-   **People**: Employees from phishing, social engineering, and fraud
+-   **Business**: Revenue, reputation, regulatory compliance
+
+## 2. Why Does Your Organization Need a SOC?
+
+### The Reality of Cyber Threats
+-   **Average time to detect a breach**: 204 days (without a SOC)
+-   **Average cost of a data breach**: $4.45 million USD (IBM, 2023)
+-   **Ransomware attacks**: Every 11 seconds, a business is hit
+-   **Regulatory requirements**: PDPA (Thailand), GDPR (EU), PCI-DSS require security monitoring
+
+### What Happens WITHOUT a SOC?
+| Scenario | Without SOC | With SOC |
+|---|---|---|
+| Phishing email received | Nobody notices → Data stolen | Detected in minutes → Blocked |
+| Ransomware deployed | Discovered days later → Systems encrypted | Detected immediately → Contained |
+| Unauthorized access | Found during audit months later | Real-time alert → Account locked |
+| Data exfiltration | Unknown until public disclosure | Detected by monitoring → Stopped |
+
+## 3. Core Components of a SOC
+
+```mermaid
+graph TD
+    SOC[SOC] --> People[👥 People]
+    SOC --> Process[📋 Process]
+    SOC --> Tech[🖥️ Technology]
+
+    People --> T1[Tier 1: Alert Analysts]
+    People --> T2[Tier 2: Incident Responders]
+    People --> T3[Tier 3: Threat Hunters]
+    People --> Mgr[SOC Manager]
+
+    Process --> PB[Playbooks]
+    Process --> IR[Incident Response]
+    Process --> SH[Shift Handoff]
+
+    Tech --> SIEM[SIEM]
+    Tech --> EDR[EDR]
+    Tech --> SOAR[SOAR]
+    Tech --> TI[Threat Intel]
+```
+
+### 3.1 People — Who Works in a SOC?
+
+| Role | What They Do | Analogy |
+|---|---|---|
+| **Tier 1 Analyst** | Watch screens, triage alerts, escalate real threats | Security guard watching CCTV |
+| **Tier 2 Responder** | Deep-dive investigations, contain active attacks | Detective solving a case |
+| **Tier 3 Hunter** | Proactively search for hidden threats | Undercover agent tracking criminals |
+| **Detection Engineer** | Build and tune alert rules | Alarm system technician |
+| **SOC Manager** | Lead the team, report to executives | Police chief |
+
+> 📖 **Deep Dive**: See [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md) for full role definitions, skills required, career path, and staffing models.
+
+### 3.2 Process — How Does a SOC Operate?
+
+| Process | Purpose | Document |
+|---|---|---|
+| **Incident Response** | Step-by-step guide to handle attacks | [IR Framework](../05_Incident_Response/Framework.en.md) |
+| **Playbooks** | Specific procedures for each attack type | [20 Playbooks](../05_Incident_Response/Playbooks/) |
+| **Shift Handoff** | Ensure continuity between shifts (24/7) | [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md) |
+| **Detection Engineering** | Create rules that detect bad behavior | [Detection Lifecycle](../03_User_Guides/Content_Management.en.md) |
+| **Reporting** | Show leadership what the SOC is doing | [Monthly Report](../11_Reporting_Templates/Monthly_SOC_Report.en.md) |
+
+### 3.3 Technology — What Tools Does a SOC Use?
+
+| Tool | What It Does | Open Source Option | Commercial Option |
+|---|---|---|---|
+| **SIEM** | Collects all logs, finds patterns, creates alerts | Wazuh, Elastic SIEM | Splunk, Microsoft Sentinel, QRadar |
+| **EDR** | Monitors endpoints (laptops/servers) for malware | Wazuh, Velociraptor | CrowdStrike, SentinelOne, Defender |
+| **SOAR** | Automates repetitive SOC tasks | TheHive + Cortex, Shuffle | Splunk SOAR, Palo Alto XSOAR |
+| **Threat Intel Platform** | Tracks known bad IPs, domains, file hashes | MISP, OpenCTI | Recorded Future, Mandiant |
+| **Ticketing** | Tracks incidents from start to finish | TheHive, RTIR | ServiceNow, Jira |
+| **Network Monitoring** | Watches network traffic for anomalies | Zeek, Suricata | Darktrace, ExtraHop |
+
+## 4. How to Build a SOC — The 5-Step Path
+
+```mermaid
+graph LR
+    P1[Phase 1: Foundation] --> P2[Phase 2: Detection]
+    P2 --> P3[Phase 3: Response]
+    P3 --> P4[Phase 4: Hunting]
+    P4 --> P5[Phase 5: Optimization]
+
+    style P1 fill:#e74c3c,color:#fff
+    style P2 fill:#e67e22,color:#fff
+    style P3 fill:#f1c40f,color:#000
+    style P4 fill:#2ecc71,color:#fff
+    style P5 fill:#3498db,color:#fff
+```
+
+### Phase 1: Foundation (Month 1-3) — "Crawl"
+**Goal**: Get visibility into what's happening in your environment.
+
+- [ ] Choose and deploy a SIEM (start with Wazuh if budget is limited)
+- [ ] Identify your top 10 critical assets (servers, databases, cloud accounts)
+- [ ] Onboard log sources: Firewall, Active Directory, Email, VPN
+- [ ] Hire 2-3 Tier 1 Analysts + 1 SOC Manager
+- [ ] Set up a ticketing system (TheHive or Jira)
+- [ ] Define basic escalation procedures
+
+> 📖 Read: [SOC Infrastructure Setup](../01_Onboarding/System_Activation.en.md)
+
+### Phase 2: Detection (Month 3-6) — "Walk"
+**Goal**: Create meaningful alerts that detect real attacks.
+
+- [ ] Implement top 10 detection rules (start with [our Sigma rules](../07_Detection_Rules/))
+- [ ] Create your first 5 Playbooks (Phishing, Malware, Brute Force, Account Compromise, Ransomware)
+- [ ] Enable a detection rule for each MITRE ATT&CK tactic
+- [ ] Tune rules to reduce False Positives below 30%
+- [ ] Establish shift schedule (start with 8x5, expand to 24x7 later)
+
+> 📖 Read: [Detection Engineering Lifecycle](../03_User_Guides/Content_Management.en.md)
+
+### Phase 3: Response (Month 6-12) — "Run"
+**Goal**: Respond to real incidents effectively.
+
+- [ ] Implement all 20 Playbooks from this repository
+- [ ] Hire Tier 2 Incident Responders
+- [ ] Set up EDR on all endpoints
+- [ ] Conduct first Purple Team exercise ([Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md))
+- [ ] Implement SOC KPIs: MTTD, MTTR, False Positive Rate
+- [ ] Begin monthly executive reporting
+
+> 📖 Read: [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
+
+### Phase 4: Hunting (Year 1-2) — "Sprint"
+**Goal**: Proactively find threats that bypass detection.
+
+- [ ] Hire or train a Tier 3 Threat Hunter
+- [ ] Implement Threat Intelligence feeds (MISP/OpenCTI)
+- [ ] Map detection coverage to MITRE ATT&CK
+- [ ] Conduct quarterly Threat Hunting campaigns
+- [ ] Implement SOAR for automated response
+
+> 📖 Read: [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.en.md)
+
+### Phase 5: Optimization (Year 2+) — "Fly"
+**Goal**: Measure, improve, and mature continuously.
+
+- [ ] Achieve SOC-CMM Level 3+ Maturity
+- [ ] Automate 80%+ of Tier 1 triage with SOAR
+- [ ] Implement Detection-as-Code (CI/CD for rules)
+- [ ] Conduct annual SOC Assessment ([Assessment Checklist](../06_Operations_Management/SOC_Assessment_Checklist.en.md))
+- [ ] Publish Quarterly Business Reviews to leadership
+
+## 5. Estimated Budget
+
+| SOC Size | Staff | Tools (Annual) | Total Year 1 |
+|---|---|---|---|
+| **Minimal** (Open Source, 8x5) | 3-5 people | $0-20K | ~$150K-250K |
+| **Standard** (Mixed, 16x5) | 6-10 people | $50K-150K | ~$500K-800K |
+| **Enterprise** (Commercial, 24x7) | 12-20 people | $200K-500K | ~$1.5M-3M |
+
+> **Tip**: Start small with open-source tools. You can always upgrade as you mature.
+
+## 6. How to Use This Repository
+
+This repository contains everything you need to operate a SOC. Here's the recommended reading order:
+
+| # | Start Here | Document |
+|---|---|---|
+| 1 | 📖 You are here | **SOC 101** (this document) |
+| 2 | 👥 Build your team | [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md) |
+| 3 | 🏗️ Set up infrastructure | [SOC Infrastructure Setup](../01_Onboarding/System_Activation.en.md) |
+| 4 | 📋 Learn the IR process | [Incident Response Framework](../05_Incident_Response/Framework.en.md) |
+| 5 | 📕 Study the Playbooks | [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md) (start here) |
+| 6 | 🔍 Deploy detection rules | [Detection Rules](../07_Detection_Rules/) |
+| 7 | ⏰ Set up shift operations | [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md) |
+| 8 | 📊 Measure your KPIs | [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md) |
+| 9 | 🎯 Run simulations | [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md) |
+| 10 | 🎓 Train new analysts | [Analyst Onboarding Path](../09_Training_Onboarding/Analyst_Onboarding_Path.en.md) |
+
+## Related Documents
+-   [Quickstart Guide](Quickstart_Guide.en.md)
+-   [Glossary of Terms](Glossary.en.md)
+-   [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md)
+-   [SOC Infrastructure Setup](../01_Onboarding/System_Activation.en.md)
+
+## References
+-   [NIST Cybersecurity Framework (CSF)](https://www.nist.gov/cyberframework)
+-   [CISA — Setting Up a SOC](https://www.cisa.gov/topics/cyber-threats-and-advisories)
+-   [SOC-CMM — SOC Capability Maturity Model](https://www.soc-cmm.com/)
+-   [MITRE ATT&CK Framework](https://attack.mitre.org/)
+-   [IBM Cost of a Data Breach Report](https://www.ibm.com/reports/data-breach)
+-   [SANS SOC Survey](https://www.sans.org/white-papers/soc-survey/)
+
+
+---
+
+## File: 00_Getting_Started/SOC_101.th.md
+
+# SOC 101 — ศูนย์ปฏิบัติการความปลอดภัยคืออะไร? (What is a SOC?)
+
+เอกสารนี้อธิบายว่า SOC คืออะไร ทำไมองค์กรถึงจำเป็นต้องมี และต้องทำอย่างไรถึงจะสร้างได้ตั้งแต่เริ่มต้น ไม่ต้องมีความรู้ด้านไซเบอร์ซีเคียวริตี้มาก่อน
+
+## 1. SOC คืออะไร?
+
+```mermaid
+graph LR
+    Threats[🌐 ภัยคุกคามไซเบอร์] --> SOC[🛡️ SOC]
+    SOC --> Detect[ตรวจจับ]
+    SOC --> Respond[ตอบสนอง]
+    SOC --> Recover[กู้คืน]
+    Detect --> Safe[✅ องค์กรปลอดภัย]
+    Respond --> Safe
+    Recover --> Safe
+```
+
+**Security Operations Center (SOC)** คือทีมผู้เชี่ยวชาญด้านไซเบอร์ซีเคียวริตี้ที่ทำหน้าที่ **เฝ้าระวัง ตรวจจับ และตอบสนอง** ต่อภัยคุกคามทางไซเบอร์ที่เข้ามาโจมตีองค์กร — ตลอด 24 ชั่วโมง 7 วัน
+
+เปรียบเทียบได้กับ:
+-   🏥 **ห้องฉุกเฉินโรงพยาบาล** — แต่รักษา "เหตุการณ์ไซเบอร์" แทนการรักษาผู้ป่วย
+-   🚒 **สถานีดับเพลิง** — พร้อมเสมอ เฝ้าดูว่ามี "ไฟ" (การโจมตี) ที่ไหน แล้วตอบสนองทันที
+-   🗼 **หอควบคุมการบิน** — เฝ้าดูทุกอย่าง ประสานงานการตอบสนอง ป้องกันหายนะ
+
+### SOC ปกป้องอะไร?
+-   **ข้อมูล**: ข้อมูลลูกค้า ข้อมูลการเงิน ทรัพย์สินทางปัญญา
+-   **ระบบ**: เซิร์ฟเวอร์ เครือข่าย ระบบ Cloud เครื่องคอมพิวเตอร์พนักงาน
+-   **บุคคล**: ปกป้องพนักงานจาก Phishing, Social Engineering, การฉ้อโกง
+-   **ธุรกิจ**: รายได้ ชื่อเสียง และการปฏิบัติตามกฎหมาย
+
+## 2. ทำไมองค์กรของคุณถึงต้องมี SOC?
+
+### ความเป็นจริงของภัยคุกคามไซเบอร์
+-   **เวลาเฉลี่ยในการตรวจพบการถูกแฮก**: 204 วัน (ถ้าไม่มี SOC)
+-   **ค่าเสียหายเฉลี่ยจากข้อมูลรั่วไหล**: 4.45 ล้านเหรียญสหรัฐ (IBM, 2023)
+-   **Ransomware**: ทุกๆ 11 วินาที มีธุรกิจถูกโจมตี
+-   **กฎหมาย**: PDPA (ไทย), GDPR (ยุโรป), PCI-DSS กำหนดให้ต้องมีการเฝ้าระวัง
+
+### เปรียบเทียบ: มี SOC vs ไม่มี SOC
+| สถานการณ์ | ❌ ไม่มี SOC | ✅ มี SOC |
+|---|---|---|
+| ได้รับ Phishing Email | ไม่มีใครสังเกต → ข้อมูลถูกขโมย | ตรวจพบภายในนาที → บล็อก |
+| Ransomware ถูกปล่อย | พบหลังหลายวัน → ระบบถูกเข้ารหัส | ตรวจพบทันที → จำกัดวง |
+| มีคนเข้าถึงระบบโดยไม่ได้รับอนุญาต | พบตอน Audit เดือนถัดไป | แจ้งเตือน Real-time → ล็อกบัญชี |
+| ข้อมูลรั่วไหล | ไม่รู้จนกว่าจะเป็นข่าว | ตรวจพบจากการเฝ้าระวัง → หยุดทัน |
+
+## 3. องค์ประกอบหลักของ SOC
+
+```mermaid
+graph TD
+    SOC[SOC] --> People[👥 คน]
+    SOC --> Process[📋 กระบวนการ]
+    SOC --> Tech[🖥️ เทคโนโลยี]
+
+    People --> T1[Tier 1: นักวิเคราะห์ Alert]
+    People --> T2[Tier 2: ผู้ตอบสนอง Incident]
+    People --> T3[Tier 3: นักล่าภัยคุกคาม]
+    People --> Mgr[ผู้จัดการ SOC]
+
+    Process --> PB[Playbooks]
+    Process --> IR[Incident Response]
+    Process --> SH[การส่งมอบกะ]
+
+    Tech --> SIEM[SIEM]
+    Tech --> EDR[EDR]
+    Tech --> SOAR[SOAR]
+    Tech --> TI[Threat Intel]
+```
+
+### 3.1 คน (People) — ใครทำงานใน SOC?
+
+| ตำแหน่ง | หน้าที่ | เปรียบเทียบ |
+|---|---|---|
+| **Tier 1 Analyst** | ดูหน้าจอ คัดกรอง Alert ส่งต่อภัยจริง | รปภ. ดูกล้องวงจรปิด |
+| **Tier 2 Responder** | สืบสวนเชิงลึก จำกัดวงการโจมตี | นักสืบสอบสวนคดี |
+| **Tier 3 Hunter** | ล่าภัยคุกคามเชิงรุกที่ซ่อนอยู่ | สายลับติดตามอาชญากร |
+| **Detection Engineer** | สร้างและปรับแต่งกฎแจ้งเตือน | ช่างติดตั้งระบบสัญญาณกันขโมย |
+| **SOC Manager** | บริหารทีม รายงานผู้บริหาร | ผู้กำกับตำรวจ |
+
+> 📖 **อ่านเพิ่มเติม**: ดู [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md) สำหรับรายละเอียดบทบาท ทักษะที่ต้องการ เส้นทางอาชีพ และจำนวนคนแนะนำ
+
+### 3.2 กระบวนการ (Process) — SOC ทำงานอย่างไร?
+
+| กระบวนการ | วัตถุประสงค์ | เอกสาร |
+|---|---|---|
+| **Incident Response** | ขั้นตอนรับมือเหตุการณ์โจมตี | [กรอบ IR](../05_Incident_Response/Framework.th.md) |
+| **Playbooks** | วิธีรับมือเฉพาะแต่ละประเภทการโจมตี | [20 Playbooks](../05_Incident_Response/Playbooks/) |
+| **การส่งมอบกะ** | ส่งต่อข้อมูลระหว่างกะ (24/7) | [มาตรฐานส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md) |
+| **Detection Engineering** | สร้างกฎตรวจจับพฤติกรรมอันตราย | [วงจรชีวิตการตรวจจับ](../03_User_Guides/Content_Management.th.md) |
+| **การรายงาน** | แสดงผลงาน SOC ให้ผู้บริหาร | [รายงานประจำเดือน](../11_Reporting_Templates/Monthly_SOC_Report.th.md) |
+
+### 3.3 เทคโนโลยี (Technology) — SOC ใช้เครื่องมืออะไร?
+
+| เครื่องมือ | หน้าที่ | Open Source (ฟรี) | Commercial (เสียเงิน) |
+|---|---|---|---|
+| **SIEM** | รวม Log ทั้งหมด จับ Pattern สร้าง Alert | Wazuh, Elastic SIEM | Splunk, Microsoft Sentinel |
+| **EDR** | เฝ้าดูเครื่อง Endpoint หามัลแวร์ | Wazuh, Velociraptor | CrowdStrike, SentinelOne |
+| **SOAR** | ทำงาน SOC ซ้ำๆ อัตโนมัติ | TheHive + Cortex, Shuffle | Splunk SOAR, Palo Alto XSOAR |
+| **Threat Intel** | ติดตาม IP, โดเมน, ไฟล์อันตราย | MISP, OpenCTI | Recorded Future, Mandiant |
+| **Ticketing** | ติดตาม Incident ตั้งแต่ต้นจนจบ | TheHive, RTIR | ServiceNow, Jira |
+| **Network Monitor** | ดู Traffic เครือข่ายหาความผิดปกติ | Zeek, Suricata | Darktrace, ExtraHop |
+
+## 4. วิธีสร้าง SOC — เส้นทาง 5 ขั้น
+
+```mermaid
+graph LR
+    P1[Phase 1: วางรากฐาน] --> P2[Phase 2: ตรวจจับ]
+    P2 --> P3[Phase 3: ตอบสนอง]
+    P3 --> P4[Phase 4: ล่าภัย]
+    P4 --> P5[Phase 5: ปรับปรุง]
+
+    style P1 fill:#e74c3c,color:#fff
+    style P2 fill:#e67e22,color:#fff
+    style P3 fill:#f1c40f,color:#000
+    style P4 fill:#2ecc71,color:#fff
+    style P5 fill:#3498db,color:#fff
+```
+
+### Phase 1: วางรากฐาน (เดือน 1-3) — "คลาน"
+**เป้าหมาย**: มองเห็นว่าเกิดอะไรขึ้นในระบบ
+
+- [ ] เลือกและติดตั้ง SIEM (เริ่มจาก Wazuh ถ้างบจำกัด)
+- [ ] ระบุ 10 ทรัพย์สินสำคัญที่สุด (เซิร์ฟเวอร์, ฐานข้อมูล, บัญชี Cloud)
+- [ ] นำเข้า Log: Firewall, Active Directory, Email, VPN
+- [ ] จ้าง Tier 1 Analyst 2-3 คน + SOC Manager 1 คน
+- [ ] ตั้งระบบ Ticketing (TheHive หรือ Jira)
+- [ ] กำหนดขั้นตอนการ Escalate เบื้องต้น
+
+> 📖 อ่าน: [การติดตั้ง SOC](../01_Onboarding/System_Activation.th.md)
+
+### Phase 2: ตรวจจับ (เดือน 3-6) — "เดิน"
+**เป้าหมาย**: สร้างกฎแจ้งเตือนที่ตรวจจับการโจมตีจริง
+
+- [ ] ใช้ 10 Detection Rules แรก (เริ่มจาก [Sigma Rules ของเรา](../07_Detection_Rules/))
+- [ ] สร้าง 5 Playbook แรก (Phishing, Malware, Brute Force, Account Compromise, Ransomware)
+- [ ] เปิดใช้กฎตรวจจับสำหรับแต่ละ MITRE ATT&CK Tactic
+- [ ] ปรับแต่งกฎให้ลด False Positive ต่ำกว่า 30%
+- [ ] จัดตารางกะ (เริ่มจาก 8x5, ขยายเป็น 24x7 ทีหลัง)
+
+> 📖 อ่าน: [วงจรชีวิตวิศวกรรมการตรวจจับ](../03_User_Guides/Content_Management.th.md)
+
+### Phase 3: ตอบสนอง (เดือน 6-12) — "วิ่ง"
+**เป้าหมาย**: ตอบสนองต่อ Incident จริงได้อย่างมีประสิทธิภาพ
+
+- [ ] ใช้ Playbook ทั้ง 20 ชุดจาก Repository นี้
+- [ ] จ้าง Tier 2 Incident Responders
+- [ ] ติดตั้ง EDR บนทุก Endpoint
+- [ ] จัด Purple Team ครั้งแรก ([Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md))
+- [ ] เริ่มวัด KPI: MTTD, MTTR, False Positive Rate
+- [ ] ส่งรายงานรายเดือนให้ผู้บริหาร
+
+> 📖 อ่าน: [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)
+
+### Phase 4: ล่าภัย (ปี 1-2) — "วิ่งเร็ว"
+**เป้าหมาย**: ค้นหาภัยคุกคามเชิงรุกที่หลุดจากการตรวจจับ
+
+- [ ] จ้างหรือฝึก Tier 3 Threat Hunter
+- [ ] ติดตั้ง Threat Intelligence Feed (MISP/OpenCTI)
+- [ ] แมป Detection Coverage กับ MITRE ATT&CK
+- [ ] จัด Threat Hunting Campaign ทุกไตรมาส
+- [ ] ติดตั้ง SOAR สำหรับ Automated Response
+
+> 📖 อ่าน: [วงจรชีวิต Threat Intelligence](../06_Operations_Management/Threat_Intelligence_Lifecycle.th.md)
+
+### Phase 5: ปรับปรุง (ปี 2+) — "บิน"
+**เป้าหมาย**: วัดผล ปรับปรุง และพัฒนาอย่างต่อเนื่อง
+
+- [ ] บรรลุ SOC-CMM Level 3+
+- [ ] ทำ Automation ให้ Tier 1 Triage 80%+
+- [ ] ใช้ Detection-as-Code (CI/CD สำหรับกฎ)
+- [ ] จัด SOC Assessment ประจำปี ([แบบประเมิน](../06_Operations_Management/SOC_Assessment_Checklist.th.md))
+- [ ] ส่งรายงานรายไตรมาสให้ผู้บริหาร
+
+## 5. งบประมาณโดยประมาณ
+
+| ขนาด SOC | จำนวนคน | ค่าเครื่องมือ (ต่อปี) | รวมปีแรก |
+|---|---|---|---|
+| **เล็ก** (Open Source, 8x5) | 3-5 คน | $0-20K | ~$150K-250K |
+| **กลาง** (ผสม, 16x5) | 6-10 คน | $50K-150K | ~$500K-800K |
+| **ใหญ่** (Commercial, 24x7) | 12-20 คน | $200K-500K | ~$1.5M-3M |
+
+> **เคล็ดลับ**: เริ่มเล็กๆ ด้วยเครื่องมือ Open Source ค่อยอัปเกรดเมื่อ SOC เติบโต
+
+## 6. วิธีใช้ Repository นี้
+
+| # | เริ่มตรงนี้ | เอกสาร |
+|---|---|---|
+| 1 | 📖 คุณอยู่ตรงนี้ | **SOC 101** (เอกสารนี้) |
+| 2 | 👥 สร้างทีม | [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md) |
+| 3 | 🏗️ ติดตั้งโครงสร้างพื้นฐาน | [การติดตั้ง SOC](../01_Onboarding/System_Activation.th.md) |
+| 4 | 📋 เรียนรู้กระบวนการ IR | [กรอบ Incident Response](../05_Incident_Response/Framework.th.md) |
+| 5 | 📕 ศึกษา Playbook | [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.th.md) (เริ่มที่นี่) |
+| 6 | 🔍 Deploy Detection Rules | [Detection Rules](../07_Detection_Rules/) |
+| 7 | ⏰ จัดระบบกะ | [มาตรฐานส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md) |
+| 8 | 📊 วัด KPI | [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md) |
+| 9 | 🎯 จำลองการโจมตี | [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.md) |
+| 10 | 🎓 ฝึกอบรม Analyst ใหม่ | [หลักสูตร Analyst](../09_Training_Onboarding/Analyst_Onboarding_Path.th.md) |
+
+## เอกสารที่เกี่ยวข้อง (Related Documents)
+-   [คู่มือเริ่มต้นด่วน](Quickstart_Guide.th.md)
+-   [คำศัพท์สำคัญ](Glossary.th.md)
+-   [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md)
+-   [การติดตั้ง SOC](../01_Onboarding/System_Activation.th.md)
+
+## References
+-   [NIST Cybersecurity Framework (CSF)](https://www.nist.gov/cyberframework)
+-   [CISA — Setting Up a SOC](https://www.cisa.gov/topics/cyber-threats-and-advisories)
+-   [SOC-CMM — SOC Capability Maturity Model](https://www.soc-cmm.com/)
+-   [MITRE ATT&CK Framework](https://attack.mitre.org/)
+-   [IBM Cost of a Data Breach Report](https://www.ibm.com/reports/data-breach)
+-   [SANS SOC Survey](https://www.sans.org/white-papers/soc-survey/)
 
 
 ---

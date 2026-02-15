@@ -109,11 +109,11 @@ Structured with numbered sections (`## 1.`, `## 2.`, etc.) and actionable checkl
 ### 4. Related Documents (Cross-Links)
 Cross-links to other documents in the repository. Insert **before** References.
 
-```markdown
+```
 ## Related Documents          <!-- English -->
 ## เอกสารที่เกี่ยวข้อง (Related Documents)  <!-- Thai -->
 
--   [Document Name](relative/path/to/file.en.md)
+-   Document Name → relative/path/to/file.en.md
 ```
 
 **Cross-link rules**:
@@ -259,7 +259,7 @@ Standardize Operations Management docs: Add flows and references
 
 When adding new documents:
 1. Add a row to the relevant section table in `README.md`
-2. Format: `| **Title** | [Link](path.en.md) | [ลิ้งค์](path.th.md) |`
+2. Follow the existing table format with English and Thai links
 3. Keep the table alphabetically sorted within each section
 
 ---

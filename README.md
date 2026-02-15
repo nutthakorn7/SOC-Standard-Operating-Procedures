@@ -8,6 +8,13 @@ This repository contains **Standard Operating Procedures (SOPs)** for a modern S
 
 ## Directory Structure & Documents
 
+### 🚀 00_Getting_Started (New to SOC? Start Here!)
+| Document | English | ภาษาไทย |
+| :--- | :--- | :--- |
+| **SOC 101 — What is a SOC?** | [Link](00_Getting_Started/SOC_101.en.md) | [ลิ้งค์](00_Getting_Started/SOC_101.th.md) |
+| **Quickstart Guide** | [Link](00_Getting_Started/Quickstart_Guide.en.md) | [ลิ้งค์](00_Getting_Started/Quickstart_Guide.th.md) |
+| **Glossary of Terms** | [Link](00_Getting_Started/Glossary.en.md) | [ลิ้งค์](00_Getting_Started/Glossary.th.md) |
+
 ### 01_Onboarding
 | Document | English | ภาษาไทย |
 | :--- | :--- | :--- |
