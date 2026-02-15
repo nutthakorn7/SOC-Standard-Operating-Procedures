@@ -240,8 +240,8 @@ flowchart TD
 
 ## Related Documents
 
--   [Insider Threat Program](Insider_Threat_Program.en.md) — Human risk reduction
+-   [Insider Threat Program](../06_Operations_Management/Insider_Threat_Program.en.md) — Human risk reduction
 -   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — Real phishing escalation
--   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Phishing auto-triage
--   [KPI Dashboard Template](KPI_Dashboard_Template.en.md) — Awareness metrics
+-   [SOC Automation Catalog](../06_Operations_Management/SOC_Automation_Catalog.en.md) — Phishing auto-triage
+-   [KPI Dashboard Template](../06_Operations_Management/KPI_Dashboard_Template.en.md) — Awareness metrics
 -   [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) — Phishing classification
