@@ -125,6 +125,15 @@
 - [ตัวชี้วัด SOC & KPIs](../06_Operations_Management/SOC_Metrics.th.md) — ตัวชี้วัดประสิทธิภาพ
 - [แบบฟอร์ม Incident Report](incident_report.th.md) — เอกสารหลังเหตุการณ์
 
+### Handover Quality Check
+
+| Item | Verified |
+|:---|:---|
+| Open incidents listed | ☐ |
+| Pending actions noted | ☐ |
+| Unusual activity flagged | ☐ |
+| System health confirmed | ☐ |
+
 ## อ้างอิง
 
 - [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

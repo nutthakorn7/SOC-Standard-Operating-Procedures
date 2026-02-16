@@ -185,6 +185,14 @@ graph TD
 | Policy violation | Medium | SOC Lead |
 | Failed login attempt | Low | Auto-close if < 5 |
 
+### Severity Escalation Path
+
+| From | To | Trigger |
+|:---|:---|:---|
+| Low | Medium | Scope expansion |
+| Medium | High | Data involved |
+| High | Critical | Business impact |
+
 ## References
 
 - [NIST SP 800-61r2 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

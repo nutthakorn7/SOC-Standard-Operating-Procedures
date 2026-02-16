@@ -306,6 +306,14 @@
 | SLA Compliance | Ticketing + SLA DB | 15 min |
 | Coverage Map | ATT&CK Navigator | Daily |
 
+### Dashboard Maintenance Schedule
+
+| Task | Frequency |
+|:---|:---|
+| Data source check | Daily |
+| Widget review | Monthly |
+| Full redesign | Annual |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Metrics & KPIs](SOC_Metrics.en.md) — นิยาม KPI และสูตรคำนวณ

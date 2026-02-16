@@ -284,6 +284,15 @@ graph LR
 | 4 | Tabletop exercise | Week 7 |
 | 5 | Go-live + monitor | Week 8 |
 
+### Quick Reference Card
+
+| Phase | Key Action | SLA |
+|:---|:---|:---|
+| Detect | Triage alert | 15 min |
+| Contain | Isolate threat | 1 hr |
+| Eradicate | Remove cause | 4 hrs |
+| Recover | Restore ops | 8 hrs |
+
 ## อ้างอิง (References)
 
 - [NIST SP 800-61r2 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

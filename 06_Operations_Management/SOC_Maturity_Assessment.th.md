@@ -253,6 +253,14 @@ Executive Summary:
   Budget Estimate: [THB]
 ```
 
+### Quick Self-Assessment
+
+| Area | L1? | L3? | L5? |
+|:---|:---|:---|:---|
+| Detection | Ad-hoc | Rules+Tuning | ML+Hunt |
+| Response | Manual | Playbooks | SOAR |
+| Metrics | None | Basic KPIs | Predictive |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Metrics & KPIs](SOC_Metrics.en.md) — ตัวชี้วัด

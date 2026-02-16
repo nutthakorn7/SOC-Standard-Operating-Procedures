@@ -146,6 +146,12 @@ graph TD
 | Performance check | 1-4 hrs | IT Operations |
 | Full review | 24 hrs | Change owner |
 
+### Change Success Rate Tracking
+
+| Month | Total | Success | Rate |
+|:---|:---|:---|:---|
+| Target | - | - | > 95% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แม่แบบ Change Request](../templates/change_request_rfc.th.md)

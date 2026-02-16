@@ -124,6 +124,14 @@
 | 4 | SLA Compliance | % Bar | > 95% |
 | 5 | Detection Coverage | Heat map | > 60% |
 
+### Stakeholder Access Matrix
+
+| Role | Dashboard | Export | Customize |
+|:---|:---|:---|:---|
+| CISO | Full | ✅ | ✅ |
+| Director | Summary | ✅ | ❌ |
+| Analyst | Ops only | ❌ | ❌ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)

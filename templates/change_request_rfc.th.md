@@ -136,6 +136,14 @@ Subject: [RFC-XXXX] Change Notification
 - Rollback ETA: [เวลาถ้าต้อง rollback]
 ```
 
+### Approval Quick Guide
+
+| Risk Level | Approver | Turnaround |
+|:---|:---|:---|
+| Low | Team lead | Same day |
+| Medium | Manager | 2 days |
+| High | CAB | 5 days |
+
 ## อ้างอิง
 
 - [ITIL Change Management](https://www.axelos.com/certifications/itil-service-management)

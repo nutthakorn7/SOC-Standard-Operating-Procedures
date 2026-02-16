@@ -204,6 +204,15 @@ graph LR
 | Quarterly review | SOC Lead | 2 สัปดาห์ |
 | Tool change | Engineer | 1 สัปดาห์ |
 
+### Template Quick Reference
+
+| Section | Max Length |
+|:---|:---|
+| Objective | 2-3 sentences |
+| Prerequisites | Bullet list |
+| Steps | 10-15 max |
+| Escalation | Decision tree |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [IR Framework](Framework.en.md) — กรอบงาน NIST

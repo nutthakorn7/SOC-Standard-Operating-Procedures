@@ -108,6 +108,14 @@ _อธิบาย root cause 2–3 ประโยค_
 | Technology | เครื่องมือขัดข้อง | Alert ไม่ trigger |
 | External | ปัจจัยภายนอก | Zero-day exploit |
 
+### Improvement Tracking
+
+| Lesson | Action Owner | Deadline | Status |
+|:---|:---|:---|:---|
+| Slow detection | Add rule | 2 wks | ☐ |
+| Poor comms | Update plan | 1 wk | ☐ |
+| Missing log | Onboard source | 3 wks | ☐ |
+
 ## ลงชื่อ
 
 ```

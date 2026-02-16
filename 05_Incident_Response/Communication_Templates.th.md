@@ -285,6 +285,14 @@ Timeline + สาเหตุ + ผลกระทบ + สิ่งที่ด
 | +7 days | Full post-mortem | All affected parties |
 | +30 days | Remediation status | Regulatory (if needed) |
 
+### Quick Contact Card
+
+| Role | Primary | Backup |
+|:---|:---|:---|
+| CISO | Phone | SMS |
+| SOC Lead | Chat | Phone |
+| Legal | Email | Phone |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

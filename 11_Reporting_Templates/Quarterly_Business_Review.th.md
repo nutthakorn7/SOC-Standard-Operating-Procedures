@@ -168,6 +168,14 @@
 | Downtime/year | 48 hrs | 8 hrs | 40 hrs |
 | FTE (manual) | 8 | 4 | 4 FTE |
 
+### QBR Success Metrics
+
+| Metric | Target |
+|:---|:---|
+| Attendees | 100% stakeholders |
+| Action items | ≤ 10, assigned |
+| Follow-up | Within 1 week |
+
 ## อ้างอิง
 
 - [SOC-CMM Assessment Model](https://www.soc-cmm.com/)

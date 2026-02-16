@@ -160,6 +160,14 @@ PDPA:      ███████████████████░░  90% 
 | ก.ย. | ISO audit (internal) | ISO 27001 |
 | ธ.ค. | NIST CSF self-assessment | NIST CSF |
 
+### Framework Update Tracking
+
+| Framework | Last Update | Next Review |
+|:---|:---|:---|
+| ISO 27001 | 2022 | Annual |
+| NIST CSF | 2.0 (2024) | Annual |
+| PCI DSS | 4.0 (2024) | Annual |
+
 ## References
 
 - [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)

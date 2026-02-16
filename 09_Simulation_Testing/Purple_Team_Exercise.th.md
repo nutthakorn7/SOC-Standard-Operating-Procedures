@@ -269,6 +269,14 @@ graph LR
 | Lab environment | 100K-300K THB | VMs + network |
 | Training | 50K-150K THB | Per person |
 
+### Exercise Complexity Levels
+
+| Level | Duration | Techniques |
+|:---|:---|:---|
+| Basic | 1 day | 3-5 |
+| Intermediate | 3 days | 8-12 |
+| Advanced | 1-2 weeks | 15-20 |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Simulation & Testing Guide](../08_Simulation_Testing/Simulation_Guide.en.md)

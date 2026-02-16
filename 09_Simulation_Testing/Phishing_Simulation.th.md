@@ -231,6 +231,14 @@ flowchart TD
 | 3rd click | 1-on-1 coaching | Security Team |
 | 4th click | Policy review with HR | Manager + HR |
 
+### Template Library Categories
+
+| Category | Difficulty | Use Case |
+|:---|:---|:---|
+| Generic promo | Easy | Baseline test |
+| IT helpdesk | Medium | Credential harvest |
+| CEO/CFO spoof | Hard | BEC awareness |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Insider Threat Program](../06_Operations_Management/Insider_Threat_Program.en.md) — ลดความเสี่ยงมนุษย์

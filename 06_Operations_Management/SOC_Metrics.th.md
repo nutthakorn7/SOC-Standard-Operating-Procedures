@@ -233,6 +233,14 @@ graph LR
 | FP Rate | < 20% | 20-40% | > 40% |
 | SLA Met | > 95% | 85-95% | < 85% |
 
+### Metric Review Cadence
+
+| Level | Frequency | Audience |
+|:---|:---|:---|
+| Operational | Daily | SOC team |
+| Tactical | Weekly | Management |
+| Strategic | Monthly | CISO/Board |
+
 ## อ้างอิง (References)
 
 - [SANS SOC Metrics](https://www.sans.org/white-papers/soc-metrics/)

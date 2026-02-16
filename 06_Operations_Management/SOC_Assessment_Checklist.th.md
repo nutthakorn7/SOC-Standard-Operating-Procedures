@@ -91,6 +91,14 @@ graph LR
 -   [แบบประเมิน SOC](SOC_Assessment_Checklist.th.md)
 -   [ตัวชี้วัด SOC](SOC_Metrics.th.md)
 
+### Assessment Scoring Guide
+
+| Score | Meaning | Action |
+|:---|:---|:---|
+| 0-2 | Critical gap | Immediate fix |
+| 3-4 | Needs improvement | Plan within 30d |
+| 5 | Meets standard | Maintain |
+
 ## References
 -   [SOC-CMM (Capability Maturity Model)](https://www.soc-cmm.com/)
 -   [MITRE SOC Strategy](https://mitre.org/)

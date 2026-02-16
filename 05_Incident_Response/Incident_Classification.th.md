@@ -237,6 +237,15 @@ MITRE TTP:     [T-code, เช่น T1486, T1059.001]
 
 ---
 
+### Classification Quick Reference
+
+| Type | Example | Default Severity |
+|:---|:---|:---|
+| Malware | Ransomware, trojan | High |
+| Unauthorized access | Credential theft | Critical |
+| Data loss | Exfiltration | Critical |
+| DoS | DDoS attack | Medium |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Severity Matrix](Severity_Matrix.en.md) — นิยามระดับความรุนแรงฉบับเต็ม

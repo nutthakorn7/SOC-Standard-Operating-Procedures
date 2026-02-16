@@ -266,6 +266,14 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://target_ip
 | MTTD | 48 hrs | 4 hrs | -92% |
 | Rules created | 0 | 15 | +15 new |
 
+### Detection Improvement Targets
+
+| Area | Before | Target |
+|:---|:---|:---|
+| Detection rate | 40% | 80% |
+| Mean time to detect | 48h | 4h |
+| Coverage (ATT&CK) | 30% | 60% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [สถานการณ์จำลอง](Tabletop_Exercises.th.md)

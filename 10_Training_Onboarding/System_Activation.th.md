@@ -91,6 +91,14 @@ SOC ที่สมบูรณ์จำเป็นต้องมีองค�
 | TI Feed | IOC lookup | Results returned | ☐ |
 | SOAR | Test playbook | Runs successfully | ☐ |
 
+### Post-Activation Monitoring
+
+| Check | Frequency | Duration |
+|:---|:---|:---|
+| System uptime | Every 5 min | 48 hrs |
+| Alert accuracy | Hourly | 1 week |
+| Log completeness | Daily | 2 weeks |
+
 ## References
 -   [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 -   [CISA SOC Best Practices](https://www.cisa.gov/topics/cyber-threats-and-advisories)

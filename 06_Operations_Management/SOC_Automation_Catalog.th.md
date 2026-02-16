@@ -183,6 +183,15 @@ Steps:
 | Endpoint isolation | 5 min | 10 sec | 97% |
 | Report generation | 2 hrs | 5 min | 96% |
 
+### Automation Readiness Checklist
+
+| Criteria | Required |
+|:---|:---|
+| Process documented | ✅ |
+| Consistent inputs | ✅ |
+| API available | ✅ |
+| Error handling defined | ✅ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOAR Playbooks](../05_Incident_Response/SOAR_Playbooks.en.md)

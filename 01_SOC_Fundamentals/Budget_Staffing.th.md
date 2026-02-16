@@ -250,6 +250,14 @@ graph LR
 | Operations | 5-10% | Cloud, infra, maintenance |
 | Training | 5-10% | Certs, conferences, labs |
 
+### Overtime & Burnout Prevention
+
+| Metric | Warning | Action |
+|:---|:---|:---|
+| OT > 20 hrs/mo | ⚠️ | Review workload |
+| Turnover > 15% | 🔴 | Retention plan |
+| Satisfaction < 3/5 | ⚠️ | Team survey |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

@@ -113,6 +113,14 @@
 | 5 | Revoke เมื่อเสร็จ | ทันที |
 | 6 | Post-review | 24 hrs |
 
+### Access Log Monitoring
+
+| Event | Alert? | Review |
+|:---|:---|:---|
+| Admin login | ✅ | Real-time |
+| After-hours | ✅ | Next day |
+| Failed attempt | >5 = ✅ | Daily |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [โครงสร้างทีม SOC](SOC_Team_Structure.th.md)

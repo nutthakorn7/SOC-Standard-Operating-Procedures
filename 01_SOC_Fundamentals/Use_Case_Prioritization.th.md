@@ -193,6 +193,15 @@ flowchart LR
 - ซ้ำซ้อนกับ rule อื่น
 - ไม่เคย trigger ใน 6 เดือน
 
+### Quick Wins Identification
+
+| Criteria | Description |
+|:---|:---|
+| High impact + Low effort | Deploy first |
+| Existing log source | No new onboarding |
+| Known TTP coverage | MITRE mapped |
+| Template available | Pre-built rule |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

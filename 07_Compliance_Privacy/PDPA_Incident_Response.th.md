@@ -186,6 +186,14 @@ graph LR
 | Reportable breach | แจ้ง สคส. | 72 ชม. |
 | Data subject notice | แจ้งเจ้าของข้อมูล | โดยไม่ชักช้า |
 
+### Key PDPA Contacts
+
+| Role | Responsibility |
+|:---|:---|
+| DPO | Oversee compliance |
+| IR Lead | Manage response |
+| Legal | Regulatory liaison |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [IR Framework](../05_Incident_Response/Framework.th.md)

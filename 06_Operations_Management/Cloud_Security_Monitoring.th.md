@@ -250,6 +250,13 @@ flowchart TD
 | MFA disabled | All | Critical |
 | Unusual API calls | All | Medium |
 
+### Cloud Compliance Check
+
+| Standard | AWS Control | Azure Control |
+|:---|:---|:---|
+| CIS Benchmark | Config Rules | Policy |
+| PCI DSS | SecurityHub | Defender |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด

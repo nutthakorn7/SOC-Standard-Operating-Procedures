@@ -134,6 +134,14 @@ Interview Record:
 - Signature: _____________
 ```
 
+### Key Interview Principles
+
+| Principle | Rationale |
+|:---|:---|
+| Open-ended questions | ได้ข้อมูลมากกว่า |
+| Active listening | สร้างความไว้วางใจ |
+| Document everything | Evidence integrity |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md)

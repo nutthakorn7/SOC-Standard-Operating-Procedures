@@ -248,6 +248,15 @@ vol -f memory.raw windows.malfind
 | Autopsy | File system analysis | Windows/Linux |
 | KAPE | Artifact collection | Windows |
 
+### Evidence Priority
+
+| Type | Volatility |
+|:---|:---|
+| RAM | สูงมาก |
+| Processes | สูง |
+| Network | ปานกลาง |
+| Disk | ต่ำ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Evidence Collection](Evidence_Collection.en.md) — ขั้นตอนเก็บหลักฐานเบื้องต้น

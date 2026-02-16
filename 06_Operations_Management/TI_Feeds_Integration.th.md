@@ -256,6 +256,14 @@ graph TD
 | Abuse.ch | 200+ | 5-10% | Block |
 | Commercial TI | 100+ | 10-20% | Priority alert |
 
+### Feed ROI Assessment
+
+| Feed | Cost/Year | Detections/Month | Cost/Detection |
+|:---|:---|:---|:---|
+| Commercial A | 500K THB | 50 | 10K THB |
+| Commercial B | 300K THB | 25 | 12K THB |
+| Open Source | Free | 15 | Free |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [Detection Rules (Sigma)](../07_Detection_Rules/README.md)

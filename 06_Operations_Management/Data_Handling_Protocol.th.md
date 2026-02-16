@@ -91,6 +91,14 @@ graph TD
 | PII evidence | ตาม PDPA | ตาม PDPA | Certified destroy |
 | Threat intel | 2 ปี | 5 ปี | Secure wipe |
 
+### Quick Classification Guide
+
+| Question | Yes → | No → |
+|:---|:---|:---|
+| Contains PII? | Restricted | Check next |
+| Business sensitive? | Confidential | Check next |
+| Internal only? | Internal | Public |
+
 ## References
 -   [FIRST.org TLP 2.0 Standard](https://www.first.org/tlp/)
 -   [CISA Traffic Light Protocol](https://www.cisa.gov/tlp)

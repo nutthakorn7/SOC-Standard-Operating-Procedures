@@ -411,6 +411,15 @@ Total: ~15-25M THB/year (mid-size org)
 | Advanced | Detection coverage | > 60% ATT&CK |
 | Optimized | Automation rate | > 40% alerts |
 
+### Vendor Selection Criteria
+
+| Factor | Weight | Evaluation |
+|:---|:---|:---|
+| Feature fit | 30% | POC results |
+| Cost (TCO) | 25% | 3-year model |
+| Support quality | 20% | SLA review |
+| Integration | 25% | API testing |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)

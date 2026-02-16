@@ -178,6 +178,15 @@ graph LR
 - [ ] Documentation ครบถ้วน
 - [ ] False positive rate < 10%
 
+### Content Types Summary
+
+| Type | Format | Owner |
+|:---|:---|:---|
+| Detection rules | YAML/SPL | Engineer |
+| Playbooks | Markdown | Analyst |
+| Dashboards | JSON | Engineer |
+| Reports | Template | Manager |
+
 ## อ้างอิง
 
 - [Detection Engineering Weekly](https://detectionengineering.net/)
