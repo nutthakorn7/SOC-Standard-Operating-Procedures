@@ -147,6 +147,47 @@ flowchart TD
 
 ---
 
+## เทมเพลตแบบประเมินผู้ให้บริการ
+
+### Security Assessment Questionnaire
+
+| # | หมวด | คำถาม | คำตอบ | Risk |
+|:---:|:---|:---|:---|:---:|
+| 1 | **Certifications** | มี ISO 27001 / SOC 2? | [ใช่/ไม่] | 🔴/🟢 |
+| 2 | **Data Handling** | ข้อมูลเข้ารหัสระหว่างจัดเก็บ? | [ใช่/ไม่] | 🔴/🟢 |
+| 3 | **Data Location** | ข้อมูลจัดเก็บในประเทศไทย? | [ใช่/ไม่] | 🔴/🟢 |
+| 4 | **Access Control** | ใช้ MFA สำหรับ admin access? | [ใช่/ไม่] | 🔴/🟢 |
+| 5 | **Incident Response** | มีแผน IR ที่ทดสอบแล้ว? | [ใช่/ไม่] | 🔴/🟢 |
+| 6 | **BCP/DR** | มีแผน BCP/DR? | [ใช่/ไม่] | 🔴/🟢 |
+| 7 | **PDPA** | ปฏิบัติตาม PDPA? | [ใช่/ไม่] | 🔴/🟢 |
+
+### Risk Scoring
+
+| คะแนนรวม | Risk Level | Action |
+|:---|:---|:---|
+| 0–2 🔴 flags | **Low Risk** | อนุมัติ, review ปีละครั้ง |
+| 3–4 🔴 flags | **Medium Risk** | อนุมัติแบบมีเงื่อนไข |
+| 5–6 🔴 flags | **High Risk** | ต้อง remediate ก่อนอนุมัติ |
+| 7 🔴 flags | **Critical** | ไม่อนุมัติ |
+
+## Continuous Monitoring
+
+| ตรวจสอบ | ความถี่ | เครื่องมือ |
+|:---|:---|:---|
+| Security scorecard | รายเดือน | SecurityScorecard / BitSight |
+| Certificate expiry | อัตโนมัติ | SSL monitoring |
+| Dark web mentions | รายสัปดาห์ | TI platform |
+| Service availability | Real-time | Uptime monitoring |
+
+## Vendor Incident SLA
+
+| ระดับ | คำอธิบาย | Notification SLA | Resolution SLA |
+|:---|:---|:---:|:---:|
+| 🔴 Critical | Data breach | ≤ 1 ชม. | ≤ 24 ชม. |
+| 🟡 High | Security incident | ≤ 4 ชม. | ≤ 48 ชม. |
+| 🟠 Medium | Vulnerability | ≤ 24 ชม. | ≤ 7 วัน |
+| 🟢 Low | Config issue | ≤ 72 ชม. | ≤ 30 วัน |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md)

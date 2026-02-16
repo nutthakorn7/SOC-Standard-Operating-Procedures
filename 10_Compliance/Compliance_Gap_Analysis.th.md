@@ -107,6 +107,62 @@ flowchart TD
 
 ---
 
+## Gap Analysis Methodology
+
+```mermaid
+graph TD
+    Scope["📋 กำหนดขอบเขต"] --> Inventory["📊 สำรวจ Controls ปัจจุบัน"]
+    Inventory --> Map["🗺️ Map กับ Framework"]
+    Map --> Assess["📝 ประเมิน Gap"]
+    Assess --> Prioritize["🎯 จัดลำดับ"]
+    Prioritize --> Remediate["🔧 วางแผนแก้ไข"]
+    Remediate --> Track["📈 ติดตาม"]
+```
+
+## เทมเพลตการประเมินรายละเอียด
+
+### ISO 27001 Controls Mapping
+
+| Control | หมวด | สถานะ | Gap | ลำดับ |
+|:---|:---|:---:|:---|:---:|
+| A.5 | Information Security Policies | ✅/⚠️/❌ | [ระบุ] | 🔴/🟡/🟢 |
+| A.6 | Organization of InfoSec | ✅/⚠️/❌ | [ระบุ] | 🔴/🟡/🟢 |
+| A.7 | Human Resource Security | ✅/⚠️/❌ | [ระบุ] | 🔴/🟡/🟢 |
+| A.8 | Asset Management | ✅/⚠️/❌ | [ระบุ] | 🔴/🟡/🟢 |
+| A.9 | Access Control | ✅/⚠️/❌ | [ระบุ] | 🔴/🟡/🟢 |
+| A.10 | Cryptography | ✅/⚠️/❌ | [ระบุ] | 🔴/🟡/🟢 |
+| A.11 | Physical Security | ✅/⚠️/❌ | [ระบุ] | 🔴/🟡/🟢 |
+| A.12 | Operations Security | ✅/⚠️/❌ | [ระบุ] | 🔴/🟡/🟢 |
+| A.13 | Communications Security | ✅/⚠️/❌ | [ระบุ] | 🔴/🟡/🟢 |
+
+### NIST CSF Mapping
+
+| Function | Category | สถานะ | ระดับ (1-4) |
+|:---|:---|:---:|:---:|
+| **Identify** | Asset Management | ✅/⚠️/❌ | [X] |
+| **Identify** | Risk Assessment | ✅/⚠️/❌ | [X] |
+| **Protect** | Access Control | ✅/⚠️/❌ | [X] |
+| **Detect** | Continuous Monitoring | ✅/⚠️/❌ | [X] |
+| **Respond** | Response Planning | ✅/⚠️/❌ | [X] |
+| **Recover** | Recovery Planning | ✅/⚠️/❌ | [X] |
+
+## Remediation Tracking
+
+| Gap ID | Framework | Control | ลำดับ | Owner | Deadline | สถานะ |
+|:---:|:---|:---|:---:|:---|:---:|:---:|
+| GAP-001 | ISO 27001 | A.12.4 | 🔴 | [ชื่อ] | [วันที่] | ☐ |
+| GAP-002 | NIST CSF | DE.CM | 🟡 | [ชื่อ] | [วันที่] | ☐ |
+| GAP-003 | PDPA | Art.37 | 🔴 | [ชื่อ] | [วันที่] | ☐ |
+
+## KPIs สำหรับ Compliance
+
+| ตัวชี้วัด | เป้าหมาย | ปัจจุบัน |
+|:---|:---|:---|
+| % Controls Implemented | ≥ 90% | [XX]% |
+| Critical Gaps Outstanding | 0 | [XX] |
+| Time to Remediate (Critical) | ≤ 30 วัน | [XX] วัน |
+| Compliance Score (รวม) | ≥ 85% | [XX]% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Compliance Mapping](Compliance_Mapping.en.md) — ISO 27001 / NIST CSF / PCI DSS

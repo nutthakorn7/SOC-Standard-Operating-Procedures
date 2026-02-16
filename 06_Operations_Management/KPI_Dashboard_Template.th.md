@@ -196,6 +196,59 @@
 
 ---
 
+## เทมเพลต Dashboard Layout
+
+### Panel 1: สรุปภาพรวม (Executive Summary)
+
+| ตัวชี้วัด | ค่า | เทรนด์ | เป้าหมาย |
+|:---|:---:|:---:|:---:|
+| Total Incidents (เดือนนี้) | [XX] | ↑/↓ | < [XX] |
+| MTTD (เฉลี่ย) | [XX] นาที | ↑/↓ | ≤ 60 นาที |
+| MTTR (เฉลี่ย) | [XX] นาที | ↑/↓ | ≤ 240 นาที |
+| False Positive Rate | [XX]% | ↑/↓ | < 10% |
+| SLA Compliance | [XX]% | ↑/↓ | ≥ 95% |
+
+### Panel 2: ประสิทธิภาพ Detection
+
+| หมวด | จำนวน Rules | Triggered/เดือน | FP Rate |
+|:---|:---:|:---:|:---:|
+| Network | [XX] | [XX] | [XX]% |
+| Endpoint | [XX] | [XX] | [XX]% |
+| Identity | [XX] | [XX] | [XX]% |
+| Cloud | [XX] | [XX] | [XX]% |
+| Email | [XX] | [XX] | [XX]% |
+
+### Panel 3: MITRE ATT&CK Coverage Heat Map
+
+| Tactic | ครอบคลุม | ช่องว่าง | ลำดับ |
+|:---|:---:|:---:|:---:|
+| Initial Access | [XX]% | [XX] techniques | 🔴/🟡/🟢 |
+| Execution | [XX]% | [XX] techniques | 🔴/🟡/🟢 |
+| Persistence | [XX]% | [XX] techniques | 🔴/🟡/🟢 |
+| Privilege Escalation | [XX]% | [XX] techniques | 🔴/🟡/🟢 |
+| Defense Evasion | [XX]% | [XX] techniques | 🔴/🟡/🟢 |
+| Lateral Movement | [XX]% | [XX] techniques | 🔴/🟡/🟢 |
+| Collection | [XX]% | [XX] techniques | 🔴/🟡/🟢 |
+| Exfiltration | [XX]% | [XX] techniques | 🔴/🟡/🟢 |
+| Impact | [XX]% | [XX] techniques | 🔴/🟡/🟢 |
+
+### Panel 4: Team Performance
+
+| นักวิเคราะห์ | Alerts Triaged | Avg Triage Time | Escalation Rate | Quality Score |
+|:---|:---:|:---:|:---:|:---:|
+| [Analyst 1] | [XX] | [XX] นาที | [XX]% | [X]/5 |
+| [Analyst 2] | [XX] | [XX] นาที | [XX]% | [X]/5 |
+| [Analyst 3] | [XX] | [XX] นาที | [XX]% | [X]/5 |
+
+### Panel 5: Trend Analysis (รายเดือน)
+
+| เดือน | Incidents | Alerts | FP Rate | MTTD | MTTR |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| [M-3] | [XX] | [XX] | [XX]% | [XX]m | [XX]m |
+| [M-2] | [XX] | [XX] | [XX]% | [XX]m | [XX]m |
+| [M-1] | [XX] | [XX] | [XX]% | [XX]m | [XX]m |
+| ปัจจุบัน | [XX] | [XX] | [XX]% | [XX]m | [XX]m |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Metrics & KPIs](SOC_Metrics.en.md) — นิยาม KPI และสูตรคำนวณ

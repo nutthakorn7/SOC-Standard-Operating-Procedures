@@ -129,6 +129,68 @@
 
 ---
 
+## NSM Architecture
+
+```mermaid
+graph TD
+    subgraph "Network Tap Points"
+        TAP1["🔌 Internet Edge"]
+        TAP2["🔌 DMZ"]
+        TAP3["🔌 Core Switch"]
+        TAP4["🔌 Server VLAN"]
+    end
+    subgraph "NSM Stack"
+        Suricata["🛡️ Suricata (IDS)"]
+        Zeek["🔍 Zeek (Metadata)"]
+        PCAP["💾 Full PCAP"]
+    end
+    subgraph "Analysis"
+        SIEM["📊 SIEM"]
+        Dashboard["📈 Dashboard"]
+    end
+    TAP1 --> Suricata
+    TAP2 --> Suricata
+    TAP3 --> Zeek
+    TAP4 --> Zeek
+    TAP1 --> PCAP
+    Suricata --> SIEM
+    Zeek --> SIEM
+    SIEM --> Dashboard
+```
+
+## Detection Categories
+
+| หมวด | ตัวอย่าง | เครื่องมือ | ลำดับ |
+|:---|:---|:---|:---:|
+| **Malware C2** | Beacon traffic, DNS tunneling | Suricata + JA3 | P1 |
+| **Lateral Movement** | SMB/RDP ผิดปกติ, PsExec | Zeek + Suricata | P1 |
+| **Data Exfiltration** | Large outbound transfers, encrypted channels | Zeek + DLP | P1 |
+| **Reconnaissance** | Port scan, service enumeration | Suricata | P2 |
+| **Protocol Anomaly** | Non-standard DNS, HTTP tunneling | Zeek | P2 |
+| **Unauthorized Services** | Rogue DHCP, unauthorized VPN | Zeek | P3 |
+
+## NSM KPIs
+
+| ตัวชี้วัด | เป้าหมาย | ปัจจุบัน |
+|:---|:---|:---|
+| Network coverage (monitored segments) | ≥ 90% | [XX]% |
+| IDS alert-to-incident ratio | < 100:1 | [XX]:1 |
+| PCAP retention | ≥ 72 ชม. | [XX] ชม. |
+| Zeek log retention | ≥ 30 วัน | [XX] วัน |
+| Signature update frequency | ≤ 24 ชม. | [XX] ชม. |
+
+## NSM Tool Comparison
+
+| คุณสมบัติ | Suricata | Zeek | Arkime |
+|:---|:---:|:---:|:---:|
+| **Signature-based detection** | ✅ | ❌ | ❌ |
+| **Protocol parsing** | ✅ | ✅ (ดีกว่า) | ✅ |
+| **Full PCAP** | ❌ | ❌ | ✅ |
+| **Metadata logging** | ✅ | ✅ (ดีกว่า) | ✅ |
+| **JA3/JA4 fingerprinting** | ✅ | ✅ | ✅ |
+| **ราคา** | ฟรี | ฟรี | ฟรี |
+| **เหมาะกับ** | IDS/IPS | Traffic analysis | PCAP search |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด

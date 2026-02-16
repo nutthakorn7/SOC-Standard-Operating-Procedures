@@ -131,6 +131,60 @@ flowchart TD
 
 ---
 
+## ตัวอย่าง DLP Policies เพิ่มเติม
+
+### Personal Data (PII) Detection
+
+| ประเภทข้อมูล | Pattern | ตัวอย่าง | Action |
+|:---|:---|:---|:---|
+| เลขบัตรประชาชน | `\d{1}-\d{4}-\d{5}-\d{2}-\d{1}` | 1-1234-56789-01-2 | Block + Alert |
+| เลขบัตรเครดิต | Luhn algorithm match | 4111-xxxx-xxxx-1111 | Block + Alert |
+| เลขหนังสือเดินทาง | `[A-Z]{2}\d{7}` | AA1234567 | Alert |
+| เบอร์โทรศัพท์ | `0[689]\d-\d{3}-\d{4}` | 081-234-5678 | Log |
+
+### Source Code Exfiltration
+
+| Channel | Detection Method | Action |
+|:---|:---|:---|
+| Email + attachment (.py, .js, .go) | File extension matching | Alert + Hold |
+| Cloud storage upload | API monitoring | Block + Alert |
+| USB copy | Endpoint DLP agent | Block + Alert |
+| Git push to personal repo | URL pattern matching | Block + Alert |
+
+## Incident Response สำหรับ DLP Events
+
+```mermaid
+graph TD
+    DLP["🚨 DLP Alert"] --> Triage["📋 SOC Triage"]
+    Triage --> FP{"False Positive?"}
+    FP -->|ใช่| Tune["ปรับ Policy"]
+    FP -->|ไม่| Investigate["🔍 สอบสวน"]
+    Investigate --> Intent{"เจตนา?"}
+    Intent -->|ไม่ตั้งใจ| Educate["📚 อบรมผู้ใช้"]
+    Intent -->|ตั้งใจ| Insider["🔒 Insider Threat Process"]
+    Insider --> HR["แจ้ง HR + Legal"]
+```
+
+## DLP Tool Comparison
+
+| คุณสมบัติ | Microsoft Purview | Symantec DLP | Forcepoint | Wazuh FIM |
+|:---|:---:|:---:|:---:|:---:|
+| Network DLP | ✅ | ✅ | ✅ | ❌ |
+| Endpoint DLP | ✅ | ✅ | ✅ | ✅ (FIM) |
+| Cloud DLP | ✅ | ✅ | ✅ | ❌ |
+| Content Inspection | ✅ | ✅ | ✅ | ❌ |
+| Price | M365 bundle | Commercial | Commercial | ฟรี |
+
+## DLP KPIs
+
+| ตัวชี้วัด | เป้าหมาย | ปัจจุบัน |
+|:---|:---|:---|
+| DLP Alerts/เดือน | < 100 (หลัง tuning) | [XX] |
+| False Positive Rate | < 15% | [XX]% |
+| เวลาตอบสนอง DLP Alert | < 30 นาที | [XX] นาที |
+| จำนวน Policy violations/เดือน | ลดลง MoM | [XX] |
+| ผู้ใช้ที่ผ่านอบรม DLP | ≥ 90% | [XX]% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Insider Threat Program](Insider_Threat_Program.en.md) — ตรวจจับ insider threat

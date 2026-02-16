@@ -92,6 +92,24 @@ sudo systemctl enable --now wazuh-agent
 
 ---
 
+
+
+### Linux Servers
+
+```bash
+# ติดตั้ง rsyslog forwarding ไปยัง Wazuh
+cat >> /etc/rsyslog.conf << 'EOF'
+*.* @@<WAZUH_IP>:514
+EOF
+systemctl restart rsyslog
+```
+
+| Log Source | วิธีเชื่อมต่อ | ตัวอย่าง Log |
+|:---|:---|:---|
+| **Linux Auth** | rsyslog → Wazuh | `/var/log/auth.log` |
+| **Apache/Nginx** | Filebeat → Wazuh | access.log, error.log |
+| **Cloud Trail** | S3 → Wazuh module | AWS CloudTrail JSON |
+
 ## ส่วนที่ 4: ติดตั้ง Sysmon (Windows)
 
 ```powershell
@@ -104,6 +122,31 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-
 
 ---
 
+
+
+```xml
+<!-- ใช้ Sysmon config จาก SwiftOnSecurity -->
+<!-- ดาวน์โหลดจาก: github.com/SwiftOnSecurity/sysmon-config -->
+
+Sysmon64.exe -accepteula -i sysmonconfig-export.xml
+```
+
+> Events สำคัญที่ต้อง monitor: **Event ID 1** (Process Create), **Event ID 3** (Network Connect), **Event ID 11** (File Create)
+
+## ส่วนที่ 4.5: Import Sigma Rules ไปยัง Wazuh
+
+```bash
+# ติดตั้ง sigma-cli
+pip3 install sigma-cli
+
+# แปลง rules เป็นรูปแบบ Wazuh
+sigma convert -t wazuh -p wazuh rules/ -o wazuh_rules.xml
+
+# คัดลอกไปยัง Wazuh
+cp wazuh_rules.xml /var/ossec/etc/rules/local_sigma.xml
+systemctl restart wazuh-manager
+```
+
 ## ส่วนที่ 5: ตั้งค่า Alert (Slack)
 
 ```bash
@@ -112,6 +155,41 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-
 ```
 
 ---
+
+
+
+### Email Alerts
+
+```xml
+<!-- /var/ossec/etc/ossec.conf -->
+<global>
+  <email_notification>yes</email_notification>
+  <smtp_server>smtp.example.com</smtp_server>
+  <email_from>wazuh@example.com</email_from>
+  <email_to>soc@example.com</email_to>
+  <email_maxperhour>12</email_maxperhour>
+</global>
+
+<email_alerts>
+  <email_to>soc@example.com</email_to>
+  <level>10</level>
+</email_alerts>
+```
+
+### ตั้งค่า Slack Webhook
+
+```bash
+# สร้าง Slack integration script
+cat > /var/ossec/integrations/custom-slack.sh << 'SCRIPT'
+#!/bin/bash
+WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+ALERT_JSON=$(cat "$1")
+curl -s -X POST "$WEBHOOK_URL" \
+  -H 'Content-Type: application/json' \
+  -d "{"text": "🚨 Wazuh Alert: $(echo $ALERT_JSON | jq -r '.rule.description')"}"
+SCRIPT
+chmod +x /var/ossec/integrations/custom-slack.sh
+```
 
 ## ส่วนที่ 6: Sentinel (ถ้าเลือก Stack B)
 
@@ -124,6 +202,57 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-
 ```
 
 ---
+
+
+
+```powershell
+# Quick Setup — Azure Sentinel
+# 1. สร้าง Log Analytics Workspace
+az monitor log-analytics workspace create \
+  --resource-group SOC-RG \
+  --workspace-name SOC-Sentinel \
+  --location southeastasia
+
+# 2. เปิดใช้ Sentinel
+az sentinel onboard --resource-group SOC-RG \
+  --workspace-name SOC-Sentinel
+
+# 3. เปิด Data Connectors
+# - Azure AD Sign-in Logs
+# - Microsoft 365
+# - Azure Activity
+# - Syslog (Linux)
+```
+
+## ส่วนที่ 7: ติดตั้ง TheHive (Ticketing)
+
+```bash
+# ติดตั้ง TheHive 5 ด้วย Docker
+docker compose up -d
+
+# docker-compose.yml
+# services:
+#   thehive:
+#     image: strangebee/thehive:5
+#     ports:
+#       - "9000:9000"
+#   elasticsearch:
+#     image: elasticsearch:7.17.9
+#   cassandra:
+#     image: cassandra:4
+```
+
+> เข้าถึง TheHive ที่ `http://<SERVER_IP>:9000` — default: `admin@thehive.local` / `secret`
+
+## Troubleshooting
+
+| ปัญหา | สาเหตุ | วิธีแก้ |
+|:---|:---|:---|
+| Agent ไม่เชื่อมต่อ | Firewall block port 1514/1515 | เปิด port ที่ firewall |
+| Log ไม่เข้า SIEM | rsyslog config ผิด | ตรวจสอบ IP และ port |
+| Dashboard ว่าง | Index pattern ไม่ถูกต้อง | สร้าง index pattern ใหม่ |
+| Alert ไม่ส่ง email | SMTP config ไม่ถูก | ทดสอบด้วย `sendmail` |
+| Disk full | Log retention ยาวเกิน | ตั้งค่า log rotation |
 
 ## Checklist ตรวจสอบ
 

@@ -109,6 +109,106 @@ Red Team ลงมือ → SOC ควรตรวจพบ → ตรวจว
 
 ---
 
+## ระดับความซับซ้อนของ Exercise
+
+| ระดับ | ลักษณะ | ระยะเวลา | เหมาะกับ |
+|:---|:---|:---|:---|
+| **Beginner** | Atomic tests, single technique | 1–2 ชม. | SOC ใหม่ |
+| **Intermediate** | Multi-step attack chain | 4–8 ชม. | SOC ที่มี playbooks |
+| **Advanced** | Full kill chain simulation | 1–3 วัน | SOC ที่ mature |
+| **Expert** | Red team engagement + debrief | 1–2 สัปดาห์ | SOC ระดับ 4-5 |
+
+## ตัวอย่าง Exercise Scenarios
+
+### Scenario 1: Phishing → Credential Theft → Lateral Movement
+
+| ขั้นตอน | Red Team Action | Expected Detection |
+|:---|:---|:---|
+| 1 | ส่ง phishing email + malicious link | Email gateway alert |
+| 2 | Harvest credentials (fake login page) | Impossible travel detection |
+| 3 | Login ด้วย stolen credentials | Anomalous logon alert |
+| 4 | Enumerate AD (BloodHound) | LDAP query spike |
+| 5 | Lateral movement (PsExec) | Process creation alert |
+| 6 | Data staging + exfiltration | DLP / network anomaly |
+
+### Scenario 2: Supply Chain Attack
+
+| ขั้นตอน | Red Team Action | Expected Detection |
+|:---|:---|:---|
+| 1 | Compromise update server | Code signing anomaly |
+| 2 | Deploy backdoored update | File hash mismatch |
+| 3 | C2 beacon (DNS tunneling) | DNS anomaly detection |
+| 4 | Privilege escalation | UAC bypass / token theft |
+
+## เทมเพลตรายงานผล
+
+| ส่วน | เนื้อหา |
+|:---|:---|
+| **สรุป Executive** | ผลรวม, จำนวน techniques ที่ตรวจจับได้ |
+| **รายละเอียด Technique** | ตาราง technique vs detection status |
+| **Gap Analysis** | Techniques ที่ไม่มี detection |
+| **คำแนะนำ** | สิ่งที่ต้องปรับปรุง จัดลำดับตาม risk |
+| **แผนแก้ไข** | Action items + owner + deadline |
+
+## ตัวชี้วัดความสำเร็จ
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---|
+| Detection Rate | ≥ 80% ของ techniques ที่ทดสอบ |
+| MTTD (ระหว่าง exercise) | ≤ 30 นาที |
+| Playbook Accuracy | ≥ 90% ทำตาม playbook ได้ถูกต้อง |
+| Gap Remediation (30 วัน) | ≥ 70% ของ gaps ถูกแก้ไข |
+
+## เครื่องมือ Purple Team
+
+| เครื่องมือ | ประเภท | ใช้สำหรับ | ราคา |
+|:---|:---|:---|:---|
+| **Atomic Red Team** | Open-source | ทดสอบ techniques เดี่ยว | ฟรี |
+| **MITRE Caldera** | Open-source | Automated adversary emulation | ฟรี |
+| **Infection Monkey** | Open-source | Network propagation testing | ฟรี |
+| **SafeBreach** | Commercial | Continuous BAS | $$$  |
+| **AttackIQ** | Commercial | Automated BAS platform | $$$ |
+
+## ตัวอย่าง Atomic Test Commands
+
+### T1059.001 — PowerShell Execution
+
+```powershell
+# ทดสอบ: PowerShell execution policy bypass
+powershell.exe -ExecutionPolicy Bypass -Command "Write-Host 'Test'"
+
+# Expected Detection: Sysmon Event ID 1 + PowerShell logging
+# Expected Alert: Suspicious PowerShell execution
+```
+
+### T1053.005 — Scheduled Task
+
+```powershell
+# ทดสอบ: สร้าง scheduled task
+schtasks /create /tn "PurpleTest" /tr "calc.exe" /sc once /st 23:59
+
+# Cleanup:
+schtasks /delete /tn "PurpleTest" /f
+```
+
+### T1078 — Valid Accounts (Brute Force)
+
+```bash
+# ทดสอบ: SSH brute force (ใน lab เท่านั้น!)
+hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://target_ip
+
+# Expected Detection: Multiple failed auth → account lockout alert
+```
+
+## กำหนดการ Purple Team ประจำปี
+
+| ไตรมาส | Focus Area | Techniques | ระดับ |
+|:---|:---|:---|:---:|
+| **Q1** | Initial Access + Execution | T1566, T1059 | Intermediate |
+| **Q2** | Persistence + Priv Esc | T1053, T1548 | Intermediate |
+| **Q3** | Lateral Movement + Collection | T1021, T1005 | Advanced |
+| **Q4** | Full Kill Chain Simulation | End-to-end | Advanced |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [สถานการณ์จำลอง](Tabletop_Exercises.th.md)

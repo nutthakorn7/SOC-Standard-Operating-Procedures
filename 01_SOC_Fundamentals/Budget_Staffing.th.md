@@ -143,6 +143,84 @@ ROI = (ความเสี่ยงลด - ต้นทุน SOC) / ต้�
 
 ---
 
+## แผนงบประมาณรายละเอียด
+
+### หมวดต้นทุน
+
+| หมวด | รายการ | ค่าใช้จ่ายโดยประมาณ (ต่อปี) |
+|:---|:---|:---|
+| **บุคลากร** | เงินเดือน + สวัสดิการ | 60–70% ของ budget |
+| **เทคโนโลยี** | License fees, infra, SaaS | 20–25% |
+| **ฝึกอบรม** | Cert, training, conference | 5–10% |
+| **ดำเนินงาน** | สำนักงาน, อุปกรณ์, ค่าสาธารณูปโภค | 3–5% |
+
+### ตารางเงินเดือน (ตลาดไทย — ประมาณ)
+
+| ตำแหน่ง | Junior | Mid-Level | Senior |
+|:---|:---:|:---:|:---:|
+| **SOC Analyst** | 25,000–35,000 ฿ | 40,000–60,000 ฿ | 65,000–90,000 ฿ |
+| **Detection Engineer** | 35,000–50,000 ฿ | 55,000–80,000 ฿ | 85,000–120,000 ฿ |
+| **Incident Responder** | 30,000–45,000 ฿ | 50,000–75,000 ฿ | 80,000–110,000 ฿ |
+| **SOC Manager** | — | 70,000–100,000 ฿ | 100,000–150,000 ฿ |
+| **CISO** | — | — | 150,000–300,000 ฿ |
+
+### ROI Calculation
+
+```
+ROI = (ค่าเสียหายที่ป้องกันได้ - ต้นทุน SOC) / ต้นทุน SOC × 100
+
+ตัวอย่าง:
+- ค่าเสียหาย data breach เฉลี่ย (ไทย): ~50 ล้านบาท
+- ต้นทุน SOC ต่อปี: ~5 ล้านบาท
+- ป้องกัน breach ได้ 1 ครั้ง/ปี = ROI 900%
+```
+
+## Staffing Model ตามขนาดองค์กร
+
+### Model A: SOC ขนาดเล็ก (3–5 FTE)
+
+| บทบาท | จำนวน | เวลาทำงาน |
+|:---|:---:|:---|
+| SOC Manager (เล่นหลายบท) | 1 | 8/5 |
+| Tier 1/2 Analyst | 2-3 | 8/5 + on-call |
+| Detection Engineer (part-time) | 0.5 | ร่วมกับ IT |
+| **Coverage**: 8/5 + on-call | | |
+
+### Model B: SOC ขนาดกลาง (8–12 FTE)
+
+| บทบาท | จำนวน | เวลาทำงาน |
+|:---|:---:|:---|
+| SOC Manager | 1 | 8/5 |
+| Shift Lead | 2 | 16/5 |
+| Tier 1 Analyst | 4 | 16/5 + on-call |
+| Tier 2 Analyst | 2 | 8/5 + on-call |
+| Detection Engineer | 1 | 8/5 |
+| **Coverage**: 16/5 + on-call | | |
+
+### Model C: SOC ขนาดใหญ่ (15+ FTE)
+
+| บทบาท | จำนวน | เวลาทำงาน |
+|:---|:---:|:---|
+| SOC Manager | 1 | 8/5 |
+| Shift Lead | 3–4 | 24/7 |
+| Tier 1 Analyst | 6–8 | 24/7 |
+| Tier 2 Analyst | 3–4 | 16/7 |
+| Tier 3 / Hunt | 1–2 | 8/5 |
+| Detection Engineer | 2 | 8/5 |
+| **Coverage**: 24/7 | | |
+
+## Hiring Pipeline
+
+```mermaid
+graph LR
+    JD["📝 JD"] --> Post["📢 ประกาศ"]
+    Post --> Screen["📋 คัดกรอง"]
+    Screen --> Tech["💻 ทดสอบ"]
+    Tech --> Interview["🤝 สัมภาษณ์"]
+    Interview --> Offer["📃 เสนองาน"]
+    Offer --> Onboard["🎯 Onboarding"]
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

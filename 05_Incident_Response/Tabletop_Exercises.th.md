@@ -149,6 +149,105 @@
 
 ---
 
+## เทมเพลตวาระ Exercise
+
+| เวลา | กิจกรรม | ผู้รับผิดชอบ |
+|:---:|:---|:---|
+| 15 นาที | **เปิดประชุม**: วัตถุประสงค์, กฎกติกา | Facilitator |
+| 10 นาที | **Scenario Briefing**: สถานการณ์เริ่มต้น | Facilitator |
+| 30 นาที | **Phase 1 — Detection**: ตรวจพบ, คัดกรอง | SOC Team |
+| 20 นาที | **Phase 2 — Containment**: ตัดสินใจควบคุม | IR Lead |
+| 20 นาที | **Phase 3 — Eradication**: กำจัดภัยคุกคาม | IR Team |
+| 15 นาที | **Phase 4 — Recovery**: กู้คืนระบบ | IT + SOC |
+| 20 นาที | **Debrief**: สิ่งที่ทำได้ดี / ต้องปรับปรุง | ทุกคน |
+| 10 นาที | **Action Items**: มอบหมายงาน, กำหนดเวลา | Facilitator |
+
+## Facilitator Guide
+
+### ก่อน Exercise (1 สัปดาห์)
+
+- [ ] เลือก scenario ที่เกี่ยวข้องกับองค์กร
+- [ ] เตรียม injects (เหตุการณ์ที่จะ "ฉีด" เข้ามาระหว่าง exercise)
+- [ ] ส่งคำเชิญและเอกสารเตรียมตัวให้ผู้เข้าร่วม
+- [ ] เตรียมห้องประชุม / virtual meeting room
+- [ ] ทดสอบ tools ที่จะใช้ (slides, timer, note-taking)
+
+### ระหว่าง Exercise
+
+- **ห้ามตัดสิน** — ไม่มีคำตอบถูก/ผิด ทุกการตัดสินใจเป็นการเรียนรู้
+- **ควบคุมเวลา** — ใช้ timer, ไม่ให้ phase ใดยาวเกินไป
+- **Inject เหตุการณ์** — เพิ่มความซับซ้อนตามจังหวะ (เช่น "CEO โทรมาถาม")
+- **บันทึกทุกอย่าง** — จด decisions, assumptions, gaps ที่พบ
+
+### หลัง Exercise (1 สัปดาห์)
+
+- [ ] เขียน after-action report
+- [ ] แจก action items พร้อม owner และ deadline
+- [ ] อัปเดต playbooks ตามผลลัพธ์
+- [ ] กำหนดวัน exercise ครั้งถัดไป
+
+## ตัวอย่าง Injects
+
+| นาทีที่ | Inject | ผลกระทบ |
+|:---:|:---|:---|
+| 5 | SOC ได้รับ alert: Ransomware detected on 3 hosts | เริ่ม IR process |
+| 15 | EDR agent offline บน domain controller | เพิ่มความเร่งด่วน |
+| 25 | CEO โทรถาม "เรามีข่าวหลุดมั้ย?" | ทดสอบ communication |
+| 35 | พบ lateral movement ไปยัง database server | ขยาย scope |
+| 45 | Backup server ถูก encrypt ด้วย | ทดสอบ BCP |
+
+## ตัวชี้วัด Exercise
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---|
+| จำนวน exercise ต่อปี | ≥ 4 (รายไตรมาส) |
+| ผู้เข้าร่วม vs เป้าหมาย | ≥ 80% |
+| Action items แล้วเสร็จภายใน 30 วัน | ≥ 70% |
+| ปรับปรุง MTTD/MTTR หลัง exercise | ลดลง ≥ 10% |
+
+## Scenario Library
+
+### Scenario 3: Business Email Compromise (BEC)
+
+| Phase | สถานการณ์ | Decision Point |
+|:---|:---|:---|
+| **Detection** | พนักงานการเงินรายงาน email จาก CEO ขอโอนเงิน | ยืนยัน email อย่างไร? |
+| **Investigation** | ตรวจพบ email header ปลอม + domain typosquatting | Scope ของ compromise? |
+| **Containment** | Block malicious domain, reset affected accounts | แจ้งธนาคาร? |
+| **Recovery** | Recall ถ้าโอนเงินแล้ว, reset MFA | จะป้องกันซ้ำอย่างไร? |
+
+### Scenario 4: Supply Chain Compromise
+
+| Phase | สถานการณ์ | Decision Point |
+|:---|:---|:---|
+| **Detection** | EDR alert: malicious DLL loaded by trusted software | Software update ปกติ? |
+| **Investigation** | DLL มี C2 callback ไปยัง unknown IP | กี่เครื่องที่ affected? |
+| **Containment** | Block outbound C2, isolate hosts | ถอน software? |
+| **Recovery** | Re-image, deploy clean version, monitor | แจ้ง vendor? |
+
+### Scenario 5: Insider Data Theft
+
+| Phase | สถานการณ์ | Decision Point |
+|:---|:---|:---|
+| **Detection** | DLP alert: พนักงาน upload 500MB ไป personal cloud | จงใจหรือผิดพลาด? |
+| **Investigation** | พนักงานกำลังจะลาออก, access ข้อมูลลูกค้าจำนวนมาก | เข้า HR process? |
+| **Containment** | Revoke access, preserve evidence | Chain of custody? |
+| **Legal** | ตรวจสอบสัญญาจ้าง, NDA, PDPA obligations | แจ้งเจ้าของข้อมูล? |
+
+## After-Action Report Template
+
+| ส่วน | เนื้อหา |
+|:---|:---|
+| **Exercise Date** | [วันที่] |
+| **Scenario** | [ชื่อ scenario] |
+| **Participants** | [รายชื่อ + บทบาท] |
+| **สิ่งที่ทำได้ดี** | [3–5 bullet points] |
+| **สิ่งที่ต้องปรับปรุง** | [3–5 bullet points] |
+| **Gaps ที่พบ** | [ระบุ gap + severity] |
+| **Action Items** | [รายการ + owner + deadline] |
+| **ส่งรายงานถึง** | [SOC Manager, CISO] |
+| **Exercise ถัดไป** | [วันที่เป้าหมาย] |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

@@ -102,6 +102,56 @@
 
 ---
 
+## Prioritization Matrix
+
+### Risk-Based Scoring
+
+| ปัจจัย | น้ำหนัก | 1 (ต่ำ) | 2 (กลาง) | 3 (สูง) |
+|:---|:---:|:---|:---|:---|
+| **Threat Likelihood** | 30% | ไม่ค่อยพบ | พบบ้าง | พบบ่อย |
+| **Business Impact** | 30% | ผลกระทบต่ำ | กระทบบริการ | กระทบรายได้/ชื่อเสียง |
+| **Data Availability** | 20% | ไม่มี log | มีบาง log | มีครบ |
+| **Detection Feasibility** | 20% | ยากมาก | ทำได้แต่ซับซ้อน | ทำได้ง่าย |
+
+### คำนวณ Priority Score
+
+```
+Score = (Likelihood × 0.3) + (Impact × 0.3) + (Data × 0.2) + (Feasibility × 0.2)
+
+Priority:
+  2.5–3.0 = P1 (ดำเนินการภายใน 1 สัปดาห์)
+  2.0–2.4 = P2 (ภายใน 1 เดือน)
+  1.5–1.9 = P3 (ภายใน 1 ไตรมาส)
+  1.0–1.4 = P4 (Backlog)
+```
+
+## Use Case Development Template
+
+| ฟิลด์ | คำอธิบาย |
+|:---|:---|
+| **UC ID** | UC-YYYY-NNN |
+| **ชื่อ** | [ชื่อ Use Case] |
+| **MITRE Technique** | [TID — ชื่อ] |
+| **Log Sources ที่ต้องใช้** | [ระบุ] |
+| **Detection Logic** | [Sigma rule / query] |
+| **False Positive Cases** | [ระบุ FP ที่คาดว่าจะเกิด] |
+| **Response Playbook** | [ลิงก์ไปยัง playbook] |
+| **Priority** | [P1/P2/P3/P4] |
+
+## Coverage Dashboard
+
+| MITRE Tactic | Techniques ทั้งหมด | ครอบคลุม | Gap |
+|:---|:---:|:---:|:---:|
+| Initial Access | 9 | [X] | [X] |
+| Execution | 12 | [X] | [X] |
+| Persistence | 19 | [X] | [X] |
+| Privilege Escalation | 13 | [X] | [X] |
+| Defense Evasion | 42 | [X] | [X] |
+| Credential Access | 17 | [X] | [X] |
+| Lateral Movement | 9 | [X] | [X] |
+| Exfiltration | 9 | [X] | [X] |
+| Impact | 13 | [X] | [X] |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

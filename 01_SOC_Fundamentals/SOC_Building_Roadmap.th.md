@@ -71,6 +71,64 @@
 
 ---
 
+
+#### EDR (Endpoint Detection & Response)
+
+| เครื่องมือ | ประเภท | เหมาะกับ |
+|:---|:---|:---|
+| **Wazuh** | Open-Source | งบจำกัด, DIY |
+| **CrowdStrike Falcon** | Commercial | องค์กรขนาดใหญ่ |
+| **Microsoft Defender for Endpoint** | Commercial | สภาพแวดล้อม M365 |
+| **LimaCharlie** | Cloud-native | Startup, MSSP |
+
+#### เครื่องมือจำเป็นอื่น ๆ
+
+| หมวด | เครื่องมือแนะนำ | วัตถุประสงค์ |
+|:---|:---|:---|
+| **Ticketing** | TheHive / Jira | จัดการเคส |
+| **TI Platform** | MISP / OpenCTI | จัดการข่าวกรองภัยคุกคาม |
+| **Vulnerability Scanner** | OpenVAS / Nessus | สแกนช่องโหว่ |
+| **Network** | Suricata / Zeek | ตรวจจับเครือข่าย |
+
+### 1.4 สถาปัตยกรรมขั้นต่ำที่ใช้งานได้ (MVA)
+
+```mermaid
+graph LR
+    Endpoints["🖥️ Endpoints"] -->|Logs| Wazuh["Wazuh/SIEM"]
+    FW["🔥 Firewall"] -->|Syslog| Wazuh
+    AD["📁 AD"] -->|WinEventLog| Wazuh
+    Wazuh --> Alert["⚠️ Alerts"]
+    Alert --> TheHive["📋 TheHive"]
+    Wazuh --> Dashboard["📊 Dashboard"]
+```
+
+### 1.5 จ้างทีมแรก
+
+#### ทีมขั้นต่ำ (Hybrid Model)
+
+| บทบาท | จำนวน | ทักษะสำคัญ |
+|:---|:---:|:---|
+| **SOC Manager** | 1 | ภาวะผู้นำ, IR, GRC |
+| **Tier 1 Analyst** | 2–3 | Alert triage, SIEM |
+| **Tier 2 Analyst** | 1 | Investigation, forensics |
+| **Detection Engineer** | 1 (shared) | Sigma, YARA, scripting |
+
+#### หาคนที่ไหน
+
+- ชุมชน cybersecurity ในประเทศ (NCSA, สมาคม ISC2 Thailand)
+- โปรแกรมฝึกงานจากมหาวิทยาลัย
+- CTF communities และ Bug Bounty programs
+- Upskill ทีม IT ที่มีอยู่
+
+### 1.6 เช็คลิสต์เฟส 1
+
+- [ ] กำหนดขอบเขตและ mission ของ SOC
+- [ ] เลือก SIEM + EDR stack
+- [ ] ติดตั้งและตั้งค่า SIEM
+- [ ] Deploy EDR agents บน critical endpoints
+- [ ] จ้าง/มอบหมาย SOC Manager และ Analysts
+- [ ] สร้าง shift schedule เบื้องต้น
+
 ## เฟส 2: ตรวจจับ (เดือน 4–6)
 
 ### เพิ่ม Log Source ตามลำดับ
@@ -90,6 +148,26 @@
 
 ---
 
+
+
+### 2.3 เขียน SOPs ชุดแรก
+
+เริ่มจากเอกสาร 5 ฉบับนี้:
+
+1. **Alert Triage SOP** — ขั้นตอนคัดกรอง alert
+2. **Incident Response Playbook** — Playbook ตอบสนองเหตุการณ์หลัก
+3. **Escalation Matrix** — เมื่อไหร่/อย่างไรที่จะ escalate
+4. **Shift Handoff** — ขั้นตอนส่งมอบกะ
+5. **Evidence Collection** — ขั้นตอนเก็บหลักฐาน
+
+### 2.4 เช็คลิสต์เฟส 2
+
+- [ ] เชื่อมต่อ log sources อย่างน้อย 5 แหล่ง
+- [ ] Deploy Sigma rules อย่างน้อย 10 rules
+- [ ] เขียน SOPs หลัก 5 ฉบับ
+- [ ] Tune false positives รอบแรก
+- [ ] สร้าง dashboard สำหรับ daily operations
+
 ## เฟส 3: ปฏิบัติการ (เดือน 7–12)
 
 - Deploy playbooks ทั้ง 30 ชุด (ค่อยๆ ทำเป็น wave)
@@ -98,6 +176,48 @@
 
 ---
 
+
+
+### 3.1 ขยาย Playbook Coverage
+
+ครอบคลุม use cases ตาม MITRE ATT&CK:
+
+| Tactic | Playbook | ระดับ |
+|:---|:---|:---:|
+| Initial Access | Phishing Response | P1 |
+| Execution | Malware Execution | P1 |
+| Persistence | Unauthorized Scheduled Task | P2 |
+| Privilege Escalation | Admin Account Misuse | P1 |
+| Lateral Movement | Pass-the-Hash | P2 |
+| Exfiltration | Data Exfiltration | P1 |
+| Impact | Ransomware | P1 |
+
+### 3.2 จัด Tabletop Exercise ครั้งแรก
+
+1. เลือก scenario (เช่น ransomware)
+2. เชิญ stakeholders (IT, Legal, Management)
+3. ทำ walkthrough ตาม playbook
+4. บันทึก lessons learned
+5. อัปเดต SOPs จากผลลัพธ์
+
+### 3.3 กำหนด Metrics
+
+| ตัวชี้วัด | เป้าหมาย |
+|:---|:---|
+| **MTTD** (Mean Time to Detect) | ≤ 60 นาที |
+| **MTTR** (Mean Time to Respond) | ≤ 240 นาที |
+| **False Positive Rate** | < 10% |
+| **Alert-to-Incident Ratio** | < 20:1 |
+| **Playbook Coverage** | ≥ 80% ของ use cases |
+
+### 3.4 เช็คลิสต์เฟส 3
+
+- [ ] Playbooks ครอบคลุม top 10 use cases
+- [ ] จัด tabletop exercise อย่างน้อย 1 ครั้ง
+- [ ] สร้าง KPI dashboard
+- [ ] มี monthly SOC report
+- [ ] เริ่ม threat hunting program
+
 ## เฟส 4: พัฒนา (ปีที่ 2+)
 
 - Threat Hunting, SOAR Automation, Purple Teaming
@@ -105,6 +225,28 @@
 - Compliance audit — ใช้ [Compliance Mapping](../10_Compliance/Compliance_Mapping.th.md)
 
 ---
+
+
+
+### 4.1 ความสามารถขั้นสูง
+
+| ความสามารถ | เครื่องมือ/วิธี | เป้าหมาย |
+|:---|:---|:---|
+| **Threat Hunting** | MITRE ATT&CK, Jupyter | เชิงรุก |
+| **SOAR Automation** | Shuffle, XSOAR | ลดเวลาตอบสนอง |
+| **Purple Team** | Atomic Red Team | ทดสอบ detection |
+| **CTI Program** | MISP, OpenCTI | ข่าวกรองเชิงกลยุทธ์ |
+| **Forensics Lab** | SIFT, Volatility | วิเคราะห์เชิงลึก |
+
+### 4.2 ระดับวุฒิภาวะ SOC
+
+| ระดับ | ชื่อ | ลักษณะ |
+|:---|:---|:---|
+| 1 | **Initial** | Reactive, ไม่มี process ชัดเจน |
+| 2 | **Managed** | มี SOPs, มี shift rotation |
+| 3 | **Defined** | Playbooks ครบ, metrics tracking |
+| 4 | **Quantitative** | Data-driven, automation |
+| 5 | **Optimizing** | Continuous improvement, threat hunting |
 
 ## งบประมาณ
 
@@ -115,6 +257,40 @@
 | 🔴 Enterprise | ฿18–47M | Splunk + 10+ คน + 24/7 |
 
 ---
+
+
+
+### Option A: SOC ประหยัด (Open-Source Stack)
+
+| รายการ | ค่าใช้จ่าย/ปี |
+|:---|:---|
+| Wazuh (SIEM+EDR) | ฟรี |
+| TheHive (Ticketing) | ฟรี |
+| MISP (TI) | ฟรี |
+| Suricata (IDS) | ฟรี |
+| เซิร์ฟเวอร์ (3 nodes) | ~300,000 ฿ |
+| บุคลากร (3–4 FTE) | ~1,800,000 ฿ |
+| **รวม** | **~2,100,000 ฿/ปี** |
+
+### Option B: SOC ระดับกลาง (Commercial + Open-Source)
+
+| รายการ | ค่าใช้จ่าย/ปี |
+|:---|:---|
+| Splunk/Elastic (SIEM) | ~1,500,000 ฿ |
+| CrowdStrike (EDR) | ~800,000 ฿ |
+| TheHive (Ticketing) | ฟรี |
+| บุคลากร (6–8 FTE) | ~3,600,000 ฿ |
+| **รวม** | **~5,900,000 ฿/ปี** |
+
+### Option C: SOC ระดับองค์กร
+
+| รายการ | ค่าใช้จ่าย/ปี |
+|:---|:---|
+| Sentinel/Splunk Enterprise | ~3,000,000 ฿ |
+| CrowdStrike+Cortex XDR | ~2,000,000 ฿ |
+| XSOAR (SOAR) | ~1,500,000 ฿ |
+| บุคลากร (12–15 FTE) | ~9,000,000 ฿ |
+| **รวม** | **~15,500,000 ฿/ปี** |
 
 ## เส้นทางฝึก Analyst
 
@@ -135,6 +311,28 @@
 ```
 
 ---
+
+
+
+### ทรัพยากรฝึกอบรมฟรี
+
+| แหล่ง | เนื้อหา |
+|:---|:---|
+| [LetsDefend](https://letsdefend.io) | SOC Analyst simulator |
+| [CyberDefenders](https://cyberdefenders.org) | Blue team challenges |
+| [MITRE ATT&CK](https://attack.mitre.org) | Threat framework |
+| [Malware Traffic Analysis](https://malware-traffic-analysis.net) | PCAP analysis |
+
+## ลำดับการอ่านเอกสารใน Repository นี้
+
+| ลำดับ | เอกสาร | วัตถุประสงค์ |
+|:---|:---|:---|
+| 1 | SOC Building Roadmap (เอกสารนี้) | ภาพรวมและแผนงาน |
+| 2 | Technology Stack | เลือกเครื่องมือ |
+| 3 | Infrastructure Setup | ติดตั้ง |
+| 4 | IR Framework | กรอบการตอบสนอง |
+| 5 | Playbooks (35 ฉบับ) | ขั้นตอนปฏิบัติ |
+| 6 | SOC Metrics & KPIs | วัดผล |
 
 ## Quick Start 30 วัน
 

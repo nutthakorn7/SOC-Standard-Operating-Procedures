@@ -130,6 +130,57 @@
 
 ---
 
+## Playbook Template Structure
+
+| ส่วน | เนื้อหา | ตัวอย่าง |
+|:---|:---|:---|
+| **Metadata** | ID, version, owner, MITRE mapping | PB-001, v2.1, DetEng |
+| **Scope** | เมื่อไหร่ที่ใช้ playbook นี้ | เมื่อ EDR alert ransomware |
+| **Prerequisites** | สิ่งที่ต้องมีก่อน | SIEM access, EDR console |
+| **Step-by-step** | ขั้นตอนการตอบสนอง | 1. Verify → 2. Contain → ... |
+| **Escalation** | เมื่อไหร่ + ใคร | P1 → SOC Manager ทันที |
+| **Evidence** | สิ่งที่ต้องเก็บ | Memory dump, disk image |
+| **Resolution** | เกณฑ์การปิดเคส | Clean scan + 48h monitoring |
+| **References** | เอกสารอ้างอิง | MITRE, Sigma rules |
+
+## Quality Checklist
+
+| # | เกณฑ์ | ✅/❌ |
+|:---:|:---|:---:|
+| 1 | มี Mermaid diagram สำหรับ workflow | ☐ |
+| 2 | ทุกขั้นตอนสามารถทำได้จริง (actionable) | ☐ |
+| 3 | มี decision points ที่ชัดเจน | ☐ |
+| 4 | Evidence collection ระบุเครื่องมือและคำสั่ง | ☐ |
+| 5 | Escalation criteria ชัดเจน | ☐ |
+| 6 | มี SLA timeline | ☐ |
+| 7 | ทดสอบจริงด้วย tabletop/purple team | ☐ |
+| 8 | มี Sigma rule cross-reference | ☐ |
+| 9 | Link ไปยัง playbooks ที่เกี่ยวข้อง | ☐ |
+| 10 | ผ่าน peer review | ☐ |
+
+## Playbook Lifecycle
+
+```mermaid
+graph LR
+    Draft["📝 Draft"] --> Review["👀 Peer Review"]
+    Review --> Test["🧪 Tabletop Test"]
+    Test --> Approve["✅ Approve"]
+    Approve --> Deploy["🚀 Deploy"]
+    Deploy --> Monitor["📊 Monitor"]
+    Monitor --> Update["🔄 Update"]
+    Update --> Review
+```
+
+## Playbook Metrics
+
+| ตัวชี้วัด | เป้าหมาย | สิ่งที่บอก |
+|:---|:---|:---|
+| **Usage Rate** | ≥ 80% ของ incidents ใช้ playbook | Coverage ดีพอหรือไม่ |
+| **Accuracy** | ≥ 90% ทำตาม playbook ได้สำเร็จ | Playbook เขียนดีหรือไม่ |
+| **Time Savings** | ลด MTTR ≥ 30% | Automation คุ้มหรือไม่ |
+| **Version Freshness** | อัปเดตภายใน 6 เดือน | เอกสาร stale หรือไม่ |
+| **Coverage** | ≥ top 20 incident types | ครอบคลุมพอหรือไม่ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [IR Framework](Framework.en.md) — กรอบงาน NIST

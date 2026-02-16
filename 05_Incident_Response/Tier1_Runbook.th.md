@@ -137,6 +137,62 @@
 
 ---
 
+## Quick Reference: การจำแนก Alert
+
+| สัญญาณ | True Positive มักจะ... | False Positive มักจะ... |
+|:---|:---|:---|
+| **Source IP** | Internal host ที่ไม่ใช่ admin | Scanner, vulnerability test |
+| **Destination** | C2 domain, known bad IP | CDN, cloud service |
+| **User** | คนจริง, มี login history | Service account, bot |
+| **เวลา** | นอกเวลาทำงาน | ระหว่าง maintenance window |
+| **Frequency** | เกิดครั้งเดียว | ซ้ำ ๆ ตามรูปแบบ |
+
+## Triage Decision Tree
+
+```mermaid
+graph TD
+    Alert["🚨 Alert ใหม่"] --> Read["อ่าน Alert Details"]
+    Read --> Known{"เคยเห็น pattern นี้?"}
+    Known -->|FP ที่รู้จัก| Close["ปิด + บันทึก FP"]
+    Known -->|ไม่แน่ใจ| Investigate["ตรวจสอบเพิ่มเติม"]
+    Investigate --> IOC{"มี IOC matching?"}
+    IOC -->|ใช่| TP["✅ True Positive → Escalate"]
+    IOC -->|ไม่| Context{"Context ผิดปกติ?"}
+    Context -->|ใช่| TP
+    Context -->|ไม่| FP["❌ False Positive → ปิด + Tune"]
+```
+
+## คำสั่ง Investigation ที่ใช้บ่อย
+
+### ตรวจสอบ IP Reputation
+
+```bash
+# VirusTotal
+curl -s "https://www.virustotal.com/api/v3/ip_addresses/{IP}"   -H "x-apikey: $VT_API_KEY" | jq '.data.attributes.last_analysis_stats'
+
+# AbuseIPDB
+curl -s "https://api.abuseipdb.com/api/v2/check?ipAddress={IP}"   -H "Key: $ABUSEIPDB_KEY" | jq '.data.abuseConfidenceScore'
+```
+
+## SLA ตาม Severity
+
+| Severity | Response Time | Triage Time | Escalation Time |
+|:---|:---:|:---:|:---:|
+| 🔴 Critical | ≤ 5 นาที | ≤ 15 นาที | ทันที |
+| 🟠 High | ≤ 10 นาที | ≤ 30 นาที | ≤ 1 ชม. |
+| 🟡 Medium | ≤ 30 นาที | ≤ 60 นาที | ≤ 4 ชม. |
+| 🟢 Low | ≤ 60 นาที | ≤ 4 ชม. | Next shift |
+
+## Shift Handoff Quick Notes Template
+
+```
+=== Shift Handoff: [วันที่] ===
+✅ Closed: [จำนวน] alerts
+⏳ Open:   [จำนวน] ตั๋ว
+🔴 Active Incidents: [รายการ]
+📝 Notes: [สิ่งที่ต้องส่งต่อ]
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

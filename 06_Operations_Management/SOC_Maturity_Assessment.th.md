@@ -154,6 +154,64 @@
 
 ---
 
+## เทมเพลตการประเมิน
+
+### Self-Assessment Questionnaire
+
+| # | คำถาม | ระดับ (1-5) | หลักฐาน |
+|:---:|:---|:---:|:---|
+| 1 | มี SIEM ที่ทำงานและรับ log ครบ? | [X] | [ระบุ] |
+| 2 | มี detection rules ที่ map กับ MITRE ATT&CK? | [X] | [ระบุ] |
+| 3 | มี playbooks สำหรับ top 10 use cases? | [X] | [ระบุ] |
+| 4 | มี shift rotation 24/7? | [X] | [ระบุ] |
+| 5 | มี KPIs tracking (MTTD, MTTR)? | [X] | [ระบุ] |
+| 6 | จัด tabletop exercise อย่างน้อยปีละ 2 ครั้ง? | [X] | [ระบุ] |
+| 7 | มี threat hunting program? | [X] | [ระบุ] |
+| 8 | มี SOAR automation? | [X] | [ระบุ] |
+| 9 | มี CTI program ที่ feed เข้า detection? | [X] | [ระบุ] |
+| 10 | มี continuous improvement process? | [X] | [ระบุ] |
+
+### Scoring Guide
+
+| คะแนนรวม | ระดับวุฒิภาวะ | สถานะ |
+|:---|:---|:---|
+| 10–15 | **Level 1 — Initial** | เริ่มต้น, reactive |
+| 16–25 | **Level 2 — Managed** | มี process พื้นฐาน |
+| 26–35 | **Level 3 — Defined** | Process ครบ, มี metrics |
+| 36–45 | **Level 4 — Quantitative** | Data-driven, automated |
+| 46–50 | **Level 5 — Optimizing** | Continuous improvement |
+
+## Gap Analysis Template
+
+| Domain | คะแนนปัจจุบัน | เป้าหมาย | Gap | ลำดับ | Action Plan |
+|:---|:---:|:---:|:---:|:---:|:---|
+| People | [X]/5 | [X]/5 | [X] | 🔴/🟡/🟢 | [ระบุ] |
+| Process | [X]/5 | [X]/5 | [X] | 🔴/🟡/🟢 | [ระบุ] |
+| Technology | [X]/5 | [X]/5 | [X] | 🔴/🟡/🟢 | [ระบุ] |
+| Detection | [X]/5 | [X]/5 | [X] | 🔴/🟡/🟢 | [ระบุ] |
+| Response | [X]/5 | [X]/5 | [X] | 🔴/🟡/🟢 | [ระบุ] |
+| Intelligence | [X]/5 | [X]/5 | [X] | 🔴/🟡/🟢 | [ระบุ] |
+
+## Improvement Roadmap
+
+```mermaid
+gantt
+    title SOC Maturity Improvement
+    dateFormat  YYYY-MM
+    section People
+    Hire Tier 2 Analyst    :2026-03, 2026-05
+    Cert Training          :2026-04, 2026-06
+    section Process
+    Playbook Development   :2026-03, 2026-04
+    Tabletop Exercise      :2026-05, 2026-05
+    section Technology
+    SOAR Deployment        :2026-04, 2026-06
+    TI Platform Setup      :2026-05, 2026-07
+    section Detection
+    Sigma Rule Expansion   :2026-03, 2026-06
+    Hunt Program Launch    :2026-06, 2026-08
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Metrics & KPIs](SOC_Metrics.en.md) — ตัวชี้วัด

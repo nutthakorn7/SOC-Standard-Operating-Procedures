@@ -99,6 +99,71 @@
 
 ---
 
+## Stack Comparison: Open-Source vs Commercial
+
+| หมวด | Open-Source | Commercial | หมายเหตุ |
+|:---|:---|:---|:---|
+| **SIEM** | Wazuh, ELK | Splunk, Sentinel | Wazuh = ดีสำหรับเริ่มต้น |
+| **EDR** | Wazuh, Velociraptor | CrowdStrike, Defender | CrowdStrike = best-in-class |
+| **SOAR** | Shuffle, n8n | XSOAR, Phantom | Shuffle = ดีสำหรับ SMB |
+| **TI** | MISP, OpenCTI | Recorded Future, ThreatConnect | MISP = มาตรฐาน OSS |
+| **Ticketing** | TheHive, RTIR | ServiceNow, Jira | TheHive = สร้างมาเพื่อ SOC |
+| **Network** | Suricata, Zeek | Palo Alto, Darktrace | Suricata = IDS ที่ดีที่สุด (ฟรี) |
+| **Forensics** | Autopsy, Volatility | EnCase, FTK | เพียงพอสำหรับส่วนใหญ่ |
+
+## Integration Architecture
+
+```mermaid
+graph TD
+    subgraph "Log Sources"
+        EP["Endpoints"]
+        FW["Firewall"]
+        CLOUD["Cloud"]
+        EMAIL["Email"]
+    end
+    subgraph "Detection Layer"
+        SIEM["SIEM<br/>(Wazuh/Splunk)"]
+        EDR["EDR<br/>(CrowdStrike)"]
+        NDR["NDR<br/>(Suricata/Zeek)"]
+    end
+    subgraph "Response Layer"
+        SOAR["SOAR<br/>(Shuffle/XSOAR)"]
+        CASE["Case Mgmt<br/>(TheHive)"]
+    end
+    subgraph "Intelligence"
+        TI["TI Platform<br/>(MISP)"]
+    end
+    EP --> EDR
+    EP --> SIEM
+    FW --> SIEM
+    CLOUD --> SIEM
+    EMAIL --> SIEM
+    SIEM --> SOAR
+    EDR --> SOAR
+    NDR --> SIEM
+    SOAR --> CASE
+    TI --> SIEM
+    TI --> SOAR
+```
+
+## เกณฑ์การเลือกเครื่องมือ
+
+| เกณฑ์ | น้ำหนัก | คำถามสำคัญ |
+|:---|:---:|:---|
+| **ต้นทุน** | 25% | งบประมาณต่อปี? TCO 3 ปี? |
+| **ความสามารถ** | 25% | ตอบ use cases ได้ครบ? |
+| **Integration** | 20% | มี API? รองรับ tools อื่น? |
+| **ง่ายต่อการใช้งาน** | 15% | ทีมใช้ได้เร็วแค่ไหน? |
+| **Support / Community** | 15% | มี vendor support? ชุมชนใหญ่? |
+
+## Recommended Stack ตามขนาดองค์กร
+
+| ขนาด | SIEM | EDR | SOAR | TI | ค่าใช้จ่ายโดยประมาณ |
+|:---|:---|:---|:---|:---|:---|
+| **Startup** | Wazuh | Wazuh | n/a | MISP | ฟรี (+ infra) |
+| **SMB** | Wazuh/Elastic | LimaCharlie | Shuffle | MISP | ~500K ฿/ปี |
+| **Enterprise** | Splunk/Sentinel | CrowdStrike | XSOAR | ThreatConnect | ~5M+ ฿/ปี |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

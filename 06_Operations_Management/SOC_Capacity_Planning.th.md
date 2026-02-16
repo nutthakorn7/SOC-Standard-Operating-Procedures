@@ -106,6 +106,56 @@
 
 ---
 
+## เครื่องมือคำนวณ FTE
+
+### สูตรคำนวณ FTE พื้นฐาน
+
+```
+FTE ขั้นต่ำ (24/7) = (จำนวนชั่วโมงต่อสัปดาห์ × 52) / (ชั่วโมงทำงานต่อคน × 52 - วันลา)
+
+ตัวอย่าง:
+- Coverage: 168 ชม./สัปดาห์ (24/7)
+- ชั่วโมงทำงาน: 40 ชม./สัปดาห์
+- วันลา: 15 วัน/ปี + 13 วันหยุดนักขัตฤกษ์
+- Practical availability: ~1,776 ชม./ปี
+
+FTE = 168 × 52 / 1,776 = ~4.9 ≈ 5 FTE ต่อตำแหน่ง
+สำหรับ 24/7 ที่ต้องมี 2 คนขั้นต่ำ = 10 FTE (analysts เท่านั้น)
+```
+
+### Alert Volume → FTE Mapping
+
+| Alerts/วัน | เวลา Triage/Alert | FTE ที่ต้องใช้ (8h shift) |
+|:---:|:---:|:---:|
+| 50 | 10 นาที | 1.0 |
+| 100 | 10 นาที | 2.1 |
+| 200 | 10 นาที | 4.2 |
+| 500 | 10 นาที | 10.4 |
+| 500 | 5 นาที (with SOAR) | 5.2 |
+
+## แผนการเติบโต
+
+```mermaid
+gantt
+    title SOC Growth Plan
+    dateFormat YYYY-Q
+    section Phase 1 (Startup)
+    3-4 FTE, 8/5        :2026-Q1, 2026-Q2
+    section Phase 2 (Growth)
+    6-8 FTE, 16/5       :2026-Q3, 2026-Q4
+    section Phase 3 (Mature)
+    12-15 FTE, 24/7     :2027-Q1, 2027-Q4
+```
+
+## Infrastructure Capacity Planning
+
+| ทรัพยากร | สูตร | ตัวอย่าง |
+|:---|:---|:---|
+| **Storage** | EPS × 500 bytes × 86400 × retention days | 100 EPS × 30 วัน = ~130 GB |
+| **SIEM CPU** | 1 core ต่อ 2,000 EPS | 500 EPS = 1 core |
+| **SIEM RAM** | 16 GB base + 4 GB ต่อ 1,000 EPS | 500 EPS = 18 GB |
+| **Network** | EPS × avg log size × 8 | 100 EPS × 500B = 0.4 Mbps |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Team Structure](SOC_Team_Structure.en.md) — บทบาทและความรับผิดชอบ

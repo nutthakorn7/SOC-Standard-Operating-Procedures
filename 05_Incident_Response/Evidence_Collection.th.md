@@ -110,6 +110,96 @@ aws iam generate-credential-report && aws iam get-credential-report --output tex
 
 ---
 
+## Chain of Custody Form
+
+| ฟิลด์ | ค่า |
+|:---|:---|
+| **Evidence ID** | EV-YYYY-NNN |
+| **Incident ID** | INC-YYYY-NNN |
+| **ประเภท** | [Disk image / Memory dump / Log file / Network capture] |
+| **ที่มา** | [Hostname / IP / Location] |
+| **ผู้เก็บ** | [ชื่อ + ตำแหน่ง] |
+| **วันที่/เวลาเก็บ** | [YYYY-MM-DD HH:MM UTC] |
+| **Hash (SHA256)** | [hash value] |
+| **สถานที่จัดเก็บ** | [Evidence locker / Encrypted share / Cloud vault] |
+
+### ตาราง Transfer Log
+
+| # | วันที่ | จาก | ถึง | วัตถุประสงค์ | ลงชื่อ |
+|:---:|:---|:---|:---|:---|:---|
+| 1 | [วันที่] | [ผู้เก็บ] | [Evidence Storage] | Initial collection | [ลงชื่อ] |
+| 2 | [วันที่] | [Storage] | [Analyst] | Analysis | [ลงชื่อ] |
+
+## คำสั่ง Collection ที่สำคัญ
+
+### Memory Acquisition
+
+```bash
+# Linux — ใช้ LiME
+sudo insmod lime-$(uname -r).ko "path=/evidence/mem.lime format=lime"
+
+# Windows — ใช้ WinPMem
+winpmem_mini_x64.exe evidence\mem.raw
+
+# ตรวจสอบ hash
+sha256sum /evidence/mem.lime > /evidence/mem.lime.sha256
+```
+
+### Disk Imaging
+
+```bash
+# Linux — ใช้ dc3dd (ดีกว่า dd — มี hashing built-in)
+dc3dd if=/dev/sda of=/evidence/disk.dd hash=sha256 log=/evidence/disk.log
+
+# Windows — ใช้ FTK Imager (GUI)
+# File → Create Disk Image → Physical Drive → E01 format
+```
+
+### Network Capture
+
+```bash
+# Full packet capture
+tcpdump -i eth0 -w /evidence/capture.pcap -c 100000
+
+# เฉพาะ host ที่สงสัย
+tcpdump -i eth0 host 10.0.0.50 -w /evidence/suspect.pcap
+```
+
+### Log Collection
+
+```bash
+# รวม Windows Event Logs
+wevtutil epl Security /evidence/security.evtx
+wevtutil epl System /evidence/system.evtx
+
+# รวม Linux logs
+tar czf /evidence/logs.tar.gz /var/log/auth.log* /var/log/syslog*
+sha256sum /evidence/logs.tar.gz > /evidence/logs.tar.gz.sha256
+```
+
+## Evidence Handling Do's & Don'ts
+
+| ✅ ควรทำ | ❌ ไม่ควรทำ |
+|:---|:---|
+| Hash ทุกชิ้นหลักฐานทันที | แก้ไข original evidence |
+| บันทึกทุกขั้นตอนใน Chain of Custody | ใช้ tool ที่เขียนลง disk ต้นทาง |
+| ทำงานบน forensic copy เท่านั้น | วิเคราะห์บน live system (ถ้าเลี่ยงได้) |
+| เก็บในพื้นที่เข้ารหัส | ส่งผ่านช่องทางไม่ปลอดภัย |
+| จำกัดการเข้าถึงเฉพาะทีม IR | ให้คนนอกทีมเข้าถึงโดยไม่มี log |
+
+## Volatility Order (ลำดับความผันผวน)
+
+| ลำดับ | ที่มา | ความผันผวน | เก็บก่อน? |
+|:---:|:---|:---|:---:|
+| 1 | **CPU registers, cache** | สูงมาก | ✅ (ถ้าได้) |
+| 2 | **RAM (memory)** | สูง | ✅ |
+| 3 | **Network connections** | สูง | ✅ |
+| 4 | **Running processes** | สูง | ✅ |
+| 5 | **Disk (temporary files)** | ปานกลาง | ✅ |
+| 6 | **Disk (persistent data)** | ต่ำ | ลำดับถัดไป |
+| 7 | **External logs (SIEM/Cloud)** | ต่ำ | จากส่วนกลาง |
+| 8 | **Backup / Archive** | ต่ำมาก | เก็บทีหลังได้ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

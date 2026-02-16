@@ -218,6 +218,104 @@ outputs: verdict, confidence, enrichment_data
 
 ---
 
+## Metrics & KPIs สำหรับ SOAR
+
+| ตัวชี้วัด | ก่อน SOAR | หลัง SOAR | เป้าหมาย |
+|:---|:---:|:---:|:---:|
+| **MTTR** (เวลาตอบสนอง) | 45 นาที | 5 นาที | < 10 นาที |
+| **Alert Triage Speed** | 8 นาที/alert | 30 วินาที | < 1 นาที |
+| **Analyst Workload** | 200 alerts/วัน | 50 alerts/วัน | < 100 |
+| **Automation Rate** | 0% | 65% | > 70% |
+| **False Positive Auto-Close** | 0% | 40% | > 50% |
+
+## Best Practices
+
+1. **เริ่มจากง่าย** — อย่าพยายาม automate ทุกอย่างพร้อมกัน เริ่มจาก playbook ที่มี volume สูงสุด
+2. **Human-in-the-Loop** — ใส่จุด approval สำหรับ actions ที่มี impact สูง (เช่น block IP, disable account)
+3. **ทดสอบใน staging** — รัน playbook ใน test environment ก่อน deploy จริง
+4. **บันทึกทุกอย่าง** — ทุก action ที่ SOAR ทำต้องมี audit trail
+5. **Review รายเดือน** — ทบทวน playbook performance และ false positive rates
+6. **Version Control** — เก็บ playbook definitions ใน Git
+
+## Automation Readiness Checklist
+
+| รายการ | สถานะ |
+|:---|:---:|
+| API access สำหรับ SIEM, EDR, TI platforms | ☐ |
+| Service accounts สำหรับ SOAR integrations | ☐ |
+| Network connectivity ระหว่าง SOAR และ tools | ☐ |
+| Playbooks ทดสอบใน staging แล้ว | ☐ |
+| Escalation path สำหรับ automation failures | ☐ |
+| Rollback procedures สำหรับ automated actions | ☐ |
+
+## SOAR Platform Comparison
+
+| คุณสมบัติ | XSOAR | Shuffle | TheHive+Cortex |
+|:---|:---:|:---:|:---:|
+| **ราคา** | Commercial | ฟรี (OSS) | ฟรี (OSS) |
+| **Visual Playbook Builder** | ✅ | ✅ | ❌ (code-based) |
+| **Pre-built Integrations** | 700+ | 100+ | 50+ |
+| **Case Management** | ✅ | ❌ | ✅ |
+| **API** | ✅ | ✅ | ✅ |
+| **เหมาะกับ** | Enterprise | SMB, startup | SOC ที่ใช้ TheHive |
+
+## Playbook Development Lifecycle
+
+```mermaid
+graph LR
+    Identify["🎯 ระบุ Use Case"] --> Design["📐 ออกแบบ Flow"]
+    Design --> Develop["💻 พัฒนา"]
+    Develop --> Test["🧪 ทดสอบ"]
+    Test --> Deploy["🚀 Deploy"]
+    Deploy --> Monitor["📊 Monitor"]
+    Monitor --> Improve["🔄 ปรับปรุง"]
+```
+
+### แนวทางการพัฒนา Playbook
+
+| ขั้นตอน | กิจกรรม | ผลลัพธ์ |
+|:---|:---|:---|
+| **1. ระบุ Use Case** | วิเคราะห์ alert volume สูงสุด | รายการ use cases จัดลำดับ |
+| **2. ออกแบบ Flow** | วาด flowchart, ระบุ decision points | Playbook diagram |
+| **3. กำหนด Integrations** | ระบุ API ที่ต้องเชื่อมต่อ | Integration checklist |
+| **4. พัฒนา** | สร้าง playbook ใน SOAR platform | Working playbook |
+| **5. ทดสอบ** | รันด้วย test data, edge cases | Test report |
+| **6. Deploy** | เปิดใช้งานจริง, อาจเริ่มแบบ semi-auto | Production playbook |
+| **7. ปรับปรุง** | Review metrics, tune thresholds | Updated playbook |
+
+## Error Handling Patterns
+
+| Pattern | วิธีการ | ตัวอย่าง |
+|:---|:---|:---|
+| **Retry** | ลองใหม่ N ครั้งก่อน fail | API timeout → retry 3 ครั้ง |
+| **Fallback** | ใช้วิธีสำรองเมื่อ primary fail | VT ล่ม → ใช้ OTX แทน |
+| **Human Escalation** | ส่งให้คนเมื่อ automation ไม่มั่นใจ | Confidence < 70% → analyst review |
+| **Circuit Breaker** | หยุดเรียก API เมื่อ error สูง | Error rate > 50% → pause 5 min |
+| **Timeout** | กำหนดเวลาสูงสุดต่อ step | Step timeout = 30 วินาที |
+
+## Integration Matrix
+
+| Tool | API Endpoint | Auth Method | Actions |
+|:---|:---|:---|:---|
+| **VirusTotal** | `api.virustotal.com/v3` | API Key | Hash/URL/IP lookup |
+| **AbuseIPDB** | `api.abuseipdb.com/v2` | API Key | IP reputation |
+| **URLhaus** | `urlhaus-api.abuse.ch` | None | URL check |
+| **MISP** | `<misp>/api` | API Key | IoC search/create |
+| **TheHive** | `<thehive>:9000/api` | API Key | Case create/update |
+| **Jira** | `<jira>/rest/api/2` | Token | Ticket create |
+| **Slack** | `hooks.slack.com` | Webhook | Notification |
+| **Email** | SMTP | Credentials | Alert notification |
+
+## Testing Checklist
+
+- [ ] ทุก step ทำงานได้กับ test data
+- [ ] Error handling ทำงานถูกต้อง (ทดสอบด้วย invalid input)
+- [ ] Timeout ทำงาน (ทดสอบด้วย slow/unreachable API)
+- [ ] Escalation path ทำงาน (ทดสอบด้วย ambiguous results)
+- [ ] ผลลัพธ์ถูกบันทึกใน case management
+- [ ] Notification ส่งไปถูกช่องทาง
+- [ ] Performance ยอมรับได้ (< 2 นาทีต่อ playbook run)
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [IR Playbooks](Playbooks/)

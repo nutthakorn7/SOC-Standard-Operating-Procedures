@@ -168,6 +168,47 @@ flowchart TD
 
 ---
 
+## Cloud Log Sources Priority
+
+| แหล่ง Log | AWS | Azure | GCP | ลำดับ |
+|:---|:---|:---|:---|:---:|
+| **Identity/IAM** | CloudTrail | Azure AD | Cloud Audit | P1 |
+| **Network** | VPC Flow Logs | NSG Flow Logs | VPC Flow Logs | P1 |
+| **Storage** | S3 Access Logs | Storage Analytics | GCS Audit | P2 |
+| **Compute** | EC2 Logs | VM Activity | GCE Logs | P2 |
+| **Container** | EKS Audit | AKS Audit | GKE Audit | P2 |
+| **Serverless** | Lambda Logs | Function Logs | Cloud Functions | P3 |
+| **WAF** | AWS WAF | Azure WAF | Cloud Armor | P1 |
+
+## Cloud MITRE ATT&CK Mapping
+
+| Technique | คำอธิบาย | Detection | Platform |
+|:---|:---|:---|:---|
+| **T1078.004** | Cloud account abuse | Impossible travel, unusual IP | All |
+| **T1537** | Transfer data to cloud account | Large S3/Blob transfers | AWS/Azure |
+| **T1580** | Cloud infrastructure discovery | API enumeration spike | All |
+| **T1525** | Implant container image | Unauthorized image push | All |
+| **T1552.005** | Cloud credentials in files | Credential scanning | All |
+
+## Multi-Cloud Dashboard Template
+
+| Panel | ตัวชี้วัด | เป้าหมาย |
+|:---|:---|:---|
+| **IAM Overview** | Failed logins, new admin accounts, MFA disabled | Zero MFA-disabled admins |
+| **Network** | Unusual outbound, new security groups, exposed ports | Zero public-facing DB |
+| **Storage** | Public buckets/blobs, large downloads | Zero public buckets |
+| **Compute** | Unauthorized instances, crypto mining indicators | Zero unauthorized |
+| **Cost Anomaly** | Unexpected cost spikes (may indicate compromise) | Within 10% budget |
+
+## Cloud Security KPIs
+
+| ตัวชี้วัด | เป้าหมาย | ปัจจุบัน |
+|:---|:---|:---|
+| Cloud asset coverage (monitored) | ≥ 95% | [XX]% |
+| Public-facing resource audit | รายสัปดาห์ | [ระบุ] |
+| IAM over-privilege findings | 0 critical | [XX] |
+| Compliance score (CIS Benchmark) | ≥ 90% | [XX]% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด
