@@ -74,7 +74,7 @@ _อธิบาย root cause 2–3 ประโยค_
 ## เอกสารที่เกี่ยวข้อง
 - [IR Framework](Framework.th.md)
 - [แม่แบบรายงานเหตุการณ์](../templates/incident_report.th.md)
-- [Escalation Matrix](../06_Operations_Management/Escalation_Matrix.th.md)
+- [Escalation Matrix](Escalation_Matrix.th.md)
 
 ---
 

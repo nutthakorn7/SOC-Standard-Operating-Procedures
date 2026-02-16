@@ -15092,7 +15092,7 @@ gantt
 | SOC mission, charter, and structure | 1 hr | SOC Manager | SOC Charter |
 | SOC tiers (1/2/3) and responsibilities | 1 hr | Team Lead | Roles & Responsibilities |
 | Shift schedule and handoff process | 30 min | Shift Lead | [SOC Checklists](../06_Operations_Management/SOC_Checklists.en.md) |
-| Communication protocols | 30 min | SOC Lead | [Communication SOP](../06_Operations_Management/Communication_SOP.en.md) |
+| Communication protocols | 30 min | SOC Lead | [Communication SOP](../06_Operations_Management/SOC_Communication.en.md) |
 | Escalation procedures | 1 hr | SOC Lead | [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) |
 | Incident classification | 1 hr | Tier 2 Analyst | [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) |
 
@@ -16577,7 +16577,7 @@ graph TD
 -   [Communication Templates](Communication_Templates.en.md) — Pre-written notification templates
 -   [IR Framework](Framework.en.md) — Complete incident response lifecycle
 -   [PDPA Incident Response](../07_Compliance_Privacy/PDPA_Incident_Response.en.md) — Thai data breach notification
--   [SOC Communication SOP](../06_Operations_Management/Communication_SOP.en.md)
+-   [SOC Communication SOP](../06_Operations_Management/SOC_Communication.en.md)
 -   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
 
 
@@ -16775,7 +16775,7 @@ graph TD
 -   [Communication Templates](Communication_Templates.en.md) — แม่แบบการแจ้งเตือนสำเร็จรูป
 -   [IR Framework](Framework.en.md) — วงจรชีวิตการตอบสนองต่อเหตุการณ์
 -   [PDPA Incident Response](../07_Compliance_Privacy/PDPA_Incident_Response.en.md) — การแจ้ง data breach ตาม PDPA
--   [SOC Communication SOP](../06_Operations_Management/Communication_SOP.en.md)
+-   [SOC Communication SOP](../06_Operations_Management/SOC_Communication.en.md)
 -   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
 
 
@@ -21392,7 +21392,7 @@ Every hunt must be documented using this template:
 -   [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.en.md)
 -   [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.en.md)
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
--   [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md)
+-   [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md)
 -   [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
 
 ## References
@@ -21716,7 +21716,7 @@ graph LR
 -   [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.en.md)
 -   [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.en.md)
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
--   [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md)
+-   [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md)
 
 ## อ้างอิง
 
@@ -26447,7 +26447,7 @@ graph LR
 - [ ] Implement all 20 Playbooks from this repository
 - [ ] Hire Tier 2 Incident Responders
 - [ ] Set up EDR on all endpoints
-- [ ] Conduct first Purple Team exercise ([Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md))
+- [ ] Conduct first Purple Team exercise ([Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md))
 - [ ] Implement SOC KPIs: MTTD, MTTR, False Positive Rate
 - [ ] Begin monthly executive reporting
 
@@ -26497,7 +26497,7 @@ This repository contains everything you need to operate a SOC. Here's the recomm
 | 6 | 🔍 Deploy detection rules | [Detection Rules](../08_Detection_Engineering/sigma_rules/) |
 | 7 | ⏰ Set up shift operations | [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md) |
 | 8 | 📊 Measure your KPIs | [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md) |
-| 9 | 🎯 Run simulations | [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md) |
+| 9 | 🎯 Run simulations | [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md) |
 | 10 | 🎓 Train new analysts | [Analyst Onboarding Path](../10_Training_Onboarding/Analyst_Onboarding_Path.en.md) |
 
 ## Related Documents
@@ -26666,7 +26666,7 @@ graph LR
 - [ ] ใช้ Playbook ทั้ง 20 ชุดจาก Repository นี้
 - [ ] จ้าง Tier 2 Incident Responders
 - [ ] ติดตั้ง EDR บนทุก Endpoint
-- [ ] จัด Purple Team ครั้งแรก ([Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md))
+- [ ] จัด Purple Team ครั้งแรก ([Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md))
 - [ ] เริ่มวัด KPI: MTTD, MTTR, False Positive Rate
 - [ ] ส่งรายงานรายเดือนให้ผู้บริหาร
 
@@ -26714,7 +26714,7 @@ graph LR
 | 6 | 🔍 Deploy Detection Rules | [Detection Rules](../08_Detection_Engineering/sigma_rules/) |
 | 7 | ⏰ จัดระบบกะ | [มาตรฐานส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md) |
 | 8 | 📊 วัด KPI | [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md) |
-| 9 | 🎯 จำลองการโจมตี | [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md) |
+| 9 | 🎯 จำลองการโจมตี | [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md) |
 | 10 | 🎓 ฝึกอบรม Analyst ใหม่ | [หลักสูตร Analyst](../10_Training_Onboarding/Analyst_Onboarding_Path.th.md) |
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
@@ -28313,8 +28313,8 @@ gantt
 **Goal**: Prove your skills by defending against a simulated attack.
 
 -   **Day 1: Testing Tools**
-    -   Read: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md).
-    -   Read: [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md).
+    -   Read: [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md).
+    -   Read: [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md).
 -   **Day 2: Final Exam (Drill)**
     -   Task: Run `Invoke-AtomicTest T1059.001` (Phishing Simulation) in the Test Lab.
     -   Task: Triage the alert in SIEM.
@@ -28323,7 +28323,7 @@ gantt
 ## Related Documents
 -   [Training Checklist](Training_Checklist.en.md)
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
--   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
+-   [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md)
 
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
@@ -28398,8 +28398,8 @@ gantt
 **เป้าหมาย**: พิสูจน์ทักษะของคุณโดยการป้องกันการโจมตีจำลอง
 
 -   **วันที่ 1: เครื่องมือทดสอบ**
-    -   อ่าน: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
-    -   อ่าน: [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md)
+    -   อ่าน: [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md)
+    -   อ่าน: [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md)
 -   **วันที่ 2: การสอบปฏิบัติ (Drill)**
     -   งาน: รัน `Invoke-AtomicTest T1059.001` (Phishing Simulation) ในห้อง Lab
     -   งาน: Triage Alert ใน SIEM
@@ -28408,7 +28408,7 @@ gantt
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [Training Checklist](Training_Checklist.th.md)
 -   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
--   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.en.md)
+-   [คู่มือจำลองการโจมตี](../09_Simulation_Testing/Simulation_Guide.en.md)
 
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
@@ -28451,7 +28451,7 @@ gantt
 
 ## Related Documents
 -   [Analyst Onboarding Path](Analyst_Onboarding_Path.en.md)
--   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
+-   [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md)
 -   [Incident Report Template](../templates/incident_report.en.md)
 
 ## References
@@ -28495,7 +28495,7 @@ gantt
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [เส้นทางการเตรียมความพร้อม Analyst](Analyst_Onboarding_Path.th.md)
--   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.en.md)
+-   [คู่มือจำลองการโจมตี](../09_Simulation_Testing/Simulation_Guide.en.md)
 -   [แบบฟอร์มรายงาน Incident](../templates/incident_report.th.md)
 
 ## References
@@ -29322,7 +29322,7 @@ sequenceDiagram
 
 ## Related Documents
 
--   [Simulation & Testing Guide](../08_Simulation_Testing/Simulation_Guide.en.md) — Testing procedures
+-   [Simulation & Testing Guide](../09_Simulation_Testing/Simulation_Guide.en.md) — Testing procedures
 -   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md) — Rule validation
 -   [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning.en.md) — Tuning methodology
 -   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md) — Detection maturity
@@ -29526,7 +29526,7 @@ sequenceDiagram
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Simulation & Testing Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
+-   [Simulation & Testing Guide](../09_Simulation_Testing/Simulation_Guide.en.md)
 -   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md)
 -   [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning.en.md)
 -   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md)

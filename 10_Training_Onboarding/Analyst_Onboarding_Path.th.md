@@ -62,8 +62,8 @@ gantt
 **เป้าหมาย**: พิสูจน์ทักษะของคุณโดยการป้องกันการโจมตีจำลอง
 
 -   **วันที่ 1: เครื่องมือทดสอบ**
-    -   อ่าน: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
-    -   อ่าน: [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md)
+    -   อ่าน: [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md)
+    -   อ่าน: [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md)
 -   **วันที่ 2: การสอบปฏิบัติ (Drill)**
     -   งาน: รัน `Invoke-AtomicTest T1059.001` (Phishing Simulation) ในห้อง Lab
     -   งาน: Triage Alert ใน SIEM
@@ -110,7 +110,7 @@ gantt
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [Training Checklist](Training_Checklist.th.md)
 -   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
--   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.en.md)
+-   [คู่มือจำลองการโจมตี](../09_Simulation_Testing/Simulation_Guide.en.md)
 
 ### Onboarding Milestones
 

@@ -181,9 +181,9 @@ experimental → test → stable → deprecated
 - [Integration Hub](Integration_Hub.en.md)
 - [IR Framework](../05_Incident_Response/Framework.en.md)
 - [Detection Rules Index](../08_Detection_Engineering/README.en.md)
-- [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning_SOP.en.md)
+- [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning.en.md)
 - [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md)
-- [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md)
+- [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md)
 
 ## References
 

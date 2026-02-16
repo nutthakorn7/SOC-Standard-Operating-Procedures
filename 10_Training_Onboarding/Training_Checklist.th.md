@@ -34,7 +34,7 @@
 | # | งาน | แหล่งข้อมูล | เสร็จ |
 |:---:|:---|:---|:---:|
 | 2.1 | อ่าน: [มาตรฐานส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md) | ศึกษาด้วยตนเอง | ☐ |
-| 2.2 | อ่าน: [Escalation Matrix](../06_Operations_Management/Escalation_Matrix.th.md) | ศึกษาด้วยตนเอง | ☐ |
+| 2.2 | อ่าน: [Escalation Matrix](Escalation_Matrix.th.md) | ศึกษาด้วยตนเอง | ☐ |
 | 2.3 | อ่าน: [ตัวชี้วัด SOC & KPIs](../06_Operations_Management/SOC_Metrics.th.md) | ศึกษาด้วยตนเอง | ☐ |
 | 2.4 | สังเกตการณ์: ดูการส่งมอบกะจริง 2 ครั้ง | Shift Lead | ☐ |
 | 2.5 | ฝึก: เขียน shift handover log (จำลอง) | Mentor | ☐ |
@@ -109,7 +109,7 @@
 
 | # | งาน | แหล่งข้อมูล | เสร็จ |
 |:---:|:---|:---|:---:|
-| 7.1 | อ่าน: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.th.md) | ศึกษาด้วยตนเอง | ☐ |
+| 7.1 | อ่าน: [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.th.md) | ศึกษาด้วยตนเอง | ☐ |
 | 7.2 | ปฏิบัติ: Atomic Red Team Test (T1059.001 — PowerShell) | Lab | ☐ |
 | 7.3 | ปฏิบัติ: Atomic Red Team Test (T1566.001 — Spearphishing) | Lab | ☐ |
 | 7.4 | ตรวจสอบ: ยืนยัน SIEM ตรวจจับ simulation ทั้งสองได้ | Lab | ☐ |
@@ -165,7 +165,7 @@
 
 - [เส้นทางการอบรม Analyst](Analyst_Onboarding_Path.th.md)
 - [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md)
-- [คู่มือการจำลอง](../08_Simulation_Testing/Simulation_Guide.th.md)
+- [คู่มือการจำลอง](../09_Simulation_Testing/Simulation_Guide.th.md)
 - [แบบฟอร์ม Incident Report](../templates/incident_report.th.md)
 
 ### Training Completion Tracking

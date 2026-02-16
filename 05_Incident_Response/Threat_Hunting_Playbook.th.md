@@ -306,7 +306,7 @@ graph LR
 -   [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.en.md)
 -   [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.en.md)
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
--   [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md)
+-   [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md)
 
 ### Hunt Hypothesis Template
 

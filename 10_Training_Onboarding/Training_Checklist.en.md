@@ -34,7 +34,7 @@
 | # | Task | Resource | Done |
 |:---:|:---|:---|:---:|
 | 2.1 | Read: [Shift Handoff Standard](../06_Operations_Management/Shift_Handoff.en.md) | Self-study | ☐ |
-| 2.2 | Read: [Escalation Matrix](../06_Operations_Management/Escalation_Matrix.en.md) | Self-study | ☐ |
+| 2.2 | Read: [Escalation Matrix](Escalation_Matrix.en.md) | Self-study | ☐ |
 | 2.3 | Read: [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md) | Self-study | ☐ |
 | 2.4 | Read: [SOC Communication SOP](../06_Operations_Management/SOC_Communication.en.md) | Self-study | ☐ |
 | 2.5 | Shadow: Observe 2 complete shift handoffs | Shift Lead | ☐ |
@@ -112,8 +112,8 @@
 
 | # | Task | Resource | Done |
 |:---:|:---|:---|:---:|
-| 7.1 | Read: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md) | Self-study | ☐ |
-| 7.2 | Read: [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md) | Self-study | ☐ |
+| 7.1 | Read: [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md) | Self-study | ☐ |
+| 7.2 | Read: [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md) | Self-study | ☐ |
 | 7.3 | Execute: Atomic Red Team Test (T1059.001 — PowerShell) | Lab | ☐ |
 | 7.4 | Execute: Atomic Red Team Test (T1566.001 — Spearphishing) | Lab | ☐ |
 | 7.5 | Verify: Confirm SIEM detected both simulations | Lab | ☐ |
@@ -169,7 +169,7 @@
 
 - [Analyst Onboarding Path](Analyst_Onboarding_Path.en.md) — Detailed onboarding roadmap
 - [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md) — Roles and career paths
-- [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md) — Lab exercises
+- [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md) — Lab exercises
 - [Incident Report Template](../templates/incident_report.en.md) — Report format
 
 ## References

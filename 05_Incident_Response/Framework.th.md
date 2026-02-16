@@ -96,7 +96,7 @@ graph TD
 |:---|:---|:---|
 | **ความรุนแรง** | Critical · High · Medium · Low | [Severity Matrix](Severity_Matrix.th.md) |
 | **หมวดหมู่** | Phishing · Malware · Ransomware · Account Compromise · DDoS · Insider · Data Breach | [การจำแนกเหตุการณ์](Incident_Classification.th.md) |
-| **ลำดับความสำคัญ** | P1 (ทันที) · P2 (เร่งด่วน) · P3 (ปกติ) · P4 (ต่ำ) | [Escalation Matrix](../06_Operations_Management/Escalation_Matrix.th.md) |
+| **ลำดับความสำคัญ** | P1 (ทันที) · P2 (เร่งด่วน) · P3 (ปกติ) · P4 (ต่ำ) | [Escalation Matrix](Escalation_Matrix.th.md) |
 
 ---
 
@@ -244,7 +244,7 @@ graph LR
 - [Tier 1 Runbook](Tier1_Runbook.th.md) — ขั้นตอนคัดกรองโดยละเอียด
 - [Severity Matrix](Severity_Matrix.th.md) — เกณฑ์จำแนกประเภท
 - [การจำแนกเหตุการณ์](Incident_Classification.th.md) — แท็กโซโนมีและหมวดหมู่
-- [Escalation Matrix](../06_Operations_Management/Escalation_Matrix.th.md) — เส้นทาง escalation
+- [Escalation Matrix](Escalation_Matrix.th.md) — เส้นทาง escalation
 - [การสืบสวนนิติวิทยาศาสตร์](Forensic_Investigation.th.md) — ขั้นตอนจัดการหลักฐาน
 - [แบบฟอร์มรายงานเหตุการณ์](../templates/incident_report.th.md) — เอกสารหลังเหตุการณ์
 - [มาตรฐานส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md) — ความต่อเนื่องปฏิบัติการ

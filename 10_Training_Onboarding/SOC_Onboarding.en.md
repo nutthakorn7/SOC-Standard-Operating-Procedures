@@ -71,7 +71,7 @@ gantt
 | SOC mission, charter, and structure | 1 hr | SOC Manager | SOC Charter |
 | SOC tiers (1/2/3) and responsibilities | 1 hr | Team Lead | Roles & Responsibilities |
 | Shift schedule and handoff process | 30 min | Shift Lead | [SOC Checklists](../06_Operations_Management/SOC_Checklists.en.md) |
-| Communication protocols | 30 min | SOC Lead | [Communication SOP](../06_Operations_Management/Communication_SOP.en.md) |
+| Communication protocols | 30 min | SOC Lead | [Communication SOP](../06_Operations_Management/SOC_Communication.en.md) |
 | Escalation procedures | 1 hr | SOC Lead | [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) |
 | Incident classification | 1 hr | Tier 2 Analyst | [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) |
 

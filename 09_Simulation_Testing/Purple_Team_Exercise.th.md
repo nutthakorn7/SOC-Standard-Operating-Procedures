@@ -279,7 +279,7 @@ graph LR
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Simulation & Testing Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
+-   [Simulation & Testing Guide](../09_Simulation_Testing/Simulation_Guide.en.md)
 -   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md)
 -   [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning.en.md)
 -   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md)

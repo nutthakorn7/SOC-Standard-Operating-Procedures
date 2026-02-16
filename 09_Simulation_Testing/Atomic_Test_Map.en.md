@@ -143,7 +143,7 @@ Invoke-AtomicTest T1059.001 -Cleanup
 - [Purple Team Exercise Guide](Purple_Team_Exercise.en.md)
 - [IR Framework](../05_Incident_Response/Framework.en.md)
 - [Detection Rule Testing SOP](../06_Operations_Management/Detection_Rule_Testing.en.md)
-- [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning_SOP.en.md)
+- [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning.en.md)
 
 ## References
 

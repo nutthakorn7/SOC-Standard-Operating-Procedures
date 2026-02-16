@@ -220,7 +220,7 @@ sequenceDiagram
 - [Incident Report](../../templates/incident_report.en.md)
 - [PB-05 Account Compromise](Account_Compromise.en.md)
 - [PB-17 BEC](BEC.en.md)
-- [Alert Tuning SOP](../../06_Operations_Management/Alert_Tuning_SOP.en.md)
+- [Alert Tuning SOP](../../06_Operations_Management/Alert_Tuning.en.md)
 
 ## References
 

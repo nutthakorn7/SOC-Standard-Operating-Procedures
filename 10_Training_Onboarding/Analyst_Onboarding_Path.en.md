@@ -62,8 +62,8 @@ gantt
 **Goal**: Prove your skills by defending against a simulated attack.
 
 -   **Day 1: Testing Tools**
-    -   Read: [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md).
-    -   Read: [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md).
+    -   Read: [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md).
+    -   Read: [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md).
 -   **Day 2: Final Exam (Drill)**
     -   Task: Run `Invoke-AtomicTest T1059.001` (Phishing Simulation) in the Test Lab.
     -   Task: Triage the alert in SIEM.
@@ -114,7 +114,7 @@ To be cleared for independent production shifts, new analysts must:
 ## Related Documents
 -   [Training Checklist](Training_Checklist.en.md)
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
--   [Simulation Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
+-   [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md)
 
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)

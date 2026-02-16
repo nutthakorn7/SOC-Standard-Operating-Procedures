@@ -275,7 +275,7 @@ sequenceDiagram
 
 ## Related Documents
 
--   [Simulation & Testing Guide](../08_Simulation_Testing/Simulation_Guide.en.md) — Testing procedures
+-   [Simulation & Testing Guide](../09_Simulation_Testing/Simulation_Guide.en.md) — Testing procedures
 -   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md) — Rule validation
 -   [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning.en.md) — Tuning methodology
 -   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md) — Detection maturity

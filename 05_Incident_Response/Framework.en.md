@@ -104,7 +104,7 @@ graph TD
 |:---|:---|:---|
 | **Severity** | Critical · High · Medium · Low | [Severity Matrix](Severity_Matrix.en.md) |
 | **Category** | Phishing · Malware · Ransomware · Account Compromise · DDoS · Insider · Data Breach · etc. | [Incident Classification](Incident_Classification.en.md) |
-| **Priority** | P1 (Immediate) · P2 (Urgent) · P3 (Normal) · P4 (Low) | [Escalation Matrix](../06_Operations_Management/Escalation_Matrix.en.md) |
+| **Priority** | P1 (Immediate) · P2 (Urgent) · P3 (Normal) · P4 (Low) | [Escalation Matrix](Escalation_Matrix.en.md) |
 
 ### 2.4 Investigation (Tier 2)
 
@@ -280,7 +280,7 @@ Quick reference for SLA targets across all phases:
 - [Tier 1 Runbook](Tier1_Runbook.en.md) — Step-by-step triage procedure
 - [Severity Matrix](Severity_Matrix.en.md) — Classification criteria
 - [Incident Classification](Incident_Classification.en.md) — Taxonomy and categories
-- [Escalation Matrix](../06_Operations_Management/Escalation_Matrix.en.md) — Escalation paths and SLAs
+- [Escalation Matrix](Escalation_Matrix.en.md) — Escalation paths and SLAs
 - [Forensic Investigation](Forensic_Investigation.en.md) — Evidence handling procedures
 - [Communication Templates](Communication_Templates.en.md) — Pre-drafted notifications
 - [Incident Report Template](../templates/incident_report.en.md) — Post-incident documentation

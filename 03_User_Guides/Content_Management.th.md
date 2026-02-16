@@ -157,8 +157,8 @@ graph LR
 
 - [ศูนย์รวมการเชื่อมต่อ](Integration_Hub.th.md)
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)
-- [SOP ปรับจูน Alert](../06_Operations_Management/Alert_Tuning_SOP.th.md)
-- [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.th.md)
+- [SOP ปรับจูน Alert](../06_Operations_Management/Alert_Tuning.th.md)
+- [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.th.md)
 
 ### Content Lifecycle Management
 
