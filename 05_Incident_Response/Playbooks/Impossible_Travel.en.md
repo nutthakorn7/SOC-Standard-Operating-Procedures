@@ -1,45 +1,158 @@
 # Playbook: Impossible Travel
 
 **ID**: PB-06
-**Severity**: Medium
-**Trigger**: SIEM Alert ("Login from two distant locations within short time").
+**Severity**: Medium/High | **Category**: Identity & Access
+**MITRE ATT&CK**: [T1078](https://attack.mitre.org/techniques/T1078/) (Valid Accounts), [T1078.004](https://attack.mitre.org/techniques/T1078/004/) (Cloud Accounts)
+**Trigger**: SIEM/UEBA alert ("Login from two distant locations within short time"), IdP risk alert, Cloud identity protection
 
-## 1. Analysis (Triage)
+---
+
+## Decision Flow
 
 ```mermaid
 graph TD
-    Alert[Imp. Travel Alert] --> VPN{Corporate VPN?}
-    VPN -->|Yes| False[False Positive]
-    VPN -->|No| Speed{Physics Possible?}
-    Speed -->|Yes| False
-    Speed -->|No| User{User Traveling?}
-    User -->|Yes| False
-    User -->|No| True[True Positive]
-    True --> Kill[Terminate Session]
+    Alert["🚨 Impossible Travel Alert"] --> VPN{"🔗 Corporate VPN?"}
+    VPN -->|Yes, VPN Exit Node| FP["✅ False Positive — VPN"]
+    VPN -->|No| Proxy{"🌐 Cloud Proxy / CDN?"}
+    Proxy -->|Yes, Zscaler/CF| FP2["✅ FP — Proxy Egress"]
+    Proxy -->|No| Physics{"⏱️ Physically Possible?"}
+    Physics -->|Yes, Enough Time| Travel{"✈️ User Traveling?"}
+    Physics -->|No, Impossible| Suspicious["🔴 Suspicious"]
+    Travel -->|Yes, Confirmed| FP3["✅ FP — Legitimate Travel"]
+    Travel -->|Unknown| Contact["📞 Contact User"]
+    Contact -->|User Confirms| FP3
+    Contact -->|User Denies / Unreachable| Suspicious
+    Suspicious --> MFA{"🔑 MFA Used?"}
+    MFA -->|Yes, Both Logins| Advanced["🔴 MFA Bypass / Token Theft"]
+    MFA -->|No, One Login Without| Cred["🟠 Credential Compromise"]
+    Advanced --> Terminate["🔌 Terminate All Sessions"]
+    Cred --> Terminate
 ```
 
--   [ ] **Check Locations**: Are the countries/cities logical? (e.g., US -> China in 10 mins).
--   [ ] **Check VPN**: Is the user on a corporate VPN that routes traffic?
--   [ ] **Check User Context**: Is the user traveling? Did they report this?
+---
+
+## 1. Analysis
+
+### 1.1 Common False Positive Sources
+
+| Source | How to Identify | Action |
+|:---|:---|:---|
+| **Corporate VPN** | Source IP is known VPN exit node | Whitelist VPN IPs |
+| **Cloud proxy** (Zscaler, Cloudflare) | IP belongs to proxy ASN | Whitelist proxy ranges |
+| **Mobile network** | IP geolocates to carrier hub (not user location) | Verify with user |
+| **Shared account** | Multiple people using same creds | Enforce personal accounts |
+| **VPN split-tunnel** | Some traffic via VPN, some direct | Check VPN config |
+| **Cached credentials** | Laptop login vs cloud login timing | Check auth method |
+
+### 1.2 Investigation Checklist
+
+| Check | How | Done |
+|:---|:---|:---:|
+| Both login locations (city, country, ISP) | SIEM / IdP sign-in logs | ☐ |
+| Time between logins | Calculate — physically possible? | ☐ |
+| IP reputation of both IPs | AbuseIPDB, VirusTotal | ☐ |
+| Were both logins via same protocol? | Console / API / IMAP / ActiveSync | ☐ |
+| Was MFA required and passed on both? | IdP MFA logs | ☐ |
+| Device fingerprint (browser, OS) | IdP details | ☐ |
+| User's known location | HR / Manager / User | ☐ |
+| Is the user a frequent traveler? | Travel history, role | ☐ |
+
+### 1.3 Post-Login Activity Analysis
+
+| Check | What to Look For | Done |
+|:---|:---|:---:|
+| Email access | New inbox rules, mass email read, forwarding | ☐ |
+| File access | Bulk downloads from SharePoint/OneDrive | ☐ |
+| Admin actions | Role changes, new app registrations | ☐ |
+| MFA changes | New MFA method registered | ☐ |
+| Password change | Self-service password reset | ☐ |
+| OAuth consents | New app permissions granted | ☐ |
+
+---
 
 ## 2. Containment
--   [ ] **Terminate Sessions**: Kill active sessions for the user.
--   [ ] **Reset Password**: Force a password reset.
--   [ ] **Enforce MFA**: Require MFA for re-authentication.
 
-## 3. Remediation
--   [ ] **Block IP**: If one of the IPs is known malicious, block it.
--   [ ] **User Education**: Remind user about safe remote access.
+### 2.1 Confirmed Impossible Travel (Not FP)
+
+| # | Action | Tool | Done |
+|:---:|:---|:---|:---:|
+| 1 | **Terminate all active sessions** | IdP (Revoke Sessions) | ☐ |
+| 2 | **Reset password** immediately | AD / IdP | ☐ |
+| 3 | **Revoke refresh tokens** (cloud apps) | Azure AD / Okta | ☐ |
+| 4 | **Block suspicious IP** at firewall/conditional access | Firewall / IdP | ☐ |
+| 5 | **Enforce MFA re-registration** (existing MFA may be compromised) | IdP | ☐ |
+
+### 2.2 If Token Theft Suspected
+
+| # | Action | Done |
+|:---:|:---|:---:|
+| 1 | Revoke ALL OAuth tokens and app consents | ☐ |
+| 2 | Check for adversary-in-the-middle phishing (EvilProxy, Evilginx) | ☐ |
+| 3 | Check endpoint for token-stealing malware | ☐ |
+| 4 | Enable token protection / CAE (Continuous Access Evaluation) | ☐ |
+
+---
+
+## 3. Investigation
+
+| # | Action | Done |
+|:---:|:---|:---:|
+| 1 | Determine which login is legitimate and which is attacker | ☐ |
+| 2 | Audit all actions from attacker session | ☐ |
+| 3 | Check for inbox rules / forwarding created during attacker session | ☐ |
+| 4 | Check for data accessed / downloaded during attacker session | ☐ |
+| 5 | Search for same attacker IP accessing other accounts | ☐ |
+
+---
 
 ## 4. Recovery
--   [ ] **Monitor Account**: Watch for further anomalies for 24 hours.
--   **Attribute**: [Confidentiality]
+
+| # | Action | Done |
+|:---:|:---|:---:|
+| 1 | Re-enable account with strong password + MFA | ☐ |
+| 2 | Remove any inbox rules / app consents created by attacker | ☐ |
+| 3 | Enable Named Locations and block high-risk countries | ☐ |
+| 4 | Enforce Conditional Access: compliant device required | ☐ |
+| 5 | Monitor account for 30 days | ☐ |
+
+---
+
+## 5. IoC Collection
+
+| Type | Value | Source |
+|:---|:---|:---|
+| Suspicious login IP | | IdP sign-in logs |
+| Geolocation (attacker) | | IP geolocation |
+| User-Agent (attacker session) | | IdP details |
+| ASN / ISP | | WHOIS |
+| Login protocol | | IdP |
+| Actions performed from attacker IP | | Cloud audit logs |
+
+---
+
+## 6. Escalation Criteria
+
+| Condition | Escalate To |
+|:---|:---|
+| Executive / VIP account | CISO immediately |
+| MFA bypass confirmed (token theft) | Tier 2 + Identity team |
+| Multiple accounts from same attacker IP | Major Incident |
+| Data exfiltration from compromised session | [PB-08](Data_Exfiltration.en.md) + Legal |
+| Inbox rules created → BEC follow-up | [PB-17 BEC](BEC.en.md) |
+| Admin account compromised | [PB-05](Account_Compromise.en.md) + CISO |
+
+---
 
 ## Related Documents
--   [Incident Response Framework](../Framework.en.md)
--   [Incident Report Template](../../templates/incident_report.en.md)
--   [Shift Handover Log](../../templates/shift_handover.en.md)
+
+- [IR Framework](../Framework.en.md)
+- [Incident Report](../../templates/incident_report.en.md)
+- [PB-05 Account Compromise](Account_Compromise.en.md)
+- [PB-17 BEC](BEC.en.md)
+- [PB-04 Brute Force](Brute_Force.en.md)
 
 ## References
--   [MITRE ATT&CK T1078 (Valid Accounts)](https://attack.mitre.org/techniques/T1078/)
--   [Microsoft Identity Protection](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks)
+
+- [MITRE ATT&CK T1078 — Valid Accounts](https://attack.mitre.org/techniques/T1078/)
+- [Microsoft Identity Protection — Risk Detections](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks)
+- [Token Theft Playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook)

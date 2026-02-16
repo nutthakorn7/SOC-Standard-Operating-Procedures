@@ -1,45 +1,169 @@
 # Playbook: Business Email Compromise (BEC)
 
 **ID**: PB-17
-**Severity**: High
-**Trigger**: User Report ("Suspicious Invoice"), Mail Filter ("Forwarding Rule created").
+**Severity**: High/Critical | **Category**: Email Security / Fraud
+**MITRE ATT&CK**: [T1566](https://attack.mitre.org/techniques/T1566/) (Phishing), [T1114](https://attack.mitre.org/techniques/T1114/) (Email Collection), [T1534](https://attack.mitre.org/techniques/T1534/) (Internal Spearphishing)
+**Trigger**: User report ("Suspicious invoice"), mail filter ("Forwarding rule created"), Finance team ("Unusual payment request")
 
-## 1. Analysis (Triage)
+> ⚠️ **CRITICAL**: BEC is the #1 cybercrime by financial losses (FBI IC3). Time is critical — stop wire transfers ASAP.
+
+---
+
+## Decision Flow
 
 ```mermaid
 graph TD
-    Alert[Suspicious Email] --> Header[Check Headers]
-    Header --> SPF{SPF/DKIM Fail?}
-    SPF -->|Yes| Spoof[Spoofing]
-    SPF -->|No| Content{Urgent Request?}
-    Content -->|Wire Transfer| Finance[Check w/ Finance]
-    Finance -->|Fake| BEC[BEC Confirmed]
-    Spoof --> BEC
-    BEC --> Reset[Reset Password]
+    Alert["🚨 BEC Indicator"] --> Type{"📧 BEC Type?"}
+    Type -->|Spoofed email from exec| Spoof["🎭 CEO Fraud / Impersonation"]
+    Type -->|Account actually compromised| Takeover["🔓 Account Takeover"]
+    Type -->|Vendor email compromise| Vendor["🏢 Vendor Impersonation"]
+    Spoof --> Finance{"💰 Payment Requested?"}
+    Takeover --> Rules{"📬 Mail Rules Created?"}
+    Vendor --> Invoice{"🧾 Invoice Redirected?"}
+    Finance -->|Yes, Urgent Wire| StopPay["🚨 STOP PAYMENT NOW"]
+    Finance -->|No| Educate["✅ Educate User"]
+    Rules -->|Forwarding / RSS Hide| Compromised["🔴 Confirmed Compromise"]
+    Invoice -->|Yes, New Bank Details| StopPay
+    Compromised --> Reset["🔄 Reset + Revoke"]
+    StopPay --> Reset
 ```
 
--   **Header Analysis**: Check `Return-Path`, `Reply-To`, and `SPF/DKIM` results.
--   **Rule Check**: Look for Inbox Rules named "." or "Move to RSS Feeds" (Common hiding tactic).
--   **Login Logs**: Check for successful logins from foreign countries prior to the email.
+---
+
+## 1. Analysis
+
+### 1.1 BEC Type Classification
+
+| Type | Description | Indicators |
+|:---|:---|:---|
+| **CEO Fraud** | Impersonating executive to request wire | Spoofed "From", urgency, new bank account |
+| **Account Takeover** | Attacker controls real mailbox | Foreign login, forwarding rules, sent items |
+| **Vendor Impersonation** | Fake vendor with modified invoice | Similar domain (typosquat), new bank details |
+| **Payroll Diversion** | Request to change direct deposit | HR-targeted email, new account info |
+| **Gift Card Scam** | Request to purchase gift cards | Executive name, urgency, unusual request |
+
+### 1.2 Email Header Analysis
+
+| Check | What to Look For | Done |
+|:---|:---|:---:|
+| `From` vs `Return-Path` | Mismatch = spoofing | ☐ |
+| `Reply-To` | Different domain than sender | ☐ |
+| SPF result | `fail` or `softfail` | ☐ |
+| DKIM result | `fail` or missing | ☐ |
+| DMARC result | `fail` or `none` policy | ☐ |
+| Domain age (if external) | Newly registered lookalike? | ☐ |
+| X-Originating-IP | Suspicious location? | ☐ |
+
+### 1.3 Account Takeover Investigation
+
+| Check | How | Done |
+|:---|:---|:---:|
+| Login from foreign/unusual IP? | Azure AD / O365 sign-in logs | ☐ |
+| MFA bypassed? (legacy auth, app passwords) | Conditional Access logs | ☐ |
+| Inbox rules created? (forwarding, RSS, delete) | `Get-InboxRule` / Admin portal | ☐ |
+| Emails sent from the account? | Sent Items, message trace | ☐ |
+| OAuth apps consented? | Enterprise applications audit | ☐ |
+| Mail flow rules (transport) modified? | Exchange admin | ☐ |
+
+### 1.4 Common Malicious Inbox Rule Patterns
+
+| Rule Name | Action | Purpose |
+|:---|:---|:---|
+| `.` or `..` | Move to RSS Feeds / Deleted | Hide replies from victim |
+| `Invoice` / `Payment` | Forward to external + delete | Intercept financial emails |
+| `Security` / `Alert` | Delete | Prevent victim seeing password alerts |
+| Auto-forward all | Forward to external address | Ongoing data exfiltration |
+
+---
 
 ## 2. Containment
--   **Reset Password**: Change the compromise user's password.
--   **Revoke Tokens**: Revoke all OAuth tokens (O365).
--   **Remove Rules**: Delete malicious forwarding/inbox rules.
+
+### 2.1 If Payment Was Made (URGENT)
+
+| # | Action | Timeline | Done |
+|:---:|:---|:---|:---:|
+| 1 | **Contact bank** to freeze/recall wire transfer | Within 24 hours | ☐ |
+| 2 | Contact receiving bank (if known) | Same day | ☐ |
+| 3 | File report with law enforcement (FBI IC3 / local) | Within 48 hours | ☐ |
+| 4 | Notify CFO / Finance leadership | Immediately | ☐ |
+| 5 | Preserve all email evidence | Now | ☐ |
+
+### 2.2 Account Remediation
+
+| # | Action | Tool | Done |
+|:---:|:---|:---|:---:|
+| 1 | **Reset password** of compromised account | AD / IdP | ☐ |
+| 2 | **Revoke all OAuth tokens** and refresh tokens | Azure AD / O365 | ☐ |
+| 3 | **Remove all inbox rules** (especially forwarding/RSS) | Exchange Admin | ☐ |
+| 4 | **Revoke MFA and re-register** | MFA portal | ☐ |
+| 5 | **Block legacy authentication** | Conditional Access | ☐ |
+| 6 | **Check and remove** OAuth app consents | Enterprise Apps | ☐ |
+
+---
 
 ## 3. Eradication
--   **Search Internal**: Search all mailboxes for the same phishing subject to see spread.
--   **Block Sender**: Block the sender domain/IP at the gateway.
+
+| # | Action | Done |
+|:---:|:---|:---:|
+| 1 | Search ALL mailboxes for same phishing message | ☐ |
+| 2 | Delete phishing emails from all affected mailboxes | ☐ |
+| 3 | Block sender domain/IP at email gateway | ☐ |
+| 4 | Block lookalike domains at DNS/proxy | ☐ |
+| 5 | Check if compromised account sent phishing to internal/external | ☐ |
+| 6 | Notify external recipients if phishing was sent from compromised account | ☐ |
+
+---
 
 ## 4. Recovery
--   **Notify Finance**: If the email involved payments, immediately stop wire transfers.
--   **Attribute**: [Integrity / Confidentiality]
+
+| # | Action | Done |
+|:---:|:---|:---:|
+| 1 | Re-enable account with new credentials and MFA | ☐ |
+| 2 | Implement payment verification process (dual approval, callback) | ☐ |
+| 3 | Enable DMARC enforcement on company domain | ☐ |
+| 4 | Deploy anti-phishing policy with impersonation protection | ☐ |
+| 5 | Conduct BEC awareness training for Finance / HR | ☐ |
+| 6 | Monitor account for 30 days | ☐ |
+
+---
+
+## 5. IoC Collection
+
+| Type | Value | Source |
+|:---|:---|:---|
+| Attacker email address | | Email headers |
+| Reply-To domain | | Email headers |
+| Attacker IP (login) | | Sign-in logs |
+| Inbox rule details | | Exchange audit |
+| Forwarding destination | | Inbox rules |
+| Spoofed domain | | Email headers |
+| Bank account (fraudulent) | | Invoice / email |
+
+---
+
+## 6. Escalation Criteria
+
+| Condition | Escalate To |
+|:---|:---|
+| Wire transfer executed | CFO + Legal + Bank + Law Enforcement |
+| Executive account compromised | CISO immediately |
+| Multiple accounts compromised | Major Incident |
+| Vendor email chain compromised | Legal + Vendor relationship |
+| PII exposed from mailbox | Legal + DPO (PDPA 72h) |
+| Internal phishing sent from compromised account | [PB-01 Phishing](Phishing.en.md) |
+
+---
 
 ## Related Documents
--   [Incident Response Framework](../Framework.en.md)
--   [Incident Report Template](../../templates/incident_report.en.md)
--   [Shift Handover Log](../../templates/shift_handover.en.md)
+
+- [IR Framework](../Framework.en.md)
+- [Incident Report](../../templates/incident_report.en.md)
+- [PB-01 Phishing](Phishing.en.md)
+- [PB-05 Account Compromise](Account_Compromise.en.md)
+- [PB-06 Impossible Travel](Impossible_Travel.en.md)
 
 ## References
--   [MITRE ATT&CK T1566 (Phishing)](https://attack.mitre.org/techniques/T1566/)
--   [FBI BEC Scams](https://www.fbi.gov/scams-and-safety/common-scams-and-crimes/business-email-compromise)
+
+- [MITRE ATT&CK T1566 — Phishing](https://attack.mitre.org/techniques/T1566/)
+- [FBI IC3 — BEC Scams](https://www.fbi.gov/scams-and-safety/common-scams-and-crimes/business-email-compromise)
+- [Microsoft — BEC Investigation](https://learn.microsoft.com/en-us/security/operations/incident-response-playbook-phishing)
