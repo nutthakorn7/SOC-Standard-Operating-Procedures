@@ -143,6 +143,40 @@ graph TD
 
 ---
 
+### ผัง Insider Threat Indicators
+
+```mermaid
+graph TD
+    UEBA["🔍 UEBA"] --> Behav{"🧠 Behavioral?"}
+    UEBA --> Tech{"💻 Technical?"}
+    Behav --> Resign["📝 ลาออก/ไม่พอใจ"]
+    Behav --> Hours["🕐 พฤติกรรมเปลี่ยน"]
+    Tech --> Volume["📊 Download มาก"]
+    Tech --> Access["🔓 เข้าถึงข้อมูลผิดปกติ"]
+    Tech --> USB["💾 USB/Cloud upload"]
+    Volume --> Score["⚠️ Risk Score"]
+    Access --> Score
+    USB --> Score
+    style Score fill:#e74c3c,color:#fff
+```
+
+### ผัง Covert Investigation Process
+
+```mermaid
+sequenceDiagram
+    participant HR
+    participant Legal
+    participant SOC
+    participant Forensics
+    HR->>Legal: รายงานพฤติกรรมผิดปกติ
+    Legal->>SOC: ✅ อนุมัติ covert investigation
+    SOC->>Forensics: เก็บ evidence (ลับ)
+    Forensics->>SOC: 📋 Reports ready
+    SOC->>Legal: นำเสนอหลักฐาน
+    Legal->>HR: ดำเนินการ
+    Note over SOC: ​⚠️ ห้ามแจ้ง suspect!
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

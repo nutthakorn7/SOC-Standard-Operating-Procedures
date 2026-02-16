@@ -162,6 +162,37 @@ graph TD
 
 ---
 
+### ผัง MFA Rollout Strategy
+
+```mermaid
+graph TD
+    Plan["📋 MFA Rollout"] --> Admin["👑 Phase 1: Admin"]
+    Admin --> VIP["🏢 Phase 2: VIP/Finance"]
+    VIP --> All["👥 Phase 3: All users"]
+    All --> FIDO["🔑 Phase 4: FIDO2"]
+    Admin --> Enforce["🔒 Enforce"]
+    VIP --> Enforce
+    All --> Enforce
+    style Admin fill:#e74c3c,color:#fff
+    style FIDO fill:#27ae60,color:#fff
+```
+
+### ผัง Phishing-Resistant MFA Comparison
+
+```mermaid
+graph LR
+    MFA{"📱 MFA Type"} --> SMS["📲 SMS — ❌ SIM swap"]
+    MFA --> TOTP["🔢 TOTP — ⚠️ Phishable"]
+    MFA --> Push["🔔 Push — ⚠️ Fatigue"]
+    MFA --> Number["🔢 Number Match — ✅ Better"]
+    MFA --> FIDO["🔑 FIDO2 — ✅ Best"]
+    style SMS fill:#e74c3c,color:#fff
+    style TOTP fill:#f39c12,color:#fff
+    style Push fill:#f39c12,color:#fff
+    style Number fill:#2ecc71,color:#fff
+    style FIDO fill:#27ae60,color:#fff
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

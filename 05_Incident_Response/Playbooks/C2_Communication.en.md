@@ -173,6 +173,37 @@ graph TD
 
 ---
 
+### C2 Framework Classification
+
+```mermaid
+graph TD
+    C2["📡 C2 Framework"] --> Type{"📋 Protocol?"}
+    Type -->|HTTP/S| Web["🌐 Cobalt Strike, Sliver"]
+    Type -->|DNS| DNS["🔤 DNScat2, Iodine"]
+    Type -->|DoH| DoH["🔒 Godoh"]
+    Type -->|Cloud| Cloud["☁️ Azure C2, GC2"]
+    Web --> Detect["🔍 Proxy/TLS inspection"]
+    DNS --> Detect2["🔍 DNS analytics"]
+    style C2 fill:#e74c3c,color:#fff
+```
+
+### Beacon Detection Pattern
+
+```mermaid
+sequenceDiagram
+    participant Malware
+    participant Proxy
+    participant SIEM
+    participant SOC
+    loop Every 60s ± jitter
+        Malware->>Proxy: HTTPS callback
+    end
+    Proxy->>SIEM: Log pattern
+    SIEM->>SIEM: Detect periodic beaconing
+    SIEM->>SOC: 🚨 C2 beacon detected
+    SOC->>SOC: Block domain + isolate host
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

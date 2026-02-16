@@ -148,6 +148,35 @@ graph TD
 
 ---
 
+### ผัง BEC Kill Chain
+
+```mermaid
+graph LR
+    Recon["🔍 Recon"] --> Phish["🎣 Phishing"]
+    Phish --> Access["🔓 Mailbox Access"]
+    Access --> Rules["📋 Inbox Rules"]
+    Rules --> Imperson["🎭 Impersonate"]
+    Imperson --> Wire["💸 Wire Transfer"]
+    style Recon fill:#3498db,color:#fff
+    style Access fill:#f39c12,color:#fff
+    style Wire fill:#e74c3c,color:#fff
+```
+
+### ผัง Payment Verification Process
+
+```mermaid
+sequenceDiagram
+    participant Requester
+    participant Finance
+    participant Manager
+    participant Bank
+    Requester->>Finance: 💸 ขอโอนเงิน
+    Finance->>Manager: ☎️ โทรยืนยันเสียง
+    Manager-->>Finance: ✅ ยืนยัน
+    Finance->>Bank: ดำเนินการโอน
+    Note over Finance: ❌ ห้ามยืนยันผ่าน email เดิม!
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

@@ -166,6 +166,36 @@ graph TD
 
 ---
 
+### Privilege Escalation Paths
+
+```mermaid
+graph TD
+    Init["👤 Normal User"] --> Kernel["⚙️ Kernel exploit"]
+    Init --> Misconfig["📋 Misconfiguration"]
+    Init --> Token["🔑 Token theft"]
+    Init --> Vuln["🔓 Software vuln"]
+    Kernel --> Admin["👑 Admin/Root"]
+    Misconfig --> Admin
+    Token --> Admin
+    Vuln --> Admin
+    Admin --> DCSync["🏰 DCSync"]
+    style Admin fill:#e74c3c,color:#fff
+    style DCSync fill:#c0392b,color:#fff
+```
+
+### PAM Architecture
+
+```mermaid
+graph LR
+    User["👤 User"] --> Request["📝 Request access"]
+    Request --> PAM["🔒 PAM Vault"]
+    PAM --> Approve["✅ Manager approval"]
+    Approve --> Session["📺 Recorded session"]
+    Session --> Rotate["🔄 Auto-rotate password"]
+    style PAM fill:#27ae60,color:#fff
+    style Session fill:#3498db,color:#fff
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

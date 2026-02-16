@@ -153,6 +153,36 @@ sequenceDiagram
 
 ---
 
+### ผัง Post-Compromise Activity Check
+
+```mermaid
+graph TD
+    Compromise["🔴 Account Compromised"] --> Email["📧 Inbox rules?"]
+    Compromise --> OAuth["🔑 OAuth apps?"]
+    Compromise --> MFA["📱 MFA changed?"]
+    Compromise --> Data["📁 Data accessed?"]
+    Email --> Clean["🧹 Remove"]
+    OAuth --> Clean
+    MFA --> Reset["🔄 Reset MFA"]
+    Data --> DLP["📊 DLP report"]
+    style Compromise fill:#e74c3c,color:#fff
+```
+
+### ผัง Identity Protection Layers
+
+```mermaid
+graph LR
+    User["👤 User"] --> MFA["📱 MFA"]
+    MFA --> CA["🛡️ Conditional Access"]
+    CA --> PIM["🔑 PIM"]
+    PIM --> PAM["🏰 PAM"]
+    PAM --> Monitor["👁️ UEBA"]
+    style MFA fill:#3498db,color:#fff
+    style CA fill:#27ae60,color:#fff
+    style PAM fill:#f39c12,color:#fff
+    style Monitor fill:#e74c3c,color:#fff
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

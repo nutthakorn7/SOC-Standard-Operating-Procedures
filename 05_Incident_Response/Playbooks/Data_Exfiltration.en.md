@@ -184,6 +184,39 @@ graph TD
 
 ---
 
+### Exfiltration Channels
+
+```mermaid
+graph TD
+    Exfil["📤 Exfiltration"] --> Web["🌐 Web upload"]
+    Exfil --> Email["📧 Email attach"]
+    Exfil --> Cloud["☁️ Cloud sync"]
+    Exfil --> USB["💾 USB"]
+    Exfil --> DNS["🔤 DNS tunnel"]
+    Web --> DLP["🛡️ DLP inspect"]
+    Email --> DLP
+    Cloud --> DLP
+    USB --> EDR["🔍 EDR block"]
+    DNS --> NDR["📡 NDR detect"]
+    style Exfil fill:#e74c3c,color:#fff
+    style DLP fill:#27ae60,color:#fff
+```
+
+### Data Loss Prevention Pipeline
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant DLP
+    participant SOC
+    participant Manager
+    User->>DLP: Upload 500MB to Google Drive
+    DLP->>DLP: Scan: PII detected!
+    DLP-->>User: ❌ Blocked
+    DLP->>SOC: 🚨 Alert: PII exfiltration attempt
+    SOC->>Manager: Notify team lead
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

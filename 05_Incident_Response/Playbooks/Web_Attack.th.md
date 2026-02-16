@@ -156,6 +156,35 @@ graph TD
 
 ---
 
+### ผัง Web Security Architecture
+
+```mermaid
+graph LR
+    User["👤 User"] --> CDN["☁️ CDN"]
+    CDN --> WAF["🛡️ WAF"]
+    WAF --> LB["⚖️ Load Balancer"]
+    LB --> App["📱 App Server"]
+    App --> DB["🗄️ DB (parameterized)"]
+    style WAF fill:#27ae60,color:#fff
+    style DB fill:#3498db,color:#fff
+```
+
+### ผัง Secure SDLC
+
+```mermaid
+graph TD
+    Dev["💻 Develop"] --> SAST["🔍 SAST scan"]
+    SAST --> PR["📋 Code review"]
+    PR --> DAST["🌐 DAST scan"]
+    DAST --> Deploy{"✅ Pass?"}
+    Deploy -->|Yes| Prod["🚀 Production"]
+    Deploy -->|No| Fix["🔧 Fix + rescan"]
+    Fix --> SAST
+    style SAST fill:#f39c12,color:#fff
+    style DAST fill:#3498db,color:#fff
+    style Prod fill:#27ae60,color:#fff
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

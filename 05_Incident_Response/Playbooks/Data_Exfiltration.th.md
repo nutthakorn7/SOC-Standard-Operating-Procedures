@@ -151,6 +151,39 @@ graph TD
 
 ---
 
+### ผัง Exfiltration Channels
+
+```mermaid
+graph TD
+    Exfil["📤 Exfiltration"] --> Web["🌐 Web upload"]
+    Exfil --> Email["📧 Email attach"]
+    Exfil --> Cloud["☁️ Cloud sync"]
+    Exfil --> USB["💾 USB"]
+    Exfil --> DNS["🔤 DNS tunnel"]
+    Web --> DLP["🛡️ DLP inspect"]
+    Email --> DLP
+    Cloud --> DLP
+    USB --> EDR["🔍 EDR block"]
+    DNS --> NDR["📡 NDR detect"]
+    style Exfil fill:#e74c3c,color:#fff
+    style DLP fill:#27ae60,color:#fff
+```
+
+### ผัง Data Loss Prevention Pipeline
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant DLP
+    participant SOC
+    participant Manager
+    User->>DLP: Upload 500MB to Google Drive
+    DLP->>DLP: Scan: PII detected!
+    DLP-->>User: ❌ Blocked
+    DLP->>SOC: 🚨 Alert: PII exfiltration attempt
+    SOC->>Manager: แจ้งหัวหน้าทีม
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

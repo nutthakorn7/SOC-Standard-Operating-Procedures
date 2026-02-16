@@ -178,6 +178,37 @@ graph TD
 
 ---
 
+### Mining Pool Detection
+
+```mermaid
+graph LR
+    Traffic["🌐 Traffic"] --> DNS["🔤 DNS Query"]
+    DNS --> Pool{"🏊 Mining Pool?"}
+    Pool -->|Yes| Block["❌ Block + alert"]
+    Pool -->|No| Allow["✅ Allow"]
+    Traffic --> TLS["🔒 TLS Inspection"]
+    TLS --> Stratum{"📡 Stratum protocol?"}
+    Stratum -->|Yes| Block
+    style Block fill:#e74c3c,color:#fff
+    style Pool fill:#f39c12,color:#fff
+```
+
+### Container Security
+
+```mermaid
+sequenceDiagram
+    participant K8s as Kubernetes
+    participant Falco
+    participant SOC
+    participant DevOps
+    K8s->>Falco: Container spawned
+    Falco->>Falco: Detect: crypto miner process
+    Falco->>SOC: 🚨 Alert
+    SOC->>K8s: Kill pod
+    SOC->>DevOps: Check image vulnerability
+    DevOps->>K8s: Update + scan images
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

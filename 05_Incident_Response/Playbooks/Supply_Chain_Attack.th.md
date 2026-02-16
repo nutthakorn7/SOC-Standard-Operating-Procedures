@@ -144,6 +144,36 @@ graph TD
 
 ---
 
+### ผัง SBOM Management
+
+```mermaid
+graph LR
+    Build["🔨 CI/CD Build"] --> SBOM["📋 Generate SBOM"]
+    SBOM --> Scan["🔍 Scan vulnerabilities"]
+    Scan --> CVE{"🔓 CVE found?"}
+    CVE -->|Yes| Block["❌ Block deployment"]
+    CVE -->|No| Deploy["✅ Deploy"]
+    Block --> Fix["🔧 Update dependency"]
+    style Block fill:#e74c3c,color:#fff
+    style Deploy fill:#27ae60,color:#fff
+```
+
+### ผัง Vendor Risk Assessment
+
+```mermaid
+sequenceDiagram
+    participant Security
+    participant Vendor
+    participant Legal
+    participant CISO
+    Security->>Vendor: 📋 Security questionnaire
+    Vendor-->>Security: ตอบแบบสอบถาม
+    Security->>Security: ⚖️ ประเมิน risk score
+    Security->>Legal: ตรวจสอบ contract
+    Security->>CISO: 📊 Risk report
+    CISO->>CISO: Approve / Reject
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

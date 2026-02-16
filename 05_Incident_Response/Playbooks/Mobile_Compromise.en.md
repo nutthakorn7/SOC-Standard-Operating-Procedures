@@ -175,6 +175,35 @@ graph TD
 
 ---
 
+### Mobile Threat Classification
+
+```mermaid
+graph TD
+    Threat["📱 Mobile Threat"] --> App["📦 Malicious App"]
+    Threat --> Network["🌐 Network attack"]
+    Threat --> OS["⚙️ OS exploit"]
+    Threat --> Phish["🎣 Mobile phishing"]
+    App --> MDM["🛡️ MDM block"]
+    Network --> VPN["🔒 VPN enforce"]
+    OS --> Update["🔄 Force update"]
+    Phish --> Training["📚 Training"]
+    style Threat fill:#e74c3c,color:#fff
+```
+
+### BYOD Security Architecture
+
+```mermaid
+graph LR
+    Personal["📱 BYOD"] --> Enroll["📲 MDM enroll"]
+    Enroll --> Container["🔒 Work container"]
+    Container --> Access["📁 Corporate data"]
+    Container --> Policy["📋 DLP policy"]
+    Access --> Encrypt["🔐 Encrypted"]
+    Policy --> Wipe["🗑️ Selective wipe"]
+    style Container fill:#27ae60,color:#fff
+    style Wipe fill:#e74c3c,color:#fff
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

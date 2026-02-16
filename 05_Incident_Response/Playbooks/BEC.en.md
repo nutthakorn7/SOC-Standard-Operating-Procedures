@@ -184,6 +184,35 @@ graph TD
 
 ---
 
+### BEC Kill Chain
+
+```mermaid
+graph LR
+    Recon["🔍 Recon"] --> Phish["🎣 Phishing"]
+    Phish --> Access["🔓 Mailbox Access"]
+    Access --> Rules["📋 Inbox Rules"]
+    Rules --> Imperson["🎭 Impersonate"]
+    Imperson --> Wire["💸 Wire Transfer"]
+    style Recon fill:#3498db,color:#fff
+    style Access fill:#f39c12,color:#fff
+    style Wire fill:#e74c3c,color:#fff
+```
+
+### Payment Verification Process
+
+```mermaid
+sequenceDiagram
+    participant Requester
+    participant Finance
+    participant Manager
+    participant Bank
+    Requester->>Finance: 💸 Wire transfer request
+    Finance->>Manager: ☎️ Voice verification call
+    Manager-->>Finance: ✅ Confirmed
+    Finance->>Bank: Process transfer
+    Note over Finance: ❌ Never verify via same email!
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

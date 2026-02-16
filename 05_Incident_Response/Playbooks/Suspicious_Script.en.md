@@ -181,6 +181,35 @@ graph TD
 
 ---
 
+### AMSI Detection Pipeline
+
+```mermaid
+graph LR
+    Script["📜 Script"] --> AMSI["🛡️ AMSI scan"]
+    AMSI --> Clean{"✅ Clean?"}
+    Clean -->|Yes| Execute["⚙️ Execute"]
+    Clean -->|No| Block["❌ Block"]
+    Block --> EDR["🚨 EDR alert"]
+    EDR --> SOC["🎯 SOC investigate"]
+    style Block fill:#e74c3c,color:#fff
+    style AMSI fill:#27ae60,color:#fff
+```
+
+### Script Execution Policy
+
+```mermaid
+graph TD
+    Policy["📋 Execution Policy"] --> AppLocker["🔒 AppLocker"]
+    Policy --> WDAC["🛡️ WDAC"]
+    Policy --> CLM["📜 Constrained Language"]
+    AppLocker --> Whitelist["✅ Whitelist only"]
+    WDAC --> SignedOnly["🔏 Signed scripts only"]
+    CLM --> Limited["⚠️ Limited cmdlets"]
+    style AppLocker fill:#27ae60,color:#fff
+    style SignedOnly fill:#3498db,color:#fff
+    style Limited fill:#f39c12,color:#fff
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

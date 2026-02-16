@@ -177,6 +177,40 @@ graph TD
 
 ---
 
+### Insider Threat Indicators
+
+```mermaid
+graph TD
+    UEBA["🔍 UEBA"] --> Behav{"🧠 Behavioral?"}
+    UEBA --> Tech{"💻 Technical?"}
+    Behav --> Resign["📝 Resignation/dissatisfaction"]
+    Behav --> Hours["🕐 Behavioral changes"]
+    Tech --> Volume["📊 Excessive downloads"]
+    Tech --> Access["🔓 Unusual data access"]
+    Tech --> USB["💾 USB/Cloud upload"]
+    Volume --> Score["⚠️ Risk Score"]
+    Access --> Score
+    USB --> Score
+    style Score fill:#e74c3c,color:#fff
+```
+
+### Covert Investigation Process
+
+```mermaid
+sequenceDiagram
+    participant HR
+    participant Legal
+    participant SOC
+    participant Forensics
+    HR->>Legal: Report abnormal behavior
+    Legal->>SOC: ✅ Approve covert investigation
+    SOC->>Forensics: Collect evidence (covert)
+    Forensics->>SOC: 📋 Reports ready
+    SOC->>Legal: Present evidence
+    Legal->>HR: Take action
+    Note over SOC: ⚠️ Do not alert suspect!
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

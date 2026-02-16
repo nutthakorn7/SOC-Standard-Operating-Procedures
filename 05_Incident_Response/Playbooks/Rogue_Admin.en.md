@@ -161,6 +161,38 @@ graph TD
 
 ---
 
+### Admin Access Control
+
+```mermaid
+graph TD
+    Admin["👑 Admin Access"] --> PIM["🔑 PIM: JIT activation"]
+    Admin --> MFA["📱 MFA enforced"]
+    Admin --> PAW["💻 PAW: dedicated device"]
+    Admin --> Log["📋 Audit every action"]
+    PIM --> Review["👁️ Monthly review"]
+    MFA --> Review
+    PAW --> Review
+    style Admin fill:#e74c3c,color:#fff
+    style PIM fill:#27ae60,color:#fff
+```
+
+### Evidence Preservation
+
+```mermaid
+sequenceDiagram
+    participant SOC
+    participant Legal
+    participant Forensics
+    participant HR
+    SOC->>Legal: 🔒 Request legal hold
+    Legal-->>SOC: ✅ Approved
+    SOC->>Forensics: Preserve logs + screenshots
+    Forensics->>Forensics: Chain of custody
+    Forensics-->>SOC: 📋 Evidence package
+    SOC->>HR: Submit evidence
+    Note over SOC: ⚠️ Do not let suspect delete data!
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

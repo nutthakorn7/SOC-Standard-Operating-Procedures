@@ -148,6 +148,37 @@ graph TD
 
 ---
 
+### ผัง Least Privilege Model
+
+```mermaid
+graph TD
+    User["👤 User"] --> Role{"🏷️ Role?"}
+    Role -->|Read only| Read["📖 Viewer"]
+    Role -->|Deploy| Deploy["🚀 Developer"]
+    Role -->|Admin| Admin["👑 PIM-protected"]
+    Admin --> JIT["⏱️ JIT: 2h max"]
+    JIT --> Approval["✅ Requires approval"]
+    style Admin fill:#e74c3c,color:#fff
+    style JIT fill:#f39c12,color:#fff
+    style Approval fill:#27ae60,color:#fff
+```
+
+### ผัง Cloud Permission Audit
+
+```mermaid
+sequenceDiagram
+    participant CSPM
+    participant SOC
+    participant IAM
+    participant Owner
+    CSPM->>SOC: ⚠️ Over-permissioned role found
+    SOC->>IAM: Check last usage
+    IAM-->>SOC: ไม่เคยใช้ 90 วัน
+    SOC->>Owner: ☎️ ยืนยันความจำเป็น
+    Owner-->>SOC: ไม่จำเป็นแล้ว
+    SOC->>IAM: ลบ role
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

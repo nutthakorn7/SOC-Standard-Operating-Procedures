@@ -180,6 +180,36 @@ graph TD
 
 ---
 
+### SBOM Management
+
+```mermaid
+graph LR
+    Build["🔨 CI/CD Build"] --> SBOM["📋 Generate SBOM"]
+    SBOM --> Scan["🔍 Scan vulnerabilities"]
+    Scan --> CVE{"🔓 CVE found?"}
+    CVE -->|Yes| Block["❌ Block deployment"]
+    CVE -->|No| Deploy["✅ Deploy"]
+    Block --> Fix["🔧 Update dependency"]
+    style Block fill:#e74c3c,color:#fff
+    style Deploy fill:#27ae60,color:#fff
+```
+
+### Vendor Risk Assessment
+
+```mermaid
+sequenceDiagram
+    participant Security
+    participant Vendor
+    participant Legal
+    participant CISO
+    Security->>Vendor: 📋 Security questionnaire
+    Vendor-->>Security: Complete questionnaire
+    Security->>Security: ⚖️ Calculate risk score
+    Security->>Legal: Review contract terms
+    Security->>CISO: 📊 Risk report
+    CISO->>CISO: Approve / Reject
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

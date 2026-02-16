@@ -154,6 +154,35 @@ graph TD
 
 ---
 
+### ผัง Email Security Stack
+
+```mermaid
+graph LR
+    Email["📧 Inbound Email"] --> SPF["📋 SPF"]
+    SPF --> DKIM["🔏 DKIM"]
+    DKIM --> DMARC["🛡️ DMARC"]
+    DMARC --> ATP["🔍 ATP Sandbox"]
+    ATP --> Inbox["📬 Deliver"]
+    ATP --> Quarantine["🗑️ Quarantine"]
+    style DMARC fill:#27ae60,color:#fff
+    style Quarantine fill:#e74c3c,color:#fff
+```
+
+### ผัง User Report & Response
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant PhishBtn as Report Phishing Button
+    participant SOC
+    participant Email_Admin as Email Admin
+    User->>PhishBtn: 📧 Report suspicious email
+    PhishBtn->>SOC: 🚨 Forward to SOC
+    SOC->>SOC: Analyze headers + URLs
+    SOC->>Email_Admin: Block sender domain
+    SOC-->>User: ✅ Thanks! Phishing confirmed
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

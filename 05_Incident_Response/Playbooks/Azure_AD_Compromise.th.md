@@ -147,6 +147,36 @@ graph TD
 
 ---
 
+### ผัง Entra ID Security Stack
+
+```mermaid
+graph TD
+    EntraID["🔐 Entra ID"] --> IdP["🛡️ Identity Protection"]
+    EntraID --> CA["📋 Conditional Access"]
+    EntraID --> PIM["🔑 PIM"]
+    EntraID --> AccessReview["👁️ Access Review"]
+    IdP --> SIEM["📊 Sentinel"]
+    CA --> SIEM
+    PIM --> SIEM
+    style EntraID fill:#3498db,color:#fff
+    style SIEM fill:#e74c3c,color:#fff
+```
+
+### ผัง Audit Log Analysis
+
+```mermaid
+sequenceDiagram
+    participant SOC
+    participant AuditLog as Entra Audit Log
+    participant Sentinel
+    SOC->>AuditLog: Query: new app registrations
+    AuditLog-->>SOC: 3 suspicious apps
+    SOC->>AuditLog: Query: role assignments
+    AuditLog-->>SOC: Global Admin added!
+    SOC->>Sentinel: Create hunting query
+    Sentinel->>SOC: 🚨 Correlated alert
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

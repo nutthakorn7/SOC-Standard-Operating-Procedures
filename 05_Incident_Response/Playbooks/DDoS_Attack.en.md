@@ -176,6 +176,36 @@ graph TD
 
 ---
 
+### DDoS Mitigation Tiers
+
+```mermaid
+graph TD
+    Attack["💥 DDoS"] --> L3["🔒 L3/L4: ISP null route"]
+    Attack --> L7["🛡️ L7: WAF + rate limit"]
+    L3 --> CDN["☁️ CDN absorption"]
+    L7 --> CDN
+    CDN --> Origin["🖥️ Origin protected"]
+    Origin --> Monitor["📊 Monitor recovery"]
+    style Attack fill:#e74c3c,color:#fff
+    style CDN fill:#27ae60,color:#fff
+```
+
+### ISP Coordination
+
+```mermaid
+sequenceDiagram
+    participant SOC
+    participant ISP
+    participant CDN
+    participant Management
+    SOC->>ISP: 🚨 DDoS 50Gbps — request scrubbing
+    ISP->>ISP: Activate scrubbing center
+    ISP-->>SOC: ✅ Scrubbing active
+    SOC->>CDN: Increase capacity
+    CDN-->>SOC: ✅ Auto-scaling
+    SOC->>Management: Update: mitigated
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

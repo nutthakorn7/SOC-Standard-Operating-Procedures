@@ -181,6 +181,37 @@ graph TD
 
 ---
 
+### Log Protection Architecture
+
+```mermaid
+graph TD
+    Source["📝 Log Source"] --> Agent["📡 Agent forward"]
+    Agent --> SIEM["📊 SIEM (immutable)"]
+    Agent --> WORM["🔒 WORM storage"]
+    Source --> Local["💽 Local (vulnerable)"]
+    Local -.->|❌ Deleted| Attacker["🔴 Attacker"]
+    SIEM -.->|✅ Preserved| SOC["🎯 SOC"]
+    style WORM fill:#27ae60,color:#fff
+    style SIEM fill:#3498db,color:#fff
+    style Local fill:#e74c3c,color:#fff
+```
+
+### Log Source Priority
+
+```mermaid
+graph LR
+    Priority["📋 Priority"] --> P1["🔴 P1: Auth logs"]
+    Priority --> P2["🟠 P2: Firewall/Proxy"]
+    Priority --> P3["🟡 P3: Application"]
+    Priority --> P4["🟢 P4: Debug"]
+    P1 --> SIEM["📊 SIEM real-time"]
+    P2 --> SIEM
+    P3 --> Archive["🗄️ Archive 1yr"]
+    P4 --> Archive
+    style P1 fill:#e74c3c,color:#fff
+    style P2 fill:#f39c12,color:#fff
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

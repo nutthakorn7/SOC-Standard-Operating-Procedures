@@ -161,6 +161,37 @@ graph TD
 
 ---
 
+### ผัง OT/IT Convergence Risks
+
+```mermaid
+graph TD
+    IT["🏢 IT Network"] --> DMZ["🔒 IT/OT DMZ"]
+    DMZ --> OT["🏭 OT Network"]
+    OT --> SCADA["📊 SCADA/HMI"]
+    OT --> PLC["⚙️ PLC/RTU"]
+    IT -.->|❌ ห้ามเข้าตรง| PLC
+    DMZ --> Historian["📋 Data Historian"]
+    style IT fill:#3498db,color:#fff
+    style OT fill:#f39c12,color:#fff
+    style PLC fill:#e74c3c,color:#fff
+```
+
+### ผัง Safety System Decision
+
+```mermaid
+sequenceDiagram
+    participant SOC
+    participant OT_Eng as OT Engineer
+    participant SIS as Safety System
+    participant Management
+    SOC->>OT_Eng: 🚨 OT anomaly detected
+    OT_Eng->>SIS: Check safety system status
+    SIS-->>OT_Eng: ✅ Normal
+    OT_Eng->>SOC: Safe to investigate
+    SOC->>Management: Situation update
+    Note over SIS: ❌ ห้ามปิด safety system!
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)
