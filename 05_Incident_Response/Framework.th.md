@@ -253,6 +253,27 @@ graph LR
 - [PB-01 Phishing](Playbooks/Phishing.th.md) · [PB-02 Ransomware](Playbooks/Ransomware.th.md) · [PB-03 Malware](Playbooks/Malware_Infection.th.md)
 - [PB-04 Account Compromise](Playbooks/Account_Compromise.th.md) · [PB-05 DDoS](Playbooks/DDoS_Attack.th.md) · [PB-06 BEC](Playbooks/BEC.th.md)
 
+## IR Maturity Indicators
+
+### Level Assessment
+
+| Capability | Level 1 | Level 3 | Level 5 |
+|:---|:---|:---|:---|
+| Detection | Manual review | Rule-based | ML + Hunting |
+| Response | Ad-hoc | Playbook-based | Automated |
+| Communication | ไม่มีแผน | Templates | Automated notify |
+| Recovery | Manual | Semi-automated | Full automation |
+| Lessons Learned | ไม่ทำ | บางครั้ง | ทุกเหตุการณ์ |
+
+### Incident Metrics Dashboard
+
+| Metric | Formula | Target |
+|:---|:---|:---|
+| MTTD | First alert → Confirmed | < 15 min |
+| MTTR | Confirmed → Resolved | < 4 hrs |
+| MTTC | Confirmed → Contained | < 1 hr |
+| Reopen Rate | Reopened / Total × 100 | < 5% |
+
 ## อ้างอิง (References)
 
 - [NIST SP 800-61r2 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

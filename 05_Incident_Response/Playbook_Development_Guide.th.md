@@ -181,6 +181,20 @@ graph LR
 | **Version Freshness** | อัปเดตภายใน 6 เดือน | เอกสาร stale หรือไม่ |
 | **Coverage** | ≥ top 20 incident types | ครอบคลุมพอหรือไม่ |
 
+## Playbook Quality Standards
+
+### Mandatory Sections
+
+| Section | Required Content | Review Criteria |
+|:---|:---|:---|
+| Objective | ระบุเป้าหมายชัดเจน | Measurable |
+| Scope | ขอบเขตและข้อจำกัด | Complete |
+| Prerequisites | เครื่องมือ + สิทธิ์ | Verified |
+| Steps | ขั้นตอนละเอียด | Actionable |
+| Decision Points | เงื่อนไข + ทางเลือก | Clear criteria |
+| Escalation | เมื่อไร + ส่งใคร | Defined |
+| References | MITRE + logs | Up-to-date |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [IR Framework](Framework.en.md) — กรอบงาน NIST

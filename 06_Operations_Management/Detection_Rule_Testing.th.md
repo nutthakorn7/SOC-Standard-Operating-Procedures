@@ -89,6 +89,26 @@ python tools/sigma_validator.py path/to/rule.yml
 | ทดสอบกฎที่มีอยู่ (regression) | รายเดือน | Detection Engineering |
 | Full coverage test | รายไตรมาส | SOC Manager + Detection Eng |
 
+## Rule Testing Methodology
+
+### Test Plan Template
+
+| Phase | Activity | Duration |
+|:---|:---|:---|
+| 1 | Unit test (lab) | 1-2 วัน |
+| 2 | Integration test (staging) | 2-3 วัน |
+| 3 | Shadow mode (prod) | 5-7 วัน |
+| 4 | Active mode (prod) | Go-live |
+
+### Rule Quality Metrics
+
+| Metric | Target | Measurement |
+|:---|:---|:---|
+| True Positive Rate | > 90% | Weekly |
+| False Positive Rate | < 10% | Weekly |
+| Detection Latency | < 5 min | Per alert |
+| Coverage (tactics) | > 70% | Monthly |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)

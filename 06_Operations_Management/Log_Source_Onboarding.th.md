@@ -193,6 +193,43 @@ O365: Unified Audit Log → Streaming API
 | 5 | อัปเดต Log Source Matrix | SOC Analyst |
 | 6 | Archive ข้อมูลตาม retention policy | IT |
 
+## Log Source Health Monitoring
+
+### Health Check Dashboard
+
+| Log Source | Expected EPS | Actual EPS | Status | Last Event |
+|:---|:---|:---|:---|:---|
+| Firewall | 500 | 487 | ✅ ปกติ | 2 sec ago |
+| AD/LDAP | 200 | 195 | ✅ ปกติ | 5 sec ago |
+| EDR | 300 | 45 | 🔴 ต่ำผิดปกติ | 3 min ago |
+| Web Proxy | 150 | 148 | ✅ ปกติ | 1 sec ago |
+| DNS | 400 | 0 | 🔴 หยุดส่ง | 15 min ago |
+
+### Troubleshooting Log Gaps
+
+```mermaid
+flowchart TD
+    A[Log gap detected] --> B{Agent running?}
+    B -->|No| C[Restart agent]
+    B -->|Yes| D{Network connectivity?}
+    D -->|No| E[Check firewall rules]
+    D -->|Yes| F{Parser working?}
+    F -->|No| G[Fix parser config]
+    F -->|Yes| H{Storage full?}
+    H -->|Yes| I[Expand storage/archive]
+    H -->|No| J[Escalate to vendor]
+```
+
+### Onboarding Checklist per Source Type
+
+| ขั้นตอน | Firewall | Endpoint | Cloud | Application |
+|:---|:---|:---|:---|:---|
+| Network config | ✅ Syslog | ✅ Agent | API Key | ✅ Webhook |
+| Parser setup | Custom | Built-in | Built-in | Custom |
+| Field mapping | 15 fields | 25 fields | 20 fields | 10 fields |
+| Baseline (days) | 7 | 14 | 7 | 14 |
+| Alert rules | 5 | 10 | 8 | 3 |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md)

@@ -230,6 +230,36 @@ graph LR
 | **Gaps** | – | [จำนวน] | Priority: [P1/P2/P3] |
 | **Rules สร้างใหม่** | – | [จำนวน] | ETA Deploy: [วันที่] |
 
+## MITRE ATT&CK Coverage by Exercise
+
+### Exercise Scenario Template
+
+| Phase | Tactic | Technique | Tool |
+|:---|:---|:---|:---|
+| 1 | Initial Access | T1566.001 Phishing | GoPhish |
+| 2 | Execution | T1059.001 PowerShell | Atomic RT |
+| 3 | Persistence | T1053.005 Schtask | Manual |
+| 4 | Privilege Esc | T1548.002 UAC Bypass | Metasploit |
+| 5 | Defense Evasion | T1070.001 Log Clear | Manual |
+| 6 | Credential Access | T1003 Mimikatz | Mimikatz |
+| 7 | Lateral Movement | T1021.002 SMB | PsExec |
+| 8 | Collection | T1074.001 Staging | Manual |
+| 9 | Exfiltration | T1048 C2 Channel | Cobalt Strike |
+
+### Exercise After-Action Report Template
+
+```
+## After-Action Report
+- Exercise Date: [วันที่]
+- Participants: Red [N], Blue [N], White [N]
+- Duration: [ชั่วโมง]
+- Techniques Tested: [จำนวน]
+- Techniques Detected: [จำนวน] ([%])
+- Detection Gaps: [รายละเอียด]
+- New Rules Created: [จำนวน]
+- Remediation Actions: [รายการ]
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Simulation & Testing Guide](../08_Simulation_Testing/Simulation_Guide.en.md)

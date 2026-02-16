@@ -242,6 +242,40 @@ Timeline + สาเหตุ + ผลกระทบ + สิ่งที่ด
 | ระบุ next update time | สัญญาว่า "จะไม่เกิดอีก" |
 | เก็บ audit trail ของทุกการสื่อสาร | ส่งข้อมูลผ่านช่องทางไม่เข้ารหัส |
 
+## การสื่อสารตามระดับความรุนแรง
+
+### Communication Matrix
+
+| Severity | แจ้งใคร | ช่องทาง | Timeline |
+|:---|:---|:---|:---|
+| Critical | CEO, CISO, Legal, PR | Phone + Email | ภายใน 15 นาที |
+| High | CISO, IT Director | Email + Chat | ภายใน 30 นาที |
+| Medium | SOC Manager, IT Lead | Email | ภายใน 2 ชั่วโมง |
+| Low | SOC Team | Ticketing system | ภายใน 24 ชั่วโมง |
+
+### Status Update Template
+
+```markdown
+## Incident Status Update #[N]
+- **Incident ID**: INC-YYYY-NNNN
+- **Severity**: [Critical/High/Medium/Low]
+- **Current Status**: [Investigating/Containing/Eradicating/Recovering]
+- **Impact**: [ระบุผลกระทบ]
+- **Actions Taken**: [ดำเนินการแล้ว]
+- **Next Steps**: [ขั้นตอนถัดไป]
+- **ETA Resolution**: [ประมาณเวลา]
+- **Contact**: [ผู้รับผิดชอบ + เบอร์]
+```
+
+### External Communication Guidelines
+
+| ผู้รับ | เมื่อไหร่ | ใครเป็นคนส่ง | อนุมัติโดย |
+|:---|:---|:---|:---|
+| ลูกค้า | ข้อมูลรั่ว | PR + Legal | CEO |
+| หน่วยงานกำกับ | PDPA breach | DPO | CISO |
+| สื่อมวลชน | เหตุสาธารณะ | PR | CEO |
+| Partner/Vendor | ส่งผลกระทบ | IT Director | CISO |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

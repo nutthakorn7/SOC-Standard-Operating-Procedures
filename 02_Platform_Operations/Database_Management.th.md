@@ -79,6 +79,26 @@ graph TD
 -   [ขั้นตอนการ Deploy](Deployment_Procedures.th.md)
 -   [การติดตั้ง SOC](../01_Onboarding/System_Activation.th.md)
 
+## Database Performance Monitoring
+
+### Key Metrics
+
+| Metric | Target | Alert Threshold |
+|:---|:---|:---|
+| Query latency | < 100ms | > 500ms |
+| Connection pool | < 70% used | > 90% |
+| Storage utilization | < 75% | > 85% |
+| Replication lag | < 1 sec | > 10 sec |
+| Index fragmentation | < 10% | > 30% |
+
+### Backup Verification Schedule
+
+| Backup Type | Frequency | Verify | Retention |
+|:---|:---|:---|:---|
+| Full backup | Daily | Weekly restore test | 30 days |
+| Transaction log | ทุก 15 min | Monthly | 7 days |
+| Archive | Monthly | Quarterly | 1 year |
+
 ## References
 -   [NIST SP 800-53 (Security/Privacy Controls)](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)
 -   [GDPR Data Retention](https://gdpr.eu/)

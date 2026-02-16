@@ -248,6 +248,35 @@
 | **ส่งรายงานถึง** | [SOC Manager, CISO] |
 | **Exercise ถัดไป** | [วันที่เป้าหมาย] |
 
+## Tabletop Scenario Templates
+
+### Scenario 1: Ransomware Attack
+
+| ขั้นตอน | สถานการณ์ | คำถามอภิปราย |
+|:---|:---|:---|
+| 1 | พบ file encryption เวลา 02:00 | ใครต้อง notify ก่อน? |
+| 2 | 30% ของ servers ถูก encrypt | จ่าย ransom หรือไม่? |
+| 3 | ข่าวรั่วไหลสู่สื่อ | PR response อย่างไร? |
+| 4 | Recovery เริ่ม 48 ชม. | ลำดับ restore อย่างไร? |
+
+### Scenario 2: Insider Threat
+
+| ขั้นตอน | สถานการณ์ | คำถามอภิปราย |
+|:---|:---|:---|
+| 1 | DLP alert: mass download | ตรวจสอบอย่างไรโดยไม่แจ้ง? |
+| 2 | พนักงานยื่นลาออก 2 สัปดาห์ก่อน | Legal implications? |
+| 3 | พบข้อมูลใน personal cloud | การเก็บหลักฐาน? |
+| 4 | ข้อมูลลูกค้า 10,000 ราย | แจ้ง PDPA ภายใน 72 ชม.? |
+
+### Exercise Evaluation Rubric
+
+| Criteria | 1 (Poor) | 3 (Adequate) | 5 (Excellent) |
+|:---|:---|:---|:---|
+| Response Time | >60 นาที | 30-60 นาที | <30 นาที |
+| Communication | ไม่มีแผน | มีแผนบางส่วน | แผนชัดเจน |
+| Decision Making | ไม่แน่นอน | ค่อนข้างดี | รวดเร็วแม่นยำ |
+| Documentation | ไม่บันทึก | บันทึกบางส่วน | บันทึกครบถ้วน |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

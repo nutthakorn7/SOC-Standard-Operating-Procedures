@@ -163,6 +163,28 @@ graph TD
 | Time to Remediate (Critical) | ≤ 30 วัน | [XX] วัน |
 | Compliance Score (รวม) | ≥ 85% | [XX]% |
 
+## Gap Remediation Tracking
+
+### Remediation Priority Matrix
+
+| Gap Category | Impact | Effort | Priority |
+|:---|:---|:---|:---|
+| Missing controls | สูง | สูง | P1 - ดำเนินการทันที |
+| Incomplete policies | สูง | ต่ำ | P1 - Quick win |
+| Outdated procedures | กลาง | ต่ำ | P2 - ปรับปรุง |
+| Documentation gaps | ต่ำ | ต่ำ | P3 - จัดทำ |
+| Training deficiencies | กลาง | กลาง | P2 - วางแผน |
+
+### Gap Assessment Checklist
+
+| Control Area | ISO 27001 | NIST CSF | PCI DSS | สถานะ |
+|:---|:---|:---|:---|:---|
+| Risk Assessment | A.6 | ID.RA | 12.2 | ✅/⚠️/❌ |
+| Access Control | A.9 | PR.AC | 7,8 | ✅/⚠️/❌ |
+| Incident Response | A.16 | RS | 12.10 | ✅/⚠️/❌ |
+| Logging & Monitoring | A.12 | DE | 10 | ✅/⚠️/❌ |
+| Data Protection | A.8 | PR.DS | 3,4 | ✅/⚠️/❌ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Compliance Mapping](Compliance_Mapping.en.md) — ISO 27001 / NIST CSF / PCI DSS

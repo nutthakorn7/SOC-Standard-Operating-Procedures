@@ -209,6 +209,37 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://target_ip
 | **Q3** | Lateral Movement + Collection | T1021, T1005 | Advanced |
 | **Q4** | Full Kill Chain Simulation | End-to-end | Advanced |
 
+## Exercise Execution Checklist
+
+### Pre-Exercise (สัปดาห์ก่อน)
+- [ ] กำหนด scope และ Rules of Engagement
+- [ ] เตรียม attack scenarios (ATT&CK mapping)
+- [ ] แจ้ง stakeholders ที่เกี่ยวข้อง
+- [ ] Setup monitoring และ logging
+- [ ] Backup ระบบที่เกี่ยวข้อง
+
+### During Exercise
+- [ ] Red Team: execute attacks ตาม playbook
+- [ ] Blue Team: detect และ respond แบบ real-time
+- [ ] White Team: ควบคุมและบันทึกผลลัพธ์
+- [ ] Log ทุก action พร้อม timestamp
+
+### Post-Exercise
+- [ ] Debrief ร่วม Red + Blue Team
+- [ ] Gap analysis: จุดที่ detect ไม่ได้
+- [ ] สร้าง detection rules ใหม่
+- [ ] อัปเดต playbooks จากบทเรียน
+
+### Detection Gap Tracking
+
+| Attack Technique | MITRE ID | Detected? | Gap Action |
+|:---|:---|:---|:---|
+| Spearphishing | T1566.001 | ✅ ตรวจจับได้ | - |
+| PowerShell execution | T1059.001 | ⚠️ บางส่วน | เพิ่ม rule |
+| Lateral Movement | T1021 | ❌ ไม่พบ | สร้าง use case |
+| Data Staging | T1074 | ❌ ไม่พบ | เพิ่ม DLP rule |
+| Exfiltration | T1048 | ✅ ตรวจจับได้ | - |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [สถานการณ์จำลอง](Tabletop_Exercises.th.md)

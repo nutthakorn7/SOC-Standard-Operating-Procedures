@@ -221,6 +221,35 @@ graph LR
     Offer --> Onboard["🎯 Onboarding"]
 ```
 
+## Staffing Models
+
+### Team Size by Organization Scale
+
+| Organization Size | SOC Tier | Min Staff | Recommended |
+|:---|:---|:---|:---|
+| < 500 employees | Hybrid/MSSP | 2-3 | 4-5 |
+| 500-2,000 | Basic SOC | 4-6 | 8-10 |
+| 2,000-10,000 | Full SOC | 8-12 | 15-20 |
+| 10,000+ | Advanced SOC | 15-25 | 25-40 |
+
+### Role-based Salary Guide (ประมาณ, THB/เดือน)
+
+| Role | Junior | Mid | Senior |
+|:---|:---|:---|:---|
+| SOC Analyst | 25-35K | 35-55K | 55-80K |
+| Incident Responder | 35-50K | 50-75K | 75-120K |
+| Threat Hunter | 40-60K | 60-90K | 90-150K |
+| SOC Manager | - | 80-120K | 120-200K |
+
+### Budget Allocation Framework
+
+| Category | % of Budget | Includes |
+|:---|:---|:---|
+| Personnel | 55-65% | Salary, benefits, training |
+| Technology | 20-30% | SIEM, EDR, SOAR, TI |
+| Operations | 5-10% | Cloud, infra, maintenance |
+| Training | 5-10% | Certs, conferences, labs |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

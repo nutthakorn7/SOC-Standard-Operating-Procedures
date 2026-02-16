@@ -366,6 +366,49 @@ ROI = (Cost Saved - SOAR License Cost) / SOAR License Cost × 100%
   2,167 × 500 ฿/ชม. = 1,083,500 ฿ ประหยัดได้
 ```
 
+## SOAR Performance Optimization
+
+### Playbook Execution Metrics
+
+| Metric | Target | Measurement |
+|:---|:---|:---|
+| Mean Time to Respond (MTTR) | < 5 นาที | Auto-measured |
+| Playbook Success Rate | > 95% | Weekly review |
+| False Positive Rate | < 10% | Monthly tuning |
+| Human Override Rate | < 15% | Quarterly review |
+
+### Integration Health Dashboard
+
+```
+┌──────────────────────────────────────────┐
+│  SOAR Integration Status                 │
+├──────────┬───────┬───────┬───────────────┤
+│ Platform │ Status│ Uptime│ Last Sync     │
+├──────────┼───────┼───────┼───────────────┤
+│ SIEM     │ ✅    │ 99.9% │ 2 min ago     │
+│ EDR      │ ✅    │ 99.5% │ 5 min ago     │
+│ Firewall │ ⚠️    │ 98.0% │ 15 min ago    │
+│ TI Feed  │ ✅    │ 99.8% │ 1 min ago     │
+│ Ticketing│ ✅    │ 99.9% │ 3 min ago     │
+└──────────┴───────┴───────┴───────────────┘
+```
+
+### Error Handling Framework
+
+```mermaid
+flowchart TD
+    A[Playbook Error] --> B{Error Type?}
+    B -->|Timeout| C[Retry with backoff]
+    B -->|Auth Failure| D[Refresh credentials]
+    B -->|API Limit| E[Queue and wait]
+    B -->|Logic Error| F[Alert analyst]
+    C --> G{Retry OK?}
+    G -->|Yes| H[Continue]
+    G -->|No| F
+    D --> G
+    E --> G
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [IR Playbooks](Playbooks/)

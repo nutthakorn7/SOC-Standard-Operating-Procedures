@@ -216,6 +216,18 @@
 | Escalation judgment | รู้เมื่อไหร่ต้อง escalate | Scenario test |
 | Documentation | บันทึก investigation ได้ครบ | Ticket review |
 
+## 90-Day Competency Assessment
+
+### Skills Matrix
+
+| Skill Area | Day 30 | Day 60 | Day 90 |
+|:---|:---|:---|:---|
+| Alert Triage | ทำได้ด้วยตัวเอง | มีประสิทธิภาพ | Expert |
+| SIEM Queries | Basic searches | Complex queries | Custom dashboards |
+| IR Procedures | รู้จัก playbooks | ปฏิบัติได้ | นำทีมได้ |
+| Communication | รู้ escalation path | รายงานได้ดี | สอนคนอื่นได้ |
+| Tools (EDR/FW) | Basic navigation | Investigation | Advanced hunting |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   SOC Charter — ภารกิจและโครงสร้าง

@@ -246,6 +246,48 @@ graph TD
 | **4 — Managed** | Proactive monitoring + analytics | UEBA + risk scoring |
 | **5 — Optimized** | Predictive, integrated with HR | ML-based anomaly + HR data feed |
 
+## Insider Risk Indicators
+
+### Behavioral Indicators Scoring
+
+| Indicator | Risk Score | Detection Method |
+|:---|:---|:---|
+| Mass file download | +8 | DLP / UEBA |
+| After-hours access | +3 | Access logs |
+| Resignation notice | +5 | HR integration |
+| Privilege escalation request | +4 | IAM workflow |
+| USB device usage | +6 | Endpoint agent |
+| Personal email forward | +7 | Email gateway |
+| Print spike | +4 | Print server logs |
+
+### Risk Score Thresholds
+
+```
+Risk Score Actions:
+━━━━━━━━━━━━━━━━━━━━━━━━
+0-10   ▓░░░░  Normal - Monitor only
+11-20  ▓▓░░░  Elevated - Weekly review
+21-30  ▓▓▓░░  High - Daily monitoring
+31-40  ▓▓▓▓░  Critical - Immediate investigation
+41+    ▓▓▓▓▓  Emergency - Contain & investigate
+━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+### Investigation Workflow
+
+```mermaid
+flowchart LR
+    A[Alert] --> B[Verify indicator]
+    B --> C{Risk > 20?}
+    C -->|No| D[Continue monitoring]
+    C -->|Yes| E[Open investigation]
+    E --> F[Gather evidence]
+    F --> G{Confirmed?}
+    G -->|No| H[Close & document]
+    G -->|Yes| I[HR + Legal + Mgmt]
+    I --> J[Containment action]
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — การเก็บหลักฐาน

@@ -188,6 +188,35 @@ flowchart TD
 | 🟠 Medium | Vulnerability | ≤ 24 ชม. | ≤ 7 วัน |
 | 🟢 Low | Config issue | ≤ 72 ชม. | ≤ 30 วัน |
 
+## Third-Party Security Assessment
+
+### Vendor Security Scorecard
+
+| Domain | Weight | Questions | Score Method |
+|:---|:---|:---|:---|
+| Data Protection | 25% | 8 ข้อ | Evidence-based |
+| Access Control | 20% | 6 ข้อ | Audit + policy |
+| Incident Response | 20% | 5 ข้อ | SLA + drill |
+| Compliance | 15% | 5 ข้อ | Cert + audit |
+| Business Continuity | 10% | 4 ข้อ | DR test |
+| Physical Security | 10% | 3 ข้อ | Site visit |
+
+### Risk Tier Classification
+
+| Tier | Criteria | Review Cycle | Assessment |
+|:---|:---|:---|:---|
+| Critical | มีสิทธิ์เข้าข้อมูลลูกค้า | ทุก 6 เดือน | Full + Pentest |
+| High | เข้าถึงระบบ production | ทุก 12 เดือน | Full assessment |
+| Medium | เข้าถึง non-prod | ทุก 18 เดือน | Questionnaire |
+| Low | ไม่เข้าถึงข้อมูล/ระบบ | ทุก 24 เดือน | Self-assessment |
+
+### Continuous Monitoring Checklist
+- [ ] ตรวจสอบ SOC 2 / ISO 27001 certificate validity
+- [ ] Monitor vendor breach news feeds
+- [ ] Review vendor access logs monthly
+- [ ] Validate data handling compliance
+- [ ] Check SLA performance metrics
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md)

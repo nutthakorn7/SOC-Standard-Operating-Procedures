@@ -209,6 +209,28 @@ flowchart TD
 | IAM over-privilege findings | 0 critical | [XX] |
 | Compliance score (CIS Benchmark) | ≥ 90% | [XX]% |
 
+## Cloud-specific Detection Rules
+
+### AWS Detection Priorities
+
+| Use Case | CloudTrail Event | Severity |
+|:---|:---|:---|
+| Root login | ConsoleLogin (root) | Critical |
+| S3 public | PutBucketPolicy | High |
+| IAM key created | CreateAccessKey | Medium |
+| SecurityGroup open | AuthorizeSecurityGroupIngress (0.0.0.0) | High |
+| CloudTrail disabled | StopLogging | Critical |
+
+### Azure Detection Priorities
+
+| Use Case | Activity Log Event | Severity |
+|:---|:---|:---|
+| Risky sign-in | Risk Detection | High |
+| MFA disabled | Disable strong auth | Critical |
+| Resource exposed | Network rule change | High |
+| Privilege escalation | Add role assignment | High |
+| Audit log disabled | Diagnostic setting delete | Critical |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด

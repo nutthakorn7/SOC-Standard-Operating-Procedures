@@ -116,6 +116,27 @@ graph TD
 | ต้อง rollback หรือไม่? | [ใช่/ไม่ — เหตุผล] |
 | บทเรียนที่ได้ | [ระบุ] |
 
+## Change Advisory Board (CAB) Process
+
+### Change Classification
+
+| Type | Risk | Approval | Lead Time |
+|:---|:---|:---|:---|
+| Standard | ต่ำ | Pre-approved | No wait |
+| Normal | กลาง | CAB | 5 วันทำการ |
+| Emergency | สูง | Emergency CAB | ทันที |
+
+### Change Request Checklist
+
+- [ ] Description of change
+- [ ] Business justification
+- [ ] Risk assessment
+- [ ] Rollback plan
+- [ ] Test results (non-prod)
+- [ ] Impact analysis
+- [ ] Communication plan
+- [ ] Post-change verification plan
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แม่แบบ Change Request](../templates/change_request_rfc.th.md)

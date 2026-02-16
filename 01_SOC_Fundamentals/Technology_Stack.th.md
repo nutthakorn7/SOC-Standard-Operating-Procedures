@@ -190,6 +190,38 @@ graph TD
 | Commercial → Open-source | Feature parity, support gap | 3–6 เดือน |
 | Single-vendor → Best-of-breed | Integration complexity | 2–4 เดือน |
 
+## Technology Evaluation Matrix
+
+### Tier-based Selection Guide
+
+| Tier | Organization Size | Budget | SIEM Options |
+|:---|:---|:---|:---|
+| Starter | <50 users | <2M THB | Wazuh, ELK Stack |
+| Growth | 50-500 users | 2-10M THB | Splunk, QRadar |
+| Enterprise | 500+ users | 10M+ THB | Sentinel, Chronicle |
+
+### Integration Compatibility Matrix
+
+| Component | SIEM | EDR | SOAR | TI |
+|:---|:---|:---|:---|:---|
+| Splunk | - | ✅ CrowdStrike | ✅ Phantom | ✅ MISP |
+| QRadar | - | ✅ Carbon Black | ✅ Resilient | ✅ ThreatConnect |
+| Sentinel | - | ✅ Defender | ✅ Logic Apps | ✅ Sentinel TI |
+| Wazuh | - | ✅ OSSEC | ⚠️ Manual | ✅ MISP |
+
+### TCO Calculation Template
+
+```
+Total Cost of Ownership (3 years):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+License/Subscription     ████████████  40%
+Infrastructure           ████████      25%
+Personnel (FTE)          ██████        20%
+Training & Certs         ███            10%
+Integration & Customization ██          5%
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

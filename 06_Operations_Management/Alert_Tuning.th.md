@@ -253,6 +253,29 @@ graph LR
 | **ผู้ดำเนินการ** | [ชื่อ] |
 | **วันที่** | [YYYY-MM-DD] |
 
+## Alert Tuning Playbook
+
+### Tuning Decision Tree
+
+```mermaid
+flowchart TD
+    A[High volume alert] --> B{True positive?}
+    B -->|< 5%| C[Disable or re-scope]
+    B -->|5-50%| D[Add exclusions]
+    B -->|> 50%| E[Keep as-is]
+    D --> F{Still noisy?}
+    F -->|Yes| G[Split into sub-rules]
+    F -->|No| H[Monitor 7 days]
+```
+
+### Tuning Log Template
+
+| Date | Rule Name | Action | Reason | FP Before | FP After |
+|:---|:---|:---|:---|:---|:---|
+| | | Whitelist | Known scanner | 85% | 12% |
+| | | Threshold ↑ | Normal baseline | 70% | 15% |
+| | | Disable | Deprecated source | 95% | N/A |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Detection Rule Testing](Detection_Rule_Testing.en.md) — วิธีการทดสอบ

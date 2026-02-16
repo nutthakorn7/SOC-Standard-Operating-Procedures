@@ -128,6 +128,28 @@
 - [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
 - [เครื่องมือวัดคะแนน SOC Maturity](../tools/soc_maturity_scorer.html)
 
+## Cross-framework Control Mapping
+
+### Key Control Areas
+
+| Control | ISO 27001 | NIST CSF | PCI DSS | PDPA |
+|:---|:---|:---|:---|:---|
+| Risk Assessment | A.8 | ID.RA | 12.2 | มาตรา 37 |
+| Access Control | A.9 | PR.AC | 7, 8 | มาตรา 37(1) |
+| Encryption | A.10 | PR.DS | 3.4, 4.1 | มาตรา 37(1) |
+| Logging | A.12 | DE.CM | 10 | มาตรา 37(1) |
+| IR Plan | A.16 | RS.RP | 12.10 | มาตรา 37(4) |
+| Privacy | - | - | - | มาตรา 23-26 |
+
+### Compliance Status Dashboard
+
+```
+ISO 27001: ████████████████████░  93% (7 gaps)
+NIST CSF:  ██████████████████░░░  87% (12 gaps)
+PCI DSS:   ████████████████░░░░░  80% (15 gaps)
+PDPA:      ███████████████████░░  90% (5 gaps)
+```
+
 ## References
 
 - [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)

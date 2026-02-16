@@ -185,6 +185,27 @@ graph TD
 | จำนวน Policy violations/เดือน | ลดลง MoM | [XX] |
 | ผู้ใช้ที่ผ่านอบรม DLP | ≥ 90% | [XX]% |
 
+## DLP Policy Templates
+
+### Classification-based Actions
+
+| Data Class | ตรวจจับ | Action | แจ้งเตือน |
+|:---|:---|:---|:---|
+| Restricted | Exact match | Block + Alert | SOC + DPO |
+| Confidential | Pattern match | Warn + Log | SOC |
+| Internal | Keyword | Log only | Monthly review |
+| Public | N/A | Allow | None |
+
+### Common DLP Channels
+
+| Channel | Detection Method | False Positive Rate |
+|:---|:---|:---|
+| Email | Content inspection | 15-20% |
+| Web Upload | URL + content | 10-15% |
+| USB | Device control | 5% |
+| Cloud Storage | API + CASB | 20-25% |
+| Print | Print server hook | 10% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Insider Threat Program](Insider_Threat_Program.en.md) — ตรวจจับ insider threat

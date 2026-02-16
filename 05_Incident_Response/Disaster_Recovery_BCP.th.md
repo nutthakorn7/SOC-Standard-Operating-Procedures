@@ -184,6 +184,26 @@ graph TD
 
 ---
 
+## DR Testing Schedule
+
+### Test Types and Frequency
+
+| Test Type | Frequency | Duration | Participants |
+|:---|:---|:---|:---|
+| Tabletop | ทุก 6 เดือน | 2 ชั่วโมง | Management + IT |
+| Walkthrough | ทุก 12 เดือน | 4 ชั่วโมง | All SOC + IT |
+| Simulation | ทุก 12 เดือน | 1-2 วัน | SOC + IT + Business |
+| Full DR test | ทุก 24 เดือน | 2-3 วัน | All stakeholders |
+
+### RTO/RPO Matrix
+
+| System | RTO | RPO | DR Strategy |
+|:---|:---|:---|:---|
+| SIEM | 4 hrs | 1 hr | Hot standby |
+| Ticketing | 8 hrs | 4 hrs | Warm standby |
+| Email | 2 hrs | 0 | Cloud DR |
+| AD/LDAP | 1 hr | 15 min | Multi-DC replication |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Escalation Matrix](Escalation_Matrix.en.md) — ใครต้องแจ้งเมื่อเกิดเหตุ

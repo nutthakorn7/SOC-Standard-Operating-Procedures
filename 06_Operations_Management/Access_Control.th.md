@@ -82,6 +82,26 @@
 | ทบทวน MFA compliance | รายเดือน | SOC Engineer | รายงาน compliance |
 | ตรวจสอบ Privileged access | รายไตรมาส | SOC Manager + CISO | การตรวจสอบ PAM |
 
+## Access Control Matrix
+
+### Role-based Permissions
+
+| Role | SIEM | EDR | Firewall | Ticketing |
+|:---|:---|:---|:---|:---|
+| Tier 1 Analyst | Read | Read | None | Read/Write |
+| Tier 2 Analyst | Read/Write | Read/Write | Read | Read/Write |
+| Tier 3 Engineer | Admin | Admin | Read | Admin |
+| SOC Manager | Admin | Admin | Read/Write | Admin |
+
+### Access Review Schedule
+
+| Review Type | Frequency | Reviewer | SLA |
+|:---|:---|:---|:---|
+| New access | ทุกครั้ง | SOC Manager | 24 ชม. |
+| Quarterly review | ทุก 3 เดือน | CISO | 5 วัน |
+| Termination | ทันที | HR + IT | 4 ชม. |
+| Privilege escalation | ทุกครั้ง | CISO | 48 ชม. |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [โครงสร้างทีม SOC](SOC_Team_Structure.th.md)

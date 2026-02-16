@@ -191,6 +191,27 @@ graph TD
 | **ราคา** | ฟรี | ฟรี | ฟรี |
 | **เหมาะกับ** | IDS/IPS | Traffic analysis | PCAP search |
 
+## NSM Use Cases
+
+### Priority Detection Rules
+
+| Use Case | Detection Method | Severity |
+|:---|:---|:---|
+| DNS Tunneling | Entropy analysis | High |
+| Beaconing | Periodic connection pattern | High |
+| Large upload | Bytes threshold | Medium |
+| Unusual port | Baseline deviation | Medium |
+| Cleartext credentials | Protocol inspection | Critical |
+
+### Network Baseline Template
+
+| Metric | Normal Range | Alert Threshold |
+|:---|:---|:---|
+| Outbound connections | 100-500/hr | > 1,000/hr |
+| DNS queries | 50-200/min | > 500/min |
+| Failed connections | < 5% | > 15% |
+| Bandwidth utilization | 30-60% | > 85% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด

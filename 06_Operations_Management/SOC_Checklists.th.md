@@ -130,6 +130,36 @@
 | 5 | ทบทวน staffing/capacity | SOC Manager | ☐ |
 | 6 | Compliance gap review | Compliance | ☐ |
 
+## SOC Shift Checklists
+
+### Daily Opening Checklist
+
+- [ ] ตรวจสอบ handoff notes จากกะก่อน
+- [ ] Review open incidents ที่ค้างอยู่
+- [ ] ตรวจ SIEM health dashboard
+- [ ] ยืนยัน log source ทั้งหมดส่งข้อมูลปกติ
+- [ ] เช็ค TI feed updates
+- [ ] Review pending alerts queue
+- [ ] Check communication channels
+
+### Weekly Review Checklist
+
+- [ ] สรุป alert trends ประจำสัปดาห์
+- [ ] Review false positive rates
+- [ ] ปรับปรุง detection rules ที่มีปัญหา
+- [ ] Update use case documentation
+- [ ] Team knowledge sharing session
+- [ ] Review SLA compliance
+
+### Monthly SOC Health Check
+
+- [ ] KPI dashboard review กับ management
+- [ ] Maturity assessment update
+- [ ] Training plan progress review
+- [ ] Vendor tool health assessment
+- [ ] Capacity planning review
+- [ ] Incident trend analysis report
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [คู่มือ Tier 1](../05_Incident_Response/Tier1_Runbook.th.md)

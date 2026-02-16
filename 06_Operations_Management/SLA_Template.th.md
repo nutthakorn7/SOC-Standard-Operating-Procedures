@@ -119,6 +119,25 @@ graph TD
 | FP Rate | < 10% | [XX]% | ✅/❌ |
 | Report Delivery | ภายใน 5 วันทำการ | [วันที่] | ✅/❌ |
 
+## SLA Tier Definitions
+
+### Response Time SLA
+
+| Priority | Response | Update | Resolution |
+|:---|:---|:---|:---|
+| P1 Critical | 15 min | ทุก 30 min | 4 hrs |
+| P2 High | 30 min | ทุก 1 hr | 8 hrs |
+| P3 Medium | 2 hrs | ทุก 4 hrs | 24 hrs |
+| P4 Low | 8 hrs | ทุก 24 hrs | 72 hrs |
+
+### SLA Breach Escalation
+
+| Breach Time | Escalation To | Action |
+|:---|:---|:---|
+| 50% of SLA | SOC Lead | Reprioritize resources |
+| 75% of SLA | SOC Manager | Additional support |
+| 100% of SLA | CISO | Executive escalation |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)

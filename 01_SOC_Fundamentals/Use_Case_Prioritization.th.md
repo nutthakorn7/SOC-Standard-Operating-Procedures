@@ -152,6 +152,31 @@ Priority:
 | Exfiltration | 9 | [X] | [X] |
 | Impact | 13 | [X] | [X] |
 
+## Use Case Scoring Model
+
+### Risk-based Prioritization
+
+| Factor | Weight | Score (1-5) | คำอธิบาย |
+|:---|:---|:---|:---|
+| Business Impact | 30% | 1-5 | ผลกระทบต่อธุรกิจ |
+| Threat Likelihood | 25% | 1-5 | โอกาสเกิดภัย |
+| Detection Capability | 20% | 1-5 | ความสามารถตรวจจับ |
+| Data Availability | 15% | 1-5 | มี log source หรือไม่ |
+| Effort to Implement | 10% | 1-5 | ความยากในการสร้าง |
+
+### Use Case Lifecycle
+
+```mermaid
+flowchart LR
+    A[Propose] --> B[Evaluate]
+    B --> C[Develop]
+    C --> D[Test]
+    D --> E[Deploy]
+    E --> F[Monitor]
+    F --> G[Tune]
+    G --> F
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

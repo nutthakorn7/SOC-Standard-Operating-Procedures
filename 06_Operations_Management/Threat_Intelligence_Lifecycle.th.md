@@ -89,6 +89,26 @@ Indicators of Compromise (IoCs) ทุกตัวต้องผ่านกร
 -   [แบบประเมิน SOC](SOC_Assessment_Checklist.th.md)
 -   [ตัวชี้วัด SOC](SOC_Metrics.th.md)
 
+## TI Program Maturity
+
+### Maturity Levels
+
+| Level | Description | Capabilities |
+|:---|:---|:---|
+| 1 | Reactive | ใช้ free feeds only |
+| 2 | Tactical | IOC matching + blocking |
+| 3 | Operational | TTP-based detection |
+| 4 | Strategic | Threat modeling + attribution |
+
+### TI Consumer Matrix
+
+| Consumer | Need | Format | Frequency |
+|:---|:---|:---|:---|
+| SOC Analyst | IOCs | STIX/TAXII | Real-time |
+| IR Team | TTPs | Report | Per incident |
+| Management | Trends | Executive brief | Monthly |
+| Board | Risk level | Dashboard | Quarterly |
+
 ## References
 -   [CREST Cyber Threat Intelligence](https://www.crest-approved.org/knowledge-base/cyber-threat-intelligence/)
 -   [SANS CTI Maturity Model](https://www.sans.org/white-papers/cti-maturity-model/)

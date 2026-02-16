@@ -204,6 +204,27 @@ graph LR
 - [การวางแผนกำลังคน SOC](SOC_Capacity_Planning.th.md) — การวางแผนคนและทรัพยากร
 - [มาตรฐานส่งมอบกะ](Shift_Handoff.th.md) — การปฏิบัติงานกะ
 
+## Metrics Collection & Reporting
+
+### Operational Metrics Template
+
+| Metric | Source | Collection | Target |
+|:---|:---|:---|:---|
+| Total Alerts | SIEM | Auto/daily | Trend ↓ |
+| True Positive Rate | Ticketing | Weekly | > 80% |
+| MTTR | Ticketing | Auto | < 4 hrs |
+| Escalation Rate | Ticketing | Weekly | 10-15% |
+| Coverage (ATT&CK) | Rule mapping | Monthly | > 60% |
+
+### Executive Reporting Cadence
+
+| Report | Audience | Frequency | Content |
+|:---|:---|:---|:---|
+| Daily Brief | SOC Team | Daily | Open incidents, alerts |
+| Weekly Summary | IT Management | Weekly | Trends, KPIs |
+| Monthly Report | CISO | Monthly | Full metrics, risks |
+| Quarterly Review | Board | Quarterly | ROI, maturity, roadmap |
+
 ## อ้างอิง (References)
 
 - [SANS SOC Metrics](https://www.sans.org/white-papers/soc-metrics/)

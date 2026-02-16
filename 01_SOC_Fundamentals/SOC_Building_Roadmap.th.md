@@ -357,6 +357,41 @@ graph LR
 
 ---
 
+## Quick Wins vs Long-term Investments
+
+### Priority Matrix
+
+| Initiative | Effort | Impact | Timeline |
+|:---|:---|:---|:---|
+| Log collection baseline | ต่ำ | สูง | สัปดาห์ 1-2 |
+| Alert triage SOP | ต่ำ | สูง | สัปดาห์ 2-3 |
+| SIEM use case tuning | กลาง | สูง | เดือน 1-2 |
+| Threat hunting program | สูง | สูง | เดือน 3-6 |
+| SOAR automation | สูง | กลาง | เดือน 6-12 |
+| ML-based detection | สูง | กลาง | ปี 2 |
+
+### Common Pitfalls to Avoid
+
+> ⚠️ **ข้อควรระวัง**
+> 1. อย่าซื้อเครื่องมือก่อนกำหนด process
+> 2. อย่าเก็บ log ทุกอย่างโดยไม่คัดกรอง
+> 3. อย่าละเลยการฝึกอบรมทีม
+> 4. อย่าคาดหวัง 24/7 จากทีมเล็ก
+> 5. อย่าวัดแค่จำนวน alert ที่ปิด
+
+### Budget Planning Template
+
+```
+ปี 1 Budget Breakdown (ตัวอย่าง):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Personnel (60%)    ████████████████████  60%
+Technology (25%)   ████████              25%
+Training (10%)     ███                   10%
+Operations (5%)    ██                     5%
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total: ~15-25M THB/year (mid-size org)
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)

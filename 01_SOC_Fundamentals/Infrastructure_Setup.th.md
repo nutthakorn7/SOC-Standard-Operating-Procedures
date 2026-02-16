@@ -318,6 +318,31 @@ cat >> /etc/logrotate.d/wazuh << 'EOF'
 EOF
 ```
 
+## Infrastructure Sizing Guide
+
+### SIEM Sizing Calculator
+
+| Parameter | Small | Medium | Large |
+|:---|:---|:---|:---|
+| EPS (Events/sec) | 500 | 2,000 | 10,000+ |
+| Storage/day | 50 GB | 200 GB | 1 TB+ |
+| Retention | 90 days | 180 days | 365 days |
+| CPU Cores | 8 | 16 | 32+ |
+| RAM | 32 GB | 64 GB | 128+ GB |
+| Total Storage | 5 TB | 36 TB | 365+ TB |
+
+### Network Architecture
+
+```mermaid
+flowchart TD
+    A[Log Sources] --> B[Log Collector]
+    B --> C[Message Queue]
+    C --> D[SIEM Indexer]
+    D --> E[Search Head]
+    E --> F[SOC Dashboard]
+    D --> G[Cold Storage]
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

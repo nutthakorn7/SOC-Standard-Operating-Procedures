@@ -103,6 +103,25 @@ Invoke-AtomicTest T1059.001 -Cleanup
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)
 - [SOP ทดสอบ Rule](../06_Operations_Management/Detection_Rule_Testing.th.md)
 
+## Atomic Test Execution Guide
+
+### Test Environment Setup
+
+| Component | Requirements | เตรียมล่วงหน้า |
+|:---|:---|:---|
+| VM (Windows) | Win 10/11 + Sysmon | Snapshot ก่อนทดสอบ |
+| VM (Linux) | Ubuntu 22.04 | auditd configured |
+| Network | Isolated VLAN | Monitor traffic |
+| SIEM | Log collection active | Baseline alerts |
+
+### Test Result Tracking
+
+| Test ID | Technique | ผลลัพธ์ | Detection Status |
+|:---|:---|:---|:---|
+| AT-001 | T1566.001 | ✅ Success | ✅ Detected |
+| AT-002 | T1059.001 | ✅ Success | ⚠️ Partial |
+| AT-003 | T1003 | ✅ Success | ❌ Not detected |
+
 ## อ้างอิง
 
 - [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)

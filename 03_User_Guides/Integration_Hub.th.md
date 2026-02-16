@@ -122,6 +122,27 @@ graph LR
 - [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.th.md)
 - [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.th.md)
 
+## Integration Troubleshooting Guide
+
+### Common Integration Issues
+
+| ปัญหา | สาเหตุ | วิธีแก้ |
+|:---|:---|:---|
+| Connection timeout | Firewall block | เปิด port ที่จำเป็น |
+| Auth failure | Token expired | Rotate API key |
+| Data mismatch | Schema change | Update parser |
+| Rate limiting | Too many requests | Implement backoff |
+| Duplicate events | No dedup config | Enable dedup filter |
+
+### API Rate Limits by Platform
+
+| Platform | Rate Limit | Burst | Reset Window |
+|:---|:---|:---|:---|
+| VirusTotal | 4 req/min | 500/day | 24 hours |
+| AbuseIPDB | 1,000/day | 60/min | Daily |
+| Shodan | 1 req/sec | 100/min | Per second |
+| OTX | 10,000/day | N/A | Daily |
+
 ## อ้างอิง
 
 - [Sigma](https://github.com/SigmaHQ/sigma)

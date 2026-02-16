@@ -78,6 +78,27 @@ _อธิบาย root cause 2–3 ประโยค_
 
 ---
 
+## Lessons Learned Meeting Agenda
+
+### Meeting Structure (60 นาที)
+
+| เวลา | หัวข้อ | ผู้นำ |
+|:---|:---|:---|
+| 0-5 min | เปิดประชุม + กฎ | Facilitator |
+| 5-15 min | Timeline walkthrough | Incident Commander |
+| 15-30 min | What went well? | ทุกคน |
+| 30-45 min | What needs improvement? | ทุกคน |
+| 45-55 min | Action items + owners | Facilitator |
+| 55-60 min | สรุป + next steps | Incident Commander |
+
+### Action Item Tracking
+
+| # | Action | Owner | Due Date | Status |
+|:---|:---|:---|:---|:---|
+| 1 | อัปเดต playbook X | Analyst A | +2 weeks | ⬜ Open |
+| 2 | สร้าง detection rule | Engineer B | +1 week | ⬜ Open |
+| 3 | แก้ communication gap | SOC Manager | +3 days | ⬜ Open |
+
 ## ลงชื่อ
 
 ```

@@ -156,6 +156,31 @@ gantt
 | **SIEM RAM** | 16 GB base + 4 GB ต่อ 1,000 EPS | 500 EPS = 18 GB |
 | **Network** | EPS × avg log size × 8 | 100 EPS × 500B = 0.4 Mbps |
 
+## Capacity Planning Formulas
+
+### Staffing Calculator
+
+```
+Required Analysts = (Alerts/Day × Avg Handle Time) / (Working Hours × Utilization)
+
+ตัวอย่าง:
+- Alerts/Day: 500
+- Avg Handle Time: 15 min (0.25 hr)
+- Working Hours: 8 hr/shift
+- Utilization: 75%
+
+= (500 × 0.25) / (8 × 0.75) = 125 / 6 = ~21 analysts (3 shifts)
+```
+
+### Growth Projection Model
+
+| Year | Alert Volume | Analysts | Cost (THB) |
+|:---|:---|:---|:---|
+| Y1 | 500/day | 6 | 4.8M |
+| Y2 | 750/day (+50%) | 8 | 6.4M |
+| Y3 | 1,000/day (+33%) | 10 | 8.0M |
+| Y4 | 1,200/day (+20%) | 11 | 8.8M |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Team Structure](SOC_Team_Structure.en.md) — บทบาทและความรับผิดชอบ

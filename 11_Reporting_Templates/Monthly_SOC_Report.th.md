@@ -87,6 +87,26 @@ graph LR
 -   [รายงานรายไตรมาส](Quarterly_Business_Review.th.md)
 -   [แบบประเมิน SOC](../06_Operations_Management/SOC_Assessment_Checklist.th.md)
 
+## Monthly Report Content Guide
+
+### Mandatory Sections
+
+| Section | เนื้อหา | Charts |
+|:---|:---|:---|
+| Executive Summary | สรุป 1 หน้า | Key metrics |
+| Alert Statistics | Volume, types, trends | Bar + line |
+| Incidents | Summary, severity, status | Pie + table |
+| KPI Performance | ตัวชี้วัดหลัก vs target | Gauge |
+| Threat Landscape | ภัยคุกคามล่าสุด | Timeline |
+| Recommendations | ข้อเสนอปรับปรุง | Priority list |
+
+### Report Review Checklist
+- [ ] ข้อมูลถูกต้องครบถ้วน
+- [ ] Charts อ่านเข้าใจง่าย
+- [ ] Recommendations มี action items
+- [ ] เปรียบเทียบกับเดือนก่อน
+- [ ] Proofread ก่อนส่ง
+
 ## References
 -   [SANS SOC Metrics](https://www.sans.org/white-papers/)
 -   [SOC-CMM](https://www.soc-cmm.com/)

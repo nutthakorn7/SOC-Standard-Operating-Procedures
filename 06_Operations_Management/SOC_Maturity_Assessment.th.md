@@ -212,6 +212,27 @@ gantt
     Hunt Program Launch    :2026-06, 2026-08
 ```
 
+## Maturity Level Benchmarking
+
+### Industry Comparison
+
+| Level | Description | % ขององค์กรไทย |
+|:---|:---|:---|
+| Level 1 - Initial | Ad-hoc, reactive | 35% |
+| Level 2 - Managed | Basic processes defined | 30% |
+| Level 3 - Defined | Standardized SOPs | 20% |
+| Level 4 - Measured | Metrics-driven | 10% |
+| Level 5 - Optimized | Continuous improvement | 5% |
+
+### Improvement Roadmap Template
+
+| Current | Target | Gap Actions | Timeline |
+|:---|:---|:---|:---|
+| L1 | L2 | กำหนด SOP, สร้าง playbooks | 3-6 เดือน |
+| L2 | L3 | Standardize, metrics, training | 6-12 เดือน |
+| L3 | L4 | SOAR, KPI dashboards, automation | 12-18 เดือน |
+| L4 | L5 | AI/ML, threat hunting, R&D | 18-24 เดือน |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Metrics & KPIs](SOC_Metrics.en.md) — ตัวชี้วัด
