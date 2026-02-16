@@ -1,6 +1,6 @@
 # Detection Rules Index (Sigma)
 
-This directory contains **33 Sigma detection rules** mapped to the SOC Playbooks. Rules are organized by category and can be imported into any Sigma-compatible SIEM (Splunk, Elastic, Microsoft Sentinel, etc.).
+This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks. Rules are organized by category and can be imported into any Sigma-compatible SIEM (Splunk, Elastic, Microsoft Sentinel, etc.).
 
 ## How to Use
 
@@ -46,6 +46,9 @@ This directory contains **33 Sigma detection rules** mapped to the SOC Playbooks
 | [win_domain_admin_group_add.yml](win_domain_admin_group_add.yml) | User Added to Domain Admins | High | T1078 | PB-07 Privilege Escalation |
 | [win_new_user_created.yml](win_new_user_created.yml) | New Local User Created | Medium | T1136 | PB-15 Rogue Admin |
 | [win_security_log_cleared.yml](win_security_log_cleared.yml) | Windows Security Log Cleared | Critical | T1070.001 | PB-20 Log Clearing |
+| [win_security_event_log_cleared.yml](win_security_event_log_cleared.yml) | Windows Security Event Log Cleared | Critical | T1070.001 | PB-20 Log Clearing |
+| [win_network_discovery.yml](win_network_discovery.yml) | Network Discovery Commands | Medium | T1018 | PB-34 Network Discovery |
+| [win_data_collection_staging.yml](win_data_collection_staging.yml) | Data Collection and Staging | Medium | T1074 | PB-35 Data Collection |
 
 ### ☁️ Cloud Detection
 

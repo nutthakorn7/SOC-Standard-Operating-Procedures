@@ -1,6 +1,6 @@
 # ดัชนี Detection Rules (Sigma) — ภาษาไทย
 
-ไดเรกทอรีนี้มี **Sigma Detection Rule 33 กฎ** ที่ map กับ SOC Playbook แต่ละชุด สามารถ Import เข้า SIEM ที่รองรับ Sigma ได้ (Splunk, Elastic, Microsoft Sentinel ฯลฯ)
+ไดเรกทอรีนี้มี **Sigma Detection Rule 36 กฎ** ที่ map กับ SOC Playbook แต่ละชุด สามารถ Import เข้า SIEM ที่รองรับ Sigma ได้ (Splunk, Elastic, Microsoft Sentinel ฯลฯ)
 
 ## วิธีใช้งาน
 
@@ -45,6 +45,9 @@
 | [win_domain_admin_group_add.yml](win_domain_admin_group_add.yml) | User Added to Domain Admins | ตรวจจับการเพิ่มผู้ใช้เข้ากลุ่ม Domain Admins — การยกระดับสิทธิ์ | สูง | T1078 | PB-07 |
 | [win_new_user_created.yml](win_new_user_created.yml) | New Local User Created | ตรวจจับการสร้างบัญชีผู้ใช้ Local ใหม่ — อาจเป็น Backdoor | ปานกลาง | T1136 | PB-15 |
 | [win_security_log_cleared.yml](win_security_log_cleared.yml) | Security Log Cleared | ตรวจจับการลบ Windows Security Event Log — ตัวบ่งชี้สำคัญของการถูกบุกรุก | วิกฤต | T1070.001 | PB-20 |
+| [win_security_event_log_cleared.yml](win_security_event_log_cleared.yml) | Security Event Log Cleared | ตรวจจับการลบ Event Log ผ่าน System channel — เทคนิค anti-forensics | วิกฤต | T1070.001 | PB-20 |
+| [win_network_discovery.yml](win_network_discovery.yml) | Network Discovery Commands | ตรวจจับคำสั่ง network reconnaissance (net view, nltest, dsquery) | ปานกลาง | T1018 | PB-34 |
+| [win_data_collection_staging.yml](win_data_collection_staging.yml) | Data Collection/Staging | ตรวจจับการรวบรวมและ staging ข้อมูล (7z, rar, Compress-Archive) | ปานกลาง | T1074 | PB-35 |
 
 ### ☁️ Cloud Detection (การตรวจจับ Cloud)
 
