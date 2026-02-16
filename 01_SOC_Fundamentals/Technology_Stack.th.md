@@ -164,6 +164,32 @@ graph TD
 | **SMB** | Wazuh/Elastic | LimaCharlie | Shuffle | MISP | ~500K ฿/ปี |
 | **Enterprise** | Splunk/Sentinel | CrowdStrike | XSOAR | ThreatConnect | ~5M+ ฿/ปี |
 
+## Deployment Models
+
+| รูปแบบ | ข้อดี | ข้อเสีย | เหมาะกับ |
+|:---|:---|:---|:---|
+| **On-Premises** | ควบคุมเต็มที่, ข้อมูลอยู่ภายใน | ต้นทุน infra สูง | หน่วยงานรัฐ, การเงิน |
+| **Cloud-Native** | Scale ง่าย, ไม่ต้องดูแล infra | ค่าบริการต่อเนื่อง | Startup, SMB |
+| **Hybrid** | ยืดหยุ่น, แยก sensitive data ได้ | ซับซ้อนกว่า | Enterprise |
+| **MSSP** | ไม่ต้องจ้างทีมเต็ม | ควบคุมน้อยลง | SMB ที่ไม่มีทีม |
+
+## Tool Evaluation Scorecard
+
+| เครื่องมือ | Capability (1-5) | Ease of Use (1-5) | Integration (1-5) | Cost (1-5) | Total |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| [เครื่องมือ A] | [X] | [X] | [X] | [X] | [XX] |
+| [เครื่องมือ B] | [X] | [X] | [X] | [X] | [XX] |
+| [เครื่องมือ C] | [X] | [X] | [X] | [X] | [XX] |
+
+## Migration Considerations
+
+| จาก | ไปยัง | ความท้าทาย | ระยะเวลา |
+|:---|:---|:---|:---:|
+| On-prem SIEM → Cloud SIEM | Data migration, rule conversion | 2–4 เดือน |
+| Open-source → Commercial | License, training, data format | 1–3 เดือน |
+| Commercial → Open-source | Feature parity, support gap | 3–6 เดือน |
+| Single-vendor → Best-of-breed | Integration complexity | 2–4 เดือน |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

@@ -78,6 +78,47 @@ CISO:           ____________________ วันที่: __________
 
 ---
 
+## SLA Tiers
+
+| Tier | เหมาะกับ | Response (P1) | Response (P2) | Monthly Report |
+|:---|:---|:---:|:---:|:---:|
+| **Platinum** | Critical infrastructure | ≤ 15 นาที | ≤ 30 นาที | ✅ |
+| **Gold** | Enterprise | ≤ 30 นาที | ≤ 1 ชม. | ✅ |
+| **Silver** | SMB | ≤ 1 ชม. | ≤ 4 ชม. | ✅ |
+| **Bronze** | Startup | ≤ 4 ชม. | ≤ 8 ชม. | ❌ |
+
+## SLA Breach Escalation
+
+```mermaid
+graph TD
+    Breach["⏰ SLA ใกล้ Breach"] --> Warn["🟡 Warning (75% SLA)"]
+    Warn --> Lead["แจ้ง Shift Lead"]
+    Lead --> Breach2{"Breach แล้ว?"}
+    Breach2 -->|ใช่| Manager["🔴 แจ้ง SOC Manager"]
+    Breach2 -->|ไม่| Resolve["✅ แก้ไขทัน"]
+    Manager --> Report["📊 บันทึกใน SLA Report"]
+```
+
+## Penalty & Credit Structure
+
+| SLA Target | Uptime/Compliance | Credit |
+|:---|:---:|:---|
+| ≥ 99.9% | All SLAs met | 0% credit |
+| 99.0–99.8% | Minor breaches | 5% credit |
+| 95.0–98.9% | Moderate breaches | 10% credit |
+| < 95.0% | Major breaches | 15% credit + review |
+
+## SLA Reporting Template
+
+| ตัวชี้วัด | เป้าหมาย | ผลจริง | สถานะ |
+|:---|:---|:---|:---:|
+| MTTA (P1) | ≤ 15 นาที | [XX] นาที | ✅/❌ |
+| MTTA (P2) | ≤ 30 นาที | [XX] นาที | ✅/❌ |
+| MTTR (P1) | ≤ 4 ชม. | [XX] ชม. | ✅/❌ |
+| MTTR (P2) | ≤ 8 ชม. | [XX] ชม. | ✅/❌ |
+| FP Rate | < 10% | [XX]% | ✅/❌ |
+| Report Delivery | ภายใน 5 วันทำการ | [วันที่] | ✅/❌ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)

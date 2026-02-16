@@ -95,6 +95,36 @@ graph LR
 
 ---
 
+## Evaluation Scorecard
+
+| เกณฑ์ | น้ำหนัก | Vendor A | Vendor B | Vendor C |
+|:---|:---:|:---:|:---:|:---:|
+| Functionality | 30% | [X]/5 | [X]/5 | [X]/5 |
+| Integration | 20% | [X]/5 | [X]/5 | [X]/5 |
+| Ease of Use | 15% | [X]/5 | [X]/5 | [X]/5 |
+| Support | 15% | [X]/5 | [X]/5 | [X]/5 |
+| Cost (TCO 3yr) | 20% | [X]/5 | [X]/5 | [X]/5 |
+| **Total** | 100% | [XX] | [XX] | [XX] |
+
+## POC (Proof of Concept) Checklist
+
+| # | Test Case | ผลลัพธ์ที่คาดหวัง | ผ่าน? |
+|:---:|:---|:---|:---:|
+| 1 | Log ingestion ≥ 500 EPS | ไม่มี data loss | ☐ |
+| 2 | Detection rule deployment | Rule trigger ภายใน 5 นาที | ☐ |
+| 3 | API integration (SIEM↔SOAR) | Bidirectional data flow | ☐ |
+| 4 | Dashboard performance | Load < 3 วินาที | ☐ |
+| 5 | Fail-over / HA test | Auto-failover < 5 นาที | ☐ |
+
+## Negotiation Checklist
+
+- [ ] Volume discount สำหรับ multi-year
+- [ ] Free training included
+- [ ] SLA ที่มี penalty clause
+- [ ] Data portability clause (exit strategy)
+- [ ] Right to audit (security)
+- [ ] PDPA-compliant DPA signed
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [คู่มือเลือกเครื่องมือ](../01_SOC_Fundamentals/Technology_Stack.th.md)

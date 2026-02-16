@@ -122,6 +122,37 @@ tags:
 
 ---
 
+## Content Lifecycle
+
+```mermaid
+graph LR
+    Create["📝 สร้าง"] --> Review["👀 ทบทวน"]
+    Review --> Approve["✅ อนุมัติ"]
+    Approve --> Deploy["🚀 Deploy"]
+    Deploy --> Monitor["📊 ติดตาม"]
+    Monitor --> Update["🔄 อัปเดต"]
+    Update --> Review
+    Monitor --> Retire["🗑️ เลิกใช้"]
+```
+
+## Content Inventory Template
+
+| Content ID | ประเภท | ชื่อ | เวอร์ชัน | Owner | Last Review | Status |
+|:---|:---|:---|:---:|:---|:---:|:---:|
+| SIG-001 | Sigma Rule | Suspicious PowerShell | 1.2 | DetEng | 2026-01 | Active |
+| PB-001 | Playbook | Phishing Response | 2.1 | SOC Lead | 2026-01 | Active |
+| YAR-001 | YARA Rule | Ransomware Family X | 1.0 | Malware Analyst | 2025-12 | Active |
+
+## Content Quality Metrics
+
+| ตัวชี้วัด | เป้าหมาย | ปัจจุบัน |
+|:---|:---|:---|
+| Detection rules with owner assigned | 100% | [XX]% |
+| Rules reviewed in last 6 months | ≥ 80% | [XX]% |
+| Rules with MITRE mapping | ≥ 90% | [XX]% |
+| Playbooks with Mermaid diagrams | ≥ 90% | [XX]% |
+| Average FP rate across all rules | < 10% | [XX]% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ศูนย์รวมการเชื่อมต่อ](Integration_Hub.th.md)

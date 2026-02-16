@@ -161,6 +161,58 @@ flowchart TD
 
 ---
 
+## เทมเพลต Phishing Email
+
+### ระดับ 1 — ง่าย (สังเกตได้ชัด)
+
+| ส่วน | เนื้อหา |
+|:---|:---|
+| **From** | IT-Support@comp4ny.com (สะกดผิด) |
+| **Subject** | ⚠️ รหัสผ่านของคุณจะหมดอายุวันนี้! |
+| **Body** | กรุณาคลิกลิงก์ด้านล่างเพื่ออัปเดตรหัสผ่าน |
+| **Link** | `http://update-password.fake-domain.com` |
+| **Indicators** | Domain ผิด, URL ไม่ใช่ HTTPS, urgency |
+
+### ระดับ 2 — ปานกลาง
+
+| ส่วน | เนื้อหา |
+|:---|:---|
+| **From** | hr@company-benefits.com (domain คล้าย) |
+| **Subject** | อัปเดตสวัสดิการประจำปี 2026 |
+| **Body** | เอกสารแนบสำหรับทบทวนสิทธิ์สวัสดิการ |
+| **Attachment** | Benefits_2026.pdf.exe (double extension) |
+| **Indicators** | External domain, double extension |
+
+### ระดับ 3 — ยาก (Spear Phishing)
+
+| ส่วน | เนื้อหา |
+|:---|:---|
+| **From** | [ชื่อ CEO]@company.com (spoofed) |
+| **Subject** | Re: ด่วน — โอนเงินให้ vendor |
+| **Body** | ข้อความต่อจาก thread จริง, มีรายละเอียดบริษัท |
+| **Link** | `https://company-portal.attacker.com` |
+| **Indicators** | Reply-to ต่าง, unusual request |
+
+## Metrics Dashboard
+
+| ตัวชี้วัด | เดือนที่แล้ว | เดือนนี้ | เป้าหมาย |
+|:---|:---:|:---:|:---:|
+| Click Rate | [XX]% | [XX]% | < 5% |
+| Report Rate | [XX]% | [XX]% | > 60% |
+| Credential Submit Rate | [XX]% | [XX]% | < 2% |
+| ผ่าน Training | [XX]% | [XX]% | > 90% |
+
+## กำหนดการ Simulation ประจำปี
+
+| เดือน | ระดับ | กลุ่มเป้าหมาย | หัวข้อ |
+|:---|:---:|:---|:---|
+| ม.ค. | 1 | ทุกคน | Password expiry |
+| มี.ค. | 2 | Finance + HR | Invoice/Benefits fraud |
+| พ.ค. | 2 | IT + Developer | Malicious repo/package |
+| ก.ค. | 3 | C-level + Executives | CEO fraud / BEC |
+| ก.ย. | 2 | ทุกคน | Seasonal (tax/bonus) |
+| พ.ย. | 3 | High-risk users | Targeted spear phishing |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Insider Threat Program](../06_Operations_Management/Insider_Threat_Program.en.md) — ลดความเสี่ยงมนุษย์

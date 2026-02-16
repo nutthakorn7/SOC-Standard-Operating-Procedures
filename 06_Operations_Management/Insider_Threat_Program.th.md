@@ -224,6 +224,28 @@ graph TD
 | **การแจ้ง DPO** | แจ้ง DPO เมื่อพบการละเมิดข้อมูล |
 | **Retention** | ลบหลักฐานที่ไม่เกี่ยวข้องหลังปิดเคส |
 
+## Detection Use Cases
+
+| Use Case | Log Source | Detection Logic | ระดับ |
+|:---|:---|:---|:---:|
+| Mass file download | DLP/CASB | > 100 files in 1 hour | 🔴 |
+| After-hours access to sensitive data | SIEM | Access outside 08:00-18:00 + PII data | 🟡 |
+| USB mass storage on critical host | EDR | USB device class = mass storage | 🟡 |
+| Email to personal account + attachment | Email gateway | To: gmail/hotmail + attachment > 1MB | 🟡 |
+| Privilege escalation attempt | AD logs | Non-admin adding self to admin group | 🔴 |
+| Unusual VPN location | VPN logs | Login from country not in baseline | 🟡 |
+| Badge access anomaly | Physical security | Tailgating / off-hours entry | 🟢 |
+
+## Program Maturity Levels
+
+| ระดับ | ลักษณะ | ตัวอย่าง |
+|:---|:---|:---|
+| **1 — Ad-hoc** | ไม่มี program, react เมื่อเกิดเหตุ | ตรวจสอบเมื่อ HR แจ้ง |
+| **2 — Basic** | Policy + awareness training | มี acceptable use policy |
+| **3 — Defined** | Technical controls + process | DLP deployed, UEBA basics |
+| **4 — Managed** | Proactive monitoring + analytics | UEBA + risk scoring |
+| **5 — Optimized** | Predictive, integrated with HR | ML-based anomaly + HR data feed |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — การเก็บหลักฐาน

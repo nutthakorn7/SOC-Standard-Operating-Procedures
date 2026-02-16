@@ -117,6 +117,30 @@
 
 ---
 
+## QBR Agenda
+
+| เวลา | หัวข้อ | ผู้นำเสนอ |
+|:---:|:---|:---|
+| 10 นาที | สรุป Executive | SOC Manager |
+| 15 นาที | Incident Highlights + Trends | SOC Lead |
+| 10 นาที | Detection & Response Metrics | Detection Engineer |
+| 10 นาที | Threat Landscape Update | TI Analyst |
+| 10 นาที | People & Training | SOC Manager |
+| 10 นาที | Technology Roadmap | SOC Manager |
+| 10 นาที | Budget Review | SOC Manager |
+| 15 นาที | Q&A + Next Quarter Goals | ทุกคน |
+
+## QBR Metrics Dashboard
+
+| Category | ตัวชี้วัด | Q ก่อน | Q นี้ | เป้า | สถานะ |
+|:---|:---|:---:|:---:|:---:|:---:|
+| **Detection** | MTTD | [XX]m | [XX]m | ≤60m | ✅/❌ |
+| **Response** | MTTR | [XX]m | [XX]m | ≤240m | ✅/❌ |
+| **Efficiency** | FP Rate | [XX]% | [XX]% | <10% | ✅/❌ |
+| **Coverage** | MITRE Coverage | [XX]% | [XX]% | ≥80% | ✅/❌ |
+| **People** | Analyst Turnover | [XX]% | [XX]% | <15% | ✅/❌ |
+| **SLA** | SLA Compliance | [XX]% | [XX]% | ≥95% | ✅/❌ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [รายงานประจำเดือน](Monthly_SOC_Report.th.md)

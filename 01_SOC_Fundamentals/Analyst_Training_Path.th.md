@@ -145,6 +145,45 @@ Cert: __________________  วันที่ผ่าน: ________
 
 ---
 
+## Training Modules
+
+| ลำดับ | โมดูล | ระยะเวลา | บังคับ/เลือก |
+|:---|:---|:---:|:---:|
+| 1 | Networking Fundamentals | 2 สัปดาห์ | บังคับ |
+| 2 | Operating Systems (Windows + Linux) | 2 สัปดาห์ | บังคับ |
+| 3 | SIEM Operations | 1 สัปดาห์ | บังคับ |
+| 4 | Threat Intelligence Basics | 1 สัปดาห์ | บังคับ |
+| 5 | Incident Response Process | 1 สัปดาห์ | บังคับ |
+| 6 | Malware Analysis (Intro) | 2 สัปดาห์ | เลือก |
+| 7 | Forensics (Intro) | 2 สัปดาห์ | เลือก |
+| 8 | Cloud Security Basics | 1 สัปดาห์ | บังคับ |
+
+## Certification Roadmap
+
+```mermaid
+graph TD
+    Start["🎯 เริ่มต้น"] --> BTL1["BTL1<br/>(0-6 เดือน)"]
+    BTL1 --> CCD["CCD<br/>(6-12 เดือน)"]
+    CCD --> Choose{"เลือกสาย?"}
+    Choose -->|IR| GCIH["GCIH / eCIR"]
+    Choose -->|Detection| GCIA["GCIA / CySA+"]
+    Choose -->|Forensics| GCFE["GCFE / eCDFP"]
+    GCIH --> Expert["OSCP / GREM"]
+    GCIA --> Expert
+    GCFE --> Expert
+```
+
+## Hands-On Labs
+
+| Lab | เครื่องมือ | ทักษะ | ระยะเวลา |
+|:---|:---|:---|:---:|
+| Alert Triage Simulation | SIEM (Wazuh) | คัดกรอง alert | 2 ชม. |
+| Phishing Analysis | Email headers + sandbox | วิเคราะห์ phishing | 1 ชม. |
+| Malware Investigation | VT + Any.Run + sandbox | วิเคราะห์ malware | 2 ชม. |
+| Log Analysis Challenge | ELK/Splunk queries | เขียน query | 2 ชม. |
+| IR Tabletop | Scenario-based | ตัดสินใจ IR | 2 ชม. |
+| Threat Hunting | MITRE + Jupyter | Proactive hunting | 3 ชม. |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

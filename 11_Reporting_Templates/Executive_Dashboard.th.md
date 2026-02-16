@@ -83,6 +83,37 @@
 
 ---
 
+## Dashboard Panels
+
+### Panel 1: Security Posture Score
+
+| หมวด | คะแนน (1-10) | แนวโน้ม | สถานะ |
+|:---|:---:|:---:|:---:|
+| Detection Coverage | [X] | ↑ | 🟢 |
+| Response Readiness | [X] | → | 🟡 |
+| Vulnerability Mgmt | [X] | ↑ | 🟢 |
+| Compliance | [X] | → | 🟡 |
+| People & Training | [X] | ↓ | 🔴 |
+| **Overall** | **[X.X]** | | |
+
+### Panel 2: Threat Summary
+
+| ประเภท | จำนวนเดือนนี้ | เทียบเดือนก่อน | แนวโน้ม |
+|:---|:---:|:---:|:---:|
+| Phishing attempts | [XX] | +/-[XX]% | ↑/↓ |
+| Malware detections | [XX] | +/-[XX]% | ↑/↓ |
+| Unauthorized access | [XX] | +/-[XX]% | ↑/↓ |
+| Data incidents | [XX] | +/-[XX]% | ↑/↓ |
+
+### Panel 3: Budget vs Spend
+
+| หมวด | งบตั้ง | ใช้จริง | % ใช้ | คงเหลือ |
+|:---|:---:|:---:|:---:|:---:|
+| Personnel | [XX] ฿ | [XX] ฿ | [XX]% | [XX] ฿ |
+| Technology | [XX] ฿ | [XX] ฿ | [XX]% | [XX] ฿ |
+| Training | [XX] ฿ | [XX] ฿ | [XX]% | [XX] ฿ |
+| **Total** | [XX] ฿ | [XX] ฿ | [XX]% | [XX] ฿ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)

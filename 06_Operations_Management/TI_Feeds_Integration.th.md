@@ -215,6 +215,38 @@ CommonSecurityLog
 
 ---
 
+## Feed Quality Assessment
+
+| Feed | ประเภท | Volume/วัน | FP Rate | Actionable? | ค่าใช้จ่าย |
+|:---|:---|:---:|:---:|:---:|:---|
+| AlienVault OTX | Open | ~1,000 IoCs | 15–25% | ปานกลาง | ฟรี |
+| Abuse.ch (URLhaus/ThreatFox) | Open | ~500 | 5–10% | สูง | ฟรี |
+| MISP Community | Open | ~200 | 10–15% | สูง | ฟรี |
+| VirusTotal | Commercial | Unlimited | < 5% | สูงมาก | $$$ |
+| Recorded Future | Commercial | ~2,000 | < 3% | สูงมาก | $$$ |
+
+## TI Feed Integration Architecture
+
+```mermaid
+graph TD
+    Feeds["📡 TI Feeds"] --> MISP["🔄 MISP (Aggregator)"]
+    MISP --> Enrich["📊 Enrich + Dedup"]
+    Enrich --> SIEM["🖥️ SIEM (Correlation)"]
+    Enrich --> EDR["🛡️ EDR (Block)"]
+    Enrich --> FW["🔥 Firewall (Block)"]
+    SIEM --> Alert["⚠️ Alert"]
+    Alert --> SOAR["🤖 SOAR"]
+```
+
+## Feed Lifecycle Management
+
+| กิจกรรม | ความถี่ |
+|:---|:---|
+| ทบทวน feed quality + FP rate | รายเดือน |
+| ลบ IoCs ที่หมดอายุ | อัตโนมัติ (TTL) |
+| ประเมิน feed ใหม่ | รายไตรมาส |
+| ทบทวน commercial feed ROI | รายปี |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [Detection Rules (Sigma)](../07_Detection_Rules/README.md)

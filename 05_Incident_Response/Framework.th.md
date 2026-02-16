@@ -208,6 +208,37 @@ graph TD
 
 ---
 
+## IR Maturity Indicators
+
+| ระดับ | ลักษณะ | ตัวชี้วัด |
+|:---|:---|:---|
+| **1 — Reactive** | ตอบสนองแบบ ad-hoc | ไม่มี MTTD/MTTR tracking |
+| **2 — Repeatable** | มี playbook, มี process | MTTD < 24 ชม. |
+| **3 — Defined** | Process สม่ำเสมอ, มี metrics | MTTD < 4 ชม., MTTR < 24 ชม. |
+| **4 — Managed** | Data-driven, automated triage | MTTD < 1 ชม., MTTR < 8 ชม. |
+| **5 — Optimizing** | Continuous improvement, proactive | MTTD < 15 นาที, MTTR < 4 ชม. |
+
+## Incident Severity Classification Quick Reference
+
+| ระดับ | เกณฑ์ | ตัวอย่าง | Response SLA |
+|:---|:---|:---|:---:|
+| 🔴 **P1 — Critical** | Business-critical ล่ม, data breach confirmed | Ransomware, active exfil | 15 นาที |
+| 🟠 **P2 — High** | ระบบสำคัญถูกกระทบ, possible breach | Malware on server, lateral movement | 30 นาที |
+| 🟡 **P3 — Medium** | Suspicious activity, no confirmed impact | Phishing click, policy violation | 2 ชม. |
+| 🟢 **P4 — Low** | Info only, best effort | Failed login spike, scan activity | 8 ชม. |
+
+## Lessons Learned Integration
+
+```mermaid
+graph LR
+    Incident["🚨 Incident"] --> Resolve["✅ Resolve"]
+    Resolve --> LL["📝 Lessons Learned"]
+    LL --> Update["🔄 Update Playbooks"]
+    Update --> Rules["📋 New Detection Rules"]
+    Rules --> Train["📚 Training Update"]
+    Train --> Better["🎯 ลด MTTD/MTTR"]
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [Tier 1 Runbook](Tier1_Runbook.th.md) — ขั้นตอนคัดกรองโดยละเอียด

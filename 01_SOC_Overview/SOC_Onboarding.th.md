@@ -180,6 +180,42 @@
 
 ---
 
+## Onboarding Timeline
+
+| สัปดาห์ | หัวข้อ | กิจกรรม | ผู้ดูแล |
+|:---|:---|:---|:---|
+| **สัปดาห์ 1** | Orientation | ทัวร์ SOC, แนะนำทีม, เข้าถึงระบบ | SOC Manager |
+| **สัปดาห์ 2** | Tools | SIEM training, EDR console, ticketing | Tier 2 Mentor |
+| **สัปดาห์ 3** | Process | Playbooks, escalation, shift handoff | Shift Lead |
+| **สัปดาห์ 4** | Shadow | เข้ากะจริง (shadow Tier 1 analyst) | Buddy |
+| **สัปดาห์ 5-6** | Supervised | Triage alerts ด้วยตัวเอง + review | Shift Lead |
+| **สัปดาห์ 7-8** | Independent | ทำงานอิสระ + ประเมินผล | SOC Manager |
+
+## Day 1 Checklist
+
+| # | รายการ | สถานะ |
+|:---:|:---|:---:|
+| 1 | Badge / Physical access สำเร็จ | ☐ |
+| 2 | AD account + email เปิดใช้งาน | ☐ |
+| 3 | VPN access ทดสอบแล้ว | ☐ |
+| 4 | SIEM console access | ☐ |
+| 5 | EDR console access | ☐ |
+| 6 | Ticketing system access | ☐ |
+| 7 | Chat/Teams channel เข้าร่วมแล้ว | ☐ |
+| 8 | Wiki/Knowledge base access | ☐ |
+| 9 | ลงชื่อ NDA + Acceptable Use Policy | ☐ |
+| 10 | พบ mentor/buddy | ☐ |
+
+## Competency Assessment
+
+| ทักษะ | ระดับที่คาดหวัง (30 วัน) | วิธีประเมิน |
+|:---|:---|:---|
+| Alert triage | Triage ได้ 10+ alerts/ชม. | สังเกต + review |
+| SIEM query | เขียน basic query ได้ | Lab exercise |
+| Playbook execution | ทำตาม playbook ได้ถูกต้อง | Tabletop |
+| Escalation judgment | รู้เมื่อไหร่ต้อง escalate | Scenario test |
+| Documentation | บันทึก investigation ได้ครบ | Ticket review |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   SOC Charter — ภารกิจและโครงสร้าง

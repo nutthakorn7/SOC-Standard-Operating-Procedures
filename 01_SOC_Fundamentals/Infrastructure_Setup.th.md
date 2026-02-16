@@ -270,6 +270,54 @@ docker compose up -d
 
 ---
 
+## Performance Tuning
+
+| ส่วน | ปัญหา | วิธีปรับ |
+|:---|:---|:---|
+| **SIEM Indexing** | Query ช้า | เพิ่ม RAM, ปรับ shard size |
+| **Log Ingestion** | Buffer overflow | เพิ่ม queue size, scale nodes |
+| **Dashboard** | Load ช้า | ลด time range, ใช้ summary index |
+| **Agent** | CPU สูงบน endpoint | ปรับ scan interval, exclude paths |
+| **Alerting** | Alert delay | ลด evaluation interval |
+
+## Backup & Recovery
+
+| ส่วน | Backup Strategy | Recovery Time |
+|:---|:---|:---:|
+| SIEM Config | Daily snapshot → S3/NFS | < 1 ชม. |
+| Detection Rules | Git repository | < 15 นาที |
+| Dashboard/Reports | Export JSON → Git | < 30 นาที |
+| Agent Config | Centralized config mgmt | < 1 ชม. |
+| TheHive Cases | DB dump + Elasticsearch snapshot | < 2 ชม. |
+
+## การ Hardening SIEM Server
+
+```bash
+# 1. Firewall — อนุญาตเฉพาะ port ที่จำเป็น
+ufw allow 1514/tcp  # Agent communication
+ufw allow 1515/tcp  # Agent enrollment
+ufw allow 443/tcp   # Web UI
+ufw deny incoming
+ufw enable
+
+# 2. SSL/TLS สำหรับ agent communication
+# (Wazuh ตั้งค่าอัตโนมัติระหว่างติดตั้ง)
+
+# 3. Disable root login
+sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+systemctl restart sshd
+
+# 4. Log rotation
+cat >> /etc/logrotate.d/wazuh << 'EOF'
+/var/ossec/logs/*.log {
+    weekly
+    rotate 12
+    compress
+    missingok
+}
+EOF
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

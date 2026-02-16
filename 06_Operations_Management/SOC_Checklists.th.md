@@ -94,6 +94,42 @@
 
 ---
 
+## เช็คลิสต์รายสัปดาห์
+
+| # | รายการ | ผู้รับผิดชอบ | สถานะ |
+|:---:|:---|:---|:---:|
+| 1 | ทบทวน top alerts ของสัปดาห์ | SOC Manager | ☐ |
+| 2 | Review false positive trends | Detection Engineer | ☐ |
+| 3 | อัปเดต TI feeds สถานะ | TI Analyst | ☐ |
+| 4 | ตรวจสอบ log source health | Tier 1 | ☐ |
+| 5 | Review open tickets > 48h | Shift Lead | ☐ |
+| 6 | ทบทวน escalations ของสัปดาห์ | SOC Manager | ☐ |
+| 7 | อัปเดต SOC wiki/knowledge base | ทีม SOC | ☐ |
+
+## เช็คลิสต์รายเดือน
+
+| # | รายการ | ผู้รับผิดชอบ | สถานะ |
+|:---:|:---|:---|:---:|
+| 1 | สรุป Monthly SOC Report | SOC Manager | ☐ |
+| 2 | ทบทวน SLA compliance | SOC Manager | ☐ |
+| 3 | ทบทวน detection rule performance | Detection Engineer | ☐ |
+| 4 | อัปเดต playbooks ที่จำเป็น | SOC Lead | ☐ |
+| 5 | ทบทวน access control | SOC Manager | ☐ |
+| 6 | ทดสอบ backup/restore | IT + SOC | ☐ |
+| 7 | ทบทวน vendor/tool licenses | SOC Manager | ☐ |
+| 8 | จัด team meeting / retrospective | SOC Manager | ☐ |
+
+## เช็คลิสต์รายไตรมาส
+
+| # | รายการ | ผู้รับผิดชอบ | สถานะ |
+|:---:|:---|:---|:---:|
+| 1 | จัด Tabletop Exercise | SOC Manager | ☐ |
+| 2 | ทบทวน SOC Maturity Assessment | SOC Manager + CISO | ☐ |
+| 3 | ทบทวน MITRE ATT&CK coverage | Detection Engineer | ☐ |
+| 4 | ทดสอบ IR playbooks (purple team) | SOC Team | ☐ |
+| 5 | ทบทวน staffing/capacity | SOC Manager | ☐ |
+| 6 | Compliance gap review | Compliance | ☐ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [คู่มือ Tier 1](../05_Incident_Response/Tier1_Runbook.th.md)

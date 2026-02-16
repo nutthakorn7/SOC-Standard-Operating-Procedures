@@ -120,6 +120,60 @@
 
 ---
 
+## Automation Priority Matrix
+
+| จำนวน/เดือน × เวลาต่อครั้ง | ง่าย | ปานกลาง | ซับซ้อน |
+|:---|:---:|:---:|:---:|
+| **สูง (>500 ครั้ง)** | 🔴 Automate Now | 🔴 Automate Now | 🟡 Plan |
+| **กลาง (100-500)** | 🔴 Automate Now | 🟡 Plan | 🟢 Backlog |
+| **ต่ำ (<100)** | 🟡 Plan | 🟢 Backlog | ⚪ Skip |
+
+## Automation Recipes
+
+### Recipe 1: Auto-Enrich Alert
+
+```
+Trigger: New alert created
+Steps:
+  1. Extract IOCs (IP, hash, domain, URL)
+  2. Query VT, AbuseIPDB, URLhaus
+  3. Add enrichment to alert notes
+  4. Update severity based on results
+  5. If malicious → auto-assign to Tier 2
+```
+
+### Recipe 2: Auto-Close Known FP
+
+```
+Trigger: Alert matches known-FP pattern
+Steps:
+  1. Check alert against FP whitelist
+  2. If match → add note "Auto-closed: Known FP [ID]"
+  3. Close ticket
+  4. Log for monthly FP review
+```
+
+### Recipe 3: Auto-Quarantine Malware
+
+```
+Trigger: EDR alert with high confidence malware
+Steps:
+  1. Verify confidence score ≥ 90%
+  2. Isolate host via EDR API
+  3. Create incident ticket
+  4. Notify Shift Lead (Slack + email)
+  5. Collect forensic snapshot
+```
+
+## Automation KPIs
+
+| ตัวชี้วัด | เป้าหมาย | ปัจจุบัน |
+|:---|:---|:---|
+| Automation Rate | ≥ 60% ของ alerts | [XX]% |
+| Auto-enrichment Success Rate | ≥ 95% | [XX]% |
+| Auto-close FP Rate | ≥ 30% ของ total FP | [XX]% |
+| เวลาที่ analyst ประหยัดได้/เดือน | ≥ 40 ชม. | [XX] ชม. |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOAR Playbooks](../05_Incident_Response/SOAR_Playbooks.en.md)

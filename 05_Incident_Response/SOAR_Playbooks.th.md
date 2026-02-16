@@ -316,6 +316,56 @@ graph LR
 - [ ] Notification ส่งไปถูกช่องทาง
 - [ ] Performance ยอมรับได้ (< 2 นาทีต่อ playbook run)
 
+## Troubleshooting SOAR Playbooks
+
+| ปัญหา | สาเหตุ | วิธีแก้ |
+|:---|:---|:---|
+| Playbook ไม่ trigger | Trigger condition ไม่ match | ตรวจสอบ filter/regex |
+| API call timeout | Service ช้า/ล่ม | เพิ่ม retry + timeout |
+| ผลลัพธ์ผิดพลาด | Input format ไม่ถูก | Validate input ก่อน process |
+| Notification ไม่ส่ง | Webhook URL เปลี่ยน | อัปเดต config |
+| Memory/CPU สูง | Loop ไม่มี limit | เพิ่ม max iterations |
+
+## Sub-Playbook Design Pattern
+
+```mermaid
+graph TD
+    Main["🎯 Main Playbook"] --> Enrich["📊 Enrichment Sub-PB"]
+    Main --> Contain["🔒 Containment Sub-PB"]
+    Main --> Notify["📢 Notification Sub-PB"]
+    Enrich --> VT["VirusTotal"]
+    Enrich --> AIPDB["AbuseIPDB"]
+    Enrich --> MISP["MISP"]
+    Contain --> Block["Block IP/Domain"]
+    Contain --> Isolate["Isolate Host"]
+    Notify --> Slack["Slack"]
+    Notify --> Email["Email"]
+    Notify --> Ticket["Create Ticket"]
+```
+
+## Version Control สำหรับ Playbooks
+
+| ฟิลด์ | คำอธิบาย |
+|:---|:---|
+| **Playbook ID** | SOAR-PB-NNN |
+| **Version** | Semantic versioning (1.0.0) |
+| **Change Log** | บันทึกการเปลี่ยนแปลง |
+| **Tested Date** | วันที่ทดสอบล่าสุด |
+| **Approved By** | ผู้อนุมัติ |
+| **Next Review** | กำหนดทบทวน |
+
+## ROI Calculator
+
+```
+Annual Time Saved = (Alerts/Year × Manual Time/Alert) - (Alerts/Year × Auto Time/Alert)
+Cost Saved = Time Saved × Analyst Hourly Rate
+ROI = (Cost Saved - SOAR License Cost) / SOAR License Cost × 100%
+
+ตัวอย่าง:
+  10,000 alerts/ปี × (15 นาที - 2 นาที) = 2,167 ชั่วโมง/ปี
+  2,167 × 500 ฿/ชม. = 1,083,500 ฿ ประหยัดได้
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [IR Playbooks](Playbooks/)

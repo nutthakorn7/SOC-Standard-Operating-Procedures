@@ -187,6 +187,49 @@ sequenceDiagram
 
 ---
 
+## Detection Gap Remediation
+
+| Gap ที่พบ | ประเภท | วิธีแก้ | เวลา |
+|:---|:---|:---|:---:|
+| ไม่มี rule สำหรับ technique | Rule gap | สร้าง Sigma rule | 1–2 วัน |
+| Rule มีแต่ไม่ trigger | Logic error | ปรับ threshold/condition | 0.5 วัน |
+| Log ไม่ครอบคลุม | Data gap | เพิ่ม log source | 3–5 วัน |
+| Alert ถูก suppress | Tuning error | ทบทวน suppression list | 0.5 วัน |
+| ไม่มี playbook | Process gap | สร้าง playbook | 2–3 วัน |
+
+## Atomic Test Execution Workflow
+
+```mermaid
+graph LR
+    Select["เลือก Technique"] --> Prep["เตรียม Lab"]
+    Prep --> Notify["แจ้ง SOC"]
+    Notify --> Execute["รัน Test"]
+    Execute --> Observe["สังเกต Detection"]
+    Observe --> Document["บันทึกผล"]
+    Document --> Gap["วิเคราะห์ Gap"]
+    Gap --> Fix["สร้าง/ปรับ Rule"]
+    Fix --> Retest["ทดสอบซ้ำ"]
+```
+
+## Safety Guidelines
+
+| ✅ ควรทำ | ❌ ไม่ควรทำ |
+|:---|:---|
+| แจ้ง SOC ล่วงหน้า + ระบุ window | รัน test โดยไม่แจ้ง |
+| ใช้ test accounts/hosts เท่านั้น | ใช้ production accounts |
+| มี rollback plan ก่อนเริ่ม | รัน destructive tests โดยไม่มี backup |
+| บันทึกทุก step ที่ทำ | ลืมทำ cleanup หลังทดสอบ |
+| จำกัดขอบเขตตาม scope | ขยายขอบเขตโดยไม่ได้รับอนุมัติ |
+
+## Report Template Summary
+
+| เกณฑ์ | Red Team | Blue Team | Purple (ร่วมกัน) |
+|:---|:---|:---|:---|
+| **Techniques ทดสอบ** | [จำนวน] | – | [จำนวน] |
+| **ตรวจจับได้** | – | [จำนวน]/[ทั้งหมด] | Detection Rate: [XX]% |
+| **Gaps** | – | [จำนวน] | Priority: [P1/P2/P3] |
+| **Rules สร้างใหม่** | – | [จำนวน] | ETA Deploy: [วันที่] |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Simulation & Testing Guide](../08_Simulation_Testing/Simulation_Guide.en.md)
