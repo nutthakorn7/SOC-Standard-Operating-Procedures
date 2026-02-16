@@ -165,6 +165,8 @@ nav:
       - Mobile Compromise: 05_Incident_Response/Playbooks/Mobile_Compromise.en.md
       - Shadow IT: 05_Incident_Response/Playbooks/Shadow_IT.en.md
       - OT/ICS Incident: 05_Incident_Response/Playbooks/OT_ICS_Incident.en.md
+      - Network Discovery: 05_Incident_Response/Playbooks/Network_Discovery.en.md
+      - Data Collection: 05_Incident_Response/Playbooks/Data_Collection.en.md
     - Playbooks (TH):
       - Phishing: 05_Incident_Response/Playbooks/Phishing.th.md
       - Ransomware: 05_Incident_Response/Playbooks/Ransomware.th.md
@@ -199,6 +201,8 @@ nav:
       - Mobile Compromise: 05_Incident_Response/Playbooks/Mobile_Compromise.th.md
       - Shadow IT: 05_Incident_Response/Playbooks/Shadow_IT.th.md
       - OT/ICS Incident: 05_Incident_Response/Playbooks/OT_ICS_Incident.th.md
+      - Network Discovery: 05_Incident_Response/Playbooks/Network_Discovery.th.md
+      - Data Collection: 05_Incident_Response/Playbooks/Data_Collection.th.md
   - 📊 Operations:
     # --- Team & Daily Operations ---
     - SOC Team Structure: 06_Operations_Management/SOC_Team_Structure.en.md
