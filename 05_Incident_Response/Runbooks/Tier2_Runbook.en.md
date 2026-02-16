@@ -380,4 +380,4 @@ Analyst: [YOUR NAME]
 - [Tier 1 Runbook](Tier1_Runbook.en.md)
 - [Forensic Investigation](Forensic_Investigation.en.md)
 - [Evidence Collection](Evidence_Collection.en.md)
-- [All Playbooks (PB-01 to PB-35)](Playbooks/)
+- [All Playbooks (PB-01 to PB-50)](Playbooks/)

@@ -21,7 +21,7 @@
 This repository provides **vendor-agnostic, production-ready SOC Standard Operating Procedures** that any organization can adopt to build or mature their Security Operations Center. All content follows NIST, MITRE ATT&CK, and ISO 27001/27035 frameworks.
 
 ### WHAT — Scope
-- 20 Incident Response Playbooks (PB-01 to PB-20)
+- 50 Incident Response Playbooks (PB-01 to PB-50)
 - Operations Management (Shift Handoff, KPIs, Team Structure, CTI, TLP)
 - Detection Engineering (Sigma rules, YARA signatures)
 - Simulation & Purple Teaming
@@ -188,7 +188,7 @@ External links to authoritative sources. Always include at least 2 references.
 
 | Property | Rule |
 |---|---|
-| **ID Format** | `PB-XX` (e.g., PB-01, PB-02 ... PB-20) |
+| **ID Format** | `PB-XX` (e.g., PB-01, PB-02 ... PB-50) |
 | **Standard Sections** | Analysis → Containment → Eradication → Recovery |
 | **Mermaid Flow** | Must visualize the triage/decision process |
 | **MITRE ATT&CK** | Reference relevant Technique IDs (e.g., T1566, T1078) |
@@ -196,7 +196,7 @@ External links to authoritative sources. Always include at least 2 references.
 | **Checklists** | Use `- [ ]` for operational steps |
 | **Cross-Links** | Link to IR Framework, Incident Report template, related PBs |
 
-### Playbook Index (PB-01 to PB-20)
+### Playbook Index (PB-01 to PB-50)
 ```
 PB-01 Phishing               PB-11 Suspicious Script
 PB-02 Ransomware             PB-12 Lateral Movement
@@ -510,7 +510,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 This repository provides **vendor-agnostic, production-ready SOC Standard Operating Procedures** that any organization can adopt to build or mature their Security Operations Center. All content follows NIST, MITRE ATT&CK, and ISO 27001/27035 frameworks.
 
 ### WHAT — Scope
-- 20 Incident Response Playbooks (PB-01 to PB-20)
+- 50 Incident Response Playbooks (PB-01 to PB-50)
 - Operations Management (Shift Handoff, KPIs, Team Structure, CTI, TLP)
 - Detection Engineering (Sigma rules, YARA signatures)
 - Simulation & Purple Teaming
@@ -677,7 +677,7 @@ External links to authoritative sources. Always include at least 2 references.
 
 | Property | Rule |
 |---|---|
-| **ID Format** | `PB-XX` (e.g., PB-01, PB-02 ... PB-20) |
+| **ID Format** | `PB-XX` (e.g., PB-01, PB-02 ... PB-50) |
 | **Standard Sections** | Analysis → Containment → Eradication → Recovery |
 | **Mermaid Flow** | Must visualize the triage/decision process |
 | **MITRE ATT&CK** | Reference relevant Technique IDs (e.g., T1566, T1078) |
@@ -685,7 +685,7 @@ External links to authoritative sources. Always include at least 2 references.
 | **Checklists** | Use `- [ ]` for operational steps |
 | **Cross-Links** | Link to IR Framework, Incident Report template, related PBs |
 
-### Playbook Index (PB-01 to PB-20)
+### Playbook Index (PB-01 to PB-50)
 ```
 PB-01 Phishing               PB-11 Suspicious Script
 PB-02 Ransomware             PB-12 Lateral Movement

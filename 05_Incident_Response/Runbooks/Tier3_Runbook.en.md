@@ -425,5 +425,5 @@ Confidence: [High/Medium/Low]
 - [Threat Hunting Playbook](Threat_Hunting_Playbook.en.md)
 - [Tier 1 Runbook](Tier1_Runbook.en.md)
 - [Tier 2 Runbook](Tier2_Runbook.en.md)
-- [All Playbooks (PB-01 to PB-35)](Playbooks/)
+- [All Playbooks (PB-01 to PB-50)](Playbooks/)
 - [Sigma Rules Index](../08_Detection_Engineering/README.en.md)
