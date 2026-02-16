@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.11.0] - 2026-02-17
+
+### Added
+- **ISO 27001 Controls Mapping** (EN/TH) — Maps 52/93 Annex A controls to SOC documents with coverage chart and gap analysis
+- **PCI-DSS v4.0 SOC Requirements** (EN/TH) — Covers Req 10, 11, 12.10 with audit preparation checklist and v3.2.1→v4.0 migration guide
+- **Playbook Quick Reference Card** — Print-friendly 1-page summary of all 50 playbooks with severity, key actions, escalation guide, fillable contacts
+- **MITRE ATT&CK Coverage Map** in README — Shows 12/14 tactics covered across 50 playbooks with heatmap indicators
+
+### Changed
+- **README Playbook Grouping** — Reorganized from 7 numeric groups (PB-01→10, etc.) to 7 attack-category groups (Email, Malware, Identity, Network, Cloud, Data, Physical) matching mkdocs nav
+- **mkdocs.yml Navigation** — Playbooks grouped by attack category with PB IDs; Operations split into 5 named sub-groups with emoji headers
+- **Stale number fixes** — Corrected 14+ stale references across 6+ files:
+  - Sigma Rules: 50→36 (README badge + table + section header)
+  - Playbooks: 20→50 (SOC_101 EN/TH, Quickstart EN, AGENTS.md, SOC_Manual)
+  - PB range: PB-01 to PB-20→PB-50 (AGENTS.md, SOC_Manual)
+- **IBM statistics updated** — 204→194 days breach detection, $4.45M→$4.88M cost (IBM 2024) in SOC_101 EN/TH
+
+---
+
 ## [2.10.0] - 2026-02-16
 
 ### Added

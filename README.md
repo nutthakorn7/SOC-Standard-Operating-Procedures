@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/📄_Documents-274-blue?style=for-the-badge" alt="Documents">
+  <img src="https://img.shields.io/badge/📄_Documents-279-blue?style=for-the-badge" alt="Documents">
   <img src="https://img.shields.io/badge/🛡️_Playbooks-50-red?style=for-the-badge" alt="Playbooks">
   <img src="https://img.shields.io/badge/🔍_Sigma_Rules-36-orange?style=for-the-badge" alt="Sigma Rules">
   <img src="https://img.shields.io/badge/🌐_Bilingual-EN%2FTH-green?style=for-the-badge" alt="Bilingual">
@@ -44,7 +44,7 @@
 
 | Category | Count | Highlights |
 |:---|:---:|:---|
-| 📄 Documents (EN+TH) | 274 | Bilingual, vendor-agnostic SOPs |
+| 📄 Documents (EN+TH) | 279 | Bilingual, vendor-agnostic SOPs |
 | 🛡️ IR Playbooks | 50 | PB-01 Phishing → PB-50 Unauthorized Scanning, MITRE mapped |
 | 🔍 Sigma Detection Rules | 36 | Ready-to-import SIEM rules |
 | 🧬 YARA Rules | 16 | File-based threat detection |
