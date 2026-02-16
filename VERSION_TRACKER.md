@@ -133,10 +133,10 @@
 |:---|:---:|:---:|:---:|
 | Getting Started | 3 | ✅ | 2027-02 |
 | SOC Fundamentals | 6 | ✅ | 2027-02 |
-| Incident Response | 14 + 35 playbooks | ✅ | 2027-02 |
+| Incident Response | 14 + 50 playbooks | ✅ | 2027-02 |
 | Operations Management | 31 | ✅ | 2027-02 |
 | Testing & Training | 7 | ✅ | 2027-02 |
-| Compliance | 5 | ✅ | 2027-02 |
+| Compliance | 7 | ✅ | 2027-02 |
 | Reports & Templates | 6 | ✅ | 2027-02 |
 | **Total** | **107+** | **✅ 100%** | **2027-02** |
 

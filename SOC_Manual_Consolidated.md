@@ -26240,7 +26240,7 @@ graph TD
     end
 
     subgraph Phase3["Phase 3: วิ่ง (เดือน 6-12)"]
-        C1[ใช้ Playbook ครบ 20 ชุด]
+        C1[ใช้ Playbook ครบ 50 ชุด]
         C2[EDR ครบทุก Endpoint]
         C3[Purple Team ครั้งแรก]
         C4[รายงาน KPI รายเดือน]
@@ -26333,8 +26333,8 @@ Think of it as:
 ## 2. Why Does Your Organization Need a SOC?
 
 ### The Reality of Cyber Threats
--   **Average time to detect a breach**: 204 days (without a SOC)
--   **Average cost of a data breach**: $4.45 million USD (IBM, 2023)
+-   **Average time to detect a breach**: 194 days (without a SOC) — *IBM, 2024*
+-   **Average cost of a data breach**: $4.88 million USD — *IBM Cost of a Data Breach Report, 2024*
 -   **Ransomware attacks**: Every 11 seconds, a business is hit
 -   **Regulatory requirements**: PDPA (Thailand), GDPR (EU), PCI-DSS require security monitoring
 
@@ -26552,8 +26552,8 @@ graph LR
 ## 2. ทำไมองค์กรของคุณถึงต้องมี SOC?
 
 ### ความเป็นจริงของภัยคุกคามไซเบอร์
--   **เวลาเฉลี่ยในการตรวจพบการถูกแฮก**: 204 วัน (ถ้าไม่มี SOC)
--   **ค่าเสียหายเฉลี่ยจากข้อมูลรั่วไหล**: 4.45 ล้านเหรียญสหรัฐ (IBM, 2023)
+-   **เวลาเฉลี่ยในการตรวจพบการถูกแฮก**: 194 วัน (ถ้าไม่มี SOC) — *IBM, 2024*
+-   **ค่าเสียหายเฉลี่ยจากข้อมูลรั่วไหล**: 4.88 ล้านเหรียญสหรัฐ — *IBM Cost of a Data Breach Report, 2024*
 -   **Ransomware**: ทุกๆ 11 วินาที มีธุรกิจถูกโจมตี
 -   **กฎหมาย**: PDPA (ไทย), GDPR (ยุโรป), PCI-DSS กำหนดให้ต้องมีการเฝ้าระวัง
 
@@ -26663,7 +26663,7 @@ graph LR
 ### Phase 3: ตอบสนอง (เดือน 6-12) — "วิ่ง"
 **เป้าหมาย**: ตอบสนองต่อ Incident จริงได้อย่างมีประสิทธิภาพ
 
-- [ ] ใช้ Playbook ทั้ง 20 ชุดจาก Repository นี้
+- [ ] ใช้ Playbook ทั้ง 50 ชุดจาก Repository นี้
 - [ ] จ้าง Tier 2 Incident Responders
 - [ ] ติดตั้ง EDR บนทุก Endpoint
 - [ ] จัด Purple Team ครั้งแรก ([Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md))

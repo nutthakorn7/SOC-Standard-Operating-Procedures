@@ -89,7 +89,7 @@ graph TD
     end
 
     subgraph Phase3["Phase 3: วิ่ง (เดือน 6-12)"]
-        C1[ใช้ Playbook ครบ 20 ชุด]
+        C1[ใช้ Playbook ครบ 50 ชุด]
         C2[EDR ครบทุก Endpoint]
         C3[Purple Team ครั้งแรก]
         C4[รายงาน KPI รายเดือน]

@@ -84,7 +84,7 @@ Count the "Yes" answers to determine approximate maturity.
 | Quarter | Focus Area | Key Initiatives | Success Criteria |
 |:---|:---|:---|:---|
 | Q1 | Foundation | SOPs, shift schedule, log onboarding | Level 2 achieved |
-| Q2 | Detection | Sigma rules, playbooks, alert tuning | 35 playbooks active |
+| Q2 | Detection | Sigma rules, playbooks, alert tuning | 50 playbooks active |
 | Q3 | Automation | SOAR workflows, auto-enrichment | MTTR < 60 min |
 | Q4 | Advanced | Threat hunting, purple team, TI program | Level 3 achieved |
 

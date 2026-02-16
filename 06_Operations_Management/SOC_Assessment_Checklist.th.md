@@ -82,7 +82,7 @@ graph LR
 | ไตรมาส | พื้นที่เน้น | กิจกรรมหลัก | เกณฑ์ความสำเร็จ |
 |:---|:---|:---|:---|
 | Q1 | พื้นฐาน | SOPs, ตารางกะ, Log onboarding | ถึงระดับ 2 |
-| Q2 | การตรวจจับ | Sigma rules, playbooks, การปรับจูน | 35 playbooks ใช้งาน |
+| Q2 | การตรวจจับ | Sigma rules, playbooks, การปรับจูน | 50 playbooks ใช้งาน |
 | Q3 | ระบบอัตโนมัติ | SOAR workflows, auto-enrichment | MTTR < 60 นาที |
 | Q4 | ขั้นสูง | Threat hunting, purple team, TI program | ถึงระดับ 3 |
 

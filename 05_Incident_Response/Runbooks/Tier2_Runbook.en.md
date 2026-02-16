@@ -39,7 +39,7 @@ Before you start, ensure you have:
 □ Network packet capture (Wireshark, Zeek, tcpdump)
 □ Ticketing system — incident management permissions
 □ Communication channels: #soc-incidents, #ir-team, bridge call access
-□ Understand: IR Framework, all 35 Playbooks, MITRE ATT&CK basics
+□ Understand: IR Framework, all 50 Playbooks, MITRE ATT&CK basics
 □ Completed T1 role for minimum 6 months
 ```
 
