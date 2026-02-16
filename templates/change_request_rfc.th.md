@@ -110,6 +110,47 @@
 
 ---
 
+## เกณฑ์ประเมินความเสี่ยง
+
+| ปัจจัย | ต่ำ (1) | กลาง (2) | สูง (3) |
+|:---|:---|:---|:---|
+| **ขอบเขต** | Rule/dashboard เดียว | หลายเครื่องมือ/config | Core infrastructure |
+| **ย้อนกลับ** | Rollback ทันที | Rollback < 1 ชม. | Rollback > 1 ชม. |
+| **ผลกระทบ** | ไม่สะดวกเล็กน้อย | Alert gap < 1 ชม. | ข้อมูลสูญหาย |
+| **การทดสอบ** | ทดสอบเต็มใน lab | ทดสอบบางส่วน | ทดสอบล่วงหน้าไม่ได้ |
+| **เวลา** | Change window | เวลาทำการ | ระหว่าง incident |
+
+**คะแนนเสี่ยง** = รวมทุกปัจจัย (5-15)
+- **5-7**: ต่ำ → SOC Lead อนุมัติ
+- **8-10**: กลาง → SOC Manager อนุมัติ
+- **11-15**: สูง → CISO อนุมัติ + CAB review
+
+## Approval Matrix
+
+| ประเภท Change | ระดับเสี่ยง | ผู้อนุมัติ | Lead Time |
+|:---|:---|:---|:---|
+| Detection rule ใหม่ (test) | ต่ำ | SOC Lead | วันเดียว |
+| Detection rule (production) | ต่ำ-กลาง | SOC Lead + peer review | 24 ชม. |
+| SIEM configuration | กลาง | SOC Manager | 48 ชม. |
+| Log source ใหม่ | กลาง | SOC Manager | 1 สัปดาห์ |
+| Agent deploy (fleet) | สูง | SOC Manager + IT Lead | 1 สัปดาห์ |
+| Platform upgrade หลัก | สูง | CISO + CAB | 2 สัปดาห์ |
+
+## Checklist ตรวจหลังเปลี่ยน
+
+```
+□ Change ดำเนินการสำเร็จ
+□ ไม่มี error ใน logs
+□ Dashboard สุขภาพระบบปกติ
+□ Test alert ทำงานถูกต้อง (ถ้าเปลี่ยน rule)
+□ Data flow ยืนยันแล้ว (ถ้าเปลี่ยน source/pipeline)
+□ ไม่มี FP เพิ่มผิดปกติ
+□ Performance baseline ไม่เปลี่ยน
+□ Rollback plan ยืนยันว่าใช้ได้
+□ Change ticket อัปเดตและปิดแล้ว
+□ แจ้งทีมว่า change เสร็จ
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ขั้นตอนการ Deploy](../02_Platform_Operations/Deployment_Procedures.th.md)

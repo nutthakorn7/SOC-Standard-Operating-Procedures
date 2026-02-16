@@ -153,6 +153,61 @@ graph TD
 | SLA review | Monthly |
 | SLA renegotiation | Annual |
 
+## โครงสร้าง SLA Penalty / Credit
+
+### สำหรับ SOC ภายใน
+
+| SLA Breach | ผลกระทบ | Escalation |
+|:---|:---|:---|
+| P1 MTTR > 4 ชม. | ต้อง incident review | Auto-escalate ไป CISO |
+| P2 MTTR > 8 ชม. | ต้อง post-mortem | SOC Manager review |
+| SLA compliance < 90% (เดือน) | ต้องแผนปรับปรุง | ประชุม CISO + SOC Manager |
+| SLA compliance < 80% (เดือน) | ทบทวน staffing/เครื่องมือ | แจ้ง Board |
+
+### สำหรับสัญญา MSSP
+
+| SLA Level | Credit | Trigger |
+|:---|:---|:---|
+| SLA เดือน 95-99% | ไม่มี penalty | ถึงเป้า |
+| SLA เดือน 90-94.9% | Credit 5% ค่าบริการ | เตือน |
+| SLA เดือน 85-89.9% | Credit 10% ค่าบริการ | แผนปรับปรุง |
+| SLA เดือน < 85% | Credit 20% + ทบทวนสัญญา | แก้ไข |
+| P1 พลาด 3 ครั้ง/ไตรมาส | สิทธิ์ยกเลิกสัญญา | Breach |
+
+## วาระประชุม SLA Review รายไตรมาส
+
+```markdown
+## ประชุมทบทวน SLA — ไตรมาส [X] 25XX
+
+### ผู้เข้าร่วม
+- SOC Manager, CISO, [ตัวแทน MSSP ถ้ามี]
+
+### วาระ
+1. **สรุป SLA Performance** (10 นาที)
+   - อัตรา compliance รวม
+   - แยกตาม severity (P1/P2/P3/P4)
+   - แนวโน้มเทียบไตรมาสก่อน
+
+2. **วิเคราะห์ SLA Breaches** (15 นาที)
+   - รายการ breach ทั้งหมดพร้อมสาเหตุ
+   - รูปแบบหรือปัญหาที่เกิดซ้ำ
+   - การแก้ไขที่ดำเนินการ
+
+3. **KPI Deep Dive** (10 นาที)
+   - แนวโน้ม MTTD / MTTR
+   - แนวโน้ม alert volume และ FP rate
+   - Staffing utilization
+
+4. **การปรับปรุง** (10 นาที)
+   - สถานะ actions ไตรมาสก่อน
+   - ข้อเสนอปรับปรุงใหม่
+   - ขอทรัพยากร
+
+5. **ทบทวนเป้าหมาย SLA** (5 นาที)
+   - เป้าปัจจุบันเหมาะสมไหม?
+   - ข้อเสนอปรับไตรมาสหน้า
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)

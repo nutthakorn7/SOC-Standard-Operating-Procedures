@@ -118,6 +118,44 @@
 
 ---
 
+## ตัวอย่าง Handover ที่เสร็จแล้ว
+
+```markdown
+## Shift Handover — 2026-02-16 (กลางวัน → กลางคืน)
+
+### Analyst ออก: สมชาย (Shift A)
+### Analyst เข้า: สมศรี (Shift B)
+
+### Incidents ค้าง
+| Ticket ID | Severity | สถานะ | สรุป | ต้องทำ |
+|:---|:---:|:---|:---|:---|
+| INC-2026-089 | P2 | กำลังสืบสวน | PowerShell น่าสงสัยบน HR-PC-042 | รอ EDR isolation approval |
+| INC-2026-091 | P3 | ตรวจสอบ | Failed VPN logins จาก IP ไม่รู้จัก | ตรวจสอบอีก 12 ชม. |
+
+### สถานะ Alert Queue
+- Queue ปัจจุบัน: 14 alerts (7 low, 5 medium, 2 high)
+- 2 high alerts ต้อง triage ทันที
+
+### สุขภาพระบบ
+- SIEM: ✅ ปกติ | EDR: ✅ ปกติ | Ticketing: ✅ ปกติ
+- Log source gap: Firewall FL-02 offline ตั้งแต่ 14:30 (แจ้ง IT แล้ว)
+
+### หมายเหตุสำหรับกะเข้า
+1. สำคัญ: INC-089 — SOC Manager อนุมัติ isolation แล้ว ดำเนินการหลังเก็บหลักฐาน
+2. Sigma rule ใหม่ deploy สำหรับ CVE-2026-1234 อาจมี FPs ช่วงแรก
+3. SIEM maintenance ตอน 03:00 search อาจช้า 15 นาที
+```
+
+## ข้อผิดพลาด Handover ที่พบบ่อย
+
+| ❌ ผิดพลาด | ผลกระทบ | ✅ แนวปฏิบัติที่ดี |
+|:---|:---|:---|
+| Handover ปากเปล่า | ลืมรายละเอียด | เขียน template + brief ปากเปล่า |
+| ไม่แจ้งปัญหาระบบ | Analyst เข้าพลาดช่องว่างข้อมูล | ตรวจและรายงาน log source health เสมอ |
+| สรุป incident ไม่ครบ | เสียเวลาสืบสวนซ้ำ | ใส่: เกิดอะไร ทำอะไรแล้ว ต้องทำอะไรต่อ |
+| ลืมบอก pending approvals | Containment ล่าช้า | ลิสต์ pending approvals/waiting items ทั้งหมด |
+| ไม่แจ้งสถานะ alert queue | Queue ล้น | รายงาน queue depth เสมอ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [มาตรฐานส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md) — ขั้นตอนส่งมอบ

@@ -146,6 +146,62 @@ During the Proof-of-Concept trial (recommend 2–4 weeks):
 
 ---
 
+## Total Cost of Ownership (TCO) Model
+
+### 3-Year TCO Comparison Template
+
+| Cost Category | Vendor A | Vendor B | Vendor C |
+|:---|:---:|:---:|:---:|
+| **Year 1** | | | |
+| License/subscription | $ | $ | $ |
+| Implementation/deployment | $ | $ | $ |
+| Training | $ | $ | $ |
+| Hardware (if on-prem) | $ | $ | $ |
+| **Year 2** | | | |
+| License renewal | $ | $ | $ |
+| Support/maintenance | $ | $ | $ |
+| Staff time for management | $ | $ | $ |
+| **Year 3** | | | |
+| License renewal | $ | $ | $ |
+| Upgrade costs | $ | $ | $ |
+| **Total 3-Year TCO** | **$** | **$** | **$** |
+| **Cost per protected endpoint/user** | $ | $ | $ |
+
+## Proof of Concept (POC) Checklist
+
+### Pre-POC
+```
+□ Define success criteria (minimum 5 measurable criteria)
+□ Identify test environment (isolated lab or staging)
+□ Assign POC lead and evaluation team
+□ Set POC duration (recommended: 2-4 weeks)
+□ Prepare test data and scenarios
+□ Sign NDA and POC agreement
+```
+
+### During POC
+```
+□ Install/configure per vendor guidance
+□ Test integration with existing tools (SIEM, EDR, SOAR)
+□ Run detection tests (Atomic Red Team scenarios)
+□ Measure false positive rate
+□ Test alert response time
+□ Evaluate UI/UX for daily analyst workflows
+□ Test API capabilities
+□ Measure resource consumption (CPU, RAM, storage)
+□ Test at expected data volume
+```
+
+### Post-POC
+```
+□ Score against success criteria
+□ Collect feedback from all evaluators
+□ Compare against current solution (if upgrading)
+□ Calculate actual vs. estimated TCO
+□ Present findings to SOC Manager / CISO
+□ Make recommendation with justification
+```
+
 ## Related Documents
 
 - [Technology Stack Selection Guide](../01_SOC_Fundamentals/Technology_Stack.en.md)

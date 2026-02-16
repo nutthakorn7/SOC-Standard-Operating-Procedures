@@ -116,6 +116,55 @@
 
 ---
 
+## Template สรุปผู้บริหาร
+
+สำหรับ incident ที่ต้องแจ้งผู้บริหาร:
+
+```markdown
+## สรุปผู้บริหาร
+
+เมื่อ [วันที่] SOC ตรวจพบ [ประเภทภัย] กำหนดเป้า [ระบบ/ผู้ใช้]
+การโจมตีถูก [ตรวจจับ/แจ้ง] เวลา [เวลา] และ contain ภายใน [ระยะเวลา]
+ผลกระทบ: [คำอธิบาย] ระบบ/ผู้ใช้ [X] รายได้รับผลกระทบ
+สาเหตุ: [อธิบายสั้น] สถานะ: [Contained/Eradicated/Recovered]
+ผลกระทบธุรกิจโดยรวม: [ต่ำ/กลาง/สูง]
+```
+
+## แนวปฏิบัติบันทึก Timeline
+
+ใช้ UTC timestamp และรูปแบบสม่ำเสมอ:
+
+```markdown
+## Timeline Incident — INC-2026-042
+
+| เวลา (UTC) | ขั้นตอน | เหตุการณ์ | แหล่งข้อมูล |
+|:---|:---|:---|:---|
+| 2026-02-15 08:23 | Initial Access | ได้รับ phishing email | Email gateway |
+| 2026-02-15 08:31 | Execution | ผู้ใช้คลิก link อันตราย | Proxy logs |
+| 2026-02-15 08:32 | Execution | Macro ทำงาน, PowerShell spawn | EDR alert |
+| 2026-02-15 08:35 | Detection | SOC alert trigger (Sigma rule) | SIEM |
+| 2026-02-15 08:38 | Triage | T1 analyst ยืนยัน True Positive | Ticket |
+| 2026-02-15 08:42 | Escalation | Escalate ไป T2 analyst | Ticket |
+| 2026-02-15 08:50 | Containment | Isolate host ผ่าน EDR | EDR console |
+| 2026-02-15 09:15 | Investigation | เก็บ forensic image | Forensic tool |
+| 2026-02-15 11:00 | Eradication | ลบ malware, reset credentials | IT + EDR |
+| 2026-02-15 14:00 | Recovery | Build host ใหม่ | IT |
+```
+
+## Checklist แนบหลักฐาน
+
+```
+□ Screenshots ของ alert/detection
+□ Raw log excerpts (เฉพาะบรรทัดที่เกี่ยว)
+□ Network capture (ถ้ามี)
+□ Memory dump (ถ้ามี)
+□ Hash ของ malware sample (อย่าแนบ malware จริง)
+□ Email headers (ถ้าเป็น phishing)
+□ IOCs ที่รวบรวม (IPs, domains, hashes)
+□ MITRE ATT&CK mapping
+□ เอกสารประเมินผลกระทบ
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)

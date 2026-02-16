@@ -127,6 +127,44 @@
 
 ---
 
+## Completed Handover Example
+
+```markdown
+## Shift Handover — 2026-02-16 (Day → Night)
+
+### Outgoing Analyst: John D. (Shift A)
+### Incoming Analyst: Sarah T. (Shift B)
+
+### Open Incidents
+| Ticket ID | Severity | Status | Summary | Action Needed |
+|:---|:---:|:---|:---|:---|
+| INC-2026-089 | P2 | Investigating | Suspicious PowerShell on HR-PC-042 | Waiting EDR isolation approval |
+| INC-2026-091 | P3 | Monitoring | Failed VPN logins from unknown IP | 12 more hours monitoring |
+
+### Alert Queue Status
+- Current queue: 14 alerts (7 low, 5 medium, 2 high)
+- 2 high alerts need immediate triage
+
+### System Health
+- SIEM: ✅ Normal | EDR: ✅ Normal | Ticketing: ✅ Normal
+- Log source gap: Firewall FL-02 offline since 14:30 (IT notified)
+
+### Notes for Incoming
+1. IMPORTANT: INC-089 — SOC Manager approved isolation, proceed when evidence captured
+2. New Sigma rule deployed for CVE-2026-1234, may generate initial FPs
+3. Scheduled maintenance for SIEM at 03:00, expect 15-min search delay
+```
+
+## Common Handover Mistakes
+
+| ❌ Mistake | Impact | ✅ Best Practice |
+|:---|:---|:---|
+| Verbal-only handover | Details forgotten, context lost | Always write in template + brief verbally |
+| Not mentioning system issues | Incoming analyst misses data gaps | Always check and report log source health |
+| Incomplete incident summary | Time wasted re-investigating | Include: what happened, what's done, what's needed |
+| Forgetting pending approvals | Containment delayed | List ALL pending approvals/waiting items |
+| No alert queue status | Queue overflows | Always report queue depth and priority counts |
+
 ## Related Documents
 
 - [Shift Handoff Standard](../06_Operations_Management/Shift_Handoff.en.md) — Full handoff procedure

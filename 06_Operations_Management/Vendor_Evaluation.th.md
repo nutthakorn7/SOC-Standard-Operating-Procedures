@@ -143,6 +143,60 @@ graph LR
 | Testing | 2 weeks | Use case validation |
 | Review | 1 week | Report + decision |
 
+## โมเดล Total Cost of Ownership (TCO)
+
+### เปรียบเทียบ TCO 3 ปี
+
+| หมวดค่าใช้จ่าย | Vendor A | Vendor B | Vendor C |
+|:---|:---:|:---:|:---:|
+| **ปีที่ 1** | | | |
+| License/subscription | ฿ | ฿ | ฿ |
+| Implementation/deployment | ฿ | ฿ | ฿ |
+| ฝึกอบรม | ฿ | ฿ | ฿ |
+| Hardware (ถ้า on-prem) | ฿ | ฿ | ฿ |
+| **ปีที่ 2** | | | |
+| License renewal | ฿ | ฿ | ฿ |
+| Support/maintenance | ฿ | ฿ | ฿ |
+| เวลาบุคลากรจัดการ | ฿ | ฿ | ฿ |
+| **ปีที่ 3** | | | |
+| License renewal | ฿ | ฿ | ฿ |
+| ค่า upgrade | ฿ | ฿ | ฿ |
+| **TCO 3 ปี รวม** | **฿** | **฿** | **฿** |
+
+## Checklist Proof of Concept (POC)
+
+### ก่อน POC
+```
+□ กำหนด success criteria (ขั้นต่ำ 5 เกณฑ์วัดได้)
+□ ระบุ test environment (lab แยกหรือ staging)
+□ มอบหมาย POC lead และทีมประเมิน
+□ กำหนดระยะ POC (แนะนำ: 2-4 สัปดาห์)
+□ เตรียมข้อมูลทดสอบและสถานการณ์
+□ เซ็น NDA และสัญญา POC
+```
+
+### ระหว่าง POC
+```
+□ ติดตั้ง/ตั้งค่าตามแนะนำ vendor
+□ ทดสอบ integration กับ tools ที่มี (SIEM, EDR, SOAR)
+□ รัน detection tests (Atomic Red Team scenarios)
+□ วัด false positive rate
+□ ทดสอบ alert response time
+□ ประเมิน UI/UX สำหรับ workflow analyst ประจำวัน
+□ ทดสอบ API capabilities
+□ วัด resource consumption (CPU, RAM, storage)
+```
+
+### หลัง POC
+```
+□ ให้คะแนนตาม success criteria
+□ รวบรวม feedback จากทีมประเมิน
+□ เปรียบเทียบกับ solution ปัจจุบัน
+□ คำนวณ TCO จริง vs. ประมาณ
+□ นำเสนอต่อ SOC Manager / CISO
+□ ให้ recommendation พร้อมเหตุผล
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [คู่มือเลือกเครื่องมือ](../01_SOC_Fundamentals/Technology_Stack.th.md)

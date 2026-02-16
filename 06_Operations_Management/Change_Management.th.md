@@ -152,6 +152,41 @@ graph TD
 |:---|:---|:---|:---|
 | Target | - | - | > 95% |
 
+## กระบวนการ Emergency Change
+
+สำหรับ change ที่ต้องทำระหว่าง active incident:
+
+```mermaid
+graph TD
+    Incident["Incident กำลังดำเนิน"] --> Need["ต้อง Change<br/>เพื่อ Containment"]
+    Need --> Verbal["อนุมัติทางวาจา<br/>จาก SOC Manager"]
+    Verbal --> Execute["ดำเนินการ Change"]
+    Execute --> Document["บันทึก<br/>ย้อนหลัง (24 ชม.)"]
+    Document --> Review["ทบทวนใน<br/>Post-Incident"]
+```
+
+### กฎ Emergency Change
+1. **อนุมัติทางวาจา** จาก SOC Manager หรือ CISO เพียงพอ
+2. **บันทึกภายใน 24 ชม.** หลัง incident สงบ
+3. **ไม่ต้องทดสอบ** ถ้า containment เร่งด่วน
+4. **Rollback plan** ต้องระบุก่อนดำเนินการ
+5. **Post-incident review** ต้องประเมินว่า change ควรเป็นถาวรไหม
+
+## Template ทบทวนหลังดำเนินการ
+
+| ฟิลด์ | รายละเอียด |
+|:---|:---|
+| **RFC ID** | RFC-XXXX |
+| **คำอธิบาย Change** | [เปลี่ยนอะไร] |
+| **วันดำเนินการ** | YYYY-MM-DD HH:MM |
+| **ดำเนินการโดย** | [ชื่อ] |
+| **สถานะ** | ✅ สำเร็จ / ⚠️ บางส่วน / ❌ ล้มเหลว |
+| **Downtime จริง** | [ระยะเวลา vs. แผน] |
+| **ปัญหาที่พบ** | [ปัญหาระหว่าง change] |
+| **ต้อง Rollback?** | ใช่/ไม่ |
+| **ผลตรวจสอบ** | [ตรวจทุกข้อผ่าน?] |
+| **Follow-up Actions** | [ขั้นตอนต่อไปถ้ามี] |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แม่แบบ Change Request](../templates/change_request_rfc.th.md)

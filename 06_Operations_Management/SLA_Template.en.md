@@ -149,6 +149,61 @@ Business Unit Head:  _________________________ Date: ___________
 
 ---
 
+## SLA Penalty / Credit Structure
+
+### For Internal SOC
+
+| SLA Breach | Impact | Escalation |
+|:---|:---|:---|
+| P1 MTTR > 4 hours | Incident review required | Auto-escalate to CISO |
+| P2 MTTR > 8 hours | Post-mortem required | SOC Manager review |
+| SLA compliance < 90% (monthly) | Improvement plan required | CISO + SOC Manager meeting |
+| SLA compliance < 80% (monthly) | Staffing/tooling review | Board notification |
+
+### For MSSP Contract
+
+| SLA Level | Credit | Trigger |
+|:---|:---|:---|
+| Monthly SLA 95-99% | No penalty | Target met |
+| Monthly SLA 90-94.9% | 5% monthly fee credit | Warning |
+| Monthly SLA 85-89.9% | 10% monthly fee credit | Improvement plan |
+| Monthly SLA < 85% | 20% credit + contract review | Remediation |
+| P1 missed 3x in quarter | Contract termination right | Breach |
+
+## Quarterly SLA Review Agenda
+
+```markdown
+## SLA Review Meeting — Q[X] 20XX
+
+### Attendees
+- SOC Manager, CISO, [MSSP rep if applicable]
+
+### Agenda
+1. **SLA Performance Summary** (10 min)
+   - Overall SLA compliance rate
+   - Breakdown by severity (P1/P2/P3/P4)
+   - Trend vs. previous quarter
+
+2. **SLA Breaches Analysis** (15 min)
+   - List of all breaches with root cause
+   - Patterns or recurring issues
+   - Corrective actions taken
+
+3. **KPI Deep Dive** (10 min)
+   - MTTD / MTTR trends
+   - Alert volume and FP rate trends
+   - Staffing utilization
+
+4. **Improvement Actions** (10 min)
+   - Status of previous quarter's actions
+   - New improvement proposals
+   - Resource requests
+
+5. **SLA Target Review** (5 min)
+   - Are current targets appropriate?
+   - Proposed adjustments for next quarter
+```
+
 ## Related Documents
 
 - [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)

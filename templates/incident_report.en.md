@@ -130,6 +130,57 @@
 
 ---
 
+## Executive Summary Template
+
+For incidents requiring management notification, include a 1-paragraph executive summary:
+
+```markdown
+## Executive Summary
+
+On [DATE], the SOC detected [THREAT TYPE] targeting [SYSTEM/USER].
+The attack was [detected/reported] at [TIME] and contained within
+[DURATION]. Impact assessment: [DESCRIPTION]. [X] systems/users
+were affected. Root cause: [BRIEF EXPLANATION]. Current status:
+[CONTAINED/ERADICATED/RECOVERED]. Estimated business impact:
+[LOW/MEDIUM/HIGH]. [X] remediation actions are in progress.
+```
+
+## Timeline Documentation Best Practice
+
+Use UTC timestamps and format consistently:
+
+```markdown
+## Incident Timeline — INC-2026-042
+
+| Time (UTC) | Phase | Event | Source |
+|:---|:---|:---|:---|
+| 2026-02-15 08:23 | Initial Access | Phishing email received by user | Email gateway |
+| 2026-02-15 08:31 | Execution | User clicked malicious link | Proxy logs |
+| 2026-02-15 08:32 | Execution | Macro executed, PowerShell spawned | EDR alert |
+| 2026-02-15 08:35 | Detection | SOC alert triggered (Sigma rule) | SIEM |
+| 2026-02-15 08:38 | Triage | T1 analyst confirmed True Positive | Ticket |
+| 2026-02-15 08:42 | Escalation | Escalated to T2 analyst | Ticket |
+| 2026-02-15 08:50 | Containment | Host isolated via EDR | EDR console |
+| 2026-02-15 09:15 | Investigation | Forensic image captured | Forensic tool |
+| 2026-02-15 11:00 | Eradication | Malware removed, creds reset | IT + EDR |
+| 2026-02-15 14:00 | Recovery | Host rebuilt and returned | IT |
+| 2026-02-15 15:00 | Post-Incident | Lessons learned meeting scheduled | Calendar |
+```
+
+## Evidence Attachment Checklist
+
+```
+□ Screenshots of alert/detection
+□ Raw log excerpts (relevant lines only)
+□ Network capture (if applicable)
+□ Memory dump (if applicable)
+□ Malware sample hash (NEVER attach actual malware)
+□ Email headers (if phishing)
+□ IOCs collected (IPs, domains, hashes)
+□ MITRE ATT&CK mapping
+□ Impact assessment documentation
+```
+
 ## Related Documents
 
 - [IR Framework](../05_Incident_Response/Framework.en.md)

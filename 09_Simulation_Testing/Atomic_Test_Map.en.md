@@ -137,6 +137,33 @@ Invoke-AtomicTest T1059.001 -Cleanup
 
 ---
 
+## Testing Frequency Matrix
+
+| ATT&CK Tactic | Testing Frequency | Priority | Rationale |
+|:---|:---|:---:|:---|
+| Initial Access (TA0001) | Monthly | 🔴 High | Primary entry point, most common attacks |
+| Execution (TA0002) | Monthly | 🔴 High | Critical for detecting payload execution |
+| Persistence (TA0003) | Quarterly | 🟠 Medium | Validates long-term threat detection |
+| Privilege Escalation (TA0004) | Quarterly | 🟠 Medium | Critical for detecting lateral movement prep |
+| Defense Evasion (TA0005) | Monthly | 🔴 High | Adversaries constantly evolving evasion |
+| Credential Access (TA0006) | Monthly | 🔴 High | Directly leads to compromise |
+| Discovery (TA0007) | Quarterly | 🟡 Low | Often generates noise, lower priority |
+| Lateral Movement (TA0008) | Monthly | 🔴 High | Key indicator of advanced attacks |
+| Collection (TA0009) | Quarterly | 🟠 Medium | Pre-exfiltration activity |
+| Exfiltration (TA0010) | Monthly | 🔴 High | Data loss prevention validation |
+| Command & Control (TA0011) | Monthly | 🔴 High | Critical for detecting ongoing compromise |
+| Impact (TA0040) | Quarterly | 🟠 Medium | Ransomware/destruction scenarios |
+
+## Test Result Tracking
+
+| Test ID | Technique | Date | Result | Gap Identified | Action Taken |
+|:---|:---|:---|:---:|:---|:---|
+| AT-001 | T1566.001 | YYYY-MM-DD | ✅/❌ | [Description] | [Rule created/tuned] |
+| AT-002 | T1059.001 | YYYY-MM-DD | ✅/❌ | [Description] | [Rule created/tuned] |
+| AT-003 | T1053.005 | YYYY-MM-DD | ✅/❌ | [Description] | [Rule created/tuned] |
+
+> **Tracking Rule**: Every failed test (❌) must result in a detection rule created within 2 weeks.
+
 ## Related Documents
 
 - [Simulation & Purple Teaming Guide](Simulation_Guide.en.md)

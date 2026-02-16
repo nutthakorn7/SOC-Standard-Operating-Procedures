@@ -137,6 +137,48 @@
 
 ---
 
+## Risk Assessment Matrix
+
+| Risk Factor | Low (1) | Medium (2) | High (3) |
+|:---|:---|:---|:---|
+| **Scope** | Single rule/dashboard | Multiple tools/configs | Core infrastructure |
+| **Reversibility** | Instant rollback | Rollback < 1 hour | Rollback > 1 hour or destructive |
+| **Impact if Failed** | Minor inconvenience | Alert gaps (< 1 hour) | Monitoring blindspot or data loss |
+| **Testing** | Fully tested in lab | Partially tested | Cannot test in advance |
+| **Timing** | During change window | During business hours | During active incident |
+
+**Risk Score** = Sum of all factors (5-15)
+- **5-7**: Low risk → SOC Lead approval
+- **8-10**: Medium risk → SOC Manager approval
+- **11-15**: High risk → CISO approval + CAB review
+
+## Approval Matrix
+
+| Change Type | Risk Level | Approver | Lead Time |
+|:---|:---|:---|:---|
+| New detection rule (test mode) | Low | SOC Lead | Same day |
+| Detection rule to production | Low-Medium | SOC Lead + peer review | 24 hours |
+| SIEM configuration | Medium | SOC Manager | 48 hours |
+| New log source onboarding | Medium | SOC Manager | 1 week |
+| Agent deployment (fleet-wide) | High | SOC Manager + IT Lead | 1 week |
+| Major platform upgrade | High | CISO + CAB | 2 weeks |
+| Tool replacement/migration | High | CISO + Board | 1 month |
+
+## Post-Change Validation Checklist
+
+```
+□ Change applied successfully
+□ No error messages in logs
+□ System health dashboards normal
+□ Test alert fires correctly (if rule change)
+□ Data flow confirmed (if source/pipeline change)
+□ No unexpected FP increase
+□ Performance baseline unchanged
+□ Rollback plan confirmed working
+□ Change ticket updated and closed
+□ Team notified of change completion
+```
+
 ## Related Documents
 
 - [Deployment Procedures](../02_Platform_Operations/Deployment_Procedures.en.md)

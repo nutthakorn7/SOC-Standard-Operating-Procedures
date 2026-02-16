@@ -152,6 +152,41 @@ Within 24 hours of deployment:
 
 ---
 
+## Emergency Change Process
+
+For changes required during active incidents:
+
+```mermaid
+graph TD
+    Incident["Active Incident"] --> Need["Change Needed<br/>for Containment"]
+    Need --> Verbal["Verbal Approval<br/>from SOC Manager"]
+    Verbal --> Execute["Execute Change"]
+    Execute --> Document["Document<br/>Retroactively (24h)"]
+    Document --> Review["Review in<br/>Post-Incident"]
+```
+
+### Emergency Change Rules
+1. **Verbal approval** from SOC Manager or CISO is sufficient
+2. **Document within 24 hours** after the incident is stabilized
+3. **No testing required** if containment is urgent
+4. **Rollback plan** must still be identified before execution
+5. **Post-incident review** must evaluate whether the change should be permanent
+
+## Post-Implementation Review Template
+
+| Field | Details |
+|:---|:---|
+| **RFC ID** | RFC-XXXX |
+| **Change Description** | [What was changed] |
+| **Implementation Date** | YYYY-MM-DD HH:MM |
+| **Implemented By** | [Name] |
+| **Status** | ✅ Success / ⚠️ Partial / ❌ Failed |
+| **Actual Downtime** | [Duration vs. planned] |
+| **Issues Encountered** | [Any problems during change] |
+| **Rollback Required?** | Yes/No |
+| **Validation Results** | [All checks pass?] |
+| **Follow-up Actions** | [Next steps if any] |
+
 ## Related Documents
 
 - [Change Request Template](../templates/change_request_rfc.en.md)
