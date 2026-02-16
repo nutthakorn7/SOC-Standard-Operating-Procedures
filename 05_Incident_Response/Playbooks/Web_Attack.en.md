@@ -173,6 +173,19 @@ graph TD
 
 ---
 
+## 7. Post-Incident
+
+- [ ] Patch the exploited vulnerability and deploy to production
+- [ ] Conduct code review for similar vulnerability patterns
+- [ ] Update WAF rules with observed attack signatures
+- [ ] Run DAST/SAST scans on the affected application
+- [ ] Review and tighten input validation and output encoding
+- [ ] Implement Content Security Policy (CSP) headers
+- [ ] Schedule penetration test for affected application
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
+
+---
+
 ### Web Security Architecture
 
 ```mermaid

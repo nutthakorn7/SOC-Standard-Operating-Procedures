@@ -161,6 +161,19 @@ graph TD
 
 ---
 
+## 7. Post-Incident
+
+- [ ] Review all administrator accounts and remove unnecessary privileges
+- [ ] Implement PIM/PAM for all admin-level access
+- [ ] Enable command-line logging for all admin sessions
+- [ ] Review and update separation of duties policies
+- [ ] Conduct access recertification for all privileged accounts
+- [ ] Implement break-glass procedure for emergency admin access
+- [ ] Review background check policies for admin-level personnel
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
+
+---
+
 ### Admin Access Control
 
 ```mermaid

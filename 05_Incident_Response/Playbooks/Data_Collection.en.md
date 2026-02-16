@@ -107,6 +107,60 @@ An attacker gathers sensitive data from within the environment before exfiltrati
 | Revoke access | SharePoint/OneDrive/IAM | SOC Lead |
 | Block egress | Firewall rules for source IP | SOC Lead + Network |
 | Preserve evidence | Forensic image of staging location | IR Lead |
+| Disable auto-forward rules | Exchange admin / Google admin | SOC Lead |
+
+## Eradication
+
+| # | Action | Done |
+|:---:|:---|:---:|
+| 1 | Remove staging archives and temp files | ☐ |
+| 2 | Delete archiving tools not part of baseline | ☐ |
+| 3 | Remove unauthorized scripts (PowerShell, Python) | ☐ |
+| 4 | Clear scheduled tasks created for data collection | ☐ |
+| 5 | Revoke OAuth tokens used for cloud access | ☐ |
+| 6 | Remove malicious email forwarding rules | ☐ |
+
+## IoC Collection
+
+| Type | Value | Source |
+|:---|:---|:---|
+| Source host / IP | | EDR / SIEM |
+| User account | | AD / IAM logs |
+| Archive file name | | File system / DLP |
+| Archive hash (SHA256) | | Forensic analysis |
+| Staging directory path | | EDR telemetry |
+| Destination (upload URL / email) | | Proxy / email logs |
+| Volume of data collected (MB/GB) | | DLP / Cloud audit |
+| Tools used | | Process logs |
+
+## Escalation Criteria
+
+| Condition | Escalate To |
+|:---|:---|
+| PII / customer data in staging archive | Legal + DPO (PDPA) |
+| > 1 GB of data archived/staged | SOC Lead + IR |
+| Source code or trade secrets identified | CISO + Legal |
+| Collection followed by confirmed exfiltration | Tier 3 + CISO |
+| Multiple departments' data accessed | SOC Manager + Data Owners |
+| Executive/C-level data targeted | CISO + CEO |
+
+## Recovery
+
+- [ ] Restore any files inadvertently deleted during containment
+- [ ] Re-enable user account after credential reset and access review
+- [ ] Verify DLP policies properly cover staging paths
+- [ ] Confirm no data reached external destinations
+- [ ] Review and re-baseline file access permissions
+- [ ] Re-enable disabled services after threat is removed
+
+## Post-Incident
+
+- [ ] Update DLP rules with new staging path patterns observed
+- [ ] Add file archiver monitoring to EDR policy
+- [ ] Conduct user access review for affected data repositories
+- [ ] Create Sigma rule for bulk file access patterns
+- [ ] Review data classification labels for affected data
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
 
 ## Key Indicators
 

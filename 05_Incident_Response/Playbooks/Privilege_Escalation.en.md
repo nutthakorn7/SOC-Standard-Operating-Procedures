@@ -166,6 +166,19 @@ graph TD
 
 ---
 
+## 7. Post-Incident
+
+- [ ] Patch vulnerabilities used for privilege escalation
+- [ ] Review LAPS configuration for local admin passwords
+- [ ] Audit group memberships (Domain Admins, Enterprise Admins)
+- [ ] Implement credential guard and LSA protection
+- [ ] Review and harden service account permissions
+- [ ] Deploy PAM solution for all privileged access
+- [ ] Create detection rules for observed escalation technique
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
+
+---
+
 ### Privilege Escalation Paths
 
 ```mermaid

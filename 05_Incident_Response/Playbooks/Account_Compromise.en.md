@@ -165,6 +165,19 @@ graph TD
 
 ---
 
+## 7. Post-Incident
+
+- [ ] Review authentication policies (enforce MFA for all accounts)
+- [ ] Update Conditional Access policies based on attack vector
+- [ ] Implement sign-in risk policies (Azure AD / Okta)
+- [ ] Review and revoke stale OAuth app consents
+- [ ] Enforce password complexity and expiration policies
+- [ ] Create Sigma rule for observed credential abuse patterns
+- [ ] Conduct phishing simulation if phishing was the entry vector
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
+
+---
+
 ### Post-Compromise Activity Check
 
 ```mermaid

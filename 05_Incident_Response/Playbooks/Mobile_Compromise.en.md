@@ -175,6 +175,19 @@ graph TD
 
 ---
 
+## 7. Post-Incident
+
+- [ ] Review MDM enrollment compliance across organization
+- [ ] Update mobile security policy (jailbreak/root detection)
+- [ ] Enforce OS version minimum requirements via MDM
+- [ ] Review app sideloading / third-party app store policies
+- [ ] Implement mobile threat defense (MTD) solution
+- [ ] Conduct awareness training on mobile security best practices
+- [ ] Review VPN requirements for mobile corporate access
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
+
+---
+
 ### Mobile Threat Classification
 
 ```mermaid

@@ -173,6 +173,19 @@ graph TD
 
 ---
 
+## 7. Post-Incident
+
+- [ ] Block all identified C2 domains/IPs at firewall and DNS
+- [ ] Submit C2 indicators to threat intelligence sharing platforms
+- [ ] Review TLS inspection coverage for encrypted C2 channels
+- [ ] Deploy JA3/JA3S fingerprint detection for known C2 frameworks
+- [ ] Implement DNS sinkholing for identified C2 domains
+- [ ] Review and update proxy category blocklists
+- [ ] Conduct threat hunt for similar beaconing patterns
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
+
+---
+
 ### C2 Framework Classification
 
 ```mermaid

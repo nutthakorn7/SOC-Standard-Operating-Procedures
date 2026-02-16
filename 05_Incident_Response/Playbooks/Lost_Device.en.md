@@ -152,6 +152,31 @@ graph TD
 
 ---
 
+## 6. IoC Collection
+
+| Type | Value | Source |
+|:---|:---|:---|
+| Device serial / asset tag | | Asset management |
+| Last known IP | | MDM / DHCP logs |
+| Last known Wi-Fi AP | | MDM / network logs |
+| Last GPS coordinates | | MDM (if enabled) |
+| User account | | HR / AD |
+| Last sign-in time | | Azure AD / Okta |
+| Corporate apps installed | | MDM inventory |
+| VPN connection history | | VPN gateway logs |
+
+## 7. Post-Incident
+
+- [ ] Update asset management system (mark device as lost/stolen)
+- [ ] Review and update device encryption enforcement policy
+- [ ] Verify MDM enrollment compliance (are all devices enrolled?)
+- [ ] Issue replacement device with pre-configured security baseline
+- [ ] Conduct awareness training on physical device security
+- [ ] Review insurance coverage for lost/stolen equipment
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
+
+---
+
 ### MDM Lifecycle
 
 ```mermaid

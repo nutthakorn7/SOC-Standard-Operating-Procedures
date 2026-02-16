@@ -157,6 +157,31 @@ graph TD
 
 ---
 
+## 6. IoC Collection
+
+| Type | Value | Source |
+|:---|:---|:---|
+| SaaS service name / URL | | Proxy / DNS logs |
+| User accounts involved | | AD / SSO logs |
+| Data uploaded (file names, size) | | DLP / proxy |
+| OAuth app consents granted | | Azure AD / Google Workspace |
+| API keys / tokens created | | Cloud admin console |
+| IP addresses of SaaS service | | Firewall logs |
+| Authentication method used | | Identity provider logs |
+| Duration of usage | | Proxy / CASB |
+
+## 7. Post-Incident
+
+- [ ] Add discovered Shadow IT service to CASB blocklist
+- [ ] Review and update approved SaaS catalog
+- [ ] Implement automated Shadow IT discovery scanning (monthly)
+- [ ] Update employee code of conduct regarding unsanctioned services
+- [ ] Conduct awareness training on data security risks
+- [ ] Review OAuth app consent policies (restrict by default)
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
+
+---
+
 ### SaaS Risk Scoring
 
 ```mermaid

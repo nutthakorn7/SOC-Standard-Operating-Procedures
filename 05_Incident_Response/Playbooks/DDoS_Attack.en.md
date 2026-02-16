@@ -176,6 +176,19 @@ graph TD
 
 ---
 
+## 7. Post-Incident
+
+- [ ] Review DDoS mitigation plan effectiveness and update as needed
+- [ ] Update ISP/CDN scrubbing agreements based on attack profile
+- [ ] Review auto-scaling and rate-limiting configurations
+- [ ] Conduct capacity planning based on observed attack bandwidth
+- [ ] Update runbook with ISP/CDN escalation contacts and procedures
+- [ ] Implement GeoIP-based filtering if attacks originated from specific regions
+- [ ] Schedule DDoS simulation exercise with mitigation provider
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
+
+---
+
 ### DDoS Mitigation Tiers
 
 ```mermaid

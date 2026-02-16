@@ -102,6 +102,60 @@ An attacker conducts internal reconnaissance to map the network topology, identi
 | Disable user account | Active Directory / IAM | SOC Lead |
 | Block scanning tools | Application control / EDR policy | Change request |
 | Restrict network access | Firewall / microsegmentation | Network team + SOC Lead |
+| Enable enhanced logging | SIEM + EDR verbose mode | SOC Lead |
+
+## Eradication
+
+| # | Action | Done |
+|:---:|:---|:---:|
+| 1 | Remove scanning tools and scripts from endpoint | ☐ |
+| 2 | Kill active scanning processes | ☐ |
+| 3 | Remove persistence mechanisms (scheduled tasks, services) | ☐ |
+| 4 | Reset compromised credentials (if applicable) | ☐ |
+| 5 | Patch exploited vulnerability used for initial access | ☐ |
+| 6 | Clear attacker's cached AD/LDAP query results | ☐ |
+
+## IoC Collection
+
+| Type | Value | Source |
+|:---|:---|:---|
+| Source IP / hostname | | EDR / SIEM |
+| User account | | AD logs |
+| Scanning tool name | | Process logs |
+| Scan targets (IP ranges) | | Network logs |
+| Commands executed | | EDR command history |
+| Scan output files | | Forensic image |
+| Associated malware hash | | EDR / sandbox |
+| C2 domain (if post-exploitation) | | DNS / proxy logs |
+
+## Escalation Criteria
+
+| Condition | Escalate To |
+|:---|:---|
+| Scanning from compromised host (malware confirmed) | Tier 2 + IR Lead |
+| Discovery activity followed by lateral movement | Tier 3 + CISO |
+| Domain controller or critical server targeted | SOC Manager + System Owners |
+| BloodHound / SharpHound collection detected | Tier 3 + AD Security |
+| Scanning originates from external IP | Tier 2 + Network Team |
+| > 100 hosts or > 1,000 ports scanned | SOC Lead |
+
+## Recovery
+
+- [ ] Rebuild source host if compromised (re-image with clean baseline)
+- [ ] Re-enable user account after credential reset and MFA re-enrollment
+- [ ] Verify network segmentation blocks unauthorized scanning
+- [ ] Confirm no lateral movement succeeded from the discovery phase
+- [ ] Restore any services disrupted during containment
+- [ ] Validate enhanced monitoring rules are in place
+
+## Post-Incident
+
+- [ ] Update IDS/IPS signatures for observed discovery techniques
+- [ ] Deploy honeypots in high-value network segments
+- [ ] Review and tighten application control policies (scanning tools)
+- [ ] Create Sigma detection rule for new discovery patterns observed
+- [ ] Conduct tabletop exercise for discovery → lateral movement scenarios
+- [ ] Document findings in [Incident Report](../../templates/incident_report.en.md)
 
 ## Key Indicators
 
