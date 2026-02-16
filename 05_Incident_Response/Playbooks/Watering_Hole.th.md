@@ -182,6 +182,14 @@ gantt
 | **เครือข่าย** | Block C2 domains/IPs |
 | **Browser** | บังคับอัปเดต browsers + ปิด plugins ที่มีช่องโหว่ |
 
+### มาตรการป้องกัน
+- [ ] เปิด browser isolation สำหรับเว็บไซต์ที่เสี่ยง
+- [ ] Deploy DNS filtering ในระดับองค์กร
+- [ ] ใช้ virtual browser สำหรับเว็บไซต์ที่ไม่ไว้วางใจ
+- [ ] ตรวจ browser extensions ที่ได้รับอนุญาต
+- [ ] อัปเดต browser และ plugins ทุก endpoints ทันที
+- [ ] เปิด Enhanced Safe Browsing (Chrome/Edge)
+
 ## 4. หลังเหตุการณ์ (Post-Incident)
 
 | คำถาม | คำตอบ |

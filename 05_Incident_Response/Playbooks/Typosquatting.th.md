@@ -181,6 +181,13 @@ gantt
 | **Users** | แจ้งทุกคนที่มีปฏิสัมพันธ์ |
 | **ภายนอก** | แจ้ง customers/partners |
 
+### มาตรการปกป้องแบรนด์
+- [ ] ลงทะเบียน domain ที่คล้ายกัน (typo variants)
+- [ ] เปิดใช้ DMARC, SPF, DKIM สำหรับ domain หลัก
+- [ ] สมัคร domain monitoring service
+- [ ] ตรวจ certificate transparency logs เป็นประจำ
+- [ ] แจ้ง registrar เพื่อ takedown domains ที่ละเมิด
+
 ## 4. หลังเหตุการณ์ (Post-Incident)
 
 | คำถาม | คำตอบ |

@@ -176,6 +176,15 @@ gantt
 | **Services เป้าหมาย** | ยืนยัน patches, ปิด ports ที่ไม่จำเป็น |
 | **เครือข่าย** | ทบทวน firewall rules, ปิดช่องโหว่ |
 
+### การ Harden เครือข่าย
+- [ ] ปิด ports และ services ที่ไม่จำเป็น
+- [ ] เปิดใช้ rate limiting บน firewall
+- [ ] Deploy network-level IPS สำหรับ scan detection
+- [ ] ตรวจ default credentials บนอุปกรณ์เครือข่าย
+- [ ] ใช้ port knocking สำหรับ management interfaces
+- [ ] เปิด flow logging สำหรับ baseline traffic analysis
+- [ ] กำหนด allowlists สำหรับ scanning IP ที่ได้รับอนุญาต
+
 ## 4. หลังเหตุการณ์ (Post-Incident)
 
 | คำถาม | คำตอบ |

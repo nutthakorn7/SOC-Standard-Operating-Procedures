@@ -191,6 +191,12 @@ graph TD
 
 ## 3. การควบคุม (Containment)
 
+### ตรวจสอบ Credentials
+- [ ] ตรวจ dark web/paste sites สำหรับ credentials ที่หลุด
+- [ ] ตรวจประวัติการเปลี่ยน password
+- [ ] ตรวจว่า credentials เดียวกันใช้ที่อื่นหรือไม่ (password reuse)
+- [ ] ตรวจ MFA enrollment/การเปลี่ยนแปลง
+
 | ขอบเขต | การดำเนินการ | รายละเอียด |
 |:---|:---|:---|
 | **VPN Session** | ตัดทันที | Kill active session |
@@ -208,11 +214,13 @@ graph TD
 
 ## 5. หลังเหตุการณ์ (Post-Incident)
 
+### บทเรียน
 | คำถาม | คำตอบ |
 |:---|:---|
 | VPN credentials ถูกโจมตีอย่างไร? | [Phishing/dark web/reuse] |
 | MFA เปิดและบังคับใช้อยู่หรือไม่? | [ใช่/ไม่] |
 | Anomaly detection trigger ทันเวลาหรือไม่? | [เวลาที่ตรวจจับ] |
+| นโยบาย split tunneling เหมาะสมหรือไม่? | [ทบทวน] |
 
 ## 6. Detection Rules (Sigma)
 

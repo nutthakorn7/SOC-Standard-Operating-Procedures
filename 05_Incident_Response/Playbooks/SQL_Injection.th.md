@@ -200,6 +200,15 @@ gantt
 4. **DB hardening** — ลบ `xp_cmdshell`, ปิด `LOAD_FILE()`
 5. **Least privilege** — App DB accounts มี permissions น้อยที่สุด
 
+### SIEM Detection Queries
+```sql
+-- Splunk: ตรวจจับ SQLi patterns ใน web logs
+index=web sourcetype=access_combined
+| regex uri_query="(?i)(union\s+select|information_schema|or\s+1\s*=\s*1|waitfor\s+delay|benchmark\s*\(|sleep\s*\()"
+| stats count by src_ip, uri_path, uri_query
+| where count > 5
+```
+
 ## 5. หลังเหตุการณ์ (Post-Incident)
 
 ### บทเรียน
