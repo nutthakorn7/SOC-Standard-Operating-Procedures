@@ -121,6 +121,42 @@
 | After-hours | ✅ | Next day |
 | Failed attempt | >5 = ✅ | Daily |
 
+## การเข้าถึงฉุกเฉิน (Break-Glass)
+
+เมื่อเกิด incident วิกฤตที่เข้าระบบปกติไม่ได้:
+
+| สถานการณ์ | ขั้นตอน Break-Glass | หลังเหตุการณ์ |
+|:---|:---|:---|
+| SSO/IdP ล่ม เข้า SIEM ไม่ได้ | ใช้ local admin account (ซองปิดผนึก) | เปลี่ยน password ทันที, บันทึกการใช้ |
+| MFA provider ล่ม | ใช้ backup codes (ออกล่วงหน้า) | แจ้ง IT, ตรวจสอบ session ทั้งหมด |
+| Analyst หลักไม่อยู่ตอน P1 | SOC Manager ให้ temp access แก่คนสำรอง | ถอน access ภายใน 24 ชม. |
+| SOAR API credentials หมดอายุระหว่าง incident | ใช้ manual command override | Rotate credentials, อัปเดต vault |
+
+### กฎ Break-Glass
+1. **กฎสองคน** — ต้อง SOC Manager หรือ CISO อนุมัติ
+2. **Audit trail** — บันทึกการใช้ทั้งหมดใน incident ticket
+3. **จำกัดเวลา** — ใช้ได้เฉพาะช่วง incident (สูงสุด 24 ชม.)
+4. **Post-mortem** — ทบทวน break-glass ทุกครั้งในการประชุม ops สัปดาห์
+
+## Privileged Access Management (PAM)
+
+```mermaid
+graph LR
+    Request["ขอ PAM<br/>Access"] --> Approve["Manager<br/>อนุมัติ"]
+    Approve --> Grant["JIT Access<br/>ให้แล้ว"]
+    Grant --> Session["บันทึก<br/>Session"]
+    Session --> Expire["หมดอายุ<br/>อัตโนมัติ (4 ชม.)"]
+    Expire --> Audit["Audit Log<br/>สร้างแล้ว"]
+```
+
+| PAM Control | การใช้งาน |
+|:---|:---|
+| Just-In-Time (JIT) access | Admin access ให้เป็นรอบ 4 ชม. เท่านั้น |
+| บันทึก Session | Admin session ทุกครั้งถูกบันทึกเก็บ 1 ปี |
+| Password vaulting | Service account passwords ใน CyberArk/HashiCorp Vault |
+| Credential rotation | หมุนอัตโนมัติทุก 90 วัน |
+| อนุมัติหลายระดับ | P1 incident: SOC Manager; Config changes: CISO |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [โครงสร้างทีม SOC](SOC_Team_Structure.th.md)

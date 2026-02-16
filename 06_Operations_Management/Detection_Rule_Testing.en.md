@@ -124,6 +124,70 @@ After deployment, monitor for 7 days:
 
 ---
 
+## Automated Testing Framework
+
+### Test-Driven Detection (TDD) Workflow
+
+```mermaid
+graph LR
+    Hypothesis["Hypothesis/<br/>Threat Intel"] --> Write["Write<br/>Sigma Rule"]
+    Write --> Test["Test with<br/>Atomic Red Team"]
+    Test --> Validate{"Alert<br/>Fires?"}
+    Validate -->|No| Refine["Refine<br/>Rule Logic"]
+    Refine --> Test
+    Validate -->|Yes| FPCheck{"FP Rate<br/>< 5%?"}
+    FPCheck -->|No| Tune["Tune<br/>Exclusions"]
+    Tune --> FPCheck
+    FPCheck -->|Yes| Deploy["Deploy to<br/>Production"]
+    Deploy --> Monitor["Monitor<br/>30 Days"]
+```
+
+### CI/CD Pipeline for Detection Rules
+
+```yaml
+# .github/workflows/detection-ci.yml
+name: Detection Rule CI
+on:
+  pull_request:
+    paths: ['rules/**/*.yml']
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Sigma syntax
+        run: sigma check rules/
+      - name: Check for duplicates
+        run: python scripts/check_duplicates.py
+      - name: Run against test logs
+        run: python scripts/test_rules.py --log-dir test_logs/
+      - name: MITRE coverage report
+        run: python scripts/coverage_report.py
+```
+
+## Detection Rule Quality Benchmarks
+
+| Metric | Target | Measurement |
+|:---|:---|:---|
+| **False Positive Rate** | < 5% per rule | FP alerts / total alerts per rule |
+| **Detection Latency** | < 5 min from event to alert | Timestamp delta: event → alert |
+| **Coverage** | > 60% MITRE ATT&CK techniques | Covered techniques / total |
+| **Rule-to-Incident Ratio** | > 10% (1 in 10 alerts = real) | Incidents / total alerts |
+| **Time to Deploy** | < 48h from discovery to production | PR created → merged → live |
+| **Documentation** | 100% rules have description + references | Automated check |
+
+## Rule Lifecycle Status Tracking
+
+| Status | Definition | Action Required |
+|:---|:---|:---|
+| 🔵 **Draft** | Rule written, not yet tested | Schedule test in lab |
+| 🟡 **Testing** | Deployed to test environment | Monitor for 7 days |
+| 🟢 **Active** | Production, generating alerts | Normal monitoring |
+| 🟠 **Tuning** | Active but high FP rate | Add exclusions, refine logic |
+| ⚪ **Deprecated** | No longer relevant | Remove after 30-day notice |
+| 🔴 **Broken** | Syntax error or produces no output | Fix within 24h |
+
 ## Related Documents
 
 - [Change Management SOP](Change_Management.en.md)

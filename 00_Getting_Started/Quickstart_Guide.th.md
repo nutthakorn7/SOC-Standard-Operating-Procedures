@@ -133,6 +133,21 @@ graph TD
 
 > ✅ ถ้าทำครบ 8 ข้อข้างบน คุณก็มี SOC ที่ทำงานได้แล้ว!
 
+## คำถามที่พบบ่อย
+
+| # | คำถาม | คำตอบ |
+|:---|:---|:---|
+| 1 | ต้องมีกี่คนถึงเริ่ม SOC ได้? | ขั้นต่ำ 3: T1 2 คน + Manager 1 คน |
+| 2 | ควรใช้ SIEM ตัวไหน? | งบน้อย: Wazuh (ฟรี) / Enterprise: Splunk, Elastic, Sentinel |
+| 3 | SOC จะ effective ใช้เวลานานแค่ไหน? | Crawl (3 เดือน), Walk (6 เดือน), Run (12 เดือน) |
+| 4 | ต้อง 24/7 ตั้งแต่วันแรกไหม? | ไม่ เริ่มจาก 8x5 แล้วขยายเมื่อ maturity เพิ่ม |
+| 5 | ควรสร้าง playbooks ตัวไหนก่อน? | Phishing, Malware, Brute Force, Account Compromise, Ransomware |
+| 6 | ต้องมี detection rules กี่ตัว? | เริ่มจาก 5-10 ตัวที่ confidence สูง แล้วค่อยเพิ่ม |
+| 7 | ควร build หรือ buy SOC? | เริ่มภายใน + MSSP ช่วยถ้างบพอ |
+| 8 | Analyst ต้องมี cert อะไร? | T1: Security+/CySA+ / T2: GCIH / T3: GCFA/OSCP |
+| 9 | วัดประสิทธิภาพ SOC อย่างไร? | MTTD, MTTR, FP rate, SLA compliance |
+| 10 | ใช้ repo นี้สำหรับองค์กรได้ไหม? | ได้! Fork, ปรับแต่ง, contribute back |
+
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [SOC 101](SOC_101.th.md)
 -   [คำศัพท์สำคัญ](Glossary.th.md)

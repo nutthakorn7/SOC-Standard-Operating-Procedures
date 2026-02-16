@@ -111,6 +111,54 @@ To be cleared for independent production shifts, new analysts must:
 | SANS SEC504 / GCIH | Year 1-2 | Advanced incident response |
 | BTL1 (Blue Team Level 1) | Year 1 | Practical blue team skills |
 
+## 90-Day Onboarding Plan
+
+### Week 1-2: Foundation
+| Day | Activity | Deliverable |
+|:---|:---|:---|
+| 1 | Welcome, badge, account setup | Access to all SOC tools |
+| 2 | Read SOC 101 + Glossary | Quiz: 80% pass |
+| 3 | SIEM orientation (read-only) | Can navigate dashboards |
+| 4 | Ticketing system training | Can create/update tickets |
+| 5 | Shadow T1 analyst (full shift) | Observation notes |
+| 6-10 | Complete Security+ self-study modules | Module completion |
+
+### Week 3-4: Skill Building
+| Day | Activity | Deliverable |
+|:---|:---|:---|
+| 11-12 | Read top 5 playbooks | Playbook summary |
+| 13-14 | SIEM query lab exercises | 10 queries completed |
+| 15 | EDR tool orientation | Can navigate EDR console |
+| 16-17 | Log analysis workshop | Analyze 20 sample alerts |
+| 18-20 | Shadow T1 + handle low-priority alerts | First 5 tickets closed |
+
+### Month 2: Supervised Practice
+| Week | Activity | Deliverable |
+|:---|:---|:---|
+| 5 | Handle alerts independently (T2 reviews) | 80%+ accuracy |
+| 6 | Complete all 10 common alert type training | Scorecard: 80%+ |
+| 7 | First solo shift (senior on standby) | Shift report |
+| 8 | Escalation practice scenarios | 3 scenario passes |
+
+### Month 3: Independence
+| Week | Activity | Deliverable |
+|:---|:---|:---|
+| 9 | Full independent shift work | MTTD within SLA |
+| 10 | Purple team exercise participation | Exercise report |
+| 11 | Write 1 knowledge base article | Published KB article |
+| 12 | 90-day review with SOC Manager | Performance evaluation |
+
+### Completion Criteria
+```
+□ Can independently triage all 10 common alert types
+□ MTTD consistently within SLA (≤ 60 min)
+□ FP identification rate > 80%
+□ Correct escalation decisions > 90%
+□ Complete and accurate ticket documentation
+□ Security+ exam passed (or scheduled)
+□ Positive feedback from shift mentors
+```
+
 ## Related Documents
 -   [Training Checklist](Training_Checklist.en.md)
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)

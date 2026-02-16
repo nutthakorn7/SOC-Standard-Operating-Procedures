@@ -119,6 +119,42 @@ All SOC tool access must be logged:
 
 ---
 
+## Break-Glass Emergency Access
+
+During critical incidents when normal access paths are unavailable:
+
+| Scenario | Break-Glass Procedure | Post-Incident |
+|:---|:---|:---|
+| SSO/IdP down, cannot access SIEM | Use local admin account (sealed envelope) | Change password immediately, log usage |
+| MFA provider outage | Bypass MFA with backup codes (pre-issued) | Report to IT, review all sessions |
+| Primary analyst unavailable for P1 | SOC Manager grants temp access to backup | Revoke within 24 hours |
+| SOAR API credentials expired mid-incident | Use manual command override | Rotate credentials, update vault |
+
+### Break-Glass Access Rules
+1. **Two-person rule** — break-glass access requires approval from SOC Manager or CISO
+2. **Audit trail** — all break-glass usage must be logged in incident ticket
+3. **Time-limited** — access valid for incident duration only (max 24 hours)
+4. **Post-mortem** — review all break-glass events in weekly ops meeting
+
+## Privileged Access Management (PAM)
+
+```mermaid
+graph LR
+    Request["Request PAM<br/>Access"] --> Approve["Manager<br/>Approves"]
+    Approve --> Grant["JIT Access<br/>Granted"]
+    Grant --> Session["Recorded<br/>Session"]
+    Session --> Expire["Auto-Expire<br/>(4h max)"]
+    Expire --> Audit["Audit Log<br/>Generated"]
+```
+
+| PAM Control | Implementation |
+|:---|:---|
+| Just-In-Time (JIT) access | Admin access granted for 4-hour windows only |
+| Session recording | All admin sessions recorded and stored 1 year |
+| Password vaulting | Service account passwords in CyberArk/HashiCorp Vault |
+| Credential rotation | Automated rotation every 90 days |
+| Multi-level approval | P1 incident: SOC Manager; Config changes: CISO |
+
 ## Related Documents
 
 - [SOC Team Structure](SOC_Team_Structure.en.md)

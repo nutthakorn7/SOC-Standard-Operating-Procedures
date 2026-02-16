@@ -113,6 +113,86 @@ xychart-beta
 | 🟡 Medium | [e.g., Onboard cloud audit logs] | [Owner] | [Date] |
 | 🟢 Low | [e.g., Update phishing awareness training] | [Owner] | [Date] |
 
+## Dashboard Visualizations Guide
+
+### Recommended Charts for Monthly Report
+
+| Metric | Chart Type | Purpose |
+|:---|:---|:---|
+| Alert volume by severity | Stacked bar chart | Show volume trends over time |
+| MTTD / MTTR trend | Line chart (dual axis) | Show performance improvement |
+| Top 10 alert types | Horizontal bar chart | Identify highest volume alerts |
+| True vs False Positive ratio | Pie/donut chart | Show detection accuracy |
+| Incidents by category | Treemap | Show relative incident distribution |
+| SLA compliance | Gauge/meter | Quick pass/fail visibility |
+| MITRE ATT&CK heatmap | Matrix heatmap | Show detection coverage gaps |
+| Analyst workload | Bar chart per analyst | Identify capacity issues |
+
+### Trend Analysis Section
+
+```markdown
+## Monthly Trend Analysis
+
+### Volume Trends (3-month view)
+| Metric | Month-2 | Month-1 | Current | Trend |
+|:---|:---:|:---:|:---:|:---:|
+| Total Alerts | X,XXX | X,XXX | X,XXX | ↑/↓ X% |
+| True Positives | XXX | XXX | XXX | ↑/↓ X% |
+| False Positives | X,XXX | X,XXX | X,XXX | ↑/↓ X% |
+| Incidents Created | XX | XX | XX | ↑/↓ X% |
+| P1/P2 Incidents | X | X | X | ↑/↓ X% |
+
+### Performance Trends
+| KPI | Month-2 | Month-1 | Current | Target | Status |
+|:---|:---:|:---:|:---:|:---:|:---:|
+| MTTD | XX min | XX min | XX min | ≤ 60 min | ✅/❌ |
+| MTTR | XX min | XX min | XX min | ≤ 240 min | ✅/❌ |
+| FP Rate | XX% | XX% | XX% | ≤ 20% | ✅/❌ |
+| SLA Met | XX% | XX% | XX% | ≥ 95% | ✅/❌ |
+
+### Key Observations
+1. [Observation about alert volume changes]
+2. [Observation about new threat types]
+3. [Observation about team performance]
+
+### Recommendations
+1. [Action item based on data]
+2. [Staffing/tool recommendation]
+3. [Detection improvement suggestion]
+```
+
+## Executive Summary Template
+
+For CISO and Board-level audiences, use this 1-page format:
+
+```markdown
+## SOC Executive Summary — [Month Year]
+
+**Status: 🟢 GREEN / 🟡 AMBER / 🔴 RED**
+
+### Key Numbers
+| Metric | Value | vs. Last Month |
+|:---|:---:|:---:|
+| Security Incidents | XX | ↑/↓ X% |
+| Critical Incidents (P1) | X | ↑/↓ |
+| Mean Time to Detect | XX min | ↑/↓ |
+| Mean Time to Respond | XX min | ↑/↓ |
+
+### Notable Incidents
+1. [Brief description of most significant incident]
+2. [Brief description of second incident]
+
+### Risk Highlights
+- [New threat affecting our industry]
+- [Vulnerability requiring attention]
+
+### Budget / Resource Needs
+- [Any staffing, tool, or training requests]
+
+### Next Month Focus
+- [Key initiative or improvement planned]
+```
+
 ## Related Documents
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
 -   [Quarterly Business Review](Quarterly_Business_Review.en.md)

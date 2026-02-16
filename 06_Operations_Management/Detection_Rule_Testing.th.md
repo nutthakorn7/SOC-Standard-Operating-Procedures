@@ -127,6 +127,70 @@ python tools/sigma_validator.py path/to/rule.yml
 | Draft | ยังไม่ทดสอบ |
 | Testing | กำลังทดสอบ |
 
+## กรอบทดสอบอัตโนมัติ
+
+### ขั้นตอน Test-Driven Detection (TDD)
+
+```mermaid
+graph LR
+    Hypothesis["สมมติฐาน/<br/>Threat Intel"] --> Write["เขียน<br/>Sigma Rule"]
+    Write --> Test["ทดสอบด้วย<br/>Atomic Red Team"]
+    Test --> Validate{"Alert<br/>Trigger?"}
+    Validate -->|ไม่| Refine["ปรับ<br/>Rule Logic"]
+    Refine --> Test
+    Validate -->|ใช่| FPCheck{"FP Rate<br/>< 5%?"}
+    FPCheck -->|ไม่| Tune["ปรับ<br/>Exclusions"]
+    Tune --> FPCheck
+    FPCheck -->|ใช่| Deploy["Deploy ไป<br/>Production"]
+    Deploy --> Monitor["ตรวจสอบ<br/>30 วัน"]
+```
+
+### CI/CD Pipeline สำหรับ Detection Rules
+
+```yaml
+# .github/workflows/detection-ci.yml
+name: Detection Rule CI
+on:
+  pull_request:
+    paths: ['rules/**/*.yml']
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ตรวจ Sigma syntax
+        run: sigma check rules/
+      - name: ตรวจ duplicates
+        run: python scripts/check_duplicates.py
+      - name: ทดสอบกับ test logs
+        run: python scripts/test_rules.py --log-dir test_logs/
+      - name: MITRE coverage report
+        run: python scripts/coverage_report.py
+```
+
+## เกณฑ์คุณภาพ Detection Rule
+
+| Metric | เป้าหมาย | วิธีวัด |
+|:---|:---|:---|
+| **False Positive Rate** | < 5% ต่อ rule | FP alerts / total alerts ต่อ rule |
+| **Detection Latency** | < 5 นาทีจาก event ถึง alert | Timestamp delta: event → alert |
+| **Coverage** | > 60% MITRE ATT&CK techniques | Covered techniques / total |
+| **Rule-to-Incident Ratio** | > 10% (1 ใน 10 alerts = จริง) | Incidents / total alerts |
+| **Time to Deploy** | < 48 ชม. จากค้นพบถึง production | PR created → merged → live |
+| **Documentation** | 100% rules มี description + references | Automated check |
+
+## สถานะ Rule Lifecycle
+
+| สถานะ | นิยาม | ต้องดำเนินการ |
+|:---|:---|:---|
+| 🔵 **Draft** | เขียนแล้ว ยังไม่ทดสอบ | นัดทดสอบใน lab |
+| 🟡 **Testing** | Deploy ใน test environment | ตรวจสอบ 7 วัน |
+| 🟢 **Active** | Production, สร้าง alerts | ตรวจสอบปกติ |
+| 🟠 **Tuning** | Active แต่ FP rate สูง | เพิ่ม exclusions, ปรับ logic |
+| ⚪ **Deprecated** | ไม่เกี่ยวข้องแล้ว | ลบหลัง 30 วัน |
+| 🔴 **Broken** | Syntax error หรือไม่มี output | แก้ภายใน 24 ชม. |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)

@@ -118,6 +118,51 @@ This policy defines comprehensive standards for data classification, handling, r
 
 ---
 
+## Data Classification Examples for SOC
+
+| Data Type | Classification | TLP | Retention | Access |
+|:---|:---|:---|:---|:---|
+| SIEM alert metadata | Internal | AMBER | 1 year | All SOC |
+| SIEM raw logs (with PII) | Confidential | AMBER | 90 days | T2+ only |
+| Forensic disk images | Highly Confidential | RED | Case duration + 1 year | Case team only |
+| IOC feeds (public) | Public | CLEAR | Indefinite | All SOC |
+| Incident reports (internal) | Confidential | AMBER | 3 years | SOC + Management |
+| Vulnerability scan results | Confidential | AMBER | 1 year | SOC + IT |
+| Threat intelligence (partner) | Restricted | AMBER/GREEN | 2 years | CTI team |
+| Employee PII from investigations | Highly Confidential | RED | Case closure | Lead analyst + DPO |
+
+## Data Lifecycle Management
+
+```mermaid
+graph LR
+    Create["📝 Create/<br/>Collect"] --> Classify["🏷️ Classify"]
+    Classify --> Store["💾 Store<br/>(encrypted)"]
+    Store --> Use["🔍 Process/<br/>Analyze"]
+    Use --> Share["📤 Share<br/>(per TLP)"]
+    Share --> Archive["📦 Archive"]
+    Archive --> Destroy["🗑️ Destroy<br/>(per policy)"]
+```
+
+| Phase | SOC Responsibility | Control |
+|:---|:---|:---|
+| **Create** | Log collection, evidence capture | Automated via agents/SIEM |
+| **Classify** | Apply TLP label, data category | Manual at creation |
+| **Store** | Encrypted storage per classification | Automated encryption |
+| **Process** | Access only what's needed (minimization) | RBAC enforcement |
+| **Share** | Follow TLP sharing rules | DLP monitoring |
+| **Archive** | Move to cold storage per retention | Automated lifecycle |
+| **Destroy** | Secure deletion with certificate | Verified destruction |
+
+## Data Quality Standards
+
+| Dimension | Definition | SOC Example | Target |
+|:---|:---|:---|:---|
+| **Completeness** | All required fields populated | Every alert has source, dest, timestamp | > 95% |
+| **Accuracy** | Data correctly represents reality | Alert severity matches actual risk | > 90% |
+| **Timeliness** | Data available when needed | Logs arrive in SIEM within 5 min | > 99% |
+| **Consistency** | Same data in different systems matches | Ticket info matches SIEM data | > 95% |
+| **Uniqueness** | No unnecessary duplicates | One ticket per incident (not duplicated) | 100% |
+
 ## Related Documents
 
 - [PDPA Compliance](PDPA_Compliance.en.md)

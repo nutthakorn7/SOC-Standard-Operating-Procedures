@@ -71,6 +71,54 @@ _อธิบาย root cause 2–3 ประโยค_
 | **ค่าใช้จ่าย (ประมาณ)** | [XX] บาท |
 | **ความเสี่ยงทางกฎหมาย** | [PDPA notification required? ใช่/ไม่] |
 
+## รูปแบบ Lessons Learned ที่พบบ่อย
+
+จากผลการวิเคราะห์ incident ที่ผ่านมา:
+
+| # | รูปแบบ | ความถี่ | สาเหตุหลัก | แนวทางแก้ไข |
+|:---|:---|:---:|:---|:---|
+| 1 | ไม่มี detection rule สำหรับ technique | 40% | TTP ใหม่ยังไม่ครอบคลุม | สร้าง Sigma rule ภายใน 48 ชม. |
+| 2 | Playbook มีข้อมูลติดต่อเก่า | 25% | การเปลี่ยนแปลงคนไม่ได้อัปเดต | ตรวจสอบ SOP รายเดือน |
+| 3 | ตรวจจับช้า (MTTD > SLA) | 20% | Alert fatigue, queue แน่น | ปรับ rules, เพิ่ม context, ลด FP |
+| 4 | Containment ล่าช้าเพราะรอ approval | 15% | Chain อนุมัติไม่ชัด | Pre-authorize containment สำหรับภัยที่ยืนยันแล้ว |
+| 5 | หลักฐาน chain of custody ขาด | 10% | ไม่มี forensic procedure มาตรฐาน | บังคับใช้ forensic SOP checklist |
+| 6 | Communication gaps ตอน P1 | 20% | ไม่เปิด war room | Auto-activate war room สำหรับ P1 |
+| 7 | ช่องโหว่เดิมถูกโจมตีซ้ำ | 15% | ไม่ได้ patch หลังแจ้ง | ติดตาม patch อัตโนมัติ + escalation |
+
+## แนวปฏิบัติที่ดีสำหรับการประชุม Lessons Learned
+
+### Checklist สำหรับผู้นำประชุม
+```
+ก่อนประชุม:
+□ นัดภายใน 5 วันทำการหลังปิด incident
+□ ส่งเอกสารอ่านล่วงหน้า: timeline, metrics, ผลเบื้องต้น
+□ เชิญ: Lead analyst, T2/T3 ที่เกี่ยว, SOC Manager, IT contacts
+□ จอง 60-90 นาที
+
+ระหว่างประชุม:
+□ ตั้งกฎ: ไม่ตำหนิคน, โฟกัสกระบวนการ
+□ เดินผ่าน timeline ด้วยกัน
+□ แต่ละขั้น ถาม: "อะไรดี? อะไรไม่ดี?"
+□ ระบุ action items พร้อม เจ้าของ+กำหนด เฉพาะ
+□ จัดลำดับความสำคัญ: 3 actions ที่มีผลกระทบมากที่สุด
+
+หลังประชุม:
+□ ส่ง meeting notes ภายใน 24 ชม.
+□ สร้าง tickets สำหรับทุก action items
+□ ติดตามการทำเสร็จใน weekly SOC ops meeting
+□ ปิด LL record เมื่อ actions ทั้งหมดเสร็จ
+```
+
+### วัฒนธรรม Blameless Post-Mortem
+
+| ✅ ควรทำ | ❌ ไม่ควรทำ |
+|:---|:---|
+| โฟกัสที่ระบบล้มเหลว ไม่ใช่คนผิดพลาด | ตำหนิคนเฉพาะ |
+| ถาม "อะไรทำให้เกิดขึ้นได้?" | ถาม "ใครทำ?" |
+| ชื่นชม detection และ escalation ที่ดี | โฟกัสแค่ความล้มเหลว |
+| แชร์ผลการเรียนรู้ทั้งทีม | เก็บ lessons learned ไว้ส่วนตัว |
+| ติดตามการแก้ไขจนเสร็จ | ระบุ action items แต่ไม่ติดตาม |
+
 ## เอกสารที่เกี่ยวข้อง
 - [IR Framework](Framework.th.md)
 - [แม่แบบรายงานเหตุการณ์](../templates/incident_report.th.md)

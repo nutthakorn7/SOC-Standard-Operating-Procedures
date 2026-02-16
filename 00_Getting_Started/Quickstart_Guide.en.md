@@ -133,6 +133,21 @@ The absolute minimum you need to start — your "Day 1" checklist:
 
 > ✅ If you can check all 8 boxes above, you have a functioning SOC!
 
+## Frequently Asked Questions
+
+| # | Question | Answer |
+|:---|:---|:---|
+| 1 | How many people do I need to start a SOC? | Minimum 3: 2 T1 analysts + 1 manager. See [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md) |
+| 2 | What SIEM should I use? | For budget: Wazuh (free). For enterprise: Splunk, Elastic, or Sentinel. |
+| 3 | How long until my SOC is effective? | Crawl (3 months), Walk (6 months), Run (12 months). Plan for at least 6 months. |
+| 4 | Do I need 24/7 coverage from day 1? | No. Start with 8x5, then expand as maturity grows. |
+| 5 | Which playbooks should I create first? | Phishing, Malware, Brute Force, Account Compromise, Ransomware. |
+| 6 | How many detection rules do I need? | Start with 5-10 high-confidence rules, then expand. Quality > quantity. |
+| 7 | Should I build or buy a SOC? | Start with internal + MSSP support if budget allows. See [SOC Assessment](../06_Operations_Management/SOC_Assessment_Checklist.en.md). |
+| 8 | What certifications do analysts need? | T1: Security+/CySA+. T2: GCIH. T3: GCFA/OSCP. |
+| 9 | How do I measure SOC effectiveness? | MTTD, MTTR, FP rate, SLA compliance. See [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md). |
+| 10 | Can I use this repository for my organization? | Yes! Fork it, customize it, contribute back. See [CONTRIBUTING](../CONTRIBUTING.md). |
+
 ## Related Documents
 -   [SOC 101](SOC_101.en.md)
 -   [Glossary of Terms](Glossary.en.md)

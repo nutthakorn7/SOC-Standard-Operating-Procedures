@@ -107,6 +107,54 @@ gantt
 | SANS SEC504 | ปี 1-2 | การตอบสนองเหตุการณ์ขั้นสูง |
 | BTL1 | ปี 1 | ทักษะ Blue team ปฏิบัติ |
 
+## แผน Onboarding 90 วัน
+
+### สัปดาห์ 1-2: พื้นฐาน
+| วัน | กิจกรรม | ผลลัพธ์ |
+|:---|:---|:---|
+| 1 | ต้อนรับ, บัตร, ตั้งค่า account | เข้าถึงเครื่องมือ SOC ทั้งหมด |
+| 2 | อ่าน SOC 101 + Glossary | ทำ Quiz: ผ่าน 80% |
+| 3 | ปฐมนิเทศ SIEM (read-only) | นำทาง dashboard ได้ |
+| 4 | ฝึก ticketing system | สร้าง/อัปเดต tickets ได้ |
+| 5 | เงา T1 analyst (กะเต็ม) | บันทึกสังเกตการณ์ |
+| 6-10 | เรียน Security+ modules | Module completion |
+
+### สัปดาห์ 3-4: สร้างทักษะ
+| วัน | กิจกรรม | ผลลัพธ์ |
+|:---|:---|:---|
+| 11-12 | อ่าน top 5 playbooks | สรุป playbook |
+| 13-14 | Lab ฝึก SIEM query | ทำ 10 queries สำเร็จ |
+| 15 | ปฐมนิเทศ EDR tool | นำทาง EDR console ได้ |
+| 16-17 | Workshop วิเคราะห์ log | วิเคราะห์ 20 sample alerts |
+| 18-20 | เงา T1 + จัดการ alert ง่าย | ปิดตั๋ว 5 ใบแรก |
+
+### เดือน 2: ฝึกภายใต้การดูแล
+| สัปดาห์ | กิจกรรม | ผลลัพธ์ |
+|:---|:---|:---|
+| 5 | จัดการ alerts อิสระ (T2 ทบทวน) | ความแม่นยำ 80%+ |
+| 6 | ฝึกครบ 10 alert types | Scorecard: 80%+ |
+| 7 | กะแรกคนเดียว (senior standby) | Shift report |
+| 8 | ฝึก escalation scenarios | ผ่าน 3 scenarios |
+
+### เดือน 3: เป็นอิสระ
+| สัปดาห์ | กิจกรรม | ผลลัพธ์ |
+|:---|:---|:---|
+| 9 | ทำงานกะอิสระเต็มที่ | MTTD ภายใน SLA |
+| 10 | เข้าร่วม Purple team exercise | Exercise report |
+| 11 | เขียน Knowledge Base article 1 ชิ้น | KB article published |
+| 12 | ทบทวน 90 วัน กับ SOC Manager | ประเมินผลงาน |
+
+### เกณฑ์สำเร็จ
+```
+□ Triage 10 alert types อิสระได้
+□ MTTD สม่ำเสมอภายใน SLA (≤ 60 นาที)
+□ FP identification rate > 80%
+□ Escalation ถูกต้อง > 90%
+□ บันทึก ticket ครบถ้วนและถูกต้อง
+□ สอบ Security+ ผ่าน (หรือนัดสอบแล้ว)
+□ Feedback เชิงบวกจาก shift mentors
+```
+
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [Training Checklist](Training_Checklist.th.md)
 -   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
