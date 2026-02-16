@@ -92,8 +92,8 @@ nav:
     - Analyst Training Path: 01_SOC_Fundamentals/Analyst_Training_Path.en.md
     - เส้นทางฝึก Analyst (TH): 01_SOC_Fundamentals/Analyst_Training_Path.th.md
   - 🏗️ Setup & Operations:
-    - SOC Infrastructure Setup: 01_Onboarding/System_Activation.en.md
-    - การติดตั้ง SOC (TH): 01_Onboarding/System_Activation.th.md
+    - SOC Infrastructure Setup: 10_Training_Onboarding/System_Activation.en.md
+    - การติดตั้ง SOC (TH): 10_Training_Onboarding/System_Activation.th.md
     - Data Governance: 02_Platform_Operations/Database_Management.en.md
     - นโยบายข้อมูล (TH): 02_Platform_Operations/Database_Management.th.md
     - Deployment Procedures: 02_Platform_Operations/Deployment_Procedures.en.md
@@ -213,12 +213,8 @@ nav:
     - รายการตรวจสอบ (TH): 06_Operations_Management/SOC_Checklists.th.md
     - SOC Metrics & KPIs: 06_Operations_Management/SOC_Metrics.en.md
     - ตัวชี้วัด (TH): 06_Operations_Management/SOC_Metrics.th.md
-    - Escalation Matrix: 06_Operations_Management/Escalation_Matrix.en.md
-    - ตาราง Escalation (TH): 06_Operations_Management/Escalation_Matrix.th.md
     - SOC Communication SOP: 06_Operations_Management/SOC_Communication.en.md
     - SOP การสื่อสาร SOC (TH): 06_Operations_Management/SOC_Communication.th.md
-    - Alert Tuning SOP: 06_Operations_Management/Alert_Tuning_SOP.en.md
-    - SOP ปรับแต่ง Alert (TH): 06_Operations_Management/Alert_Tuning_SOP.th.md
     - KPI Dashboard Template: 06_Operations_Management/KPI_Dashboard_Template.en.md
     - แม่แบบ Dashboard KPI (TH): 06_Operations_Management/KPI_Dashboard_Template.th.md
     - Log Source Matrix: 06_Operations_Management/Log_Source_Matrix.en.md
@@ -227,8 +223,8 @@ nav:
     - คู่มือ Onboard Log (TH): 06_Operations_Management/Log_Source_Onboarding.th.md
     - SOC Automation Catalog: 06_Operations_Management/SOC_Automation_Catalog.en.md
     - แคตตาล็อก Automation (TH): 06_Operations_Management/SOC_Automation_Catalog.th.md
-    - Alert Tuning SOP: 06_Operations_Management/Alert_Tuning.en.md
-    - SOP การปรับจูน Alert (TH): 06_Operations_Management/Alert_Tuning.th.md
+    - Alert Tuning: 06_Operations_Management/Alert_Tuning.en.md
+    - การปรับจูน Alert (TH): 06_Operations_Management/Alert_Tuning.th.md
     - SOC Capacity Planning: 06_Operations_Management/SOC_Capacity_Planning.en.md
     - การวางแผนกำลังคน SOC (TH): 06_Operations_Management/SOC_Capacity_Planning.th.md
     # --- Security Monitoring ---
@@ -269,13 +265,12 @@ nav:
     - การจัดการเปลี่ยนแปลง (TH): 06_Operations_Management/Change_Management.th.md
     - Access Control Policy: 06_Operations_Management/Access_Control.en.md
     - นโยบายควบคุมการเข้าถึง (TH): 06_Operations_Management/Access_Control.th.md
-    - Communication SOP: 06_Operations_Management/Communication_SOP.en.md
-    - SOP การสื่อสาร (TH): 06_Operations_Management/Communication_SOP.th.md
+
   - 🔧 Guides & Tools:
-    - Detection Rules Index: 07_Detection_Rules/README.md
-    - ดัชนี Detection Rules (TH): 07_Detection_Rules/README.th.md
-    - YARA Rules Index: 07_Detection_Rules/yara/README.md
-    - File Signatures (YARA): 10_File_Signatures/README.md
+    - Detection Rules Index: 08_Detection_Engineering/README.md
+    - ดัชนี Detection Rules (TH): 08_Detection_Engineering/README.th.md
+    - YARA Rules Index: 08_Detection_Engineering/yara/README.md
+    - File Signatures (YARA): 08_Detection_Engineering/file_signatures/README.md
     - Detection Engineering: 03_User_Guides/Content_Management.en.md
     - วิศวกรรมตรวจจับ (TH): 03_User_Guides/Content_Management.th.md
     - Integration Hub: 03_User_Guides/Integration_Hub.en.md
@@ -287,31 +282,33 @@ nav:
     - MITRE ATT&CK Heatmap: tools/mitre_attack_heatmap.html
     - SOC Dashboards (Grafana/Kibana): tools/dashboards/README.md
   - 🏛️ Compliance:
-    - Compliance Mapping: 10_Compliance/Compliance_Mapping.en.md
-    - แผนที่ Compliance (TH): 10_Compliance/Compliance_Mapping.th.md
-    - PDPA Incident Response: 10_Compliance/PDPA_Incident_Response.en.md
-    - ตอบเหตุ PDPA (TH): 10_Compliance/PDPA_Incident_Response.th.md
-    - Compliance Gap Analysis: 10_Compliance/Compliance_Gap_Analysis.en.md
-    - วิเคราะห์ Gap Compliance (TH): 10_Compliance/Compliance_Gap_Analysis.th.md
+    - Compliance Mapping: 07_Compliance_Privacy/Compliance_Mapping.en.md
+    - แผนที่ Compliance (TH): 07_Compliance_Privacy/Compliance_Mapping.th.md
+    - PDPA Incident Response: 07_Compliance_Privacy/PDPA_Incident_Response.en.md
+    - ตอบเหตุ PDPA (TH): 07_Compliance_Privacy/PDPA_Incident_Response.th.md
+    - Compliance Gap Analysis: 07_Compliance_Privacy/Compliance_Gap_Analysis.en.md
+    - วิเคราะห์ Gap Compliance (TH): 07_Compliance_Privacy/Compliance_Gap_Analysis.th.md
     - PDPA Compliance: 07_Compliance_Privacy/PDPA_Compliance.en.md
     - PDPA Compliance (TH): 07_Compliance_Privacy/PDPA_Compliance.th.md
     - Data Governance Policy: 07_Compliance_Privacy/Data_Governance_Policy.en.md
     - นโยบายกำกับดูแลข้อมูล (TH): 07_Compliance_Privacy/Data_Governance_Policy.th.md
   - 🎯 Testing & Training:
-    - Simulation Guide: 08_Simulation_Testing/Simulation_Guide.en.md
-    - คู่มือ Simulation (TH): 08_Simulation_Testing/Simulation_Guide.th.md
-    - Atomic Test Map: 08_Simulation_Testing/Atomic_Test_Map.en.md
-    - ตาราง Atomic Test (TH): 08_Simulation_Testing/Atomic_Test_Map.th.md
-    - Purple Team Exercise Guide: 08_Simulation_Testing/Purple_Team_Exercise.en.md
-    - คู่มือ Purple Team (TH): 08_Simulation_Testing/Purple_Team_Exercise.th.md
-    - Phishing Simulation Program: 08_Simulation_Testing/Phishing_Simulation.en.md
-    - โปรแกรมจำลอง Phishing (TH): 08_Simulation_Testing/Phishing_Simulation.th.md
-    - Analyst Onboarding: 09_Training_Onboarding/Analyst_Onboarding_Path.en.md
-    - หลักสูตร Analyst (TH): 09_Training_Onboarding/Analyst_Onboarding_Path.th.md
-    - Training Checklist: 09_Training_Onboarding/Training_Checklist.en.md
-    - เช็คลิสต์ฝึกอบรม (TH): 09_Training_Onboarding/Training_Checklist.th.md
-    - SOC Analyst Onboarding (90-Day): 01_SOC_Overview/SOC_Onboarding.en.md
-    - Onboarding SOC Analyst (TH): 01_SOC_Overview/SOC_Onboarding.th.md
+    - Simulation Guide: 09_Simulation_Testing/Simulation_Guide.en.md
+    - คู่มือ Simulation (TH): 09_Simulation_Testing/Simulation_Guide.th.md
+    - Atomic Test Map: 09_Simulation_Testing/Atomic_Test_Map.en.md
+    - ตาราง Atomic Test (TH): 09_Simulation_Testing/Atomic_Test_Map.th.md
+    - Purple Team Exercise Guide: 09_Simulation_Testing/Purple_Team_Exercise.en.md
+    - คู่มือ Purple Team (TH): 09_Simulation_Testing/Purple_Team_Exercise.th.md
+    - Phishing Simulation Program: 09_Simulation_Testing/Phishing_Simulation.en.md
+    - โปรแกรมจำลอง Phishing (TH): 09_Simulation_Testing/Phishing_Simulation.th.md
+    - Analyst Onboarding: 10_Training_Onboarding/Analyst_Onboarding_Path.en.md
+    - หลักสูตร Analyst (TH): 10_Training_Onboarding/Analyst_Onboarding_Path.th.md
+    - Training Checklist: 10_Training_Onboarding/Training_Checklist.en.md
+    - เช็คลิสต์ฝึกอบรม (TH): 10_Training_Onboarding/Training_Checklist.th.md
+    - SOC Analyst Onboarding (90-Day): 10_Training_Onboarding/SOC_Onboarding.en.md
+    - Onboarding SOC Analyst (TH): 10_Training_Onboarding/SOC_Onboarding.th.md
+    - System Activation: 10_Training_Onboarding/System_Activation.en.md
+    - การเปิดใช้งานระบบ (TH): 10_Training_Onboarding/System_Activation.th.md
   - 📄 Templates & Reports:
     - Monthly SOC Report: 11_Reporting_Templates/Monthly_SOC_Report.en.md
     - รายงานรายเดือน (TH): 11_Reporting_Templates/Monthly_SOC_Report.th.md

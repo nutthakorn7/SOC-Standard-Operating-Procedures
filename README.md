@@ -66,7 +66,7 @@ Start here if you're building a brand-new SOC. Follow the numbered order.
 | 4 | **Infrastructure Setup** 🖥️ | [Read](01_SOC_Fundamentals/Infrastructure_Setup.en.md) | [อ่าน](01_SOC_Fundamentals/Infrastructure_Setup.th.md) |
 | 5 | **Use Case Prioritization** 🎯 | [Read](01_SOC_Fundamentals/Use_Case_Prioritization.en.md) | [อ่าน](01_SOC_Fundamentals/Use_Case_Prioritization.th.md) |
 | 6 | **Analyst Training Path** (6 months) 🎓 | [Read](01_SOC_Fundamentals/Analyst_Training_Path.en.md) | [อ่าน](01_SOC_Fundamentals/Analyst_Training_Path.th.md) |
-| 7 | **SOC Infrastructure Activation** ⚡ | [Read](01_Onboarding/System_Activation.en.md) | [อ่าน](01_Onboarding/System_Activation.th.md) |
+| 7 | **SOC Infrastructure Activation** ⚡ | [Read](10_Training_Onboarding/System_Activation.en.md) | [อ่าน](10_Training_Onboarding/System_Activation.th.md) |
 
 ---
 
@@ -176,7 +176,7 @@ All playbooks are bilingual (EN+TH) and MITRE ATT&CK mapped.
 
 ### Sigma Detection Rules (33 Rules)
 
-Ready-to-import rules mapped to MITRE ATT&CK. See full index: [README](07_Detection_Rules/README.md) | [ดัชนี (TH)](07_Detection_Rules/README.th.md)
+Ready-to-import rules mapped to MITRE ATT&CK. See full index: [README](08_Detection_Engineering/README.md) | [ดัชนี (TH)](08_Detection_Engineering/README.th.md)
 
 | Category | Rule Examples | Count |
 |:---|:---|:---:|
@@ -188,7 +188,7 @@ Ready-to-import rules mapped to MITRE ATT&CK. See full index: [README](07_Detect
 
 ### YARA Rules (5 Rules)
 
-File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [File Signatures](10_File_Signatures/README.md)
+File-based threat detection: [YARA Index](08_Detection_Engineering/yara/README.md) | [File Signatures](08_Detection_Engineering/file_signatures/README.md)
 
 ### Threat Intelligence
 
@@ -274,20 +274,20 @@ File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [
 
 | Document | English | ภาษาไทย |
 |:---|:---:|:---:|
-| **🟣 Purple Team Exercise Guide** | [Read](08_Simulation_Testing/Purple_Team_Exercise.en.md) | [อ่าน](08_Simulation_Testing/Purple_Team_Exercise.th.md) |
+| **🟣 Purple Team Exercise Guide** | [Read](09_Simulation_Testing/Purple_Team_Exercise.en.md) | [อ่าน](09_Simulation_Testing/Purple_Team_Exercise.th.md) |
 | **Purple Team Exercises** (9 exercises) | [Read](05_Incident_Response/Purple_Team_Exercises.en.md) | [อ่าน](05_Incident_Response/Purple_Team_Exercises.th.md) |
 | **Tabletop Exercises** (5 scenarios) | [Read](05_Incident_Response/Tabletop_Exercises.en.md) | [อ่าน](05_Incident_Response/Tabletop_Exercises.th.md) |
-| **🎣 Phishing Simulation Program** | [Read](08_Simulation_Testing/Phishing_Simulation.en.md) | [อ่าน](08_Simulation_Testing/Phishing_Simulation.th.md) |
-| **Simulation Guide** | [Read](08_Simulation_Testing/Simulation_Guide.en.md) | [อ่าน](08_Simulation_Testing/Simulation_Guide.th.md) |
-| **Atomic Test Map** (MITRE) | [Read](08_Simulation_Testing/Atomic_Test_Map.en.md) | [อ่าน](08_Simulation_Testing/Atomic_Test_Map.th.md) |
+| **🎣 Phishing Simulation Program** | [Read](09_Simulation_Testing/Phishing_Simulation.en.md) | [อ่าน](09_Simulation_Testing/Phishing_Simulation.th.md) |
+| **Simulation Guide** | [Read](09_Simulation_Testing/Simulation_Guide.en.md) | [อ่าน](09_Simulation_Testing/Simulation_Guide.th.md) |
+| **Atomic Test Map** (MITRE) | [Read](09_Simulation_Testing/Atomic_Test_Map.en.md) | [อ่าน](09_Simulation_Testing/Atomic_Test_Map.th.md) |
 
 ### Analyst Training / การฝึกอบรม
 
 | Document | English | ภาษาไทย |
 |:---|:---:|:---:|
-| **👤 SOC Analyst Onboarding** (90-day) | [Read](01_SOC_Overview/SOC_Onboarding.en.md) | [อ่าน](01_SOC_Overview/SOC_Onboarding.th.md) |
-| **Analyst Onboarding** (5-day path) | [Read](09_Training_Onboarding/Analyst_Onboarding_Path.en.md) | [อ่าน](09_Training_Onboarding/Analyst_Onboarding_Path.th.md) |
-| **Training Checklist** | [Read](09_Training_Onboarding/Training_Checklist.en.md) | [อ่าน](09_Training_Onboarding/Training_Checklist.th.md) |
+| **👤 SOC Analyst Onboarding** (90-day) | [Read](10_Training_Onboarding/SOC_Onboarding.en.md) | [อ่าน](10_Training_Onboarding/SOC_Onboarding.th.md) |
+| **Analyst Onboarding** (5-day path) | [Read](10_Training_Onboarding/Analyst_Onboarding_Path.en.md) | [อ่าน](10_Training_Onboarding/Analyst_Onboarding_Path.th.md) |
+| **Training Checklist** | [Read](10_Training_Onboarding/Training_Checklist.en.md) | [อ่าน](10_Training_Onboarding/Training_Checklist.th.md) |
 
 ---
 
@@ -297,9 +297,9 @@ File-based threat detection: [YARA Index](07_Detection_Rules/yara/README.md) | [
 
 | Document | English | ภาษาไทย |
 |:---|:---:|:---:|
-| **Compliance Mapping** (ISO 27001 / NIST CSF / PCI DSS) | [Read](10_Compliance/Compliance_Mapping.en.md) | [อ่าน](10_Compliance/Compliance_Mapping.th.md) |
-| **PDPA Incident Response** (72-hr notification) | [Read](10_Compliance/PDPA_Incident_Response.en.md) | [อ่าน](10_Compliance/PDPA_Incident_Response.th.md) |
-| **📝 Compliance Gap Analysis** | [Read](10_Compliance/Compliance_Gap_Analysis.en.md) | [อ่าน](10_Compliance/Compliance_Gap_Analysis.th.md) |
+| **Compliance Mapping** (ISO 27001 / NIST CSF / PCI DSS) | [Read](07_Compliance_Privacy/Compliance_Mapping.en.md) | [อ่าน](07_Compliance_Privacy/Compliance_Mapping.th.md) |
+| **PDPA Incident Response** (72-hr notification) | [Read](07_Compliance_Privacy/PDPA_Incident_Response.en.md) | [อ่าน](07_Compliance_Privacy/PDPA_Incident_Response.th.md) |
+| **📝 Compliance Gap Analysis** | [Read](07_Compliance_Privacy/Compliance_Gap_Analysis.en.md) | [อ่าน](07_Compliance_Privacy/Compliance_Gap_Analysis.th.md) |
 
 ### Reports & Dashboards
 
