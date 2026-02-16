@@ -48,13 +48,13 @@
 
 | Playbook | Version | Last Updated | Status |
 |:---|:---:|:---:|:---:|
-| PB-01 Phishing → PB-10 Web Attack | 2.7 | 2026-02-16 | ✅ |
-| PB-11 Suspicious Script → PB-20 Log Clearing | 2.7 | 2026-02-16 | ✅ |
-| PB-21 Supply Chain → PB-25 Zero-Day | 2.7 | 2026-02-16 | ✅ |
-| PB-26 MFA Bypass → PB-30 OT/ICS | 2.7 | 2026-02-16 | ✅ |
-| PB-31 AWS EC2 → PB-33 Azure AD | 2.7 | 2026-02-16 | ✅ |
-| PB-34 Network Discovery | 2.7 | 2026-02-16 | ✅ |
-| PB-35 Data Collection | 2.7 | 2026-02-16 | ✅ |
+| PB-01 Phishing → PB-10 Web Attack | 2.8 | 2026-02-16 | ✅ |
+| PB-11 Suspicious Script → PB-20 Log Clearing | 2.8 | 2026-02-16 | ✅ |
+| PB-21 Supply Chain → PB-25 Zero-Day | 2.8 | 2026-02-16 | ✅ |
+| PB-26 MFA Bypass → PB-30 OT/ICS | 2.8 | 2026-02-16 | ✅ |
+| PB-31 AWS EC2 → PB-33 Azure AD | 2.8 | 2026-02-16 | ✅ |
+| PB-34 Network Discovery | 2.8 | 2026-02-16 | ✅ |
+| PB-35 Data Collection | 2.8 | 2026-02-16 | ✅ |
 
 ## 📊 Operations Management
 

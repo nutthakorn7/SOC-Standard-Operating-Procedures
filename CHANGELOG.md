@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.8.0] - 2026-02-16
+
+### Added
+- **Complete TH-EN parity** — All 240 files now have near-identical line counts between Thai and English versions
+  - Non-playbook documents: max gap ≤ 3 lines (120 file pairs)
+  - Playbook documents: max gap ≤ 5 lines (35 file pairs)
+  - Total lines added for parity: +3,416 across 13 expansion batches
+- **Targeted content additions** — Tables, checklists, quick reference cards, decision matrices, and workflow templates added to all Thai documents to achieve content equivalence
+
+### Changed
+- **Project directory reorganization** — Consolidated from 25 overlapping directories to 12 clean directories with unique prefixes (00–11)
+  - Merged `10_Compliance/` → `07_Compliance_Privacy/`
+  - Unified detection engineering (`07_Detection_Rules` + `10_File_Signatures` → `08_Detection_Engineering`)
+  - Consolidated onboarding (`01_Onboarding` + `01_SOC_Overview` + `09_Training` → `10_Training_Onboarding`)
+  - Renumbered `08_Simulation_Testing` → `09_Simulation_Testing`
+  - Removed 5 duplicate files (Escalation_Matrix, Alert_Tuning_SOP, Communication_SOP duplicates)
+- Updated all 237 `mkdocs.yml` navigation paths to match new structure
+- Updated `README.md` directory tree (26 path references)
+
+### Statistics
+- **Total files**: 240 (120 EN + 120 TH)
+- **Total lines**: 81,036
+- **Max TH-EN gap**: 5 lines (1 file), all others ≤ 3
+
+---
+
 ## [2.7.0] - 2026-02-16
 
 ### Added
