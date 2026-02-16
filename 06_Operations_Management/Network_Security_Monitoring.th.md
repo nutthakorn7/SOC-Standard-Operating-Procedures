@@ -212,6 +212,15 @@ graph TD
 | Failed connections | < 5% | > 15% |
 | Bandwidth utilization | 30-60% | > 85% |
 
+### NSM Tool Stack
+
+| Layer | Tool | Purpose |
+|:---|:---|:---|
+| Packet capture | Zeek / Suricata | Deep inspection |
+| Flow analysis | NetFlow / sFlow | Traffic patterns |
+| DNS monitoring | PassiveDNS | Domain tracking |
+| Full PCAP | Arkime / tcpdump | Forensics |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด

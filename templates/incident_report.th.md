@@ -123,6 +123,16 @@
 - [แบบฟอร์ม RFC](change_request_rfc.th.md)
 - [PDPA Compliance](../07_Compliance_Privacy/PDPA_Compliance.th.md)
 
+### Report Quality Checklist
+
+| Item | Description | ✓ |
+|:---|:---|:---|
+| Timeline | ครบทุก event | ☐ |
+| Evidence | SHA256 hashes | ☐ |
+| Impact | Quantified | ☐ |
+| Root cause | Identified | ☐ |
+| Actions | Assigned + dated | ☐ |
+
 ## อ้างอิง
 
 - [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

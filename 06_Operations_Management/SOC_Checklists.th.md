@@ -160,6 +160,15 @@
 - [ ] Capacity planning review
 - [ ] Incident trend analysis report
 
+### Quarterly SOC Review Topics
+
+| Topic | Owner | Output |
+|:---|:---|:---|
+| USE case effectiveness | Engineer | Tuning report |
+| Tool utilization | Manager | License review |
+| Training gaps | Lead | Training plan |
+| Process improvement | All | Updated SOPs |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [คู่มือ Tier 1](../05_Incident_Response/Tier1_Runbook.th.md)

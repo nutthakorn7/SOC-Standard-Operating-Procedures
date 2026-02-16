@@ -175,6 +175,16 @@ graph TD
 - [แบบฟอร์มรายงานเหตุการณ์](../templates/incident_report.th.md)
 - [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
 
+### Severity Auto-classification Rules
+
+| Condition | Auto-assign | Override |
+|:---|:---|:---|
+| PII data involved | Critical | CISO only |
+| > 100 hosts affected | Critical | SOC Manager |
+| Single endpoint malware | High | Tier 2 analyst |
+| Policy violation | Medium | SOC Lead |
+| Failed login attempt | Low | Auto-close if < 5 |
+
 ## References
 
 - [NIST SP 800-61r2 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

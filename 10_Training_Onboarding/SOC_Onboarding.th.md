@@ -237,6 +237,15 @@
 | Week 8 | Process confidence | 6 ข้อ + self-assess |
 | Week 12 | Overall readiness | 10 ข้อ + manager eval |
 
+### Buddy System Assignment
+
+| Week | Focus | Buddy Role |
+|:---|:---|:---|
+| 1-2 | Tool navigation | Senior Analyst |
+| 3-4 | Alert triage | Tier 2 |
+| 5-8 | Investigation | Tier 2/3 |
+| 9-12 | Independent work | Manager |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   SOC Charter — ภารกิจและโครงสร้าง

@@ -177,6 +177,15 @@ graph LR
 | ข้อมูลรั่วไหลจากความประมาท | 5 ล้านบาท + โทษอาญา |
 | ไม่แต่งตั้ง DPO (กรณีที่ต้องมี) | 1 ล้านบาท |
 
+### PDPA Notification Timeline
+
+| Event | Action | Deadline |
+|:---|:---|:---|
+| Breach detected | Internal triage | ทันที |
+| Impact assessed | DPO notification | 24 ชม. |
+| Reportable breach | แจ้ง สคส. | 72 ชม. |
+| Data subject notice | แจ้งเจ้าของข้อมูล | โดยไม่ชักช้า |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [IR Framework](../05_Incident_Response/Framework.th.md)

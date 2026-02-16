@@ -241,6 +241,15 @@ flowchart TD
 | Config Audit | Config | Policy | Asset Inv. |
 | SIEM Integration | S3 → SIEM | EventHub → SIEM | Pub/Sub → SIEM |
 
+### Cloud Alert Priority
+
+| Alert | Platform | Priority |
+|:---|:---|:---|
+| Root/admin login | All | Critical |
+| Public storage | AWS/Azure/GCP | High |
+| MFA disabled | All | Critical |
+| Unusual API calls | All | Medium |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด

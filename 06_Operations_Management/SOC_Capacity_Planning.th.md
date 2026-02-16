@@ -190,6 +190,14 @@ Required Analysts = (Alerts/Day × Avg Handle Time) / (Working Hours × Utilizat
 | SIEM storage | > 70% | > 85% | Expand/Archive |
 | Response SLA miss | > 5% | > 15% | Review process |
 
+### Technology Capacity Planning
+
+| Resource | Current | 80% Threshold | Upgrade Plan |
+|:---|:---|:---|:---|
+| SIEM EPS | 2,000 | 1,600 | Scale indexer |
+| Storage | 10 TB | 8 TB | Add nodes |
+| Network | 1 Gbps | 800 Mbps | Upgrade link |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Team Structure](SOC_Team_Structure.en.md) — บทบาทและความรับผิดชอบ

@@ -260,6 +260,15 @@ graph LR
 - Remediation Actions: [รายการ]
 ```
 
+### Exercise Budget Planning
+
+| Item | Cost Estimate | Notes |
+|:---|:---|:---|
+| Tooling (annual) | 200K-500K THB | Licenses |
+| External Red Team | 300K-1M THB | Per engagement |
+| Lab environment | 100K-300K THB | VMs + network |
+| Training | 50K-150K THB | Per person |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Simulation & Testing Guide](../08_Simulation_Testing/Simulation_Guide.en.md)

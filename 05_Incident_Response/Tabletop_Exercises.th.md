@@ -298,6 +298,14 @@
 | Q3 | Insider Threat | Tactical | SOC + HR |
 | Q4 | Supply Chain / Cloud | Technical | SOC + DevOps |
 
+### Follow-up Action Types
+
+| Type | SLA | Owner |
+|:---|:---|:---|
+| Process update | 2 weeks | SOC Manager |
+| New detection rule | 1 week | Engineer |
+| Training update | 1 month | Training lead |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

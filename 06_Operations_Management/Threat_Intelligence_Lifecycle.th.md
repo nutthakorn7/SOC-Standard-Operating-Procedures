@@ -109,6 +109,14 @@ Indicators of Compromise (IoCs) ทุกตัวต้องผ่านกร
 | Management | Trends | Executive brief | Monthly |
 | Board | Risk level | Dashboard | Quarterly |
 
+### TI Quality Metrics
+
+| Metric | Target | Review |
+|:---|:---|:---|
+| IOC accuracy | > 90% | Monthly |
+| Actionable intel | > 60% | Weekly |
+| Feed latency | < 1 hr | Real-time |
+
 ## References
 -   [CREST Cyber Threat Intelligence](https://www.crest-approved.org/knowledge-base/cyber-threat-intelligence/)
 -   [SANS CTI Maturity Model](https://www.sans.org/white-papers/cti-maturity-model/)

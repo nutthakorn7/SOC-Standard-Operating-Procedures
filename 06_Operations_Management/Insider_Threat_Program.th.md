@@ -288,6 +288,15 @@ flowchart LR
     I --> J[Containment action]
 ```
 
+### Legal Compliance Checklist
+
+| Requirement | Status | Notes |
+|:---|:---|:---|
+| Employee consent | ☐ | HR policy update |
+| PDPA compliance | ☐ | DPO review |
+| Union notification | ☐ | If applicable |
+| Evidence handling | ☐ | Chain of custody |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — การเก็บหลักฐาน

@@ -247,6 +247,15 @@ graph TD
 | ประเมิน feed ใหม่ | รายไตรมาส |
 | ทบทวน commercial feed ROI | รายปี |
 
+### Feed Performance Tracking
+
+| Feed | IOCs/Day | Match Rate | Action |
+|:---|:---|:---|:---|
+| MISP Community | 500+ | 2-5% | Block + Alert |
+| OTX | 1,000+ | 1-3% | Enrich |
+| Abuse.ch | 200+ | 5-10% | Block |
+| Commercial TI | 100+ | 10-20% | Priority alert |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [Detection Rules (Sigma)](../07_Detection_Rules/README.md)

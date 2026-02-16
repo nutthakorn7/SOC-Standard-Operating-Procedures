@@ -137,6 +137,15 @@ graph TD
 - [ ] Communication plan
 - [ ] Post-change verification plan
 
+### Post-Change Verification
+
+| Check | Timeframe | Owner |
+|:---|:---|:---|
+| Functionality test | 0-30 min | Implementer |
+| Alert verification | 30-60 min | SOC Analyst |
+| Performance check | 1-4 hrs | IT Operations |
+| Full review | 24 hrs | Change owner |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แม่แบบ Change Request](../templates/change_request_rfc.th.md)

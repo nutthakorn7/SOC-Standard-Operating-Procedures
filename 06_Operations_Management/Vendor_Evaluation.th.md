@@ -135,6 +135,14 @@ graph LR
 | Integration | 15% | 4/5 | 4/5 | 3/5 |
 | Security | 10% | 5/5 | 4/5 | 5/5 |
 
+### POC Timeline Template
+
+| Phase | Duration | Activities |
+|:---|:---|:---|
+| Setup | 1 week | Install + config |
+| Testing | 2 weeks | Use case validation |
+| Review | 1 week | Report + decision |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [คู่มือเลือกเครื่องมือ](../01_SOC_Fundamentals/Technology_Stack.th.md)

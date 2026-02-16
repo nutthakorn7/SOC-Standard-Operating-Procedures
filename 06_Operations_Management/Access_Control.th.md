@@ -102,6 +102,17 @@
 | Termination | ทันที | HR + IT | 4 ชม. |
 | Privilege escalation | ทุกครั้ง | CISO | 48 ชม. |
 
+### Emergency Access Procedure
+
+| Step | Action | SLA |
+|:---|:---|:---|
+| 1 | ขอ emergency access | ทันที |
+| 2 | Verbal approval จาก CISO | 15 min |
+| 3 | Grant temporary access | 30 min |
+| 4 | Log all activities | Real-time |
+| 5 | Revoke เมื่อเสร็จ | ทันที |
+| 6 | Post-review | 24 hrs |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [โครงสร้างทีม SOC](SOC_Team_Structure.th.md)

@@ -200,6 +200,16 @@ sha256sum /evidence/logs.tar.gz > /evidence/logs.tar.gz.sha256
 | 7 | **External logs (SIEM/Cloud)** | ต่ำ | จากส่วนกลาง |
 | 8 | **Backup / Archive** | ต่ำมาก | เก็บทีหลังได้ |
 
+### Evidence Priority Order
+
+| Priority | Type | Tool |
+|:---|:---|:---|
+| 1 | Memory (volatile) | WinPmem/LiME |
+| 2 | Running processes | Volatility |
+| 3 | Network connections | netstat/tcpdump |
+| 4 | Disk image | FTK Imager |
+| 5 | Log files | Copy + hash |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

@@ -99,6 +99,15 @@ graph TD
 | Transaction log | ทุก 15 min | Monthly | 7 days |
 | Archive | Monthly | Quarterly | 1 year |
 
+### Index Maintenance Schedule
+
+| Task | Frequency | Impact |
+|:---|:---|:---|
+| Reindex | Weekly (off-peak) | Medium |
+| Statistics update | Daily | Low |
+| Vacuum/optimize | Monthly | High |
+| Archive old data | Quarterly | High |
+
 ## References
 -   [NIST SP 800-53 (Security/Privacy Controls)](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)
 -   [GDPR Data Retention](https://gdpr.eu/)

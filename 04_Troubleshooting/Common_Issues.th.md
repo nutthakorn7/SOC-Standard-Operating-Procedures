@@ -100,6 +100,15 @@ graph TD
 -   [การติดตั้ง SOC](../01_Onboarding/System_Activation.th.md)
 -   [ขั้นตอนการ Deploy](../02_Platform_Operations/Deployment_Procedures.th.md)
 
+### Quick Fix Reference
+
+| Issue | First Action | Escalate If |
+|:---|:---|:---|
+| SIEM slow | Check indexer load | CPU > 90% for 30 min |
+| No alerts | Verify log ingestion | Source offline > 15 min |
+| Login failure | Reset password/MFA | Account locked 3x |
+| Agent offline | Restart service | > 3 endpoints |
+
 ## References
 -   [USE Method (Brendan Gregg)](https://www.brendangregg.com/usemethod.html)
 -   [Google SRE Handbook](https://sre.google/sre-book/table-of-contents/)

@@ -258,6 +258,14 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://target_ip
 | T+1 day | Initial debrief | All |
 | T+5 days | Final report | White Team |
 
+### ROI Measurement
+
+| Metric | Before | After | Improvement |
+|:---|:---|:---|:---|
+| Detection rate | 40% | 75% | +35% |
+| MTTD | 48 hrs | 4 hrs | -92% |
+| Rules created | 0 | 15 | +15 new |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [สถานการณ์จำลอง](Tabletop_Exercises.th.md)

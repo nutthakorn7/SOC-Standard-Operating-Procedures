@@ -233,6 +233,15 @@ flowchart TD
 - [ ] Background check requirements
 - [ ] Termination data destruction clause
 
+### Annual Review Cycle
+
+| Quarter | Activities |
+|:---|:---|
+| Q1 | Vendor inventory update |
+| Q2 | Critical vendor assessments |
+| Q3 | Policy & contract reviews |
+| Q4 | Annual risk report |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md)

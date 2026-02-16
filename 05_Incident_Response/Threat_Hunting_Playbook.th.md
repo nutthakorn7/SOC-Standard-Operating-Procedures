@@ -308,6 +308,16 @@ graph LR
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
 -   [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.en.md)
 
+### Hunt Hypothesis Template
+
+| Field | Content |
+|:---|:---|
+| Hypothesis | [สมมติฐาน] |
+| Data Sources | [log sources ที่ต้องใช้] |
+| Tools | [เครื่องมือ] |
+| Timeframe | [ช่วงเวลา] |
+| Success Criteria | [เกณฑ์ที่บ่งชี้การพบภัย] |
+
 ## อ้างอิง
 
 -   [MITRE ATT&CK](https://attack.mitre.org/)

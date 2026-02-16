@@ -174,6 +174,15 @@ Steps:
 | Auto-close FP Rate | ≥ 30% ของ total FP | [XX]% |
 | เวลาที่ analyst ประหยัดได้/เดือน | ≥ 40 ชม. | [XX] ชม. |
 
+### Automation Impact Metrics
+
+| Automation | Manual Time | Auto Time | Savings |
+|:---|:---|:---|:---|
+| Phishing triage | 15 min | 2 min | 87% |
+| IOC enrichment | 10 min | 30 sec | 95% |
+| Endpoint isolation | 5 min | 10 sec | 97% |
+| Report generation | 2 hrs | 5 min | 96% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOAR Playbooks](../05_Incident_Response/SOAR_Playbooks.en.md)

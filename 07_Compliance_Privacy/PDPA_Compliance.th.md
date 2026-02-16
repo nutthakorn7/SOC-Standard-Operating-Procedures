@@ -83,6 +83,15 @@ graph TD
 - [Data Handling Protocol](../06_Operations_Management/Data_Handling_Protocol.th.md)
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)
 
+### PDPA Key Dates
+
+| Event | Deadline |
+|:---|:---|
+| Breach notification (สคส.) | 72 ชั่วโมง |
+| DPIA completion | ก่อนเริ่มโครงการ |
+| Annual privacy review | ทุก 12 เดือน |
+| DPO appointment | ตามเกณฑ์ สคส. |
+
 ## อ้างอิง
 
 - [พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)](https://www.pdpc.or.th/)

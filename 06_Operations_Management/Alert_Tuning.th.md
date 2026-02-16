@@ -276,6 +276,16 @@ flowchart TD
 | | | Threshold ↑ | Normal baseline | 70% | 15% |
 | | | Disable | Deprecated source | 95% | N/A |
 
+### Weekly Tuning Cycle
+
+| Day | Activity | Owner |
+|:---|:---|:---|
+| Mon | Review top noisy rules | Analyst |
+| Tue | Propose exclusions | Engineer |
+| Wed | Test in shadow mode | Engineer |
+| Thu | Deploy changes | Lead |
+| Fri | Validate improvements | Analyst |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Detection Rule Testing](Detection_Rule_Testing.en.md) — วิธีการทดสอบ

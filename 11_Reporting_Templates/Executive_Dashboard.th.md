@@ -114,6 +114,16 @@
 | Training | [XX] ฿ | [XX] ฿ | [XX]% | [XX] ฿ |
 | **Total** | [XX] ฿ | [XX] ฿ | [XX]% | [XX] ฿ |
 
+### Dashboard KPI Card Layout
+
+| Card | Metric | Visualization | Target |
+|:---|:---|:---|:---|
+| 1 | MTTR | Gauge | < 4 hrs |
+| 2 | Open Incidents | Counter | < 10 |
+| 3 | Alert Volume (24h) | Sparkline | Trend ↓ |
+| 4 | SLA Compliance | % Bar | > 95% |
+| 5 | Detection Coverage | Heat map | > 60% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)

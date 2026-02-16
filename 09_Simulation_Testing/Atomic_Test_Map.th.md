@@ -133,6 +133,15 @@ Invoke-AtomicTest T1059.001 -Cleanup
 | ก.ย. | Credential Access | T1003, T1110 | ☐ |
 | พ.ย. | Lateral Movement | T1021, T1080 | ☐ |
 
+### Lab Reset Procedures
+
+| Step | Action | Time |
+|:---|:---|:---|
+| 1 | Revert VM snapshots | 5 min |
+| 2 | Clear SIEM test data | 2 min |
+| 3 | Reset network configs | 3 min |
+| 4 | Verify clean state | 5 min |
+
 ## อ้างอิง
 
 - [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)

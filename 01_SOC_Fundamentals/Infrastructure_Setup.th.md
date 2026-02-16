@@ -343,6 +343,16 @@ flowchart TD
     D --> G[Cold Storage]
 ```
 
+### Deployment Readiness Checklist
+
+| Category | Items | Status |
+|:---|:---|:---|
+| Network | VLAN, firewall rules, DNS | ☐ |
+| Compute | VMs/containers provisioned | ☐ |
+| Storage | Hot/warm/cold tiers | ☐ |
+| Access | Admin accounts, MFA | ☐ |
+| Monitoring | Health dashboards | ☐ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

@@ -81,6 +81,16 @@ SOC ที่สมบูรณ์จำเป็นต้องมีองค�
 -   [ธรรมาภิบาลข้อมูล](../02_Platform_Operations/Database_Management.th.md)
 -   [ขั้นตอนการ Deploy](../02_Platform_Operations/Deployment_Procedures.th.md)
 
+### Activation Verification Checklist
+
+| System | Check | Expected Result | Status |
+|:---|:---|:---|:---|
+| SIEM | Query test | Results in < 5s | ☐ |
+| EDR | Agent status | All endpoints green | ☐ |
+| Ticketing | Create test ticket | Auto-assign works | ☐ |
+| TI Feed | IOC lookup | Results returned | ☐ |
+| SOAR | Test playbook | Runs successfully | ☐ |
+
 ## References
 -   [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
 -   [CISA SOC Best Practices](https://www.cisa.gov/topics/cyber-threats-and-advisories)

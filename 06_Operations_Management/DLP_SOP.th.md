@@ -224,6 +224,15 @@ graph TD
 | Threshold tuning | Quarterly | SOC Manager |
 | Full policy review | Annual | CISO |
 
+### User Awareness Actions
+
+| Violation Count | Action |
+|:---|:---|
+| 1st | Auto-notification |
+| 2nd | Manager CC |
+| 3rd | Security training |
+| 4th+ | HR escalation |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Insider Threat Program](Insider_Threat_Program.en.md) — ตรวจจับ insider threat

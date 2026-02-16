@@ -99,6 +99,15 @@ _อธิบาย root cause 2–3 ประโยค_
 | 2 | สร้าง detection rule | Engineer B | +1 week | ⬜ Open |
 | 3 | แก้ communication gap | SOC Manager | +3 days | ⬜ Open |
 
+### Root Cause Categories
+
+| Category | Description | ตัวอย่าง |
+|:---|:---|:---|
+| Process | กระบวนการไม่ครบ | ไม่มี playbook |
+| People | ทักษะ/การสื่อสาร | ไม่ escalate ตามเวลา |
+| Technology | เครื่องมือขัดข้อง | Alert ไม่ trigger |
+| External | ปัจจัยภายนอก | Zero-day exploit |
+
 ## ลงชื่อ
 
 ```

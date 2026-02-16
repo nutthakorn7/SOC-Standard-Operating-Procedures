@@ -150,6 +150,16 @@ PCI DSS:   ████████████████░░░░░  80% 
 PDPA:      ███████████████████░░  90% (5 gaps)
 ```
 
+### Annual Compliance Calendar
+
+| เดือน | Activity | Framework |
+|:---|:---|:---|
+| ม.ค. | Annual risk assessment | ISO 27001 |
+| มี.ค. | PCI DSS audit prep | PCI DSS |
+| มิ.ย. | PDPA compliance review | PDPA |
+| ก.ย. | ISO audit (internal) | ISO 27001 |
+| ธ.ค. | NIST CSF self-assessment | NIST CSF |
+
 ## References
 
 - [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)

@@ -138,6 +138,14 @@ graph TD
 | 75% of SLA | SOC Manager | Additional support |
 | 100% of SLA | CISO | Executive escalation |
 
+### SLA Reporting Template
+
+| Period | P1 Met | P2 Met | P3 Met | Overall |
+|:---|:---|:---|:---|:---|
+| Week 1 | 100% | 95% | 98% | 97% |
+| Week 2 | 90% | 100% | 95% | 95% |
+| Month | 95% | 97% | 96% | 96% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)

@@ -152,6 +152,15 @@ graph LR
 | Error rate | Hourly | If > 5% |
 | Throughput | Daily | If < baseline |
 
+### Integration Priority Guide
+
+| Priority | Integration Type | Benefit |
+|:---|:---|:---|
+| P1 | SIEM ↔ Ticketing | Alert → Ticket auto |
+| P2 | SIEM ↔ TI Feed | IOC enrichment |
+| P3 | EDR ↔ SOAR | Auto-contain |
+| P4 | Email ↔ SOAR | Phishing auto-triage |
+
 ## อ้างอิง
 
 - [Sigma](https://github.com/SigmaHQ/sigma)

@@ -239,6 +239,15 @@ flowchart TD
 | Parser accuracy | > 98% | Per update |
 | Normalization | CIM compliant | Per onboard |
 
+### Onboarding Timeline Template
+
+| Day | Activity | Owner |
+|:---|:---|:---|
+| 1 | Network/API config | IT + Vendor |
+| 2-3 | Parser development | SOC Engineer |
+| 4-5 | Baseline collection | SOC Analyst |
+| 6-7 | Alert rule creation | SOC Engineer |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md)

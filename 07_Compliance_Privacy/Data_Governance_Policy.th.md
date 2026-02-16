@@ -114,6 +114,15 @@
 | 2 - Internal | ภายใน | Policies, SOPs | Basic ACL |
 | 1 - Public | เปิดเผย | Marketing, website | None |
 
+### Data Handling Quick Reference
+
+| Action | Restricted | Confidential | Internal |
+|:---|:---|:---|:---|
+| Email | ❌ | Encrypted | ✅ |
+| USB copy | ❌ | Approval | ✅ |
+| Cloud upload | Encrypted only | Approved cloud | ✅ |
+| Print | Approval | ✅ | ✅ |
+
 ## อ้างอิง
 
 - [ISO 27001](https://www.iso.org/iso-27001-information-security.html)

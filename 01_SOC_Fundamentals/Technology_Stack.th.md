@@ -231,6 +231,16 @@ Integration & Customization ██          5%
 | Tier 3 | Email only | 24 hr response | Basic |
 | Community | Forum/GitHub | Best effort | Free |
 
+### POC Evaluation Criteria
+
+| Criteria | Weight | Score (1-5) |
+|:---|:---|:---|
+| Detection accuracy | 25% | - |
+| Integration ease | 20% | - |
+| Performance impact | 15% | - |
+| Vendor support | 15% | - |
+| Total cost | 25% | - |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

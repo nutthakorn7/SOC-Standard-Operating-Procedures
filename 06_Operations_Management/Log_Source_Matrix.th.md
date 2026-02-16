@@ -184,6 +184,15 @@ Storage 90 วัน = Storage/วัน × 90
 | P3 - Medium | Infrastructure | DNS, DHCP, Proxy | 1 hr |
 | P4 - Low | Application | Web apps, custom | 4 hrs |
 
+### Log Format Compatibility
+
+| Log Source | Format | Parser | Complexity |
+|:---|:---|:---|:---|
+| Firewall | Syslog/CEF | Built-in | Low |
+| Windows | EVTX/WEF | Built-in | Medium |
+| Cloud | JSON/API | Custom | Medium |
+| Application | Custom | Custom | High |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md)

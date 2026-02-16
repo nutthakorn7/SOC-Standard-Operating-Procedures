@@ -274,6 +274,16 @@ graph LR
 | MTTC | Confirmed → Contained | < 1 hr |
 | Reopen Rate | Reopened / Total × 100 | < 5% |
 
+### Framework Adoption Checklist
+
+| Step | Activity | Timeline |
+|:---|:---|:---|
+| 1 | Define IR policy | Week 1-2 |
+| 2 | Build core team | Week 2-3 |
+| 3 | Create playbooks (top 5) | Week 3-6 |
+| 4 | Tabletop exercise | Week 7 |
+| 5 | Go-live + monitor | Week 8 |
+
 ## อ้างอิง (References)
 
 - [NIST SP 800-61r2 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

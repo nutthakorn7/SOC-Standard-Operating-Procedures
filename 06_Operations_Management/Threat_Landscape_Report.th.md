@@ -236,6 +236,14 @@ ________________________________________________________________________________
 | Zero-day exploits | 3 | 5 | ↑ 67% |
 | Supply chain attacks | 2 | 4 | ↑ 100% |
 
+### Report Distribution
+
+| Audience | Format | Frequency |
+|:---|:---|:---|
+| SOC Team | Full report | Monthly |
+| Management | Executive summary | Quarterly |
+| Board | Risk dashboard | Semi-annual |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md) — การล่าภัยคุกคาม

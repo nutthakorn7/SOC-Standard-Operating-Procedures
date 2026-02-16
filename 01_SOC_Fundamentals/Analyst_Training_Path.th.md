@@ -194,6 +194,15 @@ graph TD
 | OSCP | Advanced | ~50,000 THB | High |
 | CISSP | Management | ~25,000 THB | Strategic |
 
+### Lab Exercise Schedule
+
+| Week | Topic | Lab Duration |
+|:---|:---|:---|
+| 1-2 | SIEM basics | 4 hrs |
+| 3-4 | Log analysis | 4 hrs |
+| 5-6 | Incident triage | 6 hrs |
+| 7-8 | Threat hunting intro | 6 hrs |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

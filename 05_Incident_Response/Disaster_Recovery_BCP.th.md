@@ -204,6 +204,15 @@ graph TD
 | Email | 2 hrs | 0 | Cloud DR |
 | AD/LDAP | 1 hr | 15 min | Multi-DC replication |
 
+### Communication Tree (DR)
+
+| Priority | Contact | Method | Backup |
+|:---|:---|:---|:---|
+| 1 | CISO | Phone | SMS |
+| 2 | IT Director | Phone | Email |
+| 3 | SOC Manager | Chat | Phone |
+| 4 | SOC Team | Mass SMS | Email |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Escalation Matrix](Escalation_Matrix.en.md) — ใครต้องแจ้งเมื่อเกิดเหตุ

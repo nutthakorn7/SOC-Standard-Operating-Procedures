@@ -109,6 +109,17 @@ python tools/sigma_validator.py path/to/rule.yml
 | Detection Latency | < 5 min | Per alert |
 | Coverage (tactics) | > 70% | Monthly |
 
+### Test Evidence Template
+
+| Field | Content |
+|:---|:---|
+| Rule Name | [ชื่อ rule] |
+| Test Date | [วันที่] |
+| Tester | [ชื่อ] |
+| Test Data | [description] |
+| Expected Alert | [Yes/No + details] |
+| Actual Result | [Pass/Fail + evidence] |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)

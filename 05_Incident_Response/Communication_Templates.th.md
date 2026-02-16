@@ -276,6 +276,15 @@ Timeline + สาเหตุ + ผลกระทบ + สิ่งที่ด
 | สื่อมวลชน | เหตุสาธารณะ | PR | CEO |
 | Partner/Vendor | ส่งผลกระทบ | IT Director | CISO |
 
+### Post-Incident Communication
+
+| Timing | Content | Audience |
+|:---|:---|:---|
+| +24 hrs | Initial summary | Internal stakeholders |
+| +72 hrs | Root cause update | Management |
+| +7 days | Full post-mortem | All affected parties |
+| +30 days | Remediation status | Regulatory (if needed) |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

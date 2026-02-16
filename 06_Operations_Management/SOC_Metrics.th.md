@@ -225,6 +225,14 @@ graph LR
 | Monthly Report | CISO | Monthly | Full metrics, risks |
 | Quarterly Review | Board | Quarterly | ROI, maturity, roadmap |
 
+### Metric Health Indicators
+
+| Metric | Green | Yellow | Red |
+|:---|:---|:---|:---|
+| MTTR | < 4 hrs | 4-8 hrs | > 8 hrs |
+| FP Rate | < 20% | 20-40% | > 40% |
+| SLA Met | > 95% | 85-95% | < 85% |
+
 ## อ้างอิง (References)
 
 - [SANS SOC Metrics](https://www.sans.org/white-papers/soc-metrics/)

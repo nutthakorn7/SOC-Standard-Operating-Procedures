@@ -194,6 +194,15 @@ graph TD
 | Risk re-assessment | Week 3 | CISO |
 | Remediation planning | Week 4 | All |
 
+### Gap Severity Criteria
+
+| Severity | Definition | SLA |
+|:---|:---|:---|
+| Critical | Active non-compliance | 30 days |
+| High | Significant gap | 60 days |
+| Medium | Partial compliance | 90 days |
+| Low | Documentation gap | 180 days |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Compliance Mapping](Compliance_Mapping.en.md) — ISO 27001 / NIST CSF / PCI DSS

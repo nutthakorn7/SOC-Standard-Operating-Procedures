@@ -82,6 +82,15 @@ graph TD
 -   [แบบประเมิน SOC](SOC_Assessment_Checklist.th.md)
 -   [ตัวชี้วัด SOC](SOC_Metrics.th.md)
 
+### Data Retention Schedule
+
+| Data Type | Retention | Archive | Destroy |
+|:---|:---|:---|:---|
+| Security logs | 1 ปี | 3 ปี | Secure wipe |
+| Incident data | 3 ปี | 5 ปี | Secure wipe |
+| PII evidence | ตาม PDPA | ตาม PDPA | Certified destroy |
+| Threat intel | 2 ปี | 5 ปี | Secure wipe |
+
 ## References
 -   [FIRST.org TLP 2.0 Standard](https://www.first.org/tlp/)
 -   [CISA Traffic Light Protocol](https://www.cisa.gov/tlp)

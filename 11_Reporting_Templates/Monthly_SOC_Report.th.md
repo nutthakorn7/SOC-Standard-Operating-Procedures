@@ -107,6 +107,15 @@ graph LR
 - [ ] เปรียบเทียบกับเดือนก่อน
 - [ ] Proofread ก่อนส่ง
 
+### Report Approval Workflow
+
+| Step | Approver | SLA |
+|:---|:---|:---|
+| Draft | SOC Analyst | Day 3 |
+| Review | SOC Manager | Day 5 |
+| Final | CISO | Day 7 |
+| Distribute | Admin | Day 8 |
+
 ## References
 -   [SANS SOC Metrics](https://www.sans.org/white-papers/)
 -   [SOC-CMM](https://www.soc-cmm.com/)

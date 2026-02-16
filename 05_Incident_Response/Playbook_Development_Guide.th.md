@@ -195,6 +195,15 @@ graph LR
 | Escalation | เมื่อไร + ส่งใคร | Defined |
 | References | MITRE + logs | Up-to-date |
 
+### Playbook Review Cycle
+
+| Trigger | Reviewer | SLA |
+|:---|:---|:---|
+| New playbook | Peer + Manager | 5 วันทำการ |
+| Post-incident update | Incident owner | 3 วันทำการ |
+| Quarterly review | SOC Lead | 2 สัปดาห์ |
+| Tool change | Engineer | 1 สัปดาห์ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [IR Framework](Framework.en.md) — กรอบงาน NIST

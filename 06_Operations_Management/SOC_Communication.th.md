@@ -82,6 +82,15 @@
 | **Medium** | SOC Lead | แชท | ทุก 4 ชั่วโมง |
 | **Low** | SOC Lead | Ticket อัปเดต | วันละครั้ง |
 
+### Communication Channel Matrix
+
+| Situation | Channel | Fallback |
+|:---|:---|:---|
+| Active incident | War room (Teams) | Phone bridge |
+| Shift handoff | Chat + Document | Email |
+| Escalation | Phone + Ticket | SMS |
+| Routine update | Email | Chat |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [มาตรฐานส่งมอบกะ](Shift_Handoff.th.md)

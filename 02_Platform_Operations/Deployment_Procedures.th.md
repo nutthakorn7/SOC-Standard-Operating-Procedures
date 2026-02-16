@@ -100,6 +100,15 @@ sequenceDiagram
 | Post-deploy | Update documentation | ☐ |
 | Post-deploy | Close change record | ☐ |
 
+### Rollback Criteria
+
+| Condition | Action |
+|:---|:---|
+| Core function broken | Immediate rollback |
+| Performance > 20% drop | Rollback within 1 hr |
+| Non-critical issue | Hotfix preferred |
+| Cosmetic only | Fix in next release |
+
 ## References
 -   [ITIL Change Management](https://www.axelos.com/best-practice-solutions/itil)
 -   [DevSecOps Manifesto](https://www.devsecops.org/)
