@@ -118,6 +118,22 @@
 | รักษาความลับ | แชร์ข้อมูลเกินจำเป็น |
 | ยืนยัน timeline ซ้ำ | ข้ามรายละเอียดเล็กน้อย |
 
+### Interview Documentation Template
+
+```
+Interview Record:
+- Date/Time: [วันเวลา]
+- Interviewer: [ชื่อ]
+- Interviewee: [ชื่อ + ตำแหน่ง]
+- Incident ID: [INC-XXXX]
+- Key Findings:
+  1. [ข้อค้นพบ 1]
+  2. [ข้อค้นพบ 2]
+- Follow-up Actions:
+  1. [action item]
+- Signature: _____________
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [โครงสร้างทีม SOC](../06_Operations_Management/SOC_Team_Structure.th.md)

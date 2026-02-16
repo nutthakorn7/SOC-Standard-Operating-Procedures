@@ -125,6 +125,16 @@ graph LR
 - [ ] Right to audit (security)
 - [ ] PDPA-compliant DPA signed
 
+### Vendor Comparison Template
+
+| Criteria | Weight | Vendor A | Vendor B | Vendor C |
+|:---|:---|:---|:---|:---|
+| Features | 30% | 4/5 | 3/5 | 5/5 |
+| Cost (TCO) | 25% | 3/5 | 5/5 | 2/5 |
+| Support | 20% | 5/5 | 3/5 | 4/5 |
+| Integration | 15% | 4/5 | 4/5 | 3/5 |
+| Security | 10% | 5/5 | 4/5 | 5/5 |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [คู่มือเลือกเครื่องมือ](../01_SOC_Fundamentals/Technology_Stack.th.md)

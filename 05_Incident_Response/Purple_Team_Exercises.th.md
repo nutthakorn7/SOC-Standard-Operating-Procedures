@@ -240,6 +240,24 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://target_ip
 | Data Staging | T1074 | ❌ ไม่พบ | เพิ่ม DLP rule |
 | Exfiltration | T1048 | ✅ ตรวจจับได้ | - |
 
+### Resource Allocation
+
+| Resource | Red Team | Blue Team | White Team |
+|:---|:---|:---|:---|
+| Personnel | 2-3 คน | 3-5 คน | 1-2 คน |
+| Duration | 2-4 สัปดาห์ | ตลอด exercise | ตลอด exercise |
+| Tools | Metasploit, Cobalt | SIEM, EDR | Reporting |
+
+### Exercise Deconfliction
+
+| เวลา | Activity | Owner |
+|:---|:---|:---|
+| T-7 days | Notify stakeholders | White Team |
+| T-1 day | Verify safeguards | Red + White |
+| T+0 | Execute | Red |
+| T+1 day | Initial debrief | All |
+| T+5 days | Final report | White Team |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [สถานการณ์จำลอง](Tabletop_Exercises.th.md)

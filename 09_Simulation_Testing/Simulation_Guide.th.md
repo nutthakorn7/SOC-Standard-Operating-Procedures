@@ -74,6 +74,26 @@ Invoke-AtomicTest T1059.001
 | ทดสอบโดยไม่เปิด Monitoring | ตรวจสอบว่า SIEM, EDR ทำงานอยู่ |
 | ไม่ทำ Cleanup หลังทดสอบ | ย้อนกลับการเปลี่ยนแปลงทุกครั้ง |
 
+### Safety Protocols
+
+| Rule | Description | Enforcement |
+|:---|:---|:---|
+| No production data | ใช้ synthetic data only | Pre-check |
+| Kill switch | หยุดได้ทันที | White team |
+| Scope boundary | ห้ามเกิน scope | ROE document |
+| Time window | ในเวลาที่กำหนดเท่านั้น | Calendar |
+| Communication | แจ้ง NOC ก่อนเริ่ม | Email + Chat |
+
+### Post-Simulation Debrief Agenda
+
+| เวลา | หัวข้อ | ผู้นำ |
+|:---|:---|:---|
+| 0-10 min | Overview + timeline | Facilitator |
+| 10-25 min | Attack narrative | Red team |
+| 25-40 min | Detection narrative | Blue team |
+| 40-55 min | Gap analysis | All |
+| 55-60 min | Action items | Facilitator |
+
 ## เอกสารที่เกี่ยวข้อง
 - [Atomic Test Map](Atomic_Test_Map.en.md)
 - [IR Framework](../05_Incident_Response/Framework.th.md)

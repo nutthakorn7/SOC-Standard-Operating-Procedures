@@ -116,6 +116,26 @@
 - [แบบฟอร์ม Incident](incident_report.th.md)
 - [SOP การจัดการเปลี่ยนแปลง](../06_Operations_Management/Change_Management.th.md)
 
+### Change Risk Assessment Matrix
+
+| ปัจจัย | Low (1) | Medium (2) | High (3) |
+|:---|:---|:---|:---|
+| ผลกระทบต่อ Production | ไม่มี | บางส่วน | ทั้งระบบ |
+| ความซับซ้อน | Simple | Multi-step | Cross-system |
+| Rollback Difficulty | Auto | Manual < 1hr | Manual > 1hr |
+| Downtime Required | ไม่มี | < 30 min | > 30 min |
+
+### Change Communication Template
+
+```
+Subject: [RFC-XXXX] Change Notification
+- Change: [รายละเอียด]
+- Window: [วันเวลา]
+- Impact: [ผลกระทบ]
+- Contact: [ผู้รับผิดชอบ]
+- Rollback ETA: [เวลาถ้าต้อง rollback]
+```
+
 ## อ้างอิง
 
 - [ITIL Change Management](https://www.axelos.com/certifications/itil-service-management)

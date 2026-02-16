@@ -193,6 +193,31 @@ curl -s "https://api.abuseipdb.com/api/v2/check?ipAddress={IP}"   -H "Key: $ABUS
 📝 Notes: [สิ่งที่ต้องส่งต่อ]
 ```
 
+### Quick Reference: Alert Severity Mapping
+
+| Alert Source | Severity Mapping | Initial Action |
+|:---|:---|:---|
+| EDR - Malware detected | High | Isolate + Investigate |
+| SIEM - Failed logins (>10) | Medium | Verify user + Lock |
+| Firewall - Port scan | Low | Monitor + Log |
+| DLP - Data exfiltration | Critical | Block + Escalate |
+| IDS - Exploit attempt | High | Block IP + Investigate |
+
+### Tier 1 Decision Quick Guide
+
+```mermaid
+flowchart TD
+    A[New Alert] --> B{Known FP?}
+    B -->|Yes| C[Close with FP tag]
+    B -->|No| D{Severity?}
+    D -->|Critical/High| E[Escalate to Tier 2]
+    D -->|Medium| F[Investigate 30 min]
+    D -->|Low| G[Queue for review]
+    F --> H{Resolved?}
+    H -->|Yes| I[Close + Document]
+    H -->|No| E
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

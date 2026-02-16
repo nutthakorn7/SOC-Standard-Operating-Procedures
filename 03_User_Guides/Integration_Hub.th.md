@@ -143,6 +143,15 @@ graph LR
 | Shodan | 1 req/sec | 100/min | Per second |
 | OTX | 10,000/day | N/A | Daily |
 
+### Integration Health Monitoring
+
+| Check | Frequency | Auto-alert |
+|:---|:---|:---|
+| Connectivity test | ทุก 5 min | Yes |
+| Data freshness | ทุก 15 min | Yes |
+| Error rate | Hourly | If > 5% |
+| Throughput | Daily | If < baseline |
+
 ## อ้างอิง
 
 - [Sigma](https://github.com/SigmaHQ/sigma)

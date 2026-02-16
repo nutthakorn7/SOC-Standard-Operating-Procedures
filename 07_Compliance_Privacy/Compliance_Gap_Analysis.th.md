@@ -185,6 +185,15 @@ graph TD
 | Logging & Monitoring | A.12 | DE | 10 | ✅/⚠️/❌ |
 | Data Protection | A.8 | PR.DS | 3,4 | ✅/⚠️/❌ |
 
+### Quarterly Gap Review Cadence
+
+| Activity | Timeline | Owner |
+|:---|:---|:---|
+| Scan for new requirements | Week 1 | Compliance Officer |
+| Update gap register | Week 2 | Security Team |
+| Risk re-assessment | Week 3 | CISO |
+| Remediation planning | Week 4 | All |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Compliance Mapping](Compliance_Mapping.en.md) — ISO 27001 / NIST CSF / PCI DSS

@@ -233,6 +233,26 @@ gantt
 | L3 | L4 | SOAR, KPI dashboards, automation | 12-18 เดือน |
 | L4 | L5 | AI/ML, threat hunting, R&D | 18-24 เดือน |
 
+### Assessment Automation
+
+| Tool | Purpose | ใช้กับ Level |
+|:---|:---|:---|
+| SOC Maturity Scorer | Self-assessment | ทุก Level |
+| MITRE ATT&CK Navigator | Coverage mapping | Level 3+ |
+| KPI Dashboard | Metrics tracking | Level 4+ |
+
+### Assessment Report Template
+
+```
+Executive Summary:
+  Current Level: [1-5]
+  Target Level: [1-5]
+  Gap Count: [N] areas
+  Priority Actions: [top 3]
+  Timeline: [X months]
+  Budget Estimate: [THB]
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Metrics & KPIs](SOC_Metrics.en.md) — ตัวชี้วัด

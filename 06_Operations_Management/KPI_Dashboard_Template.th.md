@@ -288,6 +288,24 @@
 | Weekly Executive | 1 ชั่วโมง | Trend analysis |
 | Monthly Report | Manual | Deep analysis |
 
+### Dashboard Access Control
+
+| Role | View | Edit | Admin |
+|:---|:---|:---|:---|
+| SOC Analyst | ✅ | ❌ | ❌ |
+| SOC Lead | ✅ | ✅ | ❌ |
+| SOC Manager | ✅ | ✅ | ✅ |
+| CISO | ✅ | ❌ | ❌ |
+
+### Data Source Integration
+
+| Dashboard Panel | Data Source | Refresh |
+|:---|:---|:---|
+| Alert Volume | SIEM API | 30 sec |
+| MTTR/MTTD | Ticketing API | 5 min |
+| SLA Compliance | Ticketing + SLA DB | 15 min |
+| Coverage Map | ATT&CK Navigator | Daily |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Metrics & KPIs](SOC_Metrics.en.md) — นิยาม KPI และสูตรคำนวณ

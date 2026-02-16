@@ -105,6 +105,15 @@
 - [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.th.md)
 - [Access Control Policy](../06_Operations_Management/Access_Control.th.md)
 
+### Data Classification Quick Reference
+
+| Level | Label | Examples | Controls |
+|:---|:---|:---|:---|
+| 4 - Restricted | ลับมาก | PII, credentials | Encrypted + ACL |
+| 3 - Confidential | ลับ | Financial, HR | ACL + logging |
+| 2 - Internal | ภายใน | Policies, SOPs | Basic ACL |
+| 1 - Public | เปิดเผย | Marketing, website | None |
+
 ## อ้างอิง
 
 - [ISO 27001](https://www.iso.org/iso-27001-information-security.html)

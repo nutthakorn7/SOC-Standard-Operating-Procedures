@@ -392,6 +392,25 @@ Operations (5%)    ██                     5%
 Total: ~15-25M THB/year (mid-size org)
 ```
 
+### Milestone Tracking Dashboard
+
+| Phase | Milestone | Status | Target Date |
+|:---|:---|:---|:---|
+| 1 | Log collection active | ☐ | Week 4 |
+| 2 | First playbook deployed | ☐ | Week 8 |
+| 3 | 24/7 coverage achieved | ☐ | Month 6 |
+| 4 | Threat hunting initiated | ☐ | Month 9 |
+| 5 | Full automation deployed | ☐ | Month 18 |
+
+### Success Criteria per Phase
+
+| Phase | KPI | Target |
+|:---|:---|:---|
+| Foundation | Log sources onboarded | ≥ 10 |
+| Operations | MTTR | < 4 hrs |
+| Advanced | Detection coverage | > 60% ATT&CK |
+| Optimized | Automation rate | > 40% alerts |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)

@@ -277,6 +277,27 @@
 | Decision Making | ไม่แน่นอน | ค่อนข้างดี | รวดเร็วแม่นยำ |
 | Documentation | ไม่บันทึก | บันทึกบางส่วน | บันทึกครบถ้วน |
 
+### Exercise Logistics Checklist
+
+| รายการ | รายละเอียด | สถานะ |
+|:---|:---|:---|
+| สถานที่ | ห้องประชุม + จอ | ☐ |
+| ผู้เข้าร่วม | 8-15 คน | ☐ |
+| Facilitator | ผู้ดำเนินรายการ | ☐ |
+| Scenario packet | เอกสารสถานการณ์ | ☐ |
+| Note-taker | ผู้จดบันทึก | ☐ |
+| Timer | จับเวลาแต่ละ phase | ☐ |
+| Evaluation form | แบบประเมินผล | ☐ |
+
+### Exercise Calendar (Annual)
+
+| ไตรมาส | Scenario Theme | ระดับ | ผู้เข้าร่วม |
+|:---|:---|:---|:---|
+| Q1 | Ransomware | Technical | SOC + IT |
+| Q2 | Data Breach + PDPA | Strategic | Mgmt + Legal |
+| Q3 | Insider Threat | Tactical | SOC + HR |
+| Q4 | Supply Chain / Cloud | Technical | SOC + DevOps |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

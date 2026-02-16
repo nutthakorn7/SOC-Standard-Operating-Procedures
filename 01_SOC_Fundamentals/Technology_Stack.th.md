@@ -222,6 +222,15 @@ Integration & Customization ██          5%
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
+### Vendor Support Matrix
+
+| Vendor | Support Level | SLA | Cost |
+|:---|:---|:---|:---|
+| Tier 1 | 24/7 Phone + Chat | 1 hr response | Premium |
+| Tier 2 | Business hours | 4 hr response | Standard |
+| Tier 3 | Email only | 24 hr response | Basic |
+| Community | Forum/GitHub | Best effort | Free |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

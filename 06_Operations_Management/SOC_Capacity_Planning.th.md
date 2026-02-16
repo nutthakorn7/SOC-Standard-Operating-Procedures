@@ -181,6 +181,15 @@ Required Analysts = (Alerts/Day × Avg Handle Time) / (Working Hours × Utilizat
 | Y3 | 1,000/day (+33%) | 10 | 8.0M |
 | Y4 | 1,200/day (+20%) | 11 | 8.8M |
 
+### Capacity Alert Thresholds
+
+| Resource | Warning | Critical | Action |
+|:---|:---|:---|:---|
+| Analyst utilization | > 75% | > 90% | Hire/Outsource |
+| Alert queue depth | > 100 | > 500 | Add shift |
+| SIEM storage | > 70% | > 85% | Expand/Archive |
+| Response SLA miss | > 5% | > 15% | Review process |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Team Structure](SOC_Team_Structure.en.md) — บทบาทและความรับผิดชอบ

@@ -87,6 +87,19 @@ sequenceDiagram
 -   [ธรรมาภิบาลข้อมูล](Database_Management.th.md)
 -   [การติดตั้ง SOC](../01_Onboarding/System_Activation.th.md)
 
+### Deployment Checklist
+
+| Phase | Checklist Item | Status |
+|:---|:---|:---|
+| Pre-deploy | Backup current config | ☐ |
+| Pre-deploy | Test in staging | ☐ |
+| Pre-deploy | Change approval | ☐ |
+| Deploy | Execute change | ☐ |
+| Deploy | Verify functionality | ☐ |
+| Post-deploy | Monitor 30 min | ☐ |
+| Post-deploy | Update documentation | ☐ |
+| Post-deploy | Close change record | ☐ |
+
 ## References
 -   [ITIL Change Management](https://www.axelos.com/best-practice-solutions/itil)
 -   [DevSecOps Manifesto](https://www.devsecops.org/)

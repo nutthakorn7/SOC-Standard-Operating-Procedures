@@ -230,6 +230,24 @@ vol -f memory.raw windows.malfind
 
 ---
 
+### Chain of Custody Log
+
+| # | Item | Collected By | Date/Time | Hash (SHA256) | Storage |
+|:---|:---|:---|:---|:---|:---|
+| E-001 | Disk image | Analyst A | YYYY-MM-DD | abc123... | Evidence locker |
+| E-002 | Memory dump | Analyst B | YYYY-MM-DD | def456... | Encrypted NAS |
+| E-003 | Network PCAP | Analyst A | YYYY-MM-DD | ghi789... | Evidence server |
+
+### Forensic Tool Quick Reference
+
+| Tool | Purpose | Platform |
+|:---|:---|:---|
+| FTK Imager | Disk imaging | Windows |
+| Volatility 3 | Memory analysis | Cross-platform |
+| Wireshark | Packet analysis | Cross-platform |
+| Autopsy | File system analysis | Windows/Linux |
+| KAPE | Artifact collection | Windows |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Evidence Collection](Evidence_Collection.en.md) — ขั้นตอนเก็บหลักฐานเบื้องต้น

@@ -228,6 +228,15 @@
 | Communication | รู้ escalation path | รายงานได้ดี | สอนคนอื่นได้ |
 | Tools (EDR/FW) | Basic navigation | Investigation | Advanced hunting |
 
+### Onboarding Feedback Survey
+
+| Week | Survey Focus | Questions |
+|:---|:---|:---|
+| Week 2 | Initial experience | 5 ข้อ (scale 1-5) |
+| Week 4 | Tool proficiency | 8 ข้อ + open-ended |
+| Week 8 | Process confidence | 6 ข้อ + self-assess |
+| Week 12 | Overall readiness | 10 ข้อ + manager eval |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   SOC Charter — ภารกิจและโครงสร้าง

@@ -184,6 +184,16 @@ graph TD
 | IR Tabletop | Scenario-based | ตัดสินใจ IR | 2 ชม. |
 | Threat Hunting | MITRE + Jupyter | Proactive hunting | 3 ชม. |
 
+### Certification Priority Guide
+
+| Cert | Level | Cost (approx.) | ROI |
+|:---|:---|:---|:---|
+| CompTIA Security+ | Entry | ~12,000 THB | High |
+| CySA+ | Intermediate | ~15,000 THB | High |
+| GCIA (SANS) | Advanced | ~200,000 THB | Very High |
+| OSCP | Advanced | ~50,000 THB | High |
+| CISSP | Management | ~25,000 THB | Strategic |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

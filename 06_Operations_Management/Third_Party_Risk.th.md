@@ -217,6 +217,22 @@ flowchart TD
 - [ ] Validate data handling compliance
 - [ ] Check SLA performance metrics
 
+### Vendor Incident Notification Requirements
+
+| Severity | Notification SLA | แจ้งใคร |
+|:---|:---|:---|
+| Critical breach | 4 ชั่วโมง | CISO + Legal + DPO |
+| High risk event | 24 ชั่วโมง | Security Manager |
+| Medium risk | 72 ชั่วโมง | SOC Team |
+| Service degradation | 5 วันทำการ | IT Operations |
+
+### Contract Security Clauses Checklist
+- [ ] Right to audit clause
+- [ ] Data breach notification SLA
+- [ ] Data handling & encryption requirements
+- [ ] Background check requirements
+- [ ] Termination data destruction clause
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md)

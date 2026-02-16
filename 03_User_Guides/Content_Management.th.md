@@ -160,6 +160,24 @@ graph LR
 - [SOP ปรับจูน Alert](../06_Operations_Management/Alert_Tuning_SOP.th.md)
 - [Atomic Test Map](../08_Simulation_Testing/Atomic_Test_Map.th.md)
 
+### Content Lifecycle Management
+
+| Phase | Activity | Owner | Frequency |
+|:---|:---|:---|:---|
+| Create | สร้าง rule/playbook | Engineer | As needed |
+| Review | Peer review + test | Senior Analyst | Per change |
+| Approve | Quality gate | SOC Manager | Per change |
+| Deploy | Push to production | Engineer | Post-approval |
+| Monitor | Track FP/TP rates | Analyst | Weekly |
+| Retire | Archive outdated | Engineer | Quarterly |
+
+### Content Quality Checklist
+- [ ] มี MITRE ATT&CK mapping
+- [ ] ทดสอบใน staging แล้ว
+- [ ] มี expected output/alert sample
+- [ ] Documentation ครบถ้วน
+- [ ] False positive rate < 10%
+
 ## อ้างอิง
 
 - [Detection Engineering Weekly](https://detectionengineering.net/)

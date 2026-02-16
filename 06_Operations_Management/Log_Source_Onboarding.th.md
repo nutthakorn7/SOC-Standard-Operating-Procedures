@@ -230,6 +230,15 @@ flowchart TD
 | Baseline (days) | 7 | 14 | 7 | 14 |
 | Alert rules | 5 | 10 | 8 | 3 |
 
+### Log Quality Assurance
+
+| Check | Target | Frequency |
+|:---|:---|:---|
+| Field completeness | > 95% | Weekly |
+| Timestamp accuracy | ± 1 sec NTP | Monthly |
+| Parser accuracy | > 98% | Per update |
+| Normalization | CIM compliant | Per onboard |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md)

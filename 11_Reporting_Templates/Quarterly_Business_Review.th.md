@@ -147,6 +147,27 @@
 - [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)
 - [การประเมินวุฒิภาวะ SOC](../06_Operations_Management/SOC_Maturity_Assessment.th.md)
 
+### QBR Presentation Structure
+
+| Slide | เนื้อหา | เวลา |
+|:---|:---|:---|
+| 1 | Executive Summary | 5 min |
+| 2 | KPI Performance vs Target | 10 min |
+| 3 | Incident Highlights | 10 min |
+| 4 | Threat Landscape Update | 5 min |
+| 5 | Investment & ROI | 10 min |
+| 6 | Roadmap & Next Steps | 5 min |
+| 7 | Q&A | 15 min |
+
+### ROI Calculation Template
+
+| Metric | Before SOC | After SOC | Savings |
+|:---|:---|:---|:---|
+| Avg breach cost | 15M THB | 5M THB | 10M THB |
+| MTTR | 72 hrs | 4 hrs | 68 hrs |
+| Downtime/year | 48 hrs | 8 hrs | 40 hrs |
+| FTE (manual) | 8 | 4 | 4 FTE |
+
 ## อ้างอิง
 
 - [SOC-CMM Assessment Model](https://www.soc-cmm.com/)

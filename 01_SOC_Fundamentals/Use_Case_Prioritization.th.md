@@ -177,6 +177,22 @@ flowchart LR
     G --> F
 ```
 
+### Use Case Quick-Start Templates
+
+| Use Case | Log Source | Rule Logic | Priority |
+|:---|:---|:---|:---|
+| Brute Force | AD/LDAP | > 10 failed/5min | High |
+| Privilege Escalation | Windows Event | 4672 + 4688 | Critical |
+| Data Exfiltration | Proxy/DLP | Upload > threshold | High |
+| Suspicious DNS | DNS logs | Entropy > 3.5 | Medium |
+| Malware Detection | EDR | Known hash/behavior | Critical |
+
+### Use Case Retirement Criteria
+- False positive rate > 60% หลัง tuning
+- Log source ถูกยกเลิกใช้งาน
+- ซ้ำซ้อนกับ rule อื่น
+- ไม่เคย trigger ใน 6 เดือน
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

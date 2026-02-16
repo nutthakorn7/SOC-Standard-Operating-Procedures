@@ -409,6 +409,24 @@ flowchart TD
     E --> G
 ```
 
+### Playbook Versioning Best Practices
+
+| Version | Change Type | Example |
+|:---|:---|:---|
+| Major (v2.0) | Logic change | เพิ่ม decision branch |
+| Minor (v1.1) | Enhancement | ปรับ threshold |
+| Patch (v1.0.1) | Bug fix | แก้ typo / syntax |
+
+### SOAR Playbook Naming Convention
+
+```
+Format: [Category]_[Action]_[Target]_v[Version]
+Examples:
+  Phishing_Triage_Email_v2.1
+  Malware_Contain_Endpoint_v1.3
+  TI_Enrich_IOC_v1.0
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [IR Playbooks](Playbooks/)

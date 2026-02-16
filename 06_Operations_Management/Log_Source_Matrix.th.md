@@ -175,6 +175,15 @@ Storage 90 วัน = Storage/วัน × 90
 
 ---
 
+### Log Source Priority Categories
+
+| Priority | Category | Examples | SLA |
+|:---|:---|:---|:---|
+| P1 - Critical | Security devices | Firewall, IDS, EDR | 5 min |
+| P2 - High | Identity systems | AD, IAM, VPN | 15 min |
+| P3 - Medium | Infrastructure | DNS, DHCP, Proxy | 1 hr |
+| P4 - Low | Application | Web apps, custom | 4 hrs |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md)

@@ -231,6 +231,16 @@ flowchart TD
 | Privilege escalation | Add role assignment | High |
 | Audit log disabled | Diagnostic setting delete | Critical |
 
+### Multi-Cloud Monitoring Strategy
+
+| Capability | AWS | Azure | GCP |
+|:---|:---|:---|:---|
+| Activity Logs | CloudTrail | Activity Log | Audit Log |
+| Flow Logs | VPC Flow | NSG Flow | VPC Flow |
+| Threat Detection | GuardDuty | Defender | SCC |
+| Config Audit | Config | Policy | Asset Inv. |
+| SIEM Integration | S3 → SIEM | EventHub → SIEM | Pub/Sub → SIEM |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด

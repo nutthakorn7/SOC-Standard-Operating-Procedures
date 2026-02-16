@@ -206,6 +206,24 @@ graph TD
 | Cloud Storage | API + CASB | 20-25% |
 | Print | Print server hook | 10% |
 
+### Incident Response for DLP Violations
+
+| Severity | Response Time | Action | Escalation |
+|:---|:---|:---|:---|
+| Critical | 15 min | Block + Investigate | CISO + Legal |
+| High | 1 hr | Alert + Review | SOC Manager |
+| Medium | 4 hrs | Log + Queue review | SOC Analyst |
+| Low | 24 hrs | Awareness reminder | Auto-email |
+
+### DLP Tuning Schedule
+
+| Activity | Frequency | Owner |
+|:---|:---|:---|
+| FP review | Weekly | SOC Analyst |
+| Policy update | Monthly | Security Engineer |
+| Threshold tuning | Quarterly | SOC Manager |
+| Full policy review | Annual | CISO |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Insider Threat Program](Insider_Threat_Program.en.md) — ตรวจจับ insider threat

@@ -122,6 +122,17 @@ Invoke-AtomicTest T1059.001 -Cleanup
 | AT-002 | T1059.001 | ✅ Success | ⚠️ Partial |
 | AT-003 | T1003 | ✅ Success | ❌ Not detected |
 
+### Test Scheduling Calendar
+
+| เดือน | Focus Area | Techniques | Status |
+|:---|:---|:---|:---|
+| ม.ค. | Initial Access | T1566, T1078 | ☐ |
+| มี.ค. | Execution | T1059, T1204 | ☐ |
+| พ.ค. | Persistence | T1053, T1547 | ☐ |
+| ก.ค. | Defense Evasion | T1070, T1036 | ☐ |
+| ก.ย. | Credential Access | T1003, T1110 | ☐ |
+| พ.ย. | Lateral Movement | T1021, T1080 | ☐ |
+
 ## อ้างอิง
 
 - [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)

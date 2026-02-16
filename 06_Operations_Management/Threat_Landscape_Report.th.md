@@ -219,6 +219,23 @@ ________________________________________________________________________________
 | 2 | Patch CVE-YYYY-NNNNN บนระบบ [X] | IT Ops | [วันที่] |
 | 3 | จัด awareness training เรื่อง [topic] | HR | [วันที่] |
 
+### Threat Actor Tracking Template
+
+| Actor Group | Origin | Target Sector | TTPs | Risk Level |
+|:---|:---|:---|:---|:---|
+| APT-XX | Nation-state | Finance, Gov | Spearphishing | Critical |
+| FIN-YY | Criminal | Retail, Health | Ransomware | High |
+| Hacktivist | Ideological | Any | DDoS, Defacement | Medium |
+
+### Quarterly Trend Analysis
+
+| Metric | Q ก่อนหน้า | Q ปัจจุบัน | Trend |
+|:---|:---|:---|:---|
+| Phishing campaigns | 45 | 62 | ↑ 38% |
+| Ransomware incidents | 12 | 8 | ↓ 33% |
+| Zero-day exploits | 3 | 5 | ↑ 67% |
+| Supply chain attacks | 2 | 4 | ↑ 100% |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md) — การล่าภัยคุกคาม

@@ -213,6 +213,24 @@ flowchart TD
 | ก.ย. | 2 | ทุกคน | Seasonal (tax/bonus) |
 | พ.ย. | 3 | High-risk users | Targeted spear phishing |
 
+### Campaign Metrics Dashboard
+
+| Metric | Target | Calculation |
+|:---|:---|:---|
+| Click Rate | < 5% | Clicked / Delivered × 100 |
+| Report Rate | > 60% | Reported / Delivered × 100 |
+| Credential Submit | < 2% | Submitted / Clicked × 100 |
+| Training Completion | > 95% | Completed / Required × 100 |
+
+### Repeat Offender Management
+
+| Click Count | Action | Owner |
+|:---|:---|:---|
+| 1st click | Auto-training | System |
+| 2nd click | Manager notification | HR |
+| 3rd click | 1-on-1 coaching | Security Team |
+| 4th click | Policy review with HR | Manager + HR |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Insider Threat Program](../06_Operations_Management/Insider_Threat_Program.en.md) — ลดความเสี่ยงมนุษย์
