@@ -10,38 +10,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.9.0] - 2026-02-16
 
 ### Added
-- **Thin document enhancement** — 40 files expanded across 4 batches (+2,370 lines total), bringing all key SOPs above 150 lines
+- **Comprehensive document enhancement** — 64 files expanded across 6 batches (+3,249 lines total)
+  - All EN documents now above 160 lines (previously 20+ files were under 150)
   - PDPA Compliance: penalty table, cross-border guidance, 72h breach workflow, DPIA checklist
-  - SOC Communication: crisis plan, war room activation, on-call procedures, communication guidelines
+  - SOC Communication: crisis plan, war room activation, on-call procedures
   - Simulation Guide: lab environment setup, 3 detailed test scenarios, debrief template
-  - SOC Team Structure: interview questions (T1/T2/T3), skills matrix, Thailand salary benchmarks
-  - Data Handling Protocol: TLP marking in practice, DLP controls, data retention schedule
+  - SOC Team Structure: interview questions (T1/T2/T3), skills matrix, salary benchmarks
+  - Data Handling Protocol: TLP marking in practice, DLP controls, TLP quick reference card
   - Common Issues: SIEM/EDR/log source troubleshooting scripts, escalation matrix
-  - SOC Assessment Checklist: detailed scoring rubric (Business, People, Process domains)
-  - Threat Intelligence Lifecycle: TI report template, Diamond Model analysis, STIX/TAXII reference
-  - Access Control: break-glass emergency access, Privileged Access Management (PAM)
-  - Lessons Learned Template: common patterns table, facilitator checklist, blameless culture guide
-  - Detection Rule Testing: TDD workflow, CI/CD pipeline, quality benchmarks, rule lifecycle
-  - Data Governance Policy: SOC data classification, data lifecycle management, quality standards
-  - Monthly SOC Report: dashboard visualization guide, trend analysis template, executive summary
+  - SOC Assessment Checklist: scoring rubric, industry maturity benchmarks
+  - Threat Intelligence Lifecycle: TI report template, Diamond Model, STIX/TAXII reference
+  - Access Control: break-glass emergency access, PAM workflow
+  - Lessons Learned Template: common patterns, facilitator checklist, blameless culture
+  - Detection Rule Testing: TDD workflow, CI/CD pipeline, quality benchmarks
+  - Data Governance Policy: SOC data classification, lifecycle management
+  - Monthly SOC Report: dashboard visualization guide, trend analysis, executive summary
   - Quickstart Guide: 10-item FAQ section
   - Analyst Onboarding Path: 90-day structured onboarding plan
-  - System Activation: pre-flight validation checklist, log sources priority table
-  - Database Management: capacity planning guide, backup strategy
-  - Deployment Procedures: rollback procedures, change window schedule
+  - System Activation: pre-flight checklist, log sources priority, go-live notification template
+  - Database Management: capacity planning, backup strategy, health check script
+  - Deployment Procedures: rollback procedures, change window schedule, smoke test script
   - Executive Dashboard: KPI definitions with RAG thresholds
   - Interview Guide: 3 scenario-based questions, scoring rubric
-  - Shift Handover template: completed example, common mistakes table
-  - Incident Report template: executive summary, timeline example, evidence checklist
-  - Change Request RFC template: risk assessment matrix, approval matrix, validation checklist
-  - Atomic Test Map: testing frequency matrix (12 tactics), result tracking
-  - Vendor Evaluation: 3-year TCO comparison model, POC checklist
+  - Templates: handover example, incident timeline, RFC risk assessment, approval matrix
   - SLA Template: penalty/credit structure, quarterly review agenda
-  - Change Management: emergency change process with Mermaid, post-implementation review
-- **Full TH-EN parity maintained** — All 27 enhanced EN files have matching TH versions
+  - Change Management: emergency change process, post-implementation review
+  - Atomic Test Map: testing frequency matrix (12 tactics), result tracking
+  - Vendor Evaluation: 3-year TCO model, POC checklist
+- **Full TH-EN parity maintained** — All 32 enhanced EN files have matching TH versions
 
 ### Changed
-- Project total now **86,280 lines** across 244 documents
+- **Directory refactoring** — Improved project organization
+  - Moved Tier 1/2/3 Runbooks to `05_Incident_Response/Runbooks/` subfolder
+  - Merged `templates/` into `11_Reporting_Templates/` (single location for all templates)
+  - Updated 100+ cross-references across 118 files (zero stale links)
+- Project total now **86,564 lines** across 244 documents
 
 ---
 
