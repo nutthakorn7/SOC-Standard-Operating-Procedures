@@ -251,6 +251,8 @@ detection:
 ```
 
 ## Related Documents
+- [IR Framework](../Framework.en.md)
+- [Sigma Rules Index](../../08_Detection_Engineering/sigma_rules/)
 - [Ransomware Playbook](Ransomware.en.md)
 - [Malware Infection Playbook](Malware_Infection.en.md)
 - [Disaster Recovery & BCP](../Disaster_Recovery_BCP.en.md)

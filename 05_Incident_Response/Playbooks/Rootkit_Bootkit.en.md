@@ -256,6 +256,8 @@ detection:
 ```
 
 ## Related Documents
+- [IR Framework](../Framework.en.md)
+- [Sigma Rules Index](../../08_Detection_Engineering/sigma_rules/)
 - [Malware Infection Playbook](Malware_Infection.en.md)
 - [Credential Dumping Playbook](Credential_Dumping.en.md)
 - [Wiper Attack Playbook](Wiper_Attack.en.md)

@@ -223,9 +223,10 @@ detection:
 ```
 
 ## Related Documents
+- [IR Framework](../Framework.en.md)
+- [Sigma Rules Index](../../08_Detection_Engineering/sigma_rules/)
 - [BEC Playbook](BEC.en.md)
 - [Phishing Playbook](Phishing.en.md)
-- [Business Email Compromise Playbook](BEC.en.md)
 
 ## References
 - [FBI — Business Email Compromise](https://www.ic3.gov/Media/Y2023/PSA230609)

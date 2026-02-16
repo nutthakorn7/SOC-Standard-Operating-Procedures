@@ -210,6 +210,8 @@ detection:
 ```
 
 ## Related Documents
+- [IR Framework](../Framework.en.md)
+- [Sigma Rules Index](../../08_Detection_Engineering/sigma_rules/)
 - [Exploit Playbook](Exploit.en.md)
 - [Lateral Movement Playbook](Lateral_Movement.en.md)
 - [Malware Infection Playbook](Malware_Infection.en.md)

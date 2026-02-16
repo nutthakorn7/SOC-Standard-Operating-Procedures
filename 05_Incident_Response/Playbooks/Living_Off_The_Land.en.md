@@ -283,6 +283,8 @@ detection:
 ```
 
 ## Related Documents
+- [IR Framework](../Framework.en.md)
+- [Sigma Rules Index](../../08_Detection_Engineering/sigma_rules/)
 - [Suspicious Script Playbook](Suspicious_Script.en.md)
 - [Malware Infection Playbook](Malware_Infection.en.md)
 - [Privilege Escalation Playbook](Privilege_Escalation.en.md)

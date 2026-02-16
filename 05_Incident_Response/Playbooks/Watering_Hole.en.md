@@ -219,6 +219,8 @@ detection:
 ```
 
 ## Related Documents
+- [IR Framework](../Framework.en.md)
+- [Sigma Rules Index](../../08_Detection_Engineering/sigma_rules/)
 - [Drive-By Download Playbook](Drive_By_Download.en.md)
 - [Exploit Playbook](Exploit.en.md)
 - [Malware Infection Playbook](Malware_Infection.en.md)

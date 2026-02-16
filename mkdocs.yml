@@ -336,6 +336,8 @@ nav:
     - ISO 27001 แมปการควบคุม (TH): 07_Compliance_Privacy/ISO27001_Controls_Mapping.th.md
     - PCI-DSS SOC Requirements: 07_Compliance_Privacy/PCI_DSS_SOC_Requirements.en.md
     - PCI-DSS ข้อกำหนด SOC (TH): 07_Compliance_Privacy/PCI_DSS_SOC_Requirements.th.md
+    - NIST CSF 2.0 Mapping: 07_Compliance_Privacy/NIST_CSF_Mapping.en.md
+    - NIST CSF 2.0 แมป SOC (TH): 07_Compliance_Privacy/NIST_CSF_Mapping.th.md
     - PDPA Incident Response: 07_Compliance_Privacy/PDPA_Incident_Response.en.md
     - ตอบเหตุ PDPA (TH): 07_Compliance_Privacy/PDPA_Incident_Response.th.md
     - Compliance Gap Analysis: 07_Compliance_Privacy/Compliance_Gap_Analysis.en.md

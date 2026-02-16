@@ -190,6 +190,8 @@ detection:
 ```
 
 ## Related Documents
+- [IR Framework](../Framework.en.md)
+- [Sigma Rules Index](../../08_Detection_Engineering/sigma_rules/)
 - [Account Compromise Playbook](Account_Compromise.en.md)
 - [MFA Bypass Playbook](MFA_Bypass.en.md)
 - [BEC Playbook](BEC.en.md)

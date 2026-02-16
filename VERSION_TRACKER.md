@@ -111,6 +111,7 @@
 | [Compliance Mapping](07_Compliance_Privacy/Compliance_Mapping.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [ISO 27001 Controls Mapping](07_Compliance_Privacy/ISO27001_Controls_Mapping.en.md) | 1.0 | 2026-02-17 | ✅ Current | 2027-02-17 |
 | [PCI-DSS SOC Requirements](07_Compliance_Privacy/PCI_DSS_SOC_Requirements.en.md) | 1.0 | 2026-02-17 | ✅ Current | 2027-02-17 |
+| [NIST CSF 2.0 Mapping](07_Compliance_Privacy/NIST_CSF_Mapping.en.md) | 1.0 | 2026-02-17 | ✅ Current | 2027-02-17 |
 | [PDPA Incident Response](07_Compliance_Privacy/PDPA_Incident_Response.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Compliance Gap Analysis](07_Compliance_Privacy/Compliance_Gap_Analysis.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 | [PDPA Compliance](07_Compliance_Privacy/PDPA_Compliance.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
@@ -138,7 +139,7 @@
 | Incident Response | 14 + 50 playbooks | ✅ | 2027-02 |
 | Operations Management | 31 | ✅ | 2027-02 |
 | Testing & Training | 7 | ✅ | 2027-02 |
-| Compliance | 7 | ✅ | 2027-02 |
+| Compliance | 8 | ✅ | 2027-02 |
 | Reports & Templates | 6 | ✅ | 2027-02 |
 | **Total** | **107+** | **✅ 100%** | **2027-02** |
 
