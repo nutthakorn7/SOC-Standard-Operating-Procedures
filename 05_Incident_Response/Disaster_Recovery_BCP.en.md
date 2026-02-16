@@ -65,7 +65,7 @@ graph TD
 | 3 | Activate secondary SIEM (if available) | SOC Engineering | Switch DNS/proxy for log forwarding |
 | 4 | If no secondary: switch to **Manual Log Review Mode** | SOC Tier 2 | Use direct log access (see below) |
 | 5 | Begin reviewing critical logs directly | All analysts | Focus: Firewall, AD, EDR console |
-| 6 | Track alerts manually in emergency spreadsheet | SOC Tier 1 | Template: `templates/emergency_alert_tracker.xlsx` |
+| 6 | Track alerts manually in emergency spreadsheet | SOC Tier 1 | Template: `11_Reporting_Templates/emergency_alert_tracker.xlsx` |
 | 7 | Inform stakeholders of reduced visibility | SOC Lead | Use [Communication Templates](Communication_Templates.en.md) |
 | 8 | Once restored: verify no events were lost | SOC Engineering | Check log timestamps for gaps |
 | 9 | Process any backlogged alerts | All analysts | Prioritize P1/P2 timeframes |

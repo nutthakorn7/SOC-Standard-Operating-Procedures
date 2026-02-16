@@ -181,6 +181,30 @@ done
 | SSL certificate expired | Renew immediately | Immediate | SOC Engineer |
 | MFA outage | Switch to backup auth | 5 min | IT + IAM team |
 
+### Network Connectivity Check
+```bash
+#!/bin/bash
+echo "=== Network Connectivity Check ==="
+
+TARGETS=(
+    "siem.internal:9200"
+    "edr.internal:443"
+    "soar.internal:443"
+    "misp.internal:443"
+    "ticketing.internal:443"
+)
+
+for target in "${TARGETS[@]}"; do
+    host=$(echo $target | cut -d: -f1)
+    port=$(echo $target | cut -d: -f2)
+    if nc -zw3 "$host" "$port" 2>/dev/null; then
+        echo "  ✅ $target — reachable"
+    else
+        echo "  ❌ $target — UNREACHABLE"
+    fi
+done
+```
+
 ## Related Documents
 -   [Tool Integration Strategy](../03_User_Guides/Integration_Hub.en.md)
 -   [SOC Infrastructure Setup](../10_Training_Onboarding/System_Activation.en.md)

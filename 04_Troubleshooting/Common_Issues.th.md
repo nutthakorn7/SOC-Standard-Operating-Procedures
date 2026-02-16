@@ -173,6 +173,41 @@ done
 | Login failure | Reset password/MFA | Account locked 3x |
 | Agent offline | Restart service | > 3 endpoints |
 
+### ตรวจสอบ Network Connectivity
+```bash
+#!/bin/bash
+echo "=== ตรวจ Network Connectivity ==="
+
+TARGETS=(
+    "siem.internal:9200"
+    "edr.internal:443"
+    "soar.internal:443"
+    "misp.internal:443"
+    "ticketing.internal:443"
+)
+
+for target in "${TARGETS[@]}"; do
+    host=$(echo $target | cut -d: -f1)
+    port=$(echo $target | cut -d: -f2)
+    if nc -zw3 "$host" "$port" 2>/dev/null; then
+        echo "  ✅ $target — reachable"
+    else
+        echo "  ❌ $target — UNREACHABLE"
+    fi
+done
+```
+
 ## References
 -   [USE Method (Brendan Gregg)](https://www.brendangregg.com/usemethod.html)
 -   [Google SRE Handbook](https://sre.google/sre-book/table-of-contents/)
+
+## Quick Fix Reference (อ้างอิงด่วน)
+
+| ปัญหา | Action แรก | Escalate ถ้า |
+|:---|:---|:---|
+| SIEM ช้า | ตรวจ indexer load | CPU > 90% เกิน 30 นาที |
+| ไม่มี alert | ตรวจ log ingestion | Source offline > 15 นาที |
+| Login ล้มเหลว | Reset password/MFA | Account locked 3 ครั้ง |
+| Agent offline | Restart service | > 3 endpoints |
+| Dashboard error | Clear cache, reload | ยังไม่หายหลัง restart |
+| API timeout | ตรวจ rate limit | ล้มเหลวต่อเนื่อง > 5 นาที |
