@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.6.0] - 2026-02-16
+
+### Added
+- **PB-34 Network Discovery** (EN+TH) — Discovery tactic coverage: T1046, T1135, T1018 (port scanning, AD enumeration, net commands)
+- **PB-35 Data Collection** (EN+TH) — Collection tactic coverage: T1560, T1119, T1074 (archive staging, bulk access, cloud downloads)
+- **Sigma: win_network_discovery.yml** — Discovery tools detection (nmap, net commands, AD queries)
+- **Sigma: win_data_collection_staging.yml** — Password-protected archiving and data staging detection
+- **Escalation_Matrix** (EN+TH) — Severity-based escalation paths, contact list template, flowchart
+- **Alert_Tuning_SOP** (EN+TH) — False positive reduction workflow, tuning methods
+- **SOC_Communication** (EN+TH) — Communication channels, notification templates, escalation matrix
+- **PDPA_Compliance** (EN+TH) — PDPA data classification, breach notification (72h), IR integration
+- **Data_Governance_Policy** (EN+TH) — Data classification levels L1–L4, handling requirements
+
+### Changed
+- **change_request_rfc** (EN+TH) — Expanded 35→130 lines: implementation plan, testing, CAB approval, post-review
+- **incident_report** (EN+TH) — Expanded 43→140 lines: structured timeline, IoCs table, VERIS RCA, approvals
+- **Quarterly_Business_Review** (EN+TH) — Expanded 42→170 lines: KPI dashboard, MITRE coverage, budget, risk register
+- **Atomic_Test_Map** (EN+TH) — Expanded 50→160 lines: 28 tests by ATT&CK tactic, install guide, testing cadence
+- **GitHub Topics** — Optimized 14→20 topics: added `nist`, `dfir`, `detection-engineering`, `soar`, `threat-intelligence`, `edr`
+- **mkdocs.yml** — Added 10 new nav entries for Escalation Matrix, Alert Tuning SOP, SOC Communication, PDPA Compliance, Data Governance Policy, Network Discovery, Data Collection
+
+### Improved
+- MITRE ATT&CK tactic coverage: 11/14 → 13/14 (added Discovery + Collection)
+- Playbooks: 33 → 35
+- Sigma rules: 33 → 35
+
+---
+
 ## [2.5.0] - 2026-02-16
 
 ### Changed

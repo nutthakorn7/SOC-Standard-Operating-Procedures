@@ -44,7 +44,7 @@
 | [Lessons Learned Template](05_Incident_Response/Lessons_Learned_Template.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Playbook Development Guide](05_Incident_Response/Playbook_Development_Guide.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 
-## 🛡️ Incident Response — Playbooks (33)
+## 🛡️ Incident Response — Playbooks (35)
 
 | Playbook | Version | Last Updated | Status |
 |:---|:---:|:---:|:---:|
@@ -53,6 +53,8 @@
 | PB-21 Supply Chain → PB-25 Zero-Day | 1.0 | 2026-02-15 | ✅ |
 | PB-26 MFA Bypass → PB-30 OT/ICS | 1.0 | 2026-02-15 | ✅ |
 | PB-31 AWS EC2 → PB-33 Azure AD | 1.0 | 2026-02-15 | ✅ |
+| PB-34 Network Discovery | 1.0 | 2026-02-16 | ✅ |
+| PB-35 Data Collection | 1.0 | 2026-02-16 | ✅ |
 
 ## 📊 Operations Management
 
@@ -86,6 +88,9 @@
 | [Change Management](06_Operations_Management/Change_Management.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Access Control Policy](06_Operations_Management/Access_Control.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Communication SOP](06_Operations_Management/Communication_SOP.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Escalation Matrix](06_Operations_Management/Escalation_Matrix.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [Alert Tuning SOP](06_Operations_Management/Alert_Tuning_SOP.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [SOC Communication SOP](06_Operations_Management/SOC_Communication.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 
 ## 🎯 Testing & Training
 
@@ -106,6 +111,8 @@
 | [Compliance Mapping](10_Compliance/Compliance_Mapping.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [PDPA Incident Response](10_Compliance/PDPA_Incident_Response.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Compliance Gap Analysis](10_Compliance/Compliance_Gap_Analysis.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [PDPA Compliance](07_Compliance_Privacy/PDPA_Compliance.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [Data Governance Policy](07_Compliance_Privacy/Data_Governance_Policy.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 
 ## 📄 Reports & Templates
 
@@ -126,11 +133,11 @@
 |:---|:---:|:---:|:---:|
 | Getting Started | 3 | ✅ | 2027-02 |
 | SOC Fundamentals | 6 | ✅ | 2027-02 |
-| Incident Response | 14 + 33 playbooks | ✅ | 2027-02 |
-| Operations Management | 28 | ✅ | 2027-02 |
+| Incident Response | 14 + 35 playbooks | ✅ | 2027-02 |
+| Operations Management | 31 | ✅ | 2027-02 |
 | Testing & Training | 7 | ✅ | 2027-02 |
-| Compliance | 3 | ✅ | 2027-02 |
+| Compliance | 5 | ✅ | 2027-02 |
 | Reports & Templates | 6 | ✅ | 2027-02 |
-| **Total** | **100+** | **✅ 100%** | **2027-02** |
+| **Total** | **107+** | **✅ 100%** | **2027-02** |
 
-> **Last tracker update**: 2026-02-16 | **Repository version**: 2.4.0
+> **Last tracker update**: 2026-02-16 | **Repository version**: 2.6.0
