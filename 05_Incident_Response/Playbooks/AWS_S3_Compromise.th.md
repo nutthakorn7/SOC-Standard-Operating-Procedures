@@ -143,6 +143,37 @@ graph TD
 
 ---
 
+### ผัง S3 Hardening Checklist
+
+```mermaid
+graph TD
+    S3["📦 S3 Bucket"] --> BPA["🔒 Block Public Access"]
+    S3 --> Encrypt["🔐 SSE-S3/KMS"]
+    S3 --> Version["📋 Versioning"]
+    S3 --> Logging["📊 Access Logging"]
+    S3 --> Lifecycle["♻️ Lifecycle Policy"]
+    BPA --> Audit["✅ Quarterly audit"]
+    Encrypt --> Audit
+    style S3 fill:#f39c12,color:#fff
+    style Audit fill:#27ae60,color:#fff
+```
+
+### ผัง Bucket Policy Audit
+
+```mermaid
+sequenceDiagram
+    participant CSPM
+    participant SOC
+    participant AWS
+    participant Dev
+    CSPM->>SOC: 🚨 Public bucket detected
+    SOC->>AWS: Check bucket policy
+    AWS-->>SOC: Principal: * (public!)
+    SOC->>AWS: Enable BPA
+    SOC->>Dev: ตรวจสอบ application impact
+    Dev-->>SOC: ✅ No impact — app uses IAM role
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

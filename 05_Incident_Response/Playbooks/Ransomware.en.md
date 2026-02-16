@@ -187,6 +187,35 @@ graph TD
 
 ---
 
+### 3-2-1 Backup Strategy
+
+```mermaid
+graph TD
+    Backup["💾 3-2-1 Backup"] --> Three["📋 3 copies"]
+    Three --> Two["🗄️ 2 media types"]
+    Two --> One["☁️ 1 offsite/air-gapped"]
+    One --> Test["🧪 Test restore monthly"]
+    Test --> Immutable["🔒 Immutable backup"]
+    style Backup fill:#3498db,color:#fff
+    style Immutable fill:#27ae60,color:#fff
+```
+
+### Ransom Payment Decision
+
+```mermaid
+graph TD
+    Pay{"💰 Pay ransom?"} -.->|⚠️ Not recommended| Risks["❌ Risks"]
+    Pay --> Legal["⚖️ Legal consult"]
+    Risks --> R1["No decryption guarantee"]
+    Risks --> R2["Funds criminal operations"]
+    Risks --> R3["May be targeted again"]
+    Legal --> CISO["🧑‍💼 CISO decides"]
+    CISO --> Recovery["♻️ Recovery Plan"]
+    style Pay fill:#e74c3c,color:#fff
+    style Risks fill:#c0392b,color:#fff
+    style Recovery fill:#27ae60,color:#fff
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

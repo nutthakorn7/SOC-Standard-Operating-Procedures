@@ -140,6 +140,35 @@ graph TD
 
 ---
 
+### ผัง SaaS Risk Scoring
+
+```mermaid
+graph TD
+    App["📱 Unsanctioned App"] --> Score{"⚖️ Risk Score?"}
+    Score -->|High Risk| Block["🔒 Block ทันที"]
+    Score -->|Medium Risk| Review["👁️ Review: มีทางเลือก?"]
+    Score -->|Low Risk| Allow["✅ Allow + monitor"]
+    Review -->|Yes| Migrate["🔄 Migrate to approved"]
+    Review -->|No| Onboard["📋 Onboard + SSO"]
+    style Block fill:#e74c3c,color:#fff
+    style Onboard fill:#27ae60,color:#fff
+```
+
+### ผัง SSO Integration Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant IdP as Azure AD SSO
+    participant App as SaaS App
+    participant SOC
+    User->>IdP: Login to SaaS
+    IdP->>IdP: MFA + Conditional Access
+    IdP->>App: SAML assertion
+    App-->>User: ✅ Access granted
+    IdP->>SOC: 📋 Audit log
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

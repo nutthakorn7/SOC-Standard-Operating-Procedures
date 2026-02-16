@@ -137,6 +137,38 @@ graph TD
 
 ---
 
+### ผัง Network Segmentation
+
+```mermaid
+graph TD
+    Corp["🏢 Corporate"] --> FW1["🔥 FW"]
+    FW1 --> DC["🏰 DC Segment"]
+    Corp --> FW2["🔥 FW"]
+    FW2 --> Server["🖥️ Server Farm"]
+    Corp --> FW3["🔥 FW"]
+    FW3 --> User["💻 User VLAN"]
+    DC -.->|❌ No direct access| User
+    style DC fill:#e74c3c,color:#fff
+    style FW1 fill:#f39c12,color:#fff
+    style FW2 fill:#f39c12,color:#fff
+    style FW3 fill:#f39c12,color:#fff
+```
+
+### ผัง Credential Theft Detection
+
+```mermaid
+sequenceDiagram
+    participant Attacker
+    participant LSASS
+    participant EDR
+    participant SOC
+    Attacker->>LSASS: Access lsass.exe memory
+    EDR->>EDR: 🚨 LSASS access detected
+    EDR->>SOC: Alert: credential dumping
+    SOC->>EDR: Isolate source host
+    SOC->>SOC: Check for lateral movement
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

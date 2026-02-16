@@ -142,6 +142,34 @@ graph TD
 
 ---
 
+### ผัง MDM Lifecycle
+
+```mermaid
+graph LR
+    Enroll["📲 Enroll"] --> Policy["📋 Policy Push"]
+    Policy --> Monitor["👁️ Monitor"]
+    Monitor --> Alert["🚨 Lost/Stolen"]
+    Alert --> Lock["🔒 Remote Lock"]
+    Lock --> Wipe["🗑️ Selective Wipe"]
+    Wipe --> Retire["♻️ Retire"]
+    style Alert fill:#e74c3c,color:#fff
+    style Wipe fill:#c0392b,color:#fff
+```
+
+### ผัง Device Data Classification
+
+```mermaid
+graph TD
+    Device["📱 อุปกรณ์"] --> Type{"🏷️ ประเภทข้อมูล?"}
+    Type -->|PII/PDPA| Critical["🔴 Critical — wipe ทันที"]
+    Type -->|Business| High["🟠 High — wipe 4h"]
+    Type -->|General| Medium["🟡 Medium — lock + track"]
+    Type -->|No data| Low["🟢 Low — lock เท่านั้น"]
+    Critical --> Legal["⚖️ แจ้ง DPO"]
+    style Critical fill:#e74c3c,color:#fff
+    style Legal fill:#8e44ad,color:#fff
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

@@ -152,6 +152,34 @@ graph TD
 
 ---
 
+### MDM Lifecycle
+
+```mermaid
+graph LR
+    Enroll["📲 Enroll"] --> Policy["📋 Policy Push"]
+    Policy --> Monitor["👁️ Monitor"]
+    Monitor --> Alert["🚨 Lost/Stolen"]
+    Alert --> Lock["🔒 Remote Lock"]
+    Lock --> Wipe["🗑️ Selective Wipe"]
+    Wipe --> Retire["♻️ Retire"]
+    style Alert fill:#e74c3c,color:#fff
+    style Wipe fill:#c0392b,color:#fff
+```
+
+### Device Data Classification
+
+```mermaid
+graph TD
+    Device["📱 Device"] --> Type{"🏷️ Data Type?"}
+    Type -->|PII/PDPA| Critical["🔴 Critical — wipe now"]
+    Type -->|Business| High["🟠 High — wipe 4h"]
+    Type -->|General| Medium["🟡 Medium — lock + track"]
+    Type -->|No data| Low["🟢 Low — lock only"]
+    Critical --> Legal["⚖️ Notify DPO"]
+    style Critical fill:#e74c3c,color:#fff
+    style Legal fill:#8e44ad,color:#fff
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

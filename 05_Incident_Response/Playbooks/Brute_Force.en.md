@@ -178,6 +178,37 @@ graph TD
 
 ---
 
+### Password Policy Hardening
+
+```mermaid
+graph TD
+    Policy["🔐 Password Policy"] --> Length["📏 Min 14 chars"]
+    Policy --> Complex["🔤 Complexity required"]
+    Policy --> History["📋 Remember 24"]
+    Policy --> Lockout["🔒 Lockout 10 fails"]
+    Lockout --> Duration["⏱️ 30 min lockout"]
+    Length --> MFA["📱 MFA required"]
+    Complex --> MFA
+    style MFA fill:#27ae60,color:#fff
+    style Lockout fill:#e74c3c,color:#fff
+```
+
+### Credential Source Tracking
+
+```mermaid
+graph LR
+    Source{"🔑 Source?"} --> Dark["🌑 Dark Web dump"]
+    Source --> Phish["🎣 Phishing"]
+    Source --> Reuse["♻️ Password reuse"]
+    Source --> Keylog["⌨️ Keylogger"]
+    Dark --> Check["✅ Check HaveIBeenPwned"]
+    Phish --> Check
+    Reuse --> Check
+    Keylog --> EDR["🛡️ EDR scan"]
+    style Dark fill:#2c3e50,color:#fff
+    style Phish fill:#e74c3c,color:#fff
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

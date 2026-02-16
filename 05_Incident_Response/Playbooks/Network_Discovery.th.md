@@ -137,6 +137,36 @@ graph TD
 
 ---
 
+### ผัง Network Visibility Stack
+
+```mermaid
+graph LR
+    IDS["🛡️ IDS/IPS"] --> SIEM["📊 SIEM"]
+    NDR["📡 NDR"] --> SIEM
+    Honeypot["🍯 Honeypot"] --> SIEM
+    FW["🔥 Firewall"] --> SIEM
+    SIEM --> SOC["🎯 SOC Alert"]
+    style IDS fill:#3498db,color:#fff
+    style NDR fill:#27ae60,color:#fff
+    style Honeypot fill:#f39c12,color:#fff
+    style SOC fill:#e74c3c,color:#fff
+```
+
+### ผัง Scan Tool Classification
+
+```mermaid
+graph TD
+    Tools["🔍 Scan Tools"] --> External["🌐 External"]
+    Tools --> Internal["🏠 Internal"]
+    External --> Nmap["nmap"]
+    External --> Masscan["masscan"]
+    Internal --> NBTScan["nbtscan"]
+    Internal --> BloodHound["SharpHound"]
+    Internal --> PowerView["PowerView"]
+    style External fill:#e74c3c,color:#fff
+    style Internal fill:#f39c12,color:#fff
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

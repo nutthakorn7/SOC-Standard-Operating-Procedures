@@ -129,6 +129,36 @@ An attacker gathers sensitive data from within the environment before exfiltrati
 | **Trade Secrets** | Critical | CEO, Legal |
 | **Source Code** | High | CTO, Engineering Lead |
 
+### DLP Architecture
+
+```mermaid
+graph LR
+    Endpoint["💻 Endpoint DLP"] --> SIEM["📊 SIEM"]
+    Network["🌐 Network DLP"] --> SIEM
+    Cloud["☁️ Cloud DLP"] --> SIEM
+    Email["📧 Email DLP"] --> SIEM
+    SIEM --> SOC["🎯 SOC Alert"]
+    style Endpoint fill:#3498db,color:#fff
+    style Cloud fill:#27ae60,color:#fff
+    style SOC fill:#e74c3c,color:#fff
+```
+
+### Insider Data Theft Indicators
+
+```mermaid
+graph TD
+    UEBA["🔍 UEBA"] --> Type{"📋 Indicator?"}
+    Type --> Resign["📝 Upcoming resignation"]
+    Type --> Hours["🕐 Off-hours access"]
+    Type --> Volume["📊 Excessive downloads"]
+    Type --> USB["💾 USB data copy"]
+    Resign --> Risk["⚠️ High Risk"]
+    Hours --> Risk
+    Volume --> Risk
+    USB --> Risk
+    style Risk fill:#e74c3c,color:#fff
+```
+
 ## Related Documents
 
 - [Data Exfiltration Playbook](Data_Exfiltration.en.md)

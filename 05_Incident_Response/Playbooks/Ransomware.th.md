@@ -134,6 +134,35 @@ sequenceDiagram
 
 ---
 
+### ผัง 3-2-1 Backup Strategy
+
+```mermaid
+graph TD
+    Backup["💾 3-2-1 Backup"] --> Three["📋 3 copies"]
+    Three --> Two["🗄️ 2 types of media"]
+    Two --> One["☁️ 1 offsite/air-gapped"]
+    One --> Test["🧪 Test restore monthly"]
+    Test --> Immutable["🔒 Immutable backup"]
+    style Backup fill:#3498db,color:#fff
+    style Immutable fill:#27ae60,color:#fff
+```
+
+### ผังตัดสินใจ Ransom Payment
+
+```mermaid
+graph TD
+    Pay{"💰 จ่ายค่าไถ่?"} -.->|⚠️ ไม่แนะนำ| Risks["❌ ความเสี่ยง"]
+    Pay --> Legal["⚖️ Legal consult"]
+    Risks --> R1["ไม่รับประกัน decryption"]
+    Risks --> R2["สนับสนุนอาชญากรรม"]
+    Risks --> R3["อาจจ่ายซ้ำ"]
+    Legal --> CISO["🧑‍💼 CISO ตัดสินใจ"]
+    CISO --> Recovery["♻️ Recovery Plan"]
+    style Pay fill:#e74c3c,color:#fff
+    style Risks fill:#c0392b,color:#fff
+    style Recovery fill:#27ae60,color:#fff
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

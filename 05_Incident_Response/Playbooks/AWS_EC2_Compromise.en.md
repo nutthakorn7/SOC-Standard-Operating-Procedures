@@ -189,6 +189,37 @@ graph TD
 
 ---
 
+### EC2 Security Hardening
+
+```mermaid
+graph TD
+    EC2["🖥️ EC2"] --> SG["🔒 Security Group: restrict ports"]
+    EC2 --> IMDS["🔑 IMDSv2 only"]
+    EC2 --> SSM["📡 SSM: no SSH exposure"]
+    EC2 --> CW["📊 CloudWatch agent"]
+    EC2 --> EBS["💾 EBS encryption"]
+    SG --> Audit["✅ Audit quarterly"]
+    IMDS --> Audit
+    style EC2 fill:#f39c12,color:#fff
+    style Audit fill:#27ae60,color:#fff
+```
+
+### SSRF Metadata Protection
+
+```mermaid
+sequenceDiagram
+    participant Attacker
+    participant App
+    participant IMDS as IMDSv1
+    participant IMDSv2
+    Attacker->>App: SSRF: http://169.254.169.254
+    Note over IMDS: ❌ IMDSv1 disabled
+    App->>IMDSv2: GET (no token)
+    IMDSv2-->>App: 401 Unauthorized
+    Note over IMDSv2: ✅ Requires PUT + session token
+    Note over Attacker: 🛑 Attack blocked!
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

@@ -174,6 +174,38 @@ graph TD
 
 ---
 
+### Conditional Access Architecture
+
+```mermaid
+graph TD
+    Login["🔓 Login"] --> CA{"🛡️ Conditional Access"}
+    CA -->|Trusted Location| Allow["✅ Allow"]
+    CA -->|Unknown Location| MFA["📱 Require MFA"]
+    CA -->|Risky Sign-in| Block["❌ Block"]
+    CA -->|Unmanaged Device| Limited["⚠️ Limited Access"]
+    MFA --> Compliant{"📋 Compliant?"}
+    Compliant -->|Yes| Allow
+    Compliant -->|No| Block
+    style Block fill:#e74c3c,color:#fff
+    style Allow fill:#27ae60,color:#fff
+```
+
+### Token Theft Detection
+
+```mermaid
+sequenceDiagram
+    participant Attacker
+    participant IdP
+    participant SOC
+    participant CAE
+    Attacker->>IdP: Use stolen token
+    IdP->>CAE: Check — new IP!
+    CAE->>IdP: ❌ Revoke token
+    IdP-->>Attacker: 401 Unauthorized
+    CAE->>SOC: 🚨 Token theft alert
+    SOC->>SOC: Correlate with impossible travel
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

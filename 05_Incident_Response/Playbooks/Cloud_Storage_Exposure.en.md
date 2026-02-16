@@ -183,6 +183,36 @@ gsutil iam ch -d allAuthenticatedUsers gs://<BUCKET>
 
 ---
 
+### CSPM Monitoring Pipeline
+
+```mermaid
+graph LR
+    CSPM["🔍 CSPM"] --> Scan["📡 Scan daily"]
+    Scan --> Finding["📋 Finding"]
+    Finding --> Severity{"⚠️ Severity?"}
+    Severity -->|Critical| Auto["🤖 Auto-remediate"]
+    Severity -->|High| SOC["🎯 SOC triage"]
+    Severity -->|Medium| Ticket["📝 Ticket"]
+    style Auto fill:#27ae60,color:#fff
+    style SOC fill:#e74c3c,color:#fff
+```
+
+### Data Breach Notification (PDPA)
+
+```mermaid
+sequenceDiagram
+    participant SOC
+    participant DLP
+    participant Legal
+    participant DPO
+    SOC->>DLP: Scan exposed storage
+    DLP-->>SOC: PII found — 1200 records
+    SOC->>Legal: Report data exposure
+    Legal->>DPO: PDPA notification required
+    DPO->>DPO: Prepare notification within 72h
+    DPO-->>SOC: ✅ Notification filed
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

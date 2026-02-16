@@ -174,6 +174,37 @@ graph TD
 
 ---
 
+### API Security Architecture
+
+```mermaid
+graph LR
+    Client["📱 Client"] --> Auth["🔑 OAuth 2.0"]
+    Auth --> Gateway["🚪 API Gateway"]
+    Gateway --> RateLimit["⏱️ Rate Limit"]
+    RateLimit --> WAF["🛡️ WAF"]
+    WAF --> App["📦 API Server"]
+    App --> DLP["🔍 Response Filter"]
+    style Auth fill:#3498db,color:#fff
+    style Gateway fill:#27ae60,color:#fff
+    style WAF fill:#f39c12,color:#fff
+```
+
+### OWASP API Risk Classification
+
+```mermaid
+graph TD
+    Risk["⚠️ API Risk"] --> Critical{"🔴 Critical"}
+    Risk --> High{"🟠 High"}
+    Critical --> BOLA["BOLA/IDOR"]
+    Critical --> BrokenAuth["Broken Auth"]
+    Critical --> BFLA["BFLA"]
+    High --> DataExp["Data Exposure"]
+    High --> NoLimit["No Rate Limit"]
+    High --> MassAssign["Mass Assignment"]
+    style Critical fill:#e74c3c,color:#fff
+    style High fill:#f39c12,color:#fff
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

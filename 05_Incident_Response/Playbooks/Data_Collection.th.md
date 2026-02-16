@@ -142,6 +142,36 @@ graph TD
 
 ---
 
+### ผัง DLP Architecture
+
+```mermaid
+graph LR
+    Endpoint["💻 Endpoint DLP"] --> SIEM["📊 SIEM"]
+    Network["🌐 Network DLP"] --> SIEM
+    Cloud["☁️ Cloud DLP"] --> SIEM
+    Email["📧 Email DLP"] --> SIEM
+    SIEM --> SOC["🎯 SOC Alert"]
+    style Endpoint fill:#3498db,color:#fff
+    style Cloud fill:#27ae60,color:#fff
+    style SOC fill:#e74c3c,color:#fff
+```
+
+### ผัง Insider Data Theft Indicators
+
+```mermaid
+graph TD
+    UEBA["🔍 UEBA"] --> Type{"📋 Indicator?"}
+    Type --> Resign["📝 ลาออกเร็วๆ"]
+    Type --> Hours["🕐 เข้าถึงนอกเวลา"]
+    Type --> Volume["📊 Download มาก"]
+    Type --> USB["💾 USB ถ่ายข้อมูล"]
+    Resign --> Risk["⚠️ High Risk"]
+    Hours --> Risk
+    Volume --> Risk
+    USB --> Risk
+    style Risk fill:#e74c3c,color:#fff
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

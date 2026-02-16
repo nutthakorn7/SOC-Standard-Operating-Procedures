@@ -142,6 +142,36 @@ graph TD
 
 ---
 
+### ผัง CSPM Monitoring Pipeline
+
+```mermaid
+graph LR
+    CSPM["🔍 CSPM"] --> Scan["📡 Scan daily"]
+    Scan --> Finding["📋 Finding"]
+    Finding --> Severity{"⚠️ Severity?"}
+    Severity -->|Critical| Auto["🤖 Auto-remediate"]
+    Severity -->|High| SOC["🎯 SOC triage"]
+    Severity -->|Medium| Ticket["📝 Ticket"]
+    style Auto fill:#27ae60,color:#fff
+    style SOC fill:#e74c3c,color:#fff
+```
+
+### ผัง Data Breach Notification (PDPA)
+
+```mermaid
+sequenceDiagram
+    participant SOC
+    participant DPO
+    participant Legal
+    participant Authority as คปdf/PDPC
+    SOC->>DPO: 🚨 PII exposed
+    DPO->>Legal: ประเมินขอบเขต
+    Legal-->>DPO: ต้องแจ้งเจ้าของข้อมูล
+    DPO->>Authority: แจ้งภายใน 72 ชม.
+    DPO->>DPO: แจ้งผู้ได้รับผลกระทบ
+    Authority-->>DPO: ✅ รับทราบ
+```
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบการตอบสนองต่อเหตุการณ์](../Framework.th.md)

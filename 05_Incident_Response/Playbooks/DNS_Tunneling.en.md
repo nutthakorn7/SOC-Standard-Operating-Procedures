@@ -177,6 +177,35 @@ sequenceDiagram
 
 ---
 
+### DNS Security Architecture
+
+```mermaid
+graph LR
+    Client["💻 Client"] --> Internal["🔤 Internal DNS"]
+    Internal --> RPZ["🛡️ RPZ Filter"]
+    RPZ -->|Block| Sinkhole["🕳️ Sinkhole"]
+    RPZ -->|Allow| Upstream["🌐 Upstream DNS"]
+    Upstream --> DoH["🔒 DoH/DoT"]
+    style RPZ fill:#27ae60,color:#fff
+    style Sinkhole fill:#e74c3c,color:#fff
+```
+
+### DNS-based C2 Indicators
+
+```mermaid
+graph TD
+    Indicator["🔍 DNS Indicator"] --> Length["📏 Query > 50 chars"]
+    Indicator --> Entropy["🎲 High entropy"]
+    Indicator --> Volume["📊 High NXDomain"]
+    Indicator --> TXT["📝 Large TXT responses"]
+    Length --> Score["⚠️ Risk Score"]
+    Entropy --> Score
+    Volume --> Score
+    TXT --> Score
+    Score --> Alert["🚨 SOC Alert"]
+    style Alert fill:#e74c3c,color:#fff
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)

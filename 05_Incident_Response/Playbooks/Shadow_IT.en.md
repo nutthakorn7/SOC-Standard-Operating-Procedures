@@ -157,6 +157,35 @@ graph TD
 
 ---
 
+### SaaS Risk Scoring
+
+```mermaid
+graph TD
+    App["📱 Unsanctioned App"] --> Score{"⚖️ Risk Score?"}
+    Score -->|High Risk| Block["🔒 Block immediately"]
+    Score -->|Medium Risk| Review["👁️ Review: alternatives?"]
+    Score -->|Low Risk| Allow["✅ Allow + monitor"]
+    Review -->|Yes| Migrate["🔄 Migrate to approved"]
+    Review -->|No| Onboard["📋 Onboard + SSO"]
+    style Block fill:#e74c3c,color:#fff
+    style Onboard fill:#27ae60,color:#fff
+```
+
+### SSO Integration Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant IdP as Azure AD SSO
+    participant App as SaaS App
+    participant SOC
+    User->>IdP: Login to SaaS
+    IdP->>IdP: MFA + Conditional Access
+    IdP->>App: SAML assertion
+    App-->>User: ✅ Access granted
+    IdP->>SOC: 📋 Audit log
+```
+
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)
