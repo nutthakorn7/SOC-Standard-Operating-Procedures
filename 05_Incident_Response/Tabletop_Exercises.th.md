@@ -306,6 +306,13 @@
 | New detection rule | 1 week | Engineer |
 | Training update | 1 month | Training lead |
 
+### Quick Prep Checklist
+
+| Item | Done |
+|:---|:---|
+| Scenario ready | ☐ |
+| Participants confirmed | ☐ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](Framework.th.md)

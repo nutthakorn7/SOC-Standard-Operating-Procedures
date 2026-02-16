@@ -112,6 +112,13 @@ gantt
 -   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
 -   [คู่มือจำลองการโจมตี](../08_Simulation_Testing/Simulation_Guide.en.md)
 
+### Onboarding Milestones
+
+| Week | Milestone |
+|:---|:---|
+| 1 | Tools setup complete |
+| 4 | First solo triage |
+
 ## References
 -   [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
 -   [NICE Cybersecurity Workforce Framework](https://niccs.cisa.gov/workforce-development/nice-framework)

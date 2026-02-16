@@ -248,6 +248,13 @@ flowchart TD
 | 4-5 | Baseline collection | SOC Analyst |
 | 6-7 | Alert rule creation | SOC Engineer |
 
+### Quick Reference
+
+| Phase | Duration |
+|:---|:---|
+| Config | 1-2 days |
+| Baseline | 7 days |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ดัชนี Detection Rules](../07_Detection_Rules/README.th.md)

@@ -133,6 +133,13 @@
 | Root cause | Identified | ☐ |
 | Actions | Assigned + dated | ☐ |
 
+### Report Priority
+
+| Severity | Due |
+|:---|:---|
+| Critical | 24 hrs |
+| High | 72 hrs |
+
 ## อ้างอิง
 
 - [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

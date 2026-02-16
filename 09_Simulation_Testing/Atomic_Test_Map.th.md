@@ -142,6 +142,13 @@ Invoke-AtomicTest T1059.001 -Cleanup
 | 3 | Reset network configs | 3 min |
 | 4 | Verify clean state | 5 min |
 
+### Test Priority Guide
+
+| Priority | Criteria |
+|:---|:---|
+| P1 | Active threat |
+| P2 | Coverage gap |
+
 ## อ้างอิง
 
 - [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)

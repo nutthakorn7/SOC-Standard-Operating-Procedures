@@ -120,6 +120,13 @@ python tools/sigma_validator.py path/to/rule.yml
 | Expected Alert | [Yes/No + details] |
 | Actual Result | [Pass/Fail + evidence] |
 
+### Test Status Tracking
+
+| Status | Meaning |
+|:---|:---|
+| Draft | ยังไม่ทดสอบ |
+| Testing | กำลังทดสอบ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)

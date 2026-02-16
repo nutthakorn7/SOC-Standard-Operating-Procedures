@@ -318,6 +318,13 @@ graph LR
 | Timeframe | [ช่วงเวลา] |
 | Success Criteria | [เกณฑ์ที่บ่งชี้การพบภัย] |
 
+### Hunt Priority
+
+| Level | Trigger |
+|:---|:---|
+| P1 | Active threat intel |
+| P2 | Gap in coverage |
+
 ## อ้างอิง
 
 -   [MITRE ATT&CK](https://attack.mitre.org/)

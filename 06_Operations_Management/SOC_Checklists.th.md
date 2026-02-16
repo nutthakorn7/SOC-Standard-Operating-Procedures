@@ -169,6 +169,12 @@
 | Training gaps | Lead | Training plan |
 | Process improvement | All | Updated SOPs |
 
+### Checklist Version Control
+
+| Version | Date | Change |
+|:---|:---|:---|
+| 1.0 | Initial | Baseline |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [คู่มือ Tier 1](../05_Incident_Response/Tier1_Runbook.th.md)

@@ -203,6 +203,14 @@ graph TD
 | Medium | Partial compliance | 90 days |
 | Low | Documentation gap | 180 days |
 
+### Gap Status Legend
+
+| Icon | Meaning |
+|:---|:---|
+| ✅ | Compliant |
+| ⚠️ | Partial |
+| ❌ | Non-compliant |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Compliance Mapping](Compliance_Mapping.en.md) — ISO 27001 / NIST CSF / PCI DSS

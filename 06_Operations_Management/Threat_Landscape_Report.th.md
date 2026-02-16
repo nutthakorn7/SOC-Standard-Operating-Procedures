@@ -244,6 +244,13 @@ ________________________________________________________________________________
 | Management | Executive summary | Quarterly |
 | Board | Risk dashboard | Semi-annual |
 
+### Report Sections
+
+| Section | Owner |
+|:---|:---|
+| Threat actors | TI Analyst |
+| Trends | SOC Manager |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md) — การล่าภัยคุกคาม

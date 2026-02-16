@@ -168,6 +168,13 @@
 - [คู่มือการจำลอง](../08_Simulation_Testing/Simulation_Guide.th.md)
 - [แบบฟอร์ม Incident Report](../templates/incident_report.th.md)
 
+### Training Completion Tracking
+
+| Module | Required | Completed |
+|:---|:---|:---|
+| SOC Overview | ✅ | ☐ |
+| SIEM Basics | ✅ | ☐ |
+
 ## อ้างอิง
 
 - [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)

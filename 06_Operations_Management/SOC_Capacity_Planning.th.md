@@ -198,6 +198,13 @@ Required Analysts = (Alerts/Day × Avg Handle Time) / (Working Hours × Utilizat
 | Storage | 10 TB | 8 TB | Add nodes |
 | Network | 1 Gbps | 800 Mbps | Upgrade link |
 
+### Review Triggers
+
+| Event | Action |
+|:---|:---|
+| Alert volume +25% | Capacity review |
+| New log source | Resource assessment |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [SOC Team Structure](SOC_Team_Structure.en.md) — บทบาทและความรับผิดชอบ

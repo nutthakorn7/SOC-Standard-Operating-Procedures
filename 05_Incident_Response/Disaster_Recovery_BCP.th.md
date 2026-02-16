@@ -213,6 +213,13 @@ graph TD
 | 3 | SOC Manager | Chat | Phone |
 | 4 | SOC Team | Mass SMS | Email |
 
+### DR Quick Contacts
+
+| Role | Availability |
+|:---|:---|
+| DR Coordinator | 24/7 |
+| IT Lead | 24/7 |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Escalation Matrix](Escalation_Matrix.en.md) — ใครต้องแจ้งเมื่อเกิดเหตุ

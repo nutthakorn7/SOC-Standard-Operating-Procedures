@@ -146,6 +146,13 @@ graph TD
 | Week 2 | 90% | 100% | 95% | 95% |
 | Month | 95% | 97% | 96% | 96% |
 
+### SLA Review Cycle
+
+| Activity | Frequency |
+|:---|:---|
+| SLA review | Monthly |
+| SLA renegotiation | Annual |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)

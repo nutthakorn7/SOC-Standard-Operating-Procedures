@@ -427,6 +427,13 @@ Examples:
   TI_Enrich_IOC_v1.0
 ```
 
+### Integration Status
+
+| System | Connected |
+|:---|:---|
+| SIEM | ✅ |
+| EDR | ✅ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [IR Playbooks](Playbooks/)

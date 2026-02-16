@@ -297,6 +297,13 @@ flowchart LR
 | Union notification | ☐ | If applicable |
 | Evidence handling | ☐ | Chain of custody |
 
+### Program Review Cadence
+
+| Review | Frequency |
+|:---|:---|
+| Policy | Annual |
+| Indicators | Quarterly |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — การเก็บหลักฐาน

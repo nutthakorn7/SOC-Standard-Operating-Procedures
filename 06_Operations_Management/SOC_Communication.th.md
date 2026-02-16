@@ -91,6 +91,13 @@
 | Escalation | Phone + Ticket | SMS |
 | Routine update | Email | Chat |
 
+### Communication SLA
+
+| Type | Response |
+|:---|:---|
+| Critical | 5 min |
+| Routine | 30 min |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [มาตรฐานส่งมอบกะ](Shift_Handoff.th.md)
