@@ -16,7 +16,56 @@ This document defines the standard procedures for managing SOC shifts and ensuri
 
 > ⚠️ **30-minute overlap** is required between shifts for proper handoff (e.g., outgoing shift stays 08:00–08:30 with incoming shift).
 
-### 1.2 Coverage Models
+### 1.2 Alternative Rotation: 4-On-4-Off (12-Hour Shifts)
+
+A compressed schedule using **2 shifts × 12 hours** with 4 consecutive working days followed by 4 days off. This model provides 24/7 coverage with fewer handoffs per day.
+
+| Shift | Hours | Duration | Peak Alert Volume |
+|:---|:---:|:---:|:---|
+| ☀️ **Day Shift** | 08:00 – 20:00 | 12 hours | High (full business hours + early evening) |
+| 🌙 **Night Shift** | 20:00 – 08:00 | 12 hours | Low–Medium (botnet, overnight scanning, APT) |
+
+> ⚠️ **30-minute overlap** at 07:30–08:00 and 19:30–20:00 for handoff.
+
+#### Team Rotation Calendar (4-Week Cycle)
+
+Four teams (**Alpha, Bravo, Charlie, Delta**) rotate to ensure 24/7 coverage:
+
+| Week | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Week 1** | 🅰️D | 🅰️D | 🅰️D | 🅰️D | 🅱️D | 🅱️D | 🅱️D |
+| **Week 2** | 🅱️D | 🅰️N | 🅰️N | 🅰️N | 🅰️N | 🅱️N | 🅱️N |
+| **Week 3** | 🅱️N | 🅱️N | 🅲D | 🅲D | 🅲D | 🅲D | 🅳D |
+| **Week 4** | 🅳D | 🅳D | 🅳D | 🅲N | 🅲N | 🅲N | 🅲N |
+
+*D = Day (08:00–20:00), N = Night (20:00–08:00). Teams not shown are on their 4 days off.*
+
+> **Note**: Teams on days off serve as **on-call backup** for the first 2 of their 4 off-days.
+
+#### 4on4off vs 3-Shift Comparison
+
+| Criteria | 3-Shift (8h) | 4on4off (12h) |
+|:---|:---|:---|
+| **Shifts per day** | 3 | 2 |
+| **Handoffs per day** | 3 | 2 (fewer = less info loss) |
+| **Hours per shift** | 8 hours | 12 hours |
+| **Days on / off** | 5 on / 2 off | 4 on / 4 off |
+| **Minimum FTE (24/7)** | 12–15 | 8–10 |
+| **Fatigue risk** | Lower per shift | Higher per shift (mitigate with breaks) |
+| **Work-life balance** | Standard schedule | More consecutive days off |
+| **Best for** | Large SOC, high alert volume | Mid-size SOC, cost optimization |
+
+#### Fatigue Mitigation (12-Hour Shifts)
+
+| Measure | Implementation |
+|:---|:---|
+| **Mandatory breaks** | 30-min meal break + 15-min break every 3 hours |
+| **Task rotation** | Switch between triage/investigation every 4 hours |
+| **No consecutive blocks** | Max 4 consecutive 12h shifts before mandatory 4 days off |
+| **Night-to-day transition** | Minimum 4 days off between switching Night → Day |
+| **Workload cap** | Max 25 alerts per analyst per 12h shift |
+
+### 1.3 Coverage Models
 
 | Model | Staffing | Best For | Minimum FTE |
 |:---|:---|:---|:---:|
@@ -27,7 +76,7 @@ This document defines the standard procedures for managing SOC shifts and ensuri
 
 > 📚 **Detailed staffing**: [SOC Capacity Planning](SOC_Capacity_Planning.en.md) · [Team Structure](SOC_Team_Structure.en.md)
 
-### 1.3 Shift Roles
+### 1.4 Shift Roles
 
 | Role | Responsibilities |
 |:---|:---|
