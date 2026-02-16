@@ -109,6 +109,8 @@
 | Document | Version | Last Updated | Status | Next Review |
 |:---|:---:|:---:|:---:|:---:|
 | [Compliance Mapping](07_Compliance_Privacy/Compliance_Mapping.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [ISO 27001 Controls Mapping](07_Compliance_Privacy/ISO27001_Controls_Mapping.en.md) | 1.0 | 2026-02-17 | ✅ Current | 2027-02-17 |
+| [PCI-DSS SOC Requirements](07_Compliance_Privacy/PCI_DSS_SOC_Requirements.en.md) | 1.0 | 2026-02-17 | ✅ Current | 2027-02-17 |
 | [PDPA Incident Response](07_Compliance_Privacy/PDPA_Incident_Response.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Compliance Gap Analysis](07_Compliance_Privacy/Compliance_Gap_Analysis.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 | [PDPA Compliance](07_Compliance_Privacy/PDPA_Compliance.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
