@@ -419,7 +419,7 @@ File-based threat detection: [YARA Index](08_Detection_Engineering/yara/README.m
 
 For offline reading or printing, download the consolidated manual:
 
-> **[📖 SOC_Manual_Consolidated.md](SOC_Manual_Consolidated.md)** — All 170+ documents in one file
+> **[📖 SOC_Manual_Consolidated.md](https://github.com/nutthakorn7/SOC-SOP/blob/main/SOC_Manual_Consolidated.md)** — All 170+ documents in one file
 
 ---
 

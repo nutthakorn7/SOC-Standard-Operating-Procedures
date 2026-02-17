@@ -128,7 +128,7 @@ docs: update README with new entries         # Documentation update
 
 ## 🔄 Update Workflow
 
-When adding new documents, update these files (see [workflow](.agent/workflows/update-docs.md)):
+When adding new documents, update these files (see [workflow](https://github.com/nutthakorn7/SOC-SOP/blob/main/.agent/workflows/update-docs.md)):
 
 | # | File | Action |
 |:---:|:---|:---|
