@@ -1,0 +1,26 @@
+title: AWS S3 Bucket Made Public
+id: auto-generated
+status: experimental
+description: >
+    Detects S3 bucket ACL or policy changes that expose data publicly
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.exfiltration
+    - attack.t1537
+logsource:
+        product: aws
+        service: cloudtrail
+detection:
+    selection:
+        eventName:
+            - 'PutBucketAcl'
+            - 'PutBucketPolicy'
+            - 'DeleteBucketPolicy'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: critical

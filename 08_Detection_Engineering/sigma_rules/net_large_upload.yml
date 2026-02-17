@@ -1,0 +1,24 @@
+title: Large Data Upload Detected
+id: auto-generated
+status: experimental
+description: >
+    Detects unusually large outbound data transfers that may indicate data exfiltration
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.exfiltration
+    - attack.t1048
+logsource:
+        product: firewall
+        category: network_connection
+detection:
+    selection:
+        direction: 'outbound'
+        bytes_out|gte: 104857600
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

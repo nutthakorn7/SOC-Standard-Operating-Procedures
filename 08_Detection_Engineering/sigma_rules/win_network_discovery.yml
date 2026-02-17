@@ -1,0 +1,29 @@
+title: Network Discovery Commands Executed
+id: auto-generated
+status: experimental
+description: >
+    Detects execution of common network discovery and reconnaissance commands
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.discovery
+    - attack.t1018
+logsource:
+        product: windows
+        category: process_creation
+detection:
+    selection:
+        CommandLine|contains:
+            - 'net view'
+            - 'net group'
+            - 'nltest /dclist'
+            - 'dsquery'
+            - 'Get-ADComputer'
+            - 'arp -a'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: medium

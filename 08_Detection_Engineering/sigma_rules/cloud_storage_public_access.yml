@@ -1,0 +1,29 @@
+title: Cloud Storage Public Access Configuration
+id: auto-generated
+status: experimental
+description: >
+    Detects cloud storage configurations that expose data publicly across multiple cloud providers
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.exfiltration
+    - attack.t1537
+logsource:
+        product: gcp
+        service: gcs
+detection:
+    selection:
+        methodName:
+            - 'storage.setIamPermissions'
+            - 'storage.objects.update'
+    filter:
+        resource.labels.method|contains:
+            - 'allUsers'
+            - 'allAuthenticatedUsers'
+    condition: selection and filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: critical

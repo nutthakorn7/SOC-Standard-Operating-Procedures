@@ -1,0 +1,32 @@
+title: Suspicious Dependency or Package Manager Activity
+id: proc_supply_chain_package_tampering
+status: experimental
+description: Detects unusual package manager executions (npm, pip, gem) that install packages from non-standard registries or execute post-install scripts, indicative of a supply chain attack.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_pkg_manager:
+        Image|endswith:
+            - '\npm.cmd'
+            - '\pip.exe'
+            - '\pip3.exe'
+            - '\gem.cmd'
+            - '\nuget.exe'
+    selection_suspicious:
+        CommandLine|contains:
+            - '--registry http'
+            - '-i http://'
+            - 'install --pre'
+            - '--trusted-host'
+            - '--index-url http'
+    condition: selection_pkg_manager and selection_suspicious
+falsepositives:
+    - Development teams using internal package registries over HTTP.
+    - CI/CD pipelines with custom registry configurations.
+level: high
+tags:
+    - attack.initial_access
+    - attack.t1195.002

@@ -1,0 +1,23 @@
+title: Potential Ransomware Bulk File Renaming
+id: file_event_bulk_file_renaming
+status: experimental
+description: Detects a high frequency of file renaming operations in a short period, indicative of ransomware encryption.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        TargetFilename|endswith:
+            - '.enc'
+            - '.lock'
+            - '.crypt'
+    timeframe: 1m
+    condition: selection | count() > 20
+falsepositives:
+    - Mass file archiving or scripted renaming by admins.
+level: critical
+tags:
+    - attack.impact
+    - attack.t1486

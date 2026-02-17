@@ -1,0 +1,37 @@
+title: Shadow IT — Unauthorized SaaS Usage
+id: a1b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d
+status: experimental
+description: Detects access to unauthorized or high-risk SaaS services via proxy or CASB logs — AI tools, file sharing, unauthorized cloud storage.
+references:
+    - https://attack.mitre.org/techniques/T1567/
+    - PB-29 Shadow IT / Unauthorized SaaS
+author: SOC-SOP
+date: 2026-02-15
+tags:
+    - attack.exfiltration
+    - attack.t1567
+logsource:
+    category: proxy
+detection:
+    selection_ai:
+        cs-host|contains:
+            - "chat.openai.com"
+            - "claude.ai"
+            - "gemini.google"
+            - "perplexity.ai"
+    selection_share:
+        cs-host|contains:
+            - "wetransfer.com"
+            - "sendgb.com"
+            - "filemail.com"
+            - "transfer.sh"
+    selection_unsanctioned:
+        cs-categories|contains:
+            - "Unsanctioned"
+            - "Shadow IT"
+            - "High Risk"
+    condition: selection_ai or selection_share or selection_unsanctioned
+falsepositives:
+    - Sanctioned AI tools with approved usage
+    - Marketing team file transfers
+level: low

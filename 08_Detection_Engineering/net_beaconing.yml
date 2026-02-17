@@ -1,0 +1,24 @@
+title: Network Beaconing Pattern
+id: net_connection_beaconing
+status: experimental
+description: Detects regular interval network connections to the same destination, indicative of C2 beaconing.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: firewall
+    product: paloalto
+detection:
+    selection:
+        action: allowed
+        direction: outbound
+    # Note: Real beaconing detection requires complex correlation (Time deltas) which Sigma handles via 'timeframe' but SIEMs implement differently.
+    # This rule is a placeholder for high-frequency connection counting.
+    timeframe: 10m
+    condition: selection | count() > 50 by dst_ip 
+falsepositives:
+    - Software updaters.
+    - NTP/DNS syncs.
+level: medium
+tags:
+    - attack.command_and_control
+    - attack.t1071

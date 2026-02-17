@@ -1,0 +1,28 @@
+title: Network Beaconing Activity Detected
+id: auto-generated
+status: experimental
+description: >
+    Detects regular periodic network connections indicative of C2 beaconing behavior
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.command_and_control
+    - attack.t1071
+logsource:
+        product: firewall
+        category: network_connection
+detection:
+    selection:
+        direction: 'outbound'
+    filter:
+        dst_port:
+            - 80
+            - 443
+    timeframe: 1h
+    condition: selection and filter | count(dst_ip) by src_ip > 60
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

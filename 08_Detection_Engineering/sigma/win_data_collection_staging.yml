@@ -1,0 +1,83 @@
+title: Suspicious Data Collection and Staging
+id: a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+status: production
+level: high
+description: |
+  Detects suspicious data collection and staging activities including password-protected
+  archiving of files, bulk file copying to staging directories, and use of automated
+  collection tools. Often precedes data exfiltration.
+references:
+  - https://attack.mitre.org/techniques/T1560/
+  - https://attack.mitre.org/techniques/T1560/001/
+  - https://attack.mitre.org/techniques/T1074/
+  - https://attack.mitre.org/techniques/T1119/
+tags:
+  - attack.collection
+  - attack.t1560
+  - attack.t1560.001
+  - attack.t1074
+  - attack.t1119
+author: SOC SOP Project
+date: 2026/02/16
+
+logsource:
+  category: process_creation
+  product: windows
+
+detection:
+  selection_archive_password:
+    Image|endswith:
+      - '\7z.exe'
+      - '\7za.exe'
+      - '\rar.exe'
+      - '\WinRAR.exe'
+    CommandLine|contains:
+      - '-p'
+      - '-hp'
+      - '-mem='
+      - '-sdel'
+  selection_powershell_archive:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+    CommandLine|contains:
+      - 'Compress-Archive'
+      - 'System.IO.Compression'
+      - '[IO.Compression.ZipFile]'
+  selection_staging_dirs:
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\robocopy.exe'
+      - '\xcopy.exe'
+    CommandLine|contains:
+      - '\Temp\'
+      - '\tmp\'
+      - '\Users\Public\'
+      - '\ProgramData\'
+      - '$Recycle.Bin'
+    CommandLine|contains:
+      - 'copy'
+      - 'move'
+      - 'xcopy'
+      - 'robocopy'
+  selection_bulk_download:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+    CommandLine|contains:
+      - 'Get-ChildItem'
+      - 'Get-Content'
+      - 'Copy-Item'
+    CommandLine|contains:
+      - '-Recurse'
+      - '-Include *.doc*'
+      - '-Include *.xls*'
+      - '-Include *.pdf'
+      - '-Include *.pst'
+  condition: 1 of selection_*
+falsepositives:
+  - Legitimate backup operations
+  - IT administration file management
+  - Authorized data migration projects

@@ -1,0 +1,30 @@
+title: Data Collection and Staging Activity
+id: auto-generated
+status: experimental
+description: >
+    Detects data collection and staging patterns including archive creation and staging directory usage
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.collection
+    - attack.t1074
+logsource:
+        product: windows
+        category: process_creation
+detection:
+    selection:
+        CommandLine|contains:
+            - '7z.exe a'
+            - 'rar.exe a'
+            - 'Compress-Archive'
+            - 'tar -czf'
+    filter:
+        ParentImage|endswith:
+            - '\\backup.exe'
+    condition: selection and not filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: medium

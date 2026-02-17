@@ -1,0 +1,21 @@
+title: Impossible Travel (Cloud/VPN)
+id: net_geo_impossible_travel
+status: stable
+description: Detects successful logins from two different locations within a timeframe that makes travel impossible.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: application
+    product: okta
+detection:
+    selection:
+        outcome.result: 'SUCCESS'
+    filter:
+        client.geographicalContext.country: 'Thailand' # Allow List
+    condition: selection | count() > 1 by actor.alternateId | timeframe 1h # Logic handled by SIEM correlation engine mostly
+falsepositives:
+    - VPN flapping.
+level: high
+tags:
+    - attack.initial_access
+    - attack.t1078.004

@@ -1,0 +1,22 @@
+title: AWS EC2 Crypto Mining Indicator
+id: cloud_aws_ec2_mining
+status: experimental
+description: Detects EC2 instances communicating with known crypto-mining pools via GuardDuty.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: aws
+    service: guardduty
+detection:
+    selection:
+        service.action.actionType: NETWORK_CONNECTION
+        service.action.networkConnectionAction.connectionDirection: OUTBOUND
+        service.archived: false
+        type: 
+            - CryptoCurrency:EC2/BitcoinTool.B
+            - CryptoCurrency:EC2/BitcoinTool.B!DNS
+    condition: selection
+level: critical
+tags:
+    - attack.impact
+    - attack.resource_hijacking

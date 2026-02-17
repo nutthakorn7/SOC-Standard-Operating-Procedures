@@ -1,0 +1,24 @@
+title: High Web Request Rate from Single IP
+id: web_high_request_rate_single_ip
+status: stable
+description: Detects a single source IP sending an abnormally high number of HTTP requests, indicative of a DoS attempt or scanning.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: web_server
+    product: nginx
+detection:
+    selection:
+        response: 
+            - 200
+            - 404
+            - 500
+    timeframe: 10s
+    condition: selection | count() > 100
+falsepositives:
+    - NAT Gateway (Multiple users behind one IP).
+    - Load Testing.
+level: high
+tags:
+    - attack.impact
+    - attack.t1498

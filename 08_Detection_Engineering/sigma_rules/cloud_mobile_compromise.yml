@@ -1,0 +1,28 @@
+title: Mobile Device Compromise Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects indicators of mobile device compromise including jailbreak detection and suspicious app installations
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.initial_access
+    - attack.t1474
+logsource:
+        product: mdm
+        service: compliance
+detection:
+    selection:
+        complianceState:
+            - 'noncompliant'
+        reason|contains:
+            - 'jailbroken'
+            - 'rooted'
+            - 'sideloaded'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

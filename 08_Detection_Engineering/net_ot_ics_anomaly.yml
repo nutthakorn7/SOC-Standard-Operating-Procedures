@@ -1,0 +1,36 @@
+title: OT/ICS Network Anomaly Detection
+id: b2c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e
+status: experimental
+description: Detects anomalous activity on OT/ICS networks — unauthorized Modbus/DNP3/OPC UA commands, IT-to-OT boundary crossings, and PLC programming changes.
+references:
+    - https://attack.mitre.org/matrices/ics/
+    - PB-30 OT/ICS Security Incident
+author: SOC-SOP
+date: 2026-02-15
+tags:
+    - attack.ics
+    - attack.t0813
+    - attack.t0831
+logsource:
+    category: firewall
+    product: ot_ids
+detection:
+    selection_protocol:
+        dst_port:
+            - 502     # Modbus
+            - 20000   # DNP3
+            - 4840    # OPC UA
+            - 44818   # EtherNet/IP
+        src_zone: "IT"
+        dst_zone: "OT"
+    selection_plc_change:
+        action|contains:
+            - "PLC Program Upload"
+            - "PLC Program Download"
+            - "Firmware Update"
+            - "Configuration Change"
+    condition: selection_protocol or selection_plc_change
+falsepositives:
+    - Scheduled maintenance windows
+    - Authorized engineering workstation activity
+level: critical

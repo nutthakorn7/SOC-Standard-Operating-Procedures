@@ -1,0 +1,26 @@
+title: Suspicious Execution from Temp or Downloads
+id: sysmon_malware_path_execution
+status: stable
+description: Detects executable files running directly from temporary or download folders.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|contains:
+            - '\AppData\Local\Temp\'
+            - '\Downloads\'
+        Image|endswith:
+            - '.exe'
+            - '.scr'
+            - '.bat'
+            - '.ps1'
+    condition: selection
+falsepositives:
+    - Installers (Setup.exe) running from Downloads.
+level: medium
+tags:
+    - attack.execution
+    - attack.t1204.002

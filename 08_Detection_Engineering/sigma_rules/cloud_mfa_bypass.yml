@@ -1,0 +1,28 @@
+title: MFA Bypass or Token Theft Detected
+id: auto-generated
+status: experimental
+description: >
+    Detects successful authentication without expected MFA challenge, indicating possible MFA bypass or token theft
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.credential_access
+    - attack.t1528
+logsource:
+        product: azure
+        service: signinlogs
+detection:
+    selection:
+        authenticationRequirement: 'singleFactorAuthentication'
+        conditionalAccessStatus: 'notApplied'
+    filter:
+        appDisplayName|contains:
+            - 'Microsoft Teams'
+            - 'Outlook'
+    condition: selection and not filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

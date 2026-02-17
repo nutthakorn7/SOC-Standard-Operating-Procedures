@@ -1,0 +1,23 @@
+title: New User Account Created
+id: auto-generated
+status: experimental
+description: >
+    Detects creation of new local or domain user accounts which may indicate persistence or insider threat
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.persistence
+    - attack.t1136
+logsource:
+        product: windows
+        service: security
+detection:
+    selection:
+        EventID: 4720
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: medium

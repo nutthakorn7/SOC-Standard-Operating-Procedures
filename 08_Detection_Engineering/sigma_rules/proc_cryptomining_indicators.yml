@@ -1,0 +1,29 @@
+title: Cryptomining Process Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects process execution patterns associated with cryptocurrency mining software
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.impact
+    - attack.t1496
+logsource:
+        product: windows
+        category: process_creation
+detection:
+    selection:
+        CommandLine|contains:
+            - 'stratum+tcp://'
+            - 'stratum+ssl://'
+            - '--donate-level'
+            - 'xmrig'
+            - 'minergate'
+            - 'nicehash'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

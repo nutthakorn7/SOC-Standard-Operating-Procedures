@@ -1,0 +1,29 @@
+title: Bulk File Renaming Indicative of Ransomware
+id: auto-generated
+status: experimental
+description: >
+    Detects mass file renaming operations with suspicious extensions that indicate ransomware encryption
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.impact
+    - attack.t1486
+logsource:
+        product: windows
+        category: file_rename
+detection:
+    selection:
+        TargetFilename|endswith:
+            - '.encrypted'
+            - '.locked'
+            - '.crypto'
+            - '.crypt'
+            - '.enc'
+    timeframe: 1m
+    condition: selection | count() > 50
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: critical

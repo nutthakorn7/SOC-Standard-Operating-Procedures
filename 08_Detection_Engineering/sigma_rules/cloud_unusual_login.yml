@@ -1,0 +1,27 @@
+title: Unusual Cloud Login Activity
+id: auto-generated
+status: experimental
+description: >
+    Detects cloud login from unusual locations, devices, or at unusual times
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.initial_access
+    - attack.t1078
+logsource:
+        product: azure
+        service: signinlogs
+detection:
+    selection:
+        riskState: 'atRisk'
+    filter:
+        riskDetail|contains:
+            - 'unfamiliarFeatures'
+            - 'anomalousToken'
+    condition: selection and filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: medium

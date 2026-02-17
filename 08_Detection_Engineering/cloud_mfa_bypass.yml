@@ -1,0 +1,31 @@
+title: MFA Bypass / Token Theft Detection
+id: d8e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a
+status: experimental
+description: Detects potential MFA bypass indicators — AiTM phishing proxy, MFA fatigue bombing, or session token anomalies.
+references:
+    - https://attack.mitre.org/techniques/T1556/006/
+    - PB-26 MFA Bypass / Token Theft
+author: SOC-SOP
+date: 2026-02-15
+tags:
+    - attack.credential_access
+    - attack.t1556.006
+    - attack.t1539
+logsource:
+    product: azure
+    service: signinlogs
+detection:
+    selection_aitm:
+        ResultType: 0
+        AuthenticationRequirement: "multiFactorAuthentication"
+        properties.riskDetail|contains:
+            - "aiTMPhishing"
+            - "tokenIssuerAnomaly"
+    selection_fatigue:
+        ResultType: 50074
+        Status.failureReason|contains: "MFA denied"
+    condition: selection_aitm or selection_fatigue
+falsepositives:
+    - Legitimate MFA re-enrollments
+    - VPN causing IP changes
+level: high

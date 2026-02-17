@@ -1,0 +1,26 @@
+title: High Rate Web Requests Detected
+id: auto-generated
+status: experimental
+description: >
+    Detects unusually high request rates from a single source, indicating scanning, brute force, or DDoS activity
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.impact
+    - attack.t1498
+logsource:
+        product: webserver
+        category: web_access
+detection:
+    selection:
+        sc-status:
+            - 429
+            - 503
+    timeframe: 1m
+    condition: selection | count() by src_ip > 100
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

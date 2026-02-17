@@ -1,0 +1,30 @@
+title: OT/ICS Network Anomaly Detected
+id: auto-generated
+status: experimental
+description: >
+    Detects anomalous network traffic on OT/ICS networks including unauthorized protocol usage
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.initial_access
+    - attack.t1190
+logsource:
+        product: firewall
+        category: network_connection
+detection:
+    selection:
+        dst_port:
+            - 502     # Modbus
+            - 2222    # EtherNet/IP
+            - 44818   # EtherNet/IP
+            - 20000   # DNP3
+    filter:
+        src_ip|cidr:
+            - '10.100.0.0/16'  # OT network
+    condition: selection and not filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: critical

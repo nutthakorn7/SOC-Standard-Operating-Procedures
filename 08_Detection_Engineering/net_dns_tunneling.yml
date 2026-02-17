@@ -1,0 +1,27 @@
+title: Potential DNS Tunneling (High Volume or Long Queries)
+id: net_dns_tunneling_high_entropy
+status: experimental
+description: Detects potential DNS tunneling by identifying hosts with abnormally high DNS query volume or unusually long subdomain labels (>50 chars), which are common indicators of data exfiltration via DNS.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: dns
+    product: generic
+detection:
+    selection_long_query:
+        query|re: '^[a-z0-9]{50,}\.'
+    selection_txt_record:
+        record_type: 'TXT'
+    selection_null_record:
+        record_type: 'NULL'
+    timeframe: 10m
+    condition: selection_long_query | count() by src_ip > 20 or (selection_txt_record or selection_null_record) | count() by src_ip > 50
+falsepositives:
+    - DKIM/SPF validation generating long TXT lookups.
+    - CDN services with long subdomain labels.
+level: high
+tags:
+    - attack.command_and_control
+    - attack.t1071.004
+    - attack.exfiltration
+    - attack.t1048.003

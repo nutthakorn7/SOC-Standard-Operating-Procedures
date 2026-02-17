@@ -1,0 +1,20 @@
+title: AWS Root Account Login
+id: cloud_root_account_login
+status: critical
+description: Detects any login attempt by the AWS Root user, which should be protected and rarely used.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: aws
+    service: cloudtrail
+detection:
+    selection:
+        userIdentity.type: 'Root'
+        eventName: 'ConsoleLogin'
+    condition: selection
+falsepositives:
+    - Initial setup or emergency maintenance.
+level: critical
+tags:
+    - attack.initial_access
+    - attack.t1078

@@ -1,0 +1,24 @@
+title: Impossible Travel Login Detected
+id: auto-generated
+status: experimental
+description: >
+    Detects login attempts from geographically distant locations within a short timeframe
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.initial_access
+    - attack.t1078
+logsource:
+        product: azure
+        service: signinlogs
+detection:
+    selection:
+        riskEventTypes_v2|contains:
+            - 'impossibleTravel'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

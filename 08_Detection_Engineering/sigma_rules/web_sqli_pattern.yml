@@ -1,0 +1,29 @@
+title: SQL Injection Pattern in Web Request
+id: auto-generated
+status: experimental
+description: >
+    Detects SQL injection patterns in web request URIs and parameters
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.initial_access
+    - attack.t1190
+logsource:
+        product: webserver
+        category: web_access
+detection:
+    selection:
+        cs-uri-query|contains:
+            - 'UNION SELECT'
+            - 'INFORMATION_SCHEMA'
+            - 'xp_cmdshell'
+            - "' OR 1=1"
+            - 'WAITFOR DELAY'
+            - 'BENCHMARK('
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

@@ -1,0 +1,24 @@
+title: AWS Root Account Login
+id: auto-generated
+status: experimental
+description: >
+    Detects usage of the AWS root account, which should rarely be used and indicates security risk
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.initial_access
+    - attack.t1078.004
+logsource:
+        product: aws
+        service: cloudtrail
+detection:
+    selection:
+        userIdentity.type: 'Root'
+        eventType: 'AwsConsoleSignIn'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: critical

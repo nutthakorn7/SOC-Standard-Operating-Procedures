@@ -1,0 +1,21 @@
+title: Device Offline for Extended Period
+id: mdm_device_offline_threshold
+status: low
+description: Detects devices that have not checked into the MDM server for more than 30 days.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: intune
+    service: device_compliance
+detection:
+    selection:
+        complianceState: 'NonCompliant'
+        reason: 'Not Active' # Pseudo-field for example
+    # This logic usually lives in MDM reports, but can be ingested as logs.
+    condition: selection
+falsepositives:
+    - User on long leave.
+    - Broken device in storage.
+level: low
+tags:
+    - attack.initial_access

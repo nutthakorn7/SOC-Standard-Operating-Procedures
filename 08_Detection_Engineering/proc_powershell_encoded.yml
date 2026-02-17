@@ -1,0 +1,24 @@
+title: PowerShell Encoded Command
+id: proc_creation_powershell_encoded
+status: stable
+description: Detects PowerShell running with encoded commands, often used to hide malicious scripts.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith:
+            - '\powershell.exe'
+            - '\pwsh.exe'
+        CommandLine|contains:
+            - ' -enc '
+            - ' -EncodedCommand '
+    condition: selection
+falsepositives:
+    - Legitimate admin scripts using basic encoding.
+level: medium
+tags:
+    - attack.execution
+    - attack.t1059.001

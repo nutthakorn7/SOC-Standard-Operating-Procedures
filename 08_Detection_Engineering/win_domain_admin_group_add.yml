@@ -1,0 +1,23 @@
+title: User Added to Domain Admins
+id: win_security_member_added_domain_admins
+status: stable
+description: Detects a user being added to the privileged "Domain Admins" group.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 
+            - 4728 # Member Added to Security Enabled Global Group
+            - 4732 # Member Added to Security Enabled Local Group
+            - 4756 # Member Added to Security Enabled Universal Group
+        TargetUserName: 'Domain Admins'
+    condition: selection
+falsepositives:
+    - Authorized Change Request (Verify with Ticket).
+level: critical
+tags:
+    - attack.persistence
+    - attack.t1098

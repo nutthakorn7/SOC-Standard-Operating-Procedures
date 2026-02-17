@@ -1,0 +1,24 @@
+title: DNS Tunneling Activity Detected
+id: auto-generated
+status: experimental
+description: >
+    Detects unusually long DNS queries or high DNS query volume indicating DNS tunneling
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.command_and_control
+    - attack.t1071.004
+logsource:
+        product: dns
+        category: dns_query
+detection:
+    selection:
+        query|re: '.{50,}'
+    timeframe: 5m
+    condition: selection | count() by src_ip > 100
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high
