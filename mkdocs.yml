@@ -201,8 +201,8 @@ nav:
       - PB-34 Network Discovery (TH): 05_Incident_Response/Playbooks/Network_Discovery.th.md
       - PB-37 SQL Injection (EN): 05_Incident_Response/Playbooks/SQL_Injection.en.md
       - PB-37 SQL Injection (TH): 05_Incident_Response/Playbooks/SQL_Injection.th.md
-      - PB-42 Watering Hole (EN): 05_Incident_Response/Playbooks/Watering_Hole.en.md
-      - PB-42 Watering Hole (TH): 05_Incident_Response/Playbooks/Watering_Hole.th.md
+      - PB-44 Watering Hole (EN): 05_Incident_Response/Playbooks/Watering_Hole.en.md
+      - PB-44 Watering Hole (TH): 05_Incident_Response/Playbooks/Watering_Hole.th.md
       - PB-43 Drive-By Download (EN): 05_Incident_Response/Playbooks/Drive_By_Download.en.md
       - PB-43 Drive-By Download (TH): 05_Incident_Response/Playbooks/Drive_By_Download.th.md
       - PB-50 Unauthorized Scanning (EN): 05_Incident_Response/Playbooks/Unauthorized_Scanning.en.md
@@ -226,14 +226,14 @@ nav:
       - PB-41 VPN Abuse (EN): 05_Incident_Response/Playbooks/VPN_Abuse.en.md
       - PB-41 VPN Abuse (TH): 05_Incident_Response/Playbooks/VPN_Abuse.th.md
 
-      - PB-48 Cloud Cryptojacking (EN): 05_Incident_Response/Playbooks/Cloud_Cryptojacking.en.md
-      - PB-48 Cloud Cryptojacking (TH): 05_Incident_Response/Playbooks/Cloud_Cryptojacking.th.md
+      - PB-45 Cloud Cryptojacking (EN): 05_Incident_Response/Playbooks/Cloud_Cryptojacking.en.md
+      - PB-45 Cloud Cryptojacking (TH): 05_Incident_Response/Playbooks/Cloud_Cryptojacking.th.md
     # ── 📦 Data & Supply Chain ──
     - Playbooks — Data & Supply Chain:
       - PB-08 Data Exfiltration (EN): 05_Incident_Response/Playbooks/Data_Exfiltration.en.md
       - PB-08 Data Exfiltration (TH): 05_Incident_Response/Playbooks/Data_Exfiltration.th.md
-      - PB-15 Log Clearing (EN): 05_Incident_Response/Playbooks/Log_Clearing.en.md
-      - PB-15 Log Clearing (TH): 05_Incident_Response/Playbooks/Log_Clearing.th.md
+      - PB-27 Log Clearing (EN): 05_Incident_Response/Playbooks/Log_Clearing.en.md
+      - PB-27 Log Clearing (TH): 05_Incident_Response/Playbooks/Log_Clearing.th.md
       - PB-21 Supply Chain Attack (EN): 05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md
       - PB-21 Supply Chain Attack (TH): 05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md
       - PB-35 Data Collection (EN): 05_Incident_Response/Playbooks/Data_Collection.en.md
@@ -243,8 +243,8 @@ nav:
 
     # ── 📱 Physical & Mobile ──
     - Playbooks — Physical & Mobile:
-      - PB-19 Lost Device (EN): 05_Incident_Response/Playbooks/Lost_Device.en.md
-      - PB-19 Lost Device (TH): 05_Incident_Response/Playbooks/Lost_Device.th.md
+      - PB-32 Lost Device (EN): 05_Incident_Response/Playbooks/Lost_Device.en.md
+      - PB-32 Lost Device (TH): 05_Incident_Response/Playbooks/Lost_Device.th.md
       - PB-29 Mobile Compromise (EN): 05_Incident_Response/Playbooks/Mobile_Compromise.en.md
       - PB-29 Mobile Compromise (TH): 05_Incident_Response/Playbooks/Mobile_Compromise.th.md
       - PB-31 OT/ICS Incident (EN): 05_Incident_Response/Playbooks/OT_ICS_Incident.en.md
