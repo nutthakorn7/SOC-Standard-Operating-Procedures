@@ -1,0 +1,43 @@
+title: Email Account Takeover Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects email account takeover indicators including suspicious OAuth app
+    grants, mail forwarding rule changes, and delegate permission modifications
+references:
+    - https://attack.mitre.org/techniques/T1114/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.collection
+    - attack.t1114.002
+    - attack.t1114.003
+logsource:
+    product: m365
+    service: exchange
+detection:
+    selection_rules:
+        Operation|contains:
+            - 'New-InboxRule'
+            - 'Set-InboxRule'
+            - 'New-TransportRule'
+        Parameters|contains:
+            - 'ForwardTo'
+            - 'RedirectTo'
+            - 'DeleteMessage'
+    selection_oauth:
+        Operation: 'Consent to application'
+        Target|contains:
+            - 'Mail.Read'
+            - 'Mail.ReadWrite'
+            - 'Mail.Send'
+    selection_delegate:
+        Operation|contains:
+            - 'Add-MailboxPermission'
+            - 'Set-MailboxPermission'
+        AccessRights: 'FullAccess'
+    condition: selection_rules or selection_oauth or selection_delegate
+falsepositives:
+    - Legitimate mailbox delegation by IT administrators
+    - Authorized third-party email integrations
+level: high

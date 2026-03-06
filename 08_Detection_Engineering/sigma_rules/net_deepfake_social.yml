@@ -1,0 +1,45 @@
+title: Deepfake Social Engineering Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects potential deepfake social engineering attacks including AI-generated
+    voice call patterns, executive impersonation, and urgent wire transfer requests
+references:
+    - https://attack.mitre.org/techniques/T1598/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.reconnaissance
+    - attack.t1598
+    - attack.t1598.003
+logsource:
+    category: email
+detection:
+    selection_urgency:
+        Subject|contains:
+            - 'urgent wire'
+            - 'immediate transfer'
+            - 'confidential deal'
+            - 'do not share'
+    selection_impersonation:
+        From|contains:
+            - 'ceo'
+            - 'cfo'
+            - 'president'
+            - 'director'
+        X-Mailer|contains:
+            - 'unknown'
+    selection_voice:
+        Subject|contains:
+            - 'voicemail'
+            - 'voice message'
+            - 'missed call'
+        Attachment|endswith:
+            - '.mp3'
+            - '.wav'
+            - '.ogg'
+    condition: selection_urgency or selection_impersonation or selection_voice
+falsepositives:
+    - Legitimate urgent business communications
+    - Authorized voicemail notification systems
+level: high

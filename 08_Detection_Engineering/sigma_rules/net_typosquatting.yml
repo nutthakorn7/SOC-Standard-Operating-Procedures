@@ -1,0 +1,35 @@
+title: Typosquatting Domain Access
+id: auto-generated
+status: experimental
+description: >
+    Detects access to typosquatting or lookalike domains that impersonate
+    legitimate services using character substitution or TLD abuse
+references:
+    - https://attack.mitre.org/techniques/T1583/001/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.resource_development
+    - attack.t1583.001
+logsource:
+    category: proxy
+detection:
+    selection_homoglyph:
+        cs-host|re:
+            - '.*micr0s0ft.*'
+            - '.*g00gle.*'
+            - '.*amaz0n.*'
+            - '.*paypa1.*'
+            - '.*0ffice365.*'
+            - '.*1ogin.*'
+            - '.*app1e.*'
+    selection_tld:
+        cs-host|re: '.*(microsoft|google|amazon|apple|office)\.(tk|ml|ga|cf|gq|xyz|top|buzz|club|work)$'
+    selection_punycode:
+        cs-host|contains:
+            - 'xn--'
+    condition: selection_homoglyph or selection_tld or selection_punycode
+falsepositives:
+    - Legitimate internationalized domain names (IDN)
+    - Similar-sounding but legitimate business domains
+level: medium

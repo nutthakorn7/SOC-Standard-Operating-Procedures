@@ -294,7 +294,7 @@ tuning:
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — Data source coverage
 -   [Change Management](Change_Management.en.md) — Change approval process
 -   [SOC Checklists](SOC_Checklists.en.md) — Operational checklists
--   [Detection Rules Index (Sigma)](../08_Detection_Engineering/README.md) — All 36 Sigma rules
+-   [Detection Rules Index (Sigma)](../08_Detection_Engineering/README.md) — All 51 Sigma rules
 -   [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md) — High-volume alert source
 -   [PB-04 Brute Force](../05_Incident_Response/Playbooks/Brute_Force.en.md) — Threshold tuning example
 -   [PB-11 Suspicious Script](../05_Incident_Response/Playbooks/Suspicious_Script.en.md) — PowerShell detection tuning

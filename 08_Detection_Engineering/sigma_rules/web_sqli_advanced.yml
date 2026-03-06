@@ -1,0 +1,34 @@
+title: Advanced SQL Injection Attack Pattern
+id: auto-generated
+status: experimental
+description: >
+    Detects advanced SQL injection techniques including blind SQLi,
+    time-based injection, and error-based extraction attempts
+references:
+    - https://attack.mitre.org/techniques/T1190/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.initial_access
+    - attack.t1190
+logsource:
+    product: webserver
+    category: web_access
+detection:
+    selection:
+        cs-uri-query|contains:
+            - 'SLEEP('
+            - 'pg_sleep'
+            - 'EXTRACTVALUE('
+            - 'UPDATEXML('
+            - 'GROUP_CONCAT('
+            - 'LOAD_FILE('
+            - 'INTO OUTFILE'
+            - 'INTO DUMPFILE'
+            - 'CHAR(0x'
+            - 'CAST(0x'
+    condition: selection
+falsepositives:
+    - Authorized penetration testing
+    - Web application security scanning tools
+level: high

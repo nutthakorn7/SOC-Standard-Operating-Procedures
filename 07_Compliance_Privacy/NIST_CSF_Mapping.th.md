@@ -69,7 +69,7 @@ pie title ความครอบคลุม SOC ตาม CSF Function
 | หมวด | คำอธิบาย | ครอบคลุม | เอกสาร SOC |
 |:---:|:---|:---:|:---|
 | DE.CM | เฝ้าระวังต่อเนื่อง | ✅ | [เฝ้าระวังเครือข่าย](../06_Operations_Management/Network_Security_Monitoring.th.md), [เฝ้าระวัง Cloud](../06_Operations_Management/Cloud_Security_Monitoring.th.md) |
-| DE.AE | วิเคราะห์เหตุการณ์ | ✅ | [ปรับจูน Alert](../06_Operations_Management/Alert_Tuning.th.md), [36 Sigma Rules](../08_Detection_Engineering/README.md) |
+| DE.AE | วิเคราะห์เหตุการณ์ | ✅ | [ปรับจูน Alert](../06_Operations_Management/Alert_Tuning.th.md), [51 Sigma Rules](../08_Detection_Engineering/README.md) |
 | DE.DP | กระบวนการตรวจจับ | ✅ | [Tier 1](../05_Incident_Response/Runbooks/Tier1_Runbook.th.md)/[2](../05_Incident_Response/Runbooks/Tier2_Runbook.th.md)/[3 Runbooks](../05_Incident_Response/Runbooks/Tier3_Runbook.th.md) |
 
 ## 6. RESPOND (ตอบสนอง) ⭐

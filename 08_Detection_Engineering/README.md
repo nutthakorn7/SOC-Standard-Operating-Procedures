@@ -1,6 +1,6 @@
 # Detection Rules Index (Sigma)
 
-This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks. Rules are organized by category and can be imported into any Sigma-compatible SIEM (Splunk, Elastic, Microsoft Sentinel, etc.).
+This directory contains **51 Sigma detection rules** mapped to the SOC Playbooks. Rules are organized by category and can be imported into any Sigma-compatible SIEM (Splunk, Elastic, Microsoft Sentinel, etc.).
 
 ## How to Use
 
@@ -20,6 +20,7 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [proc_powershell_encoded.yml](proc_powershell_encoded.yml) | PowerShell Encoded Command | High | T1059.001 | PB-11 Suspicious Script |
 | [proc_temp_folder_execution.yml](proc_temp_folder_execution.yml) | Suspicious Execution from Temp/Downloads | Medium | T1204.002 | PB-03 Malware |
 | [proc_cryptomining_indicators.yml](proc_cryptomining_indicators.yml) | Cryptomining Process / Stratum Protocol | Critical | T1496 | PB-23 Cryptomining |
+| [win_lolbin_execution.yml](sigma_rules/win_lolbin_execution.yml) | Living Off The Land Binary Execution | High | T1218 | PB-39 LOLBins |
 
 ### 📁 File Activity
 
@@ -27,6 +28,7 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 |:---|:---|:---|:---|:---|
 | [file_bulk_renaming_ransomware.yml](file_bulk_renaming_ransomware.yml) | Potential Ransomware Bulk File Renaming | Critical | T1486 | PB-02 Ransomware |
 | [file_bulk_usb_copy.yml](file_bulk_usb_copy.yml) | Bulk File Copy to USB Drive | Medium | T1052 | PB-08 Data Exfiltration |
+| [file_usb_autorun.yml](sigma_rules/file_usb_autorun.yml) | USB Removable Media Threat Indicators | Medium | T1091 | PB-40 USB Media |
 
 ### 🌐 Network Detection
 
@@ -36,6 +38,10 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [net_large_upload.yml](net_large_upload.yml) | Large Upload to External IP (>500MB) | High | T1048 | PB-08 Data Exfiltration |
 | [net_dns_tunneling.yml](net_dns_tunneling.yml) | DNS Tunneling (High Volume / Long Queries) | High | T1071.004 | PB-24 DNS Tunneling |
 | [net_ot_ics_anomaly.yml](net_ot_ics_anomaly.yml) | OT/ICS Network Anomaly (Modbus/DNP3/OPC UA) | Critical | ICS T0813 | PB-30 OT/ICS Incident |
+| [net_vpn_abuse.yml](sigma_rules/net_vpn_abuse.yml) | Unauthorized VPN or Proxy Usage | Medium | T1133 | PB-41 VPN Abuse |
+| [net_deepfake_social.yml](sigma_rules/net_deepfake_social.yml) | Deepfake Social Engineering Indicators | High | T1598 | PB-48 Deepfake |
+| [net_typosquatting.yml](sigma_rules/net_typosquatting.yml) | Typosquatting Domain Access | Medium | T1583.001 | PB-49 Typosquatting |
+| [net_unauthorized_scanning.yml](sigma_rules/net_unauthorized_scanning.yml) | Unauthorized Network Scanning | Medium | T1046 | PB-50 Scanning |
 
 ### 🔐 Windows Security
 
@@ -49,6 +55,9 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [win_security_event_log_cleared.yml](sigma_rules/win_security_event_log_cleared.yml) | Windows Security Event Log Cleared | Critical | T1070.001 | PB-20 Log Clearing |
 | [win_network_discovery.yml](sigma_rules/win_network_discovery.yml) | Network Discovery Commands | Medium | T1018 | PB-34 Network Discovery |
 | [win_data_collection_staging.yml](sigma_rules/win_data_collection_staging.yml) | Data Collection and Staging | Medium | T1074 | PB-35 Data Collection |
+| [win_credential_dumping.yml](sigma_rules/win_credential_dumping.yml) | Credential Dumping (LSASS/SAM/DCSync) | Critical | T1003 | PB-36 Credential Dump |
+| [win_wiper_attack.yml](sigma_rules/win_wiper_attack.yml) | Wiper / Destructive Malware Activity | Critical | T1485/T1561 | PB-38 Wiper Attack |
+| [win_rootkit_bootkit.yml](sigma_rules/win_rootkit_bootkit.yml) | Rootkit / Bootkit Installation | Critical | T1014/T1542 | PB-45 Rootkit |
 
 ### ☁️ Cloud Detection
 
@@ -65,6 +74,9 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [cloud_mfa_bypass.yml](cloud_mfa_bypass.yml) | MFA Bypass / AiTM Token Theft | High | T1556.006 | PB-26 MFA Bypass |
 | [cloud_storage_public_access.yml](cloud_storage_public_access.yml) | Cloud Storage Public Access (S3/Blob) | High | T1530 | PB-27 Cloud Storage |
 | [cloud_mobile_compromise.yml](cloud_mobile_compromise.yml) | Mobile Device Compromise (MDM) | Medium | T1456 | PB-28 Mobile Compromise |
+| [cloud_email_takeover.yml](sigma_rules/cloud_email_takeover.yml) | Email Account Takeover (OAuth/Rules) | High | T1114 | PB-42 Email Takeover |
+| [cloud_sim_swap.yml](sigma_rules/cloud_sim_swap.yml) | SIM Swap Attack Indicators | High | T1111 | PB-46 SIM Swap |
+| [cloud_cryptojacking.yml](sigma_rules/cloud_cryptojacking.yml) | Cloud Cryptojacking (GPU/Cost Spike) | Critical | T1496 | PB-47 Cryptojacking |
 
 ### 🌍 Web / Application
 
@@ -75,6 +87,9 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [web_waf_exploit.yml](web_waf_exploit.yml) | WAF Detected Exploit Attempt | High | T1190 | PB-18 Exploit |
 | [web_api_abuse_auth_bypass.yml](web_api_abuse_auth_bypass.yml) | API Auth Bypass / Enumeration | High | T1190 | PB-22 API Abuse |
 | [web_zero_day_exploit_attempt.yml](web_zero_day_exploit_attempt.yml) | Zero-Day Exploit Payload (Log4Shell, RCE) | Critical | T1190/T1203 | PB-25 Zero-Day |
+| [web_sqli_advanced.yml](sigma_rules/web_sqli_advanced.yml) | Advanced SQL Injection (Blind/Time-based) | High | T1190 | PB-37 SQL Injection |
+| [web_watering_hole.yml](sigma_rules/web_watering_hole.yml) | Watering Hole Attack Indicators | High | T1189 | PB-43 Watering Hole |
+| [web_drive_by_download.yml](sigma_rules/web_drive_by_download.yml) | Drive-By Download (Browser Exploit) | High | T1189 | PB-44 Drive-By |
 
 ### 📱 MDM / Device
 
@@ -92,7 +107,7 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 
 ## 🎯 YARA Rules (File-based Detection)
 
-In addition to Sigma rules, this directory contains **10 YARA rules** for file-based threat detection:
+In addition to Sigma rules, this directory contains **8 YARA rules** for file-based threat detection:
 
 | File | Rules | Detects | Playbook |
 |:---|:---:|:---|:---|

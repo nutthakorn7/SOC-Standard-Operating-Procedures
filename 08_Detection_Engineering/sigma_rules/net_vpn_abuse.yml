@@ -1,0 +1,39 @@
+title: Unauthorized VPN or Proxy Usage
+id: auto-generated
+status: experimental
+description: >
+    Detects unauthorized VPN connections, impossible travel via VPN,
+    and suspicious proxy/tunnel activity indicating VPN abuse
+references:
+    - https://attack.mitre.org/techniques/T1133/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.persistence
+    - attack.t1133
+logsource:
+    category: proxy
+detection:
+    selection_vpn:
+        cs-host|contains:
+            - 'nordvpn'
+            - 'expressvpn'
+            - 'surfshark'
+            - 'windscribe'
+            - 'protonvpn'
+            - 'tunnelbear'
+    selection_tunnel:
+        cs-host|contains:
+            - 'ngrok.io'
+            - 'serveo.net'
+            - 'localhost.run'
+            - 'cloudflared'
+    selection_tor:
+        cs-host|endswith:
+            - '.onion'
+            - '.tor'
+    condition: selection_vpn or selection_tunnel or selection_tor
+falsepositives:
+    - Authorized remote workers using corporate VPN
+    - Development teams using ngrok for testing
+level: medium

@@ -242,7 +242,7 @@ Track these 5 metrics from day 1 (see [SOC Metrics](../06_Operations_Management/
 
 ```
 □ All 50 playbooks reviewed (deploy relevant ones)
-□ All 36 Sigma rules deployed
+□ All 51 Sigma rules deployed
 □ First tabletop exercise completed
 □ SOC metrics dashboard created
 □ Monthly SOC report to management

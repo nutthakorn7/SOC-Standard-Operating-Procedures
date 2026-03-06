@@ -1494,7 +1494,7 @@ When adding new documents, update these files (see [workflow](https://github.com
 
 <p align="center">
   <b>เรียนรู้จากคนที่ทำจริง ไม่ใช่แค่ทฤษฎี</b><br>
-  <i>Real-world SOC training backed by 279 open-source SOPs, 50 playbooks, and 36 Sigma rules</i>
+  <i>Real-world SOC training backed by 279 open-source SOPs, 50 playbooks, and 51 Sigma rules</i>
 </p>
 
 ---
@@ -2704,7 +2704,7 @@ graph TD
 
 ## Purpose
 
-This document maps all **50 SOC Playbooks**, **36 Sigma Detection Rules**, and key SOC operational controls to three major compliance frameworks:
+This document maps all **50 SOC Playbooks**, **51 Sigma Detection Rules**, and key SOC operational controls to three major compliance frameworks:
 
 - **ISO/IEC 27001:2022** — Information Security Management System
 - **NIST Cybersecurity Framework (CSF) 2.0** — Identify, Protect, Detect, Respond, Recover
@@ -2806,7 +2806,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 |:---|:---:|:---|
 | **Identify (ID)** | ID.AM, ID.RA, ID.SC | 🟡 Partial — asset inventory & supply chain |
 | **Protect (PR)** | PR.AC, PR.AT, PR.DS, PR.IP, PR.PT | 🟡 Partial — access control & training |
-| **Detect (DE)** | DE.AE, DE.CM, DE.DP | 🟢 Strong — 36 Sigma rules + monitoring |
+| **Detect (DE)** | DE.AE, DE.CM, DE.DP | 🟢 Strong — 51 Sigma rules + monitoring |
 | **Respond (RS)** | RS.RP, RS.CO, RS.AN, RS.MI, RS.IM | 🟢 Strong — 50 playbooks + severity matrix |
 | **Recover (RC)** | RC.RP, RC.IM, RC.CO | 🟡 Partial — backup & communication |
 
@@ -2821,7 +2821,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 | Req 7 — Restrict Access | 🟢 PB-07, PB-14, PB-15, PB-16 |
 | Req 8 — Identify Users | 🟢 PB-04, PB-05, PB-06 |
 | Req 9 — Physical Access | 🟡 PB-19 |
-| Req 10 — Log & Monitor | 🟢 36 Sigma rules + SOC monitoring |
+| Req 10 — Log & Monitor | 🟢 51 Sigma rules + SOC monitoring |
 | Req 11 — Test Security | 🟢 Detection rules + simulation guide |
 | Req 12 — Security Policies | 🟢 IR framework + severity matrix |
 
@@ -2835,7 +2835,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 → [IR Framework](../05_Incident_Response/Framework.en.md) + [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md) + any Playbook (PB-01 to PB-50)
 
 > "Show me your monitoring and detection capabilities."  
-→ [Detection Rules Index](../08_Detection_Engineering/README.md) (36 Sigma rules) + [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
+→ [Detection Rules Index](../08_Detection_Engineering/README.md) (51 Sigma rules) + [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
 
 > "Show me evidence of incident learning."  
 → [Post-Incident Review section](../05_Incident_Response/Framework.en.md) in all playbooks
@@ -2849,7 +2849,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 → [IR Framework](../05_Incident_Response/Framework.en.md) + [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
 
 > "Requirement 11.5.1 — Intrusion detection?"  
-→ [36 Sigma Detection Rules](../08_Detection_Engineering/README.md) with MITRE ATT&CK mapping
+→ [51 Sigma Detection Rules](../08_Detection_Engineering/README.md) with MITRE ATT&CK mapping
 
 ---
 
@@ -2884,7 +2884,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 
 ## วัตถุประสงค์
 
-เอกสารนี้ map **SOC Playbook 50 ชุด**, **Sigma Detection Rule 36 กฎ** และ SOC Controls ต่างๆ เข้ากับ 3 กรอบมาตรฐาน:
+เอกสารนี้ map **SOC Playbook 50 ชุด**, **Sigma Detection Rule 51 กฎ** และ SOC Controls ต่างๆ เข้ากับ 3 กรอบมาตรฐาน:
 
 - **ISO/IEC 27001:2022** — ระบบจัดการความมั่นคงปลอดภัยสารสนเทศ
 - **NIST Cybersecurity Framework (CSF) 2.0** — กรอบไซเบอร์สหรัฐฯ
@@ -2956,7 +2956,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 |:---|:---:|:---|
 | **Identify (ระบุ)** | 🟡 | ครอบคลุมบางส่วน — สินทรัพย์ & Supply Chain |
 | **Protect (ป้องกัน)** | 🟡 | ครอบคลุมบางส่วน — Access Control & การฝึกอบรม |
-| **Detect (ตรวจจับ)** | 🟢 | ครอบคลุมดี — 36 Sigma Rules + การเฝ้าระวัง |
+| **Detect (ตรวจจับ)** | 🟢 | ครอบคลุมดี — 51 Sigma Rules + การเฝ้าระวัง |
 | **Respond (ตอบสนอง)** | 🟢 | ครอบคลุมดี — 50 Playbooks + ตารางระดับความรุนแรง |
 | **Recover (กู้คืน)** | 🟡 | ครอบคลุมบางส่วน — สำรองข้อมูล & สื่อสาร |
 
@@ -2983,7 +2983,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 → [IR Framework](../05_Incident_Response/Framework.en.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md) + Playbook ใดก็ได้ (PB-01 ถึง PB-50)
 
 > "แสดงความสามารถในการเฝ้าระวังและตรวจจับ"  
-→ [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md) (36 กฎ Sigma) + [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
+→ [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md) (51 กฎ Sigma) + [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
 
 ### QSA ตรวจ PCI DSS ถาม:
 
@@ -3695,7 +3695,7 @@ pie title SOC Coverage by CSF Function
 | Category | Description | Coverage | SOC Documents |
 |:---:|:---|:---:|:---|
 | DE.CM | Continuous Monitoring | ✅ Full | [Network Monitoring](../06_Operations_Management/Network_Security_Monitoring.en.md), [Cloud Monitoring](../06_Operations_Management/Cloud_Security_Monitoring.en.md), [SOC Checklists](../06_Operations_Management/SOC_Checklists.en.md) |
-| DE.AE | Adverse Event Analysis | ✅ Full | [Alert Tuning](../06_Operations_Management/Alert_Tuning.en.md), [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md), [36 Sigma Rules](../08_Detection_Engineering/README.md) |
+| DE.AE | Adverse Event Analysis | ✅ Full | [Alert Tuning](../06_Operations_Management/Alert_Tuning.en.md), [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md), [51 Sigma Rules](../08_Detection_Engineering/README.md) |
 | DE.DP | Detection Processes | ✅ Full | [Tier 1](../05_Incident_Response/Runbooks/Tier1_Runbook.en.md)/[2](../05_Incident_Response/Runbooks/Tier2_Runbook.en.md)/[3 Runbooks](../05_Incident_Response/Runbooks/Tier3_Runbook.en.md), [Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.en.md) |
 
 ## 6. RESPOND (RS) — Incident Response ⭐
@@ -3830,7 +3830,7 @@ pie title ความครอบคลุม SOC ตาม CSF Function
 | หมวด | คำอธิบาย | ครอบคลุม | เอกสาร SOC |
 |:---:|:---|:---:|:---|
 | DE.CM | เฝ้าระวังต่อเนื่อง | ✅ | [เฝ้าระวังเครือข่าย](../06_Operations_Management/Network_Security_Monitoring.th.md), [เฝ้าระวัง Cloud](../06_Operations_Management/Cloud_Security_Monitoring.th.md) |
-| DE.AE | วิเคราะห์เหตุการณ์ | ✅ | [ปรับจูน Alert](../06_Operations_Management/Alert_Tuning.th.md), [36 Sigma Rules](../08_Detection_Engineering/README.md) |
+| DE.AE | วิเคราะห์เหตุการณ์ | ✅ | [ปรับจูน Alert](../06_Operations_Management/Alert_Tuning.th.md), [51 Sigma Rules](../08_Detection_Engineering/README.md) |
 | DE.DP | กระบวนการตรวจจับ | ✅ | [Tier 1](../05_Incident_Response/Runbooks/Tier1_Runbook.th.md)/[2](../05_Incident_Response/Runbooks/Tier2_Runbook.th.md)/[3 Runbooks](../05_Incident_Response/Runbooks/Tier3_Runbook.th.md) |
 
 ## 6. RESPOND (ตอบสนอง) ⭐
@@ -9601,7 +9601,7 @@ Track these 5 metrics from day 1 (see [SOC Metrics](../06_Operations_Management/
 
 ```
 □ All 50 playbooks reviewed (deploy relevant ones)
-□ All 36 Sigma rules deployed
+□ All 51 Sigma rules deployed
 □ First tabletop exercise completed
 □ SOC metrics dashboard created
 □ Monthly SOC report to management
@@ -13484,7 +13484,7 @@ Use UTC timestamps and format consistently:
 
 # Detection Rules Index (Sigma)
 
-This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks. Rules are organized by category and can be imported into any Sigma-compatible SIEM (Splunk, Elastic, Microsoft Sentinel, etc.).
+This directory contains **51 Sigma detection rules** mapped to the SOC Playbooks. Rules are organized by category and can be imported into any Sigma-compatible SIEM (Splunk, Elastic, Microsoft Sentinel, etc.).
 
 ## How to Use
 
@@ -13504,6 +13504,7 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [proc_powershell_encoded.yml](proc_powershell_encoded.yml) | PowerShell Encoded Command | High | T1059.001 | PB-11 Suspicious Script |
 | [proc_temp_folder_execution.yml](proc_temp_folder_execution.yml) | Suspicious Execution from Temp/Downloads | Medium | T1204.002 | PB-03 Malware |
 | [proc_cryptomining_indicators.yml](proc_cryptomining_indicators.yml) | Cryptomining Process / Stratum Protocol | Critical | T1496 | PB-23 Cryptomining |
+| [win_lolbin_execution.yml](sigma_rules/win_lolbin_execution.yml) | Living Off The Land Binary Execution | High | T1218 | PB-39 LOLBins |
 
 ### 📁 File Activity
 
@@ -13511,6 +13512,7 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 |:---|:---|:---|:---|:---|
 | [file_bulk_renaming_ransomware.yml](file_bulk_renaming_ransomware.yml) | Potential Ransomware Bulk File Renaming | Critical | T1486 | PB-02 Ransomware |
 | [file_bulk_usb_copy.yml](file_bulk_usb_copy.yml) | Bulk File Copy to USB Drive | Medium | T1052 | PB-08 Data Exfiltration |
+| [file_usb_autorun.yml](sigma_rules/file_usb_autorun.yml) | USB Removable Media Threat Indicators | Medium | T1091 | PB-40 USB Media |
 
 ### 🌐 Network Detection
 
@@ -13520,6 +13522,10 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [net_large_upload.yml](net_large_upload.yml) | Large Upload to External IP (>500MB) | High | T1048 | PB-08 Data Exfiltration |
 | [net_dns_tunneling.yml](net_dns_tunneling.yml) | DNS Tunneling (High Volume / Long Queries) | High | T1071.004 | PB-24 DNS Tunneling |
 | [net_ot_ics_anomaly.yml](net_ot_ics_anomaly.yml) | OT/ICS Network Anomaly (Modbus/DNP3/OPC UA) | Critical | ICS T0813 | PB-30 OT/ICS Incident |
+| [net_vpn_abuse.yml](sigma_rules/net_vpn_abuse.yml) | Unauthorized VPN or Proxy Usage | Medium | T1133 | PB-41 VPN Abuse |
+| [net_deepfake_social.yml](sigma_rules/net_deepfake_social.yml) | Deepfake Social Engineering Indicators | High | T1598 | PB-48 Deepfake |
+| [net_typosquatting.yml](sigma_rules/net_typosquatting.yml) | Typosquatting Domain Access | Medium | T1583.001 | PB-49 Typosquatting |
+| [net_unauthorized_scanning.yml](sigma_rules/net_unauthorized_scanning.yml) | Unauthorized Network Scanning | Medium | T1046 | PB-50 Scanning |
 
 ### 🔐 Windows Security
 
@@ -13533,6 +13539,9 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [win_security_event_log_cleared.yml](sigma_rules/win_security_event_log_cleared.yml) | Windows Security Event Log Cleared | Critical | T1070.001 | PB-20 Log Clearing |
 | [win_network_discovery.yml](sigma_rules/win_network_discovery.yml) | Network Discovery Commands | Medium | T1018 | PB-34 Network Discovery |
 | [win_data_collection_staging.yml](sigma_rules/win_data_collection_staging.yml) | Data Collection and Staging | Medium | T1074 | PB-35 Data Collection |
+| [win_credential_dumping.yml](sigma_rules/win_credential_dumping.yml) | Credential Dumping (LSASS/SAM/DCSync) | Critical | T1003 | PB-36 Credential Dump |
+| [win_wiper_attack.yml](sigma_rules/win_wiper_attack.yml) | Wiper / Destructive Malware Activity | Critical | T1485/T1561 | PB-38 Wiper Attack |
+| [win_rootkit_bootkit.yml](sigma_rules/win_rootkit_bootkit.yml) | Rootkit / Bootkit Installation | Critical | T1014/T1542 | PB-45 Rootkit |
 
 ### ☁️ Cloud Detection
 
@@ -13549,6 +13558,9 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [cloud_mfa_bypass.yml](cloud_mfa_bypass.yml) | MFA Bypass / AiTM Token Theft | High | T1556.006 | PB-26 MFA Bypass |
 | [cloud_storage_public_access.yml](cloud_storage_public_access.yml) | Cloud Storage Public Access (S3/Blob) | High | T1530 | PB-27 Cloud Storage |
 | [cloud_mobile_compromise.yml](cloud_mobile_compromise.yml) | Mobile Device Compromise (MDM) | Medium | T1456 | PB-28 Mobile Compromise |
+| [cloud_email_takeover.yml](sigma_rules/cloud_email_takeover.yml) | Email Account Takeover (OAuth/Rules) | High | T1114 | PB-42 Email Takeover |
+| [cloud_sim_swap.yml](sigma_rules/cloud_sim_swap.yml) | SIM Swap Attack Indicators | High | T1111 | PB-46 SIM Swap |
+| [cloud_cryptojacking.yml](sigma_rules/cloud_cryptojacking.yml) | Cloud Cryptojacking (GPU/Cost Spike) | Critical | T1496 | PB-47 Cryptojacking |
 
 ### 🌍 Web / Application
 
@@ -13559,6 +13571,9 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 | [web_waf_exploit.yml](web_waf_exploit.yml) | WAF Detected Exploit Attempt | High | T1190 | PB-18 Exploit |
 | [web_api_abuse_auth_bypass.yml](web_api_abuse_auth_bypass.yml) | API Auth Bypass / Enumeration | High | T1190 | PB-22 API Abuse |
 | [web_zero_day_exploit_attempt.yml](web_zero_day_exploit_attempt.yml) | Zero-Day Exploit Payload (Log4Shell, RCE) | Critical | T1190/T1203 | PB-25 Zero-Day |
+| [web_sqli_advanced.yml](sigma_rules/web_sqli_advanced.yml) | Advanced SQL Injection (Blind/Time-based) | High | T1190 | PB-37 SQL Injection |
+| [web_watering_hole.yml](sigma_rules/web_watering_hole.yml) | Watering Hole Attack Indicators | High | T1189 | PB-43 Watering Hole |
+| [web_drive_by_download.yml](sigma_rules/web_drive_by_download.yml) | Drive-By Download (Browser Exploit) | High | T1189 | PB-44 Drive-By |
 
 ### 📱 MDM / Device
 
@@ -13576,7 +13591,7 @@ This directory contains **36 Sigma detection rules** mapped to the SOC Playbooks
 
 ## 🎯 YARA Rules (File-based Detection)
 
-In addition to Sigma rules, this directory contains **10 YARA rules** for file-based threat detection:
+In addition to Sigma rules, this directory contains **8 YARA rules** for file-based threat detection:
 
 | File | Rules | Detects | Playbook |
 |:---|:---:|:---|:---|
@@ -13603,7 +13618,7 @@ In addition to Sigma rules, this directory contains **10 YARA rules** for file-b
 
 # ดัชนี Detection Rules (Sigma) — ภาษาไทย
 
-ไดเรกทอรีนี้มี **Sigma Detection Rule 36 กฎ** ที่ map กับ SOC Playbook แต่ละชุด สามารถ Import เข้า SIEM ที่รองรับ Sigma ได้ (Splunk, Elastic, Microsoft Sentinel ฯลฯ)
+ไดเรกทอรีนี้มี **Sigma Detection Rule 51 กฎ** ที่ map กับ SOC Playbook แต่ละชุด สามารถ Import เข้า SIEM ที่รองรับ Sigma ได้ (Splunk, Elastic, Microsoft Sentinel ฯลฯ)
 
 ## วิธีใช้งาน
 
@@ -14423,7 +14438,7 @@ tuning:
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — Data source coverage
 -   [Change Management](Change_Management.en.md) — Change approval process
 -   [SOC Checklists](SOC_Checklists.en.md) — Operational checklists
--   [Detection Rules Index (Sigma)](../08_Detection_Engineering/README.md) — All 36 Sigma rules
+-   [Detection Rules Index (Sigma)](../08_Detection_Engineering/README.md) — All 51 Sigma rules
 -   [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md) — High-volume alert source
 -   [PB-04 Brute Force](../05_Incident_Response/Playbooks/Brute_Force.en.md) — Threshold tuning example
 -   [PB-11 Suspicious Script](../05_Incident_Response/Playbooks/Suspicious_Script.en.md) — PowerShell detection tuning
@@ -14728,7 +14743,7 @@ flowchart TD
 -   [SOC Automation Catalog](SOC_Automation_Catalog.th.md) — Auto-tuning
 -   [SOC Maturity Assessment](SOC_Maturity_Assessment.th.md) — วุฒิภาวะ detection
 -   [Change Management](Change_Management.th.md) — กระบวนการอนุมัติ
--   [ดัชนี Detection Rules (Sigma)](../08_Detection_Engineering/README.th.md) — Sigma rules ทั้ง 36 กฎ
+-   [ดัชนี Detection Rules (Sigma)](../08_Detection_Engineering/README.th.md) — Sigma rules ทั้ง 51 กฎ
 -   [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.th.md) — แหล่ง alert ปริมาณสูง
 -   [PB-04 Brute Force](../05_Incident_Response/Playbooks/Brute_Force.th.md) — ตัวอย่างการปรับ threshold
 -   [PB-11 Suspicious Script](../05_Incident_Response/Playbooks/Suspicious_Script.th.md) — การ tune PowerShell detection
@@ -16738,7 +16753,7 @@ jobs:
 ## Related Documents
 
 - [Change Management SOP](Change_Management.en.md)
-- [Detection Rules Index](../08_Detection_Engineering/README.md) — All 36 Sigma rules with playbook mapping
+- [Detection Rules Index](../08_Detection_Engineering/README.md) — All 51 Sigma rules with playbook mapping
 - [Use Case Prioritization](../01_SOC_Fundamentals/Use_Case_Prioritization.en.md)
 - [Alert Tuning SOP](Alert_Tuning.en.md) — Tuning methodology for noisy rules
 - [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md) — Example: testing email detection rules
@@ -16946,7 +16961,7 @@ jobs:
 ## เอกสารที่เกี่ยวข้อง
 
 - [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)
-- [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md) — Sigma rules ทั้ง 36 กฎพร้อม playbook mapping
+- [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md) — Sigma rules ทั้ง 51 กฎพร้อม playbook mapping
 - [Alert Tuning SOP](Alert_Tuning.th.md) — วิธีการปรับจูน rule ที่มีปัญหา
 - [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.th.md) — ตัวอย่าง: ทดสอบ email detection rules
 - [PB-02 Ransomware](../05_Incident_Response/Playbooks/Ransomware.th.md) — ตัวอย่าง: ทดสอบ file encryption rules

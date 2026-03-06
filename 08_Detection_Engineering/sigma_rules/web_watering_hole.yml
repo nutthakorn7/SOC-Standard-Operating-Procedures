@@ -1,0 +1,33 @@
+title: Watering Hole Attack Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects watering hole attack indicators including redirects from trusted
+    sites to exploit kits, suspicious iframe injections, and drive-by patterns
+references:
+    - https://attack.mitre.org/techniques/T1189/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.initial_access
+    - attack.t1189
+logsource:
+    category: proxy
+detection:
+    selection_redirect:
+        cs-referer|contains:
+            - '.gov'
+            - '.edu'
+            - '.org'
+        cs-host|re: '.*\.(tk|ml|ga|cf|gq|xyz|top|buzz|club)$'
+    selection_exploit_kit:
+        cs-uri-query|contains:
+            - 'exploit'
+            - 'payload'
+            - 'shellcode'
+        sc-status: 200
+    condition: selection_redirect or selection_exploit_kit
+falsepositives:
+    - Legitimate redirects from trusted sites
+    - Research activity on threat intelligence platforms
+level: high

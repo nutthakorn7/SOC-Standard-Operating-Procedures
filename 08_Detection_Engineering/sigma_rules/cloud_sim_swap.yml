@@ -1,0 +1,37 @@
+title: SIM Swap Attack Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects SIM swap attack indicators including phone number changes on
+    privileged accounts, MFA method modifications, and carrier API anomalies
+references:
+    - https://attack.mitre.org/techniques/T1111/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.credential_access
+    - attack.t1111
+logsource:
+    product: m365
+    service: azure_ad
+detection:
+    selection_phone:
+        Operation|contains:
+            - 'Update user'
+            - 'Reset password'
+        ModifiedProperties|contains:
+            - 'StrongAuthenticationPhoneAppDetail'
+            - 'StrongAuthenticationUserDetails'
+            - 'MobilePhone'
+    selection_mfa:
+        Operation|contains:
+            - 'User registered security info'
+            - 'User deleted security info'
+        Target|contains:
+            - 'Phone'
+            - 'SMS'
+    condition: selection_phone or selection_mfa
+falsepositives:
+    - Legitimate phone number updates by employees
+    - IT helpdesk MFA resets
+level: high

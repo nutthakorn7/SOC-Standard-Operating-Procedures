@@ -9,7 +9,7 @@
 
 ## Purpose
 
-This document maps all **50 SOC Playbooks**, **36 Sigma Detection Rules**, and key SOC operational controls to three major compliance frameworks:
+This document maps all **50 SOC Playbooks**, **51 Sigma Detection Rules**, and key SOC operational controls to three major compliance frameworks:
 
 - **ISO/IEC 27001:2022** — Information Security Management System
 - **NIST Cybersecurity Framework (CSF) 2.0** — Identify, Protect, Detect, Respond, Recover
@@ -111,7 +111,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 |:---|:---:|:---|
 | **Identify (ID)** | ID.AM, ID.RA, ID.SC | 🟡 Partial — asset inventory & supply chain |
 | **Protect (PR)** | PR.AC, PR.AT, PR.DS, PR.IP, PR.PT | 🟡 Partial — access control & training |
-| **Detect (DE)** | DE.AE, DE.CM, DE.DP | 🟢 Strong — 36 Sigma rules + monitoring |
+| **Detect (DE)** | DE.AE, DE.CM, DE.DP | 🟢 Strong — 51 Sigma rules + monitoring |
 | **Respond (RS)** | RS.RP, RS.CO, RS.AN, RS.MI, RS.IM | 🟢 Strong — 50 playbooks + severity matrix |
 | **Recover (RC)** | RC.RP, RC.IM, RC.CO | 🟡 Partial — backup & communication |
 
@@ -126,7 +126,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 | Req 7 — Restrict Access | 🟢 PB-07, PB-14, PB-15, PB-16 |
 | Req 8 — Identify Users | 🟢 PB-04, PB-05, PB-06 |
 | Req 9 — Physical Access | 🟡 PB-19 |
-| Req 10 — Log & Monitor | 🟢 36 Sigma rules + SOC monitoring |
+| Req 10 — Log & Monitor | 🟢 51 Sigma rules + SOC monitoring |
 | Req 11 — Test Security | 🟢 Detection rules + simulation guide |
 | Req 12 — Security Policies | 🟢 IR framework + severity matrix |
 
@@ -140,7 +140,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 → [IR Framework](../05_Incident_Response/Framework.en.md) + [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md) + any Playbook (PB-01 to PB-50)
 
 > "Show me your monitoring and detection capabilities."  
-→ [Detection Rules Index](../08_Detection_Engineering/README.md) (36 Sigma rules) + [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
+→ [Detection Rules Index](../08_Detection_Engineering/README.md) (51 Sigma rules) + [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
 
 > "Show me evidence of incident learning."  
 → [Post-Incident Review section](../05_Incident_Response/Framework.en.md) in all playbooks
@@ -154,7 +154,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 → [IR Framework](../05_Incident_Response/Framework.en.md) + [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
 
 > "Requirement 11.5.1 — Intrusion detection?"  
-→ [36 Sigma Detection Rules](../08_Detection_Engineering/README.md) with MITRE ATT&CK mapping
+→ [51 Sigma Detection Rules](../08_Detection_Engineering/README.md) with MITRE ATT&CK mapping
 
 ---
 

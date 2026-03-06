@@ -1,6 +1,6 @@
 # ดัชนี Detection Rules (Sigma) — ภาษาไทย
 
-ไดเรกทอรีนี้มี **Sigma Detection Rule 36 กฎ** ที่ map กับ SOC Playbook แต่ละชุด สามารถ Import เข้า SIEM ที่รองรับ Sigma ได้ (Splunk, Elastic, Microsoft Sentinel ฯลฯ)
+ไดเรกทอรีนี้มี **Sigma Detection Rule 51 กฎ** ที่ map กับ SOC Playbook แต่ละชุด สามารถ Import เข้า SIEM ที่รองรับ Sigma ได้ (Splunk, Elastic, Microsoft Sentinel ฯลฯ)
 
 ## วิธีใช้งาน
 

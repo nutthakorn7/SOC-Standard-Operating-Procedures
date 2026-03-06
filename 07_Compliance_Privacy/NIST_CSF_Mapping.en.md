@@ -75,7 +75,7 @@ pie title SOC Coverage by CSF Function
 | Category | Description | Coverage | SOC Documents |
 |:---:|:---|:---:|:---|
 | DE.CM | Continuous Monitoring | ✅ Full | [Network Monitoring](../06_Operations_Management/Network_Security_Monitoring.en.md), [Cloud Monitoring](../06_Operations_Management/Cloud_Security_Monitoring.en.md), [SOC Checklists](../06_Operations_Management/SOC_Checklists.en.md) |
-| DE.AE | Adverse Event Analysis | ✅ Full | [Alert Tuning](../06_Operations_Management/Alert_Tuning.en.md), [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md), [36 Sigma Rules](../08_Detection_Engineering/README.md) |
+| DE.AE | Adverse Event Analysis | ✅ Full | [Alert Tuning](../06_Operations_Management/Alert_Tuning.en.md), [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md), [51 Sigma Rules](../08_Detection_Engineering/README.md) |
 | DE.DP | Detection Processes | ✅ Full | [Tier 1](../05_Incident_Response/Runbooks/Tier1_Runbook.en.md)/[2](../05_Incident_Response/Runbooks/Tier2_Runbook.en.md)/[3 Runbooks](../05_Incident_Response/Runbooks/Tier3_Runbook.en.md), [Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.en.md) |
 
 ## 6. RESPOND (RS) — Incident Response ⭐
