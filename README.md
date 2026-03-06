@@ -47,7 +47,7 @@
 | 📄 Documents (EN+TH) | 279 | Bilingual, vendor-agnostic SOPs |
 | 🛡️ IR Playbooks | 50 | PB-01 Phishing → PB-50 Unauthorized Scanning, MITRE mapped |
 | 🔍 Sigma Detection Rules | 51 | Ready-to-import SIEM rules |
-| 🧬 YARA Rules | 8 | File-based threat detection |
+| 🧬 YARA Rules | 15 | File-based threat detection |
 | 📋 Templates | 6 | Incident report, shift log, RFC, dashboards |
 | 🧰 Interactive Tools | 2 | SOC Maturity Scorer + MITRE Heatmap |
 | 📊 Dashboard JSON | 2 | Grafana (14 panels) + Kibana (11 panels) |
@@ -254,7 +254,7 @@ Ready-to-import rules mapped to MITRE ATT&CK. See full index: [README](08_Detect
 | **Web/API** | SQLi, WAF exploit, API abuse, zero-day, rate limit | 5 |
 | **File/Proc** | Ransomware rename, USB bulk copy, crypto indicators | 5 |
 
-### YARA Rules (8 Rules)
+### YARA Rules (15 Rules)
 
 File-based threat detection: [YARA Index](08_Detection_Engineering/yara/README.md) | [File Signatures](08_Detection_Engineering/file_signatures/README.md)
 

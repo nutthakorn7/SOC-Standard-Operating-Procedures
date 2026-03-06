@@ -13533,7 +13533,7 @@ Use UTC timestamps and format consistently:
 | Total Playbooks | 50 | — |
 | Playbooks with Sigma Rules | 50 | **100%** ✅ |
 | Total Sigma Rules | 51 | 1+ per playbook |
-| Total YARA Rules | 8 | File-based threats |
+| Total YARA Rules | 15 | File-based threats |
 | MITRE ATT&CK Techniques | 40+ | Mapped to all rules |
 
 ---
@@ -13642,7 +13642,7 @@ Use UTC timestamps and format consistently:
 | Playbook ทั้งหมด | 50 | — |
 | Playbook ที่มี Sigma Rules | 50 | **100%** ✅ |
 | Sigma Rules ทั้งหมด | 51 | 1+ ต่อ playbook |
-| YARA Rules ทั้งหมด | 8 | ภัยคุกคามที่เป็นไฟล์ |
+| YARA Rules ทั้งหมด | 15 | ภัยคุกคามที่เป็นไฟล์ |
 | เทคนิค MITRE ATT&CK | 40+ | map ครบทุกกฎ |
 
 ---
@@ -13835,7 +13835,7 @@ This directory contains **51 Sigma detection rules** mapped to the SOC Playbooks
 
 ## 🎯 YARA Rules (File-based Detection)
 
-In addition to Sigma rules, this directory contains **8 YARA rules** for file-based threat detection:
+In addition to Sigma rules, this directory contains **15 YARA rules** for file-based threat detection:
 
 | File | Rules | Detects | Playbook |
 |:---|:---:|:---|:---|
@@ -13844,6 +13844,13 @@ In addition to Sigma rules, this directory contains **8 YARA rules** for file-ba
 | [cryptominer_detection.yar](yara/cryptominer_detection.yar) | 2 | Mining pools, xmrig binaries | PB-23 |
 | [cobalt_strike_beacon.yar](yara/cobalt_strike_beacon.yar) | 2 | CS beacons & stagers | PB-13, PB-12 |
 | [malicious_document.yar](yara/malicious_document.yar) | 2 | Office macro malware, PDF JS | PB-01, PB-03 |
+| [credential_dumping_tools.yar](yara/credential_dumping_tools.yar) | 2 | Mimikatz, LaZagne, Rubeus, SAM dump | PB-36 |
+| [wiper_malware.yar](yara/wiper_malware.yar) | 1 | Shamoon, NotPetya, HermeticWiper | PB-38 |
+| [rootkit_bootkit.yar](yara/rootkit_bootkit.yar) | 1 | TDL, ZeroAccess, UEFI rootkits | PB-45 |
+| [lolbin_dropper.yar](yara/lolbin_dropper.yar) | 1 | certutil, mshta, BITSAdmin abuse scripts | PB-39 |
+| [exploit_kit_payload.yar](yara/exploit_kit_payload.yar) | 1 | Exploit kit landing pages, shellcode | PB-25, PB-43, PB-44 |
+| [supply_chain_backdoor.yar](yara/supply_chain_backdoor.yar) | 1 | npm/pip backdoor, SolarWinds/SUNBURST | PB-21 |
+| [data_staging_archive.yar](yara/data_staging_archive.yar) | 1 | Password-protected archives, staging | PB-08, PB-35 |
 
 📖 **Full YARA Index**: [yara/README.md](yara/README.md)
 

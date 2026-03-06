@@ -13,7 +13,7 @@
 | Total Playbooks | 50 | — |
 | Playbooks with Sigma Rules | 50 | **100%** ✅ |
 | Total Sigma Rules | 51 | 1+ per playbook |
-| Total YARA Rules | 8 | File-based threats |
+| Total YARA Rules | 15 | File-based threats |
 | MITRE ATT&CK Techniques | 40+ | Mapped to all rules |
 
 ---

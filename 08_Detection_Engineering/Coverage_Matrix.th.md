@@ -13,7 +13,7 @@
 | Playbook ทั้งหมด | 50 | — |
 | Playbook ที่มี Sigma Rules | 50 | **100%** ✅ |
 | Sigma Rules ทั้งหมด | 51 | 1+ ต่อ playbook |
-| YARA Rules ทั้งหมด | 8 | ภัยคุกคามที่เป็นไฟล์ |
+| YARA Rules ทั้งหมด | 15 | ภัยคุกคามที่เป็นไฟล์ |
 | เทคนิค MITRE ATT&CK | 40+ | map ครบทุกกฎ |
 
 ---
