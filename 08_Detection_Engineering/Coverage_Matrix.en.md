@@ -29,7 +29,7 @@
 | PB-05 | **Account Compromise** | `cloud_unusual_login` | — | T1078.004 | 🟡 Medium |
 | PB-06 | **Impossible Travel** | `cloud_impossible_travel` | — | T1078.004 | 🟠 High |
 | PB-07 | **Privilege Escalation** | `win_domain_admin_group_add` | — | T1078 | 🟠 High |
-| PB-08 | **Data Exfiltration** | `file_bulk_usb_copy`, `net_large_upload` | — | T1052, T1048 | 🟠 High |
+| PB-08 | **Data Exfiltration** | `file_bulk_usb_copy`, `net_large_upload` | ✅ `data_staging_archive` | T1052, T1048 | 🟠 High |
 | PB-09 | **DDoS Attack** | `web_high_rate_limit` | — | T1498 | 🟠 High |
 | PB-10 | **Web Attack** | `web_sqli_pattern` | ✅ `webshell_generic` | T1190 | 🟠 High |
 | PB-11 | **Suspicious Script** | `proc_powershell_encoded` | — | T1059.001 | 🟠 High |
@@ -42,11 +42,11 @@
 | PB-18 | **Exploit** | `web_waf_exploit` | ✅ `webshell_generic` | T1190 | 🟠 High |
 | PB-19 | **Lost Device** | `mdm_device_offline` | — | — | 🟢 Low |
 | PB-20 | **Log Clearing** | `win_security_log_cleared`, `win_security_event_log_cleared` | — | T1070.001 | 🔴 Critical |
-| PB-21 | **Supply Chain** | `cloud_supply_chain_compromise` | — | T1195.002 | 🟠 High |
+| PB-21 | **Supply Chain** | `cloud_supply_chain_compromise` | ✅ `supply_chain_backdoor` | T1195.002 | 🟠 High |
 | PB-22 | **API Abuse** | `web_api_abuse_auth_bypass`, `web_high_rate_limit` | — | T1190 | 🟠 High |
 | PB-23 | **Cryptomining** | `proc_cryptomining_indicators`, `cloud_aws_ec2_mining` | ✅ `cryptominer_detection` | T1496 | 🔴 Critical |
 | PB-24 | **DNS Tunneling** | `net_dns_tunneling` | — | T1071.004 | 🟠 High |
-| PB-25 | **Zero-Day Exploit** | `web_zero_day_exploit_attempt` | — | T1190, T1203 | 🔴 Critical |
+| PB-25 | **Zero-Day Exploit** | `web_zero_day_exploit_attempt` | ✅ `exploit_kit_payload` | T1190, T1203 | 🔴 Critical |
 | PB-26 | **MFA Bypass** | `cloud_mfa_bypass` | — | T1556.006 | 🟠 High |
 | PB-27 | **Cloud Storage** | `cloud_storage_public_access`, `cloud_aws_s3_public_access` | — | T1530 | 🟠 High |
 | PB-28 | **Mobile Compromise** | `cloud_mobile_compromise` | — | T1456 | 🟡 Medium |
@@ -56,17 +56,17 @@
 | PB-32 | **AWS S3 Compromise** | `cloud_aws_s3_public_access` | — | T1530 | 🟠 High |
 | PB-33 | **Azure AD Compromise** | `cloud_azure_risky_signin` | — | T1078.004 | 🟠 High |
 | PB-34 | **Network Discovery** | `win_network_discovery` | — | T1018 | 🟡 Medium |
-| PB-35 | **Data Collection** | `win_data_collection_staging` | — | T1074 | 🟡 Medium |
-| PB-36 | **Credential Dumping** | `win_credential_dumping` | — | T1003 | 🔴 Critical |
+| PB-35 | **Data Collection** | `win_data_collection_staging` | ✅ `data_staging_archive` | T1074 | 🟡 Medium |
+| PB-36 | **Credential Dumping** | `win_credential_dumping` | ✅ `credential_dumping_tools` | T1003 | 🔴 Critical |
 | PB-37 | **SQL Injection** | `web_sqli_advanced`, `web_sqli_pattern` | — | T1190 | 🟠 High |
-| PB-38 | **Wiper Attack** | `win_wiper_attack` | — | T1485, T1561 | 🔴 Critical |
-| PB-39 | **Living Off The Land** | `win_lolbin_execution` | — | T1218 | 🟠 High |
+| PB-38 | **Wiper Attack** | `win_wiper_attack` | ✅ `wiper_malware` | T1485, T1561 | 🔴 Critical |
+| PB-39 | **Living Off The Land** | `win_lolbin_execution` | ✅ `lolbin_dropper` | T1218 | 🟠 High |
 | PB-40 | **USB Removable Media** | `file_usb_autorun` | — | T1091 | 🟡 Medium |
 | PB-41 | **VPN Abuse** | `net_vpn_abuse` | — | T1133 | 🟡 Medium |
 | PB-42 | **Email Account Takeover** | `cloud_email_takeover` | — | T1114 | 🟠 High |
-| PB-43 | **Watering Hole** | `web_watering_hole` | — | T1189 | 🟠 High |
-| PB-44 | **Drive-By Download** | `web_drive_by_download` | — | T1189 | 🟠 High |
-| PB-45 | **Rootkit/Bootkit** | `win_rootkit_bootkit` | — | T1014, T1542 | 🔴 Critical |
+| PB-43 | **Watering Hole** | `web_watering_hole` | ✅ `exploit_kit_payload` | T1189 | 🟠 High |
+| PB-44 | **Drive-By Download** | `web_drive_by_download` | ✅ `exploit_kit_payload` | T1189 | 🟠 High |
+| PB-45 | **Rootkit/Bootkit** | `win_rootkit_bootkit` | ✅ `rootkit_bootkit` | T1014, T1542 | 🔴 Critical |
 | PB-46 | **SIM Swap** | `cloud_sim_swap` | — | T1111 | 🟠 High |
 | PB-47 | **Cloud Cryptojacking** | `cloud_cryptojacking` | — | T1496 | 🔴 Critical |
 | PB-48 | **Deepfake Social Eng** | `net_deepfake_social` | — | T1598 | 🟠 High |
@@ -93,6 +93,13 @@
 | `cryptominer_detection.yar` | 2 | PB-23 Cryptomining |
 | `cobalt_strike_beacon.yar` | 2 | PB-12 Lateral Movement, PB-13 C2 |
 | `malicious_document.yar` | 2 | PB-01 Phishing, PB-03 Malware |
+| `credential_dumping_tools.yar` | 2 | PB-36 Credential Dumping |
+| `wiper_malware.yar` | 1 | PB-38 Wiper Attack |
+| `rootkit_bootkit.yar` | 1 | PB-45 Rootkit/Bootkit |
+| `lolbin_dropper.yar` | 1 | PB-39 Living Off The Land |
+| `exploit_kit_payload.yar` | 1 | PB-25 Zero-Day, PB-43 Watering Hole, PB-44 Drive-By |
+| `supply_chain_backdoor.yar` | 1 | PB-21 Supply Chain |
+| `data_staging_archive.yar` | 1 | PB-08 Data Exfil, PB-35 Data Collection |
 
 ---
 
