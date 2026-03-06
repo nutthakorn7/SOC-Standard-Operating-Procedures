@@ -435,7 +435,7 @@ For offline reading or printing, download the consolidated manual:
 |:---|:---|
 | **[📝 CHANGELOG.md](CHANGELOG.md)** | All changes by version (Keep a Changelog format) |
 | **[📋 VERSION_TRACKER.md](VERSION_TRACKER.md)** | Every document's version, last update, and next review date |
-| **Current Version** | **v2.12.0** (2026-03-06) |
+| **Current Version** | **v2.13.0** (2026-03-06) |
 
 ---
 

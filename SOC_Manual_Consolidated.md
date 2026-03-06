@@ -378,6 +378,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.13.0] - 2026-03-06
+
+### Added
+- **3 AI Threat Playbooks** (EN+TH) — first-of-kind SOC procedures for AI/ML security:
+  - PB-51 AI Prompt Injection — jailbreak, indirect injection, tool abuse response
+  - PB-52 LLM Data Poisoning — training data, RAG, RLHF poisoning response
+  - PB-53 AI Model Theft — API extraction, weight theft, insider exfiltration response
+- **3 Sigma detection rules** for AI threats (`ai_prompt_injection`, `ai_data_poisoning`, `ai_model_theft`)
+- **7 YARA rules** for credential dump, wiper, rootkit, LOLBin, exploit kit, supply chain, data staging
+- **Detection Coverage Matrix** (EN+TH) — comprehensive Sigma/YARA/MITRE map for all playbooks
+- Total: 53 playbooks, 54 Sigma rules, 15 YARA rules
+
+---
+
 ## [2.12.0] - 2026-03-06
 
 ### Added
@@ -2276,7 +2290,7 @@ When adding new documents, update these files (see [workflow](https://github.com
 | Reports & Templates | 6 | ✅ | 2027-02 |
 | **Total** | **127+** | **✅ 100%** | **2027-02** |
 
-> **Last tracker update**: 2026-03-06 | **Repository version**: 2.12.0
+> **Last tracker update**: 2026-03-06 | **Repository version**: 2.13.0
 
 
 ---
