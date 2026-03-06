@@ -9,7 +9,7 @@
 
 ## วัตถุประสงค์
 
-เอกสารนี้ map **SOC Playbook 50 ชุด**, **Sigma Detection Rule 51 กฎ** และ SOC Controls ต่างๆ เข้ากับ 3 กรอบมาตรฐาน:
+เอกสารนี้ map **SOC Playbook 53 ชุด**, **Sigma Detection Rule 54 กฎ** และ SOC Controls ต่างๆ เข้ากับ 3 กรอบมาตรฐาน:
 
 - **ISO/IEC 27001:2022** — ระบบจัดการความมั่นคงปลอดภัยสารสนเทศ
 - **NIST Cybersecurity Framework (CSF) 2.0** — กรอบไซเบอร์สหรัฐฯ
@@ -81,8 +81,8 @@
 |:---|:---:|:---|
 | **Identify (ระบุ)** | 🟡 | ครอบคลุมบางส่วน — สินทรัพย์ & Supply Chain |
 | **Protect (ป้องกัน)** | 🟡 | ครอบคลุมบางส่วน — Access Control & การฝึกอบรม |
-| **Detect (ตรวจจับ)** | 🟢 | ครอบคลุมดี — 51 Sigma Rules + การเฝ้าระวัง |
-| **Respond (ตอบสนอง)** | 🟢 | ครอบคลุมดี — 50 Playbooks + ตารางระดับความรุนแรง |
+| **Detect (ตรวจจับ)** | 🟢 | ครอบคลุมดี — 54 Sigma Rules + การเฝ้าระวัง |
+| **Respond (ตอบสนอง)** | 🟢 | ครอบคลุมดี — 53 Playbooks + ตารางระดับความรุนแรง |
 | **Recover (กู้คืน)** | 🟡 | ครอบคลุมบางส่วน — สำรองข้อมูล & สื่อสาร |
 
 ### PCI DSS v4.0
@@ -108,7 +108,7 @@
 → [IR Framework](../05_Incident_Response/Framework.en.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md) + Playbook ใดก็ได้ (PB-01 ถึง PB-50)
 
 > "แสดงความสามารถในการเฝ้าระวังและตรวจจับ"  
-→ [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md) (51 กฎ Sigma) + [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
+→ [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md) (54 กฎ Sigma) + [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
 
 ### QSA ตรวจ PCI DSS ถาม:
 

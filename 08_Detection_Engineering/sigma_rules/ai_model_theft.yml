@@ -1,0 +1,38 @@
+title: AI Model Theft or Extraction Attempt
+id: auto-generated
+status: experimental
+description: >
+    Detects AI model theft indicators including excessive API inference calls
+    (model extraction), unauthorized model weight downloads, and bulk data export
+references:
+    - https://atlas.mitre.org/techniques/AML.T0024
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.exfiltration
+    - atlas.aml.t0024
+logsource:
+    category: web_access
+    product: webserver
+detection:
+    selection_extraction:
+        cs-uri|contains:
+            - '/api/predict'
+            - '/api/inference'
+            - '/v1/completions'
+            - '/v1/chat/completions'
+            - '/api/generate'
+    selection_download:
+        cs-uri|contains:
+            - '.pt'
+            - '.safetensors'
+            - '.onnx'
+            - '.gguf'
+            - '.bin'
+            - 'model_weights'
+            - 'checkpoint'
+    condition: selection_extraction or selection_download
+falsepositives:
+    - Legitimate high-volume API consumers
+    - Authorized model deployment pipelines
+level: high

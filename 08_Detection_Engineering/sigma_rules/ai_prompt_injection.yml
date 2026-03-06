@@ -1,0 +1,34 @@
+title: AI Prompt Injection Attack Pattern
+id: auto-generated
+status: experimental
+description: >
+    Detects prompt injection attempts against LLM/AI endpoints including
+    jailbreak patterns, system prompt extraction, and instruction override
+references:
+    - https://atlas.mitre.org/techniques/AML.T0051
+    - https://owasp.org/www-project-top-10-for-large-language-model-applications/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.initial_access
+    - atlas.aml.t0051
+logsource:
+    category: web_access
+    product: webserver
+detection:
+    selection:
+        cs-uri-query|contains:
+            - 'ignore previous instructions'
+            - 'ignore all instructions'
+            - 'disregard your instructions'
+            - 'forget your rules'
+            - 'repeat the text above'
+            - 'print your system prompt'
+            - 'DAN mode'
+            - 'jailbreak'
+            - 'developer mode enabled'
+    condition: selection
+falsepositives:
+    - AI security researchers and red teamers
+    - Authorized penetration testing
+level: high

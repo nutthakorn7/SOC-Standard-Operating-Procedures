@@ -191,7 +191,7 @@ jobs:
 ## Related Documents
 
 - [Change Management SOP](Change_Management.en.md)
-- [Detection Rules Index](../08_Detection_Engineering/README.md) — All 51 Sigma rules with playbook mapping
+- [Detection Rules Index](../08_Detection_Engineering/README.md) — All 54 Sigma rules with playbook mapping
 - [Use Case Prioritization](../01_SOC_Fundamentals/Use_Case_Prioritization.en.md)
 - [Alert Tuning SOP](Alert_Tuning.en.md) — Tuning methodology for noisy rules
 - [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md) — Example: testing email detection rules

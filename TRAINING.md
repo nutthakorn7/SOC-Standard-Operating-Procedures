@@ -9,7 +9,7 @@
 
 <p align="center">
   <b>เรียนรู้จากคนที่ทำจริง ไม่ใช่แค่ทฤษฎี</b><br>
-  <i>Real-world SOC training backed by 279 open-source SOPs, 50 playbooks, and 51 Sigma rules</i>
+  <i>Real-world SOC training backed by 279 open-source SOPs, 53 playbooks, and 54 Sigma rules</i>
 </p>
 
 ---

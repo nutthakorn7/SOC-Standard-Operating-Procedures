@@ -293,7 +293,7 @@ flowchart TD
 -   [SOC Automation Catalog](SOC_Automation_Catalog.th.md) — Auto-tuning
 -   [SOC Maturity Assessment](SOC_Maturity_Assessment.th.md) — วุฒิภาวะ detection
 -   [Change Management](Change_Management.th.md) — กระบวนการอนุมัติ
--   [ดัชนี Detection Rules (Sigma)](../08_Detection_Engineering/README.th.md) — Sigma rules ทั้ง 51 กฎ
+-   [ดัชนี Detection Rules (Sigma)](../08_Detection_Engineering/README.th.md) — Sigma rules ทั้ง 54 กฎ
 -   [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.th.md) — แหล่ง alert ปริมาณสูง
 -   [PB-04 Brute Force](../05_Incident_Response/Playbooks/Brute_Force.th.md) — ตัวอย่างการปรับ threshold
 -   [PB-11 Suspicious Script](../05_Incident_Response/Playbooks/Suspicious_Script.th.md) — การ tune PowerShell detection

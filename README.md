@@ -11,8 +11,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/📄_Documents-279-blue?style=for-the-badge" alt="Documents">
-  <img src="https://img.shields.io/badge/🛡️_Playbooks-50-red?style=for-the-badge" alt="Playbooks">
-  <img src="https://img.shields.io/badge/🔍_Sigma_Rules-51-orange?style=for-the-badge" alt="Sigma Rules">
+  <img src="https://img.shields.io/badge/🛡️_Playbooks-53-red?style=for-the-badge" alt="Playbooks">
+  <img src="https://img.shields.io/badge/🔍_Sigma_Rules-54-orange?style=for-the-badge" alt="Sigma Rules">
   <img src="https://img.shields.io/badge/🌐_Bilingual-EN%2FTH-green?style=for-the-badge" alt="Bilingual">
 </p>
 
@@ -45,8 +45,8 @@
 | Category | Count | Highlights |
 |:---|:---:|:---|
 | 📄 Documents (EN+TH) | 279 | Bilingual, vendor-agnostic SOPs |
-| 🛡️ IR Playbooks | 50 | PB-01 Phishing → PB-50 Unauthorized Scanning, MITRE mapped |
-| 🔍 Sigma Detection Rules | 51 | Ready-to-import SIEM rules |
+| 🛡️ IR Playbooks | 53 | PB-01 Phishing → PB-50 Unauthorized Scanning, MITRE mapped |
+| 🔍 Sigma Detection Rules | 54 | Ready-to-import SIEM rules |
 | 🧬 YARA Rules | 15 | File-based threat detection |
 | 📋 Templates | 6 | Incident report, shift log, RFC, dashboards |
 | 🧰 Interactive Tools | 2 | SOC Maturity Scorer + MITRE Heatmap |
@@ -103,7 +103,7 @@ Start here if you're building a brand-new SOC. Follow the numbered order.
 | **Lessons Learned Template** | [Read](05_Incident_Response/Lessons_Learned_Template.en.md) | [อ่าน](05_Incident_Response/Lessons_Learned_Template.th.md) |
 | **📘 Playbook Development Guide** | [Read](05_Incident_Response/Playbook_Development_Guide.en.md) | [อ่าน](05_Incident_Response/Playbook_Development_Guide.th.md) |
 
-### 50 Playbooks — Grouped by Category
+### 53 Playbooks — Grouped by Category
 
 All playbooks are bilingual (EN+TH) and MITRE ATT&CK mapped.
 
@@ -217,7 +217,7 @@ All playbooks are bilingual (EN+TH) and MITRE ATT&CK mapped.
 
 ### 🎯 MITRE ATT&CK Coverage / ความครอบคลุม MITRE ATT&CK
 
-Our 50 playbooks cover **12 of 14 MITRE ATT&CK tactics** mapped across the full kill chain:
+Our 53 playbooks cover **12 of 14 MITRE ATT&CK tactics** mapped across the full kill chain:
 
 | Tactic | ID | Playbooks | Coverage |
 |:---|:---:|:---:|:---:|
