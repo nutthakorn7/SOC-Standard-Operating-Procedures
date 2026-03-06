@@ -9,7 +9,7 @@
 
 ## วัตถุประสงค์
 
-เอกสารนี้ map **SOC Playbook 30 ชุด**, **Sigma Detection Rule 33 กฎ** และ SOC Controls ต่างๆ เข้ากับ 3 กรอบมาตรฐาน:
+เอกสารนี้ map **SOC Playbook 50 ชุด**, **Sigma Detection Rule 36 กฎ** และ SOC Controls ต่างๆ เข้ากับ 3 กรอบมาตรฐาน:
 
 - **ISO/IEC 27001:2022** — ระบบจัดการความมั่นคงปลอดภัยสารสนเทศ
 - **NIST Cybersecurity Framework (CSF) 2.0** — กรอบไซเบอร์สหรัฐฯ
@@ -105,10 +105,10 @@
 ### ผู้ตรวจ ISO 27001 ถาม:
 
 > "แสดงขั้นตอนการตอบสนองเหตุการณ์"  
-→ [IR Framework](../05_Incident_Response/Framework.en.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md) + Playbook ใดก็ได้ (PB-01 ถึง PB-30)
+→ [IR Framework](../05_Incident_Response/Framework.en.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md) + Playbook ใดก็ได้ (PB-01 ถึง PB-50)
 
 > "แสดงความสามารถในการเฝ้าระวังและตรวจจับ"  
-→ [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md) (33 กฎ Sigma) + [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
+→ [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md) (36 กฎ Sigma) + [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
 
 ### QSA ตรวจ PCI DSS ถาม:
 

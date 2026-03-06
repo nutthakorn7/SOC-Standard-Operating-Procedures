@@ -170,7 +170,7 @@ graph LR
 
 ## เฟส 3: ปฏิบัติการ (เดือน 7–12)
 
-- Deploy playbooks ทั้ง 30 ชุด (ค่อยๆ ทำเป็น wave)
+- Deploy playbooks ทั้ง 50 ชุด (ค่อยๆ ทำเป็น wave)
 - ซ้อม [Tabletop Exercise](../05_Incident_Response/Tabletop_Exercises.th.md) ครั้งแรก
 - เริ่มวัด metrics: MTTD < 4 ชม., MTTR < 8 ชม.
 

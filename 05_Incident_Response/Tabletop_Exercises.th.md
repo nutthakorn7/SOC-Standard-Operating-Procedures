@@ -317,4 +317,4 @@
 
 - [กรอบ IR](Framework.th.md)
 - [ตารางความรุนแรง](Severity_Matrix.th.md)
-- [Playbook ทั้งหมด (PB-01 ถึง PB-30)](Playbooks/Phishing.th.md)
+- [Playbook ทั้งหมด (PB-01 ถึง PB-50)](Playbooks/Phishing.th.md)
