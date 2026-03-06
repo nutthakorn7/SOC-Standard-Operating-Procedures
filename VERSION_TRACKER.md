@@ -33,7 +33,9 @@
 | [Severity Matrix](05_Incident_Response/Severity_Matrix.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Incident Classification](05_Incident_Response/Incident_Classification.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Escalation Matrix](05_Incident_Response/Escalation_Matrix.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
-| [Tier 1 Runbook](05_Incident_Response/Runbooks/Tier1_Runbook.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Tier 1 Runbook](05_Incident_Response/Runbooks/Tier1_Runbook.en.md) | 2.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [Tier 2 Runbook](05_Incident_Response/Runbooks/Tier2_Runbook.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [Tier 3 Runbook](05_Incident_Response/Runbooks/Tier3_Runbook.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 | [Communication Templates](05_Incident_Response/Communication_Templates.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Forensic Investigation](05_Incident_Response/Forensic_Investigation.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Evidence Collection](05_Incident_Response/Evidence_Collection.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
@@ -43,8 +45,10 @@
 | [SOAR Playbooks](05_Incident_Response/SOAR_Playbooks.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Lessons Learned Template](05_Incident_Response/Lessons_Learned_Template.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Playbook Development Guide](05_Incident_Response/Playbook_Development_Guide.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [Tabletop Exercises](05_Incident_Response/Tabletop_Exercises.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
+| [Purple Team Exercises](05_Incident_Response/Purple_Team_Exercises.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 
-## 🛡️ Incident Response — Playbooks (35)
+## 🛡️ Incident Response — Playbooks (50)
 
 | Playbook | Version | Last Updated | Status |
 |:---|:---:|:---:|:---:|
@@ -55,6 +59,9 @@
 | PB-31 AWS EC2 → PB-33 Azure AD | 2.8 | 2026-02-16 | ✅ |
 | PB-34 Network Discovery | 2.8 | 2026-02-16 | ✅ |
 | PB-35 Data Collection | 2.8 | 2026-02-16 | ✅ |
+| PB-36 Credential Dumping → PB-40 USB Removable Media | 2.10 | 2026-02-16 | ✅ |
+| PB-41 VPN Abuse → PB-45 Rootkit/Bootkit | 2.10 | 2026-02-16 | ✅ |
+| PB-46 SIM Swap → PB-50 Unauthorized Scanning | 2.10 | 2026-02-16 | ✅ |
 
 ## 📊 Operations Management
 
@@ -102,6 +109,7 @@
 | [SOC Analyst Onboarding](10_Training_Onboarding/SOC_Onboarding.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Analyst Onboarding Path](10_Training_Onboarding/Analyst_Onboarding_Path.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Training Checklist](10_Training_Onboarding/Training_Checklist.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [System Activation](10_Training_Onboarding/System_Activation.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 
 ## 🏛️ Compliance
 
@@ -135,11 +143,11 @@
 |:---|:---:|:---:|:---:|
 | Getting Started | 3 | ✅ | 2027-02 |
 | SOC Fundamentals | 6 | ✅ | 2027-02 |
-| Incident Response | 14 + 50 playbooks | ✅ | 2027-02 |
-| Operations Management | 31 | ✅ | 2027-02 |
-| Testing & Training | 7 | ✅ | 2027-02 |
+| Incident Response | 18 + 50 playbooks | ✅ | 2027-02 |
+| Operations Management | 28 | ✅ | 2027-02 |
+| Testing & Training | 8 | ✅ | 2027-02 |
 | Compliance | 8 | ✅ | 2027-02 |
 | Reports & Templates | 6 | ✅ | 2027-02 |
-| **Total** | **107+** | **✅ 100%** | **2027-02** |
+| **Total** | **127+** | **✅ 100%** | **2027-02** |
 
-> **Last tracker update**: 2026-02-16 | **Repository version**: 2.6.0
+> **Last tracker update**: 2026-03-06 | **Repository version**: 2.11.1
