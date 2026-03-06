@@ -1,0 +1,26 @@
+title: Large Upload to External IP
+id: net_connection_large_upload
+status: experimental
+description: Detects a single connection uploading more than 500MB of data to an external IP.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: firewall
+    product: paloalto
+detection:
+    selection:
+        bytes_sent: '> 524288000' # 500 MB
+        direction: outbound
+    filter:
+        dst_ip:
+            - '10.0.0.0/8'
+            - '172.16.0.0/12'
+            - '192.168.0.0/16'
+    condition: selection
+falsepositives:
+    - Backups to Cloud Storage.
+    - Video uploads.
+level: high
+tags:
+    - attack.exfiltration
+    - attack.t1048

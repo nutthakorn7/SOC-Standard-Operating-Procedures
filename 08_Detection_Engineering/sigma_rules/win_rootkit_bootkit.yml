@@ -1,0 +1,38 @@
+title: Rootkit or Bootkit Installation Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects rootkit and bootkit indicators including unsigned kernel driver loading,
+    boot configuration tampering, and UEFI firmware modification attempts
+references:
+    - https://attack.mitre.org/techniques/T1014/
+    - https://attack.mitre.org/techniques/T1542/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.persistence
+    - attack.t1014
+    - attack.t1542.001
+    - attack.t1542.003
+logsource:
+    product: windows
+    category: driver_load
+detection:
+    selection_unsigned:
+        Signed: 'false'
+        ImageLoaded|endswith: '.sys'
+    selection_boot:
+        CommandLine|contains:
+            - 'bcdedit /set testsigning'
+            - 'bcdedit /set nointegritychecks'
+            - 'bcdedit /set loadoptions'
+    selection_uefi:
+        CommandLine|contains:
+            - 'mountvol'
+            - 'EFI\\Boot'
+            - 'bootmgfw.efi'
+    condition: selection_unsigned or selection_boot or selection_uefi
+falsepositives:
+    - Legitimate driver installation
+    - Development and testing of signed drivers
+level: critical

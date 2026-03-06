@@ -1,0 +1,22 @@
+title: Bulk File Copy to USB Drive
+id: file_access_bulk_copy_usb
+status: experimental
+description: Detects a user copying a large number of files to a removable drive in a short time.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: file_access
+    product: windows
+    definition: 'Requires: Object Access Auditing on Removable Drives'
+detection:
+    selection:
+        AccessMask: '0x2' # WriteData
+        ObjectDevice: 'Removable'
+    timeframe: 1m
+    condition: selection | count() > 10
+falsepositives:
+    - Legitimate user backing up data (Check policy).
+level: medium
+tags:
+    - attack.exfiltration
+    - attack.t1052.001

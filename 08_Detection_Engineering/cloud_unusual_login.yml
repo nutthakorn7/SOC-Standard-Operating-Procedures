@@ -1,0 +1,25 @@
+title: Login from Unusual Location (Cloud)
+id: cloud_unusual_login_location
+status: experimental
+description: Detects logins from countries that are not in the organization's approved list.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: azure
+    service: signinlogs
+detection:
+    selection:
+        Location:
+            - 'CN' # China
+            - 'RU' # Russia
+            - 'NK' # North Korea
+            - 'IR' # Iran
+        ResultType: 0 # Success
+    condition: selection
+falsepositives:
+    - Employees traveling (Verify with HR).
+    - VPN usage.
+level: high
+tags:
+    - attack.initial_access
+    - attack.t1078

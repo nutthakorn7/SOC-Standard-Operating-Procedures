@@ -1,0 +1,29 @@
+title: Supply Chain Compromise Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects indicators of supply chain compromise including unexpected package modifications and CI/CD pipeline tampering
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.initial_access
+    - attack.t1195
+logsource:
+        product: cicd
+        service: pipeline
+detection:
+    selection:
+        action|contains:
+            - 'pipeline.modified'
+            - 'package.published'
+            - 'repository.settings.changed'
+    filter:
+        actor|not_in:
+            - approved_service_accounts
+    condition: selection and filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: critical

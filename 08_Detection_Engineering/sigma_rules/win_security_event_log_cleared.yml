@@ -1,0 +1,23 @@
+title: Windows Security Event Log Cleared
+id: auto-generated
+status: experimental
+description: >
+    Detects clearing of Windows Security event log, a common anti-forensics technique
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.defense_evasion
+    - attack.t1070.001
+logsource:
+        product: windows
+        service: security
+detection:
+    selection:
+        EventID: 1102
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: critical

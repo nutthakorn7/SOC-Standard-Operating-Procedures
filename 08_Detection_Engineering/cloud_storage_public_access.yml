@@ -1,0 +1,35 @@
+title: Cloud Storage Public Access Detection
+id: e9f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b
+status: experimental
+description: Detects cloud storage buckets or containers being made publicly accessible — S3, Azure Blob, GCP GCS.
+references:
+    - https://attack.mitre.org/techniques/T1530/
+    - PB-27 Cloud Storage Exposure
+author: SOC-SOP
+date: 2026-02-15
+tags:
+    - attack.collection
+    - attack.t1530
+logsource:
+    product: aws
+    service: cloudtrail
+detection:
+    selection_s3:
+        eventName:
+            - PutBucketPolicy
+            - PutBucketAcl
+            - PutPublicAccessBlock
+        requestParameters|contains:
+            - '"isPublic":true'
+            - "public-read"
+            - "public-read-write"
+    selection_azure:
+        operationName|contains: "MICROSOFT.STORAGE/STORAGEACCOUNTS"
+        properties.publicAccess|contains:
+            - "Blob"
+            - "Container"
+    condition: selection_s3 or selection_azure
+falsepositives:
+    - Public static website hosting
+    - Intentional CDN origin buckets
+level: high

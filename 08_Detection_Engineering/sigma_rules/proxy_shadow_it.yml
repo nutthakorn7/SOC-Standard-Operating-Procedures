@@ -1,0 +1,30 @@
+title: Shadow IT Application Detected
+id: auto-generated
+status: experimental
+description: >
+    Detects access to unauthorized cloud applications and services that bypass corporate IT controls
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.exfiltration
+    - attack.t1567
+logsource:
+        product: proxy
+        category: proxy_access
+detection:
+    selection:
+        cs-uri|contains:
+            - 'wetransfer.com'
+            - 'mega.nz'
+            - 'mediafire.com'
+            - 'anonfiles.com'
+    filter:
+        cs-host|contains:
+            - 'corporate-approved'
+    condition: selection and not filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: medium

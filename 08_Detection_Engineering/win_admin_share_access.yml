@@ -1,0 +1,26 @@
+title: Access to Admin Shares (C$)
+id: win_security_admin_share_access
+status: stable
+description: Detects access to administrative shares (Admin$, C$, D$), often used for lateral movement.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 5140
+        ShareName|endswith:
+            - 'Admin$'
+            - 'C$'
+            - 'D$'
+            - 'IPC$'
+    filter:
+        SubjectUserName|endswith: '$' # Machine accounts
+    condition: selection and not filter
+falsepositives:
+    - Admin workstations performing maintenance.
+level: medium
+tags:
+    - attack.lateral_movement
+    - attack.t1021.002

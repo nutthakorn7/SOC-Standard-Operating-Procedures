@@ -1,0 +1,34 @@
+title: LLM Data Poisoning Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects indicators of training data or RAG knowledge base poisoning
+    including bulk unauthorized modifications and suspicious data imports
+references:
+    - https://atlas.mitre.org/techniques/AML.T0020
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.impact
+    - atlas.aml.t0020
+logsource:
+    product: aws
+    service: cloudtrail
+detection:
+    selection_storage:
+        eventName|contains:
+            - 'PutObject'
+            - 'UploadPart'
+        requestParameters.bucketName|contains:
+            - 'training-data'
+            - 'dataset'
+            - 'knowledge-base'
+            - 'rag-documents'
+    selection_bulk:
+        eventName: 'PutObject'
+        requestParameters.key|re: '.*\.(jsonl|parquet|csv|txt)$'
+    condition: selection_storage or selection_bulk
+falsepositives:
+    - Authorized data pipeline operations
+    - Scheduled training data updates
+level: high

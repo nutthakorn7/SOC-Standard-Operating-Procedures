@@ -1,0 +1,39 @@
+title: USB Removable Media Threat Indicators
+id: auto-generated
+status: experimental
+description: >
+    Detects suspicious USB removable media activity including autorun
+    execution, BadUSB indicators, and unauthorized mass storage access
+references:
+    - https://attack.mitre.org/techniques/T1091/
+    - https://attack.mitre.org/techniques/T1052/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.initial_access
+    - attack.t1091
+    - attack.t1052.001
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_autorun:
+        CommandLine|contains:
+            - 'autorun.inf'
+            - 'autoplay'
+    selection_badusb:
+        Image|endswith:
+            - '\powershell.exe'
+            - '\cmd.exe'
+        ParentImage|endswith: '\explorer.exe'
+        CommandLine|contains:
+            - 'USB'
+            - 'removable'
+    selection_device:
+        EventID: 6416
+        ClassName: 'DiskDrive'
+    condition: selection_autorun or selection_badusb or selection_device
+falsepositives:
+    - Authorized USB device usage
+    - IT provisioning via USB
+level: medium

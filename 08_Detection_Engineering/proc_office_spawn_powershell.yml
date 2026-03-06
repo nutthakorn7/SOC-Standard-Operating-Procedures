@@ -1,0 +1,27 @@
+title: Office Application Spawning PowerShell
+id: proc_creation_office_spawn_powershell
+status: stable
+description: Detects Microsoft Office applications spawning PowerShell, a common phishing technique.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        ParentImage|endswith:
+            - '\WINWORD.EXE'
+            - '\EXCEL.EXE'
+            - '\POWERPNT.EXE'
+            - '\OUTLOOK.EXE'
+        Image|endswith:
+            - '\powershell.exe'
+            - '\pwsh.exe'
+            - '\cmd.exe'
+    condition: selection
+falsepositives:
+    - Administrative scripts via Outlook (Rare)
+level: high
+tags:
+    - attack.execution
+    - attack.t1059.001

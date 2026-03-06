@@ -1,0 +1,24 @@
+title: Generic SQL Injection Pattern
+id: web_sql_injection_patterns
+status: stable
+description: Detects common SQL injection patterns in URL parameters.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: web_server
+    product: nginx
+detection:
+    selection:
+        c-uri-query|contains:
+            - 'UNION SELECT'
+            - 'OR 1=1'
+            - 'SELECT * FROM'
+            - 'DROP TABLE'
+            - '--'
+    condition: selection
+falsepositives:
+    - Educational content about SQLi.
+level: high
+tags:
+    - attack.initial_access
+    - attack.t1190

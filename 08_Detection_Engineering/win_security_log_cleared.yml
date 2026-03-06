@@ -1,0 +1,19 @@
+title: Windows Security Log Cleared
+id: win_security_audit_log_cleared
+status: critical
+description: Detects the clearing of the Windows Security Event Log, a major indicator of compromise.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 1102
+    condition: selection
+falsepositives:
+    - None. This should never happen in production without a Change Request.
+level: critical
+tags:
+    - attack.defense_evasion
+    - attack.t1070.001

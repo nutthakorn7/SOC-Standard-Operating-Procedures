@@ -1,0 +1,28 @@
+title: Encoded PowerShell Command Execution
+id: auto-generated
+status: experimental
+description: >
+    Detects execution of PowerShell with encoded commands, a common technique to obfuscate malicious scripts
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.execution
+    - attack.t1059.001
+logsource:
+        product: windows
+        category: process_creation
+detection:
+    selection:
+        Image|endswith: '\\powershell.exe'
+        CommandLine|contains:
+            - '-EncodedCommand'
+            - '-enc '
+            - '-e '
+            - 'FromBase64String'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

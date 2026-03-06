@@ -1,0 +1,74 @@
+title: Suspicious Network Discovery Activity
+id: d7e3f1a2-4b5c-6d78-9e0f-1a2b3c4d5e6f
+status: production
+level: medium
+description: |
+  Detects execution of network discovery tools and commands commonly used by
+  attackers during internal reconnaissance. Covers port scanning, net commands,
+  and AD enumeration.
+references:
+  - https://attack.mitre.org/techniques/T1046/
+  - https://attack.mitre.org/techniques/T1135/
+  - https://attack.mitre.org/techniques/T1018/
+tags:
+  - attack.discovery
+  - attack.t1046
+  - attack.t1135
+  - attack.t1018
+  - attack.t1016
+  - attack.t1049
+author: SOC SOP Project
+date: 2026/02/16
+
+logsource:
+  category: process_creation
+  product: windows
+
+detection:
+  selection_tools:
+    Image|endswith:
+      - '\nmap.exe'
+      - '\masscan.exe'
+      - '\Advanced IP Scanner.exe'
+      - '\arp-scan.exe'
+      - '\nbtscan.exe'
+      - '\angry_ip_scanner.exe'
+  selection_net_commands:
+    Image|endswith:
+      - '\net.exe'
+      - '\net1.exe'
+    CommandLine|contains:
+      - 'view'
+      - 'share'
+      - 'session'
+      - 'use \\\'
+      - 'group "Domain'
+  selection_nltest:
+    Image|endswith: '\nltest.exe'
+    CommandLine|contains:
+      - '/dclist:'
+      - '/domain_trusts'
+      - '/server:'
+  selection_powershell_ad:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+    CommandLine|contains:
+      - 'Get-ADComputer'
+      - 'Get-ADUser'
+      - 'Get-ADGroup'
+      - 'Get-ADDomain'
+      - 'Get-NetComputer'
+      - 'Get-NetUser'
+      - 'Get-NetGroup'
+      - 'Get-DomainComputer'
+      - 'Invoke-Portscan'
+      - 'Invoke-ShareFinder'
+  selection_arp_sweep:
+    Image|endswith: '\arp.exe'
+    CommandLine|contains: '-a'
+  condition: 1 of selection_*
+falsepositives:
+  - Legitimate IT administration and network inventory tools
+  - Authorized penetration testing
+  - Network monitoring solutions

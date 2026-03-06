@@ -1,0 +1,24 @@
+title: Multiple Failed Login Attempts
+id: auto-generated
+status: experimental
+description: >
+    Detects brute force attacks through multiple failed authentication attempts from a single source
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.credential_access
+    - attack.t1110
+logsource:
+        product: windows
+        service: security
+detection:
+    selection:
+        EventID: 4625
+    timeframe: 10m
+    condition: selection | count() by IpAddress > 10
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

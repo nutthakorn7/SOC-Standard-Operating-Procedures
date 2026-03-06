@@ -1,0 +1,19 @@
+title: New Local User Created
+id: win_security_new_user_created
+status: stable
+description: Detects the creation of a new local user account on a Windows host.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4720
+    condition: selection
+falsepositives:
+    - Admin creating authorized user.
+level: high
+tags:
+    - attack.persistence
+    - attack.t1136.001

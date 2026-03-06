@@ -1,0 +1,30 @@
+title: User Added to Domain Admin Group
+id: auto-generated
+status: experimental
+description: >
+    Detects addition of users to high-privilege groups such as Domain Admins, Enterprise Admins
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.privilege_escalation
+    - attack.t1078.002
+logsource:
+        product: windows
+        service: security
+detection:
+    selection:
+        EventID:
+            - 4728   # Member added to security-enabled global group
+            - 4732   # Member added to security-enabled local group
+            - 4756   # Member added to security-enabled universal group
+        TargetUserName|contains:
+            - 'Domain Admins'
+            - 'Enterprise Admins'
+            - 'Schema Admins'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: critical

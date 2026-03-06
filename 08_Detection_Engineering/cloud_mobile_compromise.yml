@@ -1,0 +1,31 @@
+title: Mobile Device Compromise Indicators
+id: f0a3b4c5-d6e7-8f9a-0b1c-2d3e4f5a6b7c
+status: experimental
+description: Detects mobile device compromise indicators via MDM — jailbreak detection, unauthorized app installation, non-compliance events.
+references:
+    - https://attack.mitre.org/techniques/T1456/
+    - PB-28 Mobile Device Compromise
+author: SOC-SOP
+date: 2026-02-15
+tags:
+    - attack.initial_access
+    - attack.t1456
+logsource:
+    category: mdm
+    product: intune
+detection:
+    selection_jailbreak:
+        ComplianceState: "NonCompliant"
+        Reason|contains:
+            - "jailbreak"
+            - "rooted"
+            - "developer mode"
+    selection_sideload:
+        EventType: "AppInstall"
+        AppSource|contains:
+            - "sideloaded"
+            - "unknown source"
+    condition: selection_jailbreak or selection_sideload
+falsepositives:
+    - Developer devices with legitimate developer mode enabled
+level: medium

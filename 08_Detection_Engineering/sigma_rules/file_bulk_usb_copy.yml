@@ -1,0 +1,27 @@
+title: Bulk File Copy to USB Device
+id: auto-generated
+status: experimental
+description: >
+    Detects large volume of files being copied to removable USB media
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.exfiltration
+    - attack.t1052.001
+logsource:
+        product: windows
+        category: file_event
+detection:
+    selection:
+        TargetFilename|startswith:
+            - 'E:\\'
+            - 'F:\\'
+            - 'G:\\'
+    timeframe: 5m
+    condition: selection | count() > 20
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

@@ -1,0 +1,30 @@
+title: AWS EC2 Cryptomining Activity
+id: auto-generated
+status: experimental
+description: >
+    Detects EC2 instances exhibiting cryptomining behavior through high CPU and unusual network patterns
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.impact
+    - attack.t1496
+logsource:
+        product: aws
+        service: cloudtrail
+detection:
+    selection:
+        eventName:
+            - 'RunInstances'
+            - 'StartInstances'
+    filter:
+        instanceType|contains:
+            - 'p3'
+            - 'p4'
+            - 'g4'
+    condition: selection and filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

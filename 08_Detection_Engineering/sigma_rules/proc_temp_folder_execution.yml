@@ -1,0 +1,30 @@
+title: Process Execution from Temp Folder
+id: auto-generated
+status: experimental
+description: >
+    Detects execution of processes from temporary directories, commonly used by malware for initial execution
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.execution
+    - attack.t1204
+logsource:
+        product: windows
+        category: process_creation
+detection:
+    selection:
+        Image|contains:
+            - '\\Temp\\'
+            - '\\tmp\\'
+            - '\\AppData\\Local\\Temp\\'
+    filter:
+        Image|endswith:
+            - '\\msiexec.exe'
+            - '\\setup.exe'
+    condition: selection and not filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: medium

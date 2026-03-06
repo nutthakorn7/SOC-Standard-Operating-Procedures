@@ -1,0 +1,27 @@
+title: Windows Admin Share Access
+id: auto-generated
+status: experimental
+description: >
+    Detects access to Windows administrative shares (C$, ADMIN$) which may indicate lateral movement
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.lateral_movement
+    - attack.t1021.002
+logsource:
+        product: windows
+        service: security
+detection:
+    selection:
+        EventID: 5140
+        ShareName|contains:
+            - 'C$'
+            - 'ADMIN$'
+            - 'IPC$'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: medium

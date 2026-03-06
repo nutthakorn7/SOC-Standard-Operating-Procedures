@@ -1,0 +1,24 @@
+title: Suspicious Inbox Rule Created
+id: email_new_inbox_rule_suspicious
+status: stable
+description: Detects the creation of inbox rules often used by attackers to hide emails (e.g., Delete, Move to RSS).
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: office365
+    service: exchange
+detection:
+    selection:
+        Operation: 'New-InboxRule'
+        Parameters|contains:
+            - 'DeleteMessage'
+            - 'MoveToFolder'
+            - 'RSS Feeds'
+            - 'Junk Email'
+    condition: selection
+falsepositives:
+    - User organizing their mailbox.
+level: high
+tags:
+    - attack.collection
+    - attack.t1114.003

@@ -1,0 +1,38 @@
+title: Drive-By Download Attempt
+id: auto-generated
+status: experimental
+description: >
+    Detects drive-by download patterns including browser spawning suspicious child
+    processes, downloads from malvertising domains, and exploit kit landing pages
+references:
+    - https://attack.mitre.org/techniques/T1189/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.initial_access
+    - attack.t1189
+    - attack.execution
+    - attack.t1203
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection:
+        ParentImage|endswith:
+            - '\chrome.exe'
+            - '\msedge.exe'
+            - '\firefox.exe'
+            - '\iexplore.exe'
+        Image|endswith:
+            - '\cmd.exe'
+            - '\powershell.exe'
+            - '\wscript.exe'
+            - '\cscript.exe'
+            - '\mshta.exe'
+            - '\rundll32.exe'
+            - '\regsvr32.exe'
+    condition: selection
+falsepositives:
+    - Browser extensions spawning legitimate processes
+    - Web-based development tools
+level: high

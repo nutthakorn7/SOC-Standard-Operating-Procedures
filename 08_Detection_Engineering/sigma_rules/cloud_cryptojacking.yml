@@ -1,0 +1,39 @@
+title: Cloud Cryptojacking Activity
+id: auto-generated
+status: experimental
+description: >
+    Detects cloud cryptojacking indicators including unauthorized GPU/compute
+    instance launches, cost anomalies, and cryptocurrency mining API calls
+references:
+    - https://attack.mitre.org/techniques/T1496/
+author: SOC Team
+date: 2026/03/06
+tags:
+    - attack.impact
+    - attack.t1496
+logsource:
+    product: aws
+    service: cloudtrail
+detection:
+    selection_compute:
+        eventName|contains:
+            - 'RunInstances'
+            - 'CreateFunction'
+        requestParameters.instanceType|contains:
+            - 'p3.'
+            - 'p4.'
+            - 'g4.'
+            - 'g5.'
+            - 'c6g.16xlarge'
+    selection_api_key:
+        eventName|contains:
+            - 'CreateAccessKey'
+            - 'GetCallerIdentity'
+        sourceIPAddress|re: '.*\.(ru|cn|ir)$'
+    selection_cost:
+        eventName: 'BudgetExceeded'
+    condition: selection_compute or selection_api_key or selection_cost
+falsepositives:
+    - Legitimate GPU workloads (ML training, rendering)
+    - Authorized auto-scaling events
+level: critical

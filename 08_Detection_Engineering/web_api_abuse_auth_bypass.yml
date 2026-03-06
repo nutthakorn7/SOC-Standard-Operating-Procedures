@@ -1,0 +1,30 @@
+title: API Authentication Bypass or Enumeration Attempt
+id: web_api_abuse_auth_enum
+status: experimental
+description: Detects patterns of API abuse including BOLA/IDOR attempts via sequential ID enumeration, mass authentication failures, or unauthorized access to admin API endpoints.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: webserver
+    product: generic
+detection:
+    selection_auth_fail:
+        cs-uri-stem|contains:
+            - '/api/'
+            - '/v1/'
+            - '/v2/'
+        sc-status:
+            - 401
+            - 403
+    selection_enum:
+        cs-uri-stem|re: '/api/.*/[0-9]{1,6}$'
+        sc-status: 200
+    timeframe: 5m
+    condition: selection_auth_fail | count(cs-uri-stem) by c-ip > 50 or selection_enum | count() by c-ip > 100
+falsepositives:
+    - Automated API testing tools (Postman, Newman) during QA.
+    - Mobile applications with aggressive retry logic.
+level: high
+tags:
+    - attack.initial_access
+    - attack.t1190

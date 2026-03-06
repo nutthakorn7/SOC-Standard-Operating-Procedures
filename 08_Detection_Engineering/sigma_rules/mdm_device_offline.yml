@@ -1,0 +1,24 @@
+title: MDM Device Offline for Extended Period
+id: auto-generated
+status: experimental
+description: >
+    Detects managed devices that go offline unexpectedly, which may indicate theft, loss, or tampering
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.impact
+    - attack.t1485
+logsource:
+        product: mdm
+        service: compliance
+detection:
+    selection:
+        lastSyncDateTime|before: '72h'
+        managementState: 'managed'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: medium

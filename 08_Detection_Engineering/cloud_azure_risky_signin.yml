@@ -1,0 +1,23 @@
+title: Azure AD Risky Sign-in (Impossible Travel)
+id: cloud_azure_risky_signin
+status: experimental
+description: Detects sign-ins flagged as "Impossible Travel" or "Anonymized IP" by Identity Protection.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: azure
+    service: signinlogs
+detection:
+    selection:
+        riskDetail: 
+            - impossibleTravel
+            - anonymizedIPAddress
+            - unfamiliarFeatures
+        riskLevel: 
+            - high
+            - medium
+    condition: selection
+level: high
+tags:
+    - attack.initial_access
+    - attack.valid_accounts

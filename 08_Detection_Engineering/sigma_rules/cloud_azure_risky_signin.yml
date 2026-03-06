@@ -1,0 +1,25 @@
+title: Azure AD Risky Sign-In Detected
+id: auto-generated
+status: experimental
+description: >
+    Detects Azure AD sign-ins classified as risky by Azure Identity Protection
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.initial_access
+    - attack.t1078
+logsource:
+        product: azure
+        service: signinlogs
+detection:
+    selection:
+        riskLevelDuringSignIn:
+            - 'high'
+            - 'medium'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

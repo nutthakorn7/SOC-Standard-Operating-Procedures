@@ -1,0 +1,23 @@
+title: Multiple Failed Login Attempts (Brute Force)
+id: win_security_multiple_failed_logins
+status: stable
+description: Detects multiple failed login attempts for a single user within a short timeframe.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    product: windows
+    service: security
+    definition: 'Requirements: Audit Logon enabled'
+detection:
+    selection:
+        EventID: 4625
+        LogonType: 2 # Interactive
+    timeframe: 1m
+    condition: selection | count() > 10
+falsepositives:
+    - User forgot password.
+    - Application using wrong credentials.
+level: medium
+tags:
+    - attack.credential_access
+    - attack.t1110

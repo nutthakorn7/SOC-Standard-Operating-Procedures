@@ -1,0 +1,24 @@
+title: Windows Security Log Cleared (System)
+id: auto-generated
+status: experimental
+description: >
+    Detects clearing of Windows event logs via System event channel
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.defense_evasion
+    - attack.t1070.001
+logsource:
+        product: windows
+        service: system
+detection:
+    selection:
+        EventID: 104
+        Channel: 'Security'
+    condition: selection
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: critical

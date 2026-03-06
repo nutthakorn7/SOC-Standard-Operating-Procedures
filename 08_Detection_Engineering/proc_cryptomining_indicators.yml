@@ -1,0 +1,33 @@
+title: Cryptomining Process or Stratum Protocol Detected
+id: proc_cryptomining_stratum_detection
+status: experimental
+description: Detects known cryptomining binaries (xmrig, cpuminer, minerd) or processes using the Stratum mining protocol, indicating unauthorized cryptocurrency mining.
+author: SOC Standard
+date: 2026-02-15
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_binary:
+        Image|endswith:
+            - '\xmrig.exe'
+            - '\cpuminer.exe'
+            - '\minerd.exe'
+            - '\nbminer.exe'
+            - '\t-rex.exe'
+            - '\phoenixminer.exe'
+    selection_stratum:
+        CommandLine|contains:
+            - 'stratum+tcp://'
+            - 'stratum+ssl://'
+            - '-o pool.'
+            - '--coin'
+            - '-a randomx'
+            - '-a ethash'
+    condition: selection_binary or selection_stratum
+falsepositives:
+    - Authorized mining operations (very rare in enterprise environments).
+level: critical
+tags:
+    - attack.impact
+    - attack.t1496

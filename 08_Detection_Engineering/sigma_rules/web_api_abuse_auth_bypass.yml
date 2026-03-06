@@ -1,0 +1,28 @@
+title: API Authentication Bypass Attempt
+id: auto-generated
+status: experimental
+description: >
+    Detects attempts to bypass API authentication through parameter manipulation or missing tokens
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.initial_access
+    - attack.t1190
+logsource:
+        product: webserver
+        category: web_access
+detection:
+    selection:
+        cs-uri|contains:
+            - '/api/'
+        sc-status:
+            - 401
+            - 403
+    timeframe: 5m
+    condition: selection | count() by src_ip > 20
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high

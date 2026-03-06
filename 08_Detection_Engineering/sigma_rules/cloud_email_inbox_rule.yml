@@ -1,0 +1,30 @@
+title: Suspicious Email Inbox Rule Created
+id: auto-generated
+status: experimental
+description: >
+    Detects creation of email inbox rules that forward or delete messages, common in BEC and phishing
+references:
+    - https://attack.mitre.org/
+author: SOC Team
+date: 2026/02/16
+tags:
+    - attack.collection
+    - attack.t1114.003
+logsource:
+        product: office365
+        service: exchange
+detection:
+    selection:
+        Operation:
+            - 'New-InboxRule'
+            - 'Set-InboxRule'
+    filter:
+        Parameters|contains:
+            - 'ForwardTo'
+            - 'RedirectTo'
+            - 'DeleteMessage'
+    condition: selection and filter
+falsepositives:
+    - Legitimate administrative activity
+    - Authorized testing
+level: high
