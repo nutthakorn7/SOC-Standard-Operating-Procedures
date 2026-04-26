@@ -1,7 +1,10 @@
 {
   "slide_count": 142,
   "output": "/Users/pop7/Code/SOCSOP/presentation_workspace/soc-1day-workshop/output/output.pptx",
+  "pdf": "/Users/pop7/Code/SOCSOP/presentation_workspace/soc-1day-workshop/scratch/exports/output.pdf",
   "previews": "/Users/pop7/Code/SOCSOP/presentation_workspace/soc-1day-workshop/scratch/previews",
+  "contact_sheet": "/Users/pop7/Code/SOCSOP/presentation_workspace/soc-1day-workshop/scratch/contact-sheet.png",
+  "specific_artifact_slides": 30,
   "sources": [
     "Repo: 00_Getting_Started, 01_SOC_Fundamentals",
     "Repo: SOC_Building_Roadmap, Infrastructure_Setup, Technology_Stack",
@@ -12,5 +15,5 @@
     "Repo: 11_Reporting_Templates",
     "Repo: 09_Simulation_Testing, 10_Training_Onboarding"
   ],
-  "generated_at": "2026-04-26T17:50:04.542Z"
+  "generated_at": "2026-04-26T18:07:29.337Z"
 }

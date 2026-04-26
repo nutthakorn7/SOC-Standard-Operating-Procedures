@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createRequire } from "node:module";
 import {
   Presentation,
   PresentationFile,
@@ -19,6 +20,7 @@ import {
   auto,
 } from "@oai/artifact-tool";
 
+const runtimeRequire = createRequire(process.execPath);
 const ROOT = path.resolve("../..");
 const WORKSPACE = path.resolve(".");
 const OUT = path.join(WORKSPACE, "output");
@@ -26,11 +28,15 @@ const SCRATCH = path.join(WORKSPACE, "scratch");
 const PREVIEWS = path.join(SCRATCH, "previews");
 const REPORTS = path.join(SCRATCH, "reports");
 const ASSETS = path.join(SCRATCH, "assets");
+const EXPORTS = path.join(SCRATCH, "exports");
+const CONTACT_SHEET = path.join(SCRATCH, "contact-sheet.png");
+const PDF_OUTPUT = path.join(EXPORTS, "output.pdf");
 
 fs.mkdirSync(OUT, { recursive: true });
 fs.mkdirSync(PREVIEWS, { recursive: true });
 fs.mkdirSync(REPORTS, { recursive: true });
 fs.mkdirSync(ASSETS, { recursive: true });
+fs.mkdirSync(EXPORTS, { recursive: true });
 
 const HERO_IMAGE = path.join(ASSETS, "soc_header.jpg");
 const SOURCE_HERO_IMAGE = path.join(ROOT, "assets", "soc_header.png");
@@ -108,6 +114,87 @@ const scenarioThread = [
   [123, "Executives need facts, assumptions, decisions, and next review time."],
   [137, "Capstone: teams make the full architecture, staffing, detection, IR, legal, and reporting call."],
 ];
+
+const artifactBlueprints = {
+  socScope: {
+    title: "SOC scope canvas",
+    lanes: ["In scope", "Out of scope", "Decision rights", "Escalation"],
+    fields: ["Assets", "Services", "Owners", "Evidence"],
+    cue: "Use this to stop scope drift before tools and shifts are designed.",
+  },
+  serviceCatalog: {
+    title: "SOC service catalog",
+    lanes: ["Monitor", "Triage", "Respond", "Report"],
+    fields: ["Service owner", "SLA", "Inputs", "Outputs"],
+    cue: "A service is real only when owner, trigger, evidence, and handoff are named.",
+  },
+  shiftHandoff: {
+    title: "Shift handoff board",
+    lanes: ["Active cases", "Pending decisions", "Fragile services", "Watch list"],
+    fields: ["Case", "Owner", "Next check", "Escalation"],
+    cue: "The next shift should continue without rediscovering the same facts.",
+  },
+  alertTicket: {
+    title: "Alert triage ticket",
+    lanes: ["Signal", "Context", "Decision", "Route"],
+    fields: ["Asset", "Identity", "Severity", "Closure reason"],
+    cue: "A queue item becomes useful when it carries enough context to decide.",
+  },
+  detectionKanban: {
+    title: "Detection backlog kanban",
+    lanes: ["Idea", "Data ready", "Testing", "Production"],
+    fields: ["Threat", "Telemetry", "Owner", "Validation"],
+    cue: "Backlog quality is better than rule count.",
+  },
+  ruleSnippet: {
+    title: "Detection rule snippet",
+    lanes: ["Sigma", "YARA", "Test data", "Playbook"],
+    fields: ["Technique", "Fields", "False positives", "Owner"],
+    cue: "Portable rules still need local validation and response mapping.",
+  },
+  playbookCatalog: {
+    title: "Playbook catalog card",
+    lanes: ["Trigger", "Triage", "Contain", "Recover"],
+    fields: ["PB ID", "Severity", "Owner", "Evidence"],
+    cue: "Playbooks become operational when they connect trigger, decision, authority, and evidence.",
+  },
+  coverageHeatmap: {
+    title: "Coverage heatmap",
+    lanes: ["Threat", "Telemetry", "Detection", "Response"],
+    fields: ["Covered", "Partial", "Missing", "Owner"],
+    cue: "Coverage is not complete until telemetry, detection, playbook, and owner all exist.",
+  },
+  evidencePackage: {
+    title: "Evidence package",
+    lanes: ["Timeline", "Logs", "Artifacts", "Custody"],
+    fields: ["Source", "Hash", "Collector", "Retention"],
+    cue: "Evidence quality decides whether legal and executive decisions can be defended.",
+  },
+  decisionLog: {
+    title: "Incident decision log",
+    lanes: ["Decision", "Facts", "Approver", "Next review"],
+    fields: ["Time", "Options", "Risk", "Rationale"],
+    cue: "Separate what is known from what is assumed.",
+  },
+  legalEscalation: {
+    title: "Thai legal checkpoint",
+    lanes: ["Trigger", "SOC action", "Owner", "Notify?"],
+    fields: ["PDPA", "Computer Crime", "Cybersecurity", "E-records"],
+    cue: "SOC opens the checkpoint; Legal/DPO/CISO decides notification posture.",
+  },
+  executiveBrief: {
+    title: "Executive brief",
+    lanes: ["Facts", "Impact", "Decision", "Ask"],
+    fields: ["Confirmed", "Assumed", "Open", "Next update"],
+    cue: "Executives need the decision state, not analyst-level detail.",
+  },
+  trainingPath: {
+    title: "Capability path",
+    lanes: ["Onboard", "Shadow", "Handle", "Improve"],
+    fields: ["Skill", "Evidence", "Coach", "Gate"],
+    cue: "Training is ready when performance evidence exists.",
+  },
+};
 
 const modules = [
   {
@@ -1030,7 +1117,7 @@ function fallbackPoints(title) {
   }
   if (title.includes("worksheet")) {
     return [
-      "Complete the worksheet as if it will become a real operating artifact.",
+      "Complete the worksheet as if it will become a real workshop output.",
       "Write assumptions separately from confirmed facts.",
       "Prepare a three-minute debrief with owner, evidence, and next step.",
     ];
@@ -1055,17 +1142,25 @@ function thaiNote(slideNo, moduleTitle, title, points, kind, interaction) {
       ? "ให้แบ่งกลุ่ม ทำ artifact จริง และบังคับให้ระบุ owner/evidence/next action"
       : interaction === "DECISION"
         ? "หยุดถาม decision point ก่อนอธิบายต่อ เพื่อให้ผู้เรียนคิดจากบริบทองค์กรจริง"
-        : "เล่าเป็น operating pattern แล้วโยงไปยัง artifact ที่ต้องได้";
+        : "เล่าเป็น operating pattern แล้วโยงไปยัง workshop output ที่ต้องได้";
+  const timing =
+    kind === "workshop" || kind === "worksheet"
+      ? "เวลาแนะนำ: 3 นาทีตั้งโจทย์ / 10-15 นาทีทำกลุ่ม / 3 นาที debrief"
+      : interaction === "DECISION"
+        ? "เวลาแนะนำ: 4 นาทีอธิบาย / 2 นาทีถาม decision checkpoint"
+        : "เวลาแนะนำ: 3-5 นาทีอธิบาย แล้วถามตัวอย่างจากองค์กรผู้เรียน";
   return [
     `สไลด์ ${slideNo}: ${title}`,
     `Module: ${moduleTitle}`,
     `โหมดการสอน: ${interaction}`,
+    timing,
     `แนวทางผู้สอน: ${activityCue}`,
     "โยงกับบทบาท: CISO ตัดสินใจความเสี่ยง, SOC Manager คุม workflow, Analyst/Engineer/IR สร้าง evidence และ action",
     `ประเด็นหลัก: ${points[0] || title}`,
     "ถามผู้เรียน: ในองค์กรของคุณ owner, evidence และ next action คือใคร/อะไร",
-    "จุดที่มักพลาด: ตอบเป็นชื่อ tool แทนที่จะตอบเป็น workflow, evidence, authority และ operating artifact",
-    "ผลลัพธ์ที่ต้องได้: decision หรือ artifact ที่เอาไปใช้ต่อได้ ไม่ใช่แค่ความเข้าใจเชิงทฤษฎี",
+    "จุดที่มักพลาด: ตอบเป็นชื่อ tool แทนที่จะตอบเป็น workflow, evidence, authority และ owner",
+    "คำตอบที่คาดหวัง: ระบุ decision, owner, evidence path, missing facts และ next review",
+    "ผลลัพธ์ที่ต้องได้: workshop output ที่เอาไปใช้ต่อได้ ไม่ใช่แค่ความเข้าใจเชิงทฤษฎี",
   ].join("\n");
 }
 
@@ -1084,6 +1179,7 @@ function makeSlides() {
       else if (title.includes("agenda")) kind = "agenda";
       const cleaned = cleanTitle(title);
       const interaction = interactionFor(title, kind);
+      const artifactType = artifactTypeFor(cleaned);
       out.push({
         no: slideNo,
         title: cleaned,
@@ -1094,7 +1190,8 @@ function makeSlides() {
         accent: module.accent,
         source: module.source,
         kind,
-        visual: visualModeFor(cleaned, kind, tableRows, moduleIndex === 0 && slideNo !== 1),
+        artifactType,
+        visual: visualModeFor(cleaned, kind, tableRows, moduleIndex === 0 && slideNo !== 1, artifactType),
         interaction,
         scenario: scenarioForSlide(slideNo),
         points,
@@ -1131,9 +1228,29 @@ function scenarioForSlide(slideNo) {
   return current;
 }
 
-function visualModeFor(title, kind, tableRows, isModuleStart) {
+function artifactTypeFor(title) {
+  if (/service catalog|what the SOC owns/i.test(title)) return "serviceCatalog";
+  if (/shift handoff/i.test(title)) return "shiftHandoff";
+  if (/alert intake|triage flow/i.test(title)) return "alertTicket";
+  if (/detection backlog|promotion workflow/i.test(title)) return "detectionKanban";
+  if (/Sigma|YARA/i.test(title)) return "ruleSnippet";
+  if (/Runbooks vs playbooks|Playbook operating pattern/i.test(title)) return "playbookCatalog";
+  if (/coverage matrix|coverage gaps|coverage management/i.test(title)) return "coverageHeatmap";
+  if (/evidence handling|chain of custody|evidence package/i.test(title)) return "evidencePackage";
+  if (/decision log|decision logging/i.test(title)) return "decisionLog";
+  if (/Thai legal|Notification decision|PDPA operating|Computer-Related|Cybersecurity Act|Electronic Transactions|NCSA|ThaiCERT/i.test(title)) {
+    return "legalEscalation";
+  }
+  if (/Executive dashboard|Board-level|executive escalation brief|Incident report structure|Monthly SOC report/i.test(title)) return "executiveBrief";
+  if (/onboarding path|Analyst development|Certification path|training/i.test(title)) return "trainingPath";
+  if (/SOC service boundaries|SOC scope|target state/i.test(title)) return "socScope";
+  return null;
+}
+
+function visualModeFor(title, kind, tableRows, isModuleStart, artifactType) {
   if (kind === "cover" || kind === "agenda") return kind;
   if (kind === "workshop" || kind === "worksheet") return "workshop";
+  if (artifactType && !tableRows) return "specificArtifact";
   if (tableRows) return "table";
   if (/repo maps|repository|repo re-entry/i.test(title)) return "repoVisual";
   if (isModuleStart) return "module";
@@ -1668,6 +1785,212 @@ function artifactSlide(presentation, slide) {
   return s;
 }
 
+function specificArtifactSlide(presentation, slide) {
+  const s = presentation.slides.add();
+  const ribbon = scenarioRibbon(slide);
+  const blueprint = artifactBlueprints[slide.artifactType] || artifactBlueprints.serviceCatalog;
+  const sampleRows = sampleRowsForArtifact(slide.artifactType);
+  s.compose(
+    column({ width: fill, height: fill, padding: { x: 82, y: 58 }, gap: ribbon ? 20 : 28 }, [
+      titleStack(slide, "Workshop output visual"),
+      ...(ribbon ? [ribbon] : []),
+      grid({ width: fill, height: grow(1), columns: [fr(1.08), fr(0.92)], columnGap: 44 }, [
+        panel(
+          {
+            width: fill,
+            height: fill,
+            fill: theme.paper,
+            stroke: theme.line,
+            borderRadius: 16,
+            padding: { x: 26, y: 24 },
+          },
+          column({ width: fill, height: fill, gap: 16 }, [
+            row({ width: fill, height: hug, gap: 16 }, [
+              T(blueprint.title, { width: fill, fontSize: 28, bold: true, color: slide.accent }),
+              T("Reusable SOC artifact", { width: wrap(230), fontSize: 15, bold: true, color: theme.muted }),
+            ]),
+            grid(
+              { width: fill, height: fixed(132), columns: [fr(1), fr(1), fr(1), fr(1)], columnGap: 12 },
+              blueprint.lanes.map((lane, i) =>
+                panel(
+                  {
+                    width: fill,
+                    height: fill,
+                    fill: i === 0 ? theme.ink : i === 2 ? theme.softAmber : theme.paper,
+                    stroke: i === 0 ? theme.ink : theme.line,
+                    borderRadius: 12,
+                    padding: { x: 14, y: 16 },
+                  },
+                  column({ width: fill, height: hug, gap: 8 }, [
+                    T(String(i + 1), { fontSize: 18, bold: true, color: i === 0 ? theme.white : slide.accent }),
+                    T(lane, { fontSize: 20, bold: true, color: i === 0 ? theme.white : theme.ink }),
+                  ]),
+                ),
+              ),
+            ),
+            T("Example fields", { fontSize: 20, bold: true, color: theme.muted }),
+            ...sampleRows.map((rowData, idx) =>
+              grid(
+                { width: fill, height: fixed(58), columns: [fixed(128), fr(1), fr(1), fr(1)], columnGap: 10 },
+                rowData.map((cell, cellIdx) =>
+                  panel(
+                    {
+                      width: fill,
+                      height: fill,
+                      fill: idx === 0 ? slide.accent : cellIdx === 0 ? "#F3F1EA" : theme.paper,
+                      stroke: idx === 0 ? slide.accent : theme.line,
+                      borderRadius: 8,
+                      padding: { x: 12, y: 12 },
+                    },
+                    T(cell, {
+                      fontSize: idx === 0 ? 15 : 16,
+                      bold: idx === 0 || cellIdx === 0,
+                      color: idx === 0 ? theme.white : theme.ink,
+                    }),
+                  ),
+                ),
+              ),
+            ),
+          ]),
+        ),
+        column({ width: fill, height: fill, gap: 16 }, [
+          panel(
+            {
+              width: fill,
+              height: fixed(132),
+              fill: theme.softGreen,
+              stroke: "#B9DED2",
+              borderRadius: 14,
+              padding: { x: 24, y: 20 },
+            },
+            column({ width: fill, height: hug, gap: 8 }, [
+              T("Facilitator cue", { fontSize: 18, bold: true, color: theme.green }),
+              T(blueprint.cue, { fontSize: 23, bold: true, color: theme.ink }),
+            ]),
+          ),
+          T("Use this prompt", { fontSize: 22, bold: true, color: slide.accent }),
+          ...slide.points.slice(0, 3).map((p, i) =>
+            panel(
+              {
+                width: fill,
+                height: fixed(96),
+                fill: i === 0 ? "#F3F1EA" : theme.paper,
+                stroke: theme.line,
+                borderRadius: 12,
+                padding: { x: 20, y: 16 },
+              },
+              T(p, { fontSize: i === 0 ? 22 : 20, bold: i === 0, color: theme.ink }),
+            ),
+          ),
+          panel(
+            {
+              width: fill,
+              height: fixed(106),
+              fill: theme.softTeal,
+              stroke: "#B9E0E8",
+              borderRadius: 12,
+              padding: { x: 20, y: 16 },
+            },
+            T(`Minimum output: ${blueprint.fields.join(" + ")}`, {
+              fontSize: 21,
+              bold: true,
+              color: theme.teal,
+            }),
+          ),
+        ]),
+      ]),
+      footer(slide),
+    ]),
+    { frame: { left: 0, top: 0, width: W, height: H }, baseUnit: 8 },
+  );
+  s.speakerNotes.setText(slide.notes);
+  return s;
+}
+
+function sampleRowsForArtifact(type) {
+  const rows = {
+    socScope: [
+      ["Area", "Included", "Excluded", "Owner"],
+      ["Asset", "[SYSTEM]", "[LEGACY]", "[OWNER]"],
+      ["Action", "Monitor", "No contain", "CISO"],
+      ["Review", "Monthly", "By exception", "SOC Mgr"],
+    ],
+    serviceCatalog: [
+      ["Service", "Trigger", "Output", "Owner"],
+      ["Triage", "Alert", "Case decision", "SOC"],
+      ["IR support", "P2+", "Evidence pack", "IR"],
+      ["Reporting", "Monthly", "Decision pack", "SOC Mgr"],
+    ],
+    shiftHandoff: [
+      ["Item", "Status", "Next check", "Owner"],
+      ["Case-001", "P2 open", "14:00", "T2"],
+      ["VIP login", "Watch", "Hourly", "T1"],
+      ["Firewall", "Fragile", "On change", "NetOps"],
+    ],
+    alertTicket: [
+      ["Field", "Example", "Decision use", "Owner"],
+      ["Asset", "[SYSTEM]", "Severity", "T1"],
+      ["Identity", "[USER]", "Scope", "T2"],
+      ["Close reason", "Benign", "Tuning", "Engineer"],
+    ],
+    detectionKanban: [
+      ["Backlog", "Data", "Test", "Owner"],
+      ["ATO", "Identity", "Atomic", "Engineer"],
+      ["Exfil", "Proxy/DLP", "Historical", "SOC"],
+      ["Ransomware", "EDR", "Purple team", "IR"],
+    ],
+    ruleSnippet: [
+      ["Rule", "Detection", "Test", "Playbook"],
+      ["Sigma", "failed logins", "sample logs", "PB-04"],
+      ["YARA", "suspicious file", "known sample", "PB-03"],
+      ["Owner", "Engineer", "Peer review", "SOC Mgr"],
+    ],
+    playbookCatalog: [
+      ["PB ID", "Trigger", "Evidence", "Owner"],
+      ["PB-01", "Phishing", "Email + URL", "SOC"],
+      ["PB-02", "Ransomware", "EDR + files", "IR"],
+      ["PB-05", "Account takeover", "Identity logs", "T2"],
+    ],
+    coverageHeatmap: [
+      ["Threat", "Telemetry", "Detection", "Response"],
+      ["Phishing", "Ready", "Ready", "Partial"],
+      ["ATO", "Ready", "Partial", "Ready"],
+      ["Exfil", "Missing", "Missing", "Partial"],
+    ],
+    evidencePackage: [
+      ["Evidence", "Source", "Integrity", "Owner"],
+      ["Timeline", "Case system", "Versioned", "SOC"],
+      ["Logs", "SIEM", "Retained", "Engineer"],
+      ["Artifact", "Endpoint", "Hashed", "IR"],
+    ],
+    decisionLog: [
+      ["Time", "Decision", "Evidence", "Approver"],
+      ["10:30", "Disable acct", "auth logs", "SOC Mgr"],
+      ["11:00", "Open PDPA", "data access", "Legal"],
+      ["12:00", "Brief exec", "impact", "CISO"],
+    ],
+    legalEscalation: [
+      ["Trigger", "SOC action", "Owner", "Decision"],
+      ["PDPA", "Data facts", "DPO", "Notify?"],
+      ["Crime Act", "Traffic logs", "Legal", "Report?"],
+      ["Cyber Act", "Service impact", "CISO", "Coordinate?"],
+    ],
+    executiveBrief: [
+      ["Section", "Content", "Confidence", "Owner"],
+      ["Facts", "Observed", "High", "SOC"],
+      ["Impact", "Estimated", "Medium", "Business"],
+      ["Ask", "Decision", "High", "CISO"],
+    ],
+    trainingPath: [
+      ["Stage", "Skill", "Evidence", "Gate"],
+      ["Onboard", "SOP", "Checklist", "Lead"],
+      ["Shadow", "Triage", "Cases", "T2"],
+      ["Handle", "Escalate", "Review", "SOC Mgr"],
+    ],
+  };
+  return rows[type] || rows.serviceCatalog;
+}
+
 function repoVisualSlide(presentation, slide) {
   const s = presentation.slides.add();
   const ribbon = scenarioRibbon(slide);
@@ -1855,7 +2178,7 @@ function sideArtifact(slide) {
     ]);
   }
   return column({ width: fill, height: fill, gap: 16 }, [
-    T("Operating artifact", { fontSize: 24, bold: true, color: slide.accent }),
+    T("Workshop Output", { fontSize: 24, bold: true, color: slide.accent }),
     panel(
       {
         width: fill,
@@ -1976,8 +2299,72 @@ async function exportPreview(presentation, slides) {
   }
   fs.writeFileSync(
     path.join(REPORTS, "slide-manifest.json"),
-    `${JSON.stringify(slides.map((s) => ({ no: s.no, title: s.title, module: s.module, kind: s.kind })), null, 2)}\n`,
+    `${JSON.stringify(slides.map((s) => ({ no: s.no, title: s.title, module: s.module, kind: s.kind, visual: s.visual, artifactType: s.artifactType })), null, 2)}\n`,
   );
+}
+
+async function exportPdfFromPreviews(slides) {
+  const { PDFDocument } = runtimeRequire("pdf-lib");
+  const pdf = await PDFDocument.create();
+  for (let idx = 0; idx < slides.length; idx += 1) {
+    const pngPath = path.join(PREVIEWS, `slide-${String(idx + 1).padStart(3, "0")}.png`);
+    const png = await pdf.embedPng(fs.readFileSync(pngPath));
+    const page = pdf.addPage([W, H]);
+    page.drawImage(png, { x: 0, y: 0, width: W, height: H });
+  }
+  fs.writeFileSync(PDF_OUTPUT, await pdf.save());
+}
+
+async function exportContactSheet(slides) {
+  const sharp = runtimeRequire("sharp");
+  const cols = 8;
+  const thumbW = 240;
+  const thumbH = 135;
+  const gap = 18;
+  const labelH = 30;
+  const pad = 32;
+  const rows = Math.ceil(slides.length / cols);
+  const sheetW = pad * 2 + cols * thumbW + (cols - 1) * gap;
+  const sheetH = pad * 2 + rows * (thumbH + labelH) + (rows - 1) * gap;
+  const composites = [];
+  for (let i = 0; i < slides.length; i += 1) {
+    const colIdx = i % cols;
+    const rowIdx = Math.floor(i / cols);
+    const left = pad + colIdx * (thumbW + gap);
+    const top = pad + rowIdx * (thumbH + labelH + gap);
+    const input = await sharp(path.join(PREVIEWS, `slide-${String(i + 1).padStart(3, "0")}.png`))
+      .resize(thumbW, thumbH, { fit: "cover" })
+      .png()
+      .toBuffer();
+    const label = Buffer.from(
+      `<svg width="${thumbW}" height="${labelH}" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" fill="#F7F5EF"/>
+        <text x="0" y="21" font-family="Aptos, Arial, sans-serif" font-size="18" font-weight="700" fill="#17202A">${String(i + 1).padStart(3, "0")}</text>
+        <text x="48" y="21" font-family="Aptos, Arial, sans-serif" font-size="13" fill="#52616B">${escapeXml(slides[i].interaction)} / ${escapeXml(slides[i].visual)}</text>
+      </svg>`,
+    );
+    composites.push({ input, left, top });
+    composites.push({ input: label, left, top: top + thumbH });
+  }
+  await sharp({
+    create: {
+      width: sheetW,
+      height: sheetH,
+      channels: 4,
+      background: "#F7F5EF",
+    },
+  })
+    .composite(composites)
+    .png()
+    .toFile(CONTACT_SHEET);
+}
+
+function escapeXml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 async function main() {
@@ -1991,6 +2378,7 @@ async function main() {
     else if (slide.visual === "workshop") workshopSlide(presentation, slide);
     else if (slide.visual === "flow") flowSlide(presentation, slide);
     else if (slide.visual === "dashboard") dashboardSlide(presentation, slide);
+    else if (slide.visual === "specificArtifact") specificArtifactSlide(presentation, slide);
     else if (slide.visual === "artifact") artifactSlide(presentation, slide);
     else if (slide.visual === "repoVisual") repoVisualSlide(presentation, slide);
     else standardSlide(presentation, slide);
@@ -1998,13 +2386,18 @@ async function main() {
   const pptxBlob = await PresentationFile.exportPptx(presentation);
   await pptxBlob.save(path.join(OUT, "output.pptx"));
   await exportPreview(presentation, slides);
+  await exportPdfFromPreviews(slides);
+  await exportContactSheet(slides);
   fs.writeFileSync(
     path.join(REPORTS, "build-report.json"),
     `${JSON.stringify(
       {
         slide_count: slides.length,
         output: path.join(OUT, "output.pptx"),
+        pdf: PDF_OUTPUT,
         previews: PREVIEWS,
+        contact_sheet: CONTACT_SHEET,
+        specific_artifact_slides: slides.filter((s) => s.visual === "specificArtifact").length,
         sources: Object.values(sourceRefs),
         generated_at: new Date().toISOString(),
       },

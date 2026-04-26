@@ -3,852 +3,1136 @@
     "no": 1,
     "title": "1-Day SOC Building and Operations Workshop",
     "module": "Opening and Workshop Framing",
-    "kind": "cover"
+    "kind": "cover",
+    "visual": "cover",
+    "artifactType": null
   },
   {
     "no": 2,
     "title": "Why this workshop exists",
     "module": "Opening and Workshop Framing",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 3,
     "title": "Audience map by role",
     "module": "Opening and Workshop Framing",
-    "kind": "content"
+    "kind": "content",
+    "visual": "artifact",
+    "artifactType": null
   },
   {
     "no": 4,
     "title": "Learning outcomes",
     "module": "Opening and Workshop Framing",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 5,
     "title": "Full-day agenda",
     "module": "Opening and Workshop Framing",
-    "kind": "agenda"
+    "kind": "agenda",
+    "visual": "agenda",
+    "artifactType": null
   },
   {
     "no": 6,
     "title": "How to use this deck during the workshop",
     "module": "Opening and Workshop Framing",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 7,
     "title": "How this repo maps to the workshop",
     "module": "Opening and Workshop Framing",
-    "kind": "content"
+    "kind": "content",
+    "visual": "repoVisual",
+    "artifactType": null
   },
   {
     "no": 8,
     "title": "Workshop rules: practical outputs, not theory only",
     "module": "Opening and Workshop Framing",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 9,
     "title": "What a SOC is and is not",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "module",
+    "artifactType": null
   },
   {
     "no": 10,
     "title": "Business outcomes of a SOC",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 11,
     "title": "SOC service boundaries",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "socScope"
   },
   {
     "no": 12,
     "title": "SOC maturity stages",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 13,
     "title": "In-house vs MSSP vs hybrid model",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 14,
     "title": "When each operating model fails",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 15,
     "title": "Minimum viable SOC vs mature SOC",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 16,
     "title": "Core SOC services",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "artifact",
+    "artifactType": null
   },
   {
     "no": 17,
     "title": "People, process, technology operating triangle",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 18,
     "title": "Common early-stage mistakes",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 19,
     "title": "Common scale-stage mistakes",
     "module": "SOC Foundations and Operating Models",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 20,
     "title": "SOC maturity comparison matrix",
     "module": "SOC Foundations and Operating Models",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 21,
     "title": "operating model comparison table",
     "module": "SOC Foundations and Operating Models",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 22,
     "title": "Workshop: define SOC scope and target state",
     "module": "SOC Foundations and Operating Models",
-    "kind": "workshop"
+    "kind": "workshop",
+    "visual": "workshop",
+    "artifactType": "socScope"
   },
   {
     "no": 23,
     "title": "What a practical SOC blueprint looks like",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "module",
+    "artifactType": null
   },
   {
     "no": 24,
     "title": "High-level SOC architecture",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 25,
     "title": "Telemetry pipeline overview",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 26,
     "title": "Endpoint telemetry layer",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 27,
     "title": "Identity and authentication telemetry layer",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 28,
     "title": "Network telemetry layer",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 29,
     "title": "Email and collaboration telemetry layer",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 30,
     "title": "Cloud and SaaS telemetry layer",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 31,
     "title": "Application and database telemetry layer",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 32,
     "title": "Alerting and enrichment flow",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 33,
     "title": "Case management and response flow",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 34,
     "title": "Log-source prioritization model",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 35,
     "title": "Trust boundaries and data sensitivity zones",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 36,
     "title": "architecture pattern comparison",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 37,
     "title": "telemetry coverage and blind spots",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 38,
     "title": "Worksheet: draft target-state architecture",
     "module": "SOC Blueprint, Architecture, and Telemetry Flow",
-    "kind": "workshop"
+    "kind": "workshop",
+    "visual": "workshop",
+    "artifactType": null
   },
   {
     "no": 39,
     "title": "SOC organization structure",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "module",
+    "artifactType": null
   },
   {
     "no": 40,
     "title": "Role map: CISO to analyst",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "artifact",
+    "artifactType": null
   },
   {
     "no": 41,
     "title": "Tier 1 responsibilities",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 42,
     "title": "Tier 2 responsibilities",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 43,
     "title": "Tier 3 / IR responsibilities",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 44,
     "title": "Security engineering responsibilities",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 45,
     "title": "SOC Manager responsibilities",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 46,
     "title": "CISO responsibilities",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 47,
     "title": "Skill matrix across roles",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "artifact",
+    "artifactType": null
   },
   {
     "no": 48,
     "title": "Staffing model basics",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 49,
     "title": "8x5 vs extended-hours vs 24x7",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 50,
     "title": "Shift design patterns",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 51,
     "title": "Shift handoff model",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "shiftHandoff"
   },
   {
     "no": 52,
     "title": "staffing benchmark examples",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 53,
     "title": "role-to-responsibility matrix",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 54,
     "title": "Workshop: design staffing and shift coverage",
     "module": "People, Roles, Staffing, and Shift Operations",
-    "kind": "workshop"
+    "kind": "workshop",
+    "visual": "workshop",
+    "artifactType": null
   },
   {
     "no": 55,
     "title": "Core SOC tool categories",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "module",
+    "artifactType": null
   },
   {
     "no": 56,
     "title": "SIEM: job and selection criteria",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 57,
     "title": "EDR/XDR: job and selection criteria",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 58,
     "title": "SOAR/automation: when it helps and when it hurts",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 59,
     "title": "Threat intelligence platform and feeds",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 60,
     "title": "Case management and knowledge base",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 61,
     "title": "DLP, IAM, vulnerability, and supporting control data",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 62,
     "title": "Tool integration sequence",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 63,
     "title": "Build-vs-buy and complexity tradeoffs",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 64,
     "title": "Budget categories: people, platform, content, operations",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "dashboard",
+    "artifactType": null
   },
   {
     "no": 65,
     "title": "Phased budget model by maturity stage",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "content"
+    "kind": "content",
+    "visual": "dashboard",
+    "artifactType": null
   },
   {
     "no": 66,
     "title": "tool evaluation scorecard",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 67,
     "title": "budget allocation example",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 68,
     "title": "Worksheet: prioritize tools and budget",
     "module": "Technology Stack, Selection Logic, and Budgeting",
-    "kind": "workshop"
+    "kind": "workshop",
+    "visual": "workshop",
+    "artifactType": null
   },
   {
     "no": 69,
     "title": "SOC operating model in production",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "module",
+    "artifactType": null
   },
   {
     "no": 70,
     "title": "Service catalog and what the SOC owns",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "serviceCatalog"
   },
   {
     "no": 71,
     "title": "Alert intake to triage flow",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "alertTicket"
   },
   {
     "no": 72,
     "title": "Escalation path and authority boundaries",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 73,
     "title": "Shift handoff operational pattern",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "shiftHandoff"
   },
   {
     "no": 74,
     "title": "KPI model: MTTD, MTTR, quality, backlog",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "dashboard",
+    "artifactType": null
   },
   {
     "no": 75,
     "title": "Detection backlog management",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "detectionKanban"
   },
   {
     "no": 76,
     "title": "Telemetry onboarding lifecycle",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 77,
     "title": "Alert tuning lifecycle",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 78,
     "title": "Governance cadence: daily, weekly, monthly, quarterly",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 79,
     "title": "Control ownership and accountability",
     "module": "SOC Operations and Governance",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 80,
     "title": "governance operating calendar",
     "module": "SOC Operations and Governance",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 81,
     "title": "service ownership / RACI example",
     "module": "SOC Operations and Governance",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 82,
     "title": "Workshop: map your operating workflow",
     "module": "SOC Operations and Governance",
-    "kind": "workshop"
+    "kind": "workshop",
+    "visual": "workshop",
+    "artifactType": null
   },
   {
     "no": 83,
     "title": "Detection engineering mission",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "module",
+    "artifactType": null
   },
   {
     "no": 84,
     "title": "Use case lifecycle",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 85,
     "title": "Mapping to ATT&CK and business risk",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 86,
     "title": "Telemetry dependency model",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 87,
     "title": "Sigma and YARA in the operating model",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "ruleSnippet"
   },
   {
     "no": 88,
     "title": "Detection content quality attributes",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 89,
     "title": "False positive reduction loop",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 90,
     "title": "Coverage matrix concept",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "coverageHeatmap"
   },
   {
     "no": 91,
     "title": "Prioritizing detections by threat and asset value",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 92,
     "title": "Detection testing and validation",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 93,
     "title": "Promotion workflow: idea to production",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "detectionKanban"
   },
   {
     "no": 94,
     "title": "sample use case hierarchy",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 95,
     "title": "sample coverage matrix",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": "coverageHeatmap"
   },
   {
     "no": 96,
     "title": "Worksheet: identify coverage gaps",
     "module": "Detection Engineering and Coverage Management",
-    "kind": "workshop"
+    "kind": "workshop",
+    "visual": "workshop",
+    "artifactType": "coverageHeatmap"
   },
   {
     "no": 97,
     "title": "IR lifecycle overview",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "module",
+    "artifactType": null
   },
   {
     "no": 98,
     "title": "Severity model and classification",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 99,
     "title": "Decision authority in incidents",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 100,
     "title": "Analyst-to-IR escalation model",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 101,
     "title": "Runbooks vs playbooks",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "playbookCatalog"
   },
   {
     "no": 102,
     "title": "Playbook operating pattern",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "playbookCatalog"
   },
   {
     "no": 103,
     "title": "Containment decision logic",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "decisionLog"
   },
   {
     "no": 104,
     "title": "Eradication and recovery logic",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 105,
     "title": "Evidence handling and preservation",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "evidencePackage"
   },
   {
     "no": 106,
     "title": "Chain of custody basics",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "evidencePackage"
   },
   {
     "no": 107,
     "title": "Decision logging during incidents",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "decisionLog"
   },
   {
     "no": 108,
     "title": "Crisis command / war room model",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "flow",
+    "artifactType": null
   },
   {
     "no": 109,
     "title": "Closure, PIR, and lessons learned",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 110,
     "title": "severity matrix view",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 111,
     "title": "evidence and decision chain",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 112,
     "title": "Workshop block 3 debrief: alert-to-incident operating exercise",
     "module": "Incident Response, Runbooks, and Playbook Operations",
-    "kind": "workshop"
+    "kind": "workshop",
+    "visual": "workshop",
+    "artifactType": null
   },
   {
     "no": 113,
     "title": "Why Thai compliance belongs in SOC operations",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "content"
+    "kind": "content",
+    "visual": "module",
+    "artifactType": null
   },
   {
     "no": 114,
     "title": "PDPA operating checkpoint",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "legalEscalation"
   },
   {
     "no": 115,
     "title": "Computer-Related Crime Act operating checkpoint",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "legalEscalation"
   },
   {
     "no": 116,
     "title": "Cybersecurity Act operating checkpoint",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "legalEscalation"
   },
   {
     "no": 117,
     "title": "Electronic Transactions Act and evidentiary integrity",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "legalEscalation"
   },
   {
     "no": 118,
     "title": "NCSA / ThaiCERT coordination path",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "legalEscalation"
   },
   {
     "no": 119,
     "title": "Thai legal trigger-to-action model",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "legalEscalation"
   },
   {
     "no": 120,
     "title": "Notification decision and evidence package",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "evidencePackage"
   },
   {
     "no": 121,
     "title": "Thai legal escalation template in use",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": "legalEscalation"
   },
   {
     "no": 122,
     "title": "Workshop: legal-impact and escalation decisions",
     "module": "Thai Compliance, Privacy, and Legal Operating Model",
-    "kind": "workshop"
+    "kind": "workshop",
+    "visual": "workshop",
+    "artifactType": null
   },
   {
     "no": 123,
     "title": "Incident report structure",
     "module": "Reporting, Executive Communication, and Board-Level Outputs",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "executiveBrief"
   },
   {
     "no": 124,
     "title": "Incident decision log structure",
     "module": "Reporting, Executive Communication, and Board-Level Outputs",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "decisionLog"
   },
   {
     "no": 125,
     "title": "Monthly SOC report structure",
     "module": "Reporting, Executive Communication, and Board-Level Outputs",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "executiveBrief"
   },
   {
     "no": 126,
     "title": "Executive dashboard view",
     "module": "Reporting, Executive Communication, and Board-Level Outputs",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "executiveBrief"
   },
   {
     "no": 127,
     "title": "Board-level decision pack view",
     "module": "Reporting, Executive Communication, and Board-Level Outputs",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "executiveBrief"
   },
   {
     "no": 128,
     "title": "Communicating facts vs assumptions",
     "module": "Reporting, Executive Communication, and Board-Level Outputs",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 129,
     "title": "reporting template map",
     "module": "Reporting, Executive Communication, and Board-Level Outputs",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": null
   },
   {
     "no": 130,
     "title": "Worksheet: executive escalation brief",
     "module": "Reporting, Executive Communication, and Board-Level Outputs",
-    "kind": "workshop"
+    "kind": "workshop",
+    "visual": "workshop",
+    "artifactType": "executiveBrief"
   },
   {
     "no": 131,
     "title": "SOC onboarding path",
     "module": "Training, Simulation, and Continuous Improvement",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "trainingPath"
   },
   {
     "no": 132,
     "title": "Analyst development and cross-skilling",
     "module": "Training, Simulation, and Continuous Improvement",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "trainingPath"
   },
   {
     "no": 133,
     "title": "Simulation and purple-team cadence",
     "module": "Training, Simulation, and Continuous Improvement",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 134,
     "title": "Certification path and capability-building logic",
     "module": "Training, Simulation, and Continuous Improvement",
-    "kind": "content"
+    "kind": "content",
+    "visual": "specificArtifact",
+    "artifactType": "trainingPath"
   },
   {
     "no": 135,
     "title": "Lessons learned into operational improvement",
     "module": "Training, Simulation, and Continuous Improvement",
-    "kind": "content"
+    "kind": "content",
+    "visual": "standard",
+    "artifactType": null
   },
   {
     "no": 136,
     "title": "training and maturity alignment",
     "module": "Training, Simulation, and Continuous Improvement",
-    "kind": "reference"
+    "kind": "reference",
+    "visual": "table",
+    "artifactType": "trainingPath"
   },
   {
     "no": 137,
     "title": "Capstone scenario setup",
     "module": "Capstone Scenario and Close",
-    "kind": "content"
+    "kind": "content",
+    "visual": "module",
+    "artifactType": null
   },
   {
     "no": 138,
     "title": "Team task: architecture, staffing, detection, IR, legal, reporting decisions",
     "module": "Capstone Scenario and Close",
-    "kind": "worksheet"
+    "kind": "worksheet",
+    "visual": "workshop",
+    "artifactType": null
   },
   {
     "no": 139,
     "title": "Team task: evidence and escalation decisions",
     "module": "Capstone Scenario and Close",
-    "kind": "worksheet"
+    "kind": "worksheet",
+    "visual": "workshop",
+    "artifactType": null
   },
   {
     "no": 140,
     "title": "Debrief framework by role",
     "module": "Capstone Scenario and Close",
-    "kind": "content"
+    "kind": "content",
+    "visual": "artifact",
+    "artifactType": null
   },
   {
     "no": 141,
     "title": "30/60/90-day action plan output",
     "module": "Capstone Scenario and Close",
-    "kind": "worksheet"
+    "kind": "worksheet",
+    "visual": "workshop",
+    "artifactType": null
   },
   {
     "no": 142,
     "title": "Final takeaways and repo re-entry map",
     "module": "Capstone Scenario and Close",
-    "kind": "content"
+    "kind": "content",
+    "visual": "repoVisual",
+    "artifactType": null
   }
 ]
