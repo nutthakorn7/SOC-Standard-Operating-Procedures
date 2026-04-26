@@ -33332,9 +33332,9 @@ graph TD
     Scan["🔍 สแกน Vulnerability"] --> Prioritize["📊 จัดลำดับ"]
     Prioritize --> Plan["📝 วางแผน Patch"]
     Plan --> Test["🧪 ทดสอบใน Staging"]
-    Test --> Approve["✅ ขออนุมัติ Change"]
-    Approve --> Deploy["🚀 Deploy Patch"]
-    Deploy --> Verify["✔️ Verify Fix"]
+    Test --> Approve["✅ ขออนุมัติการเปลี่ยนแปลง"]
+    Approve --> Deploy["🚀 ติดตั้งแพตช์"]
+    Deploy --> Verify["✔️ ยืนยันผลการแก้ไข"]
     Verify --> Document["📄 บันทึก"]
 ```
 
@@ -33816,7 +33816,7 @@ tags:
 graph LR
     Create["📝 สร้าง"] --> Review["👀 ทบทวน"]
     Review --> Approve["✅ อนุมัติ"]
-    Approve --> Deploy["🚀 Deploy"]
+    Approve --> Deploy["🚀 นำขึ้นใช้งาน"]
     Deploy --> Monitor["📊 ติดตาม"]
     Monitor --> Update["🔄 อัปเดต"]
     Update --> Review
@@ -33854,8 +33854,8 @@ graph LR
 |:---|:---|:---|:---|
 | Create | สร้าง rule/playbook | Engineer | As needed |
 | Review | Peer review + test | Senior Analyst | Per change |
-| Approve | Quality gate | SOC Manager | Per change |
-| Deploy | Push to production | Engineer | Post-approval |
+| Approve | ด่านคุณภาพ | SOC Manager | ทุกครั้งที่มีการเปลี่ยนแปลง |
+| Deploy | นำขึ้นใช้งานจริง | Engineer | หลังอนุมัติ |
 | Monitor | Track FP/TP rates | Analyst | Weekly |
 | Retire | Archive outdated | Engineer | Quarterly |
 
@@ -39670,12 +39670,12 @@ Every playbook should help the analyst decide whether the alert is benign and wh
 
 ```mermaid
 graph LR
-    Draft["📝 Draft"] --> Review["👀 Peer Review"]
-    Review --> Test["🧪 Tabletop Test"]
-    Test --> Approve["✅ Approve"]
-    Approve --> Deploy["🚀 Deploy"]
-    Deploy --> Monitor["📊 Monitor"]
-    Monitor --> Update["🔄 Update"]
+    Draft["📝 ร่าง"] --> Review["👀 ทบทวนโดยเพื่อนร่วมทีม"]
+    Review --> Test["🧪 ทดสอบแบบ Tabletop"]
+    Test --> Approve["✅ อนุมัติ"]
+    Approve --> Deploy["🚀 นำขึ้นใช้งาน"]
+    Deploy --> Monitor["📊 ติดตามผล"]
+    Monitor --> Update["🔄 ปรับปรุง"]
     Update --> Review
 ```
 
@@ -43724,7 +43724,7 @@ graph TD
 ```
 เหตุผล FP: [ทำไมเป็น false positive]
 Pattern: [อธิบาย pattern ที่เจอซ้ำ]
-แนะนำ: □ Tune alert  □ เพิ่ม exclusion  □ Accept risk
+แนะนำ: □ ปรับแต่ง alert  □ เพิ่ม exclusion  □ ยอมรับความเสี่ยง
 อนุมัติโดย: [ชื่อ T2 analyst]
 ```
 
@@ -48446,7 +48446,7 @@ graph LR
 
 | Step | Action | Verification |
 |:---|:---|:---|
-| 1 | Reset password | Confirm with user |
+| 1 | Reset password | ยืนยันกับผู้ใช้ |
 | 2 | Revoke all sessions | Check active sessions |
 | 3 | Re-enroll MFA | Verify new device |
 | 4 | Review inbox rules | Remove malicious |
@@ -50028,7 +50028,7 @@ flowchart TD
 
 | Step | Action | Verify |
 |:---|:---|:---|
-| 1 | Reset password | Confirm with user |
+| 1 | Reset password | ยืนยันกับผู้ใช้ |
 | 2 | Enable MFA | New device enroll |
 | 3 | Review login history | Check for success |
 
@@ -67647,7 +67647,7 @@ sequenceDiagram
 | Data sensitivity | Public | Internal | Confidential |
 | User count | < 5 | 5-50 | 50+ |
 | Data transfer | < 1 GB | 1-50 GB | 50+ GB |
-| Authentication | SSO/MFA | Password only | None |
+| Authentication | SSO/MFA | Password only | ไม่มี |
 
 ### Shadow IT Response Workflow
 
@@ -67655,7 +67655,7 @@ sequenceDiagram
 |:---|:---|:---|:---|
 | Discover | Identify unauthorized service | SOC | Ongoing |
 | Assess | Risk rating + data audit | Security | 48 hrs |
-| Decide | Approve / Block / Migrate | CISO | 5 days |
+| Decide | อนุมัติ / บล็อก / ย้ายระบบ | CISO | 5 วัน |
 | Execute | Implement decision | IT + Security | 14 days |
 
 ### Risk Acceptance Process

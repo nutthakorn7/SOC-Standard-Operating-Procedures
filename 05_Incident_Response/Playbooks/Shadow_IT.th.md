@@ -209,7 +209,7 @@ sequenceDiagram
 | Data sensitivity | Public | Internal | Confidential |
 | User count | < 5 | 5-50 | 50+ |
 | Data transfer | < 1 GB | 1-50 GB | 50+ GB |
-| Authentication | SSO/MFA | Password only | None |
+| Authentication | SSO/MFA | Password only | ไม่มี |
 
 ### Shadow IT Response Workflow
 
@@ -217,7 +217,7 @@ sequenceDiagram
 |:---|:---|:---|:---|
 | Discover | Identify unauthorized service | SOC | Ongoing |
 | Assess | Risk rating + data audit | Security | 48 hrs |
-| Decide | Approve / Block / Migrate | CISO | 5 days |
+| Decide | อนุมัติ / บล็อก / ย้ายระบบ | CISO | 5 วัน |
 | Execute | Implement decision | IT + Security | 14 days |
 
 ### Risk Acceptance Process

@@ -256,7 +256,7 @@ graph LR
 
 | Step | Action | Verification |
 |:---|:---|:---|
-| 1 | Reset password | Confirm with user |
+| 1 | Reset password | ยืนยันกับผู้ใช้ |
 | 2 | Revoke all sessions | Check active sessions |
 | 3 | Re-enroll MFA | Verify new device |
 | 4 | Review inbox rules | Remove malicious |

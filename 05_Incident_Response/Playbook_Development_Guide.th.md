@@ -275,12 +275,12 @@
 
 ```mermaid
 graph LR
-    Draft["📝 Draft"] --> Review["👀 Peer Review"]
-    Review --> Test["🧪 Tabletop Test"]
-    Test --> Approve["✅ Approve"]
-    Approve --> Deploy["🚀 Deploy"]
-    Deploy --> Monitor["📊 Monitor"]
-    Monitor --> Update["🔄 Update"]
+    Draft["📝 ร่าง"] --> Review["👀 ทบทวนโดยเพื่อนร่วมทีม"]
+    Review --> Test["🧪 ทดสอบแบบ Tabletop"]
+    Test --> Approve["✅ อนุมัติ"]
+    Approve --> Deploy["🚀 นำขึ้นใช้งาน"]
+    Deploy --> Monitor["📊 ติดตามผล"]
+    Monitor --> Update["🔄 ปรับปรุง"]
     Update --> Review
 ```
 

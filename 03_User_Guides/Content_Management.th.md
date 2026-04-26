@@ -150,7 +150,7 @@ tags:
 graph LR
     Create["📝 สร้าง"] --> Review["👀 ทบทวน"]
     Review --> Approve["✅ อนุมัติ"]
-    Approve --> Deploy["🚀 Deploy"]
+    Approve --> Deploy["🚀 นำขึ้นใช้งาน"]
     Deploy --> Monitor["📊 ติดตาม"]
     Monitor --> Update["🔄 อัปเดต"]
     Update --> Review
@@ -188,8 +188,8 @@ graph LR
 |:---|:---|:---|:---|
 | Create | สร้าง rule/playbook | Engineer | As needed |
 | Review | Peer review + test | Senior Analyst | Per change |
-| Approve | Quality gate | SOC Manager | Per change |
-| Deploy | Push to production | Engineer | Post-approval |
+| Approve | ด่านคุณภาพ | SOC Manager | ทุกครั้งที่มีการเปลี่ยนแปลง |
+| Deploy | นำขึ้นใช้งานจริง | Engineer | หลังอนุมัติ |
 | Monitor | Track FP/TP rates | Analyst | Weekly |
 | Retire | Archive outdated | Engineer | Quarterly |
 

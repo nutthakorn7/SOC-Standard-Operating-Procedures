@@ -253,7 +253,7 @@ graph TD
 ```
 เหตุผล FP: [ทำไมเป็น false positive]
 Pattern: [อธิบาย pattern ที่เจอซ้ำ]
-แนะนำ: □ Tune alert  □ เพิ่ม exclusion  □ Accept risk
+แนะนำ: □ ปรับแต่ง alert  □ เพิ่ม exclusion  □ ยอมรับความเสี่ยง
 อนุมัติโดย: [ชื่อ T2 analyst]
 ```
 

@@ -258,7 +258,7 @@ flowchart TD
 
 | Step | Action | Verify |
 |:---|:---|:---|
-| 1 | Reset password | Confirm with user |
+| 1 | Reset password | ยืนยันกับผู้ใช้ |
 | 2 | Enable MFA | New device enroll |
 | 3 | Review login history | Check for success |
 
