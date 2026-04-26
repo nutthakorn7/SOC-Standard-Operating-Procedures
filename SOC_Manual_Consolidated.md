@@ -13645,7 +13645,7 @@ This template defines the metrics and visualizations for a SOC executive dashboa
 | **ตัวชี้วัดแย่ลงรอบเดียวแต่ยังควบคุมผลกระทบได้** | ชุดทบทวน Governance รายเดือน | owner, corrective action, และ next review date |
 | **ตัวชี้วัดล้มเหลวซ้ำตลอดไตรมาส** | ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | คำขอเรื่อง capacity, funding, หรือ scope decision |
 | **มีประเด็น exception หรือ risk tolerance** | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส | residual risk statement, วันหมดอายุ, และ recommendation |
-| **มีช่องว่างเชิงโครงสร้างด้าน coverage หรือ telemetry** | Annual Control Coverage Review Pack | priority gap statement, บริการที่ได้รับผลกระทบ, และความต้องการลงทุน |
+| **มีช่องว่างเชิงโครงสร้างด้าน coverage หรือ telemetry** | ชุดทบทวน Control Coverage ประจำปี | priority gap statement, บริการที่ได้รับผลกระทบ, และความต้องการลงทุน |
 | **incident กลายเป็นประเด็นสาธารณะหรือมีแรงกดดันด้านการสื่อสาร** | เทมเพลตการสื่อสารเหตุการณ์ และชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | เส้นทางข้อความที่อนุมัติแล้ว owner ผู้แถลง และบันทึกการตัดสินใจของผู้บริหาร |
 
 ## บันทึกการตัดสินใจขั้นต่ำสำหรับผู้บริหาร
@@ -14597,7 +14597,7 @@ graph TD
 |:---|:---|:---|
 | **มี exception หรือ risk acceptance ที่เกิดซ้ำ** | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส | residual risk statement, วันหมดอายุ, และข้อเสนอแนะของ owner ที่อัปเดตแล้ว |
 | **มีปัญหาด้านบริการ บุคลากร หรือ tooling ต่อเนื่อง** | ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | คำขอเรื่องงบประมาณหรืออำนาจตัดสินใจพร้อม business impact |
-| **มีช่องว่างเชิงโครงสร้างด้าน detection หรือ telemetry** | Annual Control Coverage Review Pack | control gap statement, บริการที่ได้รับผลกระทบ, และลำดับความสำคัญในการลงทุน |
+| **มีช่องว่างเชิงโครงสร้างด้าน detection หรือ telemetry** | ชุดทบทวน Control Coverage ประจำปี | control gap statement, บริการที่ได้รับผลกระทบ, และลำดับความสำคัญในการลงทุน |
 | **มีแนวโน้ม material incident ต่อเนื่อง** | ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | สรุปแนวโน้ม residual exposure และ decision ที่ผู้บริหารต้องตัดสินใจ |
 
 ## 8. กติกาการปิดงานใน Governance
@@ -15769,7 +15769,7 @@ graph TD
 
 ## 4. ตารางทบทวน
 
-| รหัสความเสี่ยง | Owner | วันหมดอายุ | Residual Risk ปัจจุบัน | ข้อเสนอแนะ |
+| รหัสความเสี่ยง | ผู้รับผิดชอบ | วันหมดอายุ | Residual Risk ปัจจุบัน | ข้อเสนอแนะ |
 |:---|:---|:---:|:---|:---|
 | | | | | Renew / Close / Escalate |
 | | | | | |
@@ -15780,7 +15780,7 @@ graph TD
 -   [ ] close เมื่อ remediation เสร็จและ validate แล้ว
 -   [ ] escalate เมื่อ residual risk สูงขึ้น control ล้มเหลว หรือ expiry ผ่านไปแล้ว
 
-## 6. เกณฑ์การยกระดับไปยัง Board
+## 6. เกณฑ์การยกระดับไปยังบอร์ด
 
 -   [ ] ยกระดับ acceptance ที่เกี่ยวกับ regulated data, safety-critical service, หรือ crown-jewel asset เมื่อ residual risk ยังอยู่ระดับ High
 -   [ ] ยกระดับ exception ที่ต่ออายุเกิน 2 ครั้งโดยยังไม่มี exit plan ที่อนุมัติแล้ว
@@ -17891,7 +17891,7 @@ Use UTC timestamps and format consistently:
 
 ## บันทึกการแจ้งผู้บริหาร / กฎหมาย / Privacy
 
-| จุดตัดสินใจ | Owner | เวลา | หลักฐานที่ใช้ | ขั้นตอนถัดไป |
+| จุดตัดสินใจ | ผู้รับผิดชอบ | เวลา | หลักฐานที่ใช้ | ขั้นตอนถัดไป |
 |:---|:---|:---|:---|:---|
 | ต้องแจ้งผู้บริหารหรือไม่ | | | | |
 | ต้องให้ legal / privacy review หรือไม่ | | | | |
@@ -17923,7 +17923,7 @@ Use UTC timestamps and format consistently:
 
 ## บันทึกการตัดสินใจ Restore / Rollback / Return-to-Service
 
-| จุดตัดสินใจ | Owner | เวลา | หลักฐานที่ใช้ | การยืนยันที่ต้องทำต่อ |
+| จุดตัดสินใจ | ผู้รับผิดชอบ | เวลา | หลักฐานที่ใช้ | การยืนยันที่ต้องทำต่อ |
 |:---|:---|:---|:---|:---|
 | อนุมัติ restore จาก backup / snapshot หรือไม่ | | | | |
 | อนุมัติ rollback ไปยัง release / configuration ก่อนหน้าหรือไม่ | | | | |
@@ -17940,7 +17940,7 @@ Use UTC timestamps and format consistently:
 
 ## บันทึกการออกจาก Enhanced Monitoring และการปิด Incident
 
-| จุดตรวจ | Owner | สถานะ | หลักฐาน / หมายเหตุ |
+| จุดตรวจ | ผู้รับผิดชอบ | สถานะ | หลักฐาน / หมายเหตุ |
 |:---|:---|:---|:---|
 | enhanced monitoring ครบตามช่วงเวลาที่ตกลง | | ☐ Pass · ☐ Blocked | |
 | ไม่พบการเกิดซ้ำหรือกิจกรรมต้องสงสัยที่ยังไม่คลี่คลาย | | ☐ Pass · ☐ Blocked | |
@@ -17949,7 +17949,7 @@ Use UTC timestamps and format consistently:
 | residual risk ถูกยอมรับในระดับอำนาจที่ถูกต้อง | | ☐ Pass · ☐ Blocked | |
 | อนุมัติปิด incident แล้ว | | ☐ Pass · ☐ Blocked | |
 
-## เกณฑ์การยกระดับไปยัง Board
+## เกณฑ์การยกระดับไปยังบอร์ด
 
 -   [ ] ยกระดับเข้า board pack หากเหตุการณ์ก่อให้เกิด material business disruption, มี regulatory exposure ที่ยังไม่ปิด, หรือ remediation decision ที่ต้องใช้อำนาจอนุมัติงบ
 -   [ ] ยกระดับหาก residual risk หลัง containment ยังอยู่ระดับ **High** หรือ accepted risk เกินอำนาจของ management

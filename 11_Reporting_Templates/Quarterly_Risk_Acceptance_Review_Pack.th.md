@@ -40,7 +40,7 @@ graph TD
 
 ## 4. ตารางทบทวน
 
-| รหัสความเสี่ยง | Owner | วันหมดอายุ | Residual Risk ปัจจุบัน | ข้อเสนอแนะ |
+| รหัสความเสี่ยง | ผู้รับผิดชอบ | วันหมดอายุ | Residual Risk ปัจจุบัน | ข้อเสนอแนะ |
 |:---|:---|:---:|:---|:---|
 | | | | | Renew / Close / Escalate |
 | | | | | |
@@ -51,7 +51,7 @@ graph TD
 -   [ ] close เมื่อ remediation เสร็จและ validate แล้ว
 -   [ ] escalate เมื่อ residual risk สูงขึ้น control ล้มเหลว หรือ expiry ผ่านไปแล้ว
 
-## 6. เกณฑ์การยกระดับไปยัง Board
+## 6. เกณฑ์การยกระดับไปยังบอร์ด
 
 -   [ ] ยกระดับ acceptance ที่เกี่ยวกับ regulated data, safety-critical service, หรือ crown-jewel asset เมื่อ residual risk ยังอยู่ระดับ High
 -   [ ] ยกระดับ exception ที่ต่ออายุเกิน 2 ครั้งโดยยังไม่มี exit plan ที่อนุมัติแล้ว
