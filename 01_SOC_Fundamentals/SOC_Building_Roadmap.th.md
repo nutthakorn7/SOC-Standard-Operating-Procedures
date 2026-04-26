@@ -125,7 +125,7 @@ graph LR
 - [ ] กำหนดขอบเขตและ mission ของ SOC
 - [ ] เลือก SIEM + EDR stack
 - [ ] ติดตั้งและตั้งค่า SIEM
-- [ ] Deploy EDR agents บน critical endpoints
+- [ ] ติดตั้ง EDR agents บน critical endpoints
 - [ ] จ้าง/มอบหมาย SOC Manager และ Analysts
 - [ ] สร้าง shift schedule เบื้องต้น
 
@@ -142,7 +142,7 @@ graph LR
 | 5–6 | Cloud (AWS/Azure) | misconfig |
 | 7–8 | DNS + Proxy | C2, shadow IT |
 
-### Deploy 10 Sigma Rules แรก
+### ติดตั้ง Sigma Rules ชุดแรก 10 รายการ
 
 เริ่มจาก `win_multiple_failed_logins`, `proc_office_spawn_powershell`, `cloud_unusual_login` + อ่าน [Tier 1 Runbook](../05_Incident_Response/Runbooks/Tier1_Runbook.th.md)
 
@@ -163,14 +163,14 @@ graph LR
 ### 2.4 เช็คลิสต์เฟส 2
 
 - [ ] เชื่อมต่อ log sources อย่างน้อย 5 แหล่ง
-- [ ] Deploy Sigma rules อย่างน้อย 10 rules
+- [ ] ติดตั้ง Sigma rules อย่างน้อย 10 rules
 - [ ] เขียน SOPs หลัก 5 ฉบับ
 - [ ] Tune false positives รอบแรก
 - [ ] สร้าง dashboard สำหรับ daily operations
 
 ## เฟส 3: ปฏิบัติการ (เดือน 7–12)
 
-- Deploy playbooks ทั้ง 50 ชุด (ค่อยๆ ทำเป็น wave)
+- ติดตั้ง playbooks ทั้ง 50 ชุด (ค่อยๆ ทำเป็น wave)
 - ซ้อม [Tabletop Exercise](../05_Incident_Response/Tabletop_Exercises.th.md) ครั้งแรก
 - เริ่มวัด metrics: MTTD < 4 ชม., MTTR < 8 ชม.
 
@@ -415,36 +415,36 @@ Technology (25%)   ████████              25%
 Training (10%)     ███                   10%
 Operations (5%)    ██                     5%
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Total: ~15-25M THB/year (mid-size org)
+รวม: ~15-25M THB/ปี (องค์กรขนาดกลาง)
 ```
 
-### Milestone Tracking Dashboard
+### ตารางติดตาม Milestone
 
-| Phase | Milestone | Status | Target Date |
+| ระยะ | Milestone | สถานะ | วันที่เป้าหมาย |
 |:---|:---|:---|:---|
-| 1 | Log collection active | ☐ | Week 4 |
-| 2 | First playbook deployed | ☐ | Week 8 |
-| 3 | 24/7 coverage achieved | ☐ | Month 6 |
-| 4 | Threat hunting initiated | ☐ | Month 9 |
-| 5 | Full automation deployed | ☐ | Month 18 |
+| 1 | เริ่มเก็บ log แล้ว | ☐ | สัปดาห์ที่ 4 |
+| 2 | ติดตั้ง playbook แรกแล้ว | ☐ | สัปดาห์ที่ 8 |
+| 3 | ครอบคลุมการปฏิบัติงาน 24/7 แล้ว | ☐ | เดือนที่ 6 |
+| 4 | เริ่ม threat hunting แล้ว | ☐ | เดือนที่ 9 |
+| 5 | ติดตั้ง automation ครบตามแผน | ☐ | เดือนที่ 18 |
 
-### Success Criteria per Phase
+### เกณฑ์ความสำเร็จรายระยะ
 
-| Phase | KPI | Target |
+| ระยะ | KPI | เป้าหมาย |
 |:---|:---|:---|
 | Foundation | Log sources onboarded | ≥ 10 |
 | Operations | MTTR | < 4 hrs |
 | Advanced | Detection coverage | > 60% ATT&CK |
 | Optimized | Automation rate | > 40% alerts |
 
-### Vendor Selection Criteria
+### เกณฑ์การคัดเลือกผู้ให้บริการ
 
-| Factor | Weight | Evaluation |
+| ปัจจัย | น้ำหนัก | วิธีประเมิน |
 |:---|:---|:---|
-| Feature fit | 30% | POC results |
-| Cost (TCO) | 25% | 3-year model |
+| ความเหมาะสมของความสามารถ | 30% | ผลจาก POC |
+| ต้นทุน (TCO) | 25% | โมเดล 3 ปี |
 | คุณภาพการสนับสนุน | 20% | ทบทวน SLA |
-| Integration | 25% | API testing |
+| การเชื่อมต่อระบบ | 25% | ทดสอบ API |
 
 ## เอกสารที่เกี่ยวข้อง
 

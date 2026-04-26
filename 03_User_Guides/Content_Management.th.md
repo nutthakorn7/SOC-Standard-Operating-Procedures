@@ -184,14 +184,14 @@ graph LR
 
 ## แนวทางบริหารวงจรชีวิตเนื้อหา (Content Lifecycle Management)
 
-| Phase | Activity | Owner | Frequency |
+| ระยะ | กิจกรรม | ผู้รับผิดชอบ | ความถี่ |
 |:---|:---|:---|:---|
-| Create | สร้าง rule/playbook | Engineer | As needed |
-| Review | Peer review + test | Senior Analyst | Per change |
-| Approve | ด่านคุณภาพ | SOC Manager | ทุกครั้งที่มีการเปลี่ยนแปลง |
-| Deploy | นำขึ้นใช้งานจริง | Engineer | หลังอนุมัติ |
-| Monitor | Track FP/TP rates | Analyst | Weekly |
-| Retire | Archive outdated | Engineer | Quarterly |
+| สร้าง | สร้าง rule/playbook | Engineer | ตามความจำเป็น |
+| ทบทวน | peer review + ทดสอบ | Senior Analyst | ทุกครั้งที่มีการเปลี่ยนแปลง |
+| อนุมัติ | ด่านคุณภาพ | SOC Manager | ทุกครั้งที่มีการเปลี่ยนแปลง |
+| นำขึ้นใช้งาน | นำขึ้นใช้งานจริง | Engineer | หลังอนุมัติ |
+| ติดตาม | ติดตามอัตรา FP/TP | Analyst | รายสัปดาห์ |
+| ยุติการใช้งาน | เก็บถาวรเนื้อหาที่ล้าสมัย | Engineer | รายไตรมาส |
 
 ## Checklist คุณภาพเนื้อหา (Content Quality Checklist)
 - [ ] มี MITRE ATT&CK mapping
