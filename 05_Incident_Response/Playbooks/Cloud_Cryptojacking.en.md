@@ -190,7 +190,36 @@ gantt
 | **Budget** | Set hard spending limit |
 | **Secrets** | Scan repos for exposed credentials |
 
-## 4. Post-Incident
+## 4. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Compute evidence | Unauthorized instances, regions, sizes, tags, launch times | Cloud console / asset inventory | Quantifies abuse footprint |
+| Identity evidence | API keys, roles, service accounts, source IPs, CI/CD usage | Cloud audit / IAM | Identifies the abused credential path |
+| Cost evidence | Charges, budgets, anomalous spend, provider credits/case IDs | Billing / finance records | Supports business response and reimbursement |
+| Persistence evidence | Extra users, roles, Lambda/ECS tasks, startup scripts | Cloud audit / config / code repos | Shows whether the attacker left durable access |
+| Exposure evidence | Where credentials were stored or leaked | Secret scanning / SCM / CI logs | Drives root-cause remediation |
+
+## 5. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Cloud activity logs | Resource creation, key use, role changes, region spread | Required | Cannot trace the abuse path or actor |
+| Billing and budget telemetry | Cost spike and unauthorized usage scope | Required | Abuse may be detected too late |
+| IAM and secret-scanning telemetry | Exposed keys, unused roles, privileged accounts | Required | Credential root cause remains unclear |
+| Asset and runtime telemetry | Running instances, containers, functions, persistence | Recommended | Hidden persistence may survive cleanup |
+| Provider support/case records | Charge dispute and abuse case context | Recommended | Recovery and financial follow-up slow down |
+
+## 6. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Planned burst compute or GPU job | High spend and new instances can resemble mining | Confirm workload owner, budget, region, and image | Tune for approved tags, accounts, and schedules only | Mining pools, unknown images, or unrelated IAM actions appear |
+| Load test or simulation | Temporary compute spike may look abusive | Validate test window and source pipeline | Lower severity during approved stress tests | Resources persist after test or spread to unusual regions |
+| Auto-scaling anomaly during incident | Rapid scale-out can resemble attacker-created instances | Confirm application incident and autoscaling policy | Tune against approved ASG/service identities | Manual launches or spend remains high after app issue ends |
+| Security scan of leaked credentials | Detection activity may hit many repos/accounts | Validate scanner identity and scope | Allowlist scanner identities narrowly | The same credentials are actually used to launch resources |
+
+## 7. Post-Incident
 
 | Question | Answer |
 |:---|:---|
@@ -200,7 +229,7 @@ gantt
 | Total financial impact? | [$Amount] |
 | Were spending limits in place? | [Yes/No] |
 
-## 6. Detection Rules (Sigma)
+## 8. Detection Rules (Sigma)
 
 ```yaml
 title: Crypto Mining Process Detected

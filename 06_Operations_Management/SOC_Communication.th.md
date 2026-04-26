@@ -159,6 +159,28 @@ P3-P4:
 | ทดสอบขั้นตอน War Room | รายไตรมาส | SOC Manager | ☐ |
 | ทดสอบกระบวนการแจ้งเตือนภายนอก | รายปี | CISO + กฎหมาย | ☐ |
 
+## Trigger สำหรับการยกระดับการสื่อสาร (Communication Escalation Triggers)
+
+| เงื่อนไข | ยกระดับถึง | SLA | เหตุผล |
+|:---|:---|:---:|:---|
+| ระดับเหตุการณ์เพิ่มเป็น P1/P2 | SOC Manager + CISO | ทันที | ให้ผู้บริหารเห็นภาพและจัดสรรทรัพยากร |
+| ยืนยันหรือสงสัยว่ามีข้อมูลส่วนบุคคลรั่วไหล | Legal / DPO | ภายใน 1 ชม. | ประเมิน PDPA และภาระการแจ้ง |
+| บริการที่กระทบลูกค้าหยุดชะงักเกิน 30 นาที | Business owner + Communications lead | ภายใน 30 นาที | เตรียมข้อความและผลกระทบทางธุรกิจ |
+| เหตุการณ์กระทบหลายหน่วยธุรกิจหรือหลายภูมิภาค | SOC Manager + Incident Commander | ทันที | รวมศูนย์การตัดสินใจและการสื่อสาร |
+| มีสื่อ หน่วยงานกำกับ หรือเจ้าหน้าที่รัฐติดต่อมา | CISO + Legal | ทันที | ควบคุมการตอบกลับภายนอก |
+| ไม่มี owner ของ incident หรือ handoff ตกหล่น | SOC Manager | ภายใน 15 นาที | ปิดช่องว่างการสื่อสารระหว่าง response |
+
+## เนื้อหาขั้นต่ำในการอัปเดตเหตุการณ์ (Minimum Content for Incident Updates)
+
+| รายการที่ต้องมี | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| Incident ID และระดับความรุนแรง | ป้องกันความสับสนระหว่างหลายช่องทาง | SOC Analyst |
+| สถานะปัจจุบันและข้อเท็จจริงล่าสุด | ทำให้การสื่อสารยึดข้อเท็จจริง | Incident Commander |
+| ระบบ ผู้ใช้ หรือบริการที่ได้รับผลกระทบ | ใช้ประเมิน business impact | Technical Lead |
+| การควบคุมและการสืบสวนที่ทำไปแล้ว | แสดงความคืบหน้าและลดงานซ้ำ | Technical Lead |
+| การตัดสินใจที่ต้องขอและ blocker | ให้ manager หรือผู้บริหารตัดสินใจได้เร็ว | SOC Manager |
+| เวลาของอัปเดตรอบถัดไปและจุดติดต่อ | ทำให้ stakeholder รู้ cadence ที่แน่นอน | Communications Lead |
+
 ## สิ่งที่ควรทำและไม่ควรทำ
 
 | ✅ ควรทำ | ❌ ไม่ควรทำ |
@@ -199,3 +221,10 @@ P3-P4:
 - [มาตรฐานส่งมอบกะ](Shift_Handoff.th.md)
 - [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.th.md)
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)
+- [SOC Checklists](SOC_Checklists.th.md)
+- [Communication Templates](../05_Incident_Response/Communication_Templates.th.md)
+
+## References
+
+- [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [CISA Cyber Incident Response and Recovery](https://www.cisa.gov/resources-tools/services/incident-response)

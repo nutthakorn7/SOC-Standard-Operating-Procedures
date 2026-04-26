@@ -147,19 +147,19 @@
 - [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)
 - [การประเมินวุฒิภาวะ SOC](../06_Operations_Management/SOC_Maturity_Assessment.th.md)
 
-### QBR Presentation Structure
+### โครงสร้างการนำเสนอ QBR
 
 | Slide | เนื้อหา | เวลา |
 |:---|:---|:---|
 | 1 | Executive Summary | 5 min |
-| 2 | KPI Performance vs Target | 10 min |
-| 3 | Incident Highlights | 10 min |
-| 4 | Threat Landscape Update | 5 min |
-| 5 | Investment & ROI | 10 min |
-| 6 | Roadmap & Next Steps | 5 min |
+| 2 | KPI เทียบเป้าหมาย | 10 min |
+| 3 | Incident สำคัญ | 10 min |
+| 4 | อัปเดตภาพรวมภัยคุกคาม | 5 min |
+| 5 | การลงทุนและ ROI | 10 min |
+| 6 | Roadmap และขั้นถัดไป | 5 min |
 | 7 | Q&A | 15 min |
 
-### ROI Calculation Template
+### เทมเพลตคำนวณ ROI
 
 | Metric | Before SOC | After SOC | Savings |
 |:---|:---|:---|:---|
@@ -168,7 +168,7 @@
 | Downtime/year | 48 hrs | 8 hrs | 40 hrs |
 | FTE (manual) | 8 | 4 | 4 FTE |
 
-### QBR Success Metrics
+### ตัวชี้วัดความสำเร็จของ QBR
 
 | Metric | Target |
 |:---|:---|
@@ -176,7 +176,7 @@
 | Action items | ≤ 10, assigned |
 | Follow-up | Within 1 week |
 
-## อ้างอิง
+## References
 
 - [SOC-CMM Assessment Model](https://www.soc-cmm.com/)
 - [MITRE ATT&CK](https://attack.mitre.org/)

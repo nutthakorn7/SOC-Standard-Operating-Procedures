@@ -243,6 +243,26 @@ flowchart TD
 
 ---
 
+## Escalation Triggers for Third-Party Risk
+
+| Trigger | Escalate To | Reason |
+|:---|:---|:---|
+| **Tier 1 vendor incident with possible data exposure** | CISO + Legal / DPO | Potential reportable event |
+| **Vendor access observed outside approved scope or hours** | SOC Manager | May indicate misuse or compromise |
+| **Critical vendor cannot provide IOC or remediation details** | Risk Owner + CISO | Insufficient transparency to manage risk |
+| **Vendor control weakness repeats across reviews** | Procurement / Vendor Owner | Risk is becoming structural, not incidental |
+
+## Minimum Evidence for Vendor Review
+
+| Evidence | Minimum Standard |
+|:---|:---|
+| **Current access list** | Named users, accounts, APIs, and allowed scope |
+| **Recent activity logs** | Enough to confirm approved usage patterns |
+| **Incident / advisory history** | Prior breaches, notifications, or major findings |
+| **Compensating controls** | Network limits, MFA, segmentation, or monitoring applied |
+
+---
+
 ## Related Documents
 
 -   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — Who to escalate to
@@ -252,3 +272,8 @@ flowchart TD
 -   [SLA Template](SLA_Template.en.md) — SLA definitions
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — Data source coverage
 -   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Automation for vendor monitoring
+
+## References
+
+- [NIST Cybersecurity Framework](https://csrc.nist.gov/projects/cybersecurity-framework)
+- [CISA](https://www.cisa.gov/)

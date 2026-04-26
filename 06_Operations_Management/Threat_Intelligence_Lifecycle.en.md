@@ -191,10 +191,30 @@ graph TD
 | **Campaign** | Set of related activities | Q1 2026 banking trojan campaign |
 | **Relationship** | Link between STIX objects | Malware X "uses" Technique Y |
 
+## 9. Consumer Decision Matrix
+
+| Consumer | Needs | Delivery Format | Escalate When |
+|:---|:---|:---|:---|
+| **SOC Analyst** | Actionable IOCs and TTP context | Real-time alert note or short advisory | New intel changes triage or containment actions |
+| **SOC Manager** | Campaign relevance, detection impact, workload implications | Daily or weekly summary | Multiple teams need coordination |
+| **Security Engineer** | Detection opportunities and telemetry gaps | Technical note with fields, patterns, and sources | New intel requires parser, rule, or sensor change |
+| **CISO** | Exposure, business risk, and strategic trend | Executive summary | Threat affects critical assets, regulated data, or major business service |
+
+## 10. Minimum Validation Before Dissemination
+
+| Check | Why It Matters |
+|:---|:---|
+| **Source credibility assessed** | Prevents spreading noisy or false external reporting |
+| **Indicator or TTP matched to our environment** | Keeps intel relevant, not generic |
+| **Confidence and expiry assigned** | Stops stale intel from lingering in controls |
+| **Owner for follow-up defined** | Ensures intel becomes action, not just awareness |
+
 ## Related Documents
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)
 -   [SOC Assessment Checklist](SOC_Assessment_Checklist.en.md)
 -   [SOC Metrics & KPIs](SOC_Metrics.en.md)
+-   [TI Feeds Integration](TI_Feeds_Integration.en.md)
+-   [Threat Landscape Report](Threat_Landscape_Report.en.md)
 
 ## References
 -   [CREST Cyber Threat Intelligence](https://www.crest-approved.org/knowledge-base/cyber-threat-intelligence/)

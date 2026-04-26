@@ -172,6 +172,6 @@
 | Unusual activity flagged | ☐ |
 | System health confirmed | ☐ |
 
-## อ้างอิง
+## References
 
 - [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

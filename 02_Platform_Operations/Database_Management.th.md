@@ -74,6 +74,30 @@ graph TD
 - ตรวจสอบนโยบาย Retention ประจำปี
 - ดำเนินการคำขอของเจ้าของข้อมูลตาม PDPA ภายใน 30 วัน
 
+## 7. Baseline ขั้นต่ำด้านธรรมาภิบาลข้อมูล (Minimum Governance Baseline)
+
+- [ ] **อนุมัติ retention แล้ว**: ระยะเวลา hot/cold retention ต้องผ่านความเห็นชอบจาก security, legal/privacy และ data owner ตามความจำเป็น
+- [ ] **ระบุ log class สำคัญแล้ว**: ข้อมูล identity, endpoint, network, cloud และหลักฐาน incident ต้องถูกจัดประเภทและจัดการอย่างสม่ำเสมอ
+- [ ] **มี access model ชัดเจนแล้ว**: ระบุบทบาทที่เข้าถึง raw logs, forensic evidence และ archive ได้ตามหลัก least privilege
+- [ ] **ทดสอบการกู้คืนแล้ว**: การกู้ SIEM configuration, case data และ archived logs ต้องผ่านการทดสอบตาม RTO/RPO
+- [ ] **มี purge control ทำงานจริงแล้ว**: การลบข้อมูลตาม retention policy ต้องตรวจสอบย้อนหลังได้
+
+## 8. เกณฑ์ตัดสินใจเรื่อง Retention
+
+| จุดตัดสินใจ | ข้อมูลขั้นต่ำที่ต้องมี | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| **เพิ่ม hot retention** | การสืบสวนต้องใช้ข้อมูลย้อนหลังเกินหน้าต่างปัจจุบันบ่อย และประเมินผลกระทบด้าน performance แล้ว | SOC Manager + Platform Owner |
+| **ย้ายข้อมูลไป cold tier** | ข้อมูลยังจำเป็นตามกฎหมายหรือการปฏิบัติงาน แต่ไม่ต้องค้นหาเร็วอีกต่อไป | Platform Owner |
+| **ขยายระยะ archive retention** | มีข้อกำหนด compliance, litigation hold หรือ threat hunting ที่รองรับต้นทุนและภาระควบคุม | CISO + Legal/Privacy |
+| **อนุมัติการ purge** | ครบกำหนด retention แล้ว ไม่มี hold และมี audit trail ของการลบ | Data Owner + Platform Owner |
+
+## 9. Trigger การ Escalate ด้าน Data Management
+
+- [ ] **Escalate ไป SOC Manager** ถ้า critical logs ขาดหาย เสียหาย หรือมาช้าจนเกินหน้าต่างที่ใช้สืบสวน
+- [ ] **Escalate ไป Platform Owner** ถ้า storage utilization เกิน forecast การทดสอบ restore ล้มเหลว หรือยืนยัน archive integrity ไม่ได้
+- [ ] **Escalate ไป CISO และ Legal/Privacy** ถ้ามี regulated data อยู่นอก approved controls หรือไม่สามารถทำตาม retention obligation ได้
+- [ ] **Escalate ไป business owner** ถ้าข้อจำกัดด้าน onboarding, retention หรือ purge สร้าง blind spot ต่อทรัพย์สินสำคัญ
+
 ## คู่มือการวางแผน Capacity
 
 ### สูตรประมาณ Storage

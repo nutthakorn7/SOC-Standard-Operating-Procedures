@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/📄_Documents-279-blue?style=for-the-badge" alt="Documents">
+  <img src="https://img.shields.io/badge/📄_Documents-281-blue?style=for-the-badge" alt="Documents">
   <img src="https://img.shields.io/badge/🛡️_Playbooks-53-red?style=for-the-badge" alt="Playbooks">
   <img src="https://img.shields.io/badge/🔍_Sigma_Rules-54-orange?style=for-the-badge" alt="Sigma Rules">
   <img src="https://img.shields.io/badge/🌐_Bilingual-EN%2FTH-green?style=for-the-badge" alt="Bilingual">
@@ -44,8 +44,8 @@
 
 | Category | Count | Highlights |
 |:---|:---:|:---|
-| 📄 Documents (EN+TH) | 279 | Bilingual, vendor-agnostic SOPs |
-| 🛡️ IR Playbooks | 53 | PB-01 Phishing → PB-50 Unauthorized Scanning, MITRE mapped |
+| 📄 Documents (EN+TH) | 281 | Bilingual, vendor-agnostic SOPs |
+| 🛡️ IR Playbooks | 53 | PB-01 Phishing → PB-53 AI Model Theft, MITRE/ATLAS mapped |
 | 🔍 Sigma Detection Rules | 54 | Ready-to-import SIEM rules |
 | 🧬 YARA Rules | 15 | File-based threat detection |
 | 📋 Templates | 6 | Incident report, shift log, RFC, dashboards |
@@ -126,7 +126,7 @@ All playbooks are bilingual (EN+TH) and MITRE ATT&CK mapped.
 |:---:|:---|:---:|:---:|
 | 02 | Ransomware | [📄](05_Incident_Response/Playbooks/Ransomware.en.md) | [📄](05_Incident_Response/Playbooks/Ransomware.th.md) |
 | 03 | Malware Infection | [📄](05_Incident_Response/Playbooks/Malware_Infection.en.md) | [📄](05_Incident_Response/Playbooks/Malware_Infection.th.md) |
-| 10 | Exploit | [📄](05_Incident_Response/Playbooks/Exploit.en.md) | [📄](05_Incident_Response/Playbooks/Exploit.th.md) |
+| 18 | Exploit | [📄](05_Incident_Response/Playbooks/Exploit.en.md) | [📄](05_Incident_Response/Playbooks/Exploit.th.md) |
 | 11 | Suspicious Script | [📄](05_Incident_Response/Playbooks/Suspicious_Script.en.md) | [📄](05_Incident_Response/Playbooks/Suspicious_Script.th.md) |
 | 38 | Wiper Attack | [📄](05_Incident_Response/Playbooks/Wiper_Attack.en.md) | [📄](05_Incident_Response/Playbooks/Wiper_Attack.th.md) |
 | 39 | Living Off The Land | [📄](05_Incident_Response/Playbooks/Living_Off_The_Land.en.md) | [📄](05_Incident_Response/Playbooks/Living_Off_The_Land.th.md) |
@@ -158,10 +158,10 @@ All playbooks are bilingual (EN+TH) and MITRE ATT&CK mapped.
 | 09 | DDoS Attack | [📄](05_Incident_Response/Playbooks/DDoS_Attack.en.md) | [📄](05_Incident_Response/Playbooks/DDoS_Attack.th.md) |
 | 12 | Lateral Movement | [📄](05_Incident_Response/Playbooks/Lateral_Movement.en.md) | [📄](05_Incident_Response/Playbooks/Lateral_Movement.th.md) |
 | 13 | C2 Communication | [📄](05_Incident_Response/Playbooks/C2_Communication.en.md) | [📄](05_Incident_Response/Playbooks/C2_Communication.th.md) |
-| 18 | Web Attack | [📄](05_Incident_Response/Playbooks/Web_Attack.en.md) | [📄](05_Incident_Response/Playbooks/Web_Attack.th.md) |
-| 22 | API Abuse | [📄](05_Incident_Response/Playbooks/API_Abuse.en.md) | [📄](05_Incident_Response/Playbooks/API_Abuse.th.md) |
-| 24 | DNS Tunneling | [📄](05_Incident_Response/Playbooks/DNS_Tunneling.en.md) | [📄](05_Incident_Response/Playbooks/DNS_Tunneling.th.md) |
-| 25 | Zero-Day Exploit | [📄](05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md) | [📄](05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md) |
+| 10 | Web Attack | [📄](05_Incident_Response/Playbooks/Web_Attack.en.md) | [📄](05_Incident_Response/Playbooks/Web_Attack.th.md) |
+| 30 | API Abuse | [📄](05_Incident_Response/Playbooks/API_Abuse.en.md) | [📄](05_Incident_Response/Playbooks/API_Abuse.th.md) |
+| 25 | DNS Tunneling | [📄](05_Incident_Response/Playbooks/DNS_Tunneling.en.md) | [📄](05_Incident_Response/Playbooks/DNS_Tunneling.th.md) |
+| 24 | Zero-Day Exploit | [📄](05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md) | [📄](05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md) |
 | 34 | Network Discovery | [📄](05_Incident_Response/Playbooks/Network_Discovery.en.md) | [📄](05_Incident_Response/Playbooks/Network_Discovery.th.md) |
 | 37 | SQL Injection | [📄](05_Incident_Response/Playbooks/SQL_Injection.en.md) | [📄](05_Incident_Response/Playbooks/SQL_Injection.th.md) |
 | 43 | Watering Hole | [📄](05_Incident_Response/Playbooks/Watering_Hole.en.md) | [📄](05_Incident_Response/Playbooks/Watering_Hole.th.md) |
@@ -176,12 +176,12 @@ All playbooks are bilingual (EN+TH) and MITRE ATT&CK mapped.
 | # | Playbook | EN | TH |
 |:---:|:---|:---:|:---:|
 | 16 | Cloud IAM Anomaly | [📄](05_Incident_Response/Playbooks/Cloud_IAM.en.md) | [📄](05_Incident_Response/Playbooks/Cloud_IAM.th.md) |
-| 23 | Cryptomining | [📄](05_Incident_Response/Playbooks/Cryptomining.en.md) | [📄](05_Incident_Response/Playbooks/Cryptomining.th.md) |
+| 31 | Cryptomining | [📄](05_Incident_Response/Playbooks/Cryptomining.en.md) | [📄](05_Incident_Response/Playbooks/Cryptomining.th.md) |
 | 27 | Cloud Storage Exposure | [📄](05_Incident_Response/Playbooks/Cloud_Storage_Exposure.en.md) | [📄](05_Incident_Response/Playbooks/Cloud_Storage_Exposure.th.md) |
 | 29 | Shadow IT | [📄](05_Incident_Response/Playbooks/Shadow_IT.en.md) | [📄](05_Incident_Response/Playbooks/Shadow_IT.th.md) |
-| 31 | AWS EC2 Compromise | [📄](05_Incident_Response/Playbooks/AWS_EC2_Compromise.en.md) | [📄](05_Incident_Response/Playbooks/AWS_EC2_Compromise.th.md) |
-| 32 | AWS S3 Compromise | [📄](05_Incident_Response/Playbooks/AWS_S3_Compromise.en.md) | [📄](05_Incident_Response/Playbooks/AWS_S3_Compromise.th.md) |
-| 33 | Azure AD Compromise | [📄](05_Incident_Response/Playbooks/Azure_AD_Compromise.en.md) | [📄](05_Incident_Response/Playbooks/Azure_AD_Compromise.th.md) |
+| 21 | AWS S3 Compromise | [📄](05_Incident_Response/Playbooks/AWS_S3_Compromise.en.md) | [📄](05_Incident_Response/Playbooks/AWS_S3_Compromise.th.md) |
+| 22 | AWS EC2 Compromise | [📄](05_Incident_Response/Playbooks/AWS_EC2_Compromise.en.md) | [📄](05_Incident_Response/Playbooks/AWS_EC2_Compromise.th.md) |
+| 23 | Azure AD Compromise | [📄](05_Incident_Response/Playbooks/Azure_AD_Compromise.en.md) | [📄](05_Incident_Response/Playbooks/Azure_AD_Compromise.th.md) |
 | 41 | VPN Abuse | [📄](05_Incident_Response/Playbooks/VPN_Abuse.en.md) | [📄](05_Incident_Response/Playbooks/VPN_Abuse.th.md) |
 | 47 | Cloud Cryptojacking | [📄](05_Incident_Response/Playbooks/Cloud_Cryptojacking.en.md) | [📄](05_Incident_Response/Playbooks/Cloud_Cryptojacking.th.md) |
 
@@ -194,7 +194,7 @@ All playbooks are bilingual (EN+TH) and MITRE ATT&CK mapped.
 |:---:|:---|:---:|:---:|
 | 08 | Data Exfiltration | [📄](05_Incident_Response/Playbooks/Data_Exfiltration.en.md) | [📄](05_Incident_Response/Playbooks/Data_Exfiltration.th.md) |
 | 20 | Log Clearing | [📄](05_Incident_Response/Playbooks/Log_Clearing.en.md) | [📄](05_Incident_Response/Playbooks/Log_Clearing.th.md) |
-| 21 | Supply Chain Attack | [📄](05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md) | [📄](05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md) |
+| 32 | Supply Chain Attack | [📄](05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md) | [📄](05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md) |
 | 35 | Data Collection | [📄](05_Incident_Response/Playbooks/Data_Collection.en.md) | [📄](05_Incident_Response/Playbooks/Data_Collection.th.md) |
 | 49 | Typosquatting | [📄](05_Incident_Response/Playbooks/Typosquatting.en.md) | [📄](05_Incident_Response/Playbooks/Typosquatting.th.md) |
 
@@ -207,17 +207,28 @@ All playbooks are bilingual (EN+TH) and MITRE ATT&CK mapped.
 |:---:|:---|:---:|:---:|
 | 19 | Lost/Stolen Device | [📄](05_Incident_Response/Playbooks/Lost_Device.en.md) | [📄](05_Incident_Response/Playbooks/Lost_Device.th.md) |
 | 28 | Mobile Device Compromise | [📄](05_Incident_Response/Playbooks/Mobile_Compromise.en.md) | [📄](05_Incident_Response/Playbooks/Mobile_Compromise.th.md) |
-| 30 | OT/ICS Incident | [📄](05_Incident_Response/Playbooks/OT_ICS_Incident.en.md) | [📄](05_Incident_Response/Playbooks/OT_ICS_Incident.th.md) |
+| 33 | OT/ICS Incident | [📄](05_Incident_Response/Playbooks/OT_ICS_Incident.en.md) | [📄](05_Incident_Response/Playbooks/OT_ICS_Incident.th.md) |
 | 40 | USB Removable Media | [📄](05_Incident_Response/Playbooks/USB_Removable_Media.en.md) | [📄](05_Incident_Response/Playbooks/USB_Removable_Media.th.md) |
 | 46 | SIM Swap | [📄](05_Incident_Response/Playbooks/SIM_Swap.en.md) | [📄](05_Incident_Response/Playbooks/SIM_Swap.th.md) |
 
 </details>
 
+<details>
+<summary><b>🤖 AI & ML Security</b> — Prompt injection, data poisoning, model theft</summary>
+
+| # | Playbook | EN | TH |
+|:---:|:---|:---:|:---:|
+| 51 | AI Prompt Injection | [📄](05_Incident_Response/Playbooks/AI_Prompt_Injection.en.md) | [📄](05_Incident_Response/Playbooks/AI_Prompt_Injection.th.md) |
+| 52 | LLM Data Poisoning | [📄](05_Incident_Response/Playbooks/LLM_Data_Poisoning.en.md) | [📄](05_Incident_Response/Playbooks/LLM_Data_Poisoning.th.md) |
+| 53 | AI Model Theft | [📄](05_Incident_Response/Playbooks/AI_Model_Theft.en.md) | [📄](05_Incident_Response/Playbooks/AI_Model_Theft.th.md) |
+
+</details>
+
 ---
 
-### 🎯 MITRE ATT&CK Coverage / ความครอบคลุม MITRE ATT&CK
+### 🎯 MITRE ATT&CK / ATLAS Coverage
 
-Our 53 playbooks cover **12 of 14 MITRE ATT&CK tactics** mapped across the full kill chain:
+Our 53 playbooks cover **12 of 14 MITRE ATT&CK tactics** across the enterprise kill chain, plus AI/ML scenarios mapped to MITRE ATLAS:
 
 | Tactic | ID | Playbooks | Coverage |
 |:---|:---:|:---:|:---:|
@@ -232,9 +243,10 @@ Our 53 playbooks cover **12 of 14 MITRE ATT&CK tactics** mapped across the full 
 | **Discovery** | TA0007 | PB-06, 34 | 🟢 |
 | **Lateral Movement** | TA0008 | PB-12 | 🟡 |
 | **Collection** | TA0009 | PB-35 | 🟡 |
-| **Command & Control** | TA0011 | PB-13, 24 | 🟢 |
+| **Command & Control** | TA0011 | PB-13, 25 | 🟢 |
 | **Exfiltration** | TA0010 | PB-08 | 🟡 |
-| **Impact** | TA0040 | PB-02, 09, 23, 38, 47 | 🟢🟢 |
+| **Impact** | TA0040 | PB-02, 09, 31, 38, 47 | 🟢🟢 |
+| **AI / ML Security** | MITRE ATLAS | PB-51, 52, 53 | 🟢🟢 |
 
 > 🟢🟢🟢 = 4+ playbooks | 🟢🟢 = 2-3 playbooks | 🟢 = 2 playbooks | 🟡 = 1 playbook
 
@@ -242,17 +254,19 @@ Our 53 playbooks cover **12 of 14 MITRE ATT&CK tactics** mapped across the full 
 
 ## 🔍 Detection & Threat Intelligence / การตรวจจับและข่าวกรองภัยคุกคาม
 
-### Sigma Detection Rules (36 Rules)
+### Sigma Detection Rules (54 Rules)
 
 Ready-to-import rules mapped to MITRE ATT&CK. See full index: [README](08_Detection_Engineering/README.md) | [ดัชนี (TH)](08_Detection_Engineering/README.th.md)
 
 | Category | Rule Examples | Count |
 |:---|:---|:---:|
-| **Windows** | Failed logins, admin group add, log clearing, PowerShell | 8 |
-| **Cloud** | Impossible travel, root login, MFA bypass, mining | 10 |
-| **Network** | DNS tunneling, beaconing, large upload, OT anomaly | 5 |
-| **Web/API** | SQLi, WAF exploit, API abuse, zero-day, rate limit | 5 |
-| **File/Proc** | Ransomware rename, USB bulk copy, crypto indicators | 5 |
+| **Process / Endpoint** | Office PowerShell, encoded PowerShell, LOLBins, cryptomining | 5 |
+| **File Activity** | Ransomware rename, USB bulk copy, USB autorun | 3 |
+| **Network** | DNS tunneling, beaconing, large upload, VPN abuse, scanning | 8 |
+| **Windows Security** | Failed logins, admin shares, group add, log clearing, credential dumping | 11 |
+| **Cloud** | Impossible travel, root login, MFA bypass, storage exposure, cryptojacking | 14 |
+| **Web/API** | SQLi, WAF exploit, API abuse, zero-day, watering hole | 8 |
+| **Device / Proxy / AI** | MDM offline, shadow IT, AI prompt injection, model theft | 5 |
 
 ### YARA Rules (15 Rules)
 
@@ -264,6 +278,7 @@ File-based threat detection: [YARA Index](08_Detection_Engineering/yara/README.m
 |:---|:---:|:---:|
 | **Threat Intelligence Lifecycle** | [Read](06_Operations_Management/Threat_Intelligence_Lifecycle.en.md) | [อ่าน](06_Operations_Management/Threat_Intelligence_Lifecycle.th.md) |
 | **TI Feeds Integration** | [Read](06_Operations_Management/TI_Feeds_Integration.en.md) | [อ่าน](06_Operations_Management/TI_Feeds_Integration.th.md) |
+| **SOC Use Case Library** | [Read](08_Detection_Engineering/SOC_Use_Case_Library.en.md) | [อ่าน](08_Detection_Engineering/SOC_Use_Case_Library.th.md) |
 | **Detection Rule Testing SOP** | [Read](06_Operations_Management/Detection_Rule_Testing.en.md) | [อ่าน](06_Operations_Management/Detection_Rule_Testing.th.md) |
 | **Detection Engineering Lifecycle** | [Read](03_User_Guides/Content_Management.en.md) | [อ่าน](03_User_Guides/Content_Management.th.md) |
 
@@ -425,7 +440,7 @@ File-based threat detection: [YARA Index](08_Detection_Engineering/yara/README.m
 
 For offline reading or printing, download the consolidated manual:
 
-> **[📖 SOC_Manual_Consolidated.md](https://github.com/nutthakorn7/SOC-SOP/blob/main/SOC_Manual_Consolidated.md)** — All 279 documents in one file
+> **[📖 SOC_Manual_Consolidated.md](https://github.com/nutthakorn7/SOC-SOP/blob/main/SOC_Manual_Consolidated.md)** — All 281 documents in one file
 
 ---
 
@@ -435,7 +450,7 @@ For offline reading or printing, download the consolidated manual:
 |:---|:---|
 | **[📝 CHANGELOG.md](CHANGELOG.md)** | All changes by version (Keep a Changelog format) |
 | **[📋 VERSION_TRACKER.md](VERSION_TRACKER.md)** | Every document's version, last update, and next review date |
-| **Current Version** | **v2.13.0** (2026-03-06) |
+| **Current Version** | **v2.15.0** (2026-04-26) |
 
 ---
 

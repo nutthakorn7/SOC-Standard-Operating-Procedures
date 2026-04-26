@@ -1,5 +1,6 @@
 # Playbook PB-34: Suspicious Network Discovery
 
+**ID**: PB-34
 **Severity**: Medium–High | **Category**: Discovery | **MITRE**: T1046, T1135, T1018, T1016, T1049, T1082
 
 ---
@@ -127,6 +128,35 @@ An attacker conducts internal reconnaissance to map the network topology, identi
 | Scan output files | | Forensic image |
 | Associated malware hash | | EDR / sandbox |
 | C2 domain (if post-exploitation) | | DNS / proxy logs |
+
+## Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Discovery evidence | Commands, tool names, target ranges, protocols, timing | EDR / SIEM / NDR | Shows intent and scale of reconnaissance |
+| Source evidence | Hostname, user, privilege level, parent process, malware linkage | EDR / IAM / SIEM | Distinguishes admin work from attacker-led discovery |
+| Network evidence | Sequential scans, ARP/SMB/LDAP/DNS patterns, admin share access | NDR / firewall / Zeek / AD logs | Confirms the type of discovery performed |
+| Scope evidence | Critical systems targeted, BloodHound collection, output files | SIEM / forensic image | Indicates likely next-stage objectives |
+| Context evidence | Change window, authorized scanner, helpdesk or admin task | Ticketing / scanner inventory | Supports false-positive closure |
+
+## Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Endpoint and process telemetry | Tool execution, commands, output files | Required | Cannot identify discovery tools on the source host |
+| NDR, IDS/IPS, and firewall telemetry | Port sweeps, host sweeps, SMB/LDAP/DNS patterns | Required | Network-wide scanning patterns remain invisible |
+| AD and identity logs | LDAP queries, share access, privileged user context | Required | Directory-focused discovery and privilege context are missed |
+| Scanner inventory and change records | Approved admin/scanner activity context | Recommended | Analysts may over-escalate legitimate scans |
+| Honeypot or deception telemetry | High-confidence malicious probing | Recommended | Early internal recon signals weaken |
+
+## False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved vulnerability scan | Port sweeps and enumeration resemble attacker recon | Confirm scanner IP, schedule, and approved scope | Allowlist scanner sources and exact ranges only | Scan hits out-of-scope targets or uses exploit payloads |
+| IT admin troubleshooting | `net view`, LDAP lookups, or share checks can look hostile | Validate admin identity, ticket, and target systems | Lower severity for approved admin commands in limited scope | Activity expands to broad subnet sweeps or off-hours access |
+| Asset inventory tooling | Routine host enumeration may be noisy | Confirm inventory tool, service account, and cadence | Tune for known inventory processes and management subnets | Same host also executes attacker tooling or lateral movement steps |
+| Red-team or tabletop discovery | Intentional recon appears malicious by design | Validate exercise scope and dates | Suppress approved exercise hosts only | Discovery continues outside exercise window |
 
 ## Escalation Criteria
 

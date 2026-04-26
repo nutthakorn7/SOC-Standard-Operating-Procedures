@@ -4,7 +4,7 @@ rule cryptominer_binary {
         author = "SOC-SOP"
         date = "2026-02-15"
         severity = "high"
-        playbook = "PB-23 Cryptomining"
+        playbook = "PB-31 Cryptomining"
         mitre_attack = "T1496"
         reference = "https://attack.mitre.org/techniques/T1496/"
 
@@ -49,7 +49,7 @@ rule cryptominer_script {
         author = "SOC-SOP"
         date = "2026-02-15"
         severity = "medium"
-        playbook = "PB-23 Cryptomining"
+        playbook = "PB-31 Cryptomining"
         mitre_attack = "T1496"
 
     strings:

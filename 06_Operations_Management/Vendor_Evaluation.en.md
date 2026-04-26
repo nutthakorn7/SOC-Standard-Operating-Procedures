@@ -202,8 +202,33 @@ During the Proof-of-Concept trial (recommend 2–4 weeks):
 □ Make recommendation with justification
 ```
 
+## Minimum Decision Inputs Before Selection
+
+| Input | Why It Matters | Owner |
+|:---|:---|:---|
+| Defined use cases and measurable success criteria | Prevents buying features without operational need | SOC Manager |
+| Expected data volume and growth estimate | Validates scale and cost assumptions | Security Engineer |
+| Integration map to current tooling and workflows | Confirms implementation feasibility | Security Engineer |
+| POC results with analyst feedback | Validates daily usability and detection value | SOC Analyst / SOC Lead |
+| 3-year TCO and contract exit assumptions | Supports CISO and budget approval | CISO / Procurement |
+
+## Escalation Triggers During Evaluation
+
+| Condition | Escalate To | SLA | Reason |
+|:---|:---|:---:|:---|
+| Vendor cannot support a critical use case in POC | SOC Manager + CISO | Same business day | Reassess shortlist or scope |
+| Cost exceeds approved budget band by > 15% | CISO + Procurement | Same business day | Confirm funding or negotiate scope |
+| Product requires unsupported architecture or risky data flow | Security Engineer + CISO | Within 24 hours | Assess security and implementation risk |
+| Vendor refuses audit, security questionnaire, or data processing terms | CISO + Legal | Immediate | Contract and compliance blocker |
+| POC results are inconclusive due to poor data quality or scope drift | SOC Manager | Within 24 hours | Reset criteria before decision |
+
 ## Related Documents
 
 - [Technology Stack Selection Guide](../01_SOC_Fundamentals/Technology_Stack.en.md)
 - [Budget & Staffing](../01_SOC_Fundamentals/Budget_Staffing.en.md)
 - [Change Management SOP](Change_Management.en.md)
+
+## References
+
+- [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)
+- [MITRE Center for Threat-Informed Defense](https://ctid.mitre.org/)

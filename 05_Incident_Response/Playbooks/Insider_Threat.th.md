@@ -13,7 +13,7 @@
 - [ ] อัพเดท DLP policies ตาม insider patterns ที่พบ
 - [ ] ประสาน HR สำหรับ disciplinary actions
 - [ ] ทบทวน monitoring policies สำหรับ high-risk users
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### แนวทางการประเมินความเสี่ยง
 
@@ -141,7 +141,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานการเข้าถึง | file access ผิดปกติ, data export, repo activity, print job | SIEM / DLP / repo audit / print logs | ใช้ดูว่าผู้ต้องสงสัยแตะข้อมูลอะไรไปบ้าง |
+| หลักฐานจากอุปกรณ์ | USB history, browser/cloud-sync activity, forensic image, deleted file | Endpoint forensics / EDR | ใช้พิสูจน์ staging, copying, หรือการทำลายข้อมูล |
+| หลักฐานด้านตัวตน | user role, privilege change ล่าสุด, shared-account use, badge/VPN access | IAM / HR / physical security | ใช้ผูกกิจกรรมเข้ากับสิทธิ์ที่มีจริง |
+| หลักฐานเชิงพฤติกรรมและคดี | HR concern, resignation status, warning, manager report, legal hold | HR / legal / case records | ใช้ประกอบบริบทและการดำเนินการที่ถูกต้องตามกฎหมาย |
+| หลักฐาน timeline | ลำดับเหตุการณ์ทางเทคนิคและธุรกิจทั้งหมด | Case notes / SIEM / forensics | สำคัญมากสำหรับ legal review และ executive decision |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| DLP, file, และ repository telemetry | ดู bulk access, copying, external sharing, source-code activity | Required | วัด exfiltration หรือ sabotage ไม่ได้ |
+| Endpoint และ USB telemetry | ดู removable media, browser upload, local staging, deleted file | Required | มองไม่เห็นการ copy ทางกายภาพและการ staging บนเครื่อง |
+| Identity, badge, และ remote-access telemetry | ดู access path, after-hours entry, VPN, privilege use | Required | ผูก insider activity กับบริบทการเข้าถึงไม่ได้ |
+| HR และ legal case context | ดู employment action, resignation, และ approved investigation scope | Required | อ่านความหมายของ technical finding ผิดได้ง่าย |
+| Print, email, และ cloud-collaboration logs | ดูช่องทางนำข้อมูลออกที่ไม่ใช่ USB/download | Recommended | พลาดเส้นทาง exfiltration ทางอ้อม |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| งาน export จำนวนมากหรือส่งมอบ project ที่ได้รับอนุมัติ | data access ปริมาณมากดูเหมือน theft | ยืนยัน ticket, project owner, destination, และ business need | tune เฉพาะ user/project/destination ที่อนุมัติ | export มีข้อมูลอ่อนไหวที่ไม่เกี่ยวข้องหรือส่งไป personal destination |
+| developer clone repo หรือ backup ตามปกติ | sync source code จำนวนมากดูเหมือน exfiltration | ยืนยัน device, branch, repo owner, และเวลางาน | baseline expected engineering sync pattern แบบแคบ | user เดียวกันใช้ USB, personal cloud, หรือเข้าถึงนอกเวลาปกติร่วมด้วย |
+| งานหลังเวลางานของ HR หรือ finance | การเข้าถึงข้อมูลอ่อนไหวกลางคืนดูน่าสงสัย | ยืนยันรอบงาน, การอนุมัติจากหัวหน้า, และชุดข้อมูลที่เกี่ยวข้อง | ลด severity สำหรับ workflow ที่เกิดเป็นรอบตาม business cycle | การเข้าถึงขยายเกิน role หรือเกิดพร้อม resignation concern |
+| การเก็บข้อมูลเพื่อ legal หรือ security investigation | bulk access แบบเงียบอาจดูเหมือน insider action | ยืนยัน legal hold ID และ collector identity | suppress เฉพาะ account และช่วงเวลาที่ documented | การเก็บข้อมูลไปยังปลายทางที่ไม่ควบคุมหรือใช้ personal account |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -149,7 +184,7 @@ graph TD
 | ทรัพย์สินทางปัญญาถูกขโมย | Legal + CISO |
 | ทำร่วมกับบุคคลภายนอก (sabotage/espionage) | Law Enforcement |
 | พฤติกรรมคุกคาม (threatening behavior) | HR + Security ทันที |
-| Admin abuse | [PB-20 Rogue Admin](Rogue_Admin.th.md) |
+| Admin abuse | [PB-15 Rogue Admin](Rogue_Admin.th.md) |
 
 ---
 
@@ -229,7 +264,7 @@ sequenceDiagram
 | Source code | High | CTO |
 | General internal | Medium | SOC Manager |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK — Insider Threat](https://attack.mitre.org/techniques/T1078/)
 - [CERT — Common Sense Guide to Insider Threats](https://insights.sei.cmu.edu/library/common-sense-guide-to-mitigating-insider-threats/)

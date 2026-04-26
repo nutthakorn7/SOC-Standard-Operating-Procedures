@@ -1,117 +1,124 @@
-# 🛡️ SOC Playbook Quick Reference Card / สรุป Playbook
+# SOC Playbook Quick Reference Card / สรุป Playbook
 
-> **พิมพ์หน้านี้** — สรุป Playbook ทั้ง 50 ในหน้าเดียว สำหรับแปะโต๊ะ Analyst
-
----
-
-## 📧 Email & Social Engineering
-
-| PB | ชื่อ | ระดับ | การดำเนินหลัก |
-|:---:|:---|:---:|:---|
-| 01 | Phishing / ฟิชชิ่ง | 🟠 สูง | ตรวจ header → บล็อก sender → รีเซ็ตรหัส → สแกน mailbox |
-| 17 | BEC / อีเมลหลอกธุรกิจ | 🔴 วิกฤต | ตรวจ wire transfer → ระงับบัญชี → แจ้งธนาคาร → forensic |
-| 42 | Email Account Takeover | 🟠 สูง | ตรวจ forwarding rules → เพิกถอน session → MFA reset |
-| 48 | Deepfake Social Engineering | 🟠 สูง | ยืนยันตัวตน → บันทึกหลักฐาน → แจ้ง HR/Legal |
-
-## 🦠 Malware & Ransomware
-
-| PB | ชื่อ | ระดับ | การดำเนินหลัก |
-|:---:|:---|:---:|:---|
-| 02 | Ransomware / แรนซัมแวร์ | 🔴 วิกฤต | แยกเครื่อง → ห้ามจ่ายค่าไถ่ → backup → IR team |
-| 03 | Malware Infection / มัลแวร์ | 🟠 สูง | แยกเครื่อง → สแกน → eradicate → ตรวจ lateral |
-| 10 | Exploit / ช่องโหว่ | 🔴 วิกฤต | แพทช์ → WAF rule → ตรวจ compromise → forensic |
-| 11 | Suspicious Script | 🟡 กลาง | sandbox → วิเคราะห์ → บล็อก hash → สแกนทั้งองค์กร |
-| 38 | Wiper Attack | 🔴 วิกฤต | แยกเครื่อง → ดูผลกระทบ → DR/BCP → forensic |
-| 39 | Living Off The Land | 🟠 สูง | ตรวจ LOLBin → process tree → EDR hunt → block |
-| 46 | Rootkit / Bootkit | 🔴 วิกฤต | boot จาก live media → forensic → reimage |
-
-## 🔑 Identity & Access
-
-| PB | ชื่อ | ระดับ | การดำเนินหลัก |
-|:---:|:---|:---:|:---|
-| 04 | Brute Force / เดารหัส | 🟡 กลาง | ตรวจ lockout → บล็อก IP → MFA → ตรวจรหัสซ้ำ |
-| 05 | Account Compromise | 🟠 สูง | รีเซ็ตรหัส → เพิกถอน session → ตรวจกิจกรรม |
-| 06 | Impossible Travel | 🟡 กลาง | ตรวจ IP/geo → ยืนยันผู้ใช้ → ระงับ/อนุญาต |
-| 07 | Privilege Escalation | 🔴 วิกฤต | ตรวจสิทธิ์ → ถอนสิทธิ์ → ตรวจ persistence |
-| 14 | Insider Threat / ภัยจากภายใน | 🟠 สูง | เก็บหลักฐาน → จำกัดสิทธิ์ → แจ้ง HR/Legal |
-| 15 | Rogue Admin | 🔴 วิกฤต | ระงับบัญชี → forensic → ตรวจการเปลี่ยนแปลงทั้งหมด |
-| 26 | MFA Bypass / Token Theft | 🟠 สูง | เพิกถอน token → บังคับ reenroll → ตรวจ session |
-| 36 | Credential Dumping | 🔴 วิกฤต | แยกเครื่อง → รีเซ็ตรหัสทั้งหมดบนเครื่อง → KRBTGT |
-
-## 🌐 Network & Web
-
-| PB | ชื่อ | ระดับ | การดำเนินหลัก |
-|:---:|:---|:---:|:---|
-| 09 | DDoS Attack | 🟠 สูง | เปิด mitigation → CDN → ISP upstream → ตรวจ app |
-| 12 | Lateral Movement | 🔴 วิกฤต | แยก segment → ปิด RDP/SMB → ตรวจทุกเครื่อง |
-| 13 | C2 Communication | 🔴 วิกฤต | บล็อก domain/IP → แยกเครื่อง → DNS sinkhole |
-| 18 | Web Attack | 🟠 สูง | WAF block → ตรวจ logs → แพทช์ช่องโหว่ |
-| 22 | API Abuse | 🟡 กลาง | rate limit → API key revoke → ตรวจ data |
-| 24 | DNS Tunneling | 🟠 สูง | บล็อก domain → ตรวจ payload → DNS monitoring |
-| 25 | Zero-Day Exploit | 🔴 วิกฤต | virtual patch → แยกเครื่อง → monitor exploitation |
-| 34 | Network Discovery | 🟡 กลาง | ตรวจ scanner → บล็อกถ้าไม่มีอนุญาต → ตรวจ ACL |
-| 37 | SQL Injection | 🟠 สูง | บล็อก IP → WAF rules → ตรวจ DB → แพทช์โค้ด |
-| 43 | Drive-By Download | 🟠 สูง | บล็อก URL → สแกนเครื่อง → แพทช์ browser |
-| 44 | Watering Hole | 🔴 วิกฤต | บล็อกเว็บ → สแกนผู้เยี่ยมชม → ตรวจ exploit |
-| 50 | Unauthorized Scanning | 🟡 กลาง | ตรวจ source → บล็อก → ตรวจ vuln ที่พบ |
-
-## ☁️ Cloud & Infrastructure
-
-| PB | ชื่อ | ระดับ | การดำเนินหลัก |
-|:---:|:---|:---:|:---|
-| 16 | Cloud IAM Anomaly | 🟠 สูง | ตรวจสิทธิ์ → เพิกถอนสิทธิ์เกิน → audit API calls |
-| 19 | AWS EC2 Compromise | 🔴 วิกฤต | แยก instance → snapshot EBS → rotate keys |
-| 20 | AWS S3 Compromise | 🔴 วิกฤต | ปิด public access → ตรวจ CloudTrail → rotate creds |
-| 23 | Cryptomining | 🟡 กลาง | kill process → ตรวจ bill → ตรวจ access key |
-| 28 | Cloud Storage Exposure | 🟠 สูง | ปิด public → ตรวจ access log → แจ้ง PDPA |
-| 30 | Shadow IT | 🟡 กลาง | สำรวจ → ประเมินความเสี่ยง → migrate หรือ block |
-| 33 | Azure AD Compromise | 🔴 วิกฤต | เพิกถอน session → รีเซ็ต creds → Conditional Access |
-| 41 | VPN Abuse | 🟠 สูง | ระงับ VPN → ตรวจ source → ตรวจ tunnel logs |
-| 45 | Cloud Cryptojacking | 🟠 สูง | kill compute → revoke API keys → แจ้ง billing |
-
-## 📦 Data & Supply Chain
-
-| PB | ชื่อ | ระดับ | การดำเนินหลัก |
-|:---:|:---|:---:|:---|
-| 08 | Data Exfiltration / ข้อมูลรั่ว | 🔴 วิกฤต | บล็อกช่องทาง → DLP → ตรวจข้อมูลที่รั่ว → PDPA |
-| 21 | Supply Chain Attack | 🔴 วิกฤต | ตรวจ dependency → rollback → vendor contact |
-| 27 | Log Clearing / ลบ Log | 🔴 วิกฤต | restore จาก backup → เก็บ log ที่เหลือ → ตรวจสอบ |
-| 35 | Data Collection / Staging | 🟠 สูง | ตรวจ staging area → บล็อกช่องทาง exfil |
-| 49 | Typosquatting | 🟡 กลาง | แจ้ง registrar → DNS block → แจ้งผู้ใช้ |
-
-## 📱 Physical & Mobile
-
-| PB | ชื่อ | ระดับ | การดำเนินหลัก |
-|:---:|:---|:---:|:---|
-| 29 | Mobile Compromise | 🟠 สูง | MDM wipe/lock → เพิกถอน token → ตรวจ data |
-| 31 | OT/ICS Incident | 🔴 วิกฤต | แยก OT → ห้ามสแกน → manual override → ICS team |
-| 32 | Lost/Stolen Device / อุปกรณ์หาย | 🟠 สูง | remote wipe → ระงับบัญชี → แจ้งความ |
-| 40 | USB Removable Media | 🟡 กลาง | confiscate → scan → ตรวจ autorun → DLP |
-| 47 | SIM Swap | 🟠 สูง | ติดต่อ carrier → เปลี่ยน MFA → รีเซ็ตบัญชี |
+> **พิมพ์หน้านี้** — สรุป Playbook ทั้ง 53 ฉบับ สำหรับแปะโต๊ะ Analyst
+>
+> **วัตถุประสงค์**: ช่วยให้ analyst เลือก playbook, action แรก และ escalation path ได้เร็ว
 
 ---
 
-## 🔺 คู่มือ Escalation ด่วน
+## Email & Social Engineering
 
-| ระดับ | SLA ตอบรับ | SLA แก้ไข | ส่งต่อถึง |
-|:---:|:---:|:---:|:---|
-| 🟢 P4 — ต่ำ | 8 ชม. | - | SOC T1 |
-| 🟡 P3 — กลาง | 2 ชม. | 24 ชม. | SOC T2 |
-| 🟠 P2 — สูง | 30 นาที | 8 ชม. | SOC T2 + IR Lead |
-| 🔴 P1 — วิกฤต | 15 นาที | 4 ชม. | IR Team + CISO + Legal |
+| PB | ชื่อ | ระดับ | การดำเนินหลัก |
+|:---:|:---|:---:|:---|
+| 01 | Phishing / ฟิชชิ่ง | P2-P1 | ตรวจ header, บล็อก sender, ลบอีเมล, ตรวจ click log |
+| 17 | BEC / อีเมลหลอกธุรกิจ | P1 | ระงับธุรกรรม, ยืนยันผู้ส่ง, เก็บหลักฐาน mailbox |
+| 42 | Email Account Takeover | P1 | รีเซ็ตรหัส, เพิกถอน session, ตรวจ inbox/OAuth rule |
+| 48 | Deepfake Social Engineering | P1 | ยืนยันผ่าน callback, หยุดคำขอเสี่ยง, เก็บหลักฐานสื่อ |
 
-## 📞 ข้อมูลติดต่อ
+## Malware & Endpoint
+
+| PB | ชื่อ | ระดับ | การดำเนินหลัก |
+|:---:|:---|:---:|:---|
+| 02 | Ransomware / แรนซัมแวร์ | P1 | แยกเครื่อง, ป้องกัน backup, เก็บหลักฐาน, เปิด IR |
+| 03 | Malware Infection / มัลแวร์ | P2-P1 | แยก endpoint, เก็บ artifact, ตรวจการแพร่กระจาย |
+| 11 | Suspicious Script | P2 | หยุด process, เก็บ script, ตรวจ parent process |
+| 38 | Wiper Attack | P1 | แยกเครื่องทันที, เปิด DR/BCP, ตรวจ integrity |
+| 39 | Living Off The Land | P2 | ตรวจ LOLBin, hunt persistence, บล็อก binary ที่ถูก abuse |
+| 45 | Rootkit / Bootkit | P1 | offline scan, เก็บ disk image, rebuild ระบบที่เชื่อถือได้ |
+
+## Identity & Access
+
+| PB | ชื่อ | ระดับ | การดำเนินหลัก |
+|:---:|:---|:---:|:---|
+| 04 | Brute Force / เดารหัส | P3-P2 | lock account, บล็อก source, enforce MFA |
+| 05 | Account Compromise | P2-P1 | รีเซ็ตรหัส, เพิกถอน session, ตรวจ user activity |
+| 06 | Impossible Travel | P3-P2 | ยืนยันผู้ใช้, ตรวจ VPN/proxy, ตรวจ sign-in log |
+| 07 | Privilege Escalation | P1 | ถอนสิทธิ์สูง, audit group change, hunt persistence |
+| 14 | Insider Threat / ภัยจากภายใน | P1 | เก็บหลักฐาน, ประสาน HR/Legal, monitor access |
+| 15 | Rogue Admin | P1 | ปิดบัญชี, rotate secret, ตรวจ admin change |
+| 16 | Cloud IAM Anomaly | P2-P1 | ถอนสิทธิ์เสี่ยง, audit API call, rotate key |
+| 26 | MFA Bypass / Token Theft | P1 | เพิกถอน token, บังคับ reenroll, ตรวจ AiTM indicator |
+| 36 | Credential Dumping | P1 | แยก host, รีเซ็ตรหัสที่เสี่ยง, hunt LSASS/SAM/DCSync |
+
+## Network & Web
+
+| PB | ชื่อ | ระดับ | การดำเนินหลัก |
+|:---:|:---|:---:|:---|
+| 09 | DDoS Attack | P2-P1 | เปิด mitigation, rate limit, ประสาน ISP/CDN |
+| 10 | Web Application Attack | P2-P1 | บล็อก exploit path, ตรวจ log, patch component |
+| 12 | Lateral Movement | P1 | แยก segment, ปิดบัญชีที่ถูกยึด, scope host |
+| 13 | C2 Communication | P1 | บล็อก C2, แยก host ที่ beacon, วิเคราะห์ traffic |
+| 18 | Vulnerability Exploitation | P2-P1 | patch หรือ virtual patch, บล็อก IOC, ตรวจ compromise |
+| 24 | Zero-Day Exploit | P1 | ใช้ compensating control, แยก asset เสี่ยง, monitor KEV/TI |
+| 25 | DNS Tunneling | P1 | บล็อก domain, แยก host, วิเคราะห์ payload ที่ encode |
+| 30 | API Abuse | P2 | rate limit, revoke API key, ตรวจ object access pattern |
+| 34 | Network Discovery | P3-P2 | ระบุ scanner, ยืนยัน authorization, บล็อกถ้าไม่อนุญาต |
+| 37 | SQL Injection | P1 | บล็อก payload, patch code, ตรวจ data exposure |
+| 43 | Watering Hole | P1 | บล็อกเว็บ, ระบุผู้เข้าเยี่ยมชม, scan endpoint |
+| 44 | Drive-By Download | P2 | บล็อก URL, scan endpoint, patch browser/plugin |
+| 50 | Unauthorized Scanning | P3 | ระบุ source, บล็อกถ้าจำเป็น, ตรวจ service ที่เปิดอยู่ |
+
+## Cloud & Infrastructure
+
+| PB | ชื่อ | ระดับ | การดำเนินหลัก |
+|:---:|:---|:---:|:---|
+| 21 | AWS S3 Compromise | P2-P1 | ปิด public access, ตรวจ CloudTrail, ประเมินข้อมูลรั่ว |
+| 22 | AWS EC2 Compromise | P1 | แยก instance, snapshot volume, rotate key |
+| 23 | Azure AD / Entra ID Compromise | P1 | revoke session, reset credential, ตรวจ Conditional Access |
+| 27 | Cloud Storage Exposure | P2-P1 | ทำ private, ตรวจ access log, แจ้งถ้าข้อมูลรั่ว |
+| 29 | Shadow IT | P3 | inventory service, ประเมินความเสี่ยง, block หรือ onboard |
+| 31 | Cryptomining | P2-P1 | หยุด miner, rotate access key, ตรวจ billing |
+| 41 | VPN Abuse | P2 | ปิด VPN account, ตรวจ source, review tunnel log |
+| 47 | Cloud Cryptojacking | P1 | kill compute, revoke API key, แจ้ง finance/cloud owner |
+
+## Data, Supply Chain & Physical
+
+| PB | ชื่อ | ระดับ | การดำเนินหลัก |
+|:---:|:---|:---:|:---|
+| 08 | Data Exfiltration / ข้อมูลรั่ว | P1 | บล็อกช่องทาง, scope ข้อมูล, ประเมิน PDPA notification |
+| 19 | Lost/Stolen Device / อุปกรณ์หาย | P2 | remote wipe, ปิดบัญชี, บันทึก chain of custody |
+| 20 | Log Clearing / ลบ Log | P1 | เก็บ log ที่เหลือ, restore จาก backup, ตรวจ source |
+| 28 | Mobile Device Compromise | P2 | lock/wipe device, revoke token, re-enroll MDM |
+| 32 | Supply Chain Attack | P1 | แยก software กระทบ, ตรวจ signature, ติดต่อ vendor |
+| 33 | OT/ICS Incident | P1 | ให้ความปลอดภัยมาก่อน, แยก OT segment, ประสาน site owner |
+| 35 | Data Collection / Staging | P2 | monitor staging area, บล็อก exfil path, เก็บ archive |
+| 40 | USB Removable Media | P3-P2 | quarantine media, scan device, ตรวจ DLP/file access |
+| 46 | SIM Swap | P1 | ติดต่อ carrier, reset account, เปลี่ยน MFA ออกจาก SMS |
+| 49 | Typosquatting | P3 | บล็อก domain, report registrar, แจ้งผู้ใช้ |
+
+## AI & ML Security
+
+| PB | ชื่อ | ระดับ | การดำเนินหลัก |
+|:---:|:---|:---:|:---|
+| 51 | AI Prompt Injection | P2-P1 | บล็อก prompt path เสี่ยง, ปิด tool เสี่ยง, ตรวจ output exposure |
+| 52 | LLM Data Poisoning | P1 | freeze training/RAG pipeline, ระบุ poisoned record, restore trusted data |
+| 53 | AI Model Theft | P1 | หยุด extraction, revoke access, เก็บ API/storage log |
+
+---
+
+## คู่มือ Escalation ด่วน
+
+| ระดับ | SLA ตอบรับ | ส่งต่อถึง | ตัวอย่าง |
+|:---:|:---:|:---|:---|
+| P1 Critical | 15 นาที | SOC Manager, CISO, Legal, owner ที่เกี่ยวข้อง | Ransomware, active breach, data leak, model theft |
+| P2 High | 30 นาที | SOC Manager, Team Lead | Malware, account compromise, cloud exposure |
+| P3 Medium | 2 ชั่วโมง | Tier 2 Analyst | Brute force, scanning, policy violation |
+| P4 Low | 8 ชั่วโมง | Tier 1 Analyst | False positive, info request |
+
+## ข้อมูลติดต่อ
 
 | บทบาท | ชื่อ | เบอร์ | อีเมล |
 |:---|:---|:---|:---|
 | SOC Manager | __________ | __________ | __________ |
-| IR Lead | __________ | __________ | __________ |
 | CISO | __________ | __________ | __________ |
 | Legal / DPO | __________ | __________ | __________ |
-| ฝ่ายสื่อสาร | __________ | __________ | __________ |
+| PR / Communications | __________ | __________ | __________ |
+| IT Infrastructure Lead | __________ | __________ | __________ |
+| Cloud Owner | __________ | __________ | __________ |
+| HR Contact | __________ | __________ | __________ |
 
 ---
 
-> 📖 **เอกสารฉบับเต็ม**: [SOC SOP Repository](https://nutthakorn7.github.io/SOC-SOP/)
+> **เอกสารฉบับเต็ม**: [SOC SOP Repository](https://nutthakorn7.github.io/SOC-SOP/)
 >
-> 🔄 **อัปเดตล่าสุด**: 2026-02-17 | **เวอร์ชัน**: 2.11.1
+> **อัปเดตล่าสุด**: 2026-04-26 | **เวอร์ชัน**: 2.14

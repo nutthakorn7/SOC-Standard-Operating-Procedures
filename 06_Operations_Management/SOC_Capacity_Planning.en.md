@@ -200,6 +200,24 @@ flowchart LR
 
 ---
 
+## Capacity Decision Triggers
+
+| Condition | Primary Owner | Immediate Decision | Follow-Up |
+|:---|:---|:---|:---|
+| **Alert-to-analyst ratio exceeds target for 4 weeks** | SOC Manager | Rebalance shifts or add temporary coverage | Hiring or automation review |
+| **SIEM headroom drops below 20%** | Security Engineer | Freeze non-essential new ingest | Scale infrastructure or retention tier |
+| **Backlog and MTTA both trend upward** | SOC Manager | Open capacity review | Validate whether issue is staffing, workflow, or noise |
+| **Attrition risk rises above target** | CISO + SOC Manager | Protect training and retention budget | Compensation and staffing plan review |
+
+## Minimum Planning Inputs
+
+| Input | Why Needed | Blind Spot If Missing |
+|:---|:---|:---|
+| **Alert volume by severity and source** | Staffing must reflect real workload, not total count alone | Headcount may be over- or under-estimated |
+| **Case handling time by queue type** | Determines true analyst capacity | Triage-heavy and investigation-heavy queues look the same |
+| **EPS growth and retention requirement** | Drives license and storage forecasting | Infrastructure scaling happens too late |
+| **Planned business or compliance changes** | New obligations can increase staffing and tooling needs | Budget misses strategic growth drivers |
+
 ## Related Documents
 
 -   [SOC Team Structure](SOC_Team_Structure.en.md) — Roles and responsibilities
@@ -208,3 +226,8 @@ flowchart LR
 -   [SOC Maturity Assessment](SOC_Maturity_Assessment.en.md) — Capability levels
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — Data volume sources
 -   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Automation savings
+
+## References
+
+- [NIST Cybersecurity Framework](https://csrc.nist.gov/projects/cybersecurity-framework)
+- [MITRE 11 Strategies for a World-Class SOC](https://www.mitre.org/publications/technical-papers/11-strategies-world-class-cybersecurity-operations-center)

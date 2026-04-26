@@ -13,7 +13,7 @@
 - [ ] ทบทวน DNS inspection coverage
 - [ ] สร้าง detection rule สำหรับ high-entropy DNS queries
 - [ ] ใช้ DNS logging เฝ้าระวังอย่างต่อเนื่อง
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังการตรวจจับ DNS Tunneling
 
@@ -221,7 +221,7 @@ graph TD
 | Isolate source host | 15 min |
 | Scan for additional hosts | 1 hr |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1071.004 — DNS](https://attack.mitre.org/techniques/T1071/004/)
 - [SANS — Detecting DNS Tunneling](https://www.sans.org/white-papers/detecting-dns-tunneling/)

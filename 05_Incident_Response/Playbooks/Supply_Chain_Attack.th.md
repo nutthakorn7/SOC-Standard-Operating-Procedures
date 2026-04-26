@@ -13,7 +13,7 @@
 - [ ] ใช้ SCA (Software Composition Analysis) ใน CI/CD
 - [ ] ตรวจ code signing certificates
 - [ ] ใช้ allowlist สำหรับ approved packages/vendors
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังเวกเตอร์ Supply Chain
 
@@ -224,7 +224,7 @@ sequenceDiagram
 | Request | Patch/advisory ETA |
 | Contact | [security team email] |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1195 — Supply Chain Compromise](https://attack.mitre.org/techniques/T1195/)
 - [CISA — ICT Supply Chain Risk Management](https://www.cisa.gov/supply-chain)

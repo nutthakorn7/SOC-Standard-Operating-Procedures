@@ -78,11 +78,11 @@ pie title ความครอบคลุม SOC ตาม CSF Function
 
 | หมวด | คำอธิบาย | ครอบคลุม | เอกสาร SOC |
 |:---:|:---|:---:|:---|
-| RS.MA | จัดการเหตุการณ์ | ✅ | [กรอบ IR](../05_Incident_Response/Framework.th.md), [50 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md) |
+| RS.MA | จัดการเหตุการณ์ | ✅ | [กรอบ IR](../05_Incident_Response/Framework.th.md), [53 Playbooks](../05_Incident_Response/Playbooks/Phishing.th.md) |
 | RS.AN | วิเคราะห์เหตุการณ์ | ✅ | [การสืบสวน Forensic](../05_Incident_Response/Forensic_Investigation.th.md) |
 | RS.CO | สื่อสารเหตุการณ์ | ✅ | [ตาราง Escalation](../05_Incident_Response/Escalation_Matrix.th.md) |
-| RS.RP | รายงานเหตุการณ์ | ✅ | [แบบรายงานเหตุการณ์](../11_Reporting_Templates/incident_report.en.md) |
-| RS.MI | บรรเทาเหตุการณ์ | ✅ | [50 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md) |
+| RS.RP | รายงานเหตุการณ์ | ✅ | [แบบรายงานเหตุการณ์](../11_Reporting_Templates/incident_report.th.md) |
+| RS.MI | บรรเทาเหตุการณ์ | ✅ | [53 Playbooks](../05_Incident_Response/Playbooks/Phishing.th.md) |
 
 ## 7. RECOVER (กู้คืน)
 
@@ -102,9 +102,28 @@ pie title ความครอบคลุม SOC ตาม CSF Function
 | **ระบุ** | 3 | 2 เต็ม + 1 บางส่วน | ประเมินความเสี่ยง |
 | **ป้องกัน** | 5 | 3 เต็ม + 2 บางส่วน | IAM ฝึกอบรม DR/BCP |
 | **ตรวจจับ** | 3 | 3 เต็ม | Monitoring, Sigma, Runbooks |
-| **ตอบสนอง** | 5 | 5 เต็ม | IR framework, 50 playbooks |
+| **ตอบสนอง** | 5 | 5 เต็ม | IR framework, 53 playbooks |
 | **กู้คืน** | 3 | 3 เต็ม | DR/BCP, บทเรียน |
 | **รวม** | **22** | **16 เต็ม + 6 บางส่วน** | |
+
+## หลักฐานขั้นต่ำตาม CSF Function (Minimum Evidence by CSF Function)
+
+| Function | หลักฐานขั้นต่ำ | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| Govern | ชุดนโยบาย, ownership matrix, minutes ของ governance review | CISO / SOC Manager |
+| Identify | asset/risk inventory, gap analysis, review cadence | SOC Manager |
+| Protect | access review, training records, หลักฐาน data handling | Security Engineer |
+| Detect | monitoring inventory, rule testing evidence, ตัวอย่าง alert review | Security Engineer |
+| Respond | incident record, escalation trail, communication logs | IR Engineer |
+| Recover | recovery plans, post-incident improvements, executive updates | SOC Manager |
+
+## Trigger สำหรับการตัดสินใจระดับผู้บริหาร (Executive Decision Triggers)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การตัดสินใจที่ต้องได้ |
+|:---|:---|:---:|:---|
+| หมวดที่ระบุว่า full coverage ไม่มี operating evidence รองรับ | CISO | ภายในวันทำการเดียวกัน | ปรับสถานะหรือกู้การปฏิบัติกลับมา |
+| gap ใน Detect หรือ Respond กระทบบริการสำคัญหรือ regulated service | CISO + Business owner | ภายใน 24 ชม. | อนุมัติ remediation หรือรับความเสี่ยง |
+| governance review พบ backlog ซ้ำโดยไม่มี owner | Executive sponsor | governance meeting ถัดไป | กำหนด accountable owner และ due date |
 
 ---
 

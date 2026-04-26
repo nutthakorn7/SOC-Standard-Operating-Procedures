@@ -272,7 +272,7 @@ Every hunt must be documented using this template:
 ### HP-03: DNS Tunneling / DGA (T1048.003)
 - **Query**: DNS queries with unusually long subdomains or high entropy
 - **Indicators**: Query length > 50 chars, NXDomain ratio > 30%
-- **Escalation**: If found → PB-24 DNS Tunneling
+- **Escalation**: If found → PB-25 DNS Tunneling
 
 ### HP-04: Living-off-the-Land (LOLBins) (T1218)
 - **Query**: Execution of certutil, mshta, regsvr32, rundll32 with network activity
@@ -307,7 +307,7 @@ Every hunt must be documented using this template:
 ### HP-10: Cryptomining Indicators (T1496)
 - **Query**: High CPU processes, connections to mining pools, Stratum protocol
 - **Indicators**: xmrig, minergate, pool.* DNS queries
-- **Escalation**: If found → PB-23 Cryptomining
+- **Escalation**: If found → PB-31 Cryptomining
 
 ---
 

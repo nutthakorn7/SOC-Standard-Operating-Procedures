@@ -246,11 +246,30 @@
 | 5-8 | Investigation | Tier 2/3 |
 | 9-12 | Independent work | Manager |
 
+## เกณฑ์ขั้นต่ำก่อนเข้ากะอิสระ (Minimum Readiness Criteria Before Independent Shift)
+
+| ข้อกำหนด | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| ตรวจสิทธิ์และสาธิตงานพื้นฐานในเครื่องมือหลักได้ | ป้องกัน access gap ตอนทำเคสจริง | SOC Analyst + Mentor |
+| คุณภาพ ticket และ judgment เรื่อง escalation ผ่านเกณฑ์ | ยืนยันว่าทำงานได้อย่างปลอดภัย | SOC Lead |
+| อ่านและทำความเข้าใจ core playbooks กับ IR framework แล้ว | ทำให้การตัดสินใจยึดเอกสาร ไม่ใช่เดา | SOC Analyst |
+| มี mentor sign-off และผล assessment บันทึกไว้ | สร้าง accountability ก่อนปล่อยเข้ากะจริง | SOC Manager |
+| ยืนยัน after-hours contact path และ support model แล้ว | ลดความเสี่ยงในกะแรกที่ทำเอง | Shift Lead |
+
+## Trigger สำหรับการยกระดับระหว่าง Onboarding (Onboarding Escalation Triggers)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| สิทธิ์ที่จำเป็นยังไม่ครบหลังจบเป้าหมายสัปดาห์แรก | SOC Manager + IAM owner | ภายในวันทำการเดียวกัน | แก้ access block ก่อนเข้าเฟสถัดไป |
+| Analyst ไม่ผ่าน checkpoint สองครั้งในเฟสเดียวกัน | SOC Manager | ภายใน 24 ชม. | ทำ remediation plan หรือขยายช่วง supervised |
+| mentor ไม่พอสำหรับ guided work | SOC Lead | ภายในวันทำการเดียวกัน | เปลี่ยน mentor หรือหยุด milestone ชั่วคราว |
+| Analyst ถูกปล่อยเข้ากะอิสระโดยไม่มี readiness evidence | SOC Manager | ทันที | ดึงกลับมา supervised mode |
+
 ## เอกสารที่เกี่ยวข้อง
 
 -   SOC Charter — ภารกิจและโครงสร้าง
 -   Roles & Responsibilities — นิยาม tier
 -   Training Program — แผนฝึกอบรมระยะยาว
--   [Tier 1 Runbook](../05_Incident_Response/Runbooks/Tier1_Runbook.en.md) — ขั้นตอนรายวัน
--   [IR Framework](../05_Incident_Response/Framework.en.md) — วงจร IR
--   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — เมื่อไรต้อง escalate
+-   [Tier 1 Runbook](../05_Incident_Response/Runbooks/Tier1_Runbook.th.md) — ขั้นตอนรายวัน
+-   [IR Framework](../05_Incident_Response/Framework.th.md) — วงจร IR
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.th.md) — เมื่อไรต้อง escalate

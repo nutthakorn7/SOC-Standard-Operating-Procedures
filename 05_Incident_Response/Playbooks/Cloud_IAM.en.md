@@ -169,7 +169,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Identity evidence | User ARN/UPN, role, access key ID, MFA state | Cloud audit / IAM logs | Confirms which identity was abused |
+| Change evidence | Policy diffs, role assignments, trust relationships, logging changes | CloudTrail / Azure audit / IaC repo | Shows what was modified and how risky it is |
+| Resource impact evidence | New compute, storage, network, functions, or public exposure | Cloud console / audit logs | Defines operational impact and blast radius |
+| Source evidence | Source IP, user agent, console/API method, geolocation | Event details / SIEM | Supports attribution and false-positive review |
+| Business and cost evidence | Billing spikes, exposed data, affected accounts/subscriptions | Billing / asset inventory / DLP | Supports executive and legal escalation |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Cloud audit logs | Identity actions, policy changes, API calls, logging tamper events | Required | Cannot prove what the attacker changed or accessed |
+| IAM and directory telemetry | MFA state, role membership, trust relationships, key lifecycle | Required | Cannot determine privilege escalation or persistence paths |
+| Cloud asset and posture telemetry | Public exposure, new resources, guardrail violations | Required | Blast radius and exposure remain unclear |
+| Billing and usage anomaly telemetry | Cryptomining, abuse spikes, unexpected consumption | Recommended | Cost-driven abuse or stealth resource creation may be missed |
+| IaC and change-management records | Expected changes, approvers, deployment windows | Recommended | Analysts may mistake planned changes for compromise |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved infrastructure deployment | New roles, policies, or resources may look like attacker persistence | Confirm IaC change set, approver, pipeline run, and maintenance window | Suppress only for approved deployment identities and change windows | Changes occur from console/manual paths or differ from the approved template |
+| Break-glass or emergency admin use | Root/Global Admin use can be legitimate during outage handling | Validate incident record, approver, and duration of emergency access | Alert with reduced severity for approved break-glass events with full logging | Access occurs without incident approval or persists beyond the window |
+| Cloud security tooling actions | CSPM, SSPM, or auto-remediation may change policies or quarantine assets | Confirm tool identity, remediation policy, and target resource | Allowlist the tool identity for documented remediation actions | The same identity disables logging or expands privilege unexpectedly |
+| Planned key rotation or federation update | Trust or key lifecycle changes can resemble malicious persistence | Validate change ticket, key owner, and expected expiry/rollout plan | Tune around approved key rotation and federation change windows | New principals, broad trust policies, or cross-account access appear |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

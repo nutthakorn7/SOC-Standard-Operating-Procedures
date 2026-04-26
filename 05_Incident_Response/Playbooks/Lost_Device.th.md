@@ -13,7 +13,7 @@
 - [ ] ตรวจ MDM enrollment compliance
 - [ ] ออกอุปกรณ์ทดแทนพร้อม security baseline
 - [ ] จัด awareness training เรื่อง physical security
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังการประเมินความเสี่ยง
 
@@ -140,7 +140,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานทรัพย์สิน | serial number, asset tag, device type, owner, encryption status | Asset inventory / MDM | ใช้แยกว่าเป็นงาน admin ปกติหรือมีความเสี่ยงข้อมูลรั่ว |
+| หลักฐานการเข้าถึง | last sign-in, VPN use, certificate use, cloud-app access หลังสูญหาย | IdP / VPN / app logs | ใช้ดูว่าอุปกรณ์ที่หายถูกนำไปใช้ต่อหรือไม่ |
+| หลักฐานตำแหน่ง | last check-in, GPS, Wi-Fi AP, IP, สถานะ remote lock/wipe | MDM / network logs | ใช้ช่วยกู้คืนและประเมินเวลาเริ่มเสี่ยง |
+| หลักฐานการเปิดเผยข้อมูล | cached mail, local file, saved credential, removable media use | MDM / DLP / endpoint inventory | ใช้ประเมิน breach และการแจ้งเตือน |
+| หลักฐานบริบทของเหตุการณ์ | คำให้การผู้ใช้, theft report, police report, travel context | Ticketing / HR / physical security | ใช้แยก theft, negligence, หรือ targeted activity |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| MDM และ asset telemetry | ดู device state, encryption, remote action, inventory | Required | ยืนยันไม่ได้ว่าเครื่องถูกป้องกันหรือ wipe แล้วหรือยัง |
+| Identity และ application access logs | ดู sign-in, token use, cert use, cloud app access หลังสูญหาย | Required | มองไม่เห็นการใช้งานอุปกรณ์หลังรายงานหาย |
+| VPN และ network telemetry | ดู remote access attempt, last connectivity, source IP แปลก | Required | พลาด device-enabled remote compromise |
+| DLP และ data classification telemetry | ดูความอ่อนไหวของข้อมูลที่อาจอยู่บนเครื่อง | Recommended | breach assessment กลายเป็นการคาดเดา |
+| Physical security และ HR records | ดูรายละเอียดการหาย, ตำแหน่ง, การเดินทาง, police follow-up | Recommended | บริบทเรื่อง targeted theft หรือ insider angle ไม่ชัด |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| อุปกรณ์ offline ชั่วคราวหรือแบตหมด | missed check-in ดูเหมือน theft หรือ tampering | ยืนยันตำแหน่งผู้ใช้ การเดินทาง และ heartbeat ภายหลัง | tune ระยะเวลา offline ตามชนิดอุปกรณ์และ pattern การเดินทาง | เครื่องกลับมา online พร้อม sign-in หรือ location ที่ไม่คาดคิด |
+| อุปกรณ์อยู่ระหว่างซ่อมหรือ IT staging | อุปกรณ์หายจากการใช้งานปกติดูเหมือนสูญหาย | ตรวจ repair ticket, custodian, และที่เก็บ | suppress เฉพาะ workflow ซ่อม/เตรียมเครื่องที่อนุมัติ | อุปกรณ์ถูกเปิดใช้หรือนำออกนอก flow ที่กำหนด |
+| BYOD selective wipe หรือ unenroll | MDM event บางอย่างดูเหมือน loss event | ยืนยันคำขอ BYOD offboarding และการยืนยันจากผู้ใช้ | แยก workflow ของ BYOD ออกจาก corporate-owned | corporate token ยัง active หรือข้อมูลสำคัญยังเข้าถึงได้ |
+| การเดินทางหรือด่านสนามบินทำให้ offline นาน | offline นานและ geolocation แปลกดูน่าสงสัย | ยืนยัน itinerary และไม่พบ access ระหว่างนั้น | ลด severity เมื่อมีเอกสารเดินทางและเครื่องยัง encrypted | มี VPN, certificate, หรือ cloud-app use หลังเวลารายงานหาย |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -192,7 +227,7 @@ graph TD
 - [แม่แบบรายงานเหตุการณ์](../../11_Reporting_Templates/incident_report.th.md)
 - [PB-28 อุปกรณ์มือถือถูกบุกรุก](Mobile_Compromise.th.md)
 
-## Device Type Response Matrix
+## 9. Device Type Response Matrix
 
 | Device Type | Remote Wipe | Data Risk | Priority |
 |:---|:---|:---|:---|
@@ -221,6 +256,6 @@ graph TD
 | VPN credentials | Usually | Medium |
 | Saved passwords | Browser-dependent | High |
 
-## อ้างอิง
+## References
 
 - [NIST SP 800-124r2 — Mobile Device Management](https://csrc.nist.gov/publications/detail/sp/800-124/rev-2/final)

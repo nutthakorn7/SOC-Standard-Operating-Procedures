@@ -105,6 +105,25 @@ flowchart TD
 | Audit finding recurrence | < 10% |
 | Evidence availability | ≥ 95% |
 
+## หลักฐานขั้นต่ำสำหรับการปิด Gap (Minimum Evidence for Gap Closure)
+
+| หลักฐาน | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| เอกสาร control หรือ procedure ที่อัปเดตแล้ว | พิสูจน์ว่ามีการแก้ในระดับเอกสารจริง | Control Owner |
+| หลักฐานจาก production เช่น ticket, log, screenshot, export | ยืนยันว่าการแก้ทำงานจริง ไม่ใช่แค่เขียนเพิ่ม | SOC Analyst / Security Engineer |
+| approval หรือ risk-acceptance record | แยกให้ชัดว่าปิดด้วย remediation หรือยอมรับความเสี่ยง | SOC Manager / CISO |
+| ผล re-test หรือ validation | แสดงว่า gap ไม่ตกเงื่อนไขเดิมอีก | Compliance Officer |
+| วันที่ปิดและ review trail ใน gap register | เก็บ accountability และ audit traceability | Compliance Officer |
+
+## Trigger สำหรับการยกระดับช่องว่าง (Executive Escalation Triggers for Gaps)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การตัดสินใจที่ต้องได้ |
+|:---|:---|:---:|:---|
+| critical gap ไม่มี owner หรือไม่มีแผนที่ได้รับงบ | CISO | ภายในวันทำการเดียวกัน | แต่งตั้ง owner และอนุมัติ remediation path |
+| gap กระทบ regulated data, ระบบบัตร, หรือภาระรายงานตามกฎหมาย | CISO + Legal / DPO | ทันที | รับความเสี่ยงชั่วคราวหรือบังคับเปลี่ยน control |
+| high-risk gap เลยกำหนดสองครั้ง | Executive sponsor | governance review ถัดไป | ยกระดับเกินกว่าการแก้ในทีมย่อย |
+| closure evidence ไม่มีหรือ validation ไม่ผ่าน | Compliance Officer + Control Owner | ภายใน 5 วันทำการ | เปิด gap ใหม่หรือจัดหลักฐานเพิ่ม |
+
 ---
 
 ## Gap Analysis Methodology
@@ -213,7 +232,13 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Compliance Mapping](Compliance_Mapping.en.md) — ISO 27001 / NIST CSF / PCI DSS
--   [PDPA Incident Response](PDPA_Incident_Response.en.md) — แจ้ง 72 ชม.
--   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md) — ประเมิน SOC
--   [Vulnerability Management](../06_Operations_Management/Vulnerability_Management.en.md) — การสแกนและแก้ไข
+-   [Compliance Mapping](Compliance_Mapping.th.md) — ISO 27001 / NIST CSF / PCI DSS
+-   [PDPA Incident Response](PDPA_Incident_Response.th.md) — แจ้ง 72 ชม.
+-   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.th.md) — ประเมิน SOC
+-   [Vulnerability Management](../06_Operations_Management/Vulnerability_Management.th.md) — การสแกนและแก้ไข
+
+## References
+
+-   [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)
+-   [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)
+-   [PCI DSS v4.0](https://www.pcisecuritystandards.org/document_library/)

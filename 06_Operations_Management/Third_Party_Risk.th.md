@@ -242,11 +242,34 @@ flowchart TD
 | Q3 | Policy & contract reviews |
 | Q4 | Annual risk report |
 
+## Trigger สำหรับการยกระดับความเสี่ยงบุคคลที่สาม
+
+| Trigger | ต้อง escalate ไปหา | เหตุผล |
+|:---|:---|:---|
+| **Tier 1 vendor incident ที่อาจกระทบข้อมูลเรา** | CISO + Legal / DPO | อาจเป็นเหตุการณ์ที่ต้องรายงาน |
+| **พบ vendor access นอก scope หรือนอกเวลาที่อนุมัติ** | SOC Manager | อาจเป็น misuse หรือ vendor compromise |
+| **critical vendor ไม่ให้ IOC หรือ remediation details เพียงพอ** | Risk Owner + CISO | โปร่งใสไม่พอที่จะควบคุมความเสี่ยง |
+| **จุดอ่อนเดิมของ vendor โผล่ซ้ำหลายรอบทบทวน** | Procurement / Vendor Owner | ความเสี่ยงเริ่มเป็นเชิงโครงสร้าง |
+
+## หลักฐานขั้นต่ำในการทบทวน Vendor
+
+| หลักฐาน | มาตรฐานขั้นต่ำ |
+|:---|:---|
+| **รายการการเข้าถึงปัจจุบัน** | named users, accounts, APIs และ scope ที่อนุญาต |
+| **activity logs ล่าสุด** | เพียงพอให้ยืนยันรูปแบบการใช้งานที่อนุมัติ |
+| **ประวัติ incident หรือ advisory** | breach, notification หรือ finding สำคัญก่อนหน้า |
+| **compensating controls** | network limits, MFA, segmentation หรือ monitoring ที่ใช้อยู่ |
+
 ## เอกสารที่เกี่ยวข้อง
 
--   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md)
--   [Incident Classification](../05_Incident_Response/Incident_Classification.en.md)
--   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md)
--   [Vendor Evaluation](Vendor_Evaluation.en.md)
--   [SLA Template](SLA_Template.en.md)
--   [Log Source Matrix](Log_Source_Matrix.en.md)
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.th.md)
+-   [Incident Classification](../05_Incident_Response/Incident_Classification.th.md)
+-   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.th.md)
+-   [Vendor Evaluation](Vendor_Evaluation.th.md)
+-   [SLA Template](SLA_Template.th.md)
+-   [Log Source Matrix](Log_Source_Matrix.th.md)
+
+## References
+
+- [NIST Cybersecurity Framework](https://csrc.nist.gov/projects/cybersecurity-framework)
+- [CISA](https://www.cisa.gov/)

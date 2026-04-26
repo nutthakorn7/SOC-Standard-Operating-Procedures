@@ -62,8 +62,8 @@ gantt
 **เป้าหมาย**: พิสูจน์ทักษะของคุณโดยการป้องกันการโจมตีจำลอง
 
 -   **วันที่ 1: เครื่องมือทดสอบ**
-    -   อ่าน: [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.en.md)
-    -   อ่าน: [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md)
+    -   อ่าน: [Simulation Guide](../09_Simulation_Testing/Simulation_Guide.th.md)
+    -   อ่าน: [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.th.md)
 -   **วันที่ 2: การสอบปฏิบัติ (Drill)**
     -   งาน: รัน `Invoke-AtomicTest T1059.001` (Phishing Simulation) ในห้อง Lab
     -   งาน: Triage Alert ใน SIEM
@@ -155,10 +155,27 @@ gantt
 □ Feedback เชิงบวกจาก shift mentors
 ```
 
+## ผลลัพธ์ขั้นต่ำในแต่ละช่วงฝึก (Minimum Deliverables by Training Stage)
+
+| ช่วง | ผลลัพธ์ขั้นต่ำ | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| พื้นฐาน | access ครบ, อ่าน baseline แล้ว, ยืนยันการนำทางเครื่องมือได้ | Mentor |
+| การปฏิบัติงาน | mock tickets, ฝึก escalation, เข้าใจ IR framework | SOC Analyst |
+| การตรวจจับ | แบบฝึก query, การเทียบ Sigma, การ enrich IOC | Mentor + Analyst |
+| การประเมิน | ผล drill, mock incident report, บันทึก final assessment | SOC Manager |
+
+## Trigger สำหรับการยกระดับในเส้นทางฝึก (Escalation Triggers for Training Path)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| Analyst ทำ prerequisite ไม่ทันตามแผน | SOC Manager | ภายใน 24 ชม. | ปรับลำดับแผนหรือเพิ่มการช่วยเหลือ |
+| simulation หรือ drill รันไม่ได้เพราะเครื่องมือไม่พร้อม | Security Engineer + SOC Manager | ภายในวันทำการเดียวกัน | แก้ lab dependency หรือใช้ fallback ที่อนุมัติ |
+| ผลงานด้าน triage หรือเอกสารอ่อนซ้ำหลายครั้ง | Mentor + SOC Lead | ภายใน 24 ชม. | เปิด targeted improvement plan |
+
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [Training Checklist](Training_Checklist.th.md)
 -   [กรอบ Incident Response](../05_Incident_Response/Framework.th.md)
--   [คู่มือจำลองการโจมตี](../09_Simulation_Testing/Simulation_Guide.en.md)
+-   [คู่มือจำลองการโจมตี](../09_Simulation_Testing/Simulation_Guide.th.md)
 
 ### Onboarding Milestones
 

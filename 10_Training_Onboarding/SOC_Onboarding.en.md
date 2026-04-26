@@ -246,6 +246,25 @@ gantt
 | Purple team participation | Quarterly | Hands-on adversary techniques |
 | Conference / CTF | Annual | Industry engagement |
 
+## Minimum Readiness Criteria Before Independent Shift
+
+| Requirement | Why It Matters | Owner |
+|:---|:---|:---|
+| Required tool access verified and basic tasks demonstrated | Prevents access gaps during live handling | SOC Analyst + Mentor |
+| Ticket quality and escalation judgment meet agreed score | Confirms the analyst can work safely | SOC Lead |
+| Core playbooks and IR framework completed | Ensures decisions follow the repo, not guesswork | SOC Analyst |
+| Mentor sign-off and assessment pass recorded | Creates clear accountability for release to production | SOC Manager |
+| After-hours contact path and support model confirmed | Reduces risk on first live independent shift | Shift Lead |
+
+## Onboarding Escalation Triggers
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Required access is still missing after Week 1 target | SOC Manager + IAM owner | Same business day | Fix access block before next phase |
+| Analyst fails checkpoint twice in the same phase | SOC Manager | Within 24 hours | Add remediation plan or extend supervised period |
+| Mentor availability is insufficient for guided work | SOC Lead | Same business day | Reassign mentor or pause milestone |
+| Analyst is placed on independent shift without readiness evidence | SOC Manager | Immediate | Pull back to supervised mode |
+
 ---
 
 ## Related Documents

@@ -242,6 +242,25 @@ Regardless of which stack you choose, add these:
 | **MFA** | Duo / Microsoft Authenticator | Protect SOC accounts |
 | **Backup** | Veeam / Restic / AWS Backup | Evidence preservation |
 
+## Minimum Decision Inputs Before Stack Selection
+
+| Input | Why It Matters | Owner |
+|:---|:---|:---|
+| Expected log volume and retention target | Prevents under-sizing and surprise cost growth | Security Engineer |
+| Required log sources and integrations | Confirms operational feasibility | Security Engineer |
+| Staffing skill level and support model | Determines whether the team can run the stack safely | SOC Manager |
+| Compliance constraints on data location and retention | Avoids selecting an architecture that cannot pass audit | CISO / Compliance Officer |
+| Response workflow and case-management expectation | Ensures the stack supports actual SOC operations | SOC Manager |
+
+## Stack Selection Escalation Triggers
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Projected ingestion cost exceeds approved budget band | CISO | Same business day | Re-scope, reduce retention, or change stack |
+| Required integration is missing or only available through custom unsupported work | Security Engineer + SOC Manager | Within 24 hours | Reassess architecture risk |
+| Team lacks operational skills for the selected stack | CISO + SOC Manager | Before purchase | Add training, MSSP support, or choose simpler option |
+| Data residency or compliance requirement cannot be met | CISO + Compliance Officer | Immediate | Block selection until constraint is resolved |
+
 ---
 
 ## Related Documents

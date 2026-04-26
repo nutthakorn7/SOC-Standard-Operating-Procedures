@@ -176,7 +176,42 @@ graph TD
 
 ---
 
-## 6. Post-Incident
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Host impact evidence | Ransom note, encrypted extensions, affected hostnames, timestamps | Endpoint / EDR | Confirms strain behavior and spread timing |
+| Malware evidence | Binary hash, execution path, persistence artifacts, process tree | EDR / forensic tools | Supports eradication and block actions |
+| Lateral movement evidence | RDP/SMB/WMI/PsExec activity, authentication events | SIEM / Windows logs / EDR | Shows how the attack propagated |
+| Recovery impact evidence | Backup status, immutable snapshot status, restore test results | Backup console / DR team | Determines recovery path and executive decisions |
+| Legal and business impact evidence | Exfiltration indicators, affected systems, downtime, critical services impacted | DLP / NetFlow / asset inventory | Supports notification and business continuity decisions |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Endpoint detection and forensic telemetry | Encryption behavior, process lineage, persistence, spread indicators | Required | Cannot confirm patient zero or active encryption behavior |
+| Windows or system authentication logs | Lateral movement, credential abuse, privileged access | Required | Cannot trace propagation across hosts or accounts |
+| Network telemetry and DNS logs | C2, staging, remote encryption activity, exfiltration clues | Required | Cannot scope external communication or propagation path |
+| Backup, snapshot, and recovery logs | Restore viability, immutable copy status, recovery timing | Required | Recovery planning becomes guesswork |
+| Asset inventory and business service mapping | Critical system impact and outage prioritization | Recommended | Executive prioritization and service recovery order become weak |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved software deployment or patching | Large file changes and process execution can resemble encryption activity | Confirm deployment window, package source, and signed installer lineage | Suppress only the known package/process combination for the maintenance window | File rename/write behavior persists outside the approved package path |
+| Backup, compression, or archival jobs | High file I/O and extension changes can look like ransomware staging | Validate service account, job schedule, destination, and expected host list | Tune thresholds for approved backup/compression binaries and service accounts | Unexpected user context, shadow copy deletion, or ransom notes appear |
+| Security scanning or EDR remediation | Mass file touches or quarantine actions can appear destructive | Confirm scanner/remediation job ID and source console actions | Suppress by tool process name plus management server correlation | The same host also shows lateral movement or unknown payload execution |
+| Lab, sandbox, or malware analysis environment | Intentional ransomware detonation for testing looks real in telemetry | Validate isolated asset tag, analyst owner, and lab network segment | Scope exceptions to isolated lab assets only | Activity escapes the lab boundary or reaches production identities/systems |
+
+---
+
+## 9. Post-Incident
 
 - [ ] Conduct lessons learned within 5 business days
 - [ ] Update endpoint hardening (disable macros, restrict PowerShell)

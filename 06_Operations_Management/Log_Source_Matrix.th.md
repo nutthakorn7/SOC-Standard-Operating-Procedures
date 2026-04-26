@@ -193,11 +193,47 @@ Storage 90 วัน = Storage/วัน × 90
 | Cloud | JSON/API | Custom | Medium |
 | Application | Custom | Custom | High |
 
+## Baseline ขั้นต่ำของ Log ตาม Use Case
+
+| Use Case | Log ที่ต้องมี | Enrichment ที่แนะนำ | Blind Spot หากไม่มี |
+|:---|:---|:---|:---|
+| **Identity abuse / account compromise** | AD หรือ IdP sign-in logs, MFA platform, VPN gateway | DHCP, EDR, geo-IP | ยืนยันไม่ได้ว่าใคร login จากที่ไหน และ MFA ล้มเหลวหรือไม่ |
+| **Endpoint execution / malware** | Windows Security, Sysmon, EDR, AV/EPP | DNS, proxy, threat intel | เห็น process lineage และกิจกรรมหลังรันไม่ครบ |
+| **Phishing / BEC** | Email gateway, M365 UAL หรือเทียบเท่า, IdP logs | sandbox verdicts, DLP, URL click logs | ผูกการส่งเมลกับกิจกรรมหลังเปิดใช้งานบัญชีไม่ได้ |
+| **Data exfiltration** | Proxy, DLP, storage audit, firewall | NetFlow, SaaS audit, DB audit | การโอนข้อมูลขนาดใหญ่จะดูเหมือน traffic ปกติ |
+| **Cloud abuse** | CloudTrail/Activity/Audit logs, cloud identity logs | VPC/NSG flow logs, CSPM findings | มองไม่เห็น privileged API misuse และการเปิด public exposure |
+| **Web attack / API abuse** | WAF, web server, application logs | DB audit, threat intel, CDN logs | เห็นแค่ขอบระบบ ไม่เห็นผลกระทบ downstream |
+
+## การตรวจคุณภาพข้อมูลและ Trigger สำหรับ Escalate
+
+| รายการตรวจ | Owner | เกณฑ์ที่ยอมรับได้ | ต้อง escalate เมื่อ |
+|:---|:---|:---|:---|
+| **ความสดของ ingestion** | SOC Engineering | ไม่มี gap เกิน SLA ของแต่ละ source | source สำคัญระดับ P1/P2 ขาดเกิน SLA |
+| **ความครบของ parser** | Security Engineer | field สำคัญของ priority sources ถูก normalize | source สำคัญยังเป็น partial เกิน 1 รอบรายงาน |
+| **ความตรงของเวลา** | SOC Engineering | timestamp ใช้ correlate ข้ามระบบได้ | time drift ทำให้ timeline เพี้ยนหรือ MTTD เพี้ยน |
+| **เสถียรภาพของ EPS** | SOC Lead | อยู่ใน baseline หรือช่วงเปลี่ยนแปลงที่อนุมัติแล้ว | EPS ลด/พุ่งผิดปกติโดยไม่มี planned change |
+| **Retention ตามข้อกำหนด** | SOC Manager / GRC | เพียงพอสำหรับ incident, audit, legal | เก็บ log สั้นกว่าช่วงที่ใช้สืบสวน |
+
+## มุมมองผู้บริหาร: ถ้า Log หาย จะเสี่ยงอะไร
+
+| Source ที่ขาดหรือยัง partial | ผลกระทบทางปฏิบัติการ | ความเสี่ยงทางธุรกิจ |
+|:---|:---|:---|
+| **IdP / MFA logs** | triage account compromise ได้ไม่ดี | เพิ่มความเสี่ยงการเข้าถึงโดยไม่ได้รับอนุญาตแบบไม่ถูกตรวจพบ |
+| **EDR หรือ Sysmon** | สร้างภาพเหตุการณ์บน endpoint ได้ไม่ครบ | contain ช้าลงและพิสูจน์ forensic ยาก |
+| **Cloud audit logs** | มองไม่เห็น admin/API abuse ชัดเจน | ความเสี่ยงสูงด้าน cloud governance และการสืบสวน breach |
+| **Email audit logs** | ยืนยันการกระทำของผู้ใช้หลัง phishing ไม่ได้ | ตอบสนอง BEC และ mail-based attack ช้าลง |
+| **Database / SaaS audit** | เก็บหลักฐาน data access ได้ไม่ครบ | เสี่ยงต่อการรายงานด้านกฎหมายและข้อบังคับ |
+
 ## เอกสารที่เกี่ยวข้อง
 
--   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md)
--   [Detection Rule Testing SOP](Detection_Rule_Testing.en.md)
--   [TI Feeds Integration](TI_Feeds_Integration.en.md)
--   [SOC Metrics & KPIs](SOC_Metrics.en.md)
--   [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.en.md)
--   [Infrastructure Setup](../01_SOC_Fundamentals/Infrastructure_Setup.en.md)
+-   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.th.md)
+-   [Detection Rule Testing SOP](Detection_Rule_Testing.th.md)
+-   [TI Feeds Integration](TI_Feeds_Integration.th.md)
+-   [SOC Metrics & KPIs](SOC_Metrics.th.md)
+-   [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.th.md)
+-   [Infrastructure Setup](../01_SOC_Fundamentals/Infrastructure_Setup.th.md)
+
+## References
+
+- [NIST SP 800-92](https://csrc.nist.gov/publications/detail/sp/800-92/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

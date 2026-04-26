@@ -1,5 +1,6 @@
 # Playbook PB-35: Suspicious Data Collection
 
+**ID**: PB-35
 **Severity**: High | **Category**: Collection | **MITRE**: T1560, T1119, T1115, T1074, T1213, T1005
 
 ---
@@ -132,6 +133,35 @@ An attacker gathers sensitive data from within the environment before exfiltrati
 | Destination (upload URL / email) | | Proxy / email logs |
 | Volume of data collected (MB/GB) | | DLP / Cloud audit |
 | Tools used | | Process logs |
+
+## Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Collection evidence | Files accessed, queries run, archive names, staging paths, timestamps | EDR / DLP / DB audit | Shows exactly what was collected and prepared |
+| User and access evidence | User role, source host, privileges, app/session context | IAM / SIEM / endpoint logs | Distinguishes misuse from approved business access |
+| Tool evidence | Archivers, scripts, sync tools, clipboard/screenshot tools | Process logs / EDR | Identifies the collection method and detection gap |
+| Destination evidence | Upload URL, email forwarding, removable media, cloud sync | Proxy / email / USB / cloud logs | Indicates whether collection was preparing for exfiltration |
+| Data sensitivity evidence | Data labels, record counts, customer/PII/IP scope | DLP / data inventory | Supports legal and executive decisions |
+
+## Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Endpoint and process telemetry | Archiving, staging, file access, removable media | Required | Cannot see local data collection behavior |
+| DLP and data classification telemetry | Sensitive content, labels, record counts | Required | Business and legal impact remain unclear |
+| Identity, share, and cloud-access logs | Who accessed which repositories and when | Required | Cannot attribute collection activity correctly |
+| Database and application audit logs | Structured-data export and repository access | Recommended | Large non-file-based collection may be missed |
+| Proxy, email, and cloud-sync telemetry | Preparation for outbound movement | Recommended | Staging may be seen but next-step intent remains weak |
+
+## False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved bulk export or reporting job | Large archives and file access can look malicious | Confirm report owner, schedule, destination, and ticket | Tune for approved jobs, accounts, and paths only | Job collects unrelated sensitive data or uses new destinations |
+| Backup or migration activity | Copying and compression may resemble staging | Validate service account, maintenance window, and source repo | Lower severity for documented backup/migration workflows | Activity occurs from user endpoints or outside approved windows |
+| eDiscovery or legal hold | Large mailbox/file exports can look like theft | Confirm case ID and legal owner | Suppress only legal workflows with recorded approval | Export leaves controlled storage or exceeds case scope |
+| Developer or analyst local dataset prep | Normal packaging of test data may be noisy | Validate project owner and sanitized-data scope | Tune for approved lab paths and sanitized datasets | Real production data or personal storage is involved |
 
 ## Escalation Criteria
 

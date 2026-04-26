@@ -221,9 +221,37 @@ graph TD
 | DNS monitoring | PassiveDNS | Domain tracking |
 | Full PCAP | Arkime / tcpdump | Forensics |
 
+## Telemetry ขั้นต่ำสำหรับ NSM (Minimum Telemetry Baseline for Network Security Monitoring)
+
+| แหล่งข้อมูลที่ต้องมี | เหตุผล | Blind Spot ถ้าขาด |
+|:---|:---|:---|
+| Firewall allow/deny logs | ใช้เห็น ingress, egress และ policy violation | มองไม่เห็นบริบทการเข้าถึงจาก perimeter |
+| DNS query logs | ใช้ตรวจ DNS tunneling, DGA, typosquatting และ beacon resolution | เห็น C2 และ exfiltration ผ่าน DNS ลดลงมาก |
+| NetFlow หรือ flow telemetry เทียบเท่า | ใช้เห็น east-west และ outbound pattern ในระดับกว้าง | ตรวจ lateral movement และ large transfer ได้ไม่ดี |
+| IDS/IPS หรือ NDR alerts | ให้สัญญาณ exploit และ anomaly ที่สำคัญ | ความมั่นใจของ detection ลดลงและ triage ช้าขึ้น |
+| VPN / remote access logs | ใช้ยืนยันกิจกรรม remote-entry และที่มา | พลาด unauthorized access และ correlation นอกเวลา |
+| DHCP / asset-to-IP mapping | ใช้ map IP กลับไปยัง host และ owner | scope ช้าลงและหาเจ้าของสินทรัพย์ยาก |
+
+## Trigger สำหรับการยกระดับ NSM (Escalation Triggers for Network Monitoring)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| ยืนยัน beaconing, DNS tunneling หรือ known C2 traffic | Incident Commander + IR lead | ทันที | เปิด incident และ contain host ที่ได้รับผลกระทบ |
+| พบ cross-zone traffic ที่ผิด segmentation policy บน critical asset | SOC Manager | ภายใน 15 นาที | ตรวจความถูกต้องและเริ่ม containment ถ้าจำเป็น |
+| การโอนข้อมูลเกิน threshold ที่อนุมัติหรือปลายทางไม่ได้รับอนุญาต | SOC Manager + Business owner | ภายใน 30 นาที | ประเมินความเสี่ยง exfiltration และผลกระทบธุรกิจ |
+| PCAP, NetFlow หรือ DNS visibility ต่ำกว่าค่า baseline | Security Engineer + SOC Manager | ภายใน 1 ชม. | กู้ telemetry กลับมาและประเมิน blind spot |
+| หลาย host มีพฤติกรรม scanning หรือ exploit แบบประสานกัน | IR lead + CISO สำหรับ P1/P2 | ทันที | มองเป็น broader compromise จนกว่าจะพิสูจน์ได้ว่าไม่ใช่ |
+
 ## เอกสารที่เกี่ยวข้อง
 
--   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด
--   [Cloud Security Monitoring](Cloud_Security_Monitoring.en.md) — Cloud network
--   [DLP SOP](DLP_SOP.en.md) — Network DLP
--   [Alert Tuning SOP](Alert_Tuning.en.md) — การ tune network alerts
+-   [Log Source Matrix](Log_Source_Matrix.th.md) — แหล่งข้อมูลทั้งหมด
+-   [Cloud Security Monitoring](Cloud_Security_Monitoring.th.md) — Cloud network
+-   [DLP SOP](DLP_SOP.th.md) — Network DLP
+-   [Alert Tuning SOP](Alert_Tuning.th.md) — การ tune network alerts
+-   [Threat Landscape Report](Threat_Landscape_Report.th.md) — ภาพรวมภัยคุกคาม
+-   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.th.md) — Network forensics
+
+## References
+
+-   [MITRE ATT&CK](https://attack.mitre.org/)
+-   [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

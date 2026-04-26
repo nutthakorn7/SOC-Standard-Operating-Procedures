@@ -104,6 +104,26 @@
 □ รายงานผู้บริหาร/คณะกรรมการ
 ```
 
+## ตารางตัดสินใจการแจ้งเตือน (Notification Decision Matrix)
+
+| เงื่อนไข | แจ้ง สคส. | แจ้งเจ้าของข้อมูล | ยกระดับถึง |
+|:---|:---:|:---:|:---|
+| ยืนยันว่ามี personal data เกี่ยวข้อง แต่ผลกระทบยังประเมินไม่จบ | ✅ | ประเมินต่อ | DPO + SOC Manager |
+| ข้อมูลอ่อนไหว ข้อมูลการเงิน หรือ secret ด้านการยืนยันตัวตนถูกเปิดเผย | ✅ | ✅ | DPO + CISO + Legal |
+| ข้อมูลถูกเข้ารหัสและยืนยันได้ว่า key ไม่ถูก compromise | ประเมิน | โดยปกติไม่ต้อง | DPO |
+| ยังไม่มีหลักฐานการเข้าถึง แต่มี public exposure เกิดขึ้น | ✅ | ประเมิน | DPO + SOC Manager |
+| third-party breach กระทบข้อมูลที่องค์กรควบคุม | ✅ | ประเมิน | DPO + Vendor owner + Legal |
+
+## หลักฐานขั้นต่ำก่อนแจ้งเตือน (Minimum Evidence Before Notification)
+
+| หลักฐาน | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| timeline ของการตรวจพบ การยกระดับ และการควบคุม | รองรับ timeline ตามกฎหมายและการอธิบายย้อนหลัง | IR Engineer |
+| ประเภทข้อมูล จำนวน record โดยประมาณ และจำนวนเจ้าของข้อมูล | เป็นข้อมูลที่ต้องใช้ในหนังสือแจ้ง | SOC Analyst |
+| สถานะการควบคุมและ blast radius ที่ทราบ | ลดความเสี่ยงจากการแจ้งข้อมูลไม่ครบหรือทำให้เข้าใจผิด | Technical Lead |
+| ช่องทางติดต่อปัจจุบันของ DPO, legal และ business owner | ป้องกันการค้างระหว่างการแจ้ง | SOC Manager |
+| สำเนา draft และ final notification package | เก็บเป็นหลักฐาน audit และกฎหมาย | DPO |
+
 ---
 
 ## บทลงโทษ PDPA
@@ -200,3 +220,8 @@ graph LR
 - [เก็บหลักฐาน](../05_Incident_Response/Evidence_Collection.th.md)
 - [แม่แบบ Lessons Learned](../05_Incident_Response/Lessons_Learned_Template.th.md)
 - [Compliance Mapping](Compliance_Mapping.th.md)
+
+## References
+
+- [Thailand Personal Data Protection Committee (PDPC)](https://www.pdpc.or.th/)
+- [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

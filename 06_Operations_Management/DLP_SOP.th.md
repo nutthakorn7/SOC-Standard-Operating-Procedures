@@ -235,7 +235,7 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Insider Threat Program](Insider_Threat_Program.en.md) — ตรวจจับ insider threat
--   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — การจัดการหลักฐาน
--   [Alert Tuning SOP](Alert_Tuning.en.md) — การ tune DLP alerts
--   [Cloud Security Monitoring](Cloud_Security_Monitoring.en.md) — Cloud DLP integration
+-   [Insider Threat Program](Insider_Threat_Program.th.md) — ตรวจจับ insider threat
+-   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.th.md) — การจัดการหลักฐาน
+-   [Alert Tuning SOP](Alert_Tuning.th.md) — การ tune DLP alerts
+-   [Cloud Security Monitoring](Cloud_Security_Monitoring.th.md) — Cloud DLP integration

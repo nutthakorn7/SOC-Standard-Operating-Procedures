@@ -36,7 +36,7 @@ graph TD
 - [ ] ใช้ sign-in risk policies (Azure AD / Okta)
 - [ ] ตรวจสอบและเพิกถอน OAuth app consents ที่ค้าง
 - [ ] สร้าง Sigma rule สำหรับรูปแบบ credential abuse ที่พบ
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 
 ## 1. การวิเคราะห์
@@ -163,6 +163,41 @@ sequenceDiagram
 
 ---
 
+## 6. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานด้านตัวตน | username, UPN, role, MFA method, session/token IDs | IdP / auth logs | ยืนยันตัวตนที่ถูกบุกรุกและระดับสิทธิ์ |
+| หลักฐานการเข้าถึง | source IP, geolocation, device, client app, impossible travel details | Sign-in logs / SIEM | ใช้แยกพฤติกรรมปกติกับพฤติกรรมอันตราย |
+| หลักฐานกิจกรรมหลัง login | inbox rules, OAuth consents, file access, admin actions, app registrations | Exchange / cloud audit / IAM logs | ใช้ดู persistence และผลกระทบทางธุรกิจ |
+| หลักฐานจากการยืนยันกับผู้ใช้ | บันทึกการสัมภาษณ์ผู้ใช้, travel/device context, business justification | Ticket / call log | ใช้ปิด false positive และอธิบายการตัดสินใจ |
+| หลักฐานด้านขอบเขต | login ลักษณะเดียวกัน, password reuse indicator, บัญชีอื่นที่เกี่ยวข้อง | SIEM / password audit | ใช้ดูว่าเป็นเคสเดี่ยวหรือเป็น campaign |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Identity provider sign-in logs | ดูแหล่งที่มา, MFA event, session creation, impossible travel | Required | ยืนยัน compromise หรือแยก benign login pattern ไม่ได้ |
+| Cloud audit และ mailbox activity logs | ดู post-login action, inbox rule, OAuth grant, admin change | Required | ประเมินผลกระทบหลังได้สิทธิ์เข้าใช้ไม่ได้ |
+| Endpoint และ device telemetry | ดู device posture, browser history, token theft, malware overlap | Recommended | บอกไม่ได้ว่า identity abuse เริ่มจาก endpoint ที่ติดมัลแวร์หรือไม่ |
+| Password reset และ helpdesk records | ใช้ยืนยันผู้ใช้, lockout history, social engineering indicator | Recommended | การตัดสินใจของ analyst จะขาดบริบทจากผู้ใช้ |
+| SIEM correlation ข้ามหลาย identity | ดู IP ซ้ำ, password reuse, บัญชีที่เกี่ยวข้อง | Required | มองไม่เห็น campaign-level compromise |
+
+---
+
+## 8. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| การเดินทางธุรกิจหรือการใช้ VPN ที่ถูกต้อง | ประเทศ, ASN, หรือ IP ใหม่อาจทำให้ alert ดูเหมือน takeover | ยืนยัน itinerary, VPN egress, และ device compliance | tune logic ด้าน location โดยอิง known VPN egress และช่วงเวลาเดินทาง | มี MFA reset, inbox rule change, หรือ post-login activity ที่ผิดปกติ |
+| การ enroll อุปกรณ์ managed ใหม่ | first-time device หรือ client app ใหม่ดูเหมือนถูกยึดบัญชี | ยืนยัน MDM enrollment, join status, และ helpdesk request | suppress เฉพาะ workflow การ enroll ที่อนุมัติและช่วงเวลาจำกัด | อุปกรณ์ unmanaged หรือแหล่ง login ไม่สอดคล้องกับข้อมูล enroll |
+| การ reset รหัสผ่านหรือกู้สิทธิ์โดย helpdesk | session churn และ auth change ดูเหมือน attacker recovery action | ยืนยัน ticket ID, operator, และผู้ใช้ที่ได้รับผล | correlate reset event กับ helpdesk workflow ก่อน alert | หลัง reset มี risky login หรือ admin change ที่ไม่ได้รับอนุญาต |
+| การใช้ service account หรือ automation token | non-interactive login อาจดูผิดปกติใน sign-in analytics | ยืนยัน source range, app ID, และ schedule ที่คาดไว้ | แยก detection และ threshold ของ service identity ออกจาก user ปกติ | service identity ไปทำ mailbox, admin, หรือกิจกรรมแบบ user |
+
+---
+
 ### ผัง Post-Compromise Activity Check
 
 ```mermaid
@@ -227,6 +262,6 @@ graph LR
 | 4 | Review inbox rules | Remove malicious |
 | 5 | Check OAuth apps | Revoke suspicious |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1078 — Valid Accounts](https://attack.mitre.org/techniques/T1078/)

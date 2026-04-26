@@ -162,7 +162,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Device evidence | Device ID, OS version, jailbreak/root state, rogue profiles, app list | MDM / MTD | Defines device integrity and control gaps |
+| Network evidence | Suspicious destinations, captive portal abuse, MitM traces, VPN use | MTD / proxy / DNS | Shows remote control or interception path |
+| Identity evidence | Accounts accessed, MFA method, token resets, mail/cloud sessions | IdP / app logs | Determines whether the phone compromise led to account abuse |
+| SIM evidence | Carrier events, number-transfer timeline, recovery actions | Carrier / helpdesk | Distinguishes device malware from SIM-swap-driven compromise |
+| Data evidence | Corporate mail, documents, chat data, screenshots, clipboard artifacts | App telemetry / DLP / MTD | Supports breach assessment and communications |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| MDM and MTD telemetry | Device state, rogue apps, root/jailbreak, policy violations | Required | Cannot verify device compromise state |
+| Identity and app-access logs | Mail, cloud, VPN, and MFA activity from the device | Required | Cannot scope account impact from the mobile compromise |
+| Carrier and SIM records | SIM swap, number change, service interruption context | Required | SMS-MFA-related compromise path may be missed |
+| Network and DNS telemetry | Suspicious destinations and encrypted callbacks | Recommended | Remote-control behavior and MitM paths weaken |
+| Backup and asset records | Recovery source and ownership context | Recommended | Clean rebuild path becomes slower |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| OS update or MDM profile change | Normal management events can look like rogue-profile activity | Confirm approved MDM action and vendor release timing | Suppress approved MDM profile/app changes narrowly | Unknown profile, sideloaded app, or root indicator appears |
+| New phone enrollment or replacement | Fresh device and app consent events may look suspicious | Validate helpdesk ticket and user confirmation | Allowlist approved enrollment windows and device IDs | Same account shows risky sessions or unknown network behavior |
+| Carrier outage or roaming event | Connectivity anomalies can resemble SIM-related abuse | Confirm with carrier status and no account misuse | Lower severity when carrier issue is confirmed | SMS-MFA resets or account logins follow from new locations |
+| Personal BYOD app behavior | Consumer apps may create noisy network patterns | Check work-container separation and no corporate-data access | Tune only within BYOD container boundaries | Corporate apps, mail, or VPN are affected |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|
@@ -175,7 +210,7 @@ graph TD
 
 ---
 
-## 7. Post-Incident
+## 10. Post-Incident
 
 - [ ] Review MDM enrollment compliance across organization
 - [ ] Update mobile security policy (jailbreak/root detection)

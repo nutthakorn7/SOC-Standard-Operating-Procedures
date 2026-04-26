@@ -241,6 +241,6 @@ flowchart TD
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Insider Threat Program](../06_Operations_Management/Insider_Threat_Program.en.md) — ลดความเสี่ยงมนุษย์
--   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — Escalation phishing จริง
--   [SOC Automation Catalog](../06_Operations_Management/SOC_Automation_Catalog.en.md) — Phishing auto-triage
+-   [Insider Threat Program](../06_Operations_Management/Insider_Threat_Program.th.md) — ลดความเสี่ยงมนุษย์
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.th.md) — Escalation phishing จริง
+-   [SOC Automation Catalog](../06_Operations_Management/SOC_Automation_Catalog.th.md) — Phishing auto-triage

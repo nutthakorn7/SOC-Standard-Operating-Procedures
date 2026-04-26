@@ -159,6 +159,23 @@ To be cleared for independent production shifts, new analysts must:
 □ Positive feedback from shift mentors
 ```
 
+## Minimum Deliverables by Training Stage
+
+| Stage | Minimum Deliverables | Owner |
+|:---|:---|:---|
+| Foundation | Access complete, baseline reading done, tool navigation verified | Mentor |
+| Operations | Mock tickets, escalation practice, IR framework comprehension | SOC Analyst |
+| Detection | Query exercises, Sigma comparison, IOC enrichment practice | Mentor + Analyst |
+| Validation | Drill result, mock incident report, final assessment record | SOC Manager |
+
+## Escalation Triggers for Training Path
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Analyst cannot complete required prerequisites on schedule | SOC Manager | Within 24 hours | Re-sequence plan or add support |
+| Simulation or drill cannot be run because tooling is unavailable | Security Engineer + SOC Manager | Same business day | Fix lab dependency or use approved fallback |
+| Repeated weak performance in triage or documentation | Mentor + SOC Lead | Within 24 hours | Open targeted improvement plan |
+
 ## Related Documents
 -   [Training Checklist](Training_Checklist.en.md)
 -   [Incident Response Framework](../05_Incident_Response/Framework.en.md)

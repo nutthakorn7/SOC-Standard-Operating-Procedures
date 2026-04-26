@@ -39,7 +39,7 @@ Before you start, ensure you have:
 □ Network packet capture (Wireshark, Zeek, tcpdump)
 □ Ticketing system — incident management permissions
 □ Communication channels: #soc-incidents, #ir-team, bridge call access
-□ Understand: IR Framework, all 50 Playbooks, MITRE ATT&CK basics
+□ Understand: IR Framework, all 53 Playbooks, MITRE ATT&CK basics
 □ Completed T1 role for minimum 6 months
 ```
 
@@ -380,4 +380,4 @@ Analyst: [YOUR NAME]
 - [Tier 1 Runbook](Tier1_Runbook.en.md)
 - [Forensic Investigation](../Forensic_Investigation.en.md)
 - [Evidence Collection](../Evidence_Collection.en.md)
-- [All Playbooks (PB-01 to PB-50)](../Playbooks/Phishing.en.md)
+- [All Playbooks (PB-01 to PB-53)](../Playbooks/Phishing.en.md)

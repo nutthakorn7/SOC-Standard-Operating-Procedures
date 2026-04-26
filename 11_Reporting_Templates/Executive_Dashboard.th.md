@@ -7,7 +7,7 @@
 
 ---
 
-## ตัวชี้วัดแนะนำ
+## ตัวชี้วัดแนะนำสำหรับ Dashboard
 
 ### Tier 1: KPI หลัก (แสดงเสมอ)
 
@@ -20,7 +20,7 @@
 | **SLA Compliance** | % ที่ผ่าน SLA | ≥ 95% | % ต่อ severity |
 | **FP Rate** | % false positive | ≤ 30% | % + trend |
 
-### Tier 2: Operational (เสริม)
+### Tier 2: มุมมองปฏิบัติการ (เสริม)
 
 | ตัวชี้วัด | เป้า |
 |:---|:---:|
@@ -29,7 +29,7 @@
 | Escalation Rate | 20–40% |
 | Coverage Hours | 24/7 |
 
-### Tier 3: Strategic (รายเดือน/ไตรมาส)
+### Tier 3: มุมมองเชิงกลยุทธ์ (รายเดือน/ไตรมาส)
 
 | ตัวชี้วัด | เป้า |
 |:---|:---:|
@@ -69,21 +69,21 @@
 
 ---
 
-## Tips การนำเสนอ
+## แนวทางการนำเสนอ
 
 ```
-1. นำด้วย business impact ไม่ใช่ technical details
+1. นำด้วยผลกระทบทางธุรกิจ ไม่ใช่ technical details
 2. ใช้ เขียว/เหลือง/แดง — ผู้บริหารสแกน ไม่อ่าน
-3. แสดง trend เทียบเดือนก่อนเสมอ
+3. แสดงแนวโน้มเทียบเดือนก่อนเสมอ
 4. 1 หน้าจอ — น้อยกว่าคือดีกว่า
 5. บอกทั้งผลงานและความเสี่ยง — สมดุลสร้างความเชื่อมั่น
 6. เตรียม talking points 3 ข้อก่อนประชุม
-7. มีข้อมูล drill-down พร้อม แต่ไม่แสดงจนกว่าถูกถาม
+7. มีข้อมูล drill-down พร้อม แต่ไม่แสดงจนกว่าจะถูกถาม
 ```
 
 ---
 
-## Dashboard Panels
+## องค์ประกอบของ Dashboard
 
 ### Panel 1: Security Posture Score
 
@@ -96,7 +96,7 @@
 | People & Training | [X] | ↓ | 🔴 |
 | **Overall** | **[X.X]** | | |
 
-### Panel 2: Threat Summary
+### Panel 2: สรุปภัยคุกคาม
 
 | ประเภท | จำนวนเดือนนี้ | เทียบเดือนก่อน | แนวโน้ม |
 |:---|:---:|:---:|:---:|
@@ -105,7 +105,7 @@
 | Unauthorized access | [XX] | +/-[XX]% | ↑/↓ |
 | Data incidents | [XX] | +/-[XX]% | ↑/↓ |
 
-### Panel 3: Budget vs Spend
+### Panel 3: งบประมาณเทียบการใช้จ่าย
 
 | หมวด | งบตั้ง | ใช้จริง | % ใช้ | คงเหลือ |
 |:---|:---:|:---:|:---:|:---:|
@@ -114,7 +114,7 @@
 | Training | [XX] ฿ | [XX] ฿ | [XX]% | [XX] ฿ |
 | **Total** | [XX] ฿ | [XX] ฿ | [XX]% | [XX] ฿ |
 
-### Dashboard KPI Card Layout
+### การจัดวาง KPI Card
 
 | Card | Metric | Visualization | Target |
 |:---|:---|:---|:---|
@@ -124,7 +124,7 @@
 | 4 | SLA Compliance | % Bar | > 95% |
 | 5 | Detection Coverage | Heat map | > 60% |
 
-### Stakeholder Access Matrix
+### ตารางสิทธิ์การเข้าถึงของผู้มีส่วนเกี่ยวข้อง
 
 | Role | Dashboard | Export | Customize |
 |:---|:---|:---|:---|
@@ -143,7 +143,24 @@
 | **Coverage** | MITRE ATT&CK coverage | Covered / Total × 100 | ≥ 60% | 🟢≥60% 🟡≥40% 🔴<40% |
 | **Staffing** | อัตราการใช้งาน analyst | ชม.ทำงาน / ชม.ว่าง × 100 | 60-80% | 🟢60-80% 🟡>80% 🔴>90% |
 
-## Template Dashboard สถานะ RAG
+## ชุดข้อมูลขั้นต่ำของ Executive Dashboard
+
+- [ ] **ภาพรวมสถานะรวม**: มีมุมมอง RED/AMBER/GREEN สำหรับ detection, response, staffing, technology, coverage และ compliance
+- [ ] **มุมมองผลกระทบทางธุรกิจ**: แสดง incident สำคัญ downtime ผู้ใช้ที่ได้รับผลกระทบ หรือกรณีข้อมูลตามกฎหมาย
+- [ ] **มุมมองแนวโน้ม**: เทียบ alerts, incidents, MTTD, MTTR และ SLA compliance กับรอบก่อน
+- [ ] **มุมมองการตัดสินใจ**: ระบุ 3 ความเสี่ยงหรือคำขอสนับสนุนที่ผู้บริหารต้องตัดสินใจ
+
+## เกณฑ์ Trigger สำหรับผู้บริหาร
+
+| เงื่อนไข | สถานะ | การตัดสินใจที่ผู้บริหารควรทำ |
+|:---|:---:|:---|
+| **เกิด Critical incident ที่กระทบธุรกิจยืนยันแล้ว** | 🔴 | เข้าร่วม incident governance อนุมัติ tradeoff ในการจำกัดวง และติดตาม recovery |
+| **MTTD หรือ MTTR หลุดเป้า 2 รอบติดกัน** | 🟡/🔴 | ทบทวนกำลังคน escalation flow และ coverage gap |
+| **SLA compliance ต่ำกว่า 85%** | 🔴 | อนุมัติการลดภาระงาน การจัดลำดับใหม่ หรือ external support |
+| **coverage ของ critical assets ต่ำกว่า baseline ที่ตกลงไว้** | 🔴 | อนุมัติการกู้ telemetry การติดตั้ง control หรือการ remediation โดย asset owner |
+| **control failure เดิมทำให้เกิด incident ซ้ำ** | 🟡/🔴 | กำหนด owner, due date และติดตามความคืบหน้าของ remediation |
+
+## เทมเพลต Dashboard สถานะ RAG
 
 ```markdown
 ## SOC Health Dashboard — [วันที่]
@@ -165,3 +182,9 @@
 - [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)
 - [รายงานรายเดือน](Monthly_SOC_Report.th.md)
 - [รายงานรายไตรมาส](Quarterly_Business_Review.th.md)
+
+## References
+
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
+- [SANS SOC Metrics](https://www.sans.org/white-papers/)
+- [SOC-CMM](https://www.soc-cmm.com/)

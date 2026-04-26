@@ -140,12 +140,34 @@ echo "$(curl -s 'localhost:9200/_cat/count/sigma-*' | awk '{print $3}') rules lo
 echo "ส่ง test alert..."
 ```
 
+## เกณฑ์ขั้นต่ำก่อน Release (Minimum Release Criteria)
+
+- [ ] **กำหนดขอบเขตและความเสี่ยงแล้ว**: change record ระบุระบบที่กระทบ ผลกระทบเชิงปฏิบัติการ และ rollback owner
+- [ ] **เก็บหลักฐานก่อนเปลี่ยนแปลงแล้ว**: มี baseline screenshot, config export หรือ rule version reference ก่อน deploy
+- [ ] **เตรียมแผน validation แล้ว**: success criteria, smoke tests และ observation window ถูกบันทึกไว้
+- [ ] **rollback ทำได้จริง**: ทีมสามารถคืนค่าระบบสู่สถานะก่อนหน้าได้ภายในเวลาที่อนุมัติ
+- [ ] **แจ้งผู้เกี่ยวข้องแล้ว**: ทีม SOC, service owner ที่ได้รับผลกระทบ และ on-call responder ทราบ change window และ fallback plan
+
+## Trigger สำหรับ Emergency Change
+
+| Trigger | เส้นทางอนุมัติ | เอกสารขั้นต่ำ |
+|:---|:---|:---|
+| **มี incident จริงที่ต้องเปลี่ยน control ทันที** | SOC Manager + incident lead | เปลี่ยนอะไร ทำไมเร่งด่วน และ rollback path |
+| **critical detection หรือ ingestion outage** | SOC Manager | ขอบเขต outage, temporary mitigation และ verification plan |
+| **มี security exposure ที่รอรอบถัดไปไม่ได้** | CISO หรือผู้ได้รับมอบหมาย | risk statement, blast radius ที่คาด และ recovery owner |
+
+## Trigger การ Escalate ระหว่าง Deployment
+
+- [ ] **Escalate ทันที** ถ้า critical log sources หยุดเข้า, alert routing พัง หรือ authentication ใน production ได้รับผลกระทบ
+- [ ] **Escalate ไป SOC Manager** ถ้า smoke test ไม่ผ่าน, rollback เกินเวลาที่กำหนด หรือ monitoring แสดงการเสื่อมสภาพที่มีนัยสำคัญ
+- [ ] **Escalate ไป CISO** ถ้ามี emergency downtime, security coverage loss หรือบริการที่ผู้บริหารใช้งานได้รับผลกระทบ
+
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [แบบฟอร์ม Change Request](../11_Reporting_Templates/change_request_rfc.th.md)
 -   [ธรรมาภิบาลข้อมูล](Database_Management.th.md)
 -   [การติดตั้ง SOC](../10_Training_Onboarding/System_Activation.th.md)
 
-### Deployment Checklist
+## Checklist การ Deploy (Deployment Checklist)
 
 | Phase | Checklist Item | Status |
 |:---|:---|:---|
@@ -158,7 +180,7 @@ echo "ส่ง test alert..."
 | Post-deploy | Update documentation | ☐ |
 | Post-deploy | Close change record | ☐ |
 
-### Rollback Criteria
+## เกณฑ์การ Rollback (Rollback Criteria)
 
 | Condition | Action |
 |:---|:---|

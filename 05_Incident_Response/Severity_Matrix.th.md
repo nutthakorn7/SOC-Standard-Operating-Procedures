@@ -170,7 +170,7 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง
 
-- [Incident Response Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md)
+- [Incident Response Playbooks](../05_Incident_Response/Playbooks/Phishing.th.md)
 - [แบบฟอร์มส่งมอบกะ](../11_Reporting_Templates/shift_handover.th.md)
 - [แบบฟอร์มรายงานเหตุการณ์](../11_Reporting_Templates/incident_report.th.md)
 - [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)

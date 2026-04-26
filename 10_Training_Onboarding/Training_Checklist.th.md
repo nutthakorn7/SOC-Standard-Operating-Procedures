@@ -175,7 +175,24 @@
 | SOC Overview | ✅ | ☐ |
 | SIEM Basics | ✅ | ☐ |
 
-## อ้างอิง
+## เกณฑ์ตัดสินใจก่อนปล่อยเข้ากะจริง (Release-to-Production Decision Criteria)
+
+| เกณฑ์ | เงื่อนไขผ่าน | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| ข้อสอบและการประเมินภาคปฏิบัติ | ผ่านตามคะแนนที่กำหนด | SOC Manager |
+| คุณภาพ ticket และพฤติกรรมการ escalate | ไม่มี critical gap ใน sample ที่ review | Mentor |
+| ความชำนาญเครื่องมือหลัก | ทำงานใน SIEM, EDR, ticketing ได้โดยไม่ต้องช่วย | SOC Lead |
+| ความเข้าใจด้าน compliance และ data handling | ผ่าน checkpoint เรื่อง PDPA และหลักฐาน | SOC Manager |
+
+## Trigger สำหรับการยกระดับจาก Checklist (Checklist Escalation Triggers)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| milestone รายสัปดาห์หลุดโดยไม่มี recovery plan | SOC Manager | ภายใน 24 ชม. | ตั้ง training schedule ใหม่ |
+| ผ่านภาคทฤษฎีแต่ไม่ผ่านภาคปฏิบัติ | Mentor + SOC Lead | ภายในวันทำการเดียวกัน | ขยาย supervised practice |
+| คุณภาพเอกสารต่ำกว่าเกณฑ์ต่อเนื่อง | SOC Lead | ภายใน 24 ชม. | จัด writing review แบบเฉพาะจุดและทดสอบใหม่ |
+
+## References
 
 - [SANS SOC Analyst Training](https://www.sans.org/cyber-security-courses/)
 - [CompTIA CySA+](https://www.comptia.org/certifications/cybersecurity-analyst)

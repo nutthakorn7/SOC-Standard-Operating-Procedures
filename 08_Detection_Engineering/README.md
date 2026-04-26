@@ -19,7 +19,7 @@ This directory contains **54 Sigma detection rules** mapped to the SOC Playbooks
 | [proc_office_spawn_powershell.yml](proc_office_spawn_powershell.yml) | Office Application Spawning PowerShell | High | T1059.001 | PB-01 Phishing |
 | [proc_powershell_encoded.yml](proc_powershell_encoded.yml) | PowerShell Encoded Command | High | T1059.001 | PB-11 Suspicious Script |
 | [proc_temp_folder_execution.yml](proc_temp_folder_execution.yml) | Suspicious Execution from Temp/Downloads | Medium | T1204.002 | PB-03 Malware |
-| [proc_cryptomining_indicators.yml](proc_cryptomining_indicators.yml) | Cryptomining Process / Stratum Protocol | Critical | T1496 | PB-23 Cryptomining |
+| [proc_cryptomining_indicators.yml](proc_cryptomining_indicators.yml) | Cryptomining Process / Stratum Protocol | Critical | T1496 | PB-31 Cryptomining |
 | [win_lolbin_execution.yml](sigma_rules/win_lolbin_execution.yml) | Living Off The Land Binary Execution | High | T1218 | PB-39 LOLBins |
 
 ### 📁 File Activity
@@ -36,8 +36,8 @@ This directory contains **54 Sigma detection rules** mapped to the SOC Playbooks
 |:---|:---|:---|:---|:---|
 | [net_beaconing.yml](net_beaconing.yml) | Network Beaconing Pattern | High | T1071 | PB-13 C2 Communication |
 | [net_large_upload.yml](net_large_upload.yml) | Large Upload to External IP (>500MB) | High | T1048 | PB-08 Data Exfiltration |
-| [net_dns_tunneling.yml](net_dns_tunneling.yml) | DNS Tunneling (High Volume / Long Queries) | High | T1071.004 | PB-24 DNS Tunneling |
-| [net_ot_ics_anomaly.yml](net_ot_ics_anomaly.yml) | OT/ICS Network Anomaly (Modbus/DNP3/OPC UA) | Critical | ICS T0813 | PB-30 OT/ICS Incident |
+| [net_dns_tunneling.yml](net_dns_tunneling.yml) | DNS Tunneling (High Volume / Long Queries) | High | T1071.004 | PB-25 DNS Tunneling |
+| [net_ot_ics_anomaly.yml](net_ot_ics_anomaly.yml) | OT/ICS Network Anomaly (Modbus/DNP3/OPC UA) | Critical | ICS T0813 | PB-33 OT/ICS Incident |
 | [net_vpn_abuse.yml](sigma_rules/net_vpn_abuse.yml) | Unauthorized VPN or Proxy Usage | Medium | T1133 | PB-41 VPN Abuse |
 | [net_deepfake_social.yml](sigma_rules/net_deepfake_social.yml) | Deepfake Social Engineering Indicators | High | T1598 | PB-48 Deepfake |
 | [net_typosquatting.yml](sigma_rules/net_typosquatting.yml) | Typosquatting Domain Access | Medium | T1583.001 | PB-49 Typosquatting |
@@ -66,11 +66,11 @@ This directory contains **54 Sigma detection rules** mapped to the SOC Playbooks
 | [cloud_impossible_travel.yml](cloud_impossible_travel.yml) | Impossible Travel (Cloud/VPN) | High | T1078.004 | PB-06 Impossible Travel |
 | [cloud_unusual_login.yml](cloud_unusual_login.yml) | Login from Unusual Location | Medium | T1078.004 | PB-05 Account Compromise |
 | [cloud_root_login.yml](cloud_root_login.yml) | AWS Root Account Login | Critical | T1078 | PB-16 Cloud IAM |
-| [cloud_aws_ec2_mining.yml](cloud_aws_ec2_mining.yml) | AWS EC2 Crypto Mining Indicator | High | T1496 | PB-23 Cryptomining |
-| [cloud_aws_s3_public_access.yml](cloud_aws_s3_public_access.yml) | AWS S3 Public Access Enabled | High | T1530 | Cloud S3 Compromise |
-| [cloud_azure_risky_signin.yml](cloud_azure_risky_signin.yml) | Azure AD Risky Sign-in | High | T1078.004 | Azure AD Compromise |
+| [cloud_aws_ec2_mining.yml](cloud_aws_ec2_mining.yml) | AWS EC2 Crypto Mining Indicator | High | T1496 | PB-22 AWS EC2 / PB-31 Cryptomining |
+| [cloud_aws_s3_public_access.yml](cloud_aws_s3_public_access.yml) | AWS S3 Public Access Enabled | High | T1530 | PB-21 AWS S3 |
+| [cloud_azure_risky_signin.yml](cloud_azure_risky_signin.yml) | Azure AD Risky Sign-in | High | T1078.004 | PB-23 Azure AD |
 | [cloud_email_inbox_rule.yml](cloud_email_inbox_rule.yml) | Suspicious Inbox Rule Created | High | T1114.003 | PB-17 BEC |
-| [cloud_supply_chain_compromise.yml](cloud_supply_chain_compromise.yml) | Suspicious Package Manager Activity | High | T1195.002 | PB-21 Supply Chain |
+| [cloud_supply_chain_compromise.yml](cloud_supply_chain_compromise.yml) | Suspicious Package Manager Activity | High | T1195.002 | PB-32 Supply Chain |
 | [cloud_mfa_bypass.yml](cloud_mfa_bypass.yml) | MFA Bypass / AiTM Token Theft | High | T1556.006 | PB-26 MFA Bypass |
 | [cloud_storage_public_access.yml](cloud_storage_public_access.yml) | Cloud Storage Public Access (S3/Blob) | High | T1530 | PB-27 Cloud Storage |
 | [cloud_mobile_compromise.yml](cloud_mobile_compromise.yml) | Mobile Device Compromise (MDM) | Medium | T1456 | PB-28 Mobile Compromise |
@@ -82,11 +82,11 @@ This directory contains **54 Sigma detection rules** mapped to the SOC Playbooks
 
 | Rule File | Title | Level | MITRE ATT&CK | Playbook |
 |:---|:---|:---|:---|:---|
-| [web_high_rate_limit.yml](web_high_rate_limit.yml) | High Web Request Rate from Single IP | High | T1498 | PB-09 DDoS / PB-22 API Abuse |
+| [web_high_rate_limit.yml](web_high_rate_limit.yml) | High Web Request Rate from Single IP | High | T1498 | PB-09 DDoS / PB-30 API Abuse |
 | [web_sqli_pattern.yml](web_sqli_pattern.yml) | Generic SQL Injection Pattern | High | T1190 | PB-10 Web Attack |
 | [web_waf_exploit.yml](web_waf_exploit.yml) | WAF Detected Exploit Attempt | High | T1190 | PB-18 Exploit |
-| [web_api_abuse_auth_bypass.yml](web_api_abuse_auth_bypass.yml) | API Auth Bypass / Enumeration | High | T1190 | PB-22 API Abuse |
-| [web_zero_day_exploit_attempt.yml](web_zero_day_exploit_attempt.yml) | Zero-Day Exploit Payload (Log4Shell, RCE) | Critical | T1190/T1203 | PB-25 Zero-Day |
+| [web_api_abuse_auth_bypass.yml](web_api_abuse_auth_bypass.yml) | API Auth Bypass / Enumeration | High | T1190 | PB-30 API Abuse |
+| [web_zero_day_exploit_attempt.yml](web_zero_day_exploit_attempt.yml) | Zero-Day Exploit Payload (Log4Shell, RCE) | Critical | T1190/T1203 | PB-24 Zero-Day |
 | [web_sqli_advanced.yml](sigma_rules/web_sqli_advanced.yml) | Advanced SQL Injection (Blind/Time-based) | High | T1190 | PB-37 SQL Injection |
 | [web_watering_hole.yml](sigma_rules/web_watering_hole.yml) | Watering Hole Attack Indicators | High | T1189 | PB-43 Watering Hole |
 | [web_drive_by_download.yml](sigma_rules/web_drive_by_download.yml) | Drive-By Download (Browser Exploit) | High | T1189 | PB-44 Drive-By |
@@ -103,6 +103,14 @@ This directory contains **54 Sigma detection rules** mapped to the SOC Playbooks
 |:---|:---|:---|:---|:---|
 | [proxy_shadow_it.yml](proxy_shadow_it.yml) | Shadow IT / Unauthorized SaaS Usage | Low | T1567 | PB-29 Shadow IT |
 
+### 🤖 AI / ML Security
+
+| Rule File | Title | Level | MITRE ATT&CK / ATLAS | Playbook |
+|:---|:---|:---|:---|:---|
+| [ai_prompt_injection.yml](sigma_rules/ai_prompt_injection.yml) | AI Prompt Injection Attack Pattern | High | AML.T0051, T1059 | PB-51 AI Prompt Injection |
+| [ai_data_poisoning.yml](sigma_rules/ai_data_poisoning.yml) | LLM Data Poisoning Indicators | High | AML.T0020, T1565 | PB-52 LLM Data Poisoning |
+| [ai_model_theft.yml](sigma_rules/ai_model_theft.yml) | AI Model Theft or Extraction Attempt | High | AML.T0024, T1020 | PB-53 AI Model Theft |
+
 ---
 
 ## 🎯 YARA Rules (File-based Detection)
@@ -113,15 +121,15 @@ In addition to Sigma rules, this directory contains **15 YARA rules** for file-b
 |:---|:---:|:---|:---|
 | [ransomware_indicators.yar](yara/ransomware_indicators.yar) | 2 | Ransom notes, shadow copy deletion | PB-02 |
 | [webshell_generic.yar](yara/webshell_generic.yar) | 3 | PHP/JSP/ASPX webshells | PB-10, PB-18 |
-| [cryptominer_detection.yar](yara/cryptominer_detection.yar) | 2 | Mining pools, xmrig binaries | PB-23 |
+| [cryptominer_detection.yar](yara/cryptominer_detection.yar) | 2 | Mining pools, xmrig binaries | PB-31 |
 | [cobalt_strike_beacon.yar](yara/cobalt_strike_beacon.yar) | 2 | CS beacons & stagers | PB-13, PB-12 |
 | [malicious_document.yar](yara/malicious_document.yar) | 2 | Office macro malware, PDF JS | PB-01, PB-03 |
 | [credential_dumping_tools.yar](yara/credential_dumping_tools.yar) | 2 | Mimikatz, LaZagne, Rubeus, SAM dump | PB-36 |
 | [wiper_malware.yar](yara/wiper_malware.yar) | 1 | Shamoon, NotPetya, HermeticWiper | PB-38 |
 | [rootkit_bootkit.yar](yara/rootkit_bootkit.yar) | 1 | TDL, ZeroAccess, UEFI rootkits | PB-45 |
 | [lolbin_dropper.yar](yara/lolbin_dropper.yar) | 1 | certutil, mshta, BITSAdmin abuse scripts | PB-39 |
-| [exploit_kit_payload.yar](yara/exploit_kit_payload.yar) | 1 | Exploit kit landing pages, shellcode | PB-25, PB-43, PB-44 |
-| [supply_chain_backdoor.yar](yara/supply_chain_backdoor.yar) | 1 | npm/pip backdoor, SolarWinds/SUNBURST | PB-21 |
+| [exploit_kit_payload.yar](yara/exploit_kit_payload.yar) | 1 | Exploit kit landing pages, shellcode | PB-24, PB-43, PB-44 |
+| [supply_chain_backdoor.yar](yara/supply_chain_backdoor.yar) | 1 | npm/pip backdoor, SolarWinds/SUNBURST | PB-32 |
 | [data_staging_archive.yar](yara/data_staging_archive.yar) | 1 | Password-protected archives, staging | PB-08, PB-35 |
 
 📖 **Full YARA Index**: [yara/README.md](yara/README.md)
@@ -130,9 +138,17 @@ In addition to Sigma rules, this directory contains **15 YARA rules** for file-b
 
 ## 🎯 Detection Coverage Matrix
 
-For a comprehensive view of Sigma, YARA, and MITRE ATT&CK coverage mapped to all 50 playbooks:
+For a comprehensive view of Sigma, YARA, and MITRE ATT&CK coverage mapped to all 53 playbooks:
 
 > 📊 **[Coverage_Matrix.en.md](Coverage_Matrix.en.md)** | **[ตารางครอบคลุม (TH)](Coverage_Matrix.th.md)**
+
+---
+
+## 📚 SOC Use Case Library
+
+Use the SOC Use Case Library to prioritize detections by maturity, business risk, telemetry readiness, response playbook, and KPI:
+
+> 📘 **[SOC_Use_Case_Library.en.md](SOC_Use_Case_Library.en.md)** | **[คลัง Use Case สำหรับ SOC (TH)](SOC_Use_Case_Library.th.md)**
 
 ---
 

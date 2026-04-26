@@ -9,13 +9,39 @@
 
 ## วัตถุประสงค์
 
-เอกสารนี้ map **SOC Playbook 53 ชุด**, **Sigma Detection Rule 54 กฎ** และ SOC Controls ต่างๆ เข้ากับ 3 กรอบมาตรฐาน:
+เอกสารนี้ map **SOC Playbook 53 ชุด**, **Sigma Detection Rule 54 กฎ** และ SOC Controls ต่างๆ เข้ากับกรอบมาตรฐานหลัก:
 
 - **ISO/IEC 27001:2022** — ระบบจัดการความมั่นคงปลอดภัยสารสนเทศ
 - **NIST Cybersecurity Framework (CSF) 2.0** — กรอบไซเบอร์สหรัฐฯ
 - **PCI DSS v4.0** — มาตรฐานความปลอดภัยอุตสาหกรรมบัตรชำระเงิน
+- **NIST AI RMF 1.0** — Govern, Map, Measure, Manage สำหรับระบบ AI / GenAI
 
 ใช้สำหรับ **เตรียม Audit**, **วิเคราะห์ช่องว่าง** และ **แสดงหลักฐาน** ต่อผู้ตรวจสอบ
+
+```mermaid
+graph TD
+    Frameworks["Compliance Mapping"] --> Ops["SOC Operations"]
+    Frameworks --> IR["IR Playbooks"]
+    Frameworks --> AI["AI / GenAI Controls"]
+    Ops --> Evidence["Audit Evidence"]
+    IR --> Evidence
+    AI --> Evidence
+    style Frameworks fill:#1d4ed8,color:#fff
+    style Ops fill:#0f766e,color:#fff
+    style IR fill:#b45309,color:#fff
+    style AI fill:#7c3aed,color:#fff
+    style Evidence fill:#dc2626,color:#fff
+```
+
+## ใครควรใช้เอกสารนี้
+
+| บทบาท | ใช้ทำอะไรเป็นหลัก | ผลลัพธ์ที่ควรได้ |
+|:---|:---|:---|
+| **CISO** | ดู coverage ของความเสี่ยงและช่องว่างที่ต้องลงทุน | risk acceptance และ escalation criteria |
+| **SOC Manager** | ตรวจว่ามี workflow และหลักฐานพร้อมสำหรับ audit หรือไม่ | scope, RACI, KPI, review cadence |
+| **SOC Analyst** | เข้าใจว่า alert หรือ playbook รองรับข้อกำหนดใด | triage note และ evidence capture ที่ดีขึ้น |
+| **Security Engineer** | ผูก controls และ telemetry เข้ากับข้อคาดหวังด้าน compliance | backlog สำหรับ logging และ controls |
+| **IR Engineer** | เชื่อม incident เข้ากับ response, rollback, และ notification obligation | incident workflow และ evidence checklist |
 
 ---
 
@@ -75,6 +101,59 @@
 
 ## สรุป Coverage ตามแต่ละ Framework
 
+## การแมป Controls สำหรับ AI / GenAI
+
+ส่วนนี้เพิ่มเข้าในเอกสารเดิมเพื่อให้ compliance mapping รองรับระบบ AI โดยไม่แยกเป็น report ใหม่ ใช้เมื่อองค์กรมี production AI, LLM assistant, RAG pipeline, model registry, หรือ AI plugins/tools
+
+| พื้นที่ความเสี่ยง AI | คำถามเชิงปฏิบัติ | NIST AI RMF | เอกสาร SOC ที่ใช้ได้ทันที |
+|:---|:---|:---|:---|
+| Prompt injection และ unsafe tool use | มีจุดใดที่ untrusted content เปลี่ยน prompt หรือสั่ง tool สำคัญได้หรือไม่ | Govern, Map, Measure, Manage | [PB-51 AI Prompt Injection](../05_Incident_Response/Playbooks/AI_Prompt_Injection.th.md), [API Abuse](../05_Incident_Response/Playbooks/API_Abuse.th.md) |
+| Data poisoning และ RAG corruption | model behavior เปลี่ยนเพราะข้อมูล, embedding, หรือ document collection ที่ถูก poison ได้หรือไม่ | Map, Measure, Manage | [PB-52 LLM Data Poisoning](../05_Incident_Response/Playbooks/LLM_Data_Poisoning.th.md), [SOC Use Case Library](../08_Detection_Engineering/SOC_Use_Case_Library.th.md) |
+| Model theft และ checkpoint exfiltration | ผู้ใช้หรือ insider สามารถดึง model weight, response, หรือ training data สำคัญออกไปได้หรือไม่ | Govern, Measure, Manage | [PB-53 AI Model Theft](../05_Incident_Response/Playbooks/AI_Model_Theft.th.md), [Cloud Security Monitoring](../06_Operations_Management/Cloud_Security_Monitoring.th.md) |
+| AI supply chain exposure | third-party model, dataset, package, หรือ plugin มีความเสี่ยงแทรกเข้ามาได้หรือไม่ | Govern, Map, Manage | [PB-32 Supply Chain Attack](../05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md), [Third-Party Risk](../06_Operations_Management/Third_Party_Risk.th.md) |
+| Privacy และ regulated data use | prompts, outputs, หรือ model context สามารถเปิดเผยข้อมูลอ่อนไหวหรือ regulated data ได้หรือไม่ | Govern, Map, Manage | [PDPA Incident Response](PDPA_Incident_Response.th.md), [Data Governance Policy](Data_Governance_Policy.th.md) |
+
+## Deliverables ขั้นต่ำสำหรับระบบ AI
+
+ก่อนถือว่าระบบ AI พร้อมใช้งาน production ควรมี artifact ต่อไปนี้:
+
+- [ ] AI system inventory ที่มี business owner และ technical owner
+- [ ] approved use case ที่ระบุขอบเขตและสิ่งที่ห้ามทำ
+- [ ] trust-boundary map สำหรับ prompts, RAG, tools, plugins, และ external content
+- [ ] มาตรฐาน logging สำหรับ prompts, outputs, tool calls, model version, และ data-source change
+- [ ] detection mapping สำหรับ prompt injection, poisoning, model theft, และ supply chain abuse
+- [ ] ขั้นตอน rollback หรือ disable ที่มี approver ชัดเจน
+- [ ] เส้นทาง escalation ไปยัง legal, privacy, และผู้บริหาร
+
+## แผนลงมือใน 30 วันแรก
+
+| ช่วงเวลา | เป้าหมาย | ผลลัพธ์ |
+|:---|:---|:---|
+| สัปดาห์ที่ 1 | inventory AI systems, endpoints, plugins, และ external providers | AI asset register |
+| สัปดาห์ที่ 2 | map trust boundary และ telemetry ที่ต้องเก็บ | trust-boundary diagram และ logging standard |
+| สัปดาห์ที่ 3 | เชื่อมความเสี่ยง AI หลักกับ detections และ playbooks | detection backlog และ triage checklist |
+| สัปดาห์ที่ 4 | ทดสอบ rollback, evidence capture, และ executive communication | tabletop record และ escalation decision tree |
+
+## ชุดหลักฐานขั้นต่ำสำหรับ Audit (Minimum Audit Evidence Pack)
+
+| หลักฐาน | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| IR framework, severity matrix และดัชนี playbook ปัจจุบัน | พิสูจน์ว่ามีกระบวนการตอบเหตุที่ดูแลอยู่จริง | SOC Manager |
+| inventory ของ detection ที่ map กับ use case และ ATT&CK | แสดง coverage ของ monitoring และเหตุผลในการออกแบบ | Security Engineer |
+| incident ticket ตัวอย่างที่มี timestamp, escalation trail และ closure note | แสดงว่ากระบวนการทำงานได้จริงใน production | SOC Analyst |
+| หลักฐานเรื่อง log retention, access review และ monitoring health | รองรับคำกล่าวอ้างเรื่อง control operation ระหว่าง audit | Security Engineer |
+| บันทึก lessons learned หรือ corrective action | แสดงการปรับปรุงต่อเนื่อง ไม่ใช่มีแต่เอกสาร | IR Engineer |
+
+## Trigger สำหรับการยกระดับช่องว่างด้าน Compliance (Escalation Triggers for Compliance Gaps)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การตัดสินใจที่ต้องได้ |
+|:---|:---|:---:|:---|
+| control ที่จำเป็นไม่มี owner, ไม่มีหลักฐาน หรือไม่มี operating procedure | CISO + Compliance Officer | ภายในวันทำการเดียวกัน | แต่งตั้ง owner และกำหนด remediation deadline |
+| ตอบคำถาม auditor หรือ regulator จาก record ปัจจุบันไม่ได้ | CISO | ทันที | เปิด remediation track และอนุมัติ interim response |
+| monitoring blind spot กระทบระบบหรือข้อมูลที่ถูกกำกับ | SOC Manager + Business owner | ภายใน 24 ชม. | รับความเสี่ยงชั่วคราวหรืออนุมัติการแก้ control |
+| ระบบ AI ที่จับ regulated data ไม่มี logging หรือ rollback ที่อนุมัติ | CISO + Legal / DPO | ทันที | ชะลอ go-live หรือรับความเสี่ยงอย่างเป็นทางการ |
+| control failure เกิดซ้ำข้ามรอบ monthly/quarterly review | CISO + Executive sponsor | ใน governance meeting ถัดไป | ยกระดับจาก local fix ไปเป็น management action |
+
 ### NIST CSF 2.0
 
 | Function | ระดับ Coverage | คำอธิบาย |
@@ -105,7 +184,7 @@
 ### ผู้ตรวจ ISO 27001 ถาม:
 
 > "แสดงขั้นตอนการตอบสนองเหตุการณ์"  
-→ [IR Framework](../05_Incident_Response/Framework.en.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md) + Playbook ใดก็ได้ (PB-01 ถึง PB-50)
+→ [IR Framework](../05_Incident_Response/Framework.th.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md) + Playbook ใดก็ได้ (PB-01 ถึง PB-53)
 
 > "แสดงความสามารถในการเฝ้าระวังและตรวจจับ"  
 → [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md) (54 กฎ Sigma) + [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
@@ -113,18 +192,19 @@
 ### QSA ตรวจ PCI DSS ถาม:
 
 > "Req 10.6.1 — ตรวจ Log รายวัน?"  
-→ [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md) + ขั้นตอนเฝ้าระวัง 24/7
+→ [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.th.md) + ขั้นตอนเฝ้าระวัง 24/7
 
 > "Req 12.10.1 — แผนตอบสนองเหตุการณ์?"  
-→ [IR Framework](../05_Incident_Response/Framework.en.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)
+→ [IR Framework](../05_Incident_Response/Framework.th.md) + [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)
 
 ---
 
 ## เอกสารที่เกี่ยวข้อง
 
-- [IR Framework](../05_Incident_Response/Framework.en.md)
+- [IR Framework](../05_Incident_Response/Framework.th.md)
 - [ตารางความรุนแรง](../05_Incident_Response/Severity_Matrix.th.md)
 - [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md)
+- [SOC Use Case Library](../08_Detection_Engineering/SOC_Use_Case_Library.th.md)
 - [แผนที่ Coverage MITRE ATT&CK](../tools/mitre_attack_heatmap.html)
 - [เครื่องมือวัดคะแนน SOC Maturity](../tools/soc_maturity_scorer.html)
 
@@ -172,5 +252,7 @@ PDPA:      ███████████████████░░  90% 
 
 - [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)
 - [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)
+- [NIST AI RMF Playbook](https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook)
 - [PCI DSS v4.0](https://www.pcisecuritystandards.org/document_library/)
 - [MITRE ATT&CK Framework](https://attack.mitre.org/)
+- [MITRE ATLAS](https://atlas.mitre.org/)

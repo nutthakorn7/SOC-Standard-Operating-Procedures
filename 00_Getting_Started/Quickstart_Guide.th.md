@@ -118,7 +118,7 @@ graph TD
     style Phase5 fill:#3498db,color:#fff
 ```
 
-## Minimum Viable SOC Checklist
+## Checklist ขั้นต่ำของ SOC ที่ใช้งานได้จริง
 
 สิ่งที่ต้องมีอย่างน้อยที่สุดเพื่อเริ่มต้น — "Day 1" ของคุณ:
 
@@ -132,6 +132,43 @@ graph TD
 - [ ] **ช่องทางสื่อสาร 1 ช่อง** (Slack/Teams สำหรับทีม SOC)
 
 > ✅ ถ้าทำครบ 8 ข้อข้างบน คุณก็มี SOC ที่ทำงานได้แล้ว!
+
+## ใครควรอ่านอะไรก่อน
+
+| บทบาท | ควรเริ่มอ่าน | ใช้เอกสารนี้เพื่อตัดสินใจเรื่องอะไร |
+|:---|:---|:---|
+| **CISO** | [SOC 101](SOC_101.th.md), [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md), [รายงานรายเดือน](../11_Reporting_Templates/Monthly_SOC_Report.th.md) | งบประมาณ กำลังคน และรูปแบบการดำเนินงาน |
+| **SOC Manager** | [แบบประเมิน SOC](../06_Operations_Management/SOC_Assessment_Checklist.th.md), [มาตรฐานส่งมอบกะ](../06_Operations_Management/Shift_Handoff.th.md), [หลักสูตร Analyst](../10_Training_Onboarding/Analyst_Onboarding_Path.th.md) | จังหวะการทำงาน ความพร้อมก่อน go-live และขอบเขตทีม |
+| **SOC Analyst** | [กรอบ IR](../05_Incident_Response/Framework.th.md), [Phishing](../05_Incident_Response/Playbooks/Phishing.th.md), [Brute Force](../05_Incident_Response/Playbooks/Brute_Force.th.md) | ต้องทำอะไรก่อนเมื่อมี alert จริง |
+| **Security Engineer** | [Detection Rules](../08_Detection_Engineering/README.md), [Integration Hub](../03_User_Guides/Integration_Hub.th.md), [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.th.md) | telemetry ที่ต้องมี ลำดับ onboarding และ control gap |
+| **IR Engineer** | [กรอบ Incident Response](../05_Incident_Response/Framework.th.md), [Ransomware](../05_Incident_Response/Playbooks/Ransomware.th.md), [แบบฟอร์ม Incident Report](../11_Reporting_Templates/incident_report.th.md) | flow การจำกัดวง การเก็บหลักฐาน และเส้นทางรายงาน |
+
+## ผลลัพธ์ขั้นต่ำใน 30 วันแรก
+
+- [ ] **อนุมัติขอบเขต SOC แล้ว**: ระบุ business unit ที่รองรับ ชั่วโมงทำการ และ severity model
+- [ ] **จัดทำรายการทรัพย์สินสำคัญแล้ว**: ระบุ crown-jewel systems, identities สำคัญ และบริการที่มีผลต่อธุรกิจ
+- [ ] **นำเข้า log 3 แหล่งหลักแล้ว**: อย่างน้อย identity, email และ network/security controls
+- [ ] **เลือก use case 5 อันดับแรกแล้ว**: เริ่มจาก Phishing, Malware, Brute Force, Account Compromise และ Ransomware
+- [ ] **ประกาศเส้นทาง escalation แล้ว**: ระบุผู้จัดการ on-call ช่องทางสื่อสาร และ trigger การแจ้งผู้บริหาร
+- [ ] **เปิดใช้กระบวนการจัดการเคสแล้ว**: ทุกการสืบสวน alert ต้องมี ticket, status และ owner
+- [ ] **เก็บ baseline KPI รอบแรกแล้ว**: วัด alert volume, true positives, MTTD, MTTR และ false positive rate
+- [ ] **ส่งรายงานผู้บริหารรอบแรกแล้ว**: สรุปความเสี่ยง incident gap และ next actions ใน 1 หน้า
+
+## เกณฑ์ตัดสินใจช่วงเริ่มต้น
+
+| จุดตัดสินใจ | เงื่อนไขขั้นต่ำ | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| **ประกาศว่า MVP SOC พร้อมใช้งาน** | SIEM รับข้อมูลจาก 3 แหล่งสำคัญขึ้นไป มีผู้จัดการรับผิดชอบ และมี detection ความเชื่อมั่นสูง 5 ตัวที่มีการเฝ้าดูทุกวัน | SOC Manager |
+| **ขยายจาก 8x5 เป็น extended coverage** | backlog คงที่ เส้นทาง escalation ทดสอบแล้ว และความเสี่ยงนอกเวลาทำการรองรับเหตุผลในการขยายกะ | CISO + SOC Manager |
+| **เพิ่ม detection เพิ่มเติม** | detection เดิมมี owner มีประวัติ tuning และมี response action ที่บันทึกไว้แล้ว | Security Engineer |
+| **เริ่มรายงานผู้บริหาร** | นิยาม KPI ตกลงร่วมกันแล้ว แหล่งข้อมูลเสถียร และ metric gap สำคัญมีคำอธิบาย | CISO + SOC Manager |
+
+## Trigger การ Escalate ใน 30 วันแรก
+
+- [ ] **Escalate ไป CISO** ถ้าระบบสำคัญยังอยู่นอก monitoring scope, บัญชีผู้บริหารยังไม่ถูกป้องกัน, หรือเกิด incident รุนแรงก่อน baseline controls พร้อม
+- [ ] **Escalate ไป SOC Manager** ถ้า alert backlog เกินกำลังทีมนานเกิน 1 วันทำการ หรือยังไม่มี owner สำหรับ Priority 1 gap
+- [ ] **Escalate ไป Security Engineering** ถ้า telemetry ที่จำเป็นจาก identity, email หรือ network controls ไม่มีหรือใช้งานไม่ได้
+- [ ] **Escalate ไป business owner** ถ้าทรัพย์สินสำคัญไม่สามารถให้ logs, retention หรือการสนับสนุนที่จำเป็นต่อ incident handling ได้
 
 ## คำถามที่พบบ่อย
 

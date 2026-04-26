@@ -225,6 +225,26 @@ SOC Manager should conduct monthly handoff quality audits:
 
 ---
 
+## 8. Escalation Triggers During Handoff
+
+| Trigger | Escalate To | Reason |
+|:---|:---|:---|
+| **P1/P2 incident has no clear next owner** | SOC Manager + IR Lead | Ownership ambiguity creates immediate response risk |
+| **Critical system health gap persists into next shift** | Security Engineer | Detection continuity is degraded |
+| **Pending action depends on external team beyond SLA** | SOC Manager | Needs management intervention before the next shift inherits the delay |
+| **High-risk change window overlaps unresolved incident** | IR Lead + Change Owner | Prevents operational collision and evidence loss |
+
+## 9. Minimum Evidence in Every Handoff
+
+| Artifact | Minimum Standard |
+|:---|:---|
+| **Incident summary** | Severity, current hypothesis, assigned owner, and next action |
+| **Queue status** | Count of unassigned and aging alerts |
+| **System health** | Any log gaps, tooling degradation, or workarounds in place |
+| **Escalation record** | What was escalated, to whom, and response received |
+
+---
+
 ## Related Documents
 
 - [IR Framework](../05_Incident_Response/Framework.en.md) — Master incident response lifecycle

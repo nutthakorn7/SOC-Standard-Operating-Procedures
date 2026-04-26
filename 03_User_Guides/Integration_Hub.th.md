@@ -116,6 +116,23 @@ graph LR
 
 ---
 
+## 6. เกณฑ์ยอมรับขั้นต่ำของ Integration (Minimum Integration Acceptance Criteria)
+
+- [ ] **ข้อมูลเข้าตามที่คาดไว้**: sample และ production events เข้า SIEM พร้อม timestamp และ source identifier ที่ถูกต้อง
+- [ ] **Normalization ใช้งานได้จริง**: ฟิลด์ที่จำเป็นต่อ detection และ triage ถูก populate อย่างสม่ำเสมอ
+- [ ] **มี health monitoring แล้ว**: freshness, error rate และ parser failure alert ต้องพร้อมก่อน sign-off
+- [ ] **ระบุ ownership ชัดเจนแล้ว**: source owner, integration owner และ escalation path ถูกบันทึกไว้
+- [ ] **รู้ blind spot แล้ว**: event type ที่ยังไม่รองรับ sampling limit หรือข้อจำกัดด้าน API rate limit ถูกระบุไว้
+
+## 7. Trigger การ Escalate สำหรับ Integration
+
+| Trigger | ต้องแจ้งใคร | ทำไมสำคัญ |
+|:---|:---|:---|
+| **critical source ไม่ส่งข้อมูล** | SOC Manager + source owner | การตรวจจับและสืบสวนของทรัพย์สินนั้นจะไม่น่าเชื่อถือ |
+| **parser errors เกิน threshold** | Detection Engineer | logic การตรวจจับและ workflow ของ analyst จะเสื่อมคุณภาพ |
+| **API auth/rate limit ทำให้เก็บข้อมูลไม่ได้** | Integration owner + source owner | คุณภาพ collection เชื่อถือไม่ได้จนกว่าจะแก้ไข |
+| **context enrichment ล้มเหลวกับ high-risk alert** | Security Engineering | คุณภาพ triage ลดลงและการตัดสินใจจำกัดวงจะช้าลง |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [วงจรชีวิตวิศวกรรมการตรวจจับ](Content_Management.th.md)
@@ -161,7 +178,7 @@ graph LR
 | P3 | EDR ↔ SOAR | Auto-contain |
 | P4 | Email ↔ SOAR | Phishing auto-triage |
 
-## อ้างอิง
+## References
 
 - [Sigma](https://github.com/SigmaHQ/sigma)
 - [Elastic Common Schema (ECS)](https://www.elastic.co/guide/en/ecs/current/index.html)

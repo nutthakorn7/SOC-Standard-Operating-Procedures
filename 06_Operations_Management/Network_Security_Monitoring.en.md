@@ -220,6 +220,27 @@ flowchart TD
 | False positive rate (network alerts) | < 15% | FP / total alerts |
 | PCAP availability for P1 investigations | ≥ 95% | Forensic readiness audit |
 
+## Minimum Telemetry Baseline for Network Security Monitoring
+
+| Required Source | Why It Is Required | Blind Spot If Missing |
+|:---|:---|:---|
+| Firewall allow/deny logs | Establishes ingress, egress, and policy violations | Missed perimeter access and blocked attack context |
+| DNS query logs | Detects tunneling, DGA, typosquatting, and beacon resolution | Reduced visibility into C2 and exfiltration over DNS |
+| NetFlow or equivalent flow telemetry | Shows east-west and outbound patterns at scale | Poor detection of lateral movement and large transfers |
+| IDS/IPS or NDR alerts | Identifies known exploit and anomaly signals | Lower-confidence network detection and slower triage |
+| VPN / remote access logs | Validates remote-entry activity and source context | Missed unauthorized access and after-hours correlation |
+| DHCP / asset-to-IP mapping | Resolves IP addresses to actual hosts and users | Slower scoping and ownership validation |
+
+## Escalation Triggers for Network Monitoring
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Confirmed beaconing, DNS tunneling, or known C2 traffic | Incident Commander + IR lead | Immediate | Open incident and contain affected hosts |
+| Cross-zone traffic violates segmentation policy on critical assets | SOC Manager | Within 15 minutes | Validate legitimacy and initiate containment |
+| Data transfer exceeds approved threshold or destination is unapproved | SOC Manager + Business owner | Within 30 minutes | Assess exfiltration risk and business impact |
+| PCAP, NetFlow, or DNS visibility drops below agreed baseline | Security Engineer + SOC Manager | Within 1 hour | Restore telemetry and assess monitoring blind spot |
+| Multiple hosts show coordinated scanning or exploit traffic | IR lead + CISO for P1/P2 | Immediate | Treat as broader compromise until disproven |
+
 ---
 
 ## Related Documents
@@ -230,3 +251,8 @@ flowchart TD
 -   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — Network forensics
 -   [Alert Tuning SOP](Alert_Tuning.en.md) — Network alert tuning
 -   [DLP SOP](DLP_SOP.en.md) — Network DLP integration
+
+## References
+
+-   [MITRE ATT&CK](https://attack.mitre.org/)
+-   [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

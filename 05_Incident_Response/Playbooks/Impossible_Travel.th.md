@@ -13,7 +13,7 @@
 - [ ] ตรวจสอบ token theft indicators
 - [ ] ทบทวน named locations configuration
 - [ ] สร้าง detection rule สำหรับ suspicious login patterns
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังการวิเคราะห์ Impossible Travel
 
@@ -124,7 +124,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานการ login | login ทั้งสองฝั่ง, timestamp, IP, geolocation, device/app detail | IdP / SIEM | ใช้ยืนยันว่าเดินทางไม่ได้จริงหรืออธิบายได้ |
+| หลักฐานด้านตัวตน | user role, MFA status, token/session ID, account risk state | IAM / IdP | ใช้ดูว่าบัญชีเสี่ยงสูงหรือ session ถูกขโมยหรือไม่ |
+| หลักฐานบริบท | VPN/proxy usage, corporate egress IP, travel approval, on-call status | VPN logs / HR / ticketing | ใช้แยก benign travel ออกจาก compromise |
+| หลักฐานกิจกรรมหลัง login | mailbox, file, admin, และ cloud action หลัง suspicious login | Cloud audit / mailbox audit | ใช้ดูผลกระทบหลังผู้โจมตีเข้าได้ |
+| หลักฐานด้านขอบเขต | attacker IP เดียวกันกับหลายผู้ใช้, country pair เดิมซ้ำ, alert ที่เกี่ยวข้อง | SIEM correlation | ใช้ดูว่าเป็นเคสเดียวหรือ campaign |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Identity provider sign-in logs | เทียบ location, เวลา, MFA event, และ session creation | Required | พิสูจน์ impossible travel ไม่ได้เลย |
+| VPN, proxy, และ known-egress telemetry | อธิบาย corporate exit point และ IP change จากการเดินทาง | Required | benign VPN/proxy อาจถูกยกระดับเกินจริง |
+| Cloud audit และ mailbox activity logs | ใช้ดูว่าเกิดอะไรหลัง suspicious access | Required | มองไม่เห็น impact หลัง login |
+| Device posture และ endpoint telemetry | ใช้ยืนยัน managed device, browser, และ token context | Recommended | แยก session theft ออกจากการใช้ device ปกติได้ไม่ชัด |
+| HR, travel, และ support records | ใช้ยืนยันการเดินทาง, remote work, หรือ approved exception | Recommended | analyst ขาด business context |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| corporate VPN หรือ cloud proxy egress | login สองประเทศอาจเป็นผู้ใช้เดียวผ่าน egress ขององค์กร | ตรวจ known egress IP list, ASN, และเวลา VPN session | tune impossible-travel ให้รู้จัก egress node ที่อนุมัติ | มี post-login abuse หรือ device context แปลก |
+| การเดินทางธุรกิจจริง | เดินทางจริงอาจทำให้ login คนละประเทศเร็ว | ยืนยัน itinerary, เวลาเดินทาง, และความต่อเนื่องของอุปกรณ์ | ลด severity เมื่อมีเอกสารเดินทางและ device compliant | มี MFA reset, token misuse, หรือ risky action ตามมา |
+| mobile network หรือ roaming handoff | เครือข่ายมือถืออาจเปลี่ยนประเทศ/region เร็ว | ยืนยัน mobile device ID และ pattern การใช้งานเดิม | tune สำหรับ geolocation drift ของ mobile client | ผู้ใช้เดียวกันยังมี desktop หรือ privileged session ที่อื่น |
+| service identity หรือ automation account | non-human account ไม่ควรถูกประเมินแบบผู้ใช้จริง | ตรวจ app ID, schedule, และ source pattern | แยก detection ของ service identity ออกจาก human identity | service identity ไปทำ interactive หรือ user-like action |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -222,6 +257,6 @@ sequenceDiagram
 | Medium | User verification | 1 hr |
 | Low (VPN likely) | Log + monitor | 24 hrs |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1078 — Valid Accounts](https://attack.mitre.org/techniques/T1078/)

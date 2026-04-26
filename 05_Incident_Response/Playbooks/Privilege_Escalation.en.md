@@ -153,7 +153,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Privilege evidence | New group memberships, token privileges, sudo/suid misuse, admin rights gained | AD audit / system logs / EDR | Confirms what level of privilege was gained |
+| Execution evidence | Process tree, exploit tool, command line, persistence artifacts | EDR / forensic tools | Shows how escalation happened and whether it persists |
+| Identity evidence | Account type, credential exposure, ticketing/admin context | IAM / IdP / PAM logs | Distinguishes attack activity from authorized admin work |
+| Scope evidence | Other hosts, accounts, or GPOs touched after escalation | SIEM / AD audit | Determines whether escalation led to wider compromise |
+| Business impact evidence | Sensitive systems or data reached with elevated rights | Asset inventory / DLP | Supports severity and executive escalation |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Endpoint and EDR telemetry | Exploit tool use, token abuse, process lineage, persistence | Required | Cannot prove how privilege was gained |
+| AD, IAM, and PAM audit logs | Group changes, admin rights, token or role grants | Required | Privilege change scope remains unclear |
+| System security logs | Local admin, sudo, service, scheduled-task, registry activity | Required | OS-native privilege escalation paths stay hidden |
+| Vulnerability and patch context | CVE correlation and missing patch context | Recommended | Analysts may miss exploit-based root cause |
+| SIEM correlation across hosts | Follow-on movement and spread after escalation | Recommended | Wider blast radius may be underestimated |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved admin elevation | Legitimate maintenance may add temp admin rights | Check PAM request, change ticket, and time window | Suppress only approved user/role/time combinations | Elevation persists or touches unrelated systems |
+| Software installer/service deployment | Installers may request elevation and create services | Validate signed package, deployment owner, and path | Allowlist known installers and deployment tools narrowly | Tool also dumps credentials or alters admin groups |
+| Security tool or EDR action | Defensive tools can access privileged processes | Confirm tool identity and console action | Suppress documented tool behaviors only | Same host shows unknown binaries or privilege changes outside tool scope |
+| Break-glass account use | Emergency admin access can resemble abuse | Validate incident record and approval | Lower severity only for approved break-glass events | Access continues beyond approved duration or scope |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|
@@ -166,7 +201,7 @@ graph TD
 
 ---
 
-## 7. Post-Incident
+## 10. Post-Incident
 
 - [ ] Patch vulnerabilities used for privilege escalation
 - [ ] Review LAPS configuration for local admin passwords

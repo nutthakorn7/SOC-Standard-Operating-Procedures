@@ -89,7 +89,7 @@ graph TD
     end
 
     subgraph Phase3["Phase 3: RUN (Month 6-12)"]
-        C1[All 50 Playbooks]
+        C1[All 53 Playbooks]
         C2[EDR on All Endpoints]
         C3[First Purple Team Exercise]
         C4[Monthly KPI Reporting]
@@ -132,6 +132,43 @@ The absolute minimum you need to start — your "Day 1" checklist:
 - [ ] **1 communication channel** (Slack/Teams for SOC team)
 
 > ✅ If you can check all 8 boxes above, you have a functioning SOC!
+
+## Who Should Read What First
+
+| Role | Read First | Use This Document To Decide |
+|:---|:---|:---|
+| **CISO** | [SOC 101](SOC_101.en.md), [SOC Metrics](../06_Operations_Management/SOC_Metrics.en.md), [Monthly Report Template](../11_Reporting_Templates/Monthly_SOC_Report.en.md) | Budget, staffing, target operating model |
+| **SOC Manager** | [SOC Assessment Checklist](../06_Operations_Management/SOC_Assessment_Checklist.en.md), [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md), [Analyst Onboarding Path](../10_Training_Onboarding/Analyst_Onboarding_Path.en.md) | Operating cadence, staffing readiness, go-live scope |
+| **SOC Analyst** | [IR Framework](../05_Incident_Response/Framework.en.md), [Phishing](../05_Incident_Response/Playbooks/Phishing.en.md), [Brute Force](../05_Incident_Response/Playbooks/Brute_Force.en.md) | What to do first during live alerts |
+| **Security Engineer** | [Detection Rules](../08_Detection_Engineering/README.md), [Integration Hub](../03_User_Guides/Integration_Hub.en.md), [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.en.md) | Required telemetry, onboarding order, control gaps |
+| **IR Engineer** | [Incident Response Framework](../05_Incident_Response/Framework.en.md), [Ransomware](../05_Incident_Response/Playbooks/Ransomware.en.md), [Incident Report Template](../11_Reporting_Templates/incident_report.en.md) | Containment flow, evidence expectations, reporting path |
+
+## Minimum Outputs for the First 30 Days
+
+- [ ] **SOC scope statement approved**: Define supported business units, operating hours, and severity model.
+- [ ] **Critical asset list completed**: Identify crown-jewel systems, key identities, and business-critical services.
+- [ ] **Top 3 log sources live**: Collect and retain logs from identity, email, and network/security control layers.
+- [ ] **Top 5 use cases selected**: Start with Phishing, Malware, Brute Force, Account Compromise, and Ransomware.
+- [ ] **Escalation path published**: Name the on-call manager, communications path, and executive notification trigger.
+- [ ] **Case management process active**: Every alert investigation must produce a ticket, status, and owner.
+- [ ] **First KPI baseline captured**: Measure alert volume, true positives, MTTD, MTTR, and false positive rate.
+- [ ] **First management report delivered**: Provide a one-page summary of risks, incidents, gaps, and next actions.
+
+## Quickstart Decision Criteria
+
+| Decision Point | Minimum Condition | Owner |
+|:---|:---|:---|
+| **Declare MVP SOC live** | SIEM collecting from at least 3 critical sources, 1 manager assigned, and 5 high-confidence detections monitored daily | SOC Manager |
+| **Expand from 8x5 to extended coverage** | Alert backlog is stable, escalation path is tested, and after-hours business risk justifies coverage expansion | CISO + SOC Manager |
+| **Add more detections** | Existing detections have named owners, tuning history, and documented response actions | Security Engineer |
+| **Start executive reporting** | KPI definitions are agreed, data sources are stable, and major metric gaps are explained | CISO + SOC Manager |
+
+## Escalation Triggers During the First 30 Days
+
+- [ ] **Escalate to CISO** if critical systems are out of monitoring scope, executive accounts are unprotected, or severe incidents occur before baseline controls are live.
+- [ ] **Escalate to SOC Manager** if alert backlog exceeds team capacity for more than one business day or if no owner is assigned for a Priority 1 gap.
+- [ ] **Escalate to Security Engineering** if required telemetry from identity, email, or network controls is missing or unusable.
+- [ ] **Escalate to business owners** if critical assets cannot provide logs, retention, or response support needed for incident handling.
 
 ## Frequently Asked Questions
 

@@ -113,6 +113,31 @@ xychart-beta
 | 🟡 Medium | [e.g., Onboard cloud audit logs] | [Owner] | [Date] |
 | 🟢 Low | [e.g., Update phishing awareness training] | [Owner] | [Date] |
 
+## 10. Minimum Evidence Before Publishing
+
+- [ ] **Case data reconciled**: Ticket counts, incident counts, and severity counts match the source system of record.
+- [ ] **KPI formulas agreed**: MTTD, MTTR, false positive rate, and SLA compliance are calculated using the documented method.
+- [ ] **Major incidents reviewed**: Every Critical/High incident summary is confirmed by the case owner or incident lead.
+- [ ] **Trend explanations prepared**: Significant month-over-month changes have an operational reason, not only a number.
+- [ ] **Open risk items named**: Any missing telemetry, staffing gap, or major control failure is explicitly disclosed.
+
+## 11. Executive Escalation Triggers
+
+| Trigger | Escalate To | Typical Message |
+|:---|:---|:---|
+| **Critical incident with material business impact** | CISO, CIO, relevant business owner | What happened, current containment status, expected impact, next decision needed |
+| **KPI breach for 2 consecutive periods** | CISO + SOC Manager | Why the metric degraded, what control or resource gap caused it, recovery plan |
+| **Repeated root cause across incidents** | CISO + control owner | Which control failed repeatedly and what remediation now needs executive backing |
+| **Compliance, privacy, or customer notification risk** | CISO, Legal, Privacy, Executive Management | Regulatory timeline, evidence confidence, and decision deadline |
+
+## 12. Report Approval Criteria
+
+| Step | Minimum Condition | Owner |
+|:---|:---|:---|
+| **Draft complete** | All required sections are filled and source data is traceable | SOC Analyst / Report Owner |
+| **Manager review** | Narrative matches the evidence and recommendations have named owners | SOC Manager |
+| **Executive release** | High-risk statements are accurate, open issues are visible, and no critical omission remains | CISO or delegate |
+
 ## Dashboard Visualizations Guide
 
 ### Recommended Charts for Monthly Report

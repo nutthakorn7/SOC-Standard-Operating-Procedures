@@ -115,8 +115,8 @@ graph TD
 -   [ ] **ขั้นที่ 4**: รัน queries และเก็บผลลัพธ์
 -   [ ] **ขั้นที่ 5**: สืบสวน anomalies — pivot, correlate, enrich
 -   [ ] **ขั้นที่ 6**: บันทึกผลการค้นพบ (พบ / ไม่พบ)
--   [ ] **ขั้นที่ 7**: ถ้าพบภัยคุกคาม → ส่งต่อ IR (ตาม [IR Framework](Framework.en.md))
--   [ ] **ขั้นที่ 8**: สร้างหรือปรับปรุง detection rule → [Detection Rule Testing SOP](../06_Operations_Management/Detection_Rule_Testing.en.md)
+-   [ ] **ขั้นที่ 7**: ถ้าพบภัยคุกคาม → ส่งต่อ IR (ตาม [IR Framework](Framework.th.md))
+-   [ ] **ขั้นที่ 8**: สร้างหรือปรับปรุง detection rule → [Detection Rule Testing SOP](../06_Operations_Management/Detection_Rule_Testing.th.md)
 -   [ ] **ขั้นที่ 9**: ปิด hunt และอัปเดต Hunting Log
 
 ### 4.2 ตัวอย่าง Hunt Queries
@@ -258,7 +258,7 @@ graph LR
 ### HP-03: DNS Tunneling / DGA (T1048.003)
 - **Query**: DNS queries ที่มี subdomain ยาวผิดปกติหรือ entropy สูง
 - **ตัวบ่งชี้**: Query ยาว > 50 ตัวอักษร, NXDomain ratio > 30%
-- **ส่งต่อ**: ถ้าพบ → PB-24 DNS Tunneling
+- **ส่งต่อ**: ถ้าพบ → PB-25 DNS Tunneling
 
 ### HP-04: Living-off-the-Land / LOLBins (T1218)
 - **Query**: certutil, mshta, regsvr32, rundll32 ที่มี network activity
@@ -293,20 +293,20 @@ graph LR
 ### HP-10: Cryptomining (T1496)
 - **Query**: process CPU สูง, connections ไปยัง mining pools
 - **ตัวบ่งชี้**: xmrig, minergate, pool.* DNS queries
-- **ส่งต่อ**: ถ้าพบ → PB-23 Cryptomining
+- **ส่งต่อ**: ถ้าพบ → PB-31 Cryptomining
 
 ---
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [IR Framework](Framework.en.md)
--   [Severity Matrix](Severity_Matrix.en.md)
--   [SOAR Playbooks](SOAR_Playbooks.en.md)
--   [Detection Rule Testing SOP](../06_Operations_Management/Detection_Rule_Testing.en.md)
--   [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.en.md)
--   [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.en.md)
--   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
--   [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.en.md)
+-   [IR Framework](Framework.th.md)
+-   [Severity Matrix](Severity_Matrix.th.md)
+-   [SOAR Playbooks](SOAR_Playbooks.th.md)
+-   [Detection Rule Testing SOP](../06_Operations_Management/Detection_Rule_Testing.th.md)
+-   [TI Feeds Integration](../06_Operations_Management/TI_Feeds_Integration.th.md)
+-   [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.th.md)
+-   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.th.md)
+-   [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.th.md)
 
 ### Hunt Hypothesis Template
 
@@ -325,7 +325,7 @@ graph LR
 | P1 | Active threat intel |
 | P2 | Gap in coverage |
 
-## อ้างอิง
+## References
 
 -   [MITRE ATT&CK](https://attack.mitre.org/)
 -   [Sqrrl Threat Hunting Framework](https://www.threathunting.net/sqrrl-archive)

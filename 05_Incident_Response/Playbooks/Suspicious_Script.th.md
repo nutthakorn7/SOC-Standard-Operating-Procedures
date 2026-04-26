@@ -13,7 +13,7 @@
 - [ ] ทบทวน application control / AppLocker policies
 - [ ] สร้าง detection rule สำหรับ obfuscation patterns
 - [ ] ใช้ constrained language mode สำหรับ PowerShell
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผัง Script Analysis Pipeline
 
@@ -228,6 +228,6 @@ graph TD
 | String extraction | FLOSS |
 | Dynamic analysis | Any.run sandbox |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1059 — Command & Scripting Interpreter](https://attack.mitre.org/techniques/T1059/)

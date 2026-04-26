@@ -219,7 +219,7 @@ ________________________________________________________________________________
 | 2 | Patch CVE-YYYY-NNNNN บนระบบ [X] | IT Ops | [วันที่] |
 | 3 | จัด awareness training เรื่อง [topic] | HR | [วันที่] |
 
-### Threat Actor Tracking Template
+### เทมเพลตติดตามกลุ่มผู้โจมตี
 
 | Actor Group | Origin | Target Sector | TTPs | Risk Level |
 |:---|:---|:---|:---|:---|
@@ -227,7 +227,7 @@ ________________________________________________________________________________
 | FIN-YY | Criminal | Retail, Health | Ransomware | High |
 | Hacktivist | Ideological | Any | DDoS, Defacement | Medium |
 
-### Quarterly Trend Analysis
+### การวิเคราะห์แนวโน้มรายไตรมาส
 
 | Metric | Q ก่อนหน้า | Q ปัจจุบัน | Trend |
 |:---|:---|:---|:---|
@@ -236,15 +236,15 @@ ________________________________________________________________________________
 | Zero-day exploits | 3 | 5 | ↑ 67% |
 | Supply chain attacks | 2 | 4 | ↑ 100% |
 
-### Report Distribution
+### การกระจายรายงาน
 
 | Audience | Format | Frequency |
 |:---|:---|:---|
-| SOC Team | Full report | Monthly |
+| SOC Team | รายงานฉบับเต็ม | Monthly |
 | Management | Executive summary | Quarterly |
 | Board | Risk dashboard | Semi-annual |
 
-### Report Sections
+### ส่วนประกอบของรายงาน
 
 | Section | Owner |
 |:---|:---|
@@ -253,9 +253,9 @@ ________________________________________________________________________________
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md) — การล่าภัยคุกคาม
--   [TI Feeds Integration](TI_Feeds_Integration.en.md) — การตั้งค่า feed
--   [SOC Metrics & KPIs](SOC_Metrics.en.md) — ตัวชี้วัด
--   [KPI Dashboard Template](KPI_Dashboard_Template.en.md) — รายงานรายเดือน
--   [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) — อนุกรมวิธาน
--   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่ง detection
+-   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.th.md) — การล่าภัยคุกคาม
+-   [TI Feeds Integration](TI_Feeds_Integration.th.md) — การตั้งค่า feed
+-   [SOC Metrics & KPIs](SOC_Metrics.th.md) — ตัวชี้วัด
+-   [KPI Dashboard Template](KPI_Dashboard_Template.th.md) — รายงานรายเดือน
+-   [Incident Classification](../05_Incident_Response/Incident_Classification.th.md) — อนุกรมวิธาน
+-   [Log Source Matrix](Log_Source_Matrix.th.md) — แหล่ง detection

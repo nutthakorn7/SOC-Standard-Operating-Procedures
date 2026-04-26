@@ -9,13 +9,39 @@
 
 ## Purpose
 
-This document maps all **50 SOC Playbooks**, **54 Sigma Detection Rules**, and key SOC operational controls to three major compliance frameworks:
+This document maps all **53 SOC Playbooks**, **54 Sigma Detection Rules**, and key SOC operational controls to major compliance frameworks:
 
 - **ISO/IEC 27001:2022** — Information Security Management System
 - **NIST Cybersecurity Framework (CSF) 2.0** — Identify, Protect, Detect, Respond, Recover
 - **PCI DSS v4.0** — Payment Card Industry Data Security Standard
+- **NIST AI RMF 1.0** — Govern, Map, Measure, Manage for AI / GenAI systems
 
 Use this mapping for **audit preparation**, **gap analysis**, and **demonstrating SOC coverage** to auditors and regulators.
+
+```mermaid
+graph TD
+    Frameworks["Framework Mapping"] --> Ops["SOC Operations"]
+    Frameworks --> IR["IR Playbooks"]
+    Frameworks --> AI["AI / GenAI Controls"]
+    Ops --> Evidence["Audit Evidence"]
+    IR --> Evidence
+    AI --> Evidence
+    style Frameworks fill:#1d4ed8,color:#fff
+    style Ops fill:#0f766e,color:#fff
+    style IR fill:#b45309,color:#fff
+    style AI fill:#7c3aed,color:#fff
+    style Evidence fill:#dc2626,color:#fff
+```
+
+## Who Should Use This Document
+
+| Role | Primary use | Output |
+|:---|:---|:---|
+| **CISO** | Validate risk coverage and investment gaps | Risk acceptance and escalation criteria |
+| **SOC Manager** | Confirm workflow coverage and audit readiness | Scope, RACI, KPI and review cadence |
+| **SOC Analyst** | Understand which framework requirement an alert or playbook supports | Better triage notes and evidence capture |
+| **Security Engineer** | Tie controls and telemetry to compliance expectations | Logging and control implementation backlog |
+| **IR Engineer** | Connect incidents to response, rollback, and notification obligations | Incident workflow and evidence preservation checklist |
 
 ---
 
@@ -94,6 +120,59 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 
 ---
 
+## AI / GenAI Control Mapping
+
+This section improves the existing compliance mapping instead of creating a separate AI governance report. Use it when production AI systems, LLM assistants, RAG pipelines, model registries, or AI plugins/tools are in scope.
+
+| AI Risk Area | Practical question | NIST AI RMF | Existing SOC Content |
+|:---|:---|:---|:---|
+| Prompt injection and unsafe tool use | Can untrusted content alter prompts or trigger high-impact tools? | Govern, Map, Measure, Manage | [PB-51 AI Prompt Injection](../05_Incident_Response/Playbooks/AI_Prompt_Injection.en.md), [API Abuse](../05_Incident_Response/Playbooks/API_Abuse.en.md) |
+| Data poisoning and RAG corruption | Can model behavior change because of poisoned data, embeddings, or document collections? | Map, Measure, Manage | [PB-52 LLM Data Poisoning](../05_Incident_Response/Playbooks/LLM_Data_Poisoning.en.md), [SOC Use Case Library](../08_Detection_Engineering/SOC_Use_Case_Library.en.md) |
+| Model theft and checkpoint exfiltration | Can users or insiders extract model weights, responses, or proprietary training data? | Govern, Measure, Manage | [PB-53 AI Model Theft](../05_Incident_Response/Playbooks/AI_Model_Theft.en.md), [Cloud Security Monitoring](../06_Operations_Management/Cloud_Security_Monitoring.en.md) |
+| AI supply chain exposure | Can third-party models, datasets, packages, or plugins introduce risk? | Govern, Map, Manage | [PB-32 Supply Chain Attack](../05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md), [Third-Party Risk](../06_Operations_Management/Third_Party_Risk.en.md) |
+| Privacy and regulated data use | Could prompts, outputs, or model context expose regulated or sensitive data? | Govern, Map, Manage | [PDPA Incident Response](PDPA_Incident_Response.en.md), [Data Governance Policy](Data_Governance_Policy.en.md) |
+
+## Minimum Deliverables for AI Systems
+
+Before treating an AI system as production-ready, maintain these artifacts:
+
+- [ ] AI system inventory with business owner and technical owner
+- [ ] Approved use case with out-of-scope actions
+- [ ] Trust-boundary map for prompts, RAG, tools, plugins, and external content
+- [ ] Logging standard for prompts, outputs, tool calls, model version, and data-source changes
+- [ ] Detection mapping for prompt injection, poisoning, model theft, and supply chain abuse
+- [ ] Rollback or disable procedure with named approver
+- [ ] Legal, privacy, and executive escalation path
+
+## First 30 Days Practical Rollout
+
+| Timeframe | Objective | Output |
+|:---|:---|:---|
+| Week 1 | Inventory AI systems, endpoints, plugins, and external providers | AI asset register |
+| Week 2 | Map trust boundaries and required telemetry | Trust-boundary diagram and logging standard |
+| Week 3 | Connect priority AI risks to detections and playbooks | Detection backlog and triage checklist |
+| Week 4 | Test rollback, evidence capture, and executive communication | Tabletop record and escalation decision tree |
+
+## Minimum Audit Evidence Pack
+
+| Evidence | Why It Matters | Owner |
+|:---|:---|:---|
+| Approved IR framework, severity matrix, and current playbook index | Proves incident handling structure exists and is maintained | SOC Manager |
+| Detection inventory mapped to major use cases and ATT&CK techniques | Shows monitoring coverage and design rationale | Security Engineer |
+| Sample incident tickets with timestamps, escalation trail, and closure notes | Demonstrates the process works in production | SOC Analyst |
+| Log retention, access review, and monitoring health evidence | Supports control-operation claims during audit | Security Engineer |
+| Lessons learned or corrective action records | Shows continuous improvement, not just documentation | IR Engineer |
+
+## Escalation Triggers for Compliance Gaps
+
+| Condition | Escalate To | SLA | Required Decision |
+|:---|:---|:---:|:---|
+| Required control has no owner, no evidence, or no operating procedure | CISO + Compliance Officer | Same business day | Assign owner and remediation deadline |
+| Audit or regulator request cannot be answered from current records | CISO | Immediate | Open remediation track and approve interim response |
+| Critical monitoring blind spot affects a regulated system or data set | SOC Manager + Business owner | Within 24 hours | Accept risk temporarily or fund control fix |
+| AI system handles regulated data without approved logging or rollback | CISO + Legal / DPO | Immediate | Pause go-live or formally accept risk |
+| Control failure repeats across monthly or quarterly reviews | CISO + Executive sponsor | At next governance meeting | Escalate from local fix to management action |
+
 ## Framework Coverage Summary
 
 ### ISO 27001:2022 Coverage
@@ -137,7 +216,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 ### For ISO 27001 Auditors
 
 > "Show me your incident response procedures."  
-→ [IR Framework](../05_Incident_Response/Framework.en.md) + [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md) + any Playbook (PB-01 to PB-50)
+→ [IR Framework](../05_Incident_Response/Framework.en.md) + [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md) + any Playbook (PB-01 to PB-53)
 
 > "Show me your monitoring and detection capabilities."  
 → [Detection Rules Index](../08_Detection_Engineering/README.md) (54 Sigma rules) + [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
@@ -163,6 +242,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 - [IR Framework](../05_Incident_Response/Framework.en.md)
 - [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
 - [Detection Rules Index](../08_Detection_Engineering/README.md)
+- [SOC Use Case Library](../08_Detection_Engineering/SOC_Use_Case_Library.en.md)
 - [MITRE ATT&CK Heatmap](../tools/mitre_attack_heatmap.html)
 - [SOC Maturity Scorer](../tools/soc_maturity_scorer.html)
 
@@ -170,5 +250,7 @@ Use this mapping for **audit preparation**, **gap analysis**, and **demonstratin
 
 - [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)
 - [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)
+- [NIST AI RMF Playbook](https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook)
 - [PCI DSS v4.0](https://www.pcisecuritystandards.org/document_library/)
 - [MITRE ATT&CK Framework](https://attack.mitre.org/)
+- [MITRE ATLAS](https://atlas.mitre.org/)

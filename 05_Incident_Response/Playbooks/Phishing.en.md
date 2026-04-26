@@ -146,7 +146,42 @@ flowchart TD
 
 ---
 
-## 4. Escalation Criteria
+## 4. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Original email | Full headers, body, sender metadata, message ID | Mail gateway / mailbox export | Proves spoofing path and campaign scope |
+| URL evidence | Full URL, redirect chain, resolved IP/domain, screenshots | URL sandbox / proxy / DNS | Confirms credential harvesting or delivery path |
+| Attachment evidence | Filename, SHA256, sandbox verdict, dropped files | Sandbox / mail gateway | Confirms malware delivery and blocking scope |
+| User action evidence | Click time, credential submission, browser history, affected endpoint | Proxy / IdP / endpoint logs | Shows whether it remained phishing only or became compromise |
+| Campaign scope | Recipient list, purge results, similar messages, VIP targeting | Mail search / SIEM | Supports escalation and awareness actions |
+
+---
+
+## 5. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Mail gateway and secure email logs | Sender analysis, delivery path, purge validation | Required | Cannot confirm scope or whether the message was delivered |
+| Mailbox audit and message trace | Inbox rule changes, user interaction, lateral mailbox impact | Required | Cannot prove post-delivery actions or mailbox abuse |
+| Proxy, DNS, and URL filtering logs | Click path, redirect chain, destination infrastructure | Required | Cannot validate phishing destinations or follow-on browsing |
+| Identity provider sign-in logs | Credential submission fallout, token abuse, MFA changes | Required | Cannot determine whether phishing became account compromise |
+| Sandbox and endpoint telemetry | Attachment execution, dropped files, process lineage | Recommended | Malware delivery may be underestimated or missed |
+
+---
+
+## 6. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Legitimate bulk email campaign | High recipient count and similar subject lines resemble phishing blasts | Confirm approved sender, sending platform, and campaign owner | Allowlist approved sender domains and mail infrastructure only | Links, sender path, or branding differ from the approved campaign |
+| External file-share or e-signature notification | URL-based messages can look like credential lures | Validate sender domain, DKIM/SPF alignment, and business context | Tune for approved SaaS sender patterns and signed URLs | Destination domain or redirect chain is not on the approved service list |
+| Security awareness simulation | Uses phishing-like language and tracking links by design | Confirm simulation schedule and source platform | Suppress alerts only for the simulation domains and campaign window | Delivery occurs outside the exercise window or targets excluded users |
+| User travel or mobile click-through | Rapid click from unusual IP or device can look compromised | Confirm user location, device, and no credential/token misuse after click | Keep click alerts informational when no follow-on auth anomalies exist | Credentials submitted, MFA changed, or token abuse appears |
+
+---
+
+## 7. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|
@@ -159,7 +194,7 @@ flowchart TD
 
 ---
 
-## 5. Recovery
+## 8. Recovery
 
 - [ ] Unblock user account after password reset and MFA re-enrollment
 - [ ] Confirm no unauthorized mailbox rules remain
@@ -168,7 +203,7 @@ flowchart TD
 
 ---
 
-## 6. Post-Incident
+## 9. Post-Incident
 
 - [ ] Update email gateway rules if new pattern identified
 - [ ] Submit phishing URL/domain to community blocklists

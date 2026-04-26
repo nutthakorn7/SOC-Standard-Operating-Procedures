@@ -143,12 +143,33 @@ graph LR
 | **ความสอดคล้อง** | ข้อมูลเดียวกันตรงกันข้ามระบบ | ข้อมูลใน ticket ตรงกับ SIEM | > 95% |
 | **ความไม่ซ้ำ** | ไม่มี duplicate ที่ไม่จำเป็น | 1 ticket ต่อ 1 incident | 100% |
 
+## Trigger สำหรับการยกระดับด้านธรรมาภิบาลข้อมูล (Data Governance Escalation Triggers)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| พบข้อมูล restricted หรือ confidential ใน storage หรือ channel ที่ไม่อนุมัติ | SOC Manager + Security Engineer | ทันที | ควบคุมการเข้าถึงและบันทึกเส้นทางการเปิดเผย |
+| retention หรือ deletion control ล้มเหลวกับข้อมูลกำกับหรือข้อมูลคดี | Security Engineer + Compliance Officer | ภายใน 24 ชม. | หยุดช่องโหว่ของ lifecycle และประเมิน legal hold |
+| ไม่รู้ว่าใครเป็น data owner ของข้อมูลมูลค่าสูง | SOC Manager | ภายในวันทำการเดียวกัน | แต่งตั้ง owner ก่อนประมวลผลต่อ |
+| มีคำขอแชร์ข้อมูลที่ขัดกับ TLP, สัญญา หรือกฎ privacy | SOC Manager + DPO / Legal | ก่อนปล่อยข้อมูล | อนุมัติ แดงข้อมูล หรือปฏิเสธ |
+| ไม่สามารถพิสูจน์ chain-of-custody ของหลักฐานได้ | IR Lead + Compliance Officer | ทันที | รักษาหลักฐานที่เหลือและประเมินความเสี่ยงด้านการใช้เป็นหลักฐาน |
+
+## หลักฐานขั้นต่ำสำหรับ Data Governance (Minimum Evidence for Data Governance)
+
+| หลักฐาน | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| data classification matrix และ handling standard เวอร์ชันปัจจุบัน | แสดงว่าทีมมี baseline ที่ใช้อยู่จริง | SOC Manager |
+| access logs ของข้อมูล L3/L4 | พิสูจน์ว่าควบคุมการเข้าถึงข้อมูลอ่อนไหวได้ | Security Engineer |
+| บันทึก retention และ disposal | แสดงว่า lifecycle control ทำงานจริง | Security Engineer |
+| ตัวอย่าง label ใน case หรือหลักฐานที่มี TLP และ classification | ยืนยันการใช้จริง ไม่ใช่มีแต่ policy | SOC Analyst |
+| บันทึกการอนุมัติ exception สำหรับ data sharing หรือการเก็บยาวเกินกำหนด | เก็บ accountability เมื่อมีการเบี่ยงจากมาตรฐาน | SOC Manager / DPO |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [PDPA Compliance](PDPA_Compliance.th.md)
 - [Data Handling Protocol](../06_Operations_Management/Data_Handling_Protocol.th.md)
 - [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.th.md)
 - [Access Control Policy](../06_Operations_Management/Access_Control.th.md)
+- [Evidence Collection](../05_Incident_Response/Evidence_Collection.th.md)
 
 ### Data Classification Quick Reference
 
@@ -168,7 +189,7 @@ graph LR
 | Cloud upload | Encrypted only | Approved cloud | ✅ |
 | Print | Approval | ✅ | ✅ |
 
-## อ้างอิง
+## References
 
 - [ISO 27001](https://www.iso.org/iso-27001-information-security.html)
 - [NIST SP 800-53](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)

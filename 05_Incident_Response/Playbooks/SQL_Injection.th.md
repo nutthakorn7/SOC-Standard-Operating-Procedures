@@ -209,7 +209,42 @@ index=web sourcetype=access_combined
 | where count > 5
 ```
 
-## 5. หลังเหตุการณ์ (Post-Incident)
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐาน request | full URI, parameter, header, body, encoding style, timestamp | WAF / web logs | ใช้ reconstruct injection path และ bypass technique |
+| หลักฐาน database | query log, table ที่โดน, privilege ของ DB user, error trace | DB audit / DBA logs | ใช้ยืนยันว่าผลกระทบถึง database และข้อมูลส่วนใดบ้าง |
+| หลักฐานแอปพลิเคชัน | vulnerable code path, stack trace, release/version context | App logs / APM / code review | ใช้ผูกเหตุเข้ากับ defect ที่ต้องแก้ |
+| หลักฐานของ response | returned row, response size, timing anomaly, error page | Access logs / app metrics | ใช้ดูว่ามี data extraction หรือ blind SQLi สำเร็จหรือไม่ |
+| หลักฐานโครงสร้างพื้นฐาน | action ของ WAF, firewall, endpoint change ชั่วคราว | WAF / firewall / change tickets | ใช้ประกอบ containment timeline และบทเรียน |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| WAF และ web access logs | ดู payload pattern, source IP, target endpoint, block/pass status | Required | ระบุ injection vector และพฤติกรรมต้นทางไม่ได้ |
+| Database audit logs | ดู query abuse, table access, privilege abuse, data extraction | Required | พิสูจน์ผลกระทบต่อข้อมูลไม่ได้ |
+| Application และ APM logs | ดู error condition, code path, auth/session context | Required | บอกไม่ได้ว่า payload ไปถึง logic ที่ exploitable หรือไม่ |
+| Change และ release records | ดู code change หรือ config regression ล่าสุด | Recommended | root cause analysis ช้าลงและโทษผิดจุดได้ |
+| DLP หรือ data classification context | ดูความอ่อนไหวของข้อมูลที่อาจถูกนำออก | Recommended | ขอบเขตการแจ้งเตือนไม่ชัด |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| security scan หรือ DAST run | test payload ตั้งใจให้เหมือน SQLi | ยืนยัน scanner source, schedule, และ endpoint scope | allowlist source range และ test header ในช่วงเวลาที่อนุมัติ | request โผล่นอกเวลา หรือไปโดน production data path ที่ไม่ควร |
+| business input ที่ encode ซับซ้อนแต่ถูกต้อง | search syntax หรือ special char อาจดูเหมือน payload | reproduce กับ application owner และดูการจัดการฝั่ง server | tune exception เฉพาะ parameter ไม่ผ่อนกฎทั้งชุด | source เดียวกันเริ่ม schema probing หรือ timing payload |
+| QA หรือ pre-release validation | test automation อาจสร้าง query string ที่ error เยอะ | ยืนยัน testing window และ environment | ลด severity เฉพาะ QA identity และ path ที่อนุมัติ | traffic ไปโดน production หรือมี DB-side indicator ร่วม |
+| WAF normalization gap | double-encoding ทำให้เกิด partial match noise | validate decoded payload และดูพฤติกรรม downstream | tune เรื่อง normalization/decoding consistency ก่อน suppress | decoded content ยัง probing schema, delay, หรือ extraction pattern |
+
+---
+
+## 8. หลังเหตุการณ์ (Post-Incident)
 
 ### บทเรียน
 | คำถาม | คำตอบ |
@@ -219,7 +254,7 @@ index=web sourcetype=access_combined
 | Database privileges กำหนดถูกต้องหรือไม่? | [บันทึกช่องว่าง] |
 | ข้อมูลถูกนำออกหรือไม่? ต้องแจ้ง PDPA? | [ประเมิน] |
 
-## 6. Detection Rules (Sigma)
+## 9. Detection Rules (Sigma)
 
 ```yaml
 title: SQL Injection Attempt in Web Logs

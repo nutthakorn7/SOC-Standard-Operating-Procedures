@@ -181,6 +181,23 @@ done
 | SSL certificate expired | Renew immediately | Immediate | SOC Engineer |
 | MFA outage | Switch to backup auth | 5 min | IT + IAM team |
 
+## 9. Minimum Evidence Before Escalation
+
+- [ ] **Scope confirmed**: Identify whether the issue affects one user, one source, one service, or the whole platform.
+- [ ] **Time window recorded**: Capture when the problem started, when it was first detected, and whether a recent change preceded it.
+- [ ] **Basic checks completed**: Connectivity, service status, resource health, and recent logs have been checked.
+- [ ] **Business impact stated**: Document missed alerts, delayed response, user lockout, or service downtime in plain terms.
+- [ ] **Current workaround noted**: Record any temporary mitigation already applied.
+
+## 10. Management Escalation Triggers
+
+| Trigger | Notify | Timing |
+|:---|:---|:---|
+| **Critical monitoring capability is degraded** | SOC Manager | Immediate |
+| **Issue impacts incident response for active events** | SOC Manager + incident lead | Immediate |
+| **Outage affects executive or business-critical systems** | CISO, business owner, platform owner | Immediate |
+| **Repeated troubleshooting on the same failure mode** | SOC Manager | During same business day |
+
 ### Network Connectivity Check
 ```bash
 #!/bin/bash

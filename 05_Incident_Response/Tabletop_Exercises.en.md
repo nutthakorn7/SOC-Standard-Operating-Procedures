@@ -315,4 +315,4 @@ Use this rubric to evaluate team performance after each exercise:
 - [IR Framework](Framework.en.md)
 - [Severity Matrix](Severity_Matrix.en.md)
 - [SOAR Playbook Templates](SOAR_Playbooks.en.md)
-- [All Playbooks (PB-01 to PB-50)](Playbooks/Phishing.en.md)
+- [All Playbooks (PB-01 to PB-53)](Playbooks/Phishing.en.md)

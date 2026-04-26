@@ -13,7 +13,7 @@
 - [ ] ใช้ automated Shadow IT discovery scanning (รายเดือน)
 - [ ] อัพเดท code of conduct เรื่อง unsanctioned services
 - [ ] จัด awareness training เรื่อง data security risks
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังการค้นพบ Shadow IT
 
@@ -228,7 +228,7 @@ sequenceDiagram
 | Business justification | Requester | 5 days |
 | CISO approval | CISO | 3 days |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1567 — Exfiltration Over Web Service](https://attack.mitre.org/techniques/T1567/)
 - [NIST SP 800-144 — Cloud Computing Guidelines](https://csrc.nist.gov/publications/detail/sp/800-144/final)

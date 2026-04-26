@@ -13,7 +13,7 @@
 - [ ] ทบทวน PIM role assignments
 - [ ] เปิด Identity Protection risk policies
 - [ ] ตรวจ service principal credentials ทั้งหมด
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผัง Identity Protection Pipeline
 
@@ -229,7 +229,7 @@ sequenceDiagram
 | Require MFA | All admins | P1 |
 | Named locations | Allowed countries only | P2 |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1098 — Account Manipulation](https://attack.mitre.org/techniques/T1098/)
 - [Microsoft — Incident Response Playbooks](https://learn.microsoft.com/en-us/security/operations/incident-response-playbooks)

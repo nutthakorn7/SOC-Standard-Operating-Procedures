@@ -258,6 +258,6 @@ python3 server.py --insecure --build
 | 55-60 min | Action items | Facilitator |
 
 ## เอกสารที่เกี่ยวข้อง
-- [Atomic Test Map](Atomic_Test_Map.en.md)
+- [Atomic Test Map](Atomic_Test_Map.th.md)
 - [IR Framework](../05_Incident_Response/Framework.th.md)
 - [Detection Engineering](../03_User_Guides/Content_Management.th.md)

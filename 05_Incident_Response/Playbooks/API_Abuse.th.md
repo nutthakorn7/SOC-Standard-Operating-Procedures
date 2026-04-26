@@ -13,7 +13,7 @@
 - [ ] ทบทวน API key rotation policies
 - [ ] ตรวจ OWASP API Top 10 risks
 - [ ] ใช้ API security testing ใน CI/CD
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผัง API Attack Chain
 
@@ -139,6 +139,41 @@ graph TD
 
 ---
 
+## 6. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานของ request | endpoint, method, parameters, request IDs, timestamps | API gateway / app logs | ใช้ reconstruct รูปแบบการ abuse อย่างแม่นยำ |
+| หลักฐานด้านตัวตน | API key, OAuth token, client ID, user account, source IP | API management / auth logs | ใช้ระบุ credential หรือตัวตนที่ถูก abuse |
+| หลักฐานของ response | response code, returned fields, จำนวน records, downloaded objects | App logs / API metrics | ใช้ดูว่ามี data exposure หรือ auth bypass หรือไม่ |
+| หลักฐานด้านช่องโหว่ | auth logic flaw, schema issue, rate-limit bypass, injection payload | Security test results / code review / WAF logs | ใช้แก้ root cause เชิงวิศวกรรม |
+| หลักฐานผลกระทบต่อผู้ใช้งาน | partner ที่ได้รับผลกระทบ, endpoint ที่ช้า/ล่ม, ธุรกรรมธุรกิจที่เสียหาย | API analytics / support tickets | ใช้สื่อสารกับผู้เกี่ยวข้อง |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| API gateway และ application logs | ดู request path, method, parameter, request ID, response code | Required | สร้างลำดับเหตุการณ์หรือผลกระทบของ endpoint ไม่ได้ |
+| Authentication และ API key telemetry | ดู token usage, client identity, key rotation history, auth failure | Required | ระบุไม่ได้ว่า credential หรือ integration ใดถูกใช้ในทางที่ผิด |
+| WAF, rate-limit, และ edge telemetry | ดู burst pattern, bypass attempt, geo anomaly, blocking action | Required | แยก targeted abuse ออกจาก noisy traffic ไม่ได้ |
+| API analytics และ data access metrics | ดู record count, object download, latency, partner impact | Required | วัด exposure และ business impact ไม่ได้อย่างน่าเชื่อถือ |
+| Secure SDLC และ testing records | ดู defect เดิม, schema change, release ล่าสุด, finding ก่อนหน้า | Recommended | root cause analysis และ remediation จะช้าลง |
+
+---
+
+## 8. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| งาน load test หรือ performance test | request rate สูงและ error volume มากดูเหมือน abuse | ยืนยัน test window, source range, และ owner ของการทดสอบ | allowlist source range และ test header เฉพาะช่วงเวลาทดสอบ | traffic เกิน endpoint ที่อนุมัติหรือมี auth bypass pattern |
+| งาน batch integration ของ partner | API call ซ้ำ ๆ และการดึงข้อมูลจำนวนมากดูเหมือน scraping | ยืนยัน partner ID, scope ตามสัญญา, และ baseline เดิม | tune threshold ตาม partner และ endpoint profile ที่อนุมัติ | การเข้าถึงขยายไปยัง object, tenant, หรือ field อ่อนไหวใหม่ |
+| การ rollout mobile app version ใหม่ | request shape เปลี่ยนและ traffic spike ได้ | ยืนยัน release schedule, app version, และ rollout region | tune schema และปริมาณที่คาดไว้ตาม app version ที่อนุมัติ | request มาจาก client ที่ไม่รู้จักหรือเริ่มมี authorization failure |
+| การทำงานของ security scanner หรือ QA automation | fuzzing และ negative test ดูเหมือน attack traffic | ยืนยัน scanner identity, environment, และ schedule | suppress เฉพาะ scanner ที่รู้จักใน environment ที่อนุมัติ | scanner ไปอยู่ใน production โดยไม่ได้รับอนุมัติหรือเจอ live data exposure |
+
+---
+
 ### ผัง API Security Architecture
 
 ```mermaid
@@ -225,7 +260,7 @@ graph TD
 | Suspicious usage | Rotate + investigate |
 | Regular rotation | Every 90 days |
 
-## อ้างอิง
+## References
 
 - [OWASP API Security Top 10](https://owasp.org/API-Security/)
 - [MITRE ATT&CK T1106 — Native API](https://attack.mitre.org/techniques/T1106/)

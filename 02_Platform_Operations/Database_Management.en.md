@@ -105,6 +105,30 @@ graph LR
 - Annual audit of retention policy compliance
 - PDPA data subject access requests handled within 30 days
 
+## 8. Minimum Governance Baseline
+
+- [ ] **Retention approved**: Hot and cold retention periods are approved by security, legal/privacy, and data owners where required.
+- [ ] **Critical log classes identified**: Identity, endpoint, network, cloud, and incident evidence data are tagged and handled consistently.
+- [ ] **Access model documented**: Named roles can access raw logs, forensic evidence, and archived data with least privilege.
+- [ ] **Restoration tested**: Recovery of SIEM configuration, case data, and archived logs has been validated against target RTO/RPO.
+- [ ] **Purge controls active**: Data deletion follows retention policy and is auditable.
+
+## 9. Retention Decision Criteria
+
+| Decision Point | Minimum Input | Owner |
+|:---|:---|:---|
+| **Increase hot retention** | Investigations regularly require data older than current hot window, and query performance impact is understood | SOC Manager + Platform Owner |
+| **Move data to cold tier** | Data remains legally or operationally necessary but no longer needs rapid search | Platform Owner |
+| **Extend archive retention** | Compliance, litigation hold, or threat-hunting use case justifies cost and control impact | CISO + Legal/Privacy |
+| **Approve purge** | Retention deadline is met, no hold exists, and audit trail for deletion is recorded | Data Owner + Platform Owner |
+
+## 10. Escalation Triggers for Data Management
+
+- [ ] **Escalate to SOC Manager** if critical logs are missing, corrupted, or delayed beyond the agreed investigation window.
+- [ ] **Escalate to Platform Owner** if storage utilization exceeds forecast, restore testing fails, or archive integrity cannot be verified.
+- [ ] **Escalate to CISO and Legal/Privacy** if regulated data is stored outside approved controls or retention obligations cannot be met.
+- [ ] **Escalate to business owners** if data onboarding, retention, or purge constraints create investigation blind spots for critical assets.
+
 ## Capacity Planning Guide
 
 ### Storage Estimation Formula

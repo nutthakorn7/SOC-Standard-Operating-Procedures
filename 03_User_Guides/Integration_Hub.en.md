@@ -155,6 +155,23 @@ done
 
 ---
 
+## 6. Minimum Integration Acceptance Criteria
+
+- [ ] **Data arrives as expected**: Sample and production events reach the SIEM with correct timestamps and source identifiers.
+- [ ] **Normalization is usable**: Required fields for detection and triage are populated consistently.
+- [ ] **Health monitoring exists**: Freshness, error rate, and parser failure alerts are enabled before sign-off.
+- [ ] **Ownership is explicit**: Source owner, integration owner, and escalation path are documented.
+- [ ] **Blind spots are known**: Any unsupported event types, sampling limits, or API rate-limit constraints are recorded.
+
+## 7. Integration Escalation Triggers
+
+| Trigger | Escalate To | Why |
+|:---|:---|:---|
+| **Critical source sends no data** | SOC Manager + source owner | Detection and investigation for that asset become unreliable |
+| **Parser errors exceed threshold** | Detection Engineer | Detection logic and analyst workflows will degrade |
+| **API auth/rate limits block collection** | Integration owner + source owner | Collection quality cannot be trusted without remediation |
+| **Context enrichment fails for high-risk alerts** | Security Engineering | Alert triage quality drops and containment decisions slow down |
+
 ## Related Documents
 
 - [Detection Engineering Lifecycle](Content_Management.en.md)

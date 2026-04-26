@@ -13,7 +13,7 @@
 - [ ] ใช้ Smart Lockout / IP-based throttling
 - [ ] พิจารณาใช้ Passwordless authentication
 - [ ] สร้าง detection rule สำหรับ pattern ที่พบ
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังรูปแบบการโจมตี
 
@@ -134,6 +134,41 @@ graph TD
 
 ---
 
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานการยืนยันตัวตน | failed/success login events, timestamps, result codes | IdP / AD / VPN / app auth logs | ยืนยันว่าเป็นแค่ความพยายามหรือกลายเป็น compromise แล้ว |
+| หลักฐานด้านตัวตน | target usernames, account type, MFA state, lockout status | IAM / IdP | ใช้ดูว่าบัญชีเสี่ยงสูงหรือ privileged ถูกเล็งหรือไม่ |
+| หลักฐานแหล่งที่มา | source IP, ASN, geolocation, user agent, proxy/Tor indicator | SIEM / firewall / threat intel | ใช้แยก single-source attack ออกจาก distributed campaign |
+| หลักฐานด้านการเปิดรับความเสี่ยง | auth endpoint ที่เปิดสู่ภายนอก, protocol ที่ถูกใช้ | Firewall / asset inventory | ใช้อธิบาย attack surface และลำดับการ harden |
+| หลักฐานผลกระทบทางธุรกิจ | user lockout, service disruption, งานธุรกิจที่ได้รับผลกระทบ | Helpdesk / ticketing / service owner | ใช้ประกอบ severity และการสื่อสาร |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Authentication logs | นับ failed login, ดู success-after-failure, ระบุ protocol | Required | พิสูจน์ brute force แท้ ๆ ไม่ได้ |
+| IAM และ MFA telemetry | ดู account type, lockout, MFA state, reset event | Required | ประเมินความเสี่ยงของ privileged account หรือ bypass ไม่ได้ |
+| Firewall, WAF, หรือ VPN telemetry | ดู rate, geo distribution, perimeter targeting | Required | มอง distributed attack และ exposed entry point ไม่ครบ |
+| Threat intel และ IP reputation | ดู botnet, proxy, Tor, หรือ source ที่มีประวัติเสี่ยง | Recommended | analyst จัดลำดับความสำคัญได้ยากขึ้น |
+| Asset และ service inventory | ดู auth endpoint ที่เปิดภายนอกและ owner | Recommended | การ harden ช้าลงและไม่สม่ำเสมอ |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| ผู้ใช้จำรหัสผ่านผิด | failed login หลายครั้งกับบัญชีเดียว | ยืนยันกับผู้ใช้และไม่พบ success จากแหล่งแปลก | ให้ alert แบบ informational สำหรับ self-correction ช่วงสั้น | มี login สำเร็จจาก geo/device ใหม่หรือมี MFA anomaly |
+| Password manager หรือ mobile client ใช้ credential เก่า | retry ซ้ำจาก device/app เดิม | ตรวจ known device, user agent, และปัญหา cached credential | suppress เฉพาะ client signature ที่อนุมัติในช่วงเวลาจำกัด | pattern ลามหลายบัญชีหรือ source IP เปลี่ยนผิดปกติ |
+| Security scan หรือ auth resilience test | auth fail ปริมาณมากดูเหมือน spray | ยืนยัน source range, schedule, และ owner ของการทดสอบ | allowlist เฉพาะแหล่งทดสอบและช่วงเวลาที่อนุมัติ | ยิงเข้า production identity นอก scope |
+| Shared NAT หรือ proxy egress | ผู้ใช้หลายคนอาจออกจาก IP เดียวกัน | correlate usernames, device identity, และ office/VPN context | tune จาก source IP อย่างเดียวให้ดู per-user/per-protocol เพิ่ม | source เดียวกันมี success-after-failure หรือยิงบัญชี privileged |
+
+---
+
 ### ผัง Password Policy Hardening
 
 ```mermaid
@@ -227,6 +262,6 @@ flowchart TD
 | 2 | Enable MFA | New device enroll |
 | 3 | Review login history | Check for success |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1110 — Brute Force](https://attack.mitre.org/techniques/T1110/)

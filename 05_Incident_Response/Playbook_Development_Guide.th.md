@@ -25,9 +25,12 @@
 | 8 | **Eradication** | ✅ | ลบภัยคุกคาม |
 | 9 | **Recovery** | ✅ | กู้คืนระบบ |
 | 10 | **เกณฑ์ Escalation** | ✅ | เมื่อไรเลื่อนระดับ |
-| 11 | **การสื่อสาร** | ✅ | แจ้งใครในแต่ละ severity |
-| 12 | **Evidence checklist** | ✅ | เก็บหลักฐานอะไร |
-| 13 | **Playbooks ที่เกี่ยวข้อง** | ✅ | Link เอกสารอื่น |
+| 11 | **Decision matrix** | ✅ | เกณฑ์ตัดสินใจว่าจะปิด ติดตาม จำกัดวง หรือแจ้งผู้เกี่ยวข้อง |
+| 12 | **การสื่อสาร** | ✅ | แจ้งใครในแต่ละ severity |
+| 13 | **Evidence checklist** | ✅ | เก็บหลักฐานอะไร |
+| 14 | **Minimum telemetry required** | ✅ | log, sensor, และ blind spot ขั้นต่ำที่ต้องมีเพื่อใช้ playbook นี้ได้จริง |
+| 15 | **False positive และ tuning guide** | ✅ | benign cause ที่พบบ่อย, วิธี validate, และ tuning action ที่เหมาะสม |
+| 16 | **Playbooks ที่เกี่ยวข้อง** | ✅ | Link เอกสารอื่น |
 
 ---
 
@@ -49,14 +52,17 @@
 
 ### Quality Checklist
 
-- [ ] ครบ 13 sections ที่จำเป็น
+- [ ] ครบทุก sections ที่จำเป็น
 - [ ] MITRE ATT&CK mapped
 - [ ] เกณฑ์ severity ชัดเจน
 - [ ] Triage steps เป็นขั้นตอน
 - [ ] Containment มี rollback
 - [ ] Escalation threshold ชัด
+- [ ] มี decision matrix สำหรับ close / escalate / contain
 - [ ] Communication matrix ครบ
 - [ ] Evidence checklist ครบ
+- [ ] ระบุ telemetry ขั้นต่ำและ blind spot ถ้าขาดข้อมูล
+- [ ] มี false positive และ tuning guidance
 - [ ] Peer reviewed ≥ 1 คน
 - [ ] Tabletop tested
 - [ ] แปลไทยแล้ว
@@ -84,6 +90,113 @@
 ---
 
 ## วิธีทดสอบ Tabletop
+
+## มาตรฐานของ Decision Matrix
+
+ทุก playbook ควรมี decision matrix ที่ช่วยให้ผู้อ่านตอบคำถามต่อไปนี้ได้ทันที:
+
+- [ ] ปิดเคสเป็น false positive ได้หรือไม่
+- [ ] ยังให้ระบบทำงานต่อภายใต้การเฝ้าระวังได้หรือไม่
+- [ ] ต้องจำกัดวงทันทีหรือไม่
+- [ ] ต้องแจ้ง legal, privacy, ผู้บริหาร, หรือ business owner หรือไม่
+
+### Template ขั้นต่ำของ Decision Matrix
+
+| เงื่อนไข | การตัดสินใจ | ผู้รับผิดชอบ | SLA |
+|:---|:---|:---|:---|
+| ยืนยัน alert แล้วแต่ไม่พบผลกระทบเชิงร้าย | monitor และ tune rule | SOC Analyst | ภายในกะเดียวกัน |
+| มีพฤติกรรมอันตรายจริงแต่ขอบเขตยังจำกัด | escalate และสืบสวนต่อ | SOC Analyst → SOC Manager | 15–30 นาที |
+| มีการ compromise อยู่หรือมี business risk ชัดเจน | จำกัดวงทันที | IR Engineer / Security Engineer | ทันที |
+| มี regulated data, executive impact, หรือ trigger ด้านการรายงาน | แจ้ง legal/privacy/ผู้บริหาร | SOC Manager / CISO | ตาม policy |
+
+### กฎคุณภาพของ Decision Matrix
+
+| กฎ | เหตุผล |
+|:---|:---|
+| ใช้เงื่อนไขที่สังเกตได้จริง | Analyst ต้องตัดสินใจจาก log หรือหลักฐานได้ |
+| ระบุ owner ของการตัดสินใจ | ลดความกำกวมตอนเกิดเหตุจริง |
+| ใส่ SLA หรือเวลาเป้าหมาย | ช่วยให้ SOC Manager คุมจังหวะการตอบสนองได้ |
+| ใส่ business และ compliance trigger | ทำให้ playbook ใช้ได้กับ CISO และ IR leadership ไม่ใช่แค่ analyst |
+
+## มาตรฐานของ Evidence Checklist
+
+ทุก playbook ควรมี evidence checklist ที่ตอบคำถามเชิงปฏิบัติ 3 ข้อ:
+
+- [ ] ต้องเก็บอะไรทันที ก่อนหลักฐานจะหายไป
+- [ ] ต้องเก็บจากระบบหรือแหล่งใด
+- [ ] หลักฐานชิ้นนั้นสำคัญต่อการหาขอบเขต การระบุผู้กระทำ หรือการพิจารณาทางกฎหมายอย่างไร
+
+### Template ขั้นต่ำของ Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| บริบทของ alert | alert ต้นทาง, correlation ID, timestamp, severity | SIEM / EDR / gateway | เก็บจุดเริ่มต้นของ timeline |
+| หลักฐานด้านตัวตน | user, account, token, API key, source IP, device | IAM / auth logs | ยืนยันว่าใครหรืออะไรเกี่ยวข้อง |
+| หลักฐานจากระบบ | hostname, process tree, files, registry/service/task changes | EDR / forensic tools | ใช้ดู execution และ persistence |
+| หลักฐานด้านเครือข่าย | destination IP/domain, URL, port, transfer volume | Proxy / firewall / DNS / NetFlow | ใช้ดูการสื่อสารและการ exfiltration |
+| หลักฐานด้านผลกระทบธุรกิจ | ผู้ใช้, ระบบ, ชุดข้อมูล, จำนวน records ที่ได้รับผลกระทบ | DLP / app logs / asset inventory | ใช้ตัดสิน severity และ notification |
+
+### กฎคุณภาพของ Evidence Checklist
+
+| กฎ | เหตุผล |
+|:---|:---|
+| เก็บข้อมูลที่หายง่ายก่อน | token, session, memory, และ log บางชนิดหายเร็ว |
+| ระบุ system of record ให้ชัด | ลดความสับสนระหว่างตอบสนองเหตุการณ์ |
+| เก็บทั้งหลักฐานเทคนิคและหลักฐานเชิงธุรกิจ | ช่วยให้ CISO, legal, และ privacy ใช้ตัดสินใจได้ |
+| ทำให้เฉพาะกับ incident นั้น | checklist กว้างเกินไปมักใช้หน้างานไม่ได้จริง |
+
+## มาตรฐานของ Minimum Telemetry Required
+
+ทุก playbook ควรระบุ telemetry ขั้นต่ำที่จำเป็นต่อการใช้งาน playbook อย่างมั่นใจ:
+
+- [ ] ต้องมี log source อะไรบ้างเพื่อยืนยัน incident
+- [ ] มีแหล่งข้อมูลเสริมอะไรที่ช่วยให้วิเคราะห์เร็วหรือแม่นขึ้น
+- [ ] ถ้า telemetry นี้ไม่มี จะเกิด blind spot อะไร
+
+### Template ขั้นต่ำของ Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Authentication logs | ยืนยันการ login, token usage, account abuse | Required | แยกไม่ออกว่าเป็น user error หรือ compromise |
+| Endpoint telemetry | ดู process, file, service, registry, script execution | Required | มองไม่เห็น execution และ persistence บนเครื่อง |
+| Network telemetry | ดู outbound connection, DNS, proxy, transfer | Required | ระบุ C2 และ exfiltration path ได้ไม่ครบ |
+| Asset และ identity inventory | ดู owner, criticality, role, account type | Recommended | ตัด severity และ notification ได้ไม่สม่ำเสมอ |
+| Case และ ticket history | ดู incident เดิม, exception, maintenance window | Recommended | อาจ escalate false positive ซ้ำโดยไม่จำเป็น |
+
+### กฎคุณภาพของ Minimum Telemetry Required
+
+| กฎ | เหตุผล |
+|:---|:---|
+| แยก Required ออกจาก Recommended ให้ชัด | ทำให้ SOC Manager เห็นว่าต้องมีอะไรจริงก่อน rollout |
+| ระบุชื่อระบบหรือ control family ให้ชัด | ลดความกำกวมสำหรับ Security Engineer และ platform owner |
+| อธิบาย blind spot เป็นภาษาตรงไปตรงมา | ให้ CISO และ IR leadership เข้าใจ residual risk ได้เร็ว |
+| ทำให้เฉพาะกับ incident นั้น | ทำให้ section นี้ใช้หน้างานได้จริง ไม่กลายเป็น governance กว้าง ๆ |
+
+## มาตรฐานของ False Positive และ Tuning Guide
+
+ทุก playbook ควรช่วยให้ analyst แยก benign activity ออกจาก incident จริง และรู้ว่าควร tune แบบใด:
+
+- [ ] อะไรคือพฤติกรรมปกติที่มักดูคล้าย incident นี้
+- [ ] ต้องใช้หลักฐานอะไรเพื่อแยก benign ออกจาก malicious
+- [ ] ควร tune อย่างไรเพื่อลด noise โดยไม่ปิดการมองเห็นความเสี่ยงจริง
+
+### Template ขั้นต่ำของ False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| งาน admin หรือ maintenance ที่ได้รับอนุมัติ | อาจ trigger rule หรือ workflow เดียวกัน | ตรวจ change ticket, owner, และ maintenance window | suppress เฉพาะ scope และช่วงเวลาที่อนุมัติ | กิจกรรมเกิดนอก scope ที่อนุมัติ |
+| การเดินทาง, VPN, หรือ mobile network ของผู้ใช้ | ทำให้ source IP, location, หรือ device context เปลี่ยน | ยืนยันกับผู้ใช้, device posture, และ login pattern เดิม | tune logic ด้าน location หรือ ASN พร้อม compensating control | มี MFA anomaly หรือ post-login action ที่เสี่ยง |
+| Security scanning หรือ test automation | ทำให้ request ปริมาณสูงหรือ pattern ผิดปกติ | ยืนยัน scanner identity, source range, และ schedule | allowlist เฉพาะ scanner และ schedule ที่อนุมัติ | ยิงเกินช่วงที่อนุมัติหรือมี exploit behavior |
+| งาน batch หรือ integration ทางธุรกิจ | ทำให้เกิด volume, file movement, หรือ API use สูงผิดปกติ | ยืนยัน application owner, job ID, และ baseline เดิม | ปรับ threshold เฉพาะ signature ของ process ที่รู้จัก | มี data access pattern ใหม่หรือ privileged action |
+
+### กฎคุณภาพของ False Positive และ Tuning Guide
+
+| กฎ | เหตุผล |
+|:---|:---|
+| Tune ให้แคบตาม scope, identity, หรือเวลา | การยกเว้นกว้างเกินไปทำให้ coverage หายแบบเงียบ ๆ |
+| ต้องมี validation step ก่อน suppress | ป้องกัน analyst เผลอทำให้พฤติกรรม attacker ดูเป็นเรื่องปกติ |
+| ระบุ residual risk หลัง tune | ให้ CISO และ SOC Manager เข้าใจความเสี่ยงที่ยังเหลืออยู่ |
+| ผูกคำแนะนำกับหลักฐานที่สังเกตได้จริง | ทำให้ section นี้ใช้หน้างานได้ ไม่ใช่แค่อ่านย้อนหลัง |
 
 | ขั้น | กิจกรรม | ระยะเวลา |
 |:---:|:---|:---:|
@@ -215,7 +328,7 @@ graph LR
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [IR Framework](Framework.en.md) — กรอบงาน NIST
--   [Severity Matrix](Severity_Matrix.en.md) — คำจำกัดความ P1–P4
--   [SOAR Playbooks](SOAR_Playbooks.en.md) — Automation templates
--   [SOC Automation Catalog](../06_Operations_Management/SOC_Automation_Catalog.en.md) — คลัง Automation
+-   [IR Framework](Framework.th.md) — กรอบงาน NIST
+-   [Severity Matrix](Severity_Matrix.th.md) — คำจำกัดความ P1–P4
+-   [SOAR Playbooks](SOAR_Playbooks.th.md) — Automation templates
+-   [SOC Automation Catalog](../06_Operations_Management/SOC_Automation_Catalog.th.md) — คลัง Automation

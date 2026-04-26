@@ -13,7 +13,7 @@
 - [ ] ตรวจสอบข้อมูลที่ถูกเปิดเผย (PII, credentials)
 - [ ] อัพเดท bucket/blob policies ทั้งหมด
 - [ ] แจ้ง PDPA/Legal ถ้ามี PII รั่วไหล
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผัง Multi-Cloud Containment
 
@@ -152,6 +152,41 @@ graph TD
 
 ---
 
+## 6. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานการเปิดเผย | resource name, policy/ACL diff, public URL/path, exposure timestamp | CSPM / cloud console / audit logs | ยืนยันว่าอะไรถูกเปิดเผยและตั้งแต่เมื่อไร |
+| หลักฐานด้านตัวตน | user/role ที่เปลี่ยน access, source IP, API/console path | Cloud audit / IAM logs | ใช้แยกว่าเป็นความผิดพลาดหรือเจตนาร้าย |
+| หลักฐานการเข้าถึง | external IP, user agent, object list, download count | Access logs / CDN logs | ใช้ดูว่าข้อมูลถูกเข้าถึงจริงหรือไม่ |
+| หลักฐานความอ่อนไหวของข้อมูล | data type, classification, secret, customer record, source code | DLP / data inventory | ใช้รองรับการแจ้งเหตุและการประเมินผลกระทบ |
+| หลักฐาน credential | key, token, config file, secret ที่อยู่ใน resource | Secret scanning / file review | ใช้ตัดสินการ rotate credential และ follow-on risk |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Cloud audit logs | ดู policy change, actor identity, console/API path | Required | พิสูจน์ไม่ได้ว่าใครเปิดเผย resource หรือทำอย่างไร |
+| Object access logs | ดู external read, object name, download volume | Required | บอกไม่ได้ว่าการเปิดเผยกลายเป็น data loss แล้วหรือยัง |
+| CSPM หรือ posture telemetry | ตรวจ public exposure ต่อเนื่องและจัดระดับ severity | Required | misconfiguration อาจค้างอยู่โดยไม่รู้ตัว |
+| DLP หรือ data classification telemetry | ประเมิน sensitivity และ record count | Required | ขอบเขตการแจ้งเหตุและผลกระทบไม่ชัด |
+| IaC และ change-management records | เทียบ planned กับ unplanned access change | Recommended | อาจตี public content ที่ตั้งใจเปิดเป็น breach |
+
+---
+
+## 8. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| public website หรือ CDN content ที่ตั้งใจเปิด | bucket/container public อาจเป็น static asset จริง | ยืนยัน asset owner, approved public-content tag, และไม่มีข้อมูลอ่อนไหว | suppress เฉพาะ resource ที่ tagged และมี owner ชัดเจน | พบข้อมูลอ่อนไหว, secret, หรือ non-web content |
+| การแชร์ไฟล์ให้ partner แบบชั่วคราว | external sharing ระยะสั้นดูเหมือน misconfiguration | ยืนยัน ticket, expiry date, recipient, และ object scope | alert ต่ำลงเฉพาะ share ที่อนุมัติและมี expiry | share กว้างเกิน scope, ไม่มี expiry, หรือกลายเป็น public |
+| การทำงานของ CSPM auto-remediation | policy flip เร็ว ๆ อาจดูเหมือน attacker activity | ยืนยัน tool identity และ remediation workflow | allowlist identity ของเครื่องมือสำหรับ action ที่ documented | identity เดียวกันเปิด public หรือปิด logging |
+| งาน data migration หรือ replication | storage/policy ใหม่อาจเป็นส่วนหนึ่งของ project | ยืนยัน IaC deployment, project owner, และ environment | tune ตาม deployment identity และ staging account ที่อนุมัติ | public exposure ไปเกิดใน production หรือมี sensitive data ไม่ควรอยู่ |
+
+---
+
 ### ผัง CSPM Monitoring Pipeline
 
 ```mermaid
@@ -232,7 +267,7 @@ sequenceDiagram
 | Azure | Defender for Cloud | ✅ via Policy |
 | GCP | Security Command Center | ✅ via Org Policy |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1530 — Data from Cloud Storage](https://attack.mitre.org/techniques/T1530/)
 - [AWS S3 Security Best Practices](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html)

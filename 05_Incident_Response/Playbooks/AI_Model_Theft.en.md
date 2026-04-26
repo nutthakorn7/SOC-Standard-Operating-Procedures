@@ -35,6 +35,7 @@ graph LR
 | User/key identification | Identify who is making suspicious queries | Auth logs |
 | Data download audit | Check for model weight, config, or training data downloads | Storage access logs |
 | Internal access review | Audit employee access to model repositories | IAM logs |
+| Model inventory status | Confirm where weights, checkpoints, and export paths are registered | Model registry, storage audit |
 
 ### 1.2 Theft Vector Classification
 
@@ -66,6 +67,7 @@ graph LR
 | 3 | Lock access to model weight storage (S3/GCS/Blob) | Cloud IAM | ☐ |
 | 4 | Enable watermark verification on model outputs | ML platform | ☐ |
 | 5 | Freeze employee access under investigation | HR + IAM | ☐ |
+| 6 | Disable non-essential artifact export, snapshot, or repo clone paths | Registry / SCM / Storage | ☐ |
 
 ### 2.2 If Model Extraction via API
 
@@ -111,21 +113,34 @@ graph LR
 
 ---
 
-## 5. Recovery
+## 5. Decision Matrix
+
+| Condition | Decision | Owner | SLA |
+|:---|:---|:---|:---|
+| Query spike explained by approved load test or known partner behavior | Keep service running, document, and tune thresholds | SOC Analyst | Same shift |
+| Suspicious extraction pattern observed, but no confirmed artifact or data theft yet | Rate-limit, preserve evidence, and continue investigation | SOC Analyst + Security Engineer | 15 minutes |
+| Model files, checkpoints, or proprietary datasets accessed without authorization | Contain immediately and revoke access | IR Engineer + SOC Manager | Immediate |
+| Insider theft, legal exposure, or executive/business impact confirmed | Notify legal, HR, privacy, and executive stakeholders | SOC Manager + CISO | Per incident policy |
+
+---
+
+## 6. Recovery
 
 - [ ] Rotate all API keys and access tokens for affected model
 - [ ] Implement model watermarking for future theft detection
 - [ ] Add output perturbation to prevent future extraction
 - [ ] Review and tighten IAM policies for model storage
+- [ ] Reconcile model inventory and registry records with known-good versions
 - [ ] Verify no unauthorized model copies exist
 
 ---
 
-## 6. Post-Incident
+## 7. Post-Incident
 
 - [ ] Implement API usage anomaly detection (baseline + alerts)
 - [ ] Add model fingerprinting for theft attribution
 - [ ] Deploy DLP rules for model file formats (.pt, .safetensors, .onnx, .gguf)
+- [ ] Review external sharing paths for models, checkpoints, and datasets
 - [ ] Review employee exit procedures for AI/ML teams
 - [ ] Document in [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
 
@@ -140,6 +155,7 @@ graph LR
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)
+- [Compliance Mapping](../../07_Compliance_Privacy/Compliance_Mapping.en.md)
 - [PB-08 Data Exfiltration](Data_Exfiltration.en.md)
 - [PB-14 Insider Threat](Insider_Threat.en.md)
 - [PB-51 AI Prompt Injection](AI_Prompt_Injection.en.md)
@@ -147,5 +163,7 @@ graph LR
 ## References
 
 - [MITRE ATLAS AML.T0024 — Exfiltration via ML Inference API](https://atlas.mitre.org/techniques/AML.T0024)
-- [OWASP Top 10 for LLMs — Model Theft](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-- [NIST AI 100-2 — Adversarial Machine Learning](https://csrc.nist.gov/pubs/ai/100/2/e2023/final)
+- [OWASP GenAI — LLM10: Model Theft](https://genai.owasp.org/llmrisk2023-24/llm10-model-theft/)
+- [NIST AI 100-2e2025 — Adversarial Machine Learning](https://csrc.nist.gov/pubs/ai/100/2/e2025/final)
+- [NIST AI RMF Playbook](https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook)
+- [CISA — Joint Guidance on Deploying AI Systems Securely](https://www.cisa.gov/news-events/alerts/2024/04/15/joint-guidance-deploying-ai-systems-securely)

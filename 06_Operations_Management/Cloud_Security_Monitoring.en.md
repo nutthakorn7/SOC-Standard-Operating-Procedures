@@ -254,6 +254,37 @@ graph LR
 
 ---
 
+## Minimum Production Monitoring Baseline
+
+| Area | Minimum Requirement | Why It Matters |
+|:---|:---|:---|
+| **Identity** | Sign-in logs, audit logs, MFA events, privileged role changes | Most impactful cloud incidents start with identity misuse |
+| **Management plane** | CloudTrail / Activity Log / Cloud Audit Logs enabled and retained | Required to reconstruct administrative actions |
+| **Storage access** | Object-level audit for sensitive storage where feasible | Needed to prove access and exfiltration paths |
+| **Network** | Flow logs for internet-facing and sensitive segments | Required to confirm exposure, scanning, and egress patterns |
+| **Detection path** | SIEM ingestion health plus alert owner for each critical use case | Prevents silent failure after onboarding |
+
+## Escalation Triggers for Cloud Events
+
+| Trigger | Initial Owner | Escalate To | Reason |
+|:---|:---|:---|:---|
+| **Root/global admin login outside approved procedure** | SOC Analyst | IR Engineer + CISO | High-impact privileged access event |
+| **Cloud logging disabled or tampered with** | SOC Analyst | Security Engineer + SOC Manager | Evidence and detection capability are at risk |
+| **Public storage exposure involving sensitive data** | SOC Analyst | IR Engineer + Privacy / Legal | Possible reportable data exposure |
+| **New cross-account trust or admin role grant** | Security Engineer | SOC Manager | Expands blast radius quickly |
+| **Cryptomining or unauthorized compute launch** | SOC Analyst | Security Engineer | Indicates credential or platform abuse and cost impact |
+
+## Cloud Monitoring Blind Spots
+
+| Missing Control or Log | Operational Effect | Recommended Mitigation |
+|:---|:---|:---|
+| **No object-level storage audit** | Cannot confirm which records were read or downloaded | Enable data events for sensitive stores and scope by asset criticality |
+| **No flow logs on critical segments** | Hard to verify scanning, lateral movement, or exfiltration | Turn on targeted flow logging with retention suited to IR |
+| **No CSPM or posture findings feed** | Misconfigurations may wait for manual discovery | Ingest native posture findings into SIEM or case workflow |
+| **No privileged identity review process** | Role abuse may look like normal admin activity | Add scheduled review of admin actions and break-glass use |
+
+---
+
 ## Related Documents
 
 -   [Log Source Matrix](Log_Source_Matrix.en.md) — All data sources
@@ -262,3 +293,8 @@ graph LR
 -   [Third-Party Risk](Third_Party_Risk.en.md) — Cloud vendor risk
 -   [Disaster Recovery / BCP](../05_Incident_Response/Disaster_Recovery_BCP.en.md) — Cloud DR
 -   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — Cloud forensics
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

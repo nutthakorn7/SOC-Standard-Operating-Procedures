@@ -189,6 +189,25 @@ gantt
 
 ---
 
+## Automation Release Guardrails
+
+| Control | Owner | Minimum Requirement |
+|:---|:---|:---|
+| **Documented trigger and scope** | SOAR Engineer | Define exactly what starts the automation and what systems it may touch |
+| **Human approval point** | SOC Manager | Required for account disablement, host isolation, or blocking actions unless pre-approved |
+| **Rollback path** | Security Engineer | Every automation that changes state must have a tested rollback or recovery action |
+| **Execution logging** | SOC Analyst | Store who approved, what ran, and what artifacts changed |
+| **Failure handling** | SOAR Engineer | Automation must fail closed or escalate, not silently stop |
+
+## Good Candidates for Automation vs Manual Review
+
+| Process Type | Automate When | Keep Manual When |
+|:---|:---|:---|
+| **Alert enrichment** | Inputs are structured and output is advisory | Source quality is inconsistent |
+| **IOC blocking** | Confidence is high and expiry is defined | Blocking may disrupt business-critical partners |
+| **Containment actions** | Approval workflow is explicit and blast radius is low | Asset is privileged, regulated, or production-critical |
+| **Reporting** | Data sources are normalized and stable | Narrative judgment is required for executives |
+
 ## Related Documents
 
 -   [SOAR Playbooks](../05_Incident_Response/SOAR_Playbooks.en.md) — Detailed playbook templates
@@ -198,3 +217,8 @@ gantt
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
 -   [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.en.md)
 -   [SOC Checklists](../06_Operations_Management/SOC_Checklists.en.md)
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

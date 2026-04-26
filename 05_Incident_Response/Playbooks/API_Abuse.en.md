@@ -161,7 +161,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Request evidence | Endpoint, method, parameters, request IDs, timestamps | API gateway / app logs | Reconstructs the abuse pattern precisely |
+| Identity evidence | API key, OAuth token, client ID, user account, source IP | API management / auth logs | Determines which identity or credential was abused |
+| Response evidence | Response codes, returned fields, record counts, downloaded objects | App logs / API metrics | Shows whether data exposure or auth bypass occurred |
+| Vulnerability evidence | Auth logic flaw, schema issue, rate-limit bypass, injection payloads | Security test results / code review / WAF logs | Helps engineering fix the root cause |
+| Consumer impact evidence | Affected partners, degraded endpoints, business transactions impacted | API analytics / support tickets | Supports stakeholder communication |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| API gateway and application logs | Request path, method, parameters, request IDs, response codes | Required | Cannot reconstruct the abuse sequence or affected endpoint behavior |
+| Authentication and API key telemetry | Token use, client identity, key rotation history, auth failures | Required | Cannot identify which credential or integration was abused |
+| WAF, rate-limit, and edge telemetry | Burst patterns, bypass attempts, geo anomalies, blocking actions | Required | Cannot distinguish targeted abuse from noisy internet traffic |
+| API analytics and data access metrics | Record counts, object downloads, latency, partner impact | Required | Cannot measure exposure or business impact reliably |
+| Secure SDLC and testing records | Known defects, schema changes, recent releases, prior findings | Recommended | Root cause analysis and remediation speed degrade |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Load test or performance test | High request rate and error volume can resemble abuse | Confirm test window, source ranges, and test owner | Allowlist approved source ranges and test headers during the test window | Traffic exceeds approved endpoints or includes auth bypass patterns |
+| Partner batch integration | Repetitive API calls and large record pulls may look like scraping | Validate partner ID, contract scope, and historical baseline | Tune thresholds per approved partner and endpoint profile | Access expands to new objects, tenants, or sensitive fields |
+| Mobile app release rollout | New client versions can change request shape and spike traffic | Confirm release schedule, app version, and rollout region | Tune schema and volume expectations per approved app version | Requests come from unknown clients or trigger authorization failures |
+| Security scanner or QA automation | Fuzzing and negative tests can look like attack traffic | Validate scanner identity, environment, and schedule | Suppress only for known scanner identities in approved environments | Scanner activity appears in production without approval or finds live data exposure |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

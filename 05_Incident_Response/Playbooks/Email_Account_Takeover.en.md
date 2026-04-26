@@ -191,7 +191,36 @@ gantt
 | **OAuth** | Remove unknown app permissions |
 | **Delegates** | Remove unauthorized delegate access |
 
-## 4. Post-Incident
+## 4. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Mailbox evidence | Inbox rules, forwarding, delegates, sent/deleted items, audit trail | Mailbox audit / admin console | Shows persistence and attacker actions inside the mailbox |
+| Identity evidence | Sign-ins, MFA events, session IDs, devices, IPs, OAuth apps | IdP / sign-in logs | Distinguishes mailbox-only abuse from full identity compromise |
+| Message-flow evidence | Phishing emails sent, recipient list, external forwarding, purge results | Message trace / gateway | Defines blast radius and downstream victim scope |
+| Data exposure evidence | Sensitive mailboxes, attachments viewed/downloaded, thread monitoring | Mailbox audit / DLP | Supports legal and business impact assessment |
+| Business fraud evidence | Invoice threads, payment requests, partner impersonation, callback records | Finance / ticketing / call logs | Determines whether the takeover escalated into BEC or vendor fraud |
+
+## 5. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Mailbox audit and message trace | Rules, forwarding, sent mail, purge scope, delegate changes | Required | Cannot scope mailbox abuse accurately |
+| Identity provider sign-in logs | Login source, MFA, session anomalies, OAuth grants | Required | Cannot tell how the mailbox was taken over |
+| Email gateway and DLP telemetry | Outbound phishing, attachment access, sensitive content | Required | Cannot quantify downstream impact or data exposure |
+| Helpdesk and finance workflow records | Verification controls, user-reported anomalies, callback evidence | Recommended | Fraud context and process failure remain weak |
+| Threat intel and domain monitoring | Lookalike domains, campaign overlap, sender reputation | Recommended | Broader campaign detection and response slow down |
+
+## 6. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved forwarding or delegate change | Admin or executive workflows may use mailbox delegation | Validate ticket, approver, and exact delegate/forwarding target | Suppress only approved changes for named mailboxes | Target is external, hidden, or outside approved workflow |
+| User mailbox cleanup or rule management | Users can create folders/filters that resemble abuse | Confirm with user and inspect whether rules redirect or delete security mail | Tune for benign foldering rules only, not external forwarding | Rule deletes alerts, forwards externally, or hides invoices/security mail |
+| Mobile or new mail client enrollment | New app consent and session creation may look like compromise | Validate device enrollment and approved app ID | Allowlist approved client apps and enrollment windows narrowly | App requests high-risk scopes or session comes from unusual geo/device |
+| Compliance or eDiscovery access | Legal review can generate mass mailbox access | Confirm case ID, reviewer identity, and target mailbox list | Reduce severity for documented legal workflows only | Access extends beyond case scope or results in external forwarding/export |
+
+## 7. Post-Incident
 
 | Question | Answer |
 |:---|:---|
@@ -200,7 +229,7 @@ gantt
 | Was conditional access policy enforced? | [Status] |
 | Were financial controls (dual approval) in place? | [Status] |
 
-## 6. Detection Rules (Sigma)
+## 8. Detection Rules (Sigma)
 
 ```yaml
 title: Suspicious Email Forwarding Rule Created

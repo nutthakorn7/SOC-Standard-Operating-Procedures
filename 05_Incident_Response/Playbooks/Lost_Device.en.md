@@ -140,7 +140,42 @@ graph TD
 
 ---
 
-## 5. Escalation Criteria
+## 5. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Asset evidence | Serial number, asset tag, device type, owner, encryption status | Asset inventory / MDM | Defines whether the event is administrative loss or data-breach risk |
+| Access evidence | Last sign-in, VPN use, certificate use, cloud-app access after loss | IdP / VPN / app logs | Shows whether the missing device became active compromise |
+| Location evidence | Last check-in, GPS, Wi-Fi AP, IP, remote-lock/wipe status | MDM / network logs | Supports recovery attempts and timing of exposure |
+| Data exposure evidence | Cached mail, local files, stored credentials, removable media use | MDM / DLP / endpoint inventory | Determines breach and notification impact |
+| Incident context evidence | User statement, theft report, police report, travel context | Ticketing / HR / physical security | Distinguishes theft, negligence, and possible targeted activity |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| MDM and asset telemetry | Device state, encryption, remote actions, inventory | Required | Cannot confirm whether the device is protected or wiped |
+| Identity and application access logs | Sign-ins, token use, cert usage, cloud app access after loss | Required | Cannot detect misuse of the device after it was reported missing |
+| VPN and network telemetry | Remote access attempts, last internal connectivity, unusual source IPs | Required | Device-enabled remote compromise may be missed |
+| DLP and data classification telemetry | Sensitive data likely stored on the device | Recommended | Breach assessment becomes guesswork |
+| Physical security and HR records | Theft details, location, user travel, police follow-up | Recommended | Context for targeted theft or insider angle is weak |
+
+---
+
+## 7. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Device temporarily offline or battery dead | Missed check-ins can look like theft or tampering | Confirm user location, travel, and later MDM heartbeat | Tune offline-duration alerts by device class and travel pattern | Device comes back online with unexpected sign-ins or location |
+| Device in repair or IT staging | Asset removal from normal use can resemble loss | Check repair ticket, custodian, and storage location | Suppress only for approved repair/staging workflows | Device is powered on or used outside authorized handling flow |
+| BYOD selective wipe or unenroll | Ownership changes can create noisy MDM events | Validate BYOD offboarding request and user confirmation | Separate BYOD workflows from corporate-owned device alerts | Corporate tokens stay active or sensitive data remains reachable |
+| Travel-related customs or airport hold | Long offline periods and odd geolocation may look malicious | Confirm itinerary and no access attempts during hold | Lower severity when travel is documented and device remains encrypted | VPN, certificate, or cloud-app use appears after report time |
+
+---
+
+## 8. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|
@@ -152,7 +187,7 @@ graph TD
 
 ---
 
-## 6. IoC Collection
+## 9. IoC Collection
 
 | Type | Value | Source |
 |:---|:---|:---|
@@ -165,7 +200,7 @@ graph TD
 | Corporate apps installed | | MDM inventory |
 | VPN connection history | | VPN gateway logs |
 
-## 7. Post-Incident
+## 10. Post-Incident
 
 - [ ] Update asset management system (mark device as lost/stolen)
 - [ ] Review and update device encryption enforcement policy

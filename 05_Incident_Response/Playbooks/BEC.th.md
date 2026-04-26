@@ -13,7 +13,7 @@
 - [ ] จัด awareness training เรื่อง BEC ให้ finance team
 - [ ] ใช้ email authentication (SPF/DKIM/DMARC strict)
 - [ ] ตรวจสอบ vendor email compromise indicators
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังขั้นตอนเรียกคืนเงิน (Urgent!)
 
@@ -158,6 +158,41 @@ graph TD
 
 ---
 
+## 6. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานอีเมลหลอก | original message, headers, reply-to chain, identity ที่ถูกสวม | Mailbox export / gateway | ยืนยันเส้นทางการปลอมแปลงและขอบเขตของแคมเปญ |
+| หลักฐาน mailbox abuse | inbox rules, forwarding, delegates, OAuth apps, sent items | Exchange / cloud audit | ใช้ดู persistence และวิธีการทำ fraud |
+| หลักฐานด้านตัวตน | sign-in source, MFA events, session IDs, device/app context | IdP / auth logs | ใช้แยก spoofing-only กับ account takeover จริง |
+| หลักฐานทางการเงิน | invoice, request เปลี่ยนบัญชี, beneficiary details, เวลาโอน | ERP / finance tickets / email | ใช้ทำ recall และรองรับด้านกฎหมาย |
+| หลักฐานการสื่อสาร | call notes, การยืนยันกับ vendor, verification trail | Ticketing / call log / finance workflow | ใช้พิสูจน์ว่าควบคุมใดถูกใช้หรือถูกข้าม |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Mailbox audit และ message trace | ดู inbox rule, forwarding, message flow, purge scope | Required | ยืนยัน mailbox abuse และขอบเขตผู้ได้รับผลกระทบไม่ได้ |
+| Identity provider sign-in logs | ดู login origin, MFA, session change, token misuse | Required | พิสูจน์ account compromise ไม่ได้ |
+| Email gateway และ domain-auth telemetry | ดู SPF, DKIM, DMARC, sender path, lookalike domain | Required | ขอบเขตของ spoofing และ domain abuse ไม่ชัด |
+| Finance workflow และ payment records | ดู verification control, transfer status, beneficiary details | Required | ประเมินผลกระทบทางการเงินและ recall ช้า |
+| Threat intel และ lookalike monitoring | ดู registrar, domain age, prior abuse, campaign signal | Recommended | มอง broader campaign ไม่ครบ |
+
+---
+
+## 8. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| อีเมลเร่งด่วนจากผู้บริหารที่ถูกต้อง | ข้อความสั้นและเร่งด่วนดูคล้าย CEO fraud | โทรยืนยันผ่าน executive assistant หรือช่องทางที่อนุมัติ | informational เฉพาะ sender-workflow ที่ตรวจสอบแล้ว | มีการเปลี่ยน payment detail, secrecy request, หรือ reply-to mismatch |
+| การอัปเดตบัญชีธนาคารของ vendor ตามปกติ | ขั้นตอน AP จริงอาจดูเหมือน invoice fraud | ยืนยันผ่านเบอร์ที่รู้จักและ master change process | tune เฉพาะ vendor ที่มี verified workflow | callback control ถูกข้ามหรือมีความเร่งด่วนผิดปกติ |
+| เมลภายในจาก finance หรือ HR ที่ส่งเป็นจำนวนมาก | คำขอข้อมูลอ่อนไหวจำนวนมากดูคล้าย data theft BEC | ยืนยัน campaign owner, template, และ mailing list | allowlist sender ภายในและช่วงเวลา campaign ที่อนุมัติ | เนื้อหา/ผู้รับหลุดออกนอก scope |
+| การเปลี่ยน delegate ของ shared mailbox ตามแผน | delegate update อาจดูเหมือน mailbox abuse | ตรวจ ticket, approver, และ admin identity | suppress เฉพาะ delegate change ที่ได้รับอนุมัติ | พบ forwarding ออกภายนอกหรือ hidden inbox rule |
+
+---
+
 ### ผัง BEC Kill Chain
 
 ```mermaid
@@ -233,7 +268,7 @@ sequenceDiagram
 | 24-48 hrs | 20-40% | Bank + law enforcement |
 | > 48 hrs | < 10% | Law enforcement only |
 
-## อ้างอิง
+## References
 
 - [FBI — BEC Scams](https://www.ic3.gov/Media/Y2022/PSA220504)
 - [Microsoft — Investigate and respond to BEC](https://learn.microsoft.com/en-us/security/operations/incident-response-playbook-phishing)

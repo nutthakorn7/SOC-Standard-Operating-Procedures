@@ -15,7 +15,7 @@
 - [ ] ทบทวน remote access policies สำหรับ OT
 - [ ] ประสาน vendor สำหรับ firmware/patch updates
 - [ ] จัด tabletop exercise สำหรับ OT incident scenarios
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผัง Purdue Model
 
@@ -241,7 +241,7 @@ sequenceDiagram
 | Patching | ASAP | Scheduled downtime |
 | Isolation | Network segmentation | Physical disconnect |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK for ICS](https://attack.mitre.org/matrices/ics/)
 - [NIST SP 800-82r3 — Guide to OT Security](https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final)

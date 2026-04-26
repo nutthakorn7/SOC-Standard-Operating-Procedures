@@ -129,7 +129,42 @@ graph TD
 
 ---
 
-## 4. การฟื้นฟู
+## 4. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| อีเมลต้นฉบับ | headers, body, sender metadata, message ID | Mail gateway / mailbox export | ใช้พิสูจน์เส้นทางการ spoof และขอบเขตแคมเปญ |
+| หลักฐาน URL | URL เต็ม, redirect chain, resolved IP/domain, screenshot | URL sandbox / proxy / DNS | ยืนยัน credential harvesting หรือช่องทางส่งต่อ |
+| หลักฐานไฟล์แนบ | filename, SHA256, sandbox verdict, dropped files | Sandbox / mail gateway | ยืนยันการส่งมัลแวร์และขอบเขตการ block |
+| หลักฐานการกระทำของผู้ใช้ | เวลา click, การกรอก credentials, browser history, endpoint ที่ได้รับผลกระทบ | Proxy / IdP / endpoint logs | ใช้แยกว่าเป็น phishing อย่างเดียวหรือกลายเป็น account compromise |
+| ขอบเขตของแคมเปญ | recipient list, ผลการ purge, อีเมลลักษณะเดียวกัน, การเจาะกลุ่ม VIP | Mail search / SIEM | รองรับการยกระดับและการสื่อสารภายใน |
+
+---
+
+## 5. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Mail gateway และ secure email logs | วิเคราะห์ผู้ส่ง, เส้นทางการส่ง, ยืนยันผลการ purge | Required | ยืนยันขอบเขตไม่ได้ และไม่รู้ว่าอีเมลถูกส่งถึงใครบ้าง |
+| Mailbox audit และ message trace | ตรวจ inbox rule, การกระทำของผู้ใช้, ผลกระทบต่อ mailbox อื่น | Required | พิสูจน์ post-delivery action หรือ mailbox abuse ไม่ได้ |
+| Proxy, DNS, และ URL filtering logs | ดู click path, redirect chain, ปลายทางที่ถูกติดต่อ | Required | ยืนยัน phishing destination หรือการเข้าชมต่อเนื่องไม่ได้ |
+| Identity provider sign-in logs | ดูผลจาก credential submission, token abuse, MFA change | Required | บอกไม่ได้ว่า phishing กลายเป็น account compromise แล้วหรือยัง |
+| Sandbox และ endpoint telemetry | ตรวจการรัน attachment, dropped file, process lineage | Recommended | อาจประเมิน malware delivery ต่ำกว่าความจริงหรือพลาดไปเลย |
+
+---
+
+## 6. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| แคมเปญอีเมลประชาสัมพันธ์ที่ถูกต้อง | ผู้รับจำนวนมากและหัวข้อคล้ายกันดูเหมือน phishing blast | ยืนยัน sender ที่อนุมัติ, platform ที่ใช้ส่ง, และ owner ของแคมเปญ | allowlist เฉพาะ sender domain และ mail infrastructure ที่อนุมัติ | ลิงก์, sender path, หรือ branding ไม่ตรงกับแคมเปญที่อนุมัติ |
+| การแจ้งเตือนจากระบบ file-share หรือ e-signature | อีเมลที่มี URL มักดูเหมือน credential lure | ตรวจ sender domain, DKIM/SPF alignment, และบริบทธุรกิจ | tune ตาม pattern ของ SaaS ที่อนุมัติและ signed URL | destination domain หรือ redirect chain ไม่อยู่ในรายการที่อนุมัติ |
+| การทดสอบ security awareness | ใช้ข้อความและ tracking link แบบ phishing โดยตั้งใจ | ยืนยัน schedule ของการทดสอบและ source platform | suppress เฉพาะ domain ของ simulation และช่วงเวลาทดสอบ | การส่งเกิดนอกช่วง exercise หรือยิงไปยังผู้ใช้ที่ไม่อยู่ใน scope |
+| ผู้ใช้เดินทางหรือเปิดลิงก์ผ่านเครือข่ายมือถือ | การ click จาก IP หรือ device ใหม่อาจดูเหมือน compromise | ยืนยัน location, device, และไม่มี credential/token misuse ตามมา | คง click alert เป็น informational ถ้าไม่มี auth anomaly ต่อเนื่อง | พบการกรอก credential, MFA เปลี่ยน, หรือ token abuse |
+
+---
+
+## 7. การฟื้นฟู
 
 | # | การดำเนินการ | เสร็จ |
 |:---:|:---|:---:|
@@ -142,7 +177,7 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -224,6 +259,6 @@ sequenceDiagram
 | Clicked | Visited URL | Scan + monitor |
 | Submitted | Entered creds | Full IR + reset |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1566 — Phishing](https://attack.mitre.org/techniques/T1566/)

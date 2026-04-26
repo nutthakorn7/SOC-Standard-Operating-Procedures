@@ -90,12 +90,12 @@ External references, standards, frameworks.
 | `01_SOC_Fundamentals/` | Building and planning SOC |
 | `05_Incident_Response/` | IR framework, playbooks, forensics |
 | `06_Operations_Management/` | Day-to-day operations SOPs |
-| `08_Simulation_Testing/` | Purple team, phishing sim, atomic tests |
+| `09_Simulation_Testing/` | Purple team, phishing sim, atomic tests |
 | `10_Training_Onboarding/` | Analyst training materials |
 | `07_Compliance_Privacy/` | Regulatory compliance |
 | `11_Reporting_Templates/` | Reports and dashboards |
 | `11_Reporting_Templates/` | Operational form templates |
-| `sigma_rules/` | Detection rules (YAML) |
+| `08_Detection_Engineering/sigma_rules/` | Detection rules (YAML) |
 | `tools/` | Scripts and interactive tools |
 
 ---

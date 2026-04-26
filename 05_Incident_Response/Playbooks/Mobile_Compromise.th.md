@@ -13,7 +13,7 @@
 - [ ] บังคับ OS version minimum ผ่าน MDM
 - [ ] ทบทวน app sideloading policies
 - [ ] ใช้ Mobile Threat Defense (MTD) solution
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังตรวจจับภัยคุกคามมือถือ
 
@@ -153,7 +153,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานอุปกรณ์ | device ID, OS version, jailbreak/root state, rogue profile, app list | MDM / MTD | ใช้ยืนยันสถานะความปลอดภัยของอุปกรณ์ |
+| หลักฐานเครือข่าย | suspicious destination, captive portal abuse, MitM trace, VPN use | MTD / proxy / DNS | ใช้ดูเส้นทาง remote control หรือ interception |
+| หลักฐานด้านตัวตน | account ที่เข้าถึง, MFA method, token reset, mail/cloud session | IdP / app logs | ใช้ดูว่ามี account abuse ต่อจาก mobile compromise หรือไม่ |
+| หลักฐาน SIM | carrier event, number-transfer timeline, recovery action | Carrier / helpdesk | ใช้แยก device malware ออกจาก SIM-swap |
+| หลักฐานข้อมูล | corporate mail, document, chat data, screenshot, clipboard artifact | App telemetry / DLP / MTD | ใช้ประเมิน breach impact |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| MDM และ MTD telemetry | ดู device state, rogue app, root/jailbreak, policy violation | Required | ยืนยัน mobile compromise ไม่ได้ |
+| Identity และ app-access logs | ดู mail, cloud, VPN, และ MFA activity จากอุปกรณ์ | Required | scope ของ account impact ไม่ชัด |
+| Carrier และ SIM records | ดู SIM swap, number change, service interruption | Required | พลาด compromise path ที่เกี่ยวกับ SMS MFA |
+| Network และ DNS telemetry | ดู suspicious destination และ callback | Recommended | remote-control behavior มองไม่ชัด |
+| Backup และ asset records | ใช้กำหนดทางกู้คืนและ owner context | Recommended | clean rebuild path ช้าลง |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| OS update หรือ MDM profile change | event ปกติจากการจัดการเครื่องอาจดูเหมือน rogue profile | ยืนยัน MDM action และเวลาปล่อยอัปเดต | suppress เฉพาะ profile/app change ที่อนุมัติ | พบ unknown profile, sideloaded app, หรือ root indicator |
+| การ enroll โทรศัพท์เครื่องใหม่ | device/app event ใหม่อาจดูเหมือน compromise | ยืนยัน helpdesk ticket และผู้ใช้ | allowlist enrollment window และ device ID ที่อนุมัติ | account เดียวกันมี risky session หรือ network behavior แปลก |
+| carrier outage หรือ roaming event | connectivity anomaly ดูเหมือน SIM-related abuse | ยืนยันสถานะกับ carrier และไม่พบ account misuse | ลด severity เมื่อยืนยันว่าเป็นปัญหา carrier | มี SMS MFA reset หรือ login จาก location ใหม่ตามมา |
+| พฤติกรรมของ app บน BYOD | consumer app อาจทำให้ network noisy | ตรวจการแยก work container และไม่มี corporate-data access | tune เฉพาะขอบเขตของ BYOD container | corporate app, mail, หรือ VPN ได้รับผลกระทบ |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -234,7 +269,7 @@ graph LR
 | Network behavior | Proxy logs | Analyze |
 | File system changes | Forensic tool | Investigate |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK Mobile — T1456](https://attack.mitre.org/techniques/T1456/)
 - [NIST SP 800-124r2 — Guidelines for Managing Mobile Devices](https://csrc.nist.gov/publications/detail/sp/800-124/rev-2/final)

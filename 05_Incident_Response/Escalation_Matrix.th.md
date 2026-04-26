@@ -184,9 +184,9 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Severity Matrix](Severity_Matrix.en.md) — นิยามระดับความรุนแรงฉบับเต็ม
--   [Communication Templates](Communication_Templates.en.md) — แม่แบบการแจ้งเตือนสำเร็จรูป
--   [IR Framework](Framework.en.md) — วงจรชีวิตการตอบสนองต่อเหตุการณ์
--   [PDPA Incident Response](../07_Compliance_Privacy/PDPA_Incident_Response.en.md) — การแจ้ง data breach ตาม PDPA
--   [SOC Communication SOP](../06_Operations_Management/SOC_Communication.en.md)
--   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
+-   [Severity Matrix](Severity_Matrix.th.md) — นิยามระดับความรุนแรงฉบับเต็ม
+-   [Communication Templates](Communication_Templates.th.md) — แม่แบบการแจ้งเตือนสำเร็จรูป
+-   [IR Framework](Framework.th.md) — วงจรชีวิตการตอบสนองต่อเหตุการณ์
+-   [PDPA Incident Response](../07_Compliance_Privacy/PDPA_Incident_Response.th.md) — การแจ้ง data breach ตาม PDPA
+-   [SOC Communication SOP](../06_Operations_Management/SOC_Communication.th.md)
+-   [SLA Template](../06_Operations_Management/SLA_Template.th.md)

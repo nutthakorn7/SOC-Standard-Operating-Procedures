@@ -188,7 +188,36 @@ gantt
 | **Budget** | ตั้ง hard spending limit |
 | **Secrets** | Scan repos หา credentials ที่เปิดเผย |
 
-## 4. หลังเหตุการณ์ (Post-Incident)
+## 4. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐาน compute | unauthorized instance, region, size, tag, launch time | Cloud console / asset inventory | ใช้ประเมิน footprint ของการ abuse |
+| หลักฐานด้านตัวตน | API key, role, service account, source IP, CI/CD usage | Cloud audit / IAM | ใช้ระบุเส้นทาง credential ที่ถูกใช้ |
+| หลักฐานค่าใช้จ่าย | charge, budget, anomalous spend, provider case/credit | Billing / finance records | ใช้รองรับ business response และการขอคืนค่าใช้จ่าย |
+| หลักฐาน persistence | user/role เพิ่ม, Lambda/ECS task, startup script | Cloud audit / config / code repo | ใช้ดูว่ามี access แบบถาวรค้างอยู่หรือไม่ |
+| หลักฐานการเปิดเผย secret | จุดที่ credential รั่วหรือถูกเก็บไว้ | Secret scanning / SCM / CI logs | ใช้แก้ root cause ให้ตรงจุด |
+
+## 5. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Cloud activity logs | ดู resource creation, key use, role change, region spread | Required | trace เส้นทาง abuse ไม่ได้ |
+| Billing และ budget telemetry | ดู cost spike และ scope การใช้ทรัพยากรผิดปกติ | Required | ตรวจการ abuse ช้าเกินไป |
+| IAM และ secret-scanning telemetry | ดู key รั่ว, role ที่เสี่ยง, privileged account | Required | root cause ด้าน credential ไม่ชัด |
+| Asset และ runtime telemetry | ดู instance/container/function ที่ยังรันอยู่ | Recommended | persistence อาจหลงเหลือหลัง cleanup |
+| Provider support/case records | ใช้ติดตาม abuse claim และ reimbursement | Recommended | การ recovery เชิงการเงินช้าลง |
+
+## 6. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| burst compute หรือ GPU job ที่ได้รับอนุมัติ | cost สูงและ instance ใหม่ดูเหมือน mining | ยืนยัน workload owner, budget, region, และ image | tune เฉพาะ tag/account/schedule ที่อนุมัติ | มี mining pool, image แปลก, หรือ IAM action ที่ไม่เกี่ยวข้อง |
+| load test หรือ simulation | compute spike ชั่วคราวอาจดูเหมือน abuse | ยืนยัน test window และ pipeline | ลด severity ในช่วง stress test ที่อนุมัติ | resource ค้างหลัง test หรือกระจายไป region แปลก |
+| autoscaling anomaly ระหว่าง incident แอป | scale-out เร็วดูเหมือน attacker สร้าง instance | ยืนยัน app incident และ autoscaling policy | tune ตาม ASG/service identity ที่อนุมัติ | มี manual launch หรือค่าใช้จ่ายยังพุ่งหลัง incident จบ |
+| security scan หาคีย์รั่ว | detection activity อาจแตะ repo/account จำนวนมาก | ยืนยัน scanner identity และ scope | allowlist scanner identity แบบแคบ | key เดียวกันถูกใช้สร้าง resource จริง |
+
+## 7. หลังเหตุการณ์ (Post-Incident)
 
 | คำถาม | คำตอบ |
 |:---|:---|
@@ -197,7 +226,7 @@ gantt
 | IAM least-privilege บังคับใช้อยู่หรือไม่? | [สถานะ] |
 | ผลกระทบทางการเงินรวม? | [$จำนวน] |
 
-## 6. Detection Rules (Sigma)
+## 8. Detection Rules (Sigma)
 
 ```yaml
 title: Crypto Mining Process Detected

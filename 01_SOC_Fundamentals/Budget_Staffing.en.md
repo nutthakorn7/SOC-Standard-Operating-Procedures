@@ -257,6 +257,25 @@ Signed: ___________________ Date: ___________
 | Cybersecurity communities | Free | Passionate candidates |
 | SANS/THCert events | Free | Specialized talent |
 
+## Minimum Inputs for Budget Approval
+
+| Input | Why It Matters | Owner |
+|:---|:---|:---|
+| Target coverage model (8x5, 16x5, 24x7) | Drives headcount and tooling cost | CISO |
+| In-scope systems, users, and log volume | Prevents under-budgeting for technology | Security Engineer |
+| Staffing plan by role and shift | Converts architecture into real operating cost | SOC Manager |
+| Training and certification plan | Avoids hidden readiness cost after hiring | SOC Manager |
+| Cost-of-risk and incident assumptions | Makes the business case defensible to finance | CISO |
+
+## Budget and Hiring Escalation Triggers
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Approved budget cannot support minimum staffing or tooling baseline | Executive sponsor | Same business day | Reduce scope or fund minimum viable model |
+| Key role remains unfilled past roadmap milestone | CISO + HR | Within 5 business days | Activate backup hiring plan or MSSP coverage |
+| Attrition, overtime, or burnout exceeds threshold | SOC Manager + CISO | Same business day | Rebalance shifts or add capacity |
+| Training budget is cut below minimum readiness requirement | CISO | Before implementation | Re-approve or slow rollout to match capability |
+
 ---
 
 ## Related Documents

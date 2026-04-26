@@ -191,6 +191,36 @@ jobs:
 | ⚪ **Deprecated** | ไม่เกี่ยวข้องแล้ว | ลบหลัง 30 วัน |
 | 🔴 **Broken** | Syntax error หรือไม่มี output | แก้ภายใน 24 ชม. |
 
+## Decision Matrix ก่อนปล่อย Rule
+
+| ผลการทดสอบ | Owner | การตัดสินใจ | สิ่งที่ต้องทำต่อ |
+|:---|:---|:---|:---|
+| **syntax ผ่าน, มี TP ยืนยัน, FP อยู่ในเป้า** | Detection Engineer | อนุมัติขึ้น staging หรือ production แบบควบคุม | เปิด monitoring window 7 วัน |
+| **มี TP ยืนยัน แต่ FP สูงกว่าเป้า** | Detection Engineer + SOC Lead | ยังไม่ปล่อย | tune exclusions/threshold แล้ว retest |
+| **ยังไม่มี TP ยืนยัน แต่ threat hypothesis ชัด** | SOC Lead | ปล่อยได้เฉพาะ shadow mode หรือ severity ต่ำ | เก็บ production evidence ก่อน promote |
+| **พบ parser หรือ field mapping มีปัญหา** | Security Engineer | ไม่อนุมัติ | แก้ normalization ก่อนทดสอบใหม่ |
+| **กระทบ performance เกินเกณฑ์** | Security Engineer | ไม่อนุมัติ | optimize query หรือจำกัด scope |
+
+## Evidence Pack ขั้นต่ำสำหรับอนุมัติ
+
+| หลักฐาน | เหตุผลที่ต้องมี |
+|:---|:---|
+| **logic ของ rule และแหล่งอ้างอิง** | อธิบายว่ากำลังจับ behavior อะไรและสำคัญอย่างไร |
+| **ผล backtest ตัวอย่าง** | พิสูจน์ว่า rule ทำงานถูกกับ historical data |
+| **บันทึกการ review false positive** | แสดงว่า benign patterns ถูกพิจารณาก่อนปล่อย |
+| **การ map กับ MITRE/use case** | ยืนยันว่า rule อยู่ใน coverage plan ที่ชัด |
+| **playbook หรือ analyst guidance ที่เกี่ยวข้อง** | ให้ทีมตอบสนองรู้ว่าต้องทำอะไรต่อเมื่อ alert ขึ้น |
+| **rollback plan** | ป้องกัน noise หรือ detection พังใน production |
+
+## เกณฑ์ Rollback ระหว่าง Bake Period
+
+| เงื่อนไข | Owner | สิ่งที่ต้องทำ |
+|:---|:---|:---|
+| **FP rate สูงเกินที่คาดอย่างมีนัยสำคัญ** | SOC Analyst | downgrade, disable หรือ revert rule พร้อมเปิด tuning ticket |
+| **alert flood กระทบ queue SLA** | SOC Manager | pause rule และเร่งกู้ service level |
+| **missed critical true positive ระหว่าง validation** | Detection Engineer | revert การเปลี่ยนแปลงและเปิด design review ใหม่ |
+| **query หรือ pipeline performance แย่ลง** | Security Engineer | disable rule จนกว่าจะ optimize เสร็จ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)
@@ -198,4 +228,9 @@ jobs:
 - [Alert Tuning SOP](Alert_Tuning.th.md) — วิธีการปรับจูน rule ที่มีปัญหา
 - [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.th.md) — ตัวอย่าง: ทดสอบ email detection rules
 - [PB-02 Ransomware](../05_Incident_Response/Playbooks/Ransomware.th.md) — ตัวอย่าง: ทดสอบ file encryption rules
-- [PB-25 Zero-Day Exploit](../05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md) — ตัวอย่าง: ทดสอบ exploit payload rules
+- [PB-24 Zero-Day Exploit](../05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md) — ตัวอย่าง: ทดสอบ exploit payload rules
+
+## References
+
+- [Sigma Rule Basics](https://sigmahq.io/docs/basics/rules.html)
+- [MITRE ATT&CK](https://attack.mitre.org/)

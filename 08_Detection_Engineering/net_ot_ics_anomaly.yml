@@ -4,7 +4,7 @@ status: experimental
 description: Detects anomalous activity on OT/ICS networks — unauthorized Modbus/DNP3/OPC UA commands, IT-to-OT boundary crossings, and PLC programming changes.
 references:
     - https://attack.mitre.org/matrices/ics/
-    - PB-30 OT/ICS Security Incident
+    - PB-33 OT/ICS Security Incident
 author: SOC-SOP
 date: 2026-02-15
 tags:

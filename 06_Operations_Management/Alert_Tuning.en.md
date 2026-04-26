@@ -285,6 +285,38 @@ tuning:
 
 ---
 
+## Minimum Evidence Before Tuning
+
+| Evidence Required | Why It Matters | Minimum Standard |
+|:---|:---|:---|
+| **Rule hit sample** | Confirms what the rule is actually matching | Review at least 10 recent alerts or 7 days of data |
+| **True positive examples** | Prevents tuning away real attack behavior | At least one verified TP or documented threat hypothesis |
+| **False positive patterns** | Ensures the fix is targeted | Identify repeated benign entities, process, path, user, or time window |
+| **Telemetry provenance** | Distinguishes rule logic issues from bad data | Confirm parser, field mapping, and source integrity |
+| **Business owner context** | Avoids suppressing high-risk systems blindly | Check whether affected assets are privileged, regulated, or internet-facing |
+
+## Do Not Tune If
+
+| Condition | Reason | Required Action |
+|:---|:---|:---|
+| **Root cause is unclear** | Tuning without diagnosis usually hides the problem | Continue analysis and collect more evidence |
+| **Data source is malformed or incomplete** | Parser gaps create fake false positives | Fix ingestion or normalization first |
+| **The alert touches privileged identities or crown-jewel assets** | Broad suppression increases material risk | Escalate to SOC Lead for narrow tuning only |
+| **No one has validated impact on existing true positives** | Detection loss may go unnoticed | Backtest against known samples before deployment |
+| **Requested tuning is a broad exclusion with no expiry** | Permanent blind spots accumulate quickly | Require documented owner, expiry, and review date |
+
+## Production Release Criteria
+
+| Check | Owner | Pass Condition |
+|:---|:---|:---|
+| **Backtest complete** | Detection Engineer | Known-bad behavior still matches and benign pattern volume drops |
+| **Peer review complete** | SOC Lead / peer engineer | Logic, exclusions, and risk accepted |
+| **Change ticket approved** | SOC Lead | Ticket references evidence and rollback plan |
+| **Monitoring window defined** | SOC Analyst | 7-day owner and success metrics assigned |
+| **Expiry or review date assigned** | Detection Engineer | Every suppression has a review date |
+
+---
+
 ## Related Documents
 
 -   [Detection Rule Testing](Detection_Rule_Testing.en.md) — Testing methodology
@@ -298,3 +330,8 @@ tuning:
 -   [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md) — High-volume alert source
 -   [PB-04 Brute Force](../05_Incident_Response/Playbooks/Brute_Force.en.md) — Threshold tuning example
 -   [PB-11 Suspicious Script](../05_Incident_Response/Playbooks/Suspicious_Script.en.md) — PowerShell detection tuning
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

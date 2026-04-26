@@ -1,6 +1,6 @@
 # Playbook: การลบ/แก้ไข Log
 
-**ID**: PB-15
+**ID**: PB-20
 **ระดับความรุนแรง**: สูง/วิกฤต | **หมวดหมู่**: การป้องกันตัว (Defense Evasion)
 **MITRE ATT&CK**: [T1070.001](https://attack.mitre.org/techniques/T1070/001/) (Clear Windows Event Logs), [T1070.002](https://attack.mitre.org/techniques/T1070/002/) (Clear Linux/Mac Logs)
 **ทริกเกอร์**: SIEM gap detection, Event ID 1102/104, file integrity alert, log integrity failure
@@ -13,7 +13,7 @@
 - [ ] ทบทวน log retention policies
 - [ ] ใช้ tamper protection สำหรับ EDR logs
 - [ ] สร้าง alert สำหรับ log deletion events
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังแหล่ง Log สำรอง
 
@@ -151,7 +151,7 @@ graph TD
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
 | Log ถูกลบหลังการโจมตี (ปกปิดร่องรอย) | Major Incident |
-| Admin ลบ log โดยไม่ได้รับอนุมัติ | CISO + HR ([PB-20 Rogue Admin](Rogue_Admin.th.md)) |
+| Admin ลบ log โดยไม่ได้รับอนุมัติ | CISO + HR ([PB-15 Rogue Admin](Rogue_Admin.th.md)) |
 | หลายระบบถูกลบ log พร้อมกัน | Tier 2 + Threat Hunt |
 | Audit policy ถูกปิด | CISO ทันที |
 | ไม่สามารถกู้คืน log ได้ | Legal (หลักฐานไม่สมบูรณ์) |
@@ -228,6 +228,6 @@ graph LR
 | Linux syslog | Syslog server | ☐ |
 | Network devices | SIEM | ☐ |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1070 — Indicator Removal](https://attack.mitre.org/techniques/T1070/)

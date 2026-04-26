@@ -160,7 +160,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Network evidence | Domains, IPs, JA3/JA3S, intervals, ports, URI paths, DNS queries | NDR / DNS / proxy / firewall | Reconstructs beaconing and C2 infrastructure |
+| Host evidence | Process, binary hash, injection chain, persistence, memory dump | EDR / forensic tools | Identifies the implant and cleanup scope |
+| Scope evidence | All beaconing hosts, user context, shared destinations | SIEM correlation | Shows whether it is single-host or campaign-level |
+| Exfiltration evidence | Transfer size, payload pattern, suspicious uploads, tunnel use | NetFlow / proxy / DLP | Determines whether C2 was also used for data loss |
+| Threat intel evidence | Framework mapping, infrastructure age, prior abuse, actor overlap | TI platform | Supports severity and hunting depth |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| DNS, proxy, firewall, and NDR telemetry | Beaconing, destination profiling, tunneling, JA3 | Required | Cannot validate C2 traffic behavior |
+| Endpoint and EDR telemetry | Process lineage, malware implant, persistence | Required | Cannot tie network activity to the responsible host process |
+| SIEM correlation across hosts | Shared infrastructure and multi-host spread | Required | Campaign scope remains hidden |
+| NetFlow and DLP telemetry | Volume and exfiltration over C2 | Recommended | Data-loss impact may be missed |
+| Threat intel context | Known framework and infrastructure enrichment | Recommended | Prioritization and hunting precision degrade |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Software updater polling | Regular callbacks can resemble beaconing | Verify signer, update domain, and package owner | Allowlist approved update domains plus signed process context | Host also shows suspicious persistence or unknown destinations |
+| Monitoring or management agents | Periodic heartbeats can look like C2 | Confirm agent binary, management server, and interval pattern | Suppress known agent/process and destination pairs | Agent identity changes or destination is outside approved infra |
+| Backup or sync client | Repeated encrypted traffic may appear suspicious | Validate client, tenant, and business owner | Tune for known client fingerprints and endpoints | Same process contacts new domains or uses unusual ports |
+| Security test or red-team beacon | Intentional beaconing can trigger detections | Confirm exercise window, host list, and implant hash | Suppress only approved exercise indicators | Traffic appears outside test scope or hits production-sensitive segments |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|
@@ -173,7 +208,7 @@ graph TD
 
 ---
 
-## 7. Post-Incident
+## 10. Post-Incident
 
 - [ ] Block all identified C2 domains/IPs at firewall and DNS
 - [ ] Submit C2 indicators to threat intelligence sharing platforms

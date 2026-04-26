@@ -54,6 +54,7 @@ flowchart TD
 | Check for data leakage | Scan output for PII, secrets, internal data | DLP, log analysis |
 | Assess prompt pattern | Classify as direct, indirect, or chain-of-thought | Manual review |
 | Check RAG/plugin context | Review retrieved documents and tool calls | RAG pipeline logs |
+| Check trust-boundary mixing | Verify whether untrusted external content was merged with system or tool instructions | Prompt assembly logs, RAG logs |
 | Identify affected model | Determine which model endpoint was targeted | API gateway logs |
 
 ### 1.2 Injection Pattern Classification
@@ -87,6 +88,8 @@ flowchart TD
 | 3 | Add injection pattern to input filter/WAF rules | WAF / Content filter | ☐ |
 | 4 | Purge any cached malicious responses | CDN / Cache | ☐ |
 | 5 | Revoke any API keys or tokens exposed in output | API management | ☐ |
+| 6 | Disable non-essential tools/extensions exposed to the model | Agent platform / Plugin manager | ☐ |
+| 7 | Reduce tool permissions to least privilege and require approval for high-impact actions | IAM / Workflow approval | ☐ |
 
 ### 2.2 If Data Was Leaked
 
@@ -133,21 +136,34 @@ flowchart TD
 
 ---
 
-## 5. Recovery
+## 5. Decision Matrix
+
+| Condition | Decision | Owner | SLA |
+|:---|:---|:---|:---|
+| Benign test prompt or false positive, no data exposure, no tool execution | Close as false positive and tune detections | SOC Analyst | Same shift |
+| Jailbreak or policy bypass confirmed, but no sensitive data exposure and no backend action | Keep service running with monitoring and apply filter updates | SOC Analyst + Security Engineer | 30 minutes |
+| Sensitive data exposed, system prompt extracted, or unsafe tool call executed | Contain immediately and escalate to full incident response | IR Engineer + SOC Manager | Immediate |
+| Regulated data, customer impact, or executive-facing AI service affected | Notify legal, privacy, and executive stakeholders | SOC Manager + CISO | Per incident policy |
+
+---
+
+## 6. Recovery
 
 - [ ] Deploy updated input validation and output filtering rules
 - [ ] Re-enable model endpoint with hardened guardrails
 - [ ] Implement/update prompt injection detection in preprocessing pipeline
+- [ ] Segregate and label untrusted external content before it reaches the model context
 - [ ] Verify system prompt and RAG pipeline integrity
 - [ ] Confirm no residual cached malicious responses
 
 ---
 
-## 6. Post-Incident
+## 7. Post-Incident
 
 - [ ] Update system prompt with anti-injection instructions
 - [ ] Add injection pattern to regression test suite
 - [ ] Review and harden RAG document ingestion pipeline
+- [ ] Run adversarial prompt-injection and tool-abuse simulations after remediation
 - [ ] Implement output scanning for sensitive data patterns
 - [ ] Document in [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
 
@@ -162,13 +178,16 @@ flowchart TD
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)
+- [Compliance Mapping](../../07_Compliance_Privacy/Compliance_Mapping.en.md)
 - [PB-10 Web Attack](Web_Attack.en.md)
 - [PB-18 Exploit](Exploit.en.md)
-- [PB-22 API Abuse](API_Abuse.en.md)
+- [PB-30 API Abuse](API_Abuse.en.md)
 - [Alert Tuning SOP](../../06_Operations_Management/Alert_Tuning.en.md)
 
 ## References
 
 - [MITRE ATLAS AML.T0051 — LLM Prompt Injection](https://atlas.mitre.org/techniques/AML.T0051)
-- [OWASP Top 10 for LLMs — Prompt Injection](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-- [NIST AI Risk Management Framework](https://www.nist.gov/artificial-intelligence/ai-risk-management-framework)
+- [OWASP GenAI — LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+- [OWASP GenAI — LLM06:2025 Excessive Agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+- [NIST AI RMF Playbook](https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook)
+- [CISA — Engaging with Artificial Intelligence](https://www.cisa.gov/news-events/alerts/2024/01/23/cisa-joins-acsc-led-guidance-how-use-ai-systems-securely)

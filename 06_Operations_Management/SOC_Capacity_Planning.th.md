@@ -205,9 +205,32 @@ Required Analysts = (Alerts/Day × Avg Handle Time) / (Working Hours × Utilizat
 | Alert volume +25% | Capacity review |
 | New log source | Resource assessment |
 
+## Trigger สำหรับการตัดสินใจเรื่อง Capacity
+
+| เงื่อนไข | Owner หลัก | การตัดสินใจทันที | สิ่งที่ต้องทำต่อ |
+|:---|:---|:---|:---|
+| **Alert-to-analyst ratio เกินเป้าต่อเนื่อง 4 สัปดาห์** | SOC Manager | ปรับกะหรือเพิ่ม coverage ชั่วคราว | ทบทวนการจ้างเพิ่มหรือ automation |
+| **SIEM headroom ต่ำกว่า 20%** | Security Engineer | ชะลอ ingest ที่ไม่จำเป็น | ขยาย infra หรือปรับ retention tier |
+| **Backlog และ MTTA สูงขึ้นพร้อมกัน** | SOC Manager | เปิด capacity review ทันที | แยกให้ชัดว่าเป็นปัญหาคน, workflow หรือ noise |
+| **ความเสี่ยง attrition สูงกว่าเป้า** | CISO + SOC Manager | ปกป้องงบ training/retention | ทบทวนค่าตอบแทนและ staffing plan |
+
+## ข้อมูลขั้นต่ำที่ต้องใช้ในการวางแผน
+
+| Input | ทำไมต้องมี | Blind Spot หากไม่มี |
+|:---|:---|:---|
+| **ปริมาณ alert แยกตาม severity และ source** | การจัดคนต้องอิง workload จริง ไม่ใช่ count รวม | ประมาณ headcount ผิดง่าย |
+| **เวลาเฉลี่ยในการจัดการเคสแยกตาม queue** | ใช้คำนวณ capacity จริงของ analyst | triage-heavy กับ investigation-heavy จะถูกมองว่าเท่ากัน |
+| **การเติบโตของ EPS และ retention requirement** | ใช้ forecast license และ storage | infra จะขยายช้าเกินความต้องการ |
+| **แผนธุรกิจหรือ compliance ที่กำลังจะมา** | ภาระงานและ tooling อาจเพิ่มขึ้น | งบประมาณจะไม่รองรับ growth driver สำคัญ |
+
 ## เอกสารที่เกี่ยวข้อง
 
--   [SOC Team Structure](SOC_Team_Structure.en.md) — บทบาทและความรับผิดชอบ
--   [SOC Metrics & KPIs](SOC_Metrics.en.md) — การวัดผล
--   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลและปริมาณ
--   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — ลดภาระงาน
+-   [SOC Team Structure](SOC_Team_Structure.th.md) — บทบาทและความรับผิดชอบ
+-   [SOC Metrics & KPIs](SOC_Metrics.th.md) — การวัดผล
+-   [Log Source Matrix](Log_Source_Matrix.th.md) — แหล่งข้อมูลและปริมาณ
+-   [SOC Automation Catalog](SOC_Automation_Catalog.th.md) — ลดภาระงาน
+
+## References
+
+- [NIST Cybersecurity Framework](https://csrc.nist.gov/projects/cybersecurity-framework)
+- [MITRE 11 Strategies for a World-Class SOC](https://www.mitre.org/publications/technical-papers/11-strategies-world-class-cybersecurity-operations-center)

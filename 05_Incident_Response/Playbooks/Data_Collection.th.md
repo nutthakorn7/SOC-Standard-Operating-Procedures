@@ -1,6 +1,6 @@
 # Playbook: Data Collection / การเก็บรวบรวมข้อมูล
 
-**ID**: PB-20
+**ID**: PB-35
 **ระดับความรุนแรง**: สูง | **หมวดหมู่**: ความปลอดภัยข้อมูล
 **MITRE ATT&CK**: [T1005](https://attack.mitre.org/techniques/T1005/) (Data from Local System), [T1039](https://attack.mitre.org/techniques/T1039/) (Data from Network Shared Drive), [T1213](https://attack.mitre.org/techniques/T1213/) (Data from Information Repositories)
 **ทริกเกอร์**: DLP alert, UEBA (unusual file access), EDR (archive creation), insider threat indicator
@@ -13,7 +13,7 @@
 - [ ] ทำ user access review สำหรับ data repositories
 - [ ] สร้าง Sigma rule สำหรับ bulk file access patterns
 - [ ] ทบทวน data classification labels
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังขั้นตอน Data Staging
 
@@ -140,7 +140,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานการเก็บข้อมูล | file ที่ถูกเข้าถึง, query ที่รัน, archive name, staging path, timestamp | EDR / DLP / DB audit | ใช้ดูว่าข้อมูลอะไรถูกเก็บและเตรียมไว้ |
+| หลักฐานด้านผู้ใช้และสิทธิ์ | user role, source host, privilege, app/session context | IAM / SIEM / endpoint logs | ใช้แยก misuse ออกจากงานที่ถูกต้อง |
+| หลักฐานของเครื่องมือ | archiver, script, sync tool, clipboard/screenshot tool | Process logs / EDR | ใช้ระบุวิธีการเก็บข้อมูลและ detection gap |
+| หลักฐานปลายทาง | upload URL, email forwarding, removable media, cloud sync | Proxy / email / USB / cloud logs | ใช้ดูเจตนาว่ากำลังเตรียม exfiltration หรือไม่ |
+| หลักฐานความอ่อนไหวของข้อมูล | data label, record count, customer/PII/IP scope | DLP / data inventory | ใช้รองรับ legal และ executive decision |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Endpoint และ process telemetry | ดู archiving, staging, file access, removable media | Required | มองไม่เห็นพฤติกรรม collection บนเครื่อง |
+| DLP และ data classification telemetry | ดู sensitive content, label, record count | Required | ผลกระทบทางธุรกิจและกฎหมายไม่ชัด |
+| Identity, share, และ cloud-access logs | ดูว่าใครเข้าถึง repository ไหน เมื่อไร | Required | ผูก collection activity กับผู้ใช้ไม่ได้ |
+| Database และ application audit logs | ดู structured-data export และ repo access | Recommended | พลาด collection ที่ไม่ใช่ไฟล์ปกติ |
+| Proxy, email, และ cloud-sync telemetry | ดูสัญญาณเตรียม outbound movement | Recommended | เห็น staging แต่ไม่เห็น intent ชัด |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| งาน export หรือ reporting ที่ได้รับอนุมัติ | archive ใหญ่และ file access จำนวนมากดูเหมือน malicious | ยืนยัน report owner, schedule, destination, และ ticket | tune เฉพาะ job/account/path ที่อนุมัติ | ไปแตะข้อมูลอ่อนไหวที่ไม่เกี่ยวข้องหรือใช้ปลายทางใหม่ |
+| backup หรือ migration activity | copy และ compression ดูเหมือน staging | ยืนยัน service account, maintenance window, และ source repo | ลด severity สำหรับ workflow ที่ documented | activity เกิดจาก user endpoint หรือนอกเวลา |
+| eDiscovery หรือ legal hold | bulk export อาจดูเหมือน data theft | ยืนยัน case ID และ legal owner | suppress เฉพาะ workflow ทางกฎหมายที่อนุมัติ | export ออกนอก controlled storage หรือเกิน scope |
+| developer/analyst prep dataset ใน lab | การแพ็กข้อมูลทดสอบอาจ noisy | ยืนยัน project owner และขอบเขต sanitized-data | tune เฉพาะ lab path และ sanitized dataset | มี production data จริงหรือ personal storage เข้ามาเกี่ยวข้อง |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -233,6 +268,6 @@ graph TD
 | Archive creation | Process log | Archiver from user |
 | DB export | DB audit | Large query result |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK — Collection](https://attack.mitre.org/tactics/TA0009/)

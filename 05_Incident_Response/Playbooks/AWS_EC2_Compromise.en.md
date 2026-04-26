@@ -165,7 +165,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Instance evidence | Instance ID, AMI, tags, launch context, attached IAM role | EC2 / CMDB | Defines blast radius and ownership |
+| Host evidence | Processes, binaries, modified files, startup persistence, memory/disk snapshot | SSM / EBS forensics / EDR | Proves compromise path and persistence |
+| Cloud evidence | CloudTrail actions, role use, Security Group changes, instance metadata access | CloudTrail / Config | Shows whether compromise expanded into IAM or control-plane abuse |
+| Network evidence | VPC Flow Logs, DNS, C2/mining destinations, unusual ports | VPC Flow / DNS / firewall | Confirms remote control, exfiltration, or mining activity |
+| Cost and business evidence | Billing spike, service impact, autoscaling disruption, customer-facing effect | Billing / app owner / monitoring | Supports executive escalation and prioritization |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| CloudTrail and EC2 control-plane logs | Launch, role, API, SG, and metadata-related actions | Required | Cannot tie instance events to attacker identities or control-plane abuse |
+| Host and EDR telemetry | Processes, file changes, persistence, isolation status | Required | Cannot confirm host compromise or successful rebuild scope |
+| VPC Flow and DNS logs | C2, mining pools, lateral movement, exfiltration | Required | Network behavior and attacker communications remain invisible |
+| Billing and GuardDuty findings | Crypto-mining, anomalous usage, threat findings | Recommended | Abuse may be detected late and triage confidence drops |
+| AMI, asset, and change records | Expected instance state and recent deployment context | Recommended | Analysts may confuse deployment churn with compromise |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Autoscaling or blue/green deployment | New instances, SG changes, and process starts can look malicious | Confirm deployment pipeline, AMI, and ASG event | Tune for approved pipeline identities and rollout windows only | Manual console changes or unknown binaries appear on instances |
+| Security scanning or SSM automation | Commands and inventory collection may resemble attacker activity | Validate SSM document, job owner, and target set | Allowlist documented automation documents narrowly | Same instance also contacts suspicious external hosts |
+| Batch processing or GPU workload | High compute and egress can resemble mining or abuse | Confirm workload owner, job schedule, and destination services | Raise thresholds only for approved instance profiles and tags | Mining pool indicators, unusual ports, or IAM abuse appear |
+| Forensic or IR acquisition | Snapshot and stop/start actions may look disruptive | Confirm incident ticket and approved responders | Suppress for approved responder roles and evidence windows | Responder role performs unrelated privilege expansion or data access |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

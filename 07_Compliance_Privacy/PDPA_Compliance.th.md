@@ -191,10 +191,32 @@ graph TD
 | ตัดสินใจอัตโนมัติ? | ใช่/ไม่ | มีหน้าที่ transparency |
 | เทคโนโลยีใหม่? | ใช่/ไม่ | ต้องประเมินความเสี่ยง |
 
+## Trigger สำหรับการยกระดับด้าน PDPA Compliance (Escalation Triggers for PDPA Compliance)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| ยืนยันหรือสงสัยว่ามี personal data breach | DPO + SOC Manager | ทันที | เริ่ม breach clock และเก็บหลักฐาน |
+| ข้อมูลอ่อนไหวหรือเจ้าของข้อมูลมากกว่า 500 รายอาจได้รับผลกระทบ | DPO + CISO | ภายใน 1 ชม. | เตรียมเส้นทางตัดสินใจด้านผู้บริหารและกฎหมาย |
+| พบ PII ในเครื่องมือ ช่องทาง หรือ storage ที่ไม่อนุมัติ | SOC Manager + DPO | ภายในวันทำการเดียวกัน | ควบคุมการเปิดเผยและบันทึก unauthorized processing |
+| มีการส่งข้อมูลข้ามแดนโดยไม่มี safeguard ที่อนุมัติ | DPO + Legal | ทันที | หยุดการส่งและประเมินว่าต้องรายงานหรือไม่ |
+| access log สำหรับการจัดการ PII ขาดหายหรือไม่ครบ | Security Engineer + DPO | ภายใน 24 ชม. | กู้ traceability กลับมาและประเมิน residual risk |
+
+## หลักฐานขั้นต่ำสำหรับ PDPA Readiness (Minimum Evidence for PDPA Readiness)
+
+| หลักฐาน | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| มาตรฐานการจำแนกและการจัดการข้อมูลในคดี SOC | แสดงว่า PII ถูกระบุและจัดการอย่างสม่ำเสมอ | SOC Manager |
+| ช่องทางติดต่อ DPO ปัจจุบันและ workflow แจ้ง breach | พิสูจน์ว่าทำตาม timeline กฎหมายได้ | DPO |
+| ตัวอย่าง case record ที่มี PII access logging และ data minimization | แสดงการปฏิบัติจริง ไม่ใช่แค่นโยบาย | SOC Analyst |
+| หลักฐานเรื่อง retention, deletion และ encrypted storage | รองรับการจัดการข้อมูลหลังปิดคดีอย่างถูกต้อง | Security Engineer |
+| DPIA หรือบันทึก review สำหรับเครื่องมือ SOC ที่ประมวลผล PII | แสดงว่าเครื่องมือใหม่ถูกประเมินก่อนใช้จริง | Security Engineer + DPO |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [Data Handling Protocol](../06_Operations_Management/Data_Handling_Protocol.th.md)
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)
+
+- [การสืบสวน Forensic](../05_Incident_Response/Forensic_Investigation.th.md)
 
 ### PDPA Key Dates
 
@@ -205,6 +227,6 @@ graph TD
 | Annual privacy review | ทุก 12 เดือน |
 | DPO appointment | ตามเกณฑ์ สคส. |
 
-## อ้างอิง
+## References
 
 - [พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)](https://www.pdpc.or.th/)

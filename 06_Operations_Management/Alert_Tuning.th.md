@@ -206,85 +206,35 @@ flowchart TD
 | เวลาจาก request ถึง deploy | < 5 วันทำการ | Ticketing |
 | Alert ต่อ analyst ต่อวัน | < 50 | SIEM + shift report |
 
----
+## หลักฐานขั้นต่ำก่อน Tune
 
-## Tuning Prioritization
-
-| เกณฑ์ | น้ำหนัก | วิธีประเมิน |
-|:---|:---:|:---|
-| FP Volume | 30% | จำนวน FP ต่อสัปดาห์ |
-| Analyst Time Wasted | 25% | FP × เวลา triage ต่อ FP |
-| Alert Fatigue Risk | 25% | สัดส่วน FP ต่อ TP |
-| Tuning Complexity | 20% | ง่าย / ปานกลาง / ซับซ้อน |
-
-## Tuning Methods
-
-| วิธี | ใช้เมื่อ | ตัวอย่าง |
+| หลักฐานที่ต้องมี | ทำไมจึงสำคัญ | มาตรฐานขั้นต่ำ |
 |:---|:---|:---|
-| **Exclusion List** | FP จาก known-good sources | Exclude scanner IPs |
-| **Threshold Adjustment** | Alert sensitivity สูงเกิน | Failed login 5→10 |
-| **Time Window** | FP จาก scheduled tasks | Exclude maintenance window |
-| **Context Enrichment** | ต้องการข้อมูลเพิ่มก่อน alert | เพิ่ม user role lookup |
-| **Rule Rewrite** | Logic ผิดพื้นฐาน | เขียน Sigma rule ใหม่ |
-| **Disable Rule** | ไม่มีค่าเลย | Disable + document reason |
+| **ตัวอย่าง alert จาก rule** | ยืนยันว่ากฎกำลัง match อะไรจริง | ดูอย่างน้อย 10 alerts ล่าสุดหรือข้อมูล 7 วัน |
+| **ตัวอย่าง true positive** | ป้องกันการ tune จน detection หาย | ต้องมี TP ที่ยืนยันแล้วอย่างน้อย 1 ตัว หรือมี threat hypothesis ที่ชัด |
+| **รูปแบบ false positive** | เพื่อให้การแก้ไขแคบและแม่น | ระบุ entity, process, path, user หรือช่วงเวลาที่ benign ซ้ำ |
+| **แหล่งที่มาของ telemetry** | แยกปัญหา logic ออกจากปัญหา data quality | ยืนยัน parser, field mapping และความครบของ source |
+| **บริบทธุรกิจของ asset** | ไม่ suppress ระบบสำคัญแบบไม่รู้ตัว | ตรวจว่า asset หรือ identity นั้น privileged, regulated หรือ internet-facing หรือไม่ |
 
-## A/B Testing สำหรับ Rule Changes
+## กรณีที่ยังไม่ควร Tune
 
-```mermaid
-graph LR
-    Original["📋 Rule เดิม<br/>(FP: 40%)"] --> Clone["📋 Rule ใหม่<br/>(คาดว่า FP ลด)"]
-    Clone --> Both["รันคู่กัน 7 วัน"]
-    Both --> Compare["📊 เปรียบเทียบ"]
-    Compare --> Better{"Rule ใหม่ดีกว่า?"}
-    Better -->|ใช่| Replace["✅ ใช้ Rule ใหม่"]
-    Better -->|ไม่| Keep["🔄 ปรับเพิ่ม/คงเดิม"]
-```
-
-## Tuning Log Template
-
-| ฟิลด์ | ค่า |
-|:---|:---|
-| **Tuning ID** | TUNE-YYYY-NNN |
-| **Rule Name/ID** | [ระบุ] |
-| **FP Rate ก่อน** | [XX]% |
-| **การเปลี่ยนแปลง** | [ระบุ] |
-| **FP Rate หลัง** | [XX]% |
-| **DP Impact** | ตรวจจับ TP ลดลงหรือไม่ |
-| **ผู้ดำเนินการ** | [ชื่อ] |
-| **วันที่** | [YYYY-MM-DD] |
-
-## Alert Tuning Playbook
-
-### Tuning Decision Tree
-
-```mermaid
-flowchart TD
-    A[High volume alert] --> B{True positive?}
-    B -->|< 5%| C[Disable or re-scope]
-    B -->|5-50%| D[Add exclusions]
-    B -->|> 50%| E[Keep as-is]
-    D --> F{Still noisy?}
-    F -->|Yes| G[Split into sub-rules]
-    F -->|No| H[Monitor 7 days]
-```
-
-### Tuning Log Template
-
-| Date | Rule Name | Action | Reason | FP Before | FP After |
-|:---|:---|:---|:---|:---|:---|
-| | | Whitelist | Known scanner | 85% | 12% |
-| | | Threshold ↑ | Normal baseline | 70% | 15% |
-| | | Disable | Deprecated source | 95% | N/A |
-
-### Weekly Tuning Cycle
-
-| Day | Activity | Owner |
+| เงื่อนไข | เหตุผล | สิ่งที่ต้องทำ |
 |:---|:---|:---|
-| Mon | Review top noisy rules | Analyst |
-| Tue | Propose exclusions | Engineer |
-| Wed | Test in shadow mode | Engineer |
-| Thu | Deploy changes | Lead |
-| Fri | Validate improvements | Analyst |
+| **ยังไม่รู้ root cause** | ถ้า tune ก่อนมักแค่ซ่อนปัญหา | เก็บหลักฐานเพิ่มและวิเคราะห์ต่อ |
+| **ข้อมูลจาก source ไม่ครบหรือ format เพี้ยน** | parser gap ทำให้เกิด FP ปลอม | แก้ ingestion หรือ normalization ก่อน |
+| **alert แตะ privileged identities หรือ crown-jewel assets** | การ suppress กว้างเกินไปเพิ่มความเสี่ยงสูง | ให้ SOC Lead อนุมัติการ tune แบบแคบเท่านั้น |
+| **ยังไม่มีคน validate ผลกระทบต่อ TP เดิม** | อาจทำให้ detection หายโดยไม่รู้ตัว | backtest กับ known samples ก่อน deploy |
+| **exclusion ที่ขอเป็นแบบกว้างและไม่มีวันหมดอายุ** | blind spot จะสะสม | ต้องมี owner, review date และเหตุผลชัด |
+
+## เกณฑ์ก่อนปล่อยขึ้น Production
+
+| รายการ | Owner | เงื่อนไขผ่าน |
+|:---|:---|:---|
+| **Backtest เสร็จ** | Detection Engineer | behavior ที่ควรจับยัง match และ benign noise ลดลง |
+| **Peer review เสร็จ** | SOC Lead / peer engineer | logic, exclusions และ risk ได้รับการยอมรับ |
+| **Change ticket อนุมัติแล้ว** | SOC Lead | ticket อ้างอิงหลักฐานและ rollback plan |
+| **กำหนด monitoring window แล้ว** | SOC Analyst | มี owner และ metric สำหรับ review 7 วัน |
+| **กำหนดวันทบทวน suppression แล้ว** | Detection Engineer | suppression ทุกตัวมี review date |
 
 ## เอกสารที่เกี่ยวข้อง
 
@@ -297,3 +247,8 @@ flowchart TD
 -   [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.th.md) — แหล่ง alert ปริมาณสูง
 -   [PB-04 Brute Force](../05_Incident_Response/Playbooks/Brute_Force.th.md) — ตัวอย่างการปรับ threshold
 -   [PB-11 Suspicious Script](../05_Incident_Response/Playbooks/Suspicious_Script.th.md) — การ tune PowerShell detection
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

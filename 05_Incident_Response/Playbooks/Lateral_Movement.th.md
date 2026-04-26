@@ -1,6 +1,6 @@
 # Playbook: การเคลื่อนไหว ด้านข้าง (Lateral Movement)
 
-**ID**: PB-09
+**ID**: PB-12
 **ระดับความรุนแรง**: สูง/วิกฤต | **หมวดหมู่**: การโจมตี / Post-Exploitation
 **MITRE ATT&CK**: [T1021](https://attack.mitre.org/techniques/T1021/) (Remote Services), [T1550](https://attack.mitre.org/techniques/T1550/) (Use Alternate Authentication Material)
 **ทริกเกอร์**: EDR alert (PsExec, WMI, RDP), SIEM (Event 4648/4624 Type 3), Honey token triggered
@@ -13,7 +13,7 @@
 - [ ] Disable NTLM ที่เป็นไปได้
 - [ ] ทบทวน admin account tiering (Tier 0/1/2)
 - [ ] สร้าง detection rule สำหรับ technique ที่พบ
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังเส้นทางการโจมตี
 
@@ -136,7 +136,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานการเคลื่อนที่ | source host, destination host, method, port, service creation, RDP/WinRM/SMB log | SIEM / EDR / Windows logs | ใช้ reconstruct เส้นทางการโจมตีข้าม host |
+| หลักฐาน credential | account ที่ถูกใช้, ticket abuse, hash, LSASS access, privileged group | IdP / AD / EDR | ใช้ดู credential ชุดใดทำให้ movement เกิดขึ้น |
+| หลักฐานจาก host | dropped tool, remote service, scheduled task, persistence บนเครื่องปลายทาง | EDR / forensics | ใช้กำหนดขอบเขต cleanup ในแต่ละ host |
+| หลักฐานด้านขอบเขต | จำนวน host ที่แตะ, การเข้าถึง DC/server, sequence timing | SIEM correlation | ใช้กำหนด severity และลำดับการ contain |
+| หลักฐานผลกระทบ | data staging, admin access, ransomware prep, service disruption | DLP / app logs / ticketing | ใช้ดูว่ามี business impact แล้วหรือยัง |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Endpoint และ EDR telemetry | ดู remote service creation, process execution, dropped tool | Required | พิสูจน์ remote execution บนเครื่องปลายทางไม่ได้ |
+| Windows, AD, และ auth logs | ดู logon type, Kerberos/NTLM activity, admin share use | Required | movement ที่ขับเคลื่อนด้วย credential ไม่ชัด |
+| Network telemetry | ดู RDP/SMB/WinRM/WMI path และ east-west traffic | Required | เส้นทาง multi-host ไม่ครบ |
+| SIEM correlation ข้ามหลาย host | ดู sequence และ blast radius | Required | มองภาพรวมของ chain ไม่ออก |
+| Asset criticality และ segmentation context | ใช้จัดลำดับการ contain | Recommended | อาจ isolate ระบบผิดลำดับ |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| software deployment หรือ patching ที่อนุมัติ | PsExec/WinRM/service creation ดูเหมือน attacker movement | ยืนยัน deployment tool, admin identity, และ maintenance window | allowlist management server และ service name ที่อนุมัติแบบแคบ | tool ไปแตะ host นอก scope หรือเกิดนอก change window |
+| admin troubleshooting ข้ามหลาย server | RDP/SMB access pattern ดูเหมือน manual lateral movement | ยืนยัน admin ticket, target set, และ jump-host use | ลด severity สำหรับ admin path และ jump host ที่อนุมัติ | account เดียวกันไปแตะ DC หรือ user workstation แบบผิดปกติ |
+| backup หรือ monitoring agent rollout | service ใหม่และ SMB connection spike อาจ noisy | ยืนยัน package, owner, และ rollout schedule | tune signature ของ agent และ destination set ที่คาดไว้ | มี binary แปลกหรือ credential dumping ร่วมด้วย |
+| IR หรือ red-team exercise | multi-host access โดยตั้งใจดูเหมือนจริง | ยืนยัน exercise scope และ credential ที่ใช้ | suppress เฉพาะ account/host ใน exercise ที่อนุมัติ | activity หลุดนอกขอบเขตหรือกระทบ production user |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -233,6 +268,6 @@ T+15min DC-01         File-Server   SMB        smb_files
 | Domain admin | Entire domain |
 | Service account | Application + dependencies |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK — Lateral Movement](https://attack.mitre.org/tactics/TA0008/)

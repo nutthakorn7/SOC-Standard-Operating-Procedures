@@ -126,7 +126,7 @@ graph TD
 
 ## 3. การจำแนกระดับความรุนแรง
 
-> อ้างอิง: [Severity Matrix](Severity_Matrix.en.md) สำหรับนิยามเต็ม
+> อ้างอิง: [Severity Matrix](Severity_Matrix.th.md) สำหรับนิยามเต็ม
 
 | ระดับ | เกณฑ์ผลกระทบ | ตัวอย่าง |
 |:---:|:---|:---|
@@ -248,9 +248,9 @@ MITRE TTP:     [T-code, เช่น T1486, T1059.001]
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Severity Matrix](Severity_Matrix.en.md) — นิยามระดับความรุนแรงฉบับเต็ม
--   [Escalation Matrix](Escalation_Matrix.en.md) — ใครต้องส่งต่อเมื่อไร
--   [IR Framework](Framework.en.md) — วงจรชีวิตการตอบสนอง
--   [Tier 1 Runbook](Runbooks/Tier1_Runbook.en.md) — ขั้นตอน triage สำหรับ analyst
--   [SOAR Playbooks](SOAR_Playbooks.en.md) — Playbooks อัตโนมัติ
--   [Threat Hunting Playbook](Threat_Hunting_Playbook.en.md) — การล่าเชิงรุก
+-   [Severity Matrix](Severity_Matrix.th.md) — นิยามระดับความรุนแรงฉบับเต็ม
+-   [Escalation Matrix](Escalation_Matrix.th.md) — ใครต้องส่งต่อเมื่อไร
+-   [IR Framework](Framework.th.md) — วงจรชีวิตการตอบสนอง
+-   [Tier 1 Runbook](Runbooks/Tier1_Runbook.th.md) — ขั้นตอน triage สำหรับ analyst
+-   [SOAR Playbooks](SOAR_Playbooks.th.md) — Playbooks อัตโนมัติ
+-   [Threat Hunting Playbook](Threat_Hunting_Playbook.th.md) — การล่าเชิงรุก

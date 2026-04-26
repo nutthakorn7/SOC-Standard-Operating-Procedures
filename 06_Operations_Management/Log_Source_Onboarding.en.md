@@ -249,6 +249,26 @@ After validation, create detection rules:
 | ⚪ P4 | Badge / Physical | PB-14 |
 | ⚪ P4 | OT/ICS | PB-30 |
 
+## Minimum Acceptance Criteria Before Close
+
+| Requirement | Why It Matters | Owner |
+|:---|:---|:---|
+| Log flow is stable for agreed observation window | Confirms source is production-ready | SOC Engineer |
+| Parsing and normalization meet field quality target | Ensures detections and investigations are usable | Detection Engineer |
+| Source is mapped in the Log Source Matrix | Keeps ownership and coverage inventory current | SOC Analyst |
+| Health-check alert exists for log stoppage or volume drift | Detects silent failures after onboarding | Security Engineer |
+| At least one validated detection or monitoring use case is linked | Prevents onboarding without operational value | Detection Engineer |
+
+## Escalation Triggers During Onboarding
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Volume exceeds estimate by > 30% or threatens budget | SOC Manager + Platform owner | Same business day | Reassess retention, filtering, and cost |
+| Parsing failure rate exceeds agreed threshold | Detection Engineer + Source owner | Within 24 hours | Fix parser before go-live |
+| Required security events are missing from source logs | Source owner + SOC Manager | Same business day | Enable missing audit categories |
+| No owner, maintenance window, or rollback path exists | SOC Manager | Before production cutover | Pause closeout until ownership is clear |
+| Source supports critical playbooks but readiness remains incomplete | SOC Manager + IR lead | Immediate for critical gap | Track as monitoring blind spot |
+
 ---
 
 ## Related Documents
@@ -256,3 +276,9 @@ After validation, create detection rules:
 - [Detection Rules Index](../08_Detection_Engineering/README.md)
 - [Sigma Rule Validator](../tools/sigma_validator.py)
 - [SOC Metrics & KPIs](SOC_Metrics.en.md)
+- [Log Source Matrix](Log_Source_Matrix.en.md)
+
+## References
+
+- [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

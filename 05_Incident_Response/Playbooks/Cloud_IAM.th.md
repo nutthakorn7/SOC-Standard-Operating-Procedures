@@ -13,7 +13,7 @@
 - [ ] ตรวจสอบ service account key rotation
 - [ ] ใช้ CSPM tool เพื่อเฝ้าระวังอย่างต่อเนื่อง
 - [ ] ทำ access recertification สำหรับ cloud roles
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังการตรวจจับ IAM Anomaly
 
@@ -158,6 +158,41 @@ graph TD
 
 ---
 
+## 6. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานด้านตัวตน | User ARN/UPN, role, access key ID, สถานะ MFA | Cloud audit / IAM logs | ยืนยันว่าตัวตนใดถูกนำไปใช้ |
+| หลักฐานการเปลี่ยนแปลง | policy diff, role assignment, trust relationship, การปิด logging | CloudTrail / Azure audit / IaC repo | ใช้ดูว่ามีการเปลี่ยนอะไรและมีความเสี่ยงแค่ไหน |
+| หลักฐานผลกระทบต่อทรัพยากร | compute, storage, network, function, หรือ public exposure ที่สร้างใหม่ | Cloud console / audit logs | ใช้ประเมิน blast radius |
+| หลักฐานแหล่งที่มา | source IP, user agent, console/API method, geolocation | Event details / SIEM | ใช้ช่วย attribution และ review false positive |
+| หลักฐานด้านธุรกิจและต้นทุน | billing spike, ข้อมูลที่ถูกเปิดเผย, account/subscription ที่ได้รับผลกระทบ | Billing / asset inventory / DLP | ใช้ยกระดับถึงผู้บริหารและ legal |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Cloud audit logs | ดู identity action, policy change, API call, logging tamper event | Required | พิสูจน์ไม่ได้ว่าผู้โจมตีแก้อะไรหรือเข้าถึงอะไร |
+| IAM และ directory telemetry | ดู MFA state, role membership, trust relationship, key lifecycle | Required | ระบุ privilege escalation หรือ persistence path ไม่ได้ |
+| Cloud asset และ posture telemetry | ดู public exposure, resource ใหม่, guardrail violation | Required | มอง blast radius และ exposure ไม่ชัด |
+| Billing และ usage anomaly telemetry | ดู cryptomining, abuse spike, resource consumption ที่ผิดปกติ | Recommended | พลาด cost-driven abuse หรือ resource creation แบบ stealth ได้ |
+| IaC และ change-management records | ใช้เทียบ planned change, approver, deployment window | Recommended | อาจตี planned change เป็น compromise |
+
+---
+
+## 8. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| งาน deploy infrastructure ที่อนุมัติ | role, policy, หรือ resource ใหม่ดูเหมือน attacker persistence | ยืนยัน IaC change set, approver, pipeline run, และ maintenance window | suppress เฉพาะ deployment identity และ change window ที่อนุมัติ | มีการเปลี่ยนผ่าน console/manual หรือไม่ตรง template ที่อนุมัติ |
+| การใช้ break-glass หรือ emergency admin | Root/Global Admin อาจถูกใช้จริงตอน outage | ยืนยัน incident record, approver, และระยะเวลาการใช้งาน | ลด severity สำหรับ break-glass ที่อนุมัติและเก็บ log ครบ | มีการใช้โดยไม่มี incident approval หรือใช้นานเกิน window |
+| การทำงานของ cloud security tooling | CSPM/SSPM/auto-remediation อาจแก้ policy หรือ quarantine asset | ยืนยัน tool identity, remediation policy, และ resource เป้าหมาย | allowlist เฉพาะ identity ของเครื่องมือสำหรับ action ที่ documented | identity เดียวกันไปปิด logging หรือเพิ่ม privilege อย่างไม่คาดหมาย |
+| งาน key rotation หรือ federation update ตามแผน | trust หรือ key lifecycle change ดูเหมือน malicious persistence | ยืนยัน change ticket, key owner, และ rollout plan | tune รอบเวลาของ key rotation และ federation change ที่อนุมัติ | มี principal ใหม่, trust policy กว้าง, หรือ cross-account access เพิ่มขึ้น |
+
+---
+
 ### ผัง Least Privilege Model
 
 ```mermaid
@@ -230,7 +265,7 @@ sequenceDiagram
 | Root/admin password | 30 days |
 | API tokens | 90 days |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1078.004 — Cloud Accounts](https://attack.mitre.org/techniques/T1078/004/)
 - [AWS Security Incident Response Guide](https://docs.aws.amazon.com/whitepapers/latest/aws-security-incident-response-guide/welcome.html)

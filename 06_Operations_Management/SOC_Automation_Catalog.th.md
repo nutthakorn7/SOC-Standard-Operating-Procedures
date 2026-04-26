@@ -192,11 +192,35 @@ Steps:
 | API available | ✅ |
 | Error handling defined | ✅ |
 
+## เกณฑ์ควบคุมก่อนปล่อย Automation
+
+| Control | Owner | สิ่งที่ต้องมีขั้นต่ำ |
+|:---|:---|:---|
+| **กำหนด trigger และ scope ชัดเจน** | SOAR Engineer | ระบุให้ชัดว่าอะไรทำให้รันและระบบใดได้รับผลกระทบได้ |
+| **มีจุดให้มนุษย์อนุมัติ** | SOC Manager | บังคับใช้กับ account disable, host isolation, หรือ block actions เว้นแต่มี pre-approval |
+| **มี rollback path** | Security Engineer | automation ที่เปลี่ยนสถานะระบบต้องย้อนกลับได้และเคยทดสอบแล้ว |
+| **มี execution log** | SOC Analyst | เก็บว่าใครอนุมัติ, อะไรถูกรัน, และเปลี่ยนอะไรไปบ้าง |
+| **มี failure handling** | SOAR Engineer | ถ้ารันไม่สำเร็จต้อง escalate ไม่ใช่เงียบหาย |
+
+## งานแบบไหนควร Automate และงานแบบไหนควรคง Manual
+
+| ประเภทงาน | ควร automate เมื่อ | ควรคง manual เมื่อ |
+|:---|:---|:---|
+| **Alert enrichment** | input มีโครงสร้างและผลลัพธ์เป็นเชิง advisory | source quality ยังไม่นิ่ง |
+| **IOC blocking** | confidence สูงและกำหนดวันหมดอายุไว้แล้ว | อาจกระทบ partner หรือระบบธุรกิจสำคัญ |
+| **Containment actions** | approval workflow ชัดและ blast radius ต่ำ | asset เป็น privileged, regulated หรือ production-critical |
+| **Reporting** | data source normalize แล้วและนิ่ง | ต้องใช้ judgment เชิงบริหาร |
+
 ## เอกสารที่เกี่ยวข้อง
 
--   [SOAR Playbooks](../05_Incident_Response/SOAR_Playbooks.en.md)
--   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md)
--   [Detection Rule Testing SOP](Detection_Rule_Testing.en.md)
--   [TI Feeds Integration](TI_Feeds_Integration.en.md)
--   [SOC Metrics & KPIs](SOC_Metrics.en.md)
--   [Log Source Matrix](Log_Source_Matrix.en.md)
+-   [SOAR Playbooks](../05_Incident_Response/SOAR_Playbooks.th.md)
+-   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.th.md)
+-   [Detection Rule Testing SOP](Detection_Rule_Testing.th.md)
+-   [TI Feeds Integration](TI_Feeds_Integration.th.md)
+-   [SOC Metrics & KPIs](SOC_Metrics.th.md)
+-   [Log Source Matrix](Log_Source_Matrix.th.md)
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

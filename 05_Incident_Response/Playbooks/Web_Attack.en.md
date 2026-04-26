@@ -160,7 +160,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Request evidence | Full request path, parameters, headers, cookies, timestamps, source IPs | WAF / access logs | Reconstructs the exploit attempt and target surface |
+| Application evidence | Error traces, stack logs, session context, vulnerable endpoint behavior | App logs / APM | Confirms exploit success and affected code path |
+| Persistence evidence | Web shell path, created files, cron/tasks, new users, modified configs | File integrity / forensics | Shows post-exploitation foothold |
+| Data impact evidence | Queried tables, exported data, modified records, customer impact | DB audit / app logs | Supports breach and legal decisions |
+| Infrastructure evidence | Load balancer, WAF, CDN, and server actions taken during attack | Infra logs / ticketing | Helps validate containment and root cause timeline |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| WAF and web access logs | Attack payloads, source behavior, rate, endpoint targeting | Required | Cannot reconstruct exploit sequence or targeting scope |
+| Application and APM logs | Error conditions, code path, auth/session behavior | Required | Cannot tell whether requests reached vulnerable logic successfully |
+| Host and file-integrity telemetry | Web shell, persistence, process activity, server compromise | Required | RCE or post-exploitation activity may go unseen |
+| Database audit logs | Query abuse, extraction, destructive changes | Required | Data impact remains unproven |
+| Release and change-management records | New code, config changes, rollout timing | Recommended | Analysts may misclassify release regressions as attacks |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Vulnerability scan or DAST exercise | Payloads and request bursts resemble real exploitation | Confirm scanner source, target scope, and schedule | Allowlist approved scanner ranges and headers in defined windows | Scanner appears in production without approval or triggers successful exploitation signs |
+| Search engine crawler or partner integration | High request volume or unusual URL traversal can look abusive | Validate user agent, IP range, and expected path coverage | Tune known crawler or partner profiles narrowly | Requests hit admin paths, auth endpoints, or malicious payload patterns |
+| QA or staging-to-prod release validation | Test payloads and elevated errors may spike after deployment | Confirm release window, test owner, and affected endpoint list | Lower severity only within approved release window and endpoint scope | Errors coincide with suspicious payloads, data access, or shell artifacts |
+| WAF false positive on encoded business input | Complex but valid payloads may look like injection or traversal | Reproduce request with business owner and inspect response safely | Tune exact rule exceptions for validated parameters only | Payload evolves, expands to new endpoints, or reaches sensitive functions |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|
@@ -173,7 +208,7 @@ graph TD
 
 ---
 
-## 7. Post-Incident
+## 10. Post-Incident
 
 - [ ] Patch the exploited vulnerability and deploy to production
 - [ ] Conduct code review for similar vulnerability patterns

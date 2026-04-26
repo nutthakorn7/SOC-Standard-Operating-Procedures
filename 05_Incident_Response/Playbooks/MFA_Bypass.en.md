@@ -172,7 +172,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Session evidence | Token/session IDs, auth method, IPs, timestamps, device/app context | IdP / sign-in logs | Proves that access continued past MFA and shows how |
+| Phishing or AiTM evidence | URL, proxy domain/IP, redirect chain, phishing email, TLS details | Email / proxy / DNS / TI | Identifies the bypass path and campaign scope |
+| Identity evidence | Registered MFA methods, recovery changes, risk flags, account role | IdP / IAM | Shows whether the attacker established persistence or targeted privileged users |
+| Mailbox and cloud activity evidence | Inbox rules, OAuth grants, file access, admin actions | Exchange / cloud audit | Shows what the attacker did after bypass |
+| Endpoint evidence | Browser artifacts, infostealer signs, session-cookie theft indicators | Endpoint / EDR / browser forensics | Distinguishes AiTM from local token theft on the device |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Identity provider sign-in and token telemetry | Auth method, token reuse, MFA challenge result, session anomalies | Required | Cannot prove MFA was bypassed versus normal auth success |
+| Mailbox and cloud audit logs | Post-login abuse, OAuth grants, data access, admin changes | Required | Impact after compromise remains unscoped |
+| Email, proxy, and DNS telemetry | AiTM domain, phishing path, user interaction, redirect chain | Required | Campaign source and bypass mechanism stay unclear |
+| Endpoint telemetry | Browser theft, infostealer, device compromise indicators | Recommended | Local token theft may be missed entirely |
+| Helpdesk and admin workflow logs | MFA resets, recovery actions, social-engineering traces | Recommended | Helpdesk-assisted bypass or recovery abuse may be overlooked |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| User re-registering MFA after device replacement | MFA method changes and session resets can look malicious | Check approved helpdesk ticket and enrollment source | Suppress only approved enrollment workflows for a short window | New MFA method is added from unknown IP or followed by risky session activity |
+| Admin-driven OAuth consent change | Security or app rollout may add new consent records | Validate change ticket, app owner, and admin identity | Allowlist approved app IDs and change windows narrowly | App has excessive scopes or appears in user context unexpectedly |
+| Conditional Access or auth policy rollout | Token revocations and prompt patterns may spike | Confirm planned rollout and affected user set | Lower severity during approved rollout windows | Same users also hit AiTM domains or unusual sessions |
+| User push fatigue without compromise | Multiple MFA prompts may happen during app retry loops | Check device/app behavior and no post-auth malicious activity | Tune by app signature and retry pattern only | MFA acceptance from abnormal source or session takeover follows |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

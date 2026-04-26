@@ -13,7 +13,7 @@
 - [ ] ตรวจ TLS inspection coverage สำหรับ encrypted C2
 - [ ] ใช้ JA3/JA3S fingerprint detection
 - [ ] ใช้ DNS sinkholing สำหรับ C2 domains
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังวงจรชีวิต C2
 
@@ -142,7 +142,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานเครือข่าย | domain, IP, JA3/JA3S, interval, port, URI path, DNS query | NDR / DNS / proxy / firewall | ใช้ reconstruct beaconing และ C2 infrastructure |
+| หลักฐานจาก host | process, binary hash, injection chain, persistence, memory dump | EDR / forensic tools | ใช้ระบุ implant และขอบเขตการ cleanup |
+| หลักฐานด้านขอบเขต | host ทั้งหมดที่ beacon, user context, destination ที่ใช้ร่วมกัน | SIEM correlation | ใช้ดูว่าเป็น single host หรือ campaign |
+| หลักฐาน exfiltration | transfer size, payload pattern, suspicious upload, tunnel use | NetFlow / proxy / DLP | ใช้ดูว่า C2 ถูกใช้ขโมยข้อมูลด้วยหรือไม่ |
+| หลักฐาน threat intel | framework mapping, infrastructure age, prior abuse, actor overlap | TI platform | ใช้ช่วยตั้ง severity และ hunt ต่อ |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| DNS, proxy, firewall, และ NDR telemetry | ดู beaconing, destination profile, tunneling, JA3 | Required | พิสูจน์ C2 traffic behavior ไม่ได้ |
+| Endpoint และ EDR telemetry | ดู process lineage, implant, persistence | Required | ผูก network activity กับ process บน host ไม่ได้ |
+| SIEM correlation ข้ามหลาย host | ดู infrastructure เดียวกันและการกระจายหลายเครื่อง | Required | มอง scope ของ campaign ไม่ครบ |
+| NetFlow และ DLP telemetry | ดู volume และ exfiltration ผ่าน C2 | Recommended | พลาดผลกระทบด้านข้อมูล |
+| Threat intel context | enrichment เรื่อง framework และ infrastructure | Recommended | triage และ hunting แม่นน้อยลง |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| software updater polling | callback ตามรอบอาจดูเหมือน beacon | ยืนยัน signer, update domain, และ package owner | allowlist approved update domain พร้อม process context | host เดียวกันมี persistence หรือ destination แปลก |
+| monitoring หรือ management agent | heartbeat ตามรอบดูเหมือน C2 | ยืนยัน agent binary, management server, และ interval | suppress เฉพาะ process/destination pair ที่อนุมัติ | identity ของ agent เปลี่ยนหรือ destination อยู่นอก infra ที่อนุมัติ |
+| backup หรือ sync client | encrypted traffic ซ้ำ ๆ อาจดูน่าสงสัย | ยืนยัน client, tenant, และ owner | tune fingerprint และ endpoint ของ client ที่อนุมัติ | process เดียวกันไปโดน domain ใหม่หรือ port แปลก |
+| security test หรือ red-team beacon | beacon โดยตั้งใจทำให้ดูเหมือนจริง | ยืนยัน exercise window, host list, และ implant hash | suppress เฉพาะ indicator ของ exercise ที่อนุมัติ | traffic โผล่นอก scope หรือแตะ segment สำคัญจริง |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -234,6 +269,6 @@ sequenceDiagram
 | JA3 hash | Industry ISAC | CSV |
 | Behavioral pattern | Internal SOC | Report |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK — Command and Control](https://attack.mitre.org/tactics/TA0011/)

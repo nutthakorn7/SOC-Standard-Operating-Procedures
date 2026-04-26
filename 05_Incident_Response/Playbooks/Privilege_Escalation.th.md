@@ -13,7 +13,7 @@
 - [ ] ตรวจสอบ group memberships (Domain/Enterprise Admins)
 - [ ] ใช้ Credential Guard / LSA protection
 - [ ] ใช้ PAM สำหรับ privileged access ทั้งหมด
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผัง Admin Tiering Model
 
@@ -154,7 +154,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานด้านสิทธิ์ | group membership ใหม่, token privilege, sudo/suid misuse, สิทธิ์ admin ที่ได้เพิ่ม | AD audit / system logs / EDR | ใช้ยืนยันว่าได้สิทธิ์ระดับใด |
+| หลักฐานการทำงาน | process tree, exploit tool, command line, persistence artifact | EDR / forensic tools | ใช้ดูว่า escalation เกิดขึ้นอย่างไรและยังคงอยู่หรือไม่ |
+| หลักฐานด้านตัวตน | account type, credential exposure, admin/ticket context | IAM / IdP / PAM logs | ใช้แยก attack ออกจากงาน admin ที่ได้รับอนุมัติ |
+| หลักฐานด้านขอบเขต | host, account, หรือ GPO อื่นที่ถูกแตะหลัง escalation | SIEM / AD audit | ใช้ประเมินการลุกลาม |
+| หลักฐานผลกระทบธุรกิจ | ระบบหรือข้อมูลสำคัญที่เข้าถึงได้ด้วยสิทธิ์สูง | Asset inventory / DLP | ใช้ประกอบ severity และการยกระดับถึงผู้บริหาร |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Endpoint และ EDR telemetry | ดู exploit tool, token abuse, process lineage, persistence | Required | พิสูจน์เส้นทางการยกระดับสิทธิ์ไม่ได้ |
+| AD, IAM, และ PAM audit logs | ดู group change, admin rights, token/role grant | Required | ขอบเขตการเปลี่ยนสิทธิ์ไม่ชัด |
+| System security logs | ดู local admin, sudo, service, scheduled task, registry activity | Required | พลาด escalation path ฝั่ง OS |
+| Vulnerability และ patch context | ใช้โยงกับ CVE และช่องโหว่ที่ยังไม่ patch | Recommended | หา root cause จาก exploit-based escalation ช้าลง |
+| SIEM correlation ข้ามหลาย host | ดู movement หรือ spread หลังยกระดับสิทธิ์ | Recommended | อาจประเมิน blast radius ต่ำเกินจริง |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| งาน admin elevation ที่ได้รับอนุมัติ | maintenance จริงอาจเพิ่มสิทธิ์ชั่วคราว | ตรวจ PAM request, change ticket, และ time window | suppress เฉพาะ user/role/time ที่อนุมัติ | สิทธิ์ค้างอยู่หรือไปแตะระบบที่ไม่เกี่ยวข้อง |
+| software installer หรือ service deployment | installer อาจขอสิทธิ์สูงและสร้าง service | ยืนยัน signed package, deployment owner, และ path | allowlist installer และ deployment tool ที่รู้จักแบบแคบ | มี credential dumping หรือแก้ admin group ร่วมด้วย |
+| การทำงานของ security tool หรือ EDR | defensive tool อาจแตะ process สิทธิ์สูง | ยืนยัน tool identity และ console action | suppress เฉพาะพฤติกรรมของเครื่องมือที่ documented | host เดียวกันมี binary แปลกหรือ privilege change นอก scope |
+| break-glass account use | emergency admin access ดูเหมือน abuse | ยืนยัน incident record และ approval | ลด severity เฉพาะ break-glass ที่อนุมัติ | ใช้นานเกินเวลา หรือเกินขอบเขตที่อนุมัติ |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -228,6 +263,6 @@ graph LR
 | Service account abuse | High | Rotate + monitor |
 | Application privilege | Medium | Review + fix |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK — Privilege Escalation](https://attack.mitre.org/tactics/TA0004/)

@@ -82,7 +82,32 @@ graph LR
 | 🟡 กลาง | [เช่น Onboard cloud audit logs] | [ผู้รับผิดชอบ] | [วันที่] |
 | 🟢 ต่ำ | [เช่น อัปเดตการฝึกอบรม phishing] | [ผู้รับผิดชอบ] | [วันที่] |
 
-## คู่มือ Dashboard Visualization
+## หลักฐานขั้นต่ำก่อนเผยแพร่รายงาน (Minimum Evidence Before Publishing)
+
+- [ ] **กระทบยอดข้อมูลเคสแล้ว**: จำนวน ticket, incident และ severity ต้องตรงกับระบบต้นทาง
+- [ ] **ตกลงสูตร KPI แล้ว**: MTTD, MTTR, false positive rate และ SLA compliance ต้องคำนวณตามวิธีที่กำหนด
+- [ ] **ทบทวน incident สำคัญแล้ว**: สรุปของทุก Critical/High ต้องได้รับการยืนยันจาก case owner หรือ incident lead
+- [ ] **มีคำอธิบายแนวโน้มแล้ว**: การเปลี่ยนแปลงเดือนต่อเดือนที่มีนัยสำคัญต้องอธิบายได้ด้วยเหตุผลเชิงปฏิบัติการ
+- [ ] **เปิดเผย risk item สำคัญแล้ว**: telemetry ที่ขาด gap ด้านกำลังคน หรือ control failure สำคัญต้องถูกระบุชัด
+
+## Trigger การ Escalate สำหรับผู้บริหาร
+
+| Trigger | ต้องแจ้งใคร | ข้อความที่ควรมี |
+|:---|:---|:---|
+| **Critical incident ที่กระทบธุรกิจอย่างมีนัยสำคัญ** | CISO, CIO, business owner ที่เกี่ยวข้อง | เกิดอะไรขึ้น จำกัดวงได้ถึงไหน ผลกระทบที่คาด และการตัดสินใจที่ต้องการ |
+| **KPI หลุดเป้า 2 รอบติดกัน** | CISO + SOC Manager | metric แย่ลงเพราะอะไร gap อยู่ที่จุดใด และแผนกู้สถานะ |
+| **incident ซ้ำจาก root cause เดิม** | CISO + control owner | control ใดล้มเหลวซ้ำ และ remediation ใดต้องการการสนับสนุนระดับผู้บริหาร |
+| **มีความเสี่ยงด้าน compliance, privacy หรือการแจ้งลูกค้า** | CISO, Legal, Privacy, Executive Management | เส้นเวลาตามกฎหมาย ระดับความมั่นใจของหลักฐาน และกำหนดเวลาตัดสินใจ |
+
+## เกณฑ์อนุมัติรายงาน
+
+| ขั้นตอน | เงื่อนไขขั้นต่ำ | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| **Draft complete** | กรอกครบทุกส่วนบังคับ และย้อนกลับไปยังข้อมูลต้นทางได้ | SOC Analyst / Report Owner |
+| **Manager review** | เนื้อหาสอดคล้องกับหลักฐาน และ recommendation มี owner ชัด | SOC Manager |
+| **Executive release** | ข้อความความเสี่ยงระดับสูงถูกต้อง เปิดเผยประเด็นค้างครบ และไม่มี critical omission | CISO หรือผู้ได้รับมอบหมาย |
+
+## คู่มือการเลือกภาพประกอบรายงาน
 
 ### แผนภูมิแนะนำสำหรับรายงานเดือน
 
@@ -120,7 +145,7 @@ graph LR
 | SLA Met | XX% | XX% | XX% | ≥ 95% | ✅/❌ |
 ```
 
-## Template สรุปผู้บริหาร
+## เทมเพลตสรุปผู้บริหาร
 
 สำหรับ CISO และ Board ใช้รูปแบบ 1 หน้า:
 
@@ -151,9 +176,9 @@ graph LR
 -   [รายงานรายไตรมาส](Quarterly_Business_Review.th.md)
 -   [แบบประเมิน SOC](../06_Operations_Management/SOC_Assessment_Checklist.th.md)
 
-## Monthly Report Content Guide
+## แนวทางเนื้อหารายงาน
 
-### Mandatory Sections
+### ส่วนบังคับของรายงาน
 
 | Section | เนื้อหา | Charts |
 |:---|:---|:---|
@@ -164,14 +189,14 @@ graph LR
 | Threat Landscape | ภัยคุกคามล่าสุด | Timeline |
 | Recommendations | ข้อเสนอปรับปรุง | Priority list |
 
-### Report Review Checklist
+### Checklist ทบทวนรายงาน
 - [ ] ข้อมูลถูกต้องครบถ้วน
 - [ ] Charts อ่านเข้าใจง่าย
 - [ ] Recommendations มี action items
 - [ ] เปรียบเทียบกับเดือนก่อน
 - [ ] Proofread ก่อนส่ง
 
-### Report Approval Workflow
+### ขั้นตอนอนุมัติรายงาน
 
 | Step | Approver | SLA |
 |:---|:---|:---|
@@ -185,28 +210,6 @@ graph LR
 
 ### จุดเน้นเดือนหน้า
 - [โครงการหลักหรือการปรับปรุงที่วางแผนไว้]
-
-### Template สรุปผู้บริหาร
-
-สำหรับ CISO และ Board ใช้รูปแบบ 1 หน้า:
-
-```markdown
-## สรุป SOC ผู้บริหาร — [เดือน ปีย่อ]
-
-**สถานะ: 🟢 เขียว / 🟡 เหลือง / 🔴 แดง**
-
-### ตัวเลขสำคัญ
-| ตัวชี้วัด | ค่า | เทียบเดือนก่อน |
-|:---|:---:|:---:|
-| Security Incidents | XX | ↑/↓ X% |
-| Critical Incidents (P1) | X | ↑/↓ |
-| เวลาเฉลี่ยตรวจจับ | XX นาที | ↑/↓ |
-| เวลาเฉลี่ยตอบสนอง | XX นาที | ↑/↓ |
-
-### Incidents สำคัญ
-1. [สรุปสั้นๆ ของ incident ที่สำคัญที่สุด]
-2. [สรุปสั้นๆ ของ incident ที่สอง]
-```
 
 ## References
 -   [SANS SOC Metrics](https://www.sans.org/white-papers/)

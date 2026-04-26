@@ -153,7 +153,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Identity evidence | Username, UPN, role, MFA method, session/token IDs | IdP / auth logs | Confirms the compromised identity and access level |
+| Access evidence | Source IP, geolocation, device, client app, impossible travel details | Sign-in logs / SIEM | Distinguishes normal from malicious sign-in patterns |
+| Post-login activity | Inbox rules, OAuth consents, file access, admin actions, app registrations | Exchange / cloud audit / IAM logs | Shows persistence and business impact |
+| User confirmation evidence | User interview notes, expected travel/device context, business justification | Ticket / call log | Helps close false positives and defend decisions |
+| Cross-account scope evidence | Similar logins, password reuse indicators, related accounts | SIEM / password audit | Determines whether this is a single-user issue or campaign |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Identity provider sign-in logs | Login source, MFA events, session creation, impossible travel review | Required | Cannot validate the compromise or dismiss benign travel/login patterns |
+| Cloud audit and mailbox activity logs | Post-login actions, inbox rules, OAuth grants, admin changes | Required | Cannot determine impact after access was gained |
+| Endpoint and device telemetry | Device posture, browser history, token theft, malware overlap | Recommended | Cannot tell whether identity abuse started from a compromised endpoint |
+| Password reset and helpdesk records | User confirmation, lockout history, social engineering indicators | Recommended | Analyst decisions may rely on incomplete user context |
+| SIEM correlation across identities | Similar IPs, reused passwords, related accounts | Required | Campaign-level compromise may remain hidden |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Legitimate business travel or VPN use | New country, ASN, or IP can trigger impossible-travel style alerts | Confirm user itinerary, VPN egress, and device compliance | Tune location logic using known VPN egress and travel-aware windows | MFA resets, inbox rule changes, or abnormal post-login activity follow |
+| New managed device enrollment | First-time device or client app looks like takeover | Validate MDM enrollment, join status, and helpdesk request | Suppress for approved enrollment workflow and limited time window | Device is unmanaged or login source is inconsistent with enrollment records |
+| Password reset or access restoration by helpdesk | Session churn and auth changes can resemble attacker recovery actions | Confirm ticket ID, operator, and affected user | Correlate reset events with helpdesk workflow before alerting | Reset is followed by risky login behavior or unauthorized admin changes |
+| Service account or automation token use | Non-interactive logins can appear anomalous in sign-in analytics | Validate expected source ranges, app ID, and schedule | Separate service identities into dedicated detections and thresholds | Service identity performs mailbox, admin, or user-style activity |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|
@@ -165,7 +200,7 @@ graph TD
 
 ---
 
-## 7. Post-Incident
+## 10. Post-Incident
 
 - [ ] Review authentication policies (enforce MFA for all accounts)
 - [ ] Update Conditional Access policies based on attack vector

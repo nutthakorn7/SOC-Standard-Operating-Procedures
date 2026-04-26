@@ -175,7 +175,7 @@ Invoke-AtomicTest T1059.001 -Cleanup
 | P1 | Active threat |
 | P2 | Coverage gap |
 
-## อ้างอิง
+## References
 
 - [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team)
 - [MITRE ATT&CK](https://attack.mitre.org/techniques/enterprise/)

@@ -163,6 +163,26 @@ graph LR
 | **Consistency** | Same data in different systems matches | Ticket info matches SIEM data | > 95% |
 | **Uniqueness** | No unnecessary duplicates | One ticket per incident (not duplicated) | 100% |
 
+## Data Governance Escalation Triggers
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Restricted or confidential data found in unapproved storage or channel | SOC Manager + Security Engineer | Immediate | Contain access and document exposure path |
+| Retention or deletion control fails for regulated or case data | Security Engineer + Compliance Officer | Within 24 hours | Stop disposal gap and assess legal hold impact |
+| Data owner is unknown for a high-value data set | SOC Manager | Same business day | Assign owner before continued processing |
+| Sharing request conflicts with TLP, contract, or privacy rules | SOC Manager + DPO / Legal | Before release | Approve, redact, or deny sharing |
+| Evidence chain-of-custody cannot be demonstrated | IR Lead + Compliance Officer | Immediate | Preserve remaining evidence and assess admissibility risk |
+
+## Minimum Evidence for Data Governance
+
+| Evidence | Why It Matters | Owner |
+|:---|:---|:---|
+| Current data classification matrix and handling standard | Shows staff have a live policy baseline | SOC Manager |
+| Access logs for L3/L4 data | Demonstrates control over sensitive access | Security Engineer |
+| Retention and disposal records | Proves lifecycle controls are operating | Security Engineer |
+| Sample case or evidence labels with TLP and classification | Confirms practical use, not policy only | SOC Analyst |
+| Exception approvals for data sharing or extended retention | Preserves accountability for deviations | SOC Manager / DPO |
+
 ## Related Documents
 
 - [PDPA Compliance](PDPA_Compliance.en.md)

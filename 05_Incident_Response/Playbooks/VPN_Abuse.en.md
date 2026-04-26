@@ -195,6 +195,35 @@ graph TD
 - [ ] Check if same credentials used elsewhere (password reuse)
 - [ ] Review MFA enrollment/changes
 
+## 2.1 Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Session evidence | Source IP, GeoIP, session start/end, duration, bandwidth, device fingerprint | VPN logs / SIEM | Confirms whether the session behavior fits expected user behavior |
+| Identity evidence | Username, group membership, MFA method, token changes, lockout/reset history | IAM / IdP | Determines privilege level and whether identity controls failed |
+| Network activity evidence | Internal hosts accessed, RDP/SSH, DNS, file-share activity, transfer volume | Firewall / VPN / NDR / DNS / NetFlow | Shows what the attacker did after access was granted |
+| Appliance evidence | VPN admin actions, config changes, patch level, exploit indicators | VPN admin console / syslog | Determines whether abuse was credential-based or appliance-based |
+| User verification evidence | Call notes, travel context, business justification, device ownership | Ticket / call log | Supports false-positive closure and defensible escalation |
+
+## 2.2 Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| VPN authentication and session logs | User, source IP, duration, concurrent sessions, protocol details | Required | Cannot confirm the suspicious session or attribute it correctly |
+| IAM and MFA telemetry | Token resets, MFA changes, account state, risk signals | Required | Cannot tell whether identity protections were bypassed or changed |
+| Network and DNS telemetry | Internal access, lateral movement, exfiltration indicators | Required | Post-login attacker activity remains largely invisible |
+| VPN appliance logs and vulnerability state | Admin changes, exploit traces, version/CVE exposure | Required | Cannot distinguish credential abuse from VPN appliance compromise |
+| Asset, user schedule, and ticket context | On-call status, travel, approved remote work exceptions | Recommended | Benign after-hours or travel events may be over-escalated |
+
+## 2.3 False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Legitimate user travel or remote work | New country or after-hours access may resemble session theft | Confirm itinerary, manager approval, device compliance, and MFA success | Tune geo and time-of-day logic for approved travel/remote-work patterns | Concurrent sessions, high-risk geo, or unusual internal activity follows |
+| Corporate VPN exit or roaming carrier change | Source IP changes quickly and breaks simple location logic | Validate carrier/VPN ASN and normal device fingerprint | Tune ASN-aware impossible-travel logic instead of raw country checks | MFA changes or different device fingerprint appears |
+| On-call or emergency access | Night/weekend login can look malicious | Confirm on-call roster, incident ticket, and accessed systems | Lower severity for approved on-call identities and windows | Access scope exceeds job need or includes privileged movement |
+| Security or network testing | Scanner or red-team use of VPN may look abusive | Validate source, window, and owner | Allowlist approved test accounts and source ranges only | Activity reaches production data or uses stolen user credentials |
+
 ## 3. Containment
 
 | Scope | Action | Details |

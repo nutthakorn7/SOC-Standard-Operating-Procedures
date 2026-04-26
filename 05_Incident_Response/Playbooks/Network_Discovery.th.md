@@ -1,6 +1,6 @@
 # Playbook: Network Discovery / การสแกนเครือข่าย
 
-**ID**: PB-19
+**ID**: PB-34
 **ระดับความรุนแรง**: ปานกลาง/สูง | **หมวดหมู่**: การลาดตระเวน
 **MITRE ATT&CK**: [T1046](https://attack.mitre.org/techniques/T1046/) (Network Service Discovery), [T1018](https://attack.mitre.org/techniques/T1018/) (Remote System Discovery)
 **ทริกเกอร์**: IDS alert (port scan), SIEM (Nmap/Masscan signature), Honeypot trigger, firewall deny spike
@@ -13,7 +13,7 @@
 - [ ] ทบทวน application control policies (scanning tools)
 - [ ] สร้าง Sigma rule สำหรับ discovery patterns ใหม่
 - [ ] ทำ tabletop exercise: discovery → lateral movement
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังขั้นตอนตรวจจับ
 
@@ -136,7 +136,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐาน discovery | command, tool name, target range, protocol, timing | EDR / SIEM / NDR | ใช้ดูเจตนาและขอบเขตของการสแกน |
+| หลักฐานต้นทาง | hostname, user, privilege level, parent process, malware linkage | EDR / IAM / SIEM | ใช้แยกงาน admin ออกจาก attacker recon |
+| หลักฐานเครือข่าย | sequential scan, ARP/SMB/LDAP/DNS pattern, admin share access | NDR / firewall / Zeek / AD logs | ใช้ยืนยันชนิดของ discovery |
+| หลักฐานด้านขอบเขต | critical system ที่ถูก target, BloodHound collection, output file | SIEM / forensic image | ใช้ดูเป้าหมายในขั้นถัดไป |
+| หลักฐานบริบท | change window, authorized scanner, helpdesk/admin task | Ticketing / scanner inventory | ใช้ปิด false positive อย่างอธิบายได้ |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Endpoint และ process telemetry | ดู tool execution, command, output file | Required | มองไม่เห็นเครื่องมือ discovery บนเครื่องต้นทาง |
+| NDR, IDS/IPS, และ firewall telemetry | ดู port sweep, host sweep, SMB/LDAP/DNS pattern | Required | มองไม่เห็น scanning pattern ระดับเครือข่าย |
+| AD และ identity logs | ดู LDAP query, share access, privileged context | Required | พลาด directory-focused discovery |
+| Scanner inventory และ change records | ใช้เทียบกิจกรรม admin/scanner ที่ได้รับอนุมัติ | Recommended | analyst อาจ over-escalate งานสแกนที่ถูกต้อง |
+| Honeypot หรือ deception telemetry | early signal ของ malicious probing | Recommended | early recon signal อ่อนลง |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| vulnerability scan ที่ได้รับอนุมัติ | port sweep และ enumeration ดูเหมือน attacker recon | ยืนยัน scanner IP, schedule, และ scope | allowlist source และ range ที่อนุมัติเท่านั้น | scan ไปโดนเป้าหมายนอก scope หรือใช้ payload แนว exploit |
+| IT admin troubleshooting | `net view`, LDAP lookup, หรือ share check ดูน่าสงสัยได้ | ยืนยัน admin identity, ticket, และ target system | ลด severity สำหรับคำสั่ง admin ที่อยู่ใน scope จำกัด | activity ขยายเป็น broad subnet sweep หรือเกิดนอกเวลา |
+| asset inventory tooling | host enumeration ตามรอบอาจ noisy | ยืนยัน inventory tool, service account, และ cadence | tune ตาม process และ management subnet ที่รู้จัก | host เดียวกันรัน attacker tooling หรือมี lateral movement ต่อ |
+| red-team หรือ tabletop discovery | recon โดยตั้งใจทำให้ดูเหมือนจริง | ยืนยัน exercise scope และวันที่ | suppress เฉพาะ host ของ exercise ที่อนุมัติ | discovery เกิดต่อหลัง exercise window |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -209,6 +244,6 @@ graph TD
 | Scope | Specific subnet | Entire network |
 | Tools | Authorized scanner | Unknown binary |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1046 — Network Service Discovery](https://attack.mitre.org/techniques/T1046/)

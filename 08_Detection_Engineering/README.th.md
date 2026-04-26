@@ -19,7 +19,7 @@
 | [proc_office_spawn_powershell.yml](proc_office_spawn_powershell.yml) | Office Spawning PowerShell | ตรวจจับ Office (Word/Excel/Outlook) เปิด PowerShell — เทคนิค Phishing ทั่วไป | สูง | T1059.001 | PB-01 |
 | [proc_powershell_encoded.yml](proc_powershell_encoded.yml) | PowerShell Encoded Command | ตรวจจับ PowerShell ที่รันคำสั่งแบบ Encode เพื่อซ่อน Script อันตราย | สูง | T1059.001 | PB-11 |
 | [proc_temp_folder_execution.yml](proc_temp_folder_execution.yml) | Execution from Temp/Downloads | ตรวจจับไฟล์ที่รันจากโฟลเดอร์ Temp หรือ Downloads — น่าสงสัยว่าเป็นมัลแวร์ | ปานกลาง | T1204.002 | PB-03 |
-| [proc_cryptomining_indicators.yml](proc_cryptomining_indicators.yml) | Cryptomining Process / Stratum | ตรวจจับ Process ขุดเหมือง (xmrig, cpuminer) หรือการใช้ Stratum Protocol — ขุดคริปโตโดยไม่ได้รับอนุญาต | วิกฤต | T1496 | PB-23 |
+| [proc_cryptomining_indicators.yml](proc_cryptomining_indicators.yml) | Cryptomining Process / Stratum | ตรวจจับ Process ขุดเหมือง (xmrig, cpuminer) หรือการใช้ Stratum Protocol — ขุดคริปโตโดยไม่ได้รับอนุญาต | วิกฤต | T1496 | PB-31 |
 | [win_lolbin_execution.yml](sigma_rules/win_lolbin_execution.yml) | Living Off The Land Binary | ตรวจจับการใช้ LOLBins (certutil, mshta, rundll32, regsvr32) เพื่อดาวน์โหลดหรือรัน Payload อันตราย | สูง | T1218 | PB-39 |
 
 ### 📁 File Activity (กิจกรรมไฟล์)
@@ -36,8 +36,8 @@
 |:---|:---|:---|:---|:---|:---|
 | [net_beaconing.yml](net_beaconing.yml) | Network Beaconing Pattern | ตรวจจับการเชื่อมต่อเครือข่ายแบบสม่ำเสมอไปยังปลายทางเดิม — สัญญาณ C2 Beaconing | สูง | T1071 | PB-13 |
 | [net_large_upload.yml](net_large_upload.yml) | Large Upload >500MB | ตรวจจับการอัปโหลดข้อมูลมากกว่า 500MB ไปยัง IP ภายนอก — อาจเป็นการรั่วไหลข้อมูล | สูง | T1048 | PB-08 |
-| [net_dns_tunneling.yml](net_dns_tunneling.yml) | DNS Tunneling | ตรวจจับ DNS Query ที่มีความยาวผิดปกติ (>50 chars) หรือปริมาณ TXT/NULL record สูง — สัญญาณ DNS Tunneling | สูง | T1071.004 | PB-24 |
-| [net_ot_ics_anomaly.yml](net_ot_ics_anomaly.yml) | OT/ICS Network Anomaly | ตรวจจับทราฟฟิก Modbus/DNP3/OPC UA ที่ผิดปกติในเครือข่าย OT/ICS | วิกฤต | ICS T0813 | PB-30 |
+| [net_dns_tunneling.yml](net_dns_tunneling.yml) | DNS Tunneling | ตรวจจับ DNS Query ที่มีความยาวผิดปกติ (>50 chars) หรือปริมาณ TXT/NULL record สูง — สัญญาณ DNS Tunneling | สูง | T1071.004 | PB-25 |
+| [net_ot_ics_anomaly.yml](net_ot_ics_anomaly.yml) | OT/ICS Network Anomaly | ตรวจจับทราฟฟิก Modbus/DNP3/OPC UA ที่ผิดปกติในเครือข่าย OT/ICS | วิกฤต | ICS T0813 | PB-33 |
 | [net_vpn_abuse.yml](sigma_rules/net_vpn_abuse.yml) | Unauthorized VPN/Proxy | ตรวจจับการใช้ VPN ที่ไม่ได้รับอนุญาต (NordVPN, ProtonVPN), Tunnel (ngrok), หรือ Tor | ปานกลาง | T1133 | PB-41 |
 | [net_deepfake_social.yml](sigma_rules/net_deepfake_social.yml) | Deepfake Social Engineering | ตรวจจับอีเมลปลอมตัวเป็นผู้บริหาร, คำขอโอนเงินเร่งด่วน, ไฟล์เสียงแนบต้องสงสัย | สูง | T1598 | PB-48 |
 | [net_typosquatting.yml](sigma_rules/net_typosquatting.yml) | Typosquatting Domain | ตรวจจับการเข้าถึงโดเมนปลอม (homoglyph, punycode, TLD น่าสงสัย) | ปานกลาง | T1583.001 | PB-49 |
@@ -66,11 +66,11 @@
 | [cloud_impossible_travel.yml](cloud_impossible_travel.yml) | Impossible Travel | ตรวจจับ Login จาก 2 สถานที่ที่เดินทางไม่ทันในเวลาที่กำหนด | สูง | T1078.004 | PB-06 |
 | [cloud_unusual_login.yml](cloud_unusual_login.yml) | Unusual Login Location | ตรวจจับ Login จากประเทศที่ไม่อยู่ในรายการอนุมัติ | ปานกลาง | T1078.004 | PB-05 |
 | [cloud_root_login.yml](cloud_root_login.yml) | AWS Root Account Login | ตรวจจับการ Login ด้วยบัญชี Root ของ AWS — ไม่ควรใช้ในการทำงานปกติ | วิกฤต | T1078 | PB-16 |
-| [cloud_aws_ec2_mining.yml](cloud_aws_ec2_mining.yml) | EC2 Crypto Mining | ตรวจจับ EC2 Instance ที่เชื่อมต่อกับ Mining Pool ผ่าน GuardDuty | สูง | T1496 | PB-23 |
-| [cloud_aws_s3_public_access.yml](cloud_aws_s3_public_access.yml) | S3 Public Access Enabled | ตรวจจับการปิด Block Public Access หรือ Bucket Policy ที่เปิดเป็น Public | สูง | T1530 | Cloud S3 |
-| [cloud_azure_risky_signin.yml](cloud_azure_risky_signin.yml) | Azure AD Risky Sign-in | ตรวจจับ Sign-in ที่ถูกแฟล็กว่า Impossible Travel หรือ Anonymized IP | สูง | T1078.004 | Azure AD |
+| [cloud_aws_ec2_mining.yml](cloud_aws_ec2_mining.yml) | EC2 Crypto Mining | ตรวจจับ EC2 Instance ที่เชื่อมต่อกับ Mining Pool ผ่าน GuardDuty | สูง | T1496 | PB-22/PB-31 |
+| [cloud_aws_s3_public_access.yml](cloud_aws_s3_public_access.yml) | S3 Public Access Enabled | ตรวจจับการปิด Block Public Access หรือ Bucket Policy ที่เปิดเป็น Public | สูง | T1530 | PB-21 |
+| [cloud_azure_risky_signin.yml](cloud_azure_risky_signin.yml) | Azure AD Risky Sign-in | ตรวจจับ Sign-in ที่ถูกแฟล็กว่า Impossible Travel หรือ Anonymized IP | สูง | T1078.004 | PB-23 |
 | [cloud_email_inbox_rule.yml](cloud_email_inbox_rule.yml) | Suspicious Inbox Rule | ตรวจจับการสร้าง Inbox Rule ที่ผู้โจมตีใช้ซ่อนอีเมล (เช่น ลบ, ย้ายไป RSS) | สูง | T1114.003 | PB-17 |
-| [cloud_supply_chain_compromise.yml](cloud_supply_chain_compromise.yml) | Supply Chain Package Tampering | ตรวจจับ Package Manager (npm, pip, gem) ที่ Install จาก Registry ไม่ปกติ — สัญญาณ Supply Chain Attack | สูง | T1195.002 | PB-21 |
+| [cloud_supply_chain_compromise.yml](cloud_supply_chain_compromise.yml) | Supply Chain Package Tampering | ตรวจจับ Package Manager (npm, pip, gem) ที่ Install จาก Registry ไม่ปกติ — สัญญาณ Supply Chain Attack | สูง | T1195.002 | PB-32 |
 | [cloud_mfa_bypass.yml](cloud_mfa_bypass.yml) | MFA Bypass / AiTM Token Theft | ตรวจจับการ Bypass MFA ผ่าน AiTM Proxy หรือ Token Theft | สูง | T1556.006 | PB-26 |
 | [cloud_storage_public_access.yml](cloud_storage_public_access.yml) | Cloud Storage Public Access | ตรวจจับการเปิด Public Access ของ Cloud Storage (S3/Blob) | สูง | T1530 | PB-27 |
 | [cloud_mobile_compromise.yml](cloud_mobile_compromise.yml) | Mobile Device Compromise | ตรวจจับสัญญาณการโจมตีอุปกรณ์มือถือผ่าน MDM | ปานกลาง | T1456 | PB-28 |
@@ -82,11 +82,11 @@
 
 | ไฟล์กฎ | ชื่อ (EN) | คำอธิบายภาษาไทย | ระดับ | MITRE | Playbook |
 |:---|:---|:---|:---|:---|:---|
-| [web_high_rate_limit.yml](web_high_rate_limit.yml) | High Request Rate | ตรวจจับ IP เดียวส่ง HTTP Request จำนวนมากผิดปกติ — สัญญาณ DDoS หรือ Scanning | สูง | T1498 | PB-09/22 |
+| [web_high_rate_limit.yml](web_high_rate_limit.yml) | High Request Rate | ตรวจจับ IP เดียวส่ง HTTP Request จำนวนมากผิดปกติ — สัญญาณ DDoS หรือ Scanning | สูง | T1498 | PB-09/30 |
 | [web_sqli_pattern.yml](web_sqli_pattern.yml) | SQL Injection Pattern | ตรวจจับรูปแบบ SQL Injection ทั่วไปใน URL Parameter | สูง | T1190 | PB-10 |
 | [web_waf_exploit.yml](web_waf_exploit.yml) | WAF Exploit Attempt | ตรวจจับ WAF Event ที่แฟล็กการพยายามโจมตีด้วย CVE ที่รู้จัก | สูง | T1190 | PB-18 |
-| [web_api_abuse_auth_bypass.yml](web_api_abuse_auth_bypass.yml) | API Auth Bypass / Enumeration | ตรวจจับการโจมตี API แบบ BOLA/IDOR — วน ID ต่อเนื่องหรือ Auth Fail จำนวนมาก | สูง | T1190 | PB-22 |
-| [web_zero_day_exploit_attempt.yml](web_zero_day_exploit_attempt.yml) | Zero-Day Exploit Payload | ตรวจจับ Payload ที่ใช้โจมตีช่องโหว่ (Log4Shell, Spring4Shell, RCE) ใน Web Request | วิกฤต | T1190/T1203 | PB-25 |
+| [web_api_abuse_auth_bypass.yml](web_api_abuse_auth_bypass.yml) | API Auth Bypass / Enumeration | ตรวจจับการโจมตี API แบบ BOLA/IDOR — วน ID ต่อเนื่องหรือ Auth Fail จำนวนมาก | สูง | T1190 | PB-30 |
+| [web_zero_day_exploit_attempt.yml](web_zero_day_exploit_attempt.yml) | Zero-Day Exploit Payload | ตรวจจับ Payload ที่ใช้โจมตีช่องโหว่ (Log4Shell, Spring4Shell, RCE) ใน Web Request | วิกฤต | T1190/T1203 | PB-24 |
 | [web_sqli_advanced.yml](sigma_rules/web_sqli_advanced.yml) | Advanced SQL Injection | ตรวจจับ SQLi ขั้นสูง — Blind SQLi, Time-based, Error-based extraction | สูง | T1190 | PB-37 |
 | [web_watering_hole.yml](sigma_rules/web_watering_hole.yml) | Watering Hole Attack | ตรวจจับ Redirect จากเว็บที่เชื่อถือไปยัง Exploit Kit หรือโดเมนอันตราย | สูง | T1189 | PB-43 |
 | [web_drive_by_download.yml](sigma_rules/web_drive_by_download.yml) | Drive-By Download | ตรวจจับ Browser สร้าง Process ต้องสงสัย (cmd, powershell, wscript) — สัญญาณ Exploit | สูง | T1189 | PB-44 |
@@ -103,6 +103,14 @@
 |:---|:---|:---|:---|:---|:---|
 | [proxy_shadow_it.yml](proxy_shadow_it.yml) | Shadow IT / Unauthorized SaaS | ตรวจจับการใช้ SaaS ที่ไม่ได้รับอนุมัติ (Dropbox, WeTransfer ฯลฯ) | ต่ำ | T1567 | PB-29 |
 
+### 🤖 AI / ML Security
+
+| ไฟล์กฎ | ชื่อ (EN) | คำอธิบายภาษาไทย | ระดับ | MITRE / ATLAS | Playbook |
+|:---|:---|:---|:---|:---|:---|
+| [ai_prompt_injection.yml](sigma_rules/ai_prompt_injection.yml) | AI Prompt Injection Attack Pattern | ตรวจจับ jailbreak, system prompt extraction และคำสั่ง override ต่อ LLM endpoint | สูง | AML.T0051, T1059 | PB-51 |
+| [ai_data_poisoning.yml](sigma_rules/ai_data_poisoning.yml) | LLM Data Poisoning Indicators | ตรวจจับการแก้ไข training data, RAG source หรือ dataset จำนวนมากโดยผิดปกติ | สูง | AML.T0020, T1565 | PB-52 |
+| [ai_model_theft.yml](sigma_rules/ai_model_theft.yml) | AI Model Theft or Extraction Attempt | ตรวจจับ inference call ปริมาณสูงและการ download model weight ที่ไม่ได้รับอนุญาต | สูง | AML.T0024, T1020 | PB-53 |
+
 ---
 
 ## ระดับความรุนแรง (Severity Level)
@@ -116,9 +124,17 @@
 
 ## 🎯 ตาราง Detection Coverage
 
-ดูภาพรวม Sigma, YARA และ MITRE ATT&CK ที่ครอบคลุมทุก 50 Playbook:
+ดูภาพรวม Sigma, YARA และ MITRE ATT&CK ที่ครอบคลุมทุก 53 Playbook:
 
 > 📊 **[Coverage_Matrix.th.md](Coverage_Matrix.th.md)** | **[Coverage Matrix (EN)](Coverage_Matrix.en.md)**
+
+---
+
+## 📚 คลัง Use Case สำหรับ SOC
+
+ใช้คลัง Use Case สำหรับ SOC เพื่อจัดลำดับ detection ตาม maturity, business risk, telemetry readiness, response playbook และ KPI:
+
+> 📘 **[SOC_Use_Case_Library.th.md](SOC_Use_Case_Library.th.md)** | **[SOC Use Case Library (EN)](SOC_Use_Case_Library.en.md)**
 
 ---
 

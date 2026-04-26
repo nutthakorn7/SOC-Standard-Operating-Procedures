@@ -170,7 +170,42 @@ gsutil iam ch -d allAuthenticatedUsers gs://<BUCKET>
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Exposure evidence | Resource name, policy/ACL diff, public URL/path, exposure timestamp | CSPM / cloud console / audit logs | Proves what was exposed and when |
+| Identity evidence | User/role that changed access, source IP, API/console path | Cloud audit / IAM logs | Determines whether the exposure was accidental or malicious |
+| Access evidence | External IPs, user agents, object list, download counts | Access logs / CDN logs | Shows whether exposed data was actually accessed |
+| Data sensitivity evidence | Data types, classifications, secrets, customer records, source code presence | DLP / data inventory | Supports breach and notification decisions |
+| Credential evidence | Keys, tokens, config files, or secrets stored in the resource | Secret scanning / file review | Determines follow-on account risk and rotation urgency |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Cloud audit logs | Access-policy changes, actor identity, console/API path | Required | Cannot prove who exposed the storage or how |
+| Object access logs | External reads, object names, download volume | Required | Cannot tell whether exposure became data loss |
+| CSPM or posture telemetry | Continuous public-exposure detection and severity | Required | Misconfigurations may persist without visibility |
+| DLP or data classification telemetry | Sensitivity and record-count assessment | Required | Notification scope and business impact remain unclear |
+| IaC and change-management records | Planned versus unplanned access changes | Recommended | Analysts may treat intended public content as breach |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved public website or CDN content | Public buckets/containers may be intentional for static assets | Validate asset owner, approved public-content tag, and no sensitive files | Suppress only tagged public-content resources with approved owners | Sensitive data, secrets, or non-web content is present |
+| Temporary external sharing for project delivery | Short-term partner access can look like misconfiguration | Confirm ticket, expiry date, recipient, and object scope | Alert at lower severity for time-bound approved shares with expiry | Share exceeds scope, lacks expiry, or becomes broadly public |
+| Security scanning or CSPM auto-remediation | Rapid policy changes may resemble attacker activity | Validate tool identity and remediation workflow | Allowlist documented remediation identities for expected policy flips | Same identity exposes resources or disables logging unexpectedly |
+| Data migration or replication setup | New storage and policy changes may be part of a cloud project | Confirm IaC deployment, project owner, and target environment | Tune for approved deployment identities and staging accounts | Public exposure appears in production or includes sensitive data unexpectedly |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

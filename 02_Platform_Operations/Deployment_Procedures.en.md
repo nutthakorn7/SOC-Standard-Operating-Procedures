@@ -106,6 +106,28 @@ graph LR
     Validate --> Prod["Deploy Production"]
 ```
 
+## 8. Minimum Release Criteria
+
+- [ ] **Scope and risk defined**: The change record identifies affected systems, operational impact, and rollback owner.
+- [ ] **Pre-change evidence captured**: Baseline screenshots, config export, or rule version references exist before deployment.
+- [ ] **Validation plan prepared**: Success criteria, smoke tests, and observation window are documented.
+- [ ] **Rollback is executable**: The team can restore prior state within the approved rollback target.
+- [ ] **Stakeholders informed**: SOC operations, affected service owners, and on-call responders know the change window and fallback plan.
+
+## 9. Emergency Change Triggers
+
+| Trigger | Approval Path | Documentation Minimum |
+|:---|:---|:---|
+| **Active incident requires control change** | SOC Manager + incident lead | What changed, why it was urgent, rollback path |
+| **Critical detection or ingestion outage** | SOC Manager | Outage scope, temporary mitigation, verification plan |
+| **Security exposure cannot wait for next window** | CISO or delegate | Risk statement, expected blast radius, recovery owner |
+
+## 10. Escalation Triggers During Deployment
+
+- [ ] **Escalate immediately** if log ingestion stops for critical sources, alert routing breaks, or production authentication is impacted.
+- [ ] **Escalate to SOC Manager** if smoke tests fail, rollback exceeds target time, or monitoring shows material degradation.
+- [ ] **Escalate to CISO** if emergency downtime, security coverage loss, or executive-facing services are affected.
+
 ## Rollback Procedures
 
 ### When to Rollback

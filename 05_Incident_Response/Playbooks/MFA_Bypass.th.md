@@ -13,7 +13,7 @@
 - [ ] ใช้ number matching สำหรับ push notifications
 - [ ] ทบทวน MFA registration policies
 - [ ] ใช้ token protection (token binding)
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผัง AiTM (Adversary-in-the-Middle) Attack
 
@@ -160,7 +160,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐาน session | token/session ID, auth method, IP, timestamp, device/app context | IdP / sign-in logs | ใช้พิสูจน์ว่าผู้โจมตีผ่าน MFA แล้วจริงและอย่างไร |
+| หลักฐาน phishing หรือ AiTM | URL, proxy domain/IP, redirect chain, phishing email, TLS detail | Email / proxy / DNS / TI | ใช้ระบุ bypass path และขอบเขตของแคมเปญ |
+| หลักฐานด้านตัวตน | MFA method ที่ลงทะเบียน, recovery change, risk flag, account role | IdP / IAM | ใช้ดูว่าผู้โจมตีสร้าง persistence หรือเล็งบัญชี privileged หรือไม่ |
+| หลักฐาน mailbox และ cloud activity | inbox rule, OAuth grant, file access, admin action | Exchange / cloud audit | ใช้ดูว่าผู้โจมตีทำอะไรต่อหลัง bypass |
+| หลักฐาน endpoint | browser artifact, infostealer sign, session-cookie theft indicator | Endpoint / EDR / browser forensics | ใช้แยก AiTM ออกจาก local token theft |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Identity provider sign-in และ token telemetry | ดู auth method, token reuse, MFA result, session anomaly | Required | พิสูจน์ MFA bypass ไม่ได้ |
+| Mailbox และ cloud audit logs | ดู post-login abuse, OAuth grant, data access, admin change | Required | มองไม่เห็นผลกระทบหลัง compromise |
+| Email, proxy, และ DNS telemetry | ดู AiTM domain, phishing path, user interaction, redirect chain | Required | ไม่รู้ source และวิธี bypass |
+| Endpoint telemetry | ดู browser theft, infostealer, device compromise indicator | Recommended | local token theft อาจพลาดไปเลย |
+| Helpdesk และ admin workflow logs | ดู MFA reset, recovery action, social-engineering trace | Recommended | helpdesk-assisted bypass อาจถูกมองข้าม |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| ผู้ใช้ลงทะเบียน MFA ใหม่หลังเปลี่ยนอุปกรณ์ | MFA method change และ session reset ดูเหมือน malicious | ตรวจ helpdesk ticket และ enrollment source ที่อนุมัติ | suppress เฉพาะ workflow ที่อนุมัติในช่วงสั้น | มี MFA method ใหม่จาก IP แปลกหรือมี risky session ตามมา |
+| Admin เปลี่ยน OAuth consent ตามงานจริง | app rollout อาจเพิ่ม consent record ใหม่ | ยืนยัน change ticket, app owner, และ admin identity | allowlist เฉพาะ app ID และ change window ที่อนุมัติ | app ขอ scope สูงผิดปกติหรือไปโผล่ใน user context แปลก |
+| Conditional Access หรือ auth policy rollout | token revocation และ prompt spike อาจสูงผิดปกติ | ยืนยัน rollout plan และผู้ใช้ที่ได้รับผล | ลด severity ใน rollout window ที่อนุมัติ | ผู้ใช้เดียวกันโดน AiTM domain หรือ session anomaly ร่วมด้วย |
+| ผู้ใช้โดน MFA prompt ซ้ำแต่ยังไม่ถูกยึดบัญชี | app retry loop หรือ network issue อาจทำให้ prompt เยอะ | ตรวจ behavior ของ app/device และไม่พบ post-auth abuse | tune ตาม app signature และ retry pattern ที่ยืนยันแล้ว | มี MFA accept จากแหล่งแปลกหรือเกิด session takeover ตามมา |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -236,7 +271,7 @@ graph LR
 | Software token | FIDO2 hardware key | Critical |
 | No MFA | Any MFA | Critical |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1556.006 — MFA Modification](https://attack.mitre.org/techniques/T1556/006/)
 - [Microsoft — Token Theft Playbook](https://learn.microsoft.com/en-us/security/operations/token-theft-playbook)

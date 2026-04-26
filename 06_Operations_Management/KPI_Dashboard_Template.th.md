@@ -84,7 +84,7 @@
 | CLD | Cloud | _____ | ___% |
 | POL | ละเมิดนโยบาย | _____ | ___% |
 
-> อ้างอิง: [Incident Classification](../05_Incident_Response/Incident_Classification.en.md)
+> อ้างอิง: [Incident Classification](../05_Incident_Response/Incident_Classification.th.md)
 
 ---
 
@@ -122,7 +122,7 @@
 | Cloud | _____ | _____ | ___% |
 | Identity | _____ | _____ | ___% |
 
-> อ้างอิง: [Log Source Matrix](Log_Source_Matrix.en.md)
+> อ้างอิง: [Log Source Matrix](Log_Source_Matrix.th.md)
 
 ---
 
@@ -156,7 +156,7 @@
 | Alert auto-resolved (P4) | ___% | ≥ 30% | 🟢/🟡/🔴 |
 | เวลาที่ประหยัดจาก automation | ___ ชม. | ≥ 40 ชม./เดือน | 🟢/🟡/🔴 |
 
-> อ้างอิง: [SOC Automation Catalog](SOC_Automation_Catalog.en.md)
+> อ้างอิง: [SOC Automation Catalog](SOC_Automation_Catalog.th.md)
 
 ---
 
@@ -196,21 +196,21 @@
 
 ---
 
-## เทมเพลต Dashboard Layout
+## เทมเพลตการจัดวาง Dashboard
 
-### Panel 1: สรุปภาพรวม (Executive Summary)
+### Panel 1: สรุปภาพรวมผู้บริหาร
 
 | ตัวชี้วัด | ค่า | เทรนด์ | เป้าหมาย |
 |:---|:---:|:---:|:---:|
-| Total Incidents (เดือนนี้) | [XX] | ↑/↓ | < [XX] |
+| Incidents ทั้งหมด (เดือนนี้) | [XX] | ↑/↓ | < [XX] |
 | MTTD (เฉลี่ย) | [XX] นาที | ↑/↓ | ≤ 60 นาที |
 | MTTR (เฉลี่ย) | [XX] นาที | ↑/↓ | ≤ 240 นาที |
 | False Positive Rate | [XX]% | ↑/↓ | < 10% |
 | SLA Compliance | [XX]% | ↑/↓ | ≥ 95% |
 
-### Panel 2: ประสิทธิภาพ Detection
+### Panel 2: ประสิทธิภาพการตรวจจับ
 
-| หมวด | จำนวน Rules | Triggered/เดือน | FP Rate |
+| หมวด | จำนวน Rules | จำนวนครั้งที่ Trigger/เดือน | FP Rate |
 |:---|:---:|:---:|:---:|
 | Network | [XX] | [XX] | [XX]% |
 | Endpoint | [XX] | [XX] | [XX]% |
@@ -240,7 +240,7 @@
 | [Analyst 2] | [XX] | [XX] นาที | [XX]% | [X]/5 |
 | [Analyst 3] | [XX] | [XX] นาที | [XX]% | [X]/5 |
 
-### Panel 5: Trend Analysis (รายเดือน)
+### Panel 5: การวิเคราะห์แนวโน้มรายเดือน
 
 | เดือน | Incidents | Alerts | FP Rate | MTTD | MTTR |
 |:---|:---:|:---:|:---:|:---:|:---:|
@@ -249,9 +249,9 @@
 | [M-1] | [XX] | [XX] | [XX]% | [XX]m | [XX]m |
 | ปัจจุบัน | [XX] | [XX] | [XX]% | [XX]m | [XX]m |
 
-## Dashboard Design Best Practices
+## แนวปฏิบัติที่ดีในการออกแบบ Dashboard
 
-### Color Coding Standards
+### มาตรฐานการใช้สี
 
 | สี | ความหมาย | ใช้สำหรับ |
 |:---|:---|:---|
@@ -316,8 +316,8 @@
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [SOC Metrics & KPIs](SOC_Metrics.en.md) — นิยาม KPI และสูตรคำนวณ
--   [Log Source Matrix](Log_Source_Matrix.en.md) — ครอบคลุมแหล่งข้อมูล
--   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Automation maturity
--   [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) — อนุกรมวิธาน
--   [SLA Template](SLA_Template.en.md) — นิยาม SLA
+-   [SOC Metrics & KPIs](SOC_Metrics.th.md) — นิยาม KPI และสูตรคำนวณ
+-   [Log Source Matrix](Log_Source_Matrix.th.md) — ครอบคลุมแหล่งข้อมูล
+-   [SOC Automation Catalog](SOC_Automation_Catalog.th.md) — Automation maturity
+-   [Incident Classification](../05_Incident_Response/Incident_Classification.th.md) — อนุกรมวิธาน
+-   [SLA Template](SLA_Template.th.md) — นิยาม SLA

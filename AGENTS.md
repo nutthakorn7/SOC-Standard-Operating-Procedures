@@ -11,7 +11,7 @@
 This repository provides **vendor-agnostic, production-ready SOC Standard Operating Procedures** that any organization can adopt to build or mature their Security Operations Center. All content follows NIST, MITRE ATT&CK, and ISO 27001/27035 frameworks.
 
 ### WHAT — Scope
-- 50 Incident Response Playbooks (PB-01 to PB-50)
+- 53 Incident Response Playbooks (PB-01 to PB-53)
 - Operations Management (Shift Handoff, KPIs, Team Structure, CTI, TLP)
 - Detection Engineering (Sigma rules, YARA signatures)
 - Simulation & Purple Teaming
@@ -39,8 +39,8 @@ SOCSOP/
 ├── 02_Platform_Operations/    # Data governance, deployment procedures
 ├── 03_User_Guides/            # Detection engineering, tool integration
 ├── 04_Troubleshooting/        # Standard troubleshooting methodology
-├── 05_Incident_Response/      # IR Framework + 50 Playbooks + Runbooks
-│   ├── Playbooks/             # Individual incident playbooks (PB-01 to PB-50)
+├── 05_Incident_Response/      # IR Framework + 53 Playbooks + Runbooks
+│   ├── Playbooks/             # Individual incident playbooks (PB-01 to PB-53)
 │   └── Runbooks/              # Tier 1/2/3 Runbooks (EN+TH)
 ├── 06_Operations_Management/  # Shift handoff, metrics, team structure, CTI, TLP
 ├── 07_Compliance_Privacy/     # ISO 27001, PCI-DSS, NIST CSF, PDPA
@@ -179,7 +179,7 @@ External links to authoritative sources. Always include at least 2 references.
 
 | Property | Rule |
 |---|---|
-| **ID Format** | `PB-XX` (e.g., PB-01, PB-02 ... PB-50) |
+| **ID Format** | `PB-XX` (e.g., PB-01, PB-02 ... PB-53) |
 | **Standard Sections** | Analysis → Containment → Eradication → Recovery |
 | **Mermaid Flow** | Must visualize the triage/decision process |
 | **MITRE ATT&CK** | Reference relevant Technique IDs (e.g., T1566, T1078) |
@@ -187,22 +187,22 @@ External links to authoritative sources. Always include at least 2 references.
 | **Checklists** | Use `- [ ]` for operational steps |
 | **Cross-Links** | Link to IR Framework, Incident Report template, related PBs |
 
-### Playbook Index (PB-01 to PB-50)
+### Playbook Index (PB-01 to PB-53)
 ```
-PB-01 Phishing               PB-11 Suspicious Script      PB-21 Supply Chain Attack
-PB-02 Ransomware             PB-12 Lateral Movement       PB-22 API Abuse
-PB-03 Malware Infection      PB-13 C2 Communication       PB-23 Cloud IAM
-PB-04 Brute Force            PB-14 Insider Threat         PB-24 Cryptomining
-PB-05 Account Compromise     PB-15 Log Clearing           PB-25 Zero-Day Exploit
-PB-06 Impossible Travel      PB-16 Lost Device            PB-26 MFA Bypass
-PB-07 Privilege Escalation   PB-17 Rogue Admin            PB-27 Cloud Storage Exposure
-PB-08 Data Exfiltration      PB-18 BEC                    PB-28 Mobile Compromise
-PB-09 DDoS Attack            PB-19 Web Application Attack PB-29 Shadow IT
-PB-10 Exploit/Vulnerability  PB-20 DNS Tunneling          PB-30 OT/ICS Incident
+PB-01 Phishing               PB-11 Suspicious Script      PB-21 AWS S3 Compromise
+PB-02 Ransomware             PB-12 Lateral Movement       PB-22 AWS EC2 Compromise
+PB-03 Malware Infection      PB-13 C2 Communication       PB-23 Azure AD Compromise
+PB-04 Brute Force            PB-14 Insider Threat         PB-24 Zero-Day Exploit
+PB-05 Account Compromise     PB-15 Rogue Admin            PB-25 DNS Tunneling
+PB-06 Impossible Travel      PB-16 Cloud IAM              PB-26 MFA Bypass
+PB-07 Privilege Escalation   PB-17 BEC                    PB-27 Cloud Storage Exposure
+PB-08 Data Exfiltration      PB-18 Exploit/Vulnerability  PB-28 Mobile Compromise
+PB-09 DDoS Attack            PB-19 Lost Device            PB-29 Shadow IT
+PB-10 Web Application Attack PB-20 Log Clearing           PB-30 API Abuse
 
-PB-31 AWS EC2 Compromise     PB-41 VPN Abuse
-PB-32 AWS S3 Compromise      PB-42 Email Account Takeover
-PB-33 Azure AD Compromise    PB-43 Watering Hole
+PB-31 Cryptomining           PB-41 VPN Abuse              PB-51 AI Prompt Injection
+PB-32 Supply Chain Attack    PB-42 Email Account Takeover PB-52 LLM Data Poisoning
+PB-33 OT/ICS Incident        PB-43 Watering Hole          PB-53 AI Model Theft
 PB-34 Network Discovery      PB-44 Drive-By Download
 PB-35 Data Collection        PB-45 Rootkit/Bootkit
 PB-36 Credential Dumping     PB-46 SIM Swap

@@ -165,7 +165,42 @@ graph TD
 
 ---
 
-## 5. Escalation Criteria
+## 5. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Access evidence | Unusual file access, data exports, repository activity, print jobs | SIEM / DLP / repo audit / print logs | Shows what the insider actually touched or removed |
+| Device evidence | USB history, browser/cloud-sync activity, forensic image, deleted files | Endpoint forensics / EDR | Proves staging, copying, or destruction behavior |
+| Identity evidence | User role, recent privilege changes, shared-account use, badge/VPN access | IAM / HR / physical security | Connects suspicious activity to actual access rights |
+| Behavioral and case evidence | HR concerns, resignation status, warnings, manager reports, legal hold | HR / legal / case records | Establishes motive context and supports lawful handling |
+| Timeline evidence | Ordered sequence of technical and business events | Case notes / SIEM / forensics | Critical for legal review and defensible executive decisions |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| DLP, file, and repository telemetry | Bulk access, copying, external sharing, source-code activity | Required | Cannot quantify exfiltration or sabotage behavior |
+| Endpoint and USB telemetry | Removable media, browser upload, local staging, deleted files | Required | Physical copying and local staging remain hidden |
+| Identity, badge, and remote-access telemetry | User access path, after-hours entry, VPN, privilege use | Required | Insider activity cannot be tied to access context reliably |
+| HR and legal case context | Employment actions, resignation, approved investigation scope | Required | Technical findings may be misread without business context |
+| Print, email, and cloud-collaboration logs | Less obvious data-removal channels | Recommended | Non-USB/non-download exfiltration paths may be missed |
+
+---
+
+## 7. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved bulk export or project handoff | Large file access can resemble theft | Confirm ticket, project owner, destination, and business need | Tune only for approved user/project/destination combinations | Export includes unrelated sensitive data or personal destination |
+| Developer repo clone or backup task | Large source-code sync may look exfiltrative | Validate device, branch, repo owner, and working hours | Baseline expected engineering sync patterns narrowly | Same user also uses USB, personal cloud, or off-hours access |
+| HR or finance after-hours work | Sensitive data access can spike during payroll or close | Confirm calendar cycle, manager approval, and exact datasets | Lower severity for known cyclical workflows | Access expands beyond normal role or coincides with resignation concerns |
+| Security or legal collection | Covert review or litigation hold may generate quiet bulk access | Validate legal hold ID and collector identity | Suppress only documented collection accounts and windows | Collection reaches uncontrolled destinations or uses personal accounts |
+
+---
+
+## 8. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

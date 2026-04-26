@@ -161,7 +161,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Sign-in evidence | Both login events, timestamps, IPs, geolocation, device/app details | IdP / SIEM | Confirms whether the travel pattern is physically impossible or explainable |
+| Identity evidence | User role, MFA status, token/session IDs, account risk state | IAM / IdP | Shows whether a high-risk identity or stolen session is involved |
+| Context evidence | VPN/proxy usage, corporate egress IPs, travel approvals, on-call status | VPN logs / HR / ticketing | Helps distinguish benign travel from compromise |
+| Activity evidence | Mailbox, file, admin, and cloud actions after the suspicious login | Cloud audit / mailbox audit | Shows whether the attacker used the session for impact |
+| Scope evidence | Same IP across other users, repeated country pairings, related detections | SIEM correlation | Determines whether this is a single-user issue or wider campaign |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Identity provider sign-in logs | Compare locations, times, MFA events, and session creation | Required | Cannot validate impossible travel at all |
+| VPN, proxy, and known-egress telemetry | Explain corporate exit points and travel-related IP changes | Required | Benign VPN/proxy activity may be escalated as compromise |
+| Cloud audit and mailbox activity logs | Assess what happened after suspicious access | Required | Impact after login remains hidden |
+| Device posture and endpoint telemetry | Validate managed device, browser, and token context | Recommended | Session theft versus normal device use stays ambiguous |
+| HR, travel, and support records | Confirm travel, remote work, or approved exception context | Recommended | Analysts lack business context and over-escalate |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Corporate VPN or cloud proxy egress | Two distant logins may actually be one user through managed egress | Check known egress IP list, ASN, and VPN session timing | Tune impossible-travel logic to recognize approved egress nodes | Post-login abuse or unknown device context appears |
+| Legitimate business travel | Real travel can create fast country changes | Confirm itinerary, flight timing, and device continuity | Lower severity when travel is documented and device is compliant | MFA reset, token misuse, or risky actions follow |
+| Mobile network or roaming handoff | Cell carriers can change apparent country/region quickly | Validate mobile device ID and prior user pattern | Tune for mobile-client-specific geolocation drift | Same user also appears from desktop or privileged session elsewhere |
+| Shared service or automation identity | Non-human accounts should not be evaluated like humans | Check app ID, schedule, and source pattern | Separate service identities into different detections | Service identity performs interactive or user-like actions |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

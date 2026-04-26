@@ -165,6 +165,23 @@
 □ เอกสารประเมินผลกระทบ
 ```
 
+## หลักฐานขั้นต่ำก่อนปิดเคส (Minimum Evidence Before Closure)
+
+- [ ] **ยืนยัน timeline แล้ว**: เวลาของ detection, triage, escalation, containment, eradication, recovery และ closure ต้องครบ
+- [ ] **ยืนยันขอบเขตผลกระทบแล้ว**: hosts, users, services และผลกระทบต่อข้อมูลต้องผ่านการตรวจสอบ ไม่ใช่การคาดเดา
+- [ ] **บันทึก root cause แล้ว**: ระบุช่องโหว่หรือ business process failure ได้ชัดพอที่จะมอบหมาย remediation
+- [ ] **เก็บหลักฐานการจำกัดวงแล้ว**: การปิดบัญชี isolate host การ block หรือการเปลี่ยน config ต้องตรวจสอบย้อนหลังได้
+- [ ] **บันทึกผลการตัดสินใจเรื่องการแจ้งแล้ว**: privacy, legal, ลูกค้า หรือผู้บริหาร ต้องมี owner และเวลาที่ตัดสินใจ
+
+## Trigger การแจ้งผู้บริหารและหน่วยงานที่เกี่ยวข้อง
+
+| Trigger | ต้องแจ้งใคร | เวลา |
+|:---|:---|:---|
+| **Critical incident หรือมี business disruption ยืนยันแล้ว** | CISO, CIO, business owner | ทันที |
+| **ยืนยันหรือสงสัยว่ามี regulated data exposure** | CISO, Legal, Privacy | ทันที |
+| **incident กระทบบัญชีผู้บริหาร บัญชีสิทธิ์สูง หรือบัญชี shared administration** | CISO, SOC Manager, identity owner | ทันที |
+| **การจำกัดวงต้องกระทบบริการหรือจำกัดสิทธิ์แบบฉุกเฉิน** | Business owner, IT operations, CISO | ก่อนลงมือ ถ้าทำได้ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)
@@ -172,7 +189,7 @@
 - [แบบฟอร์ม RFC](change_request_rfc.th.md)
 - [PDPA Compliance](../07_Compliance_Privacy/PDPA_Compliance.th.md)
 
-### Report Quality Checklist
+## Checklist คุณภาพรายงาน (Report Quality Checklist)
 
 | Item | Description | ✓ |
 |:---|:---|:---|
@@ -182,14 +199,14 @@
 | Root cause | Identified | ☐ |
 | Actions | Assigned + dated | ☐ |
 
-### Report Priority
+## SLA การส่งรายงาน (Report Priority)
 
 | Severity | Due |
 |:---|:---|
 | Critical | 24 hrs |
 | High | 72 hrs |
 
-## อ้างอิง
+## References
 
 - [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
 - [VERIS Framework](http://veriscommunity.net/)

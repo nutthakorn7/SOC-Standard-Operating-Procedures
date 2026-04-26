@@ -196,6 +196,39 @@ Storage (GB/day) = Daily Events × Avg Event Size (bytes) / 1,073,741,824
 
 ---
 
+## Minimum Logging Baseline by Use Case
+
+| Use Case | Required Sources | Recommended Enrichment | Blind Spot If Missing |
+|:---|:---|:---|:---|
+| **Identity abuse / account compromise** | AD or IdP sign-in logs, MFA platform, VPN gateway | DHCP, EDR, geo-IP | Cannot verify who logged in, from where, or whether MFA failed |
+| **Endpoint execution / malware** | Windows Security, Sysmon, EDR, AV/EPP | DNS, proxy, threat intel | Process lineage and post-execution activity become weak |
+| **Phishing / BEC** | Email gateway, M365 UAL or equivalent, IdP logs | Sandbox verdicts, DLP, URL click logs | Message delivery and account follow-on activity cannot be tied together |
+| **Data exfiltration** | Proxy, DLP, storage audit, firewall | NetFlow, SaaS audit, DB audit | Large transfers may look like normal traffic with no content context |
+| **Cloud abuse** | CloudTrail/Activity/Audit logs, cloud identity logs | VPC/NSG flow logs, CSPM findings | Privileged API misuse and public exposure changes may go unseen |
+| **Web attack / API abuse** | WAF, web server, application logs | DB audit, threat intel, CDN logs | Attack path stops at the edge and misses downstream impact |
+
+## Data Quality Checks and Escalation Triggers
+
+| Check | Owner | Acceptable Threshold | Escalate When |
+|:---|:---|:---|:---|
+| **Ingestion freshness** | SOC Engineering | No gap beyond agreed source SLA | P1/P2 source missing beyond SLA |
+| **Parser coverage** | Security Engineer | Required fields normalized for priority sources | Critical source remains partial for more than one reporting cycle |
+| **Clock alignment** | SOC Engineering | Timestamps consistent enough for correlation | Time drift breaks case timelines or MTTD measurement |
+| **EPS stability** | SOC Lead | Within documented baseline or approved change window | Sudden drop/spike with no planned change |
+| **Retention compliance** | SOC Manager / GRC | Meets incident, audit, and legal needs | Evidence window shorter than investigation requirement |
+
+## Executive View: What Missing Logs Mean
+
+| Missing or Partial Source | Operational Impact | Business Risk |
+|:---|:---|:---|
+| **IdP / MFA logs** | Weak account-compromise triage | Increased risk of undetected unauthorized access |
+| **EDR or Sysmon** | Poor endpoint reconstruction | Slower containment and harder forensic validation |
+| **Cloud audit logs** | Limited visibility into admin/API abuse | High risk in cloud governance and breach investigations |
+| **Email audit logs** | Cannot confirm user action after phishing | Delayed response to BEC and mail-based attacks |
+| **Database / SaaS audit** | Weak evidence for data access cases | Regulatory and legal reporting risk |
+
+---
+
 ## Related Documents
 
 -   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md)
@@ -204,3 +237,8 @@ Storage (GB/day) = Daily Events × Avg Event Size (bytes) / 1,073,741,824
 -   [SOC Metrics & KPIs](../06_Operations_Management/SOC_Metrics.en.md)
 -   [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.en.md)
 -   [Infrastructure Setup](../01_SOC_Fundamentals/Infrastructure_Setup.en.md)
+
+## References
+
+- [NIST SP 800-92](https://csrc.nist.gov/publications/detail/sp/800-92/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

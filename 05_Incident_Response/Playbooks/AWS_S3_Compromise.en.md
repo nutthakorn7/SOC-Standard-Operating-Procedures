@@ -160,7 +160,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Bucket evidence | Bucket name, policy diff, ACLs, Block Public Access state, versioning state | S3 console / Config / IaC | Proves what changed and which controls failed |
+| Identity evidence | IAM actor, source IP, access key, API path, session context | CloudTrail | Shows whether the compromise was accidental, insider-driven, or external |
+| Access evidence | Objects listed/read/deleted, requester IPs, user agents, data-event timeline | CloudTrail Data Events / access logs | Determines whether exposure became real data loss |
+| Data sensitivity evidence | PII, customer files, credentials, source code, backups present | Macie / DLP / manual review | Supports breach decisions and recovery priority |
+| Recovery evidence | Versioned object state, deletes, encryption changes, backup availability | S3 versioning / backup records | Determines whether data was merely exposed, changed, or destroyed |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| CloudTrail management and data events | Policy changes, object reads/writes/deletes, actor identity | Required | Cannot prove what changed or whether data was accessed |
+| S3 access logging and requester context | External readers, user agents, source IPs | Required | Exposure may be detected but actual access remains unknown |
+| Macie, DLP, or classification telemetry | Sensitive-content scope and record count | Required | Notification and business impact cannot be assessed well |
+| Config, IaC, and guardrail telemetry | Planned versus unplanned policy state | Recommended | Analysts may misread legitimate configuration drift |
+| Backup/versioning visibility | Restore viability and ransomware-style deletion impact | Recommended | Recovery planning becomes uncertain |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Public static website bucket | Public-read state may be intentional | Confirm website bucket tag, approved owner, and no sensitive objects | Suppress only approved website buckets with strict tagging | Sensitive files, credentials, or write exposure appear |
+| Controlled partner data exchange | Cross-account or external access may be legitimate | Validate partner account, expiry, object prefix, and ticket | Tune for approved partner principals and prefixes only | Access expands beyond intended prefixes or becomes anonymous/public |
+| Data migration or backup restore | Large object writes and policy changes can look malicious | Confirm job owner, change window, and restore plan | Lower severity only for approved migration roles and windows | Deletes, policy broadening, or unknown principals appear |
+| Security tooling enforcement | Config/guardrail changes may flip access settings rapidly | Validate Config rule, remediation role, and change ticket | Allowlist documented remediation roles narrowly | Remediation role disables logging or creates new broad access |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

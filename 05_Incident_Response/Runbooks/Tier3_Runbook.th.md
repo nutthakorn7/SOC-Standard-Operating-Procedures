@@ -380,7 +380,7 @@ TLP: [WHITE/GREEN/AMBER/RED]
 2. [Detection rule ที่ต้องสร้าง]
 3. [Hunt query ที่ต้องรัน]
 
-### อ้างอิง
+### References
 - [Source URLs]
 ```
 
@@ -424,5 +424,5 @@ TLP: [WHITE/GREEN/AMBER/RED]
 - [Threat Hunting Playbook](../Threat_Hunting_Playbook.th.md)
 - [Tier 1 Runbook](Tier1_Runbook.th.md)
 - [Tier 2 Runbook](Tier2_Runbook.th.md)
-- [Playbook ทั้งหมด (PB-01 ถึง PB-50)](../Playbooks/Phishing.th.md)
+- [Playbook ทั้งหมด (PB-01 ถึง PB-53)](../Playbooks/Phishing.th.md)
 - [Sigma Rules Index](../../08_Detection_Engineering/README.th.md)

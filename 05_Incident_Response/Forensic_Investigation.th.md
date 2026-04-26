@@ -259,9 +259,9 @@ vol -f memory.raw windows.malfind
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Evidence Collection](Evidence_Collection.en.md) — ขั้นตอนเก็บหลักฐานเบื้องต้น
--   [IR Framework](Framework.en.md) — วงจรชีวิตการตอบสนอง
--   [Incident Classification](Incident_Classification.en.md) — วิธีจำแนกเหตุการณ์
--   [Escalation Matrix](Escalation_Matrix.en.md) — ขั้นตอนการส่งต่อ
--   [Communication Templates](Communication_Templates.en.md) — แม่แบบการแจ้งเตือน
--   [Lessons Learned Template](Lessons_Learned_Template.en.md) — ทบทวนหลังเหตุการณ์
+-   [Evidence Collection](Evidence_Collection.th.md) — ขั้นตอนเก็บหลักฐานเบื้องต้น
+-   [IR Framework](Framework.th.md) — วงจรชีวิตการตอบสนอง
+-   [Incident Classification](Incident_Classification.th.md) — วิธีจำแนกเหตุการณ์
+-   [Escalation Matrix](Escalation_Matrix.th.md) — ขั้นตอนการส่งต่อ
+-   [Communication Templates](Communication_Templates.th.md) — แม่แบบการแจ้งเตือน
+-   [Lessons Learned Template](Lessons_Learned_Template.th.md) — ทบทวนหลังเหตุการณ์

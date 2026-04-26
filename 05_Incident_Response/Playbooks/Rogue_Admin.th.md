@@ -1,6 +1,6 @@
 # Playbook: แอดมินกระทำผิด / Insider Admin
 
-**ID**: PB-20
+**ID**: PB-15
 **ระดับความรุนแรง**: วิกฤต | **หมวดหมู่**: ภัยคุกคามจากภายใน
 **MITRE ATT&CK**: [T1078.002](https://attack.mitre.org/techniques/T1078/002/) (บัญชีโดเมน), [T1098](https://attack.mitre.org/techniques/T1098/) (การจัดการบัญชี)
 **ทริกเกอร์**: PAM alert, AD audit anomaly, whistleblower report, UEBA, SOD violation
@@ -13,7 +13,7 @@
 - [ ] เปิด command-line logging สำหรับ admin sessions
 - [ ] ทบทวน separation of duties policies
 - [ ] ทำ access recertification สำหรับ privileged accounts
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังตัวบ่งชี้พฤติกรรม
 
@@ -225,7 +225,7 @@ sequenceDiagram
 | 3 | Capture forensic evidence | Legal hold if needed |
 | 4 | Coordinate HR + Legal | In-person only |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1078 — Valid Accounts](https://attack.mitre.org/techniques/T1078/)
 - [NIST SP 800-53 — AC-6 Least Privilege](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final)

@@ -13,7 +13,7 @@
 - [ ] บล็อก mining pool connections ที่ firewall
 - [ ] ทบทวน container image scanning policy
 - [ ] ใช้ runtime security เฝ้า abnormal CPU usage
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังการตรวจจับ Cryptomining
 
@@ -226,6 +226,6 @@ sequenceDiagram
 | User workstation | Medium | P2 |
 | Dev/test server | Low | P3 |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1496 — Resource Hijacking](https://attack.mitre.org/techniques/T1496/)

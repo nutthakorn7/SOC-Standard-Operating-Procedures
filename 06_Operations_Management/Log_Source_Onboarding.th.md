@@ -259,3 +259,30 @@ flowchart TD
 
 - [ดัชนี Detection Rules](../08_Detection_Engineering/README.th.md)
 - [Sigma Validator](../tools/sigma_validator.py)
+- [SOC Metrics](SOC_Metrics.th.md)
+- [Log Source Matrix](Log_Source_Matrix.th.md)
+
+## เกณฑ์ขั้นต่ำก่อนปิดงาน Onboarding (Minimum Acceptance Criteria Before Close)
+
+| ข้อกำหนด | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| log flow เสถียรตามช่วงเวลาที่กำหนด | ยืนยันว่า source พร้อมใช้จริงใน production | SOC Engineer |
+| parsing และ normalization ผ่านเกณฑ์คุณภาพ field | ทำให้ detection และ investigation ใช้งานได้ | Detection Engineer |
+| source ถูกบันทึกใน Log Source Matrix แล้ว | คง inventory เรื่อง owner และ coverage ให้เป็นปัจจุบัน | SOC Analyst |
+| มี health-check alert สำหรับ log หยุดไหลหรือ volume drift | ตรวจจับ silent failure หลัง onboard | Security Engineer |
+| มีอย่างน้อย 1 detection หรือ monitoring use case ที่ validate แล้ว | ป้องกันการ onboard โดยไม่มี operational value | Detection Engineer |
+
+## Trigger สำหรับการยกระดับระหว่าง Onboarding (Escalation Triggers During Onboarding)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| volume สูงกว่าที่ประเมิน > 30% หรือเสี่ยงชนงบ | SOC Manager + Platform owner | ภายในวันทำการเดียวกัน | ทบทวน retention, filtering และต้นทุน |
+| parsing failure rate สูงกว่าเกณฑ์ที่ตกลงไว้ | Detection Engineer + Source owner | ภายใน 24 ชม. | แก้ parser ก่อน go-live |
+| security event สำคัญขาดหายจาก source logs | Source owner + SOC Manager | ภายในวันทำการเดียวกัน | เปิด audit category ที่ขาด |
+| ไม่มี owner, maintenance window หรือ rollback path | SOC Manager | ก่อนตัดเข้า production | หยุด closeout จนกว่าจะชัดเจน |
+| source รองรับ playbook สำคัญแต่ readiness ยังไม่ครบ | SOC Manager + IR lead | ทันทีสำหรับ critical gap | ติดตามเป็น monitoring blind spot |
+
+## References
+
+- [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

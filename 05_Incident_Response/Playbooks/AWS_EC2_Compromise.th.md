@@ -13,7 +13,7 @@
 - [ ] ทบทวน IAM instance profile permissions
 - [ ] ใช้ GuardDuty/CloudTrail monitoring
 - [ ] สร้าง golden AMI สำหรับ re-deployment
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังขั้นตอน Forensics
 
@@ -130,7 +130,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานของ instance | instance ID, AMI, tag, launch context, IAM role ที่ผูกอยู่ | EC2 / CMDB | ใช้ระบุ blast radius และ owner |
+| หลักฐานจาก host | process, binary, modified file, startup persistence, snapshot ของ memory/disk | SSM / EBS forensics / EDR | ใช้พิสูจน์เส้นทาง compromise และ persistence |
+| หลักฐานบน cloud | CloudTrail action, role usage, SG change, metadata access | CloudTrail / Config | ใช้ดูว่ามี control-plane หรือ IAM abuse ต่อหรือไม่ |
+| หลักฐานเครือข่าย | VPC Flow, DNS, C2/mining destination, port ผิดปกติ | VPC Flow / DNS / firewall | ใช้ยืนยัน remote control, exfiltration, หรือ mining |
+| หลักฐานด้านต้นทุนและธุรกิจ | billing spike, service impact, autoscaling disruption, customer effect | Billing / app owner / monitoring | ใช้ประกอบ executive escalation |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| CloudTrail และ EC2 control-plane logs | ดู launch, role, API, SG, และ metadata-related action | Required | ผูกเหตุเข้ากับ attacker identity หรือ control-plane abuse ไม่ได้ |
+| Host และ EDR telemetry | ดู process, file change, persistence, isolation status | Required | ยืนยัน host compromise หรือขอบเขตการ rebuild ไม่ได้ |
+| VPC Flow และ DNS logs | ดู C2, mining pool, lateral movement, exfiltration | Required | มองไม่เห็น network behavior ของ attacker |
+| Billing และ GuardDuty finding | ดู crypto-mining, anomalous usage, threat finding | Recommended | ตรวจการ abuse ช้าและความมั่นใจในการ triage ต่ำลง |
+| AMI, asset, และ change records | ดู expected instance state และ deployment context ล่าสุด | Recommended | อาจสับสน deployment churn กับ compromise |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| autoscaling หรือ blue/green deployment | instance ใหม่, SG change, process start ดูเหมือน malicious | ยืนยัน deployment pipeline, AMI, และ ASG event | tune เฉพาะ pipeline identity และ rollout window ที่อนุมัติ | มี console change แบบ manual หรือ binary แปลกบน instance |
+| security scan หรือ SSM automation | command และ inventory collection ดูเหมือน attacker activity | ยืนยัน SSM document, owner, และ target set | allowlist เฉพาะ automation document ที่ documented | instance เดียวกันติดต่อปลายทางเสี่ยงร่วมด้วย |
+| batch processing หรือ GPU workload ตามปกติ | compute/eject สูงดูเหมือน mining หรือ abuse | ยืนยัน workload owner, schedule, และ destination service | ปรับ threshold เฉพาะ instance profile และ tag ที่อนุมัติ | เจอ mining pool, port แปลก, หรือ IAM abuse ร่วม |
+| forensic หรือ IR acquisition | snapshot และ stop/start action ดู disruptive | ยืนยัน incident ticket และ responder ที่อนุมัติ | suppress เฉพาะ responder role และช่วงเวลาเก็บหลักฐาน | responder role ไปทำ privilege expansion หรือ data access ที่ไม่เกี่ยวข้อง |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -232,7 +267,7 @@ sequenceDiagram
 | SSRF protection | Enabled | Security review |
 | Role permissions | Least privilege | IAM Access Analyzer |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1190 — Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190/)
 - [AWS Security Incident Response Guide](https://docs.aws.amazon.com/whitepapers/latest/aws-security-incident-response-guide/welcome.html)

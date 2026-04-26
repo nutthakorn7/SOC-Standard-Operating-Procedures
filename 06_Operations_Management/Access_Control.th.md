@@ -157,8 +157,33 @@ graph LR
 | Credential rotation | หมุนอัตโนมัติทุก 90 วัน |
 | อนุมัติหลายระดับ | P1 incident: SOC Manager; Config changes: CISO |
 
+## Trigger ความเสี่ยงด้านสิทธิ์เข้าถึง (Access Risk Escalation Triggers)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| มีการให้สิทธิ์ privileged โดยไม่มี ticket หรือ approval | SOC Manager + CISO | ทันที | ทบทวนและถอนสิทธิ์ถ้าไม่สมเหตุผล |
+| พบบัญชี admin แบบ shared, orphaned หรือไม่มี owner | SOC Manager + Security Engineer | ภายใน 4 ชม. | ควบคุมการใช้งานและกำหนด owner |
+| การทบทวนสิทธิ์หรือ offboarding ไม่ผ่าน | SOC Manager + HR / IT owner | ภายในวันทำการเดียวกัน | ถอนสิทธิ์ค้างและยืนยันการปิดครบ |
+| มีการใช้ break-glass นอก incident ที่อนุมัติ | CISO | ทันที | ตรวจสอบการใช้งานและหมุน credential |
+| ไม่มี access log สำหรับ privileged action | Security Engineer + SOC Manager | ภายใน 24 ชม. | กู้ logging กลับมาและประเมิน blind spot |
+
+## หลักฐานขั้นต่ำสำหรับการทบทวนสิทธิ์ (Minimum Evidence for Access Review)
+
+| หลักฐาน | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| รายการ user-to-role ปัจจุบันของทุกระบบ SOC | ยืนยันว่าใครมีสิทธิ์อยู่ตอนนี้ | Security Engineer |
+| Ticket หรือ approval สำหรับบัญชี privileged | พิสูจน์เส้นทางการอนุมัติ | SOC Manager |
+| ประวัติ last login และ activity | หา dormant account หรือพฤติกรรมผิดปกติ | SOC Analyst |
+| หลักฐานว่า offboarding เสร็จสมบูรณ์ | ยืนยันว่าผู้ที่ออกไปถูกถอนสิทธิ์แล้ว | HR / IT owner |
+| Log การใช้ break-glass และ post-review | ยืนยันว่าการใช้ emergency access ถูกควบคุม | SOC Manager |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [โครงสร้างทีม SOC](SOC_Team_Structure.th.md)
 - [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)
 - [โปรโตคอลข้อมูล](Data_Handling_Protocol.th.md)
+
+## References
+
+- [NIST SP 800-53 Rev. 5 - Access Control (AC)](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final)
+- [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

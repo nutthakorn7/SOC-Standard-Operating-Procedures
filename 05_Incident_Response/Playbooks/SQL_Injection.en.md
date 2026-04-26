@@ -209,7 +209,42 @@ index=web sourcetype=access_combined
 | where count > 5
 ```
 
-## 5. Post-Incident
+## 5. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Request evidence | Full URI, parameters, headers, body, encoding style, timestamps | WAF / web logs | Reconstructs the injection path and bypass technique |
+| Database evidence | Query logs, targeted tables, DB user privileges, error traces | DB audit / DBA logs | Confirms whether exploitation reached the database and what was exposed |
+| Application evidence | Vulnerable code path, stack traces, release/version context | App logs / APM / code review | Ties the attack to the software defect that must be fixed |
+| Response evidence | Returned rows, response sizes, timing anomalies, error pages | Access logs / app metrics | Shows whether data extraction or blind SQLi likely succeeded |
+| Infrastructure evidence | WAF actions, firewall blocks, temporary endpoint changes | WAF / firewall / change tickets | Supports containment timeline and lessons learned |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| WAF and web access logs | Payload pattern, source IP, target endpoint, block/pass status | Required | Cannot identify the injection vector or source behavior |
+| Database audit logs | Query abuse, table access, privilege abuse, data extraction | Required | Cannot determine whether data exposure occurred |
+| Application and APM logs | Error conditions, vulnerable code path, auth/session context | Required | Cannot tell whether the payload reached exploitable logic |
+| Change and release records | Recent code changes or config regressions | Recommended | Root cause analysis slows and false blame increases |
+| DLP or data classification context | Sensitivity of extracted records | Recommended | Notification impact remains vague |
+
+---
+
+## 7. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Security scan or DAST run | Test payloads intentionally resemble SQLi | Confirm scanner source, schedule, and endpoint scope | Allowlist scanner ranges and test headers only within approved window | Requests appear outside the window or hit production data paths unexpectedly |
+| Encoded but valid business input | Search syntax or special characters may look like payloads | Reproduce with application owner and inspect server-side handling | Tune exact parameter exceptions instead of global rule relaxations | Same source escalates to schema probing or timing-based payloads |
+| QA or pre-release validation | Test automation may generate error-heavy query strings | Confirm release/testing window and environment | Lower severity for approved QA identities and paths only | Traffic hits production unexpectedly or causes DB-side indicators |
+| WAF normalization gap | Double-encoding can trigger noisy partial matches | Validate decoded payload and downstream app behavior | Tune normalization and decoding consistency before suppressing rules | Decoded content still probes schema, delays, or data extraction patterns |
+
+---
+
+## 8. Post-Incident
 
 ### Lessons Learned
 | Question | Answer |
@@ -219,7 +254,7 @@ index=web sourcetype=access_combined
 | Were database privileges properly scoped? | [Document gaps] |
 | Was data exfiltrated? PDPA notification required? | [Assessment] |
 
-## 6. Detection Rules (Sigma)
+## 9. Detection Rules (Sigma)
 
 ```yaml
 title: SQL Injection Attempt in Web Logs

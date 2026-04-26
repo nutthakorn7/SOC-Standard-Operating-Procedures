@@ -251,6 +251,32 @@ Track these 5 metrics from day 1 (see [SOC Metrics](../06_Operations_Management/
 □ At least 1 real incident handled end-to-end
 ```
 
+## Phase Gate Decision Criteria
+
+| Transition | Minimum Requirement | Decision Owner |
+|:---|:---|:---|
+| Foundation → Detection | SIEM live, first critical log sources onboarded, named owner for daily monitoring | CISO + SOC Manager |
+| Detection → Operational | Core alerts tuned, Tier 1 runbook in use, escalation path tested | SOC Manager |
+| Operational → Maturity | Metrics reviewed monthly, playbooks used in production, at least one exercise completed | CISO |
+
+## Minimum Deliverables by Phase
+
+| Phase | Minimum Deliverables | Primary Owner |
+|:---|:---|:---|
+| Foundation | SOC mission, operating model, approved budget, tool shortlist, staffing plan | CISO |
+| Detection | Log source inventory, first ruleset, alert routing, Tier 1 workflow | Security Engineer |
+| Operational | Active playbooks, metrics dashboard, reporting cadence, evidence handling standard | SOC Manager |
+| Maturity | Automation backlog, hunting plan, review cadence, control-improvement roadmap | SOC Manager + Security Engineer |
+
+## Escalation Triggers During SOC Buildout
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Budget approval slips and blocks critical tooling or staffing | Executive sponsor | Same business day | Re-scope roadmap or secure interim funding |
+| No owner for monitoring, incident handling, or engineering workstream | CISO | Within 24 hours | Assign accountable lead before next phase |
+| Critical log source or endpoint coverage remains unavailable past planned date | SOC Manager + Business owner | Same business day | Accept blind spot formally or fix dependency |
+| New regulatory requirement appears during build | CISO + Compliance Officer | Within 5 business days | Reprioritize roadmap and scope |
+
 ---
 
 ## Phase 4: Maturity (Year 2+)

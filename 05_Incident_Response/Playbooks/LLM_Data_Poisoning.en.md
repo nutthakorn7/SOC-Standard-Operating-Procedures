@@ -35,6 +35,7 @@ graph LR
 | Third-party data sources | Check for compromised external data feeds | Vendor notifications |
 | Fine-tuning logs | Review recent fine-tuning/RLHF sessions | Training platform |
 | RAG knowledge base | Scan for injected/modified documents | Document versioning |
+| Embedding/vector integrity | Review recent embedding rebuilds and vector store changes | Vector DB audit logs |
 
 ### 1.2 Poisoning Type Classification
 
@@ -66,6 +67,7 @@ graph LR
 | 3 | Quarantine suspected training data sources | Data pipeline | ☐ |
 | 4 | Enable enhanced output monitoring | LLM monitoring | ☐ |
 | 5 | Notify downstream consumers of potential data quality issues | Communication channels | ☐ |
+| 6 | Freeze automated or third-party data ingestion until provenance is verified | Data pipeline / ETL | ☐ |
 
 ### 2.2 If RAG Knowledge Base Was Poisoned
 
@@ -102,21 +104,35 @@ graph LR
 
 ---
 
-## 5. Recovery
+## 5. Decision Matrix
+
+| Condition | Decision | Owner | SLA |
+|:---|:---|:---|:---|
+| Performance anomaly explained by benign model drift or expected data refresh | Keep service running, monitor, and document | SOC Analyst + AI Team | Same business day |
+| Suspect poisoned records or documents, but no production impact confirmed | Freeze ingestion and continue scoped investigation | Security Engineer + SOC Manager | 30 minutes |
+| Production outputs are poisoned or model integrity is untrusted | Roll back to known-good state and contain immediately | IR Engineer + AI Team Lead | Immediate |
+| Customer impact, regulated decisions, or third-party provider compromise confirmed | Notify legal, compliance, procurement, and executives as needed | SOC Manager + CISO | Per incident policy |
+
+---
+
+## 6. Recovery
 
 - [ ] Retrain model from clean, audited dataset
 - [ ] Implement data provenance tracking for all training data
+- [ ] Restore only from sources with approved lineage or hash validation
 - [ ] Deploy canary samples to detect future poisoning
 - [ ] Validate model against comprehensive test suite
 - [ ] Restore RAG knowledge base from verified backup
 
 ---
 
-## 6. Post-Incident
+## 7. Post-Incident
 
 - [ ] Implement data validation gates in training pipeline
 - [ ] Add automated anomaly detection for training data
 - [ ] Establish regular model performance regression testing
+- [ ] Require approval workflow for new data source onboarding and re-index jobs
+- [ ] Preserve dataset lineage and hash manifests for future investigations
 - [ ] Review and harden data source access controls
 - [ ] Document in [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
 
@@ -131,11 +147,15 @@ graph LR
 ## Related Documents
 
 - [IR Framework](../Framework.en.md)
+- [Compliance Mapping](../../07_Compliance_Privacy/Compliance_Mapping.en.md)
 - [PB-51 AI Prompt Injection](AI_Prompt_Injection.en.md)
-- [PB-21 Supply Chain Attack](Supply_Chain_Attack.en.md)
+- [PB-32 Supply Chain Attack](Supply_Chain_Attack.en.md)
+- [SOC Use Case Library](../../08_Detection_Engineering/SOC_Use_Case_Library.en.md)
 
 ## References
 
 - [MITRE ATLAS AML.T0020 — Poison Training Data](https://atlas.mitre.org/techniques/AML.T0020)
-- [OWASP Top 10 for LLMs — Training Data Poisoning](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-- [NIST AI 100-2 — Adversarial Machine Learning](https://csrc.nist.gov/pubs/ai/100/2/e2023/final)
+- [OWASP GenAI — LLM04:2025 Data and Model Poisoning](https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/)
+- [NIST AI 100-2e2025 — Adversarial Machine Learning](https://csrc.nist.gov/pubs/ai/100/2/e2025/final)
+- [NIST AI RMF Playbook](https://www.nist.gov/itl/ai-risk-management-framework/nist-ai-rmf-playbook)
+- [CISA — AI Data Security: Best Practices for Securing Data Used to Train & Operate AI Systems](https://www.cisa.gov/resources-tools/resources/ai-data-security-best-practices-securing-data-used-train-operate-ai-systems)

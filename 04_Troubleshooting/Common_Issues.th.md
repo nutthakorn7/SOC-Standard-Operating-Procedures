@@ -159,21 +159,29 @@ done
 | SSL certificate หมดอายุ | Renew ทันที | ทันที | SOC Engineer |
 | MFA ล่ม | เปลี่ยนเป็น backup auth | 5 นาที | IT + IAM team |
 
+## 9. หลักฐานขั้นต่ำก่อน Escalate
+
+- [ ] **ยืนยันขอบเขตแล้ว**: ระบุว่ากระทบผู้ใช้คนเดียว แหล่งข้อมูลเดียว บริการเดียว หรือทั้งแพลตฟอร์ม
+- [ ] **บันทึกช่วงเวลาแล้ว**: ระบุว่าเริ่มเกิดปัญหาเมื่อใด ตรวจพบครั้งแรกเมื่อใด และมี change ใดเกิดขึ้นก่อนหน้าหรือไม่
+- [ ] **ทำ basic checks แล้ว**: ตรวจ connectivity, service status, resource health และ recent logs แล้ว
+- [ ] **ระบุผลกระทบทางธุรกิจแล้ว**: อธิบาย missed alerts, delayed response, user lockout หรือ service downtime เป็นภาษาที่ไม่กำกวม
+- [ ] **บันทึก workaround ปัจจุบันแล้ว**: ระบุมาตรการชั่วคราวที่ใช้ไปแล้ว
+
+## 10. Trigger การแจ้งผู้จัดการและผู้บริหาร
+
+| Trigger | ต้องแจ้งใคร | เวลา |
+|:---|:---|:---|
+| **ความสามารถในการ monitoring สำคัญเสื่อมสภาพ** | SOC Manager | ทันที |
+| **ปัญหากระทบ incident response ของเหตุการณ์ที่กำลัง active** | SOC Manager + incident lead | ทันที |
+| **outage กระทบระบบสำคัญทางธุรกิจหรือผู้บริหารใช้งาน** | CISO, business owner, platform owner | ทันที |
+| **ต้องแก้ปัญหารูปแบบเดิมซ้ำหลายครั้ง** | SOC Manager | ภายในวันทำการเดียวกัน |
+
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [กลยุทธ์การเชื่อมต่อเครื่องมือ](../03_User_Guides/Integration_Hub.th.md)
 -   [การติดตั้ง SOC](../10_Training_Onboarding/System_Activation.th.md)
 -   [ขั้นตอนการ Deploy](../02_Platform_Operations/Deployment_Procedures.th.md)
 
-### Quick Fix Reference
-
-| Issue | First Action | Escalate If |
-|:---|:---|:---|
-| SIEM slow | Check indexer load | CPU > 90% for 30 min |
-| No alerts | Verify log ingestion | Source offline > 15 min |
-| Login failure | Reset password/MFA | Account locked 3x |
-| Agent offline | Restart service | > 3 endpoints |
-
-### ตรวจสอบ Network Connectivity
+## ตรวจสอบ Network Connectivity
 ```bash
 #!/bin/bash
 echo "=== ตรวจ Network Connectivity ==="
@@ -201,7 +209,7 @@ done
 -   [USE Method (Brendan Gregg)](https://www.brendangregg.com/usemethod.html)
 -   [Google SRE Handbook](https://sre.google/sre-book/table-of-contents/)
 
-## Quick Fix Reference (อ้างอิงด่วน)
+## อ้างอิงด่วน (Quick Fix Reference)
 
 | ปัญหา | Action แรก | Escalate ถ้า |
 |:---|:---|:---|

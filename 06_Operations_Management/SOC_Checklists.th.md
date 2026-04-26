@@ -94,6 +94,36 @@
 
 ---
 
+## Owner ตามรอบการปฏิบัติงาน
+
+| รอบเวลา | Owner หลัก | ผู้สนับสนุน | ผลลัพธ์ที่ต้องได้ |
+|:---|:---|:---|:---|
+| **รายกะ / รายวัน** | Shift Lead | SOC Analyst, Security Engineer | สุขภาพคิว, handoff note, สถานะ incident ที่เปิด |
+| **รายสัปดาห์** | SOC Manager | Detection Engineer, TI Analyst | tuning priorities, stale-case review, การปรับกำลังคน |
+| **รายเดือน** | SOC Manager | CISO, Detection Engineer, IR Lead | KPI pack, action plan, management summary |
+| **รายไตรมาส** | CISO / SOC Manager | SOC Lead, GRC, Security Engineering | maturity review, control gaps, investment priorities |
+| **รายปี** | CISO | SOC Manager, HR, GRC, platform owners | strategy, budget, audit readiness, roadmap refresh |
+
+## Trigger สำหรับ Escalate ที่ผูกกับ Checklist
+
+| Trigger | ต้อง escalate ไปหา | เหตุผล |
+|:---|:---|:---|
+| **มี P1/P2 ที่ยังไม่ triage เกิน SLA** | SOC Manager + IR Lead | ความสามารถในการรับมือ incident กำลังเสี่ยง |
+| **log source สำคัญหายข้ามกะ** | Security Engineer + SOC Manager | detection coverage และคุณภาพหลักฐานลดลง |
+| **incident เปิดค้างเกิน threshold ที่กำหนด** | IR Lead | case ownership หรือ containment มี blocker |
+| **ปัญหา tuning เดิมโผล่ซ้ำใน weekly review** | Detection Engineer + SOC Manager | rule health กระทบ capacity ของทีม |
+| **KPI รายเดือนพลาดเป้าซ้ำ** | CISO | ต้องใช้การจัดการระดับบริหาร ไม่ใช่แก้เฉพาะหน้า |
+
+## หลักฐานและ Artifact ที่ต้องเก็บ
+
+| รอบเวลา | Artifact | จุดประสงค์ขั้นต่ำในการเก็บ |
+|:---|:---|:---|
+| **รายกะ / รายวัน** | handoff notes, queue snapshot, active-incident summary | รองรับ continuity และย้อน timeline ภายหลัง |
+| **รายสัปดาห์** | noisy-rule review, stale-case list, tuning requests | พิสูจน์การติดตามงานปฏิบัติการ |
+| **รายเดือน** | KPI pack, incident trend summary, management decisions | ใช้กับ governance และ reporting |
+| **รายไตรมาส** | maturity review, tabletop outputs, gap register | ติดตามการลดความเสี่ยงระยะยาว |
+| **รายปี** | audit evidence pack, roadmap decisions, training summary | รองรับ compliance และวางแผนงบประมาณ |
+
 ## เช็คลิสต์รายสัปดาห์
 
 | # | รายการ | ผู้รับผิดชอบ | สถานะ |
@@ -180,3 +210,8 @@
 - [คู่มือ Tier 1](../05_Incident_Response/Runbooks/Tier1_Runbook.th.md)
 - [ตัวชี้วัด SOC](SOC_Metrics.th.md)
 - [ส่งมอบกะ](Shift_Handoff.th.md)
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [NIST Cybersecurity Framework](https://csrc.nist.gov/projects/cybersecurity-framework)

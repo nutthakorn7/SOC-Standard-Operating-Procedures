@@ -155,8 +155,33 @@ graph LR
 | Credential rotation | Automated rotation every 90 days |
 | Multi-level approval | P1 incident: SOC Manager; Config changes: CISO |
 
+## Access Risk Escalation Triggers
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Privileged account granted without ticket or approval | SOC Manager + CISO | Immediate | Review access, revoke if unjustified |
+| Shared, orphaned, or undocumented admin account found | SOC Manager + Security Engineer | Within 4 hours | Contain usage and assign owner |
+| Failed access review or offboarding gap discovered | SOC Manager + HR / IT owner | Same business day | Revoke stale access and confirm completion |
+| Break-glass account used outside approved incident | CISO | Immediate | Investigate misuse and rotate credentials |
+| Access logs missing for privileged actions | Security Engineer + SOC Manager | Within 24 hours | Restore logging and assess blind spots |
+
+## Minimum Evidence for Access Review
+
+| Evidence | Why It Matters | Owner |
+|:---|:---|:---|
+| Current user-to-role export for each SOC system | Confirms who has access now | Security Engineer |
+| Approval record or ticket for privileged accounts | Proves authorization path | SOC Manager |
+| Last login and activity history | Identifies dormant or suspicious accounts | SOC Analyst |
+| Offboarding completion evidence | Confirms removal of departed users | HR / IT owner |
+| Break-glass usage log and post-review | Verifies emergency access remained controlled | SOC Manager |
+
 ## Related Documents
 
 - [SOC Team Structure](SOC_Team_Structure.en.md)
 - [Change Management SOP](Change_Management.en.md)
 - [Data Handling Protocol](Data_Handling_Protocol.en.md)
+
+## References
+
+- [NIST SP 800-53 Rev. 5 - Access Control (AC)](https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final)
+- [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

@@ -120,6 +120,28 @@ tags:
 | 4 | มีกฎซ้ำซ้อน? | รวมกฎ |
 | 5 | กฎ trigger ภายใน 90 วันที่ผ่านมา? | ประเมินความเกี่ยวข้อง |
 
+## 7. ชุดข้อมูลขั้นต่ำก่อนปล่อย Detection (Minimum Detection Release Pack)
+
+- [ ] **มี use case ชัดเจนแล้ว**: ระบุ threat, asset scope, required telemetry และ expected analyst action
+- [ ] **เก็บหลักฐานการทดสอบแล้ว**: มี syntax validation, historical replay, simulation result และผล peer review
+- [ ] **เตรียมแผนรับ false positive แล้ว**: ระบุ benign scenario ที่พบบ่อยและ tuning action แรกก่อน go-live
+- [ ] **ระบุ owner แล้ว**: มีเจ้าของ detection ที่รับผิดชอบ tuning, review cadence และ feedback จาก incident
+
+## 8. ตารางตัดสินใจปล่อย Detection
+
+| การตัดสินใจ | เงื่อนไขขั้นต่ำ | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| **เลื่อนเป็น test** | syntax ผ่าน, logic ผูกกับ use case จริง, และรู้ expected output | Detection Engineer |
+| **เลื่อนเป็น stable** | historical validation ผ่าน, simulation ใช้งานได้, และ analyst ยืนยันว่า actionable | SOC Lead |
+| **ต้อง retune** | false positives, query cost หรือ triage burden เกิน threshold ที่ตกลงไว้ | Detection Owner |
+| **ยกเลิก** | log source หาย, technique ไม่เกี่ยวข้องแล้ว หรือ rule value ไม่คุ้ม noise/cost | SOC Lead + RFC Owner |
+
+## 9. Trigger การ Escalate สำหรับ Detection Content
+
+- [ ] **Escalate ไป SOC Manager** ถ้า Priority 1 use case ยังไม่มี detection owner หรือไม่มี telemetry path ที่ใช้งานได้
+- [ ] **Escalate ไป Security Engineering** ถ้า query performance, parser quality หรือ schema instability ทำให้ deploy อย่างเชื่อถือไม่ได้
+- [ ] **Escalate ไป CISO** ถ้า critical detection gap ค้างอยู่กับทรัพย์สินสำคัญหรือเกิด incident ซ้ำ
+
 ---
 
 ## Content Lifecycle
@@ -160,7 +182,7 @@ graph LR
 - [SOP ปรับจูน Alert](../06_Operations_Management/Alert_Tuning.th.md)
 - [Atomic Test Map](../09_Simulation_Testing/Atomic_Test_Map.th.md)
 
-### Content Lifecycle Management
+## แนวทางบริหารวงจรชีวิตเนื้อหา (Content Lifecycle Management)
 
 | Phase | Activity | Owner | Frequency |
 |:---|:---|:---|:---|
@@ -171,14 +193,14 @@ graph LR
 | Monitor | Track FP/TP rates | Analyst | Weekly |
 | Retire | Archive outdated | Engineer | Quarterly |
 
-### Content Quality Checklist
+## Checklist คุณภาพเนื้อหา (Content Quality Checklist)
 - [ ] มี MITRE ATT&CK mapping
 - [ ] ทดสอบใน staging แล้ว
 - [ ] มี expected output/alert sample
 - [ ] Documentation ครบถ้วน
 - [ ] False positive rate < 10%
 
-### Content Types Summary
+## สรุปประเภทเนื้อหา (Content Types Summary)
 
 | Type | Format | Owner |
 |:---|:---|:---|
@@ -187,7 +209,7 @@ graph LR
 | Dashboards | JSON | Engineer |
 | Reports | Template | Manager |
 
-## อ้างอิง
+## References
 
 - [Detection Engineering Weekly](https://detectionengineering.net/)
 - [MITRE ATT&CK](https://attack.mitre.org/)

@@ -142,7 +142,7 @@
 | 📐 SOC Architecture Document | Blueprint สำหรับองค์กรตนเอง |
 | 📊 Staffing Model + Budget Proposal | พร้อมนำเสนอผู้บริหารได้ทันที |
 | 🗺️ 6-Month Implementation Roadmap | แผน milestone + owner + timeline |
-| 📚 SOC SOP Template Pack | **279 documents** ทั้ง EN/TH |
+| 📚 SOC SOP Template Pack | **281 documents** ทั้ง EN/TH |
 | 🔧 SOC Maturity Scorer | Interactive tool ประเมินตนเอง |
 | 📜 Certificate of Completion | ใบรับรองการอบรม |
 
@@ -258,7 +258,7 @@
 |:---|:---|
 | 📄 Personal Incident Report | จาก capstone exercise |
 | 🎯 MITRE ATT&CK Coverage Map | ขององค์กรตนเอง |
-| 📚 SOC SOP Template Pack | **279 documents** ทั้ง EN/TH |
+| 📚 SOC SOP Template Pack | **281 documents** ทั้ง EN/TH |
 | 🔬 Lab Environment Access | ใช้ต่อได้ **30 วัน** หลังจบ |
 | 📜 Certificate of Completion | ใบรับรองการอบรม |
 

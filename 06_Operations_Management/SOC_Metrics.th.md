@@ -194,6 +194,49 @@ graph LR
 
 ---
 
+## 7. บทบาทใดควรใช้ Metric ใด
+
+| บทบาท | การตัดสินใจหลัก | Metric ที่ควรดูเป็นลำดับแรก | จุดที่ต้องลงมือทันที |
+|:---|:---|:---|:---|
+| **CISO** | ความเสี่ยง, งบประมาณ, การยกระดับต่อผู้บริหาร | MTTD, MTTR, SLA adherence, แนวโน้ม critical incidents | KPI สำคัญต่ำกว่าเป้า 2 รอบติด |
+| **SOC Manager** | กำลังคน, สุขภาพคิว, จังหวะปฏิบัติการ | MTTA, backlog, alerts ต่อ analyst, escalation accuracy | มีคิวค้างเกิน 24 ชม. หรือ utilization เกิน 80% |
+| **SOC Analyst** | คุณภาพ triage, วินัยในการ escalate | MTTA, false positive rate, อายุเคส | รับงานช้าเกิน SLA หรือเจอ alert noise ซ้ำ |
+| **Security Engineer** | ความพร้อมของ telemetry และระบบตรวจจับ | detection coverage, ingestion health, rule failure rate | log source หายหรือ query ช้ากระทบการตรวจจับ |
+| **IR Engineer** | ความพร้อมในการ contain และกู้คืน | MTTR, dwell time, เวลาในการปิด PIR | critical case เกิน SLA หรือ recovery ล่าช้าซ้ำ |
+
+## 8. Decision Matrix สำหรับ KPI
+
+| เงื่อนไข | Owner หลัก | การตัดสินใจทันที | สิ่งที่ต้องทำต่อ |
+|:---|:---|:---|:---|
+| **MTTA สูงกว่าเป้า 3 วันติด** | SOC Manager | ปรับ owner ของคิวและกำลังคนต่อกะ | ทบทวน staffing และ automation ภายใน 5 วันทำการ |
+| **MTTR ของ Critical incident สูงกว่าเป้า** | IR Engineer | เปิด service review หา containment blocker | brief CISO และติดตามจนปิด |
+| **False positive rate เกิน 25%** | Detection Engineer | ชะลอ detection ใหม่ที่ไม่จำเป็นและเร่ง tuning | สรุป top noisy rules ใน weekly review |
+| **Detection coverage ต่ำกว่าเป้า** | Security Engineer | แยกว่าเกิดจาก log source หายหรือ content gap | อัปเดต gap register และแผนปิดช่องว่าง |
+| **Escalation accuracy ต่ำกว่า 85%** | SOC Manager | ทบทวนคุณภาพ handoff ระหว่าง T1/T2 | ทำ coaching plan และสุ่มตรวจเคสปิด |
+| **Utilization เกิน 80% ตลอด 1 เดือน** | CISO + SOC Manager | อนุมัติมาตรการลดภาระงาน | ประเมินการจ้างเพิ่ม, automation, หรือปรับ scope |
+
+## 9. คุณภาพข้อมูลขั้นต่ำที่ต้องมี
+
+| Metric | ข้อมูลขั้นต่ำที่ต้องมี | Blind Spot หากข้อมูลไม่ครบ |
+|:---|:---|:---|
+| **MTTD** | เวลาที่คาดว่าเริ่ม compromise, เวลาที่ตรวจพบ, timestamp ที่ normalize แล้ว | จะวัดความเร็วตรวจจับผิดเพี้ยน |
+| **MTTA** | เวลา alert ขึ้นและเวลา analyst รับเรื่องจาก workflow เดียวกัน | วัดความเร็วคิวไม่ได้จริง |
+| **MTTR** | เวลาเริ่ม incident, เวลา contain, เวลาแก้ไขเสร็จ | แยกไม่ออกว่าช้าเพราะ response หรือปิด ticket ช้า |
+| **FPR** | final disposition ของเคสพร้อม tag true/false positive | แยก noise จาก alert จริงไม่ได้ |
+| **Coverage** | inventory ของ rules ที่ map กับ use case หรือ MITRE ATT&CK | coverage จะเป็นแค่ตัวเลขเชิง presentation |
+| **Utilization** | ชั่วโมงกะ, ปริมาณ alert, OT, เวลาฝึกอบรม | มองไม่เห็น burnout จนเกิด attrition |
+
+## 10. รอบการทบทวนและการยกระดับ
+
+| ความถี่ | ผู้เข้าร่วม | ประเด็นหลัก | ต้อง escalate เมื่อ |
+|:---|:---|:---|:---|
+| **รายวัน** | Shift Lead, SOC Manager | MTTA, queue depth, P1/P2 ที่ยังเปิด | คิวเริ่มค้างหรือพลาด SLA ประจำกะ |
+| **รายสัปดาห์** | SOC Manager, Detection Engineering | FPR, escalation accuracy, noisy rules | เจอ noise ซ้ำหรือคุณภาพเคสลดลง |
+| **รายเดือน** | CISO, SOC Manager, IR Lead | MTTD, MTTR, utilization, business impact | KPI ต่ำกว่าเป้า 2 รอบติด |
+| **รายไตรมาส** | CISO, ผู้บริหารที่เกี่ยวข้อง | แนวโน้ม, staffing, ความจำเป็นด้านงบ, risk reduction | underperformance ต่อเนื่องหรือ impact สูงขึ้น |
+
+---
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](../05_Incident_Response/Framework.th.md) — วงจรชีวิต incident และ SLAs
@@ -204,44 +247,7 @@ graph LR
 - [การวางแผนกำลังคน SOC](SOC_Capacity_Planning.th.md) — การวางแผนคนและทรัพยากร
 - [มาตรฐานส่งมอบกะ](Shift_Handoff.th.md) — การปฏิบัติงานกะ
 
-## Metrics Collection & Reporting
-
-### Operational Metrics Template
-
-| Metric | Source | Collection | Target |
-|:---|:---|:---|:---|
-| Total Alerts | SIEM | Auto/daily | Trend ↓ |
-| True Positive Rate | Ticketing | Weekly | > 80% |
-| MTTR | Ticketing | Auto | < 4 hrs |
-| Escalation Rate | Ticketing | Weekly | 10-15% |
-| Coverage (ATT&CK) | Rule mapping | Monthly | > 60% |
-
-### Executive Reporting Cadence
-
-| Report | Audience | Frequency | Content |
-|:---|:---|:---|:---|
-| Daily Brief | SOC Team | Daily | Open incidents, alerts |
-| Weekly Summary | IT Management | Weekly | Trends, KPIs |
-| Monthly Report | CISO | Monthly | Full metrics, risks |
-| Quarterly Review | Board | Quarterly | ROI, maturity, roadmap |
-
-### Metric Health Indicators
-
-| Metric | Green | Yellow | Red |
-|:---|:---|:---|:---|
-| MTTR | < 4 hrs | 4-8 hrs | > 8 hrs |
-| FP Rate | < 20% | 20-40% | > 40% |
-| SLA Met | > 95% | 85-95% | < 85% |
-
-### Metric Review Cadence
-
-| Level | Frequency | Audience |
-|:---|:---|:---|
-| Operational | Daily | SOC team |
-| Tactical | Weekly | Management |
-| Strategic | Monthly | CISO/Board |
-
-## อ้างอิง (References)
+## References
 
 - [SANS SOC Metrics](https://www.sans.org/white-papers/soc-metrics/)
 - [MITRE SOC Assessment (CAT)](https://cat.mitre.org/)

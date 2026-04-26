@@ -168,98 +168,43 @@ flowchart TD
 
 ---
 
-## Cloud Log Sources Priority
+## Baseline ขั้นต่ำก่อนถือว่า Monitoring พร้อมใช้งาน
 
-| แหล่ง Log | AWS | Azure | GCP | ลำดับ |
-|:---|:---|:---|:---|:---:|
-| **Identity/IAM** | CloudTrail | Azure AD | Cloud Audit | P1 |
-| **Network** | VPC Flow Logs | NSG Flow Logs | VPC Flow Logs | P1 |
-| **Storage** | S3 Access Logs | Storage Analytics | GCS Audit | P2 |
-| **Compute** | EC2 Logs | VM Activity | GCE Logs | P2 |
-| **Container** | EKS Audit | AKS Audit | GKE Audit | P2 |
-| **Serverless** | Lambda Logs | Function Logs | Cloud Functions | P3 |
-| **WAF** | AWS WAF | Azure WAF | Cloud Armor | P1 |
+| พื้นที่ | สิ่งที่ต้องมีขั้นต่ำ | ทำไมจึงสำคัญ |
+|:---|:---|:---|
+| **Identity** | sign-in logs, audit logs, MFA events, privileged role changes | incident บน cloud ส่วนใหญ่เริ่มจาก identity misuse |
+| **Management plane** | เปิด CloudTrail / Activity Log / Cloud Audit Logs และเก็บ retention เพียงพอ | ต้องใช้ reconstruct การกระทำของ admin |
+| **Storage access** | object-level audit สำหรับ storage สำคัญเท่าที่ทำได้ | ต้องใช้พิสูจน์เส้นทางการเข้าถึงและ exfiltration |
+| **Network** | flow logs สำหรับส่วนที่ internet-facing และ segment สำคัญ | ใช้ยืนยัน exposure, scanning และ egress |
+| **Detection path** | มี ingestion health ใน SIEM และมี owner ต่อ critical use case | ป้องกัน onboarding แล้ว detection เงียบโดยไม่มีคนรู้ |
 
-## Cloud MITRE ATT&CK Mapping
+## Trigger สำหรับ Escalate เหตุการณ์ Cloud
 
-| Technique | คำอธิบาย | Detection | Platform |
+| Trigger | Owner เริ่มต้น | ต้อง escalate ไปหา | เหตุผล |
 |:---|:---|:---|:---|
-| **T1078.004** | Cloud account abuse | Impossible travel, unusual IP | All |
-| **T1537** | Transfer data to cloud account | Large S3/Blob transfers | AWS/Azure |
-| **T1580** | Cloud infrastructure discovery | API enumeration spike | All |
-| **T1525** | Implant container image | Unauthorized image push | All |
-| **T1552.005** | Cloud credentials in files | Credential scanning | All |
+| **root/global admin login นอกขั้นตอนที่อนุมัติ** | SOC Analyst | IR Engineer + CISO | เป็น privileged access event ที่ impact สูง |
+| **cloud logging ถูกปิดหรือถูกแก้ไข** | SOC Analyst | Security Engineer + SOC Manager | กระทบทั้งหลักฐานและความสามารถตรวจจับ |
+| **public storage exposure ที่มีข้อมูลสำคัญ** | SOC Analyst | IR Engineer + Privacy / Legal | อาจเป็นเหตุการณ์ที่ต้องรายงาน |
+| **มี cross-account trust หรือ admin role grant ใหม่** | Security Engineer | SOC Manager | blast radius ขยายเร็ว |
+| **cryptomining หรือ compute ที่ไม่ได้รับอนุญาต** | SOC Analyst | Security Engineer | บ่งชี้ credential/platform abuse และกระทบค่าใช้จ่าย |
 
-## Multi-Cloud Dashboard Template
+## Blind Spots ที่ต้องรู้ในการเฝ้าระวัง Cloud
 
-| Panel | ตัวชี้วัด | เป้าหมาย |
+| Control หรือ Log ที่ขาด | ผลกระทบเชิงปฏิบัติการ | แนวทางลดความเสี่ยง |
 |:---|:---|:---|
-| **IAM Overview** | Failed logins, new admin accounts, MFA disabled | Zero MFA-disabled admins |
-| **Network** | Unusual outbound, new security groups, exposed ports | Zero public-facing DB |
-| **Storage** | Public buckets/blobs, large downloads | Zero public buckets |
-| **Compute** | Unauthorized instances, crypto mining indicators | Zero unauthorized |
-| **Cost Anomaly** | Unexpected cost spikes (may indicate compromise) | Within 10% budget |
-
-## Cloud Security KPIs
-
-| ตัวชี้วัด | เป้าหมาย | ปัจจุบัน |
-|:---|:---|:---|
-| Cloud asset coverage (monitored) | ≥ 95% | [XX]% |
-| Public-facing resource audit | รายสัปดาห์ | [ระบุ] |
-| IAM over-privilege findings | 0 critical | [XX] |
-| Compliance score (CIS Benchmark) | ≥ 90% | [XX]% |
-
-## Cloud-specific Detection Rules
-
-### AWS Detection Priorities
-
-| Use Case | CloudTrail Event | Severity |
-|:---|:---|:---|
-| Root login | ConsoleLogin (root) | Critical |
-| S3 public | PutBucketPolicy | High |
-| IAM key created | CreateAccessKey | Medium |
-| SecurityGroup open | AuthorizeSecurityGroupIngress (0.0.0.0) | High |
-| CloudTrail disabled | StopLogging | Critical |
-
-### Azure Detection Priorities
-
-| Use Case | Activity Log Event | Severity |
-|:---|:---|:---|
-| Risky sign-in | Risk Detection | High |
-| MFA disabled | Disable strong auth | Critical |
-| Resource exposed | Network rule change | High |
-| Privilege escalation | Add role assignment | High |
-| Audit log disabled | Diagnostic setting delete | Critical |
-
-### Multi-Cloud Monitoring Strategy
-
-| Capability | AWS | Azure | GCP |
-|:---|:---|:---|:---|
-| Activity Logs | CloudTrail | Activity Log | Audit Log |
-| Flow Logs | VPC Flow | NSG Flow | VPC Flow |
-| Threat Detection | GuardDuty | Defender | SCC |
-| Config Audit | Config | Policy | Asset Inv. |
-| SIEM Integration | S3 → SIEM | EventHub → SIEM | Pub/Sub → SIEM |
-
-### Cloud Alert Priority
-
-| Alert | Platform | Priority |
-|:---|:---|:---|
-| Root/admin login | All | Critical |
-| Public storage | AWS/Azure/GCP | High |
-| MFA disabled | All | Critical |
-| Unusual API calls | All | Medium |
-
-### Cloud Compliance Check
-
-| Standard | AWS Control | Azure Control |
-|:---|:---|:---|
-| CIS Benchmark | Config Rules | Policy |
-| PCI DSS | SecurityHub | Defender |
+| **ไม่มี object-level storage audit** | ยืนยันไม่ได้ว่า record ใดถูกอ่านหรือดาวน์โหลด | เปิด data events ให้ storage สำคัญตามระดับความเสี่ยง |
+| **ไม่มี flow logs ใน segment สำคัญ** | ยืนยัน scanning, lateral movement, exfiltration ได้ยาก | เปิด flow logging แบบ targeted พร้อม retention ที่รองรับ IR |
+| **ไม่มี feed ของ CSPM/posture findings** | misconfiguration จะรอคนไปเจอเอง | ingest native posture findings เข้า SIEM หรือ workflow |
+| **ไม่มีการทบทวน privileged identity** | role abuse อาจดูเหมือน admin activity ปกติ | ทำ review รอบเวลาให้ admin actions และ break-glass use |
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูลทั้งหมด
--   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — Cloud automations
--   [Alert Tuning SOP](Alert_Tuning.en.md) — การ tune cloud alerts
--   [Third-Party Risk](Third_Party_Risk.en.md) — ความเสี่ยง cloud vendor
+-   [Log Source Matrix](Log_Source_Matrix.th.md) — แหล่งข้อมูลทั้งหมด
+-   [SOC Automation Catalog](SOC_Automation_Catalog.th.md) — Cloud automations
+-   [Alert Tuning SOP](Alert_Tuning.th.md) — การ tune cloud alerts
+-   [Third-Party Risk](Third_Party_Risk.th.md) — ความเสี่ยง cloud vendor
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [MITRE ATT&CK](https://attack.mitre.org/)

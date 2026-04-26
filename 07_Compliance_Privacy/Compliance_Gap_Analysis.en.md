@@ -204,6 +204,25 @@ flowchart TD
 | Audit finding recurrence rate | < 10% |
 | Evidence availability | ≥ 95% |
 
+## Minimum Evidence for Gap Closure
+
+| Evidence | Why It Matters | Owner |
+|:---|:---|:---|
+| Updated control or procedure reference | Proves the gap was addressed in documentation | Control Owner |
+| Operating evidence from production (ticket, log, screenshot, export) | Confirms the fix is working, not just written down | SOC Analyst / Security Engineer |
+| Approval or risk-acceptance record | Distinguishes remediation from accepted residual risk | SOC Manager / CISO |
+| Re-test or validation result | Shows the gap no longer fails the original check | Compliance Officer |
+| Closure date and review trail in gap register | Preserves accountability and audit traceability | Compliance Officer |
+
+## Executive Escalation Triggers for Gaps
+
+| Condition | Escalate To | SLA | Required Decision |
+|:---|:---|:---:|:---|
+| Critical gap has no owner or no funded plan | CISO | Same business day | Assign owner and approve remediation path |
+| Gap affects regulated data, cardholder systems, or legal reporting | CISO + Legal / DPO | Immediate | Accept risk temporarily or mandate control change |
+| High-risk gap misses deadline twice | Executive sponsor | Next governance review | Escalate beyond local team remediation |
+| Closure evidence is missing or fails validation | Compliance Officer + Control Owner | Within 5 business days | Reopen gap or provide evidence |
+
 ---
 
 ## Related Documents
@@ -213,3 +232,9 @@ flowchart TD
 -   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md) — SOC capability assessment
 -   [Vulnerability Management](../06_Operations_Management/Vulnerability_Management.en.md) — Scanning & remediation
 -   [Third-Party Risk](../06_Operations_Management/Third_Party_Risk.en.md) — Vendor compliance
+
+## References
+
+-   [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)
+-   [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)
+-   [PCI DSS v4.0](https://www.pcisecuritystandards.org/document_library/)

@@ -48,20 +48,21 @@
 | [Tabletop Exercises](05_Incident_Response/Tabletop_Exercises.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 | [Purple Team Exercises](05_Incident_Response/Purple_Team_Exercises.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 
-## 🛡️ Incident Response — Playbooks (50)
+## 🛡️ Incident Response — Playbooks (53)
 
 | Playbook | Version | Last Updated | Status |
 |:---|:---:|:---:|:---:|
 | PB-01 Phishing → PB-10 Web Attack | 2.8 | 2026-02-16 | ✅ |
 | PB-11 Suspicious Script → PB-20 Log Clearing | 2.8 | 2026-02-16 | ✅ |
-| PB-21 Supply Chain → PB-25 Zero-Day | 2.8 | 2026-02-16 | ✅ |
-| PB-26 MFA Bypass → PB-30 OT/ICS | 2.8 | 2026-02-16 | ✅ |
-| PB-31 AWS EC2 → PB-33 Azure AD | 2.8 | 2026-02-16 | ✅ |
+| PB-21 AWS S3 → PB-25 DNS Tunneling | 2.8 | 2026-02-16 | ✅ |
+| PB-26 MFA Bypass → PB-30 API Abuse | 2.8 | 2026-02-16 | ✅ |
+| PB-31 Cryptomining → PB-33 OT/ICS | 2.8 | 2026-02-16 | ✅ |
 | PB-34 Network Discovery | 2.8 | 2026-02-16 | ✅ |
 | PB-35 Data Collection | 2.8 | 2026-02-16 | ✅ |
 | PB-36 Credential Dumping → PB-40 USB Removable Media | 2.10 | 2026-02-16 | ✅ |
 | PB-41 VPN Abuse → PB-45 Rootkit/Bootkit | 2.10 | 2026-02-16 | ✅ |
 | PB-46 SIM Swap → PB-50 Unauthorized Scanning | 2.10 | 2026-02-16 | ✅ |
+| PB-51 AI Prompt Injection → PB-53 AI Model Theft | 2.13 | 2026-03-06 | ✅ |
 
 ## 📊 Operations Management
 
@@ -109,6 +110,13 @@
 | [Training Checklist](10_Training_Onboarding/Training_Checklist.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [System Activation](10_Training_Onboarding/System_Activation.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 
+## 🔍 Detection Engineering
+
+| Document | Version | Last Updated | Status | Next Review |
+|:---|:---:|:---:|:---:|:---:|
+| [SOC Use Case Library](08_Detection_Engineering/SOC_Use_Case_Library.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Detection Coverage Matrix](08_Detection_Engineering/Coverage_Matrix.en.md) | 2.12 | 2026-03-06 | ✅ Current | 2027-03-06 |
+
 ## 🏛️ Compliance
 
 | Document | Version | Last Updated | Status | Next Review |
@@ -141,11 +149,12 @@
 |:---|:---:|:---:|:---:|
 | Getting Started | 3 | ✅ | 2027-02 |
 | SOC Fundamentals | 6 | ✅ | 2027-02 |
-| Incident Response | 18 + 50 playbooks | ✅ | 2027-02 |
+| Incident Response | 18 + 53 playbooks | ✅ | 2027-03 |
 | Operations Management | 28 | ✅ | 2027-02 |
 | Testing & Training | 8 | ✅ | 2027-02 |
-| Compliance | 8 | ✅ | 2027-02 |
+| Detection Engineering | 2 | ✅ | 2027-04 |
+| Compliance | 8 | ✅ | 2027-04 |
 | Reports & Templates | 6 | ✅ | 2027-02 |
-| **Total** | **127+** | **✅ 100%** | **2027-02** |
+| **Total** | **129+** | **✅ 100%** | **2027-04** |
 
-> **Last tracker update**: 2026-03-06 | **Repository version**: 2.13.0
+> **Last tracker update**: 2026-04-26 | **Repository version**: 2.15.0

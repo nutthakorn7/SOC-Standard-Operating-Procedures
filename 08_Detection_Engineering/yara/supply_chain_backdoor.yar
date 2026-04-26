@@ -4,7 +4,7 @@ rule supply_chain_backdoor {
         author = "SOC-SOP"
         date = "2026-03-06"
         severity = "high"
-        playbook = "PB-21 Supply Chain Attack"
+        playbook = "PB-32 Supply Chain Attack"
         mitre_attack = "T1195.001, T1195.002"
         reference = "https://attack.mitre.org/techniques/T1195/"
 

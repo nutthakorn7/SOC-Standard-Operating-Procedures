@@ -167,7 +167,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Movement evidence | Source host, destination hosts, method, ports, service creation, RDP/WinRM/SMB logs | SIEM / EDR / Windows logs | Reconstructs the attack path across hosts |
+| Credential evidence | Accounts used, ticket abuse, hashes, LSASS access, privileged groups | IdP / AD / EDR | Shows which credentials enabled movement |
+| Host evidence | Dropped tools, remote services, scheduled tasks, persistence on destination hosts | EDR / forensics | Determines cleanup scope on each touched host |
+| Scope evidence | Number of hosts reached, DC/server access, sequence timing | SIEM correlation | Supports severity and containment order |
+| Impact evidence | Data staging, admin access, ransomware prep, service disruption | DLP / app logs / ticketing | Shows whether movement already enabled business impact |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Endpoint and EDR telemetry | Remote service creation, process execution, dropped tools | Required | Cannot prove remote execution on touched hosts |
+| Windows, AD, and auth logs | Logon types, Kerberos/NTLM activity, admin share use | Required | Credential-driven movement remains unclear |
+| Network telemetry | RDP/SMB/WinRM/WMI paths and east-west traffic | Required | Multi-host movement path stays incomplete |
+| SIEM correlation across hosts | Sequencing and blast radius | Required | Host-by-host view misses the full chain |
+| Asset criticality and segmentation context | Prioritization of containment | Recommended | Teams may isolate the wrong systems first |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved software deployment or patching | PsExec/WinRM/service creation can look like attacker movement | Confirm deployment tool, admin identity, and maintenance window | Allowlist approved management servers and service names narrowly | Tool reaches out-of-scope hosts or runs outside change window |
+| Admin troubleshooting across servers | RDP/SMB access patterns may resemble manual lateral movement | Validate admin ticket, target set, and jump-host use | Lower severity for approved admin paths and jump hosts | Same account later accesses DCs or user workstations unexpectedly |
+| Backup or monitoring agent rollout | New services and SMB connections may spike | Confirm agent package, owner, and rollout schedule | Tune agent signatures and expected destination sets | Unknown binaries or credential dumping appears alongside rollout |
+| IR or red-team exercise | Multi-host access is intentional during testing | Confirm exercise scope and credentials used | Suppress only approved exercise accounts/hosts | Activity spreads outside exercise boundary or impacts production users |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

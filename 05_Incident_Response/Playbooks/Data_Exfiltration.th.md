@@ -13,7 +13,7 @@
 - [ ] แจ้ง Legal/DPO ถ้ามี PII รั่วไหล (PDPA 72h)
 - [ ] สร้าง detection rule สำหรับ anomalous data transfer
 - [ ] ทำ data impact assessment
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังการตรวจจับตามช่องทาง
 
@@ -161,6 +161,41 @@ graph TD
 
 ---
 
+## 6. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานผลกระทบของข้อมูล | file names, data classification, จำนวน records, data owner | DLP / data inventory | ใช้ตัดสินผลกระทบทางกฎหมายและธุรกิจ |
+| หลักฐานการส่งออกข้อมูล | destination IP/domain, protocol, port, transfer time, transfer volume | Proxy / firewall / NetFlow | ใช้พิสูจน์ช่องทางและขอบเขตของ exfiltration |
+| หลักฐานของผู้ใช้และเครื่องต้นทาง | source user, endpoint, process, removable media, cloud sync client | EDR / IAM / endpoint control | ใช้ระบุว่าเป็น insider หรือ attacker |
+| หลักฐานการ staging | archive files, staging folders, compression/encryption artifacts | EDR / forensic tools | ใช้ดูการเตรียมข้อมูลก่อนนำออก |
+| หลักฐานด้านการแจ้งเตือน | legal review note, การตัดสินใจของ DPO, รายชื่อผู้ได้รับผลกระทบ | Case record / legal workflow | รองรับการแจ้งหน่วยงานกำกับและลูกค้า |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| DLP และ data classification telemetry | ยืนยัน sensitive content, owner, record count, policy trigger | Required | พิสูจน์ความอ่อนไหวของข้อมูลและผลต่อการแจ้งเตือนไม่ได้ |
+| Proxy, firewall, และ NetFlow logs | ดูปลายทาง, protocol, volume, ช่วงเวลา | Required | สร้างเส้นทาง exfiltration หรือวัดปริมาณความเสียหายไม่ได้ |
+| Endpoint telemetry | ดู staging folder, compression tool, removable media, sync client | Required | ยืนยันไม่ได้ว่าข้อมูลถูกเตรียมและย้ายออกจากเครื่องอย่างไร |
+| Identity และ access logs | ยืนยันผู้ใช้, session context, privilege level | Required | แยก insider misuse ออกจาก attacker-driven activity ไม่ได้ |
+| Asset และ legal case records | ดู criticality, owner ของ dataset, workflow การแจ้งเตือน | Recommended | ตัดสินผลกระทบธุรกิจและ breach response ได้ไม่สม่ำเสมอ |
+
+---
+
+## 8. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| งาน backup หรือ replication ที่อนุมัติ | ปริมาณข้อมูลขาออกสูงดูเหมือน exfiltration | ยืนยัน destination, service account, schedule, และ backup job ID | ยกเว้นเฉพาะ destination และ service identity ที่อนุมัติ | มีการส่งไปปลายทางใหม่หรือเกิดนอกช่วงเวลาที่กำหนด |
+| งานโอนข้อมูลจำนวนมากทางธุรกิจที่ได้รับอนุมัติ | ทีมงานอาจต้องย้าย dataset ขนาดใหญ่จริง | ยืนยัน ticket, data owner, วิธีเข้ารหัส, และผู้รับ | ปรับ threshold เฉพาะ workflow และผู้ใช้ที่ได้รับอนุมัติ | data classification, ผู้รับ, หรือเครื่องมือที่ใช้ไม่ตรงกับที่อนุมัติ |
+| การ sync ผ่าน cloud client หรือ collaboration tool | sync burst ดูเหมือน mass upload หรือ staging | ยืนยัน client ที่อนุมัติ, tenant, และ directory path | tune ตาม signature ของ client ที่อนุมัติและ corporate tenant | พบ personal tenant, removable media, หรือ archive staging |
+| การ export ข้อมูลเพื่อ security หรือ eDiscovery | legal hold และการ export เพื่อสืบสวนอาจ trigger DLP | ยืนยัน case ID, custodian, และ operator ที่ทำ export | suppress เฉพาะ workflow eDiscovery ที่อนุมัติและมี owner review | ขอบเขตการ export เกินความจำเป็นหรือส่งไปยังปลายทางที่ไม่ควบคุม |
+
+---
+
 ### ผัง Exfiltration Channels
 
 ```mermaid
@@ -237,6 +272,6 @@ sequenceDiagram
 | Duration | Timeline analysis |
 | Data sensitivity | Classification review |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK — Exfiltration](https://attack.mitre.org/tactics/TA0010/)

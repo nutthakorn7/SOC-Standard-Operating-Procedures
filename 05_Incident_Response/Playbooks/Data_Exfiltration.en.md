@@ -171,7 +171,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Data impact evidence | File names, data classifications, record counts, dataset owners | DLP / data inventory | Determines legal and business impact |
+| Transfer evidence | Destination IP/domain, protocol, port, transfer times, transfer volume | Proxy / firewall / NetFlow | Proves exfiltration path and scope |
+| User and host evidence | Source user, endpoint, process, removable media, cloud sync client | EDR / IAM / endpoint control | Identifies whether it was insider-driven or attacker-driven |
+| Staging evidence | Archive files, staging folders, compression or encryption artifacts | EDR / forensic tools | Shows preparation before exfiltration |
+| Notification evidence | Legal review notes, DPO decision, affected-party list | Case record / legal workflow | Supports regulatory and customer communication |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| DLP and data classification telemetry | Sensitive content match, owner, record count, policy trigger | Required | Cannot prove data sensitivity or notification impact |
+| Proxy, firewall, and NetFlow logs | Transfer destination, protocol, volume, session timing | Required | Cannot reconstruct the exfiltration path or quantify loss |
+| Endpoint telemetry | Staging folders, compression tools, removable media, sync clients | Required | Cannot confirm how data was prepared or moved locally |
+| Identity and access logs | User attribution, session context, privilege level | Required | Cannot separate insider misuse from attacker-driven activity |
+| Asset and legal case records | System criticality, dataset ownership, notification workflow | Recommended | Business impact and breach response decisions become inconsistent |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Approved backup or replication job | Large outbound data volume resembles exfiltration | Confirm destination, service account, schedule, and backup job ID | Exclude approved backup destinations and service identities only | Volume targets a new destination or occurs outside the scheduled window |
+| Authorized business bulk transfer | Finance, legal, or engineering may legitimately move large datasets | Validate ticket, dataset owner, encryption method, and recipient | Raise thresholds only for approved transfer workflows and users | Data classification, recipient, or transfer tool differs from approval |
+| Cloud sync or collaboration client | Sync bursts can look like mass upload or staging | Confirm approved client, tenant, and directory path | Tune for sanctioned client signatures and corporate tenants | Personal tenant, removable media, or archive staging is involved |
+| Security or eDiscovery export | Legal hold and investigation exports can trigger DLP alerts | Validate case ID, custodian, and export operator | Suppress only for approved eDiscovery workflows with owner review | Export scope exceeds case need or destination is not controlled |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

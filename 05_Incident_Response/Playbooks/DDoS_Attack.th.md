@@ -1,6 +1,6 @@
 # Playbook: การโจมตี DDoS
 
-**ID**: PB-12
+**ID**: PB-09
 **ระดับความรุนแรง**: สูง/วิกฤต | **หมวดหมู่**: ความปลอดภัยเครือข่าย
 **MITRE ATT&CK**: [T1498](https://attack.mitre.org/techniques/T1498/) (Network Denial of Service), [T1499](https://attack.mitre.org/techniques/T1499/) (Endpoint Denial of Service)
 **ทริกเกอร์**: Network monitoring alert, WAF/CDN alert, ลูกค้ารายงาน, uptime monitor, NOC alert
@@ -13,7 +13,7 @@
 - [ ] ทบทวน auto-scaling และ rate-limiting configurations
 - [ ] ทำ capacity planning จาก bandwidth ที่พบ
 - [ ] จัด DDoS simulation exercise กับ mitigation provider
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังชั้นป้องกัน DDoS
 
@@ -232,7 +232,7 @@ sequenceDiagram
 | Mitigation effective? | Security |
 | Customer impact assessed? | Business |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1498 — Network Denial of Service](https://attack.mitre.org/techniques/T1498/)
 - [CISA — DDoS Quick Guide](https://www.cisa.gov/sites/default/files/publications/DDoS%20Quick%20Guide.pdf)

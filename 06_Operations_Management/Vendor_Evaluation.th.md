@@ -197,8 +197,33 @@ graph LR
 □ ให้ recommendation พร้อมเหตุผล
 ```
 
+## ข้อมูลขั้นต่ำก่อนตัดสินใจเลือก (Minimum Decision Inputs Before Selection)
+
+| ข้อมูล | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| use case ที่กำหนดไว้ชัดและ success criteria ที่วัดได้ | ป้องกันการซื้อ feature ที่ไม่ตอบโจทย์งานจริง | SOC Manager |
+| ปริมาณข้อมูลที่คาดไว้และการเติบโต | ใช้ยืนยัน scale และต้นทุน | Security Engineer |
+| แผน integration กับเครื่องมือและ workflow ปัจจุบัน | ยืนยันว่าทำ implement ได้จริง | Security Engineer |
+| ผล POC พร้อม feedback จาก analyst | ยืนยัน usability และคุณค่าด้าน detection | SOC Analyst / SOC Lead |
+| TCO 3 ปี และสมมติฐานเรื่อง exit clause | ใช้ประกอบการอนุมัติงบและตัดสินใจระดับ CISO | CISO / Procurement |
+
+## Trigger สำหรับการยกระดับระหว่างการประเมิน (Escalation Triggers During Evaluation)
+
+| เงื่อนไข | ยกระดับถึง | SLA | เหตุผล |
+|:---|:---|:---:|:---|
+| Vendor ไม่รองรับ use case สำคัญใน POC | SOC Manager + CISO | ภายในวันทำการเดียวกัน | ต้องทบทวน shortlist หรือ scope |
+| ค่าใช้จ่ายเกินกรอบงบประมาณที่อนุมัติ > 15% | CISO + Procurement | ภายในวันทำการเดียวกัน | ยืนยันงบหรือเจรจาขอบเขตใหม่ |
+| สถาปัตยกรรมหรือ data flow ที่ต้องใช้มีความเสี่ยงสูง | Security Engineer + CISO | ภายใน 24 ชม. | ประเมินความเสี่ยงด้านความปลอดภัยและการ implement |
+| Vendor ไม่ยอมตอบ security questionnaire / audit / data processing terms | CISO + Legal | ทันที | เป็น blocker ด้านสัญญาและ compliance |
+| ผล POC สรุปไม่ได้เพราะข้อมูลไม่พอหรือ scope ไหล | SOC Manager | ภายใน 24 ชม. | ต้อง reset เกณฑ์ก่อนตัดสินใจ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [คู่มือเลือกเครื่องมือ](../01_SOC_Fundamentals/Technology_Stack.th.md)
 - [งบประมาณและจัดคน](../01_SOC_Fundamentals/Budget_Staffing.th.md)
 - [SOP จัดการเปลี่ยนแปลง](Change_Management.th.md)
+
+## References
+
+- [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)
+- [MITRE Center for Threat-Informed Defense](https://ctid.mitre.org/)

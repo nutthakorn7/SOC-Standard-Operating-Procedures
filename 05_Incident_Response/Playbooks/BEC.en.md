@@ -171,7 +171,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Email fraud evidence | Original message, headers, reply-to chain, impersonated identities | Mailbox export / gateway | Confirms spoofing, impersonation path, and campaign scope |
+| Mailbox abuse evidence | Inbox rules, forwarding, delegates, OAuth apps, sent items | Exchange / cloud audit | Shows persistence and how the fraud was conducted |
+| Identity evidence | Sign-in source, MFA events, session IDs, device/app context | IdP / auth logs | Distinguishes spoofing-only from real account takeover |
+| Financial evidence | Invoice, account-change request, bank details, transfer timing | ERP / finance tickets / email | Supports recall, legal action, and business impact assessment |
+| Communication evidence | Call notes, vendor confirmations, executive verification trail | Ticketing / call log / finance workflow | Demonstrates whether controls were followed and where they failed |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Mailbox audit and message trace | Inbox rules, forwarding, message flow, purge scope | Required | Cannot confirm mailbox abuse or victim scope |
+| Identity provider sign-in logs | Login origin, MFA, session changes, token misuse | Required | Cannot prove account compromise versus impersonation-only fraud |
+| Email gateway and domain-auth telemetry | SPF, DKIM, DMARC, sender path, lookalike domains | Required | Spoofing and domain abuse remain poorly scoped |
+| Finance workflow and payment records | Verification control use, transfer status, beneficiary details | Required | Financial impact and recall action become delayed |
+| Threat intel and lookalike monitoring | Domain age, registrar, prior abuse, campaign indicators | Recommended | Detection of broader campaign activity weakens |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| Legitimate executive urgency email | Short, urgent requests may resemble CEO fraud | Call-back verify with executive assistant or approved channel | Keep alerts informational for verified sender-workflow combinations | Payment details change, secrecy request, or reply-to mismatch appears |
+| Vendor bank detail update in normal process | Real AP changes can look like invoice fraud | Confirm via known phone number and vendor master change process | Tune only for vendors with documented verified workflow | Change bypasses callback control or introduces new beneficiary urgency |
+| Internal mass mail from finance or HR | Bulk sensitive requests may resemble data-theft BEC | Validate campaign owner, approved template, and mailing list | Allowlist approved internal sender plus campaign window | Message content or recipients diverge from approved scope |
+| Shared mailbox delegation changes | Planned delegate updates can resemble mailbox abuse | Check ticket, approver, and admin identity | Suppress only approved delegate changes during change window | Forwarding to external domains or hidden inbox rules appear |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

@@ -36,7 +36,7 @@ pie title ISO 27001 Annex A Coverage
 | A.5.23 | Information security for cloud services | ✅ Full | [Cloud Security Monitoring](../06_Operations_Management/Cloud_Security_Monitoring.en.md) |
 | A.5.24 | Incident management planning | ✅ Full | [IR Framework](../05_Incident_Response/Framework.en.md) |
 | A.5.25 | Assessment and decision on events | ✅ Full | [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md), [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) |
-| A.5.26 | Response to incidents | ✅ Full | [50 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md), [Tier Runbooks](../05_Incident_Response/Runbooks/Tier1_Runbook.en.md) |
+| A.5.26 | Response to incidents | ✅ Full | [53 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md), [Tier Runbooks](../05_Incident_Response/Runbooks/Tier1_Runbook.en.md) |
 | A.5.27 | Learning from incidents | ✅ Full | [Lessons Learned](../05_Incident_Response/Lessons_Learned_Template.en.md) |
 | A.5.28 | Collection of evidence | ✅ Full | [Evidence Collection](../05_Incident_Response/Evidence_Collection.en.md), [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) |
 | A.5.29 | Information security during disruption | ✅ Full | [Disaster Recovery / BCP](../05_Incident_Response/Disaster_Recovery_BCP.en.md) |
@@ -94,7 +94,7 @@ pie title ISO 27001 Annex A Coverage
 ## 6. Gap Analysis Summary
 
 ### Areas with Strong Coverage (✅)
-- **Incident Management** (A.5.24–A.5.28) — Full lifecycle covered by IR Framework + 50 Playbooks
+- **Incident Management** (A.5.24–A.5.28) — Full lifecycle covered by IR Framework + 53 Playbooks
 - **Threat Intelligence** (A.5.7) — Dedicated TI Lifecycle + TI Feeds Integration
 - **Logging & Monitoring** (A.8.15–A.8.16) — Log Source Matrix + Network/Cloud Monitoring
 - **Vulnerability Management** (A.8.8) — Dedicated SOP
@@ -110,6 +110,24 @@ pie title ISO 27001 Annex A Coverage
 - HR controls (A.6.2, A.6.5, A.6.6) — HR department responsibility
 - Cryptography (A.8.24) — Development team responsibility
 
+## Minimum Audit Evidence by Control Theme
+
+| Theme | Minimum Evidence | Owner |
+|:---|:---|:---|
+| Incident management (A.5.24–A.5.28) | Approved framework, sample tickets, evidence records, lessons learned | IR Engineer |
+| Logging and monitoring (A.8.15–A.8.16) | Log source inventory, health checks, alert review records | Security Engineer |
+| Access and authentication (A.8.2, A.8.3, A.8.5) | Access review output, privileged approval trail, MFA coverage evidence | SOC Manager |
+| Vulnerability management (A.8.8) | Scan cadence, remediation tracking, exception records | Security Engineer |
+| Awareness and training (A.6.3) | Training completion records and exercise evidence | SOC Manager |
+
+## Escalation Triggers for ISO 27001 Gaps
+
+| Condition | Escalate To | SLA | Required Decision |
+|:---|:---|:---:|:---|
+| Control marked full coverage has no current evidence | Compliance Officer + SOC Manager | Same business day | Downgrade status or restore evidence immediately |
+| Repeated partial-control gaps remain open across two review cycles | CISO | At next governance review | Fund remediation or accept risk |
+| Audit sample shows operating procedure not followed in production | CISO + Control owner | Immediate | Contain process failure and define corrective action |
+
 ---
 
 ## Related Documents
@@ -117,3 +135,8 @@ pie title ISO 27001 Annex A Coverage
 - [Compliance Gap Analysis](Compliance_Gap_Analysis.en.md)
 - [PDPA Compliance](PDPA_Compliance.en.md)
 - [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md)
+
+## References
+
+- [ISO/IEC 27001:2022](https://www.iso.org/standard/27001)
+- [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

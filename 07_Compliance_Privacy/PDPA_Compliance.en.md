@@ -200,6 +200,26 @@ Before deploying new SOC tools that process personal data:
 | Automated decision-making? | Yes/No | Transparency obligations |
 | New technology involved? | Yes/No | Risk assessment required |
 
+## Escalation Triggers for PDPA Compliance
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Confirmed or suspected personal data breach | DPO + SOC Manager | Immediate | Start breach clock and preserve evidence |
+| Sensitive personal data or > 500 subjects may be affected | DPO + CISO | Within 1 hour | Prepare executive and legal decision path |
+| PII found in an unapproved tool, channel, or storage location | SOC Manager + DPO | Same business day | Contain exposure and document unauthorized processing |
+| Cross-border transfer occurs without approved safeguards | DPO + Legal | Immediate | Stop transfer and assess reportability |
+| Access logs for PII handling are missing or incomplete | Security Engineer + DPO | Within 24 hours | Restore traceability and assess residual risk |
+
+## Minimum Evidence for PDPA Readiness
+
+| Evidence | Why It Matters | Owner |
+|:---|:---|:---|
+| Data classification and handling standard for SOC cases | Shows PII is recognized and treated consistently | SOC Manager |
+| Current DPO contact path and breach-notification workflow | Proves the organization can act within legal timelines | DPO |
+| Sample case records showing PII access logging and minimization | Demonstrates operational compliance, not policy only | SOC Analyst |
+| Retention, deletion, and encrypted-storage evidence | Supports lawful handling after case closure | Security Engineer |
+| DPIA or review records for SOC tools processing PII | Shows new tooling was assessed before production use | Security Engineer + DPO |
+
 ## Related Documents
 
 - [Data Handling Protocol](../06_Operations_Management/Data_Handling_Protocol.en.md)

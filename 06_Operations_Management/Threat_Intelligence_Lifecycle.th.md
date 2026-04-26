@@ -160,10 +160,30 @@ graph TD
 | **Campaign** | ชุดกิจกรรมที่เกี่ยวข้อง | Q1 2026 banking trojan campaign |
 | **Relationship** | ลิงก์ระหว่าง STIX objects | Malware X "uses" Technique Y |
 
+## 9. Decision Matrix สำหรับผู้ใช้ข่าวกรอง
+
+| ผู้ใช้ | ต้องการอะไร | รูปแบบการส่งมอบ | ต้อง escalate เมื่อ |
+|:---|:---|:---|:---|
+| **SOC Analyst** | IOC ที่นำไปใช้ได้และบริบทของ TTP | note บน alert หรือ advisory สั้นแบบ real-time | ข่าวกรองใหม่ทำให้ triage หรือ containment เปลี่ยน |
+| **SOC Manager** | ความเกี่ยวข้องของแคมเปญ, ผลกระทบต่อ detection, ภาระงานทีม | daily หรือ weekly summary | ต้องประสานหลายทีม |
+| **Security Engineer** | โอกาสสร้าง detection และช่องว่างของ telemetry | technical note ที่มี fields, patterns, sources | ต้องปรับ parser, rule หรือ sensor |
+| **CISO** | exposure, business risk, strategic trend | executive summary | threat กระทบ asset สำคัญ, regulated data หรือบริการหลัก |
+
+## 10. การ validate ขั้นต่ำก่อนแจกจ่ายข่าวกรอง
+
+| รายการตรวจ | เหตุผล |
+|:---|:---|
+| **ประเมินความน่าเชื่อถือของแหล่งแล้ว** | ป้องกันการกระจายข้อมูล noisy หรือ false report |
+| **map indicator หรือ TTP เข้ากับ environment ของเราแล้ว** | ทำให้ข่าวกรองเกี่ยวข้องจริง ไม่ generic |
+| **กำหนด confidence และวันหมดอายุแล้ว** | ป้องกัน intel เก่าค้างใน control |
+| **กำหนด owner สำหรับ follow-up แล้ว** | ให้ข่าวกรองถูกแปลงเป็น action |
+
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 -   [กรอบการตอบสนองเหตุการณ์](../05_Incident_Response/Framework.th.md)
 -   [แบบประเมิน SOC](SOC_Assessment_Checklist.th.md)
 -   [ตัวชี้วัด SOC](SOC_Metrics.th.md)
+-   [TI Feeds Integration](TI_Feeds_Integration.th.md)
+-   [Threat Landscape Report](Threat_Landscape_Report.th.md)
 
 ## TI Program Maturity
 

@@ -159,8 +159,8 @@ nav:
       - PB-38 Wiper Attack (TH): 05_Incident_Response/Playbooks/Wiper_Attack.th.md
       - PB-39 Living Off The Land (EN): 05_Incident_Response/Playbooks/Living_Off_The_Land.en.md
       - PB-39 Living Off The Land (TH): 05_Incident_Response/Playbooks/Living_Off_The_Land.th.md
-      - PB-46 Rootkit / Bootkit (EN): 05_Incident_Response/Playbooks/Rootkit_Bootkit.en.md
-      - PB-46 Rootkit / Bootkit (TH): 05_Incident_Response/Playbooks/Rootkit_Bootkit.th.md
+      - PB-45 Rootkit / Bootkit (EN): 05_Incident_Response/Playbooks/Rootkit_Bootkit.en.md
+      - PB-45 Rootkit / Bootkit (TH): 05_Incident_Response/Playbooks/Rootkit_Bootkit.th.md
     # ── 🔑 Identity & Access ──
     - Playbooks — Identity & Access:
       - PB-04 Brute Force (EN): 05_Incident_Response/Playbooks/Brute_Force.en.md
@@ -183,74 +183,82 @@ nav:
     - Playbooks — Network & Web:
       - PB-09 DDoS Attack (EN): 05_Incident_Response/Playbooks/DDoS_Attack.en.md
       - PB-09 DDoS Attack (TH): 05_Incident_Response/Playbooks/DDoS_Attack.th.md
-      - PB-10 Exploit (EN): 05_Incident_Response/Playbooks/Exploit.en.md
-      - PB-10 Exploit (TH): 05_Incident_Response/Playbooks/Exploit.th.md
+      - PB-10 Web Attack (EN): 05_Incident_Response/Playbooks/Web_Attack.en.md
+      - PB-10 Web Attack (TH): 05_Incident_Response/Playbooks/Web_Attack.th.md
       - PB-12 Lateral Movement (EN): 05_Incident_Response/Playbooks/Lateral_Movement.en.md
       - PB-12 Lateral Movement (TH): 05_Incident_Response/Playbooks/Lateral_Movement.th.md
       - PB-13 C2 Communication (EN): 05_Incident_Response/Playbooks/C2_Communication.en.md
       - PB-13 C2 Communication (TH): 05_Incident_Response/Playbooks/C2_Communication.th.md
-      - PB-18 Web Attack (EN): 05_Incident_Response/Playbooks/Web_Attack.en.md
-      - PB-18 Web Attack (TH): 05_Incident_Response/Playbooks/Web_Attack.th.md
-      - PB-22 API Abuse (EN): 05_Incident_Response/Playbooks/API_Abuse.en.md
-      - PB-22 API Abuse (TH): 05_Incident_Response/Playbooks/API_Abuse.th.md
-      - PB-24 DNS Tunneling (EN): 05_Incident_Response/Playbooks/DNS_Tunneling.en.md
-      - PB-24 DNS Tunneling (TH): 05_Incident_Response/Playbooks/DNS_Tunneling.th.md
-      - PB-25 Zero-Day Exploit (EN): 05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md
-      - PB-25 Zero-Day Exploit (TH): 05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md
+      - PB-18 Exploit (EN): 05_Incident_Response/Playbooks/Exploit.en.md
+      - PB-18 Exploit (TH): 05_Incident_Response/Playbooks/Exploit.th.md
+      - PB-24 Zero-Day Exploit (EN): 05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md
+      - PB-24 Zero-Day Exploit (TH): 05_Incident_Response/Playbooks/Zero_Day_Exploit.th.md
+      - PB-25 DNS Tunneling (EN): 05_Incident_Response/Playbooks/DNS_Tunneling.en.md
+      - PB-25 DNS Tunneling (TH): 05_Incident_Response/Playbooks/DNS_Tunneling.th.md
+      - PB-30 API Abuse (EN): 05_Incident_Response/Playbooks/API_Abuse.en.md
+      - PB-30 API Abuse (TH): 05_Incident_Response/Playbooks/API_Abuse.th.md
       - PB-34 Network Discovery (EN): 05_Incident_Response/Playbooks/Network_Discovery.en.md
       - PB-34 Network Discovery (TH): 05_Incident_Response/Playbooks/Network_Discovery.th.md
       - PB-37 SQL Injection (EN): 05_Incident_Response/Playbooks/SQL_Injection.en.md
       - PB-37 SQL Injection (TH): 05_Incident_Response/Playbooks/SQL_Injection.th.md
-      - PB-43 Drive-By Download (EN): 05_Incident_Response/Playbooks/Drive_By_Download.en.md
-      - PB-43 Drive-By Download (TH): 05_Incident_Response/Playbooks/Drive_By_Download.th.md
-      - PB-44 Watering Hole (EN): 05_Incident_Response/Playbooks/Watering_Hole.en.md
-      - PB-44 Watering Hole (TH): 05_Incident_Response/Playbooks/Watering_Hole.th.md
+      - PB-43 Watering Hole (EN): 05_Incident_Response/Playbooks/Watering_Hole.en.md
+      - PB-43 Watering Hole (TH): 05_Incident_Response/Playbooks/Watering_Hole.th.md
+      - PB-44 Drive-By Download (EN): 05_Incident_Response/Playbooks/Drive_By_Download.en.md
+      - PB-44 Drive-By Download (TH): 05_Incident_Response/Playbooks/Drive_By_Download.th.md
       - PB-50 Unauthorized Scanning (EN): 05_Incident_Response/Playbooks/Unauthorized_Scanning.en.md
       - PB-50 Unauthorized Scanning (TH): 05_Incident_Response/Playbooks/Unauthorized_Scanning.th.md
     # ── ☁️ Cloud & Infrastructure ──
     - Playbooks — Cloud & Infrastructure:
       - PB-16 Cloud IAM (EN): 05_Incident_Response/Playbooks/Cloud_IAM.en.md
       - PB-16 Cloud IAM (TH): 05_Incident_Response/Playbooks/Cloud_IAM.th.md
-      - PB-19 AWS EC2 Compromise (EN): 05_Incident_Response/Playbooks/AWS_EC2_Compromise.en.md
-      - PB-19 AWS EC2 Compromise (TH): 05_Incident_Response/Playbooks/AWS_EC2_Compromise.th.md
-      - PB-20 AWS S3 Compromise (EN): 05_Incident_Response/Playbooks/AWS_S3_Compromise.en.md
-      - PB-20 AWS S3 Compromise (TH): 05_Incident_Response/Playbooks/AWS_S3_Compromise.th.md
-      - PB-23 Cryptomining (EN): 05_Incident_Response/Playbooks/Cryptomining.en.md
-      - PB-23 Cryptomining (TH): 05_Incident_Response/Playbooks/Cryptomining.th.md
-      - PB-28 Cloud Storage Exposure (EN): 05_Incident_Response/Playbooks/Cloud_Storage_Exposure.en.md
-      - PB-28 Cloud Storage Exposure (TH): 05_Incident_Response/Playbooks/Cloud_Storage_Exposure.th.md
-      - PB-30 Shadow IT (EN): 05_Incident_Response/Playbooks/Shadow_IT.en.md
-      - PB-30 Shadow IT (TH): 05_Incident_Response/Playbooks/Shadow_IT.th.md
-      - PB-33 Azure AD Compromise (EN): 05_Incident_Response/Playbooks/Azure_AD_Compromise.en.md
-      - PB-33 Azure AD Compromise (TH): 05_Incident_Response/Playbooks/Azure_AD_Compromise.th.md
+      - PB-21 AWS S3 Compromise (EN): 05_Incident_Response/Playbooks/AWS_S3_Compromise.en.md
+      - PB-21 AWS S3 Compromise (TH): 05_Incident_Response/Playbooks/AWS_S3_Compromise.th.md
+      - PB-22 AWS EC2 Compromise (EN): 05_Incident_Response/Playbooks/AWS_EC2_Compromise.en.md
+      - PB-22 AWS EC2 Compromise (TH): 05_Incident_Response/Playbooks/AWS_EC2_Compromise.th.md
+      - PB-23 Azure AD Compromise (EN): 05_Incident_Response/Playbooks/Azure_AD_Compromise.en.md
+      - PB-23 Azure AD Compromise (TH): 05_Incident_Response/Playbooks/Azure_AD_Compromise.th.md
+      - PB-27 Cloud Storage Exposure (EN): 05_Incident_Response/Playbooks/Cloud_Storage_Exposure.en.md
+      - PB-27 Cloud Storage Exposure (TH): 05_Incident_Response/Playbooks/Cloud_Storage_Exposure.th.md
+      - PB-29 Shadow IT (EN): 05_Incident_Response/Playbooks/Shadow_IT.en.md
+      - PB-29 Shadow IT (TH): 05_Incident_Response/Playbooks/Shadow_IT.th.md
+      - PB-31 Cryptomining (EN): 05_Incident_Response/Playbooks/Cryptomining.en.md
+      - PB-31 Cryptomining (TH): 05_Incident_Response/Playbooks/Cryptomining.th.md
       - PB-41 VPN Abuse (EN): 05_Incident_Response/Playbooks/VPN_Abuse.en.md
       - PB-41 VPN Abuse (TH): 05_Incident_Response/Playbooks/VPN_Abuse.th.md
-      - PB-45 Cloud Cryptojacking (EN): 05_Incident_Response/Playbooks/Cloud_Cryptojacking.en.md
-      - PB-45 Cloud Cryptojacking (TH): 05_Incident_Response/Playbooks/Cloud_Cryptojacking.th.md
+      - PB-47 Cloud Cryptojacking (EN): 05_Incident_Response/Playbooks/Cloud_Cryptojacking.en.md
+      - PB-47 Cloud Cryptojacking (TH): 05_Incident_Response/Playbooks/Cloud_Cryptojacking.th.md
     # ── 📦 Data & Supply Chain ──
     - Playbooks — Data & Supply Chain:
       - PB-08 Data Exfiltration (EN): 05_Incident_Response/Playbooks/Data_Exfiltration.en.md
       - PB-08 Data Exfiltration (TH): 05_Incident_Response/Playbooks/Data_Exfiltration.th.md
-      - PB-21 Supply Chain Attack (EN): 05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md
-      - PB-21 Supply Chain Attack (TH): 05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md
-      - PB-27 Log Clearing (EN): 05_Incident_Response/Playbooks/Log_Clearing.en.md
-      - PB-27 Log Clearing (TH): 05_Incident_Response/Playbooks/Log_Clearing.th.md
+      - PB-20 Log Clearing (EN): 05_Incident_Response/Playbooks/Log_Clearing.en.md
+      - PB-20 Log Clearing (TH): 05_Incident_Response/Playbooks/Log_Clearing.th.md
+      - PB-32 Supply Chain Attack (EN): 05_Incident_Response/Playbooks/Supply_Chain_Attack.en.md
+      - PB-32 Supply Chain Attack (TH): 05_Incident_Response/Playbooks/Supply_Chain_Attack.th.md
       - PB-35 Data Collection (EN): 05_Incident_Response/Playbooks/Data_Collection.en.md
       - PB-35 Data Collection (TH): 05_Incident_Response/Playbooks/Data_Collection.th.md
       - PB-49 Typosquatting (EN): 05_Incident_Response/Playbooks/Typosquatting.en.md
       - PB-49 Typosquatting (TH): 05_Incident_Response/Playbooks/Typosquatting.th.md
     # ── 📱 Physical & Mobile ──
     - Playbooks — Physical & Mobile:
-      - PB-32 Lost Device (EN): 05_Incident_Response/Playbooks/Lost_Device.en.md
-      - PB-32 Lost Device (TH): 05_Incident_Response/Playbooks/Lost_Device.th.md
-      - PB-29 Mobile Compromise (EN): 05_Incident_Response/Playbooks/Mobile_Compromise.en.md
-      - PB-29 Mobile Compromise (TH): 05_Incident_Response/Playbooks/Mobile_Compromise.th.md
-      - PB-31 OT/ICS Incident (EN): 05_Incident_Response/Playbooks/OT_ICS_Incident.en.md
-      - PB-31 OT/ICS Incident (TH): 05_Incident_Response/Playbooks/OT_ICS_Incident.th.md
+      - PB-19 Lost Device (EN): 05_Incident_Response/Playbooks/Lost_Device.en.md
+      - PB-19 Lost Device (TH): 05_Incident_Response/Playbooks/Lost_Device.th.md
+      - PB-28 Mobile Compromise (EN): 05_Incident_Response/Playbooks/Mobile_Compromise.en.md
+      - PB-28 Mobile Compromise (TH): 05_Incident_Response/Playbooks/Mobile_Compromise.th.md
+      - PB-33 OT/ICS Incident (EN): 05_Incident_Response/Playbooks/OT_ICS_Incident.en.md
+      - PB-33 OT/ICS Incident (TH): 05_Incident_Response/Playbooks/OT_ICS_Incident.th.md
       - PB-40 USB Removable Media (EN): 05_Incident_Response/Playbooks/USB_Removable_Media.en.md
       - PB-40 USB Removable Media (TH): 05_Incident_Response/Playbooks/USB_Removable_Media.th.md
-      - PB-47 SIM Swap (EN): 05_Incident_Response/Playbooks/SIM_Swap.en.md
-      - PB-47 SIM Swap (TH): 05_Incident_Response/Playbooks/SIM_Swap.th.md
+      - PB-46 SIM Swap (EN): 05_Incident_Response/Playbooks/SIM_Swap.en.md
+      - PB-46 SIM Swap (TH): 05_Incident_Response/Playbooks/SIM_Swap.th.md
+    # ── 🤖 AI & ML Security ──
+    - Playbooks — AI & ML Security:
+      - PB-51 AI Prompt Injection (EN): 05_Incident_Response/Playbooks/AI_Prompt_Injection.en.md
+      - PB-51 AI Prompt Injection (TH): 05_Incident_Response/Playbooks/AI_Prompt_Injection.th.md
+      - PB-52 LLM Data Poisoning (EN): 05_Incident_Response/Playbooks/LLM_Data_Poisoning.en.md
+      - PB-52 LLM Data Poisoning (TH): 05_Incident_Response/Playbooks/LLM_Data_Poisoning.th.md
+      - PB-53 AI Model Theft (EN): 05_Incident_Response/Playbooks/AI_Model_Theft.en.md
+      - PB-53 AI Model Theft (TH): 05_Incident_Response/Playbooks/AI_Model_Theft.th.md
   - 📊 Operations:
     - 👥 Team & Daily Operations:
       - SOC Team Structure: 06_Operations_Management/SOC_Team_Structure.en.md
@@ -317,6 +325,8 @@ nav:
   - 🔧 Guides & Tools:
     - Detection Rules Index: 08_Detection_Engineering/README.md
     - ดัชนี Detection Rules (TH): 08_Detection_Engineering/README.th.md
+    - SOC Use Case Library: 08_Detection_Engineering/SOC_Use_Case_Library.en.md
+    - คลัง Use Case สำหรับ SOC (TH): 08_Detection_Engineering/SOC_Use_Case_Library.th.md
     - Coverage Matrix: 08_Detection_Engineering/Coverage_Matrix.en.md
     - ตารางครอบคลุม (TH): 08_Detection_Engineering/Coverage_Matrix.th.md
     - YARA Rules Index: 08_Detection_Engineering/yara/README.md

@@ -192,7 +192,36 @@ gantt
 - [ ] ยืนยัน MFA ทำงานบนทุกช่องทาง
 - [ ] แจ้งผู้ติดต่อภายนอกเรื่อง compromise ถ้าจำเป็น
 
-## 4. หลังเหตุการณ์ (Post-Incident)
+## 4. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐาน mailbox | inbox rule, forwarding, delegate, sent/deleted item, audit trail | Mailbox audit / admin console | ใช้ดู persistence และการกระทำของ attacker ใน mailbox |
+| หลักฐานด้านตัวตน | sign-in, MFA event, session ID, device, IP, OAuth app | IdP / sign-in logs | ใช้แยก mailbox-only abuse ออกจาก identity compromise เต็มรูปแบบ |
+| หลักฐาน message flow | phishing email ที่ส่งออก, recipient list, external forwarding, purge result | Message trace / gateway | ใช้ดู blast radius และผู้ได้รับผลกระทบต่อเนื่อง |
+| หลักฐานการเปิดเผยข้อมูล | sensitive mailbox, attachment viewed/downloaded, thread monitoring | Mailbox audit / DLP | ใช้รองรับ legal และ business impact assessment |
+| หลักฐาน fraud ทางธุรกิจ | invoice thread, payment request, partner impersonation, callback record | Finance / ticketing / call logs | ใช้ดูว่าเหตุยกระดับไปเป็น BEC หรือ vendor fraud หรือไม่ |
+
+## 5. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Mailbox audit และ message trace | ดู rule, forwarding, sent mail, purge scope, delegate change | Required | scope ของ mailbox abuse ไม่ชัด |
+| Identity provider sign-in logs | ดู login source, MFA, session anomaly, OAuth grant | Required | บอกไม่ได้ว่าถูกยึดบัญชีมาอย่างไร |
+| Email gateway และ DLP telemetry | ดู outbound phishing, attachment access, sensitive content | Required | ประเมิน downstream impact และ data exposure ไม่ได้ |
+| Helpdesk และ finance workflow records | ดู verification control, user-reported anomaly, callback evidence | Recommended | บริบท fraud และ process failure อ่อน |
+| Threat intel และ domain monitoring | ดู lookalike domain, campaign overlap, sender reputation | Recommended | มอง broader campaign ช้าลง |
+
+## 6. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| forwarding หรือ delegate change ที่ได้รับอนุมัติ | workflow ของผู้บริหารหรือ admin อาจใช้ delegation จริง | ยืนยัน ticket, approver, และ target ที่แน่นอน | suppress เฉพาะ change ที่อนุมัติใน mailbox ที่ระบุ | target เป็น external, ซ่อนอยู่, หรืออยู่นอก workflow |
+| ผู้ใช้จัดการ rule ใน mailbox เอง | folder/filter rule บางแบบดูเหมือน abuse | ยืนยันกับผู้ใช้และดูว่าไม่ได้ redirect/delete mail สำคัญ | tune เฉพาะ rule จัดหมวดที่ benign | rule ลบ alert, forward ออกนอกองค์กร, หรือซ่อน invoice/security mail |
+| enroll mobile mail client ใหม่ | app consent และ session ใหม่อาจดูเหมือน compromise | ยืนยัน enrollment และ approved app ID | allowlist client app และ enrollment window แบบแคบ | app ขอ scope เสี่ยงหรือ session มาจาก geo/device แปลก |
+| การเข้าถึงเพื่อ compliance หรือ eDiscovery | legal review อาจทำให้มี mailbox access จำนวนมาก | ยืนยัน case ID, reviewer identity, และ mailbox scope | ลด severity เฉพาะ workflow ทางกฎหมายที่ documented | access เกิน scope หรือมี external forwarding/export |
+
+## 7. หลังเหตุการณ์ (Post-Incident)
 
 | คำถาม | คำตอบ |
 |:---|:---|
@@ -201,7 +230,7 @@ gantt
 | Conditional access policy บังคับใช้อยู่หรือไม่? | [สถานะ] |
 | มี financial controls (dual approval) หรือไม่? | [สถานะ] |
 
-## 6. Detection Rules (Sigma)
+## 8. Detection Rules (Sigma)
 
 ```yaml
 title: Suspicious Email Forwarding Rule Created

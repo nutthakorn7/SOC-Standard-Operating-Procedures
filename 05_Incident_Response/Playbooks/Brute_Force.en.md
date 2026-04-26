@@ -165,7 +165,42 @@ graph TD
 
 ---
 
-## 6. Escalation Criteria
+## 6. Evidence Checklist
+
+| Evidence Type | What to Collect | Source | Why It Matters |
+|:---|:---|:---|:---|
+| Authentication evidence | Failed and successful login events, timestamps, result codes | IdP / AD / VPN / app auth logs | Confirms whether the attack remained an attempt or became compromise |
+| Identity evidence | Target usernames, account type, MFA state, lockout status | IAM / IdP | Shows whether privileged or high-risk identities were targeted |
+| Source evidence | Source IPs, ASN, geolocation, user agents, proxy/Tor indicators | SIEM / firewall / threat intel | Distinguishes single-source abuse from distributed campaigns |
+| Exposure evidence | Internet-facing auth endpoints, protocol used, external accessibility | Firewall / asset inventory | Explains attack surface and priority for hardening |
+| Business impact evidence | User lockouts, service disruption, affected business functions | Helpdesk / ticketing / service owner | Supports severity and communication decisions |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| Telemetry Source | Required For | Priority | Blind Spot If Missing |
+|:---|:---|:---:|:---|
+| Authentication logs | Count failures, detect success-after-failure, identify protocol | Required | Cannot prove brute force versus normal login failure noise |
+| IAM and MFA telemetry | Account type, lockout, MFA state, reset events | Required | Cannot assess privileged-account risk or control bypass |
+| Firewall, WAF, or VPN telemetry | Source concentration, rate, geo distribution, perimeter targeting | Required | Distributed attacks and exposed entry points remain unclear |
+| Threat intel and IP reputation | Known botnet, proxy, Tor, or abusive source context | Recommended | Analyst confidence and prioritization drop |
+| Asset and service inventory | Which auth endpoints are exposed and who owns them | Recommended | Hardening decisions become slower and inconsistent |
+
+---
+
+## 8. False Positive and Tuning Guide
+
+| Scenario | Why It Looks Suspicious | How to Validate | Tuning Action | Escalate If |
+|:---|:---|:---|:---|:---|
+| User forgot password | Short burst of failed logins against one account | Confirm with user and no success from unusual source | Keep low threshold alert informational for single-user self-correction | Success follows from new geo/device or MFA anomalies appear |
+| Password manager or stale mobile client retries | Repeated failed logins from one known device/app | Check known device, user agent, and cached credential issue | Suppress repeated retries from approved client signatures for a short window | Pattern spreads across accounts or source IP changes unexpectedly |
+| Security scan or auth resilience testing | High-volume auth failures can resemble spraying | Validate scanner source range, schedule, and owner | Allowlist approved test sources and windows only | Attempts hit production identities outside approved scope |
+| Shared NAT or proxy egress | Many users can appear behind one source IP | Correlate usernames, device identity, and office/VPN context | Tune source-IP-only logic to include per-user and per-protocol thresholds | Same source shows success-after-failure or privileged targeting |
+
+---
+
+## 9. Escalation Criteria
 
 | Condition | Escalate To |
 |:---|:---|

@@ -157,7 +157,7 @@
 - [แบบฟอร์ม Incident](incident_report.th.md)
 - [SOP การจัดการเปลี่ยนแปลง](../06_Operations_Management/Change_Management.th.md)
 
-### Change Risk Assessment Matrix
+## ตารางประเมินความเสี่ยงของ Change
 
 | ปัจจัย | Low (1) | Medium (2) | High (3) |
 |:---|:---|:---|:---|
@@ -166,7 +166,7 @@
 | Rollback Difficulty | Auto | Manual < 1hr | Manual > 1hr |
 | Downtime Required | ไม่มี | < 30 min | > 30 min |
 
-### Change Communication Template
+## เทมเพลตการสื่อสารเรื่อง Change
 
 ```
 Subject: [RFC-XXXX] Change Notification
@@ -177,7 +177,7 @@ Subject: [RFC-XXXX] Change Notification
 - Rollback ETA: [เวลาถ้าต้อง rollback]
 ```
 
-### Approval Quick Guide
+## คู่มือย่อสำหรับการอนุมัติ
 
 | Risk Level | Approver | Turnaround |
 |:---|:---|:---|
@@ -185,7 +185,7 @@ Subject: [RFC-XXXX] Change Notification
 | Medium | Manager | 2 days |
 | High | CAB | 5 days |
 
-## อ้างอิง
+## References
 
 - [ITIL Change Management](https://www.axelos.com/certifications/itil-service-management)
 - [NIST SP 800-128](https://csrc.nist.gov/publications/detail/sp/800-128/final)

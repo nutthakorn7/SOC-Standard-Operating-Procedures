@@ -187,12 +187,37 @@ P3-P4:
 | External notification process tested | Annually | CISO + Legal | ☐ |
 | Stakeholder communication preferences updated | Annually | SOC Manager | ☐ |
 
+## Communication Escalation Triggers
+
+| Condition | Escalate To | SLA | Reason |
+|:---|:---|:---:|:---|
+| Incident severity raised to P1/P2 | SOC Manager + CISO | Immediate | Executive visibility and resource coordination |
+| Confirmed or suspected personal data exposure | Legal / DPO | Within 1 hour | Privacy and regulatory assessment |
+| Customer-facing service disruption > 30 minutes | Business owner + Communications lead | Within 30 minutes | Business continuity and external messaging |
+| Incident affects multiple business units or regions | SOC Manager + Incident Commander | Immediate | Centralize decisions and stakeholder updates |
+| Media inquiry, regulator contact, or law enforcement request | CISO + Legal | Immediate | Controlled external response |
+| No incident owner assigned or handoff missed | SOC Manager | Within 15 minutes | Prevent communication gap during active response |
+
+## Minimum Content for Incident Updates
+
+| Required Item | Why It Matters | Owner |
+|:---|:---|:---|
+| Incident ID and severity | Prevents confusion across channels | SOC Analyst |
+| Current status and last confirmed facts | Keeps updates factual and actionable | Incident Commander |
+| Systems, users, or services affected | Supports business impact assessment | Technical Lead |
+| Containment and investigation actions taken | Shows progress and avoids duplicate work | Technical Lead |
+| Decisions required and blockers | Enables manager or executive action | SOC Manager |
+| Next update time and contact point | Keeps stakeholders aligned on cadence | Communications Lead |
+
 ## Related Documents
 
 - [Shift Handoff Standard](Shift_Handoff.en.md)
 - [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md)
 - [IR Framework](../05_Incident_Response/Framework.en.md)
+- [SOC Checklists](SOC_Checklists.en.md)
+- [Communication Templates](../05_Incident_Response/Communication_Templates.en.md)
 
 ## References
 
 - [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [CISA Cyber Incident Response and Recovery](https://www.cisa.gov/resources-tools/services/incident-response)

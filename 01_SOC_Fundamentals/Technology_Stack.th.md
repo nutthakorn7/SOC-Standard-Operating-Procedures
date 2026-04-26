@@ -241,6 +241,25 @@ Integration & Customization ██          5%
 | Vendor support | 15% | - |
 | Total cost | 25% | - |
 
+## ข้อมูลขั้นต่ำก่อนเลือก Stack (Minimum Decision Inputs Before Stack Selection)
+
+| ข้อมูล | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| ปริมาณ log และ retention target ที่คาดไว้ | ป้องกันการเลือกขนาดไม่พอและต้นทุนบานปลาย | Security Engineer |
+| log source และ integration ที่ต้องมี | ยืนยันว่าใช้งานในงานจริงได้ | Security Engineer |
+| ระดับทักษะทีมและ support model | ใช้ตัดสินว่าทีมดูแล stack นี้ไหวหรือไม่ | SOC Manager |
+| ข้อจำกัดด้าน compliance, data location และ retention | ป้องกันการเลือก architecture ที่ audit ไม่ผ่าน | CISO / Compliance Officer |
+| workflow การตอบเหตุและ case management ที่ต้องการ | ยืนยันว่า stack รองรับการทำงานของ SOC จริง | SOC Manager |
+
+## Trigger สำหรับการยกระดับเรื่อง Stack Selection (Stack Selection Escalation Triggers)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| ค่า ingestion ที่คาดไว้เกินกรอบงบ | CISO | ภายในวันทำการเดียวกัน | ลด scope, ปรับ retention หรือเปลี่ยน stack |
+| integration ที่จำเป็นไม่มี หรือมีแต่แบบ custom unsupported | Security Engineer + SOC Manager | ภายใน 24 ชม. | ทบทวนความเสี่ยงของ architecture |
+| ทีมยังไม่มีทักษะพอสำหรับ stack ที่เลือก | CISO + SOC Manager | ก่อนสั่งซื้อ | เพิ่ม training, MSSP support หรือเลือกตัวเลือกที่ง่ายกว่า |
+| data residency หรือข้อกำหนดด้าน compliance ทำไม่ได้ | CISO + Compliance Officer | ทันที | หยุดการเลือกจนกว่าจะแก้ constraint ได้ |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

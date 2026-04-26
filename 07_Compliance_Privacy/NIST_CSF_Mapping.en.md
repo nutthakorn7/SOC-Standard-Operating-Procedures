@@ -84,11 +84,11 @@ pie title SOC Coverage by CSF Function
 
 | Category | Description | Coverage | SOC Documents |
 |:---:|:---|:---:|:---|
-| RS.MA | Incident Management | ✅ Full | [IR Framework](../05_Incident_Response/Framework.en.md), [50 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md), [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md) |
+| RS.MA | Incident Management | ✅ Full | [IR Framework](../05_Incident_Response/Framework.en.md), [53 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md), [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md) |
 | RS.AN | Incident Analysis | ✅ Full | [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md), [Evidence Collection](../05_Incident_Response/Evidence_Collection.en.md), [Threat Hunting](../05_Incident_Response/Threat_Hunting_Playbook.en.md) |
 | RS.CO | Incident Communication | ✅ Full | [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md), [SOC Communication SOP](../06_Operations_Management/SOC_Communication.en.md) |
 | RS.RP | Incident Response Reporting | ✅ Full | [Incident Report Template](../11_Reporting_Templates/incident_report.en.md), [Monthly Report](../11_Reporting_Templates/Monthly_SOC_Report.en.md) |
-| RS.MI | Incident Mitigation | ✅ Full | [50 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md) (containment + eradication sections) |
+| RS.MI | Incident Mitigation | ✅ Full | [53 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md) (containment + eradication sections) |
 
 ## 7. RECOVER (RC) — Recovery
 
@@ -108,7 +108,7 @@ pie title SOC Coverage by CSF Function
 | **Identify** | 3 | 2 full + 1 partial | Risk assessment, improvement cycle |
 | **Protect** | 5 | 3 full + 2 partial | IAM, training, DR/BCP |
 | **Detect** | 3 | 3 full | Monitoring, Sigma rules, runbooks |
-| **Respond** | 5 | 5 full | IR framework, 50 playbooks, forensics |
+| **Respond** | 5 | 5 full | IR framework, 53 playbooks, forensics |
 | **Recover** | 3 | 3 full | DR/BCP, lessons learned, comms |
 | **Total** | **22** | **16 full + 6 partial** | |
 
@@ -120,6 +120,25 @@ pie title SOC Coverage by CSF Function
 | PR.DS Data Security | Expand DLP monitoring documentation | Medium |
 | PR.PS Platform Security | Add SIEM/EDR hardening guide | Low |
 | GV.OC Organizational Context | Reference enterprise risk appetite in SOC charter | Low |
+
+## Minimum Evidence by CSF Function
+
+| Function | Minimum Evidence | Owner |
+|:---|:---|:---|
+| Govern | Policy set, ownership matrix, governance review minutes | CISO / SOC Manager |
+| Identify | Asset/risk inventory, gap analysis, review cadence | SOC Manager |
+| Protect | Access review, training records, data-handling evidence | Security Engineer |
+| Detect | Monitoring inventory, rule testing evidence, alert review samples | Security Engineer |
+| Respond | Incident records, escalation trail, communication logs | IR Engineer |
+| Recover | Recovery plans, post-incident improvements, executive updates | SOC Manager |
+
+## Executive Decision Triggers
+
+| Condition | Escalate To | SLA | Required Decision |
+|:---|:---|:---:|:---|
+| Category marked full coverage lacks operating evidence | CISO | Same business day | Reclassify status or restore operation |
+| Detect or Respond capability gap affects regulated or critical services | CISO + Business owner | Within 24 hours | Fund remediation or accept risk |
+| Governance review finds repeated backlog with no owner | Executive sponsor | Next governance meeting | Assign accountable owner and due date |
 
 ---
 

@@ -66,7 +66,7 @@ graph TD
 | 4 | ถ้าไม่มี: เปลี่ยนเป็น **โหมดตรวจ Log แบบ Manual** | SOC Tier 2 | ใช้ direct log access |
 | 5 | เริ่มตรวจ critical logs โดยตรง | ทุกคน | เน้น: Firewall, AD, EDR |
 | 6 | ติดตาม alert ใน emergency spreadsheet | SOC Tier 1 | Template สำรอง |
-| 7 | แจ้ง stakeholders ว่า visibility ลดลง | SOC Lead | ใช้ [Communication Templates](Communication_Templates.en.md) |
+| 7 | แจ้ง stakeholders ว่า visibility ลดลง | SOC Lead | ใช้ [Communication Templates](Communication_Templates.th.md) |
 | 8 | เมื่อกู้คืนแล้ว: ตรวจสอบไม่มี event หาย | SOC Engineering | ตรวจ timestamp gaps |
 | 9 | ประมวลผล alert ที่ค้างอยู่ | ทุกคน | เน้น P1/P2 ก่อน |
 
@@ -163,7 +163,7 @@ graph TD
 
 | ลำดับ | ช่องทาง | ใช้เมื่อ |
 |:---|:---|:---|
-| 🔴 หลัก | **Phone tree** (ดู [Escalation Matrix](Escalation_Matrix.en.md)) | เมื่อช่องทางดิจิทัลอาจถูกบุกรุก |
+| 🔴 หลัก | **Phone tree** (ดู [Escalation Matrix](Escalation_Matrix.th.md)) | เมื่อช่องทางดิจิทัลอาจถูกบุกรุก |
 | 🟠 สำรอง | **มือถือส่วนตัว + WhatsApp group** | Slack/Teams ล่มแต่โทรได้ |
 | 🟡 ตติยภูมิ | **Email สำรองบน provider อื่น** (เช่น Gmail) | Email องค์กรล่ม |
 | 🔵 สุดท้าย | **นัดเจอตัวที่สถานที่กำหนดไว้** | ระบบล่มทั้งหมด |
@@ -222,8 +222,8 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Escalation Matrix](Escalation_Matrix.en.md) — ใครต้องแจ้งเมื่อเกิดเหตุ
--   [Communication Templates](Communication_Templates.en.md) — แม่แบบการแจ้งเตือน
--   [IR Framework](Framework.en.md) — วงจรชีวิตการตอบสนองต่อเหตุการณ์
--   [SOC Checklists](../06_Operations_Management/SOC_Checklists.en.md) — รายการตรวจสอบ
--   [SLA Template](../06_Operations_Management/SLA_Template.en.md) — ข้อตกลงระดับบริการ
+-   [Escalation Matrix](Escalation_Matrix.th.md) — ใครต้องแจ้งเมื่อเกิดเหตุ
+-   [Communication Templates](Communication_Templates.th.md) — แม่แบบการแจ้งเตือน
+-   [IR Framework](Framework.th.md) — วงจรชีวิตการตอบสนองต่อเหตุการณ์
+-   [SOC Checklists](../06_Operations_Management/SOC_Checklists.th.md) — รายการตรวจสอบ
+-   [SLA Template](../06_Operations_Management/SLA_Template.th.md) — ข้อตกลงระดับบริการ

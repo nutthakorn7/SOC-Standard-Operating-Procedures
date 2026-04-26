@@ -197,6 +197,35 @@ graph TD
 - [ ] ตรวจว่า credentials เดียวกันใช้ที่อื่นหรือไม่ (password reuse)
 - [ ] ตรวจ MFA enrollment/การเปลี่ยนแปลง
 
+## 2.1 Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐาน session | source IP, GeoIP, เวลาเริ่ม/จบ, duration, bandwidth, device fingerprint | VPN logs / SIEM | ใช้ยืนยันว่า session นี้สอดคล้องกับพฤติกรรมปกติของผู้ใช้หรือไม่ |
+| หลักฐานด้านตัวตน | username, group membership, MFA method, token change, ประวัติ reset/lockout | IAM / IdP | ใช้ดูระดับสิทธิ์และดูว่าการควบคุม identity ล้มตรงไหน |
+| หลักฐานกิจกรรมเครือข่าย | host ภายในที่เข้าถึง, RDP/SSH, DNS, file-share activity, transfer volume | Firewall / VPN / NDR / DNS / NetFlow | ใช้ดูว่าผู้โจมตีทำอะไรหลังได้สิทธิ์แล้ว |
+| หลักฐานจาก VPN appliance | admin action, config change, patch level, exploit indicator | VPN admin console / syslog | ใช้แยกว่าเป็น credential abuse หรือ appliance compromise |
+| หลักฐานการยืนยันกับผู้ใช้ | call note, travel context, business justification, device ownership | Ticket / call log | ใช้ปิด false positive และรองรับการยกระดับที่อธิบายได้ |
+
+## 2.2 Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| VPN authentication และ session logs | ดู user, source IP, duration, concurrent session, protocol detail | Required | ยืนยัน session ที่น่าสงสัยหรือผูกกับผู้ใช้ไม่ได้ |
+| IAM และ MFA telemetry | ดู token reset, MFA change, account state, risk signal | Required | บอกไม่ได้ว่า identity protection ถูก bypass หรือเปลี่ยนหรือไม่ |
+| Network และ DNS telemetry | ดู internal access, lateral movement, exfiltration indicator | Required | มองไม่เห็นกิจกรรมหลัง login เกือบทั้งหมด |
+| VPN appliance logs และสถานะช่องโหว่ | ดู admin change, exploit trace, version/CVE exposure | Required | แยก credential abuse ออกจาก appliance compromise ไม่ได้ |
+| Asset, user schedule, และ ticket context | ดู on-call, การเดินทาง, remote work exception | Recommended | benign event ตอนกลางคืนหรือระหว่างเดินทางอาจถูกยกระดับเกินจริง |
+
+## 2.3 False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| ผู้ใช้เดินทางจริงหรือทำงานระยะไกล | ประเทศใหม่หรือนอกเวลางานดูเหมือน session theft | ยืนยัน itinerary, การอนุมัติจากหัวหน้า, device compliance, และ MFA success | tune geo/time-of-day logic สำหรับ pattern การเดินทาง/remote work ที่อนุมัติ | มี concurrent session, geo เสี่ยงสูง, หรือกิจกรรมภายในผิดปกติตามมา |
+| corporate VPN exit หรือ carrier เปลี่ยนขณะ roaming | source IP เปลี่ยนเร็วทำให้ location logic เพี้ยน | ยืนยัน carrier/VPN ASN และ device fingerprint เดิม | tune impossible-travel ให้รู้จัก ASN ไม่ใช่ดูประเทศอย่างเดียว | มี MFA change หรือ device fingerprint เปลี่ยน |
+| การเข้าใช้งานของ on-call หรือเหตุฉุกเฉิน | login ตอนกลางคืน/วันหยุดดูผิดปกติ | ยืนยัน on-call roster, incident ticket, และระบบที่เข้าถึง | ลด severity สำหรับ identity และช่วงเวลาที่อนุมัติ | ขอบเขตการเข้าถึงเกินงานที่ต้องทำหรือเริ่มมี privileged movement |
+| การทดสอบด้าน security หรือ network | การใช้ VPN โดย scanner/red-team ดูเหมือน abuse | ยืนยัน source, ช่วงเวลา, และ owner | allowlist เฉพาะ test account และ source range ที่อนุมัติ | activity ไปแตะข้อมูล production หรือใช้ credential ของผู้ใช้จริง |
+
 | ขอบเขต | การดำเนินการ | รายละเอียด |
 |:---|:---|:---|
 | **VPN Session** | ตัดทันที | Kill active session |

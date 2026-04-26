@@ -2,7 +2,7 @@
 
 > แสดง Sigma Rule, YARA Rule และ MITRE ATT&CK สำหรับทุก Playbook
 >
-> **Version**: 2.12.0 | **อัปเดตล่าสุด**: 2026-03-06
+> **Version**: 2.14.0 | **อัปเดตล่าสุด**: 2026-04-26
 
 ---
 
@@ -10,11 +10,11 @@
 
 | ตัวชี้วัด | จำนวน | ครอบคลุม |
 |:---|:---:|:---:|
-| Playbook ทั้งหมด | 50 | — |
-| Playbook ที่มี Sigma Rules | 50 | **100%** ✅ |
-| Sigma Rules ทั้งหมด | 51 | 1+ ต่อ playbook |
+| Playbook ทั้งหมด | 53 | — |
+| Playbook ที่มี Sigma Rules | 53 | **100%** ✅ |
+| Sigma Rules ทั้งหมด | 54 | 1+ ต่อ playbook |
 | YARA Rules ทั้งหมด | 15 | ภัยคุกคามที่เป็นไฟล์ |
-| เทคนิค MITRE ATT&CK | 40+ | map ครบทุกกฎ |
+| เทคนิค MITRE ATT&CK / ATLAS | 43+ | map ครบทุกกฎ |
 
 ---
 
@@ -42,19 +42,19 @@
 | PB-18 | **Exploit** | `web_waf_exploit` | ✅ | T1190 | 🟠 สูง |
 | PB-19 | **อุปกรณ์หาย** | `mdm_device_offline` | — | — | 🟢 ต่ำ |
 | PB-20 | **ลบ Log** | `win_security_log_cleared` ×2 | — | T1070.001 | 🔴 วิกฤต |
-| PB-21 | **Supply Chain** | `cloud_supply_chain_compromise` | ✅ | T1195.002 | 🟠 สูง |
-| PB-22 | **API Abuse** | `web_api_abuse_auth_bypass` | — | T1190 | 🟠 สูง |
-| PB-23 | **ขุดคริปโต** | `proc_cryptomining_indicators`, `cloud_aws_ec2_mining` | ✅ | T1496 | 🔴 วิกฤต |
-| PB-24 | **DNS Tunneling** | `net_dns_tunneling` | — | T1071.004 | 🟠 สูง |
-| PB-25 | **Zero-Day** | `web_zero_day_exploit_attempt` | ✅ | T1190, T1203 | 🔴 วิกฤต |
+| PB-21 | **AWS S3** | `cloud_aws_s3_public_access` | — | T1530 | 🟠 สูง |
+| PB-22 | **AWS EC2** | `cloud_aws_ec2_mining`, `cloud_root_login` | — | T1078, T1496 | 🟠 สูง |
+| PB-23 | **Azure AD** | `cloud_azure_risky_signin` | — | T1078.004 | 🟠 สูง |
+| PB-24 | **Zero-Day** | `web_zero_day_exploit_attempt` | ✅ | T1190, T1203 | 🔴 วิกฤต |
+| PB-25 | **DNS Tunneling** | `net_dns_tunneling` | — | T1071.004 | 🟠 สูง |
 | PB-26 | **MFA Bypass** | `cloud_mfa_bypass` | — | T1556.006 | 🟠 สูง |
 | PB-27 | **Cloud Storage** | `cloud_storage_public_access` ×2 | — | T1530 | 🟠 สูง |
 | PB-28 | **มือถือถูกยึด** | `cloud_mobile_compromise` | — | T1456 | 🟡 ปานกลาง |
 | PB-29 | **Shadow IT** | `proxy_shadow_it` | — | T1567 | 🟢 ต่ำ |
-| PB-30 | **OT/ICS** | `net_ot_ics_anomaly` | — | ICS T0813 | 🔴 วิกฤต |
-| PB-31 | **AWS EC2** | `cloud_aws_ec2_mining` | — | T1078, T1496 | 🟠 สูง |
-| PB-32 | **AWS S3** | `cloud_aws_s3_public_access` | — | T1530 | 🟠 สูง |
-| PB-33 | **Azure AD** | `cloud_azure_risky_signin` | — | T1078.004 | 🟠 สูง |
+| PB-30 | **API Abuse** | `web_api_abuse_auth_bypass`, `web_high_rate_limit` | — | T1190 | 🟠 สูง |
+| PB-31 | **ขุดคริปโต** | `proc_cryptomining_indicators`, `cloud_aws_ec2_mining` | ✅ | T1496 | 🟠 สูง |
+| PB-32 | **Supply Chain** | `cloud_supply_chain_compromise` | ✅ | T1195.002 | 🟠 สูง |
+| PB-33 | **OT/ICS** | `net_ot_ics_anomaly` | — | ICS T0813 | 🔴 วิกฤต |
 | PB-34 | **Network Discovery** | `win_network_discovery` | — | T1018 | 🟡 ปานกลาง |
 | PB-35 | **รวบรวมข้อมูล** | `win_data_collection_staging` | ✅ | T1074 | 🟡 ปานกลาง |
 | PB-36 | **Credential Dump** | `win_credential_dumping` | ✅ | T1003 | 🔴 วิกฤต |
@@ -72,6 +72,9 @@
 | PB-48 | **Deepfake** | `net_deepfake_social` | — | T1598 | 🟠 สูง |
 | PB-49 | **Typosquatting** | `net_typosquatting` | — | T1583.001 | 🟡 ปานกลาง |
 | PB-50 | **Scanning** | `net_unauthorized_scanning` | — | T1046 | 🟡 ปานกลาง |
+| PB-51 | **AI Prompt Injection** | `ai_prompt_injection` | — | AML.T0051, T1059 | 🟠 สูง |
+| PB-52 | **LLM Data Poisoning** | `ai_data_poisoning` | — | AML.T0020, T1565 | 🔴 วิกฤต |
+| PB-53 | **AI Model Theft** | `ai_model_theft` | — | AML.T0024, T1020 | 🔴 วิกฤต |
 
 ---
 
@@ -79,9 +82,9 @@
 
 | ระดับ | จำนวน |
 |:---|:---:|
-| 🔴 วิกฤต (Critical) | 10 |
-| 🟠 สูง (High) | 26 |
-| 🟡 ปานกลาง (Medium) | 12 |
+| 🔴 วิกฤต (Critical) | 11 |
+| 🟠 สูง (High) | 29 |
+| 🟡 ปานกลาง (Medium) | 11 |
 | 🟢 ต่ำ (Low) | 2 |
 
 ---

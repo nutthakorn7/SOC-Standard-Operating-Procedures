@@ -279,8 +279,8 @@ graph LR
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Simulation & Testing Guide](../09_Simulation_Testing/Simulation_Guide.en.md)
--   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.en.md)
--   [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning.en.md)
--   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.en.md)
--   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.en.md)
+-   [Simulation & Testing Guide](../09_Simulation_Testing/Simulation_Guide.th.md)
+-   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.th.md)
+-   [Alert Tuning SOP](../06_Operations_Management/Alert_Tuning.th.md)
+-   [SOC Maturity Assessment](../06_Operations_Management/SOC_Maturity_Assessment.th.md)
+-   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.th.md)

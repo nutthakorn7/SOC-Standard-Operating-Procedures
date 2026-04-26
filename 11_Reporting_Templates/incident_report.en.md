@@ -181,6 +181,23 @@ Use UTC timestamps and format consistently:
 □ Impact assessment documentation
 ```
 
+## Minimum Evidence Before Closure
+
+- [ ] **Timeline confirmed**: Detection, triage, escalation, containment, eradication, recovery, and closure timestamps are complete.
+- [ ] **Affected scope verified**: Hosts, users, services, and data impact are validated, not assumed.
+- [ ] **Root cause recorded**: The exploited weakness or business process failure is documented well enough to assign remediation.
+- [ ] **Containment evidence retained**: Account disables, host isolation, blocks, or configuration changes are traceable.
+- [ ] **Notification decision logged**: Privacy, legal, customer, or executive notification decision is recorded with owner and time.
+
+## Management Notification Triggers
+
+| Trigger | Notify | Timing |
+|:---|:---|:---|
+| **Critical incident or confirmed business disruption** | CISO, CIO, business owner | Immediate |
+| **Confirmed or suspected regulated data exposure** | CISO, Legal, Privacy | Immediate |
+| **Incident affecting executive, privileged, or shared administration accounts** | CISO, SOC Manager, identity owner | Immediate |
+| **Containment requires service interruption or emergency access restriction** | Business owner, IT operations, CISO | Before action when feasible |
+
 ## Related Documents
 
 - [IR Framework](../05_Incident_Response/Framework.en.md)

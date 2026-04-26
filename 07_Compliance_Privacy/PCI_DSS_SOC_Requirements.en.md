@@ -65,7 +65,7 @@ pie title PCI-DSS Requirements Covered by SOC
 | 12.10.3 | Specific personnel available 24/7 | ✅ | [SOC Team Structure](../06_Operations_Management/SOC_Team_Structure.en.md), [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md) |
 | 12.10.4 | Personnel are properly trained | ✅ | [Training Checklist](../10_Training_Onboarding/Training_Checklist.en.md), [Analyst Onboarding](../10_Training_Onboarding/Analyst_Onboarding_Path.en.md) |
 | 12.10.4.1 | Frequency of IR training defined | ✅ | [Training Checklist](../10_Training_Onboarding/Training_Checklist.en.md) |
-| 12.10.5 | Alerts from security monitoring trigger response | ✅ | [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md), [50 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md) |
+| 12.10.5 | Alerts from security monitoring trigger response | ✅ | [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md), [53 Playbooks](../05_Incident_Response/Playbooks/Phishing.en.md) |
 | 12.10.6 | IR plan is modified based on lessons learned | ✅ | [Lessons Learned Template](../05_Incident_Response/Lessons_Learned_Template.en.md) |
 | 12.10.7 | IR procedures in place for critical alerts | ✅ | [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md); P1 playbooks |
 
@@ -108,6 +108,25 @@ Use this checklist before a PCI-DSS audit:
 | **Authentication** | MFA for remote access | MFA for all CDE access | Monitor for MFA bypass |
 | **Customized approach** | N/A | Organizations can customize controls | Document alternative approaches |
 
+## Minimum Evidence for PCI-DSS Readiness
+
+| Evidence | Why It Matters | Owner |
+|:---|:---|:---|
+| CDE log-source inventory and onboarding status | Proves coverage of in-scope systems | Security Engineer |
+| Alert review and incident response samples for cardholder-impacting events | Demonstrates daily operation of Req. 10 and 12.10 | SOC Analyst / IR Engineer |
+| Log retention and time-sync evidence | Supports Req. 10.5 and 10.6 claims | Security Engineer |
+| IR testing and analyst training records | Shows annual review and readiness obligations are met | SOC Manager |
+| Vulnerability scan / detection validation evidence tied to CDE | Demonstrates Req. 11 support from SOC | Security Engineer |
+
+## Escalation Triggers for PCI Gaps
+
+| Condition | Escalate To | SLA | Required Decision |
+|:---|:---|:---:|:---|
+| Any CDE system is not sending required logs | SOC Manager + CDE owner | Same business day | Restore logging or accept temporary risk formally |
+| Log retention falls below required period for in-scope data | CISO + Compliance Officer | Immediate | Preserve remaining data and open urgent remediation |
+| Critical cardholder-data alert misses response SLA | CISO | Immediate | Review staffing/process and corrective action |
+| Annual IR test or quarterly scan evidence is missing before audit | Compliance Officer + SOC Manager | Within 5 business days | Produce evidence or record gap for audit response |
+
 ---
 
 ## Related Documents
@@ -115,3 +134,8 @@ Use this checklist before a PCI-DSS audit:
 - [Compliance Gap Analysis](Compliance_Gap_Analysis.en.md)
 - [ISO 27001 Controls Mapping](ISO27001_Controls_Mapping.en.md)
 - [PDPA Compliance](PDPA_Compliance.en.md)
+
+## References
+
+- [PCI DSS v4.0](https://www.pcisecuritystandards.org/document_library/)
+- [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

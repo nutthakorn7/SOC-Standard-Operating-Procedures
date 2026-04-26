@@ -13,7 +13,7 @@
 - [ ] ใช้ S3 access logging และ CloudTrail
 - [ ] เปิด SSE-KMS encryption สำหรับ sensitive buckets
 - [ ] ใช้ VPC endpoints สำหรับ S3 access
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังการตรวจจับ S3 Exposure
 
@@ -142,7 +142,42 @@ graph TD
 
 ---
 
-## 5. เกณฑ์การยกระดับ
+## 5. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานของ bucket | bucket name, policy diff, ACL, Block Public Access state, versioning state | S3 console / Config / IaC | ใช้พิสูจน์ว่าอะไรเปลี่ยนและ control ไหนล้ม |
+| หลักฐานด้านตัวตน | IAM actor, source IP, access key, API path, session context | CloudTrail | ใช้แยกว่าเป็น misconfiguration, insider, หรือ external action |
+| หลักฐานการเข้าถึง | object ที่ถูก list/read/delete, requester IP, user agent, data-event timeline | CloudTrail Data Events / access logs | ใช้ดูว่าการเปิดเผยกลายเป็น data loss หรือไม่ |
+| หลักฐานความอ่อนไหวของข้อมูล | PII, customer file, credential, source code, backup | Macie / DLP / manual review | ใช้รองรับ breach decision และลำดับความสำคัญการกู้คืน |
+| หลักฐานการกู้คืน | versioned object state, delete event, encryption change, backup availability | S3 versioning / backup records | ใช้ตัดสินว่าข้อมูลแค่เปิดเผยหรือถูกเปลี่ยน/ทำลาย |
+
+---
+
+## 6. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| CloudTrail management และ data events | ดู policy change, object read/write/delete, actor identity | Required | พิสูจน์ไม่ได้ว่าอะไรเปลี่ยนหรือข้อมูลถูกเข้าถึงหรือไม่ |
+| S3 access logging และ requester context | ดู external reader, user agent, source IP | Required | รู้ว่าเปิด public แต่ไม่รู้ว่ามีคนอ่านจริงหรือไม่ |
+| Macie, DLP, หรือ classification telemetry | ดูขอบเขตข้อมูลอ่อนไหวและ record count | Required | ขอบเขตการแจ้งเหตุและผลกระทบไม่ชัด |
+| Config, IaC, และ guardrail telemetry | ใช้เทียบ planned กับ unplanned policy state | Recommended | analyst อาจตี drift ที่ตั้งใจเป็น incident |
+| Backup/versioning visibility | ดูความสามารถในการ restore และผลจากการลบข้อมูล | Recommended | วางแผน recovery ไม่แม่น |
+
+---
+
+## 7. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| bucket ของ public static website | public-read อาจตั้งใจใช้จริง | ยืนยัน website bucket tag, owner, และไม่มี object อ่อนไหว | suppress เฉพาะ website bucket ที่อนุมัติ | มี file อ่อนไหว, credential, หรือ write exposure |
+| controlled partner data exchange | cross-account/external access อาจถูกต้อง | ยืนยัน partner account, expiry, object prefix, และ ticket | tune เฉพาะ principal และ prefix ที่อนุมัติ | การเข้าถึงขยายเกิน prefix หรือกลายเป็น anonymous/public |
+| data migration หรือ backup restore | object write จำนวนมากและ policy change ดูผิดปกติ | ยืนยัน job owner, change window, และ restore plan | ลด severity เฉพาะ role และช่วงเวลาที่อนุมัติ | มี delete, policy broadening, หรือ principal ใหม่ที่ไม่ควรมี |
+| security tooling enforcement | Config/guardrail อาจ flip access state เร็ว | ยืนยัน Config rule, remediation role, และ change ticket | allowlist remediation role ที่ documented | role เดียวกันปิด logging หรือสร้าง broad access เพิ่ม |
+
+---
+
+## 8. เกณฑ์การยกระดับ
 
 | เงื่อนไข | ยกระดับไปยัง |
 |:---|:---|
@@ -235,7 +270,7 @@ sequenceDiagram
 | Credentials | Rotate + notify owners |
 | Internal docs | Risk assessment only |
 
-## อ้างอิง
+## References
 
 - [MITRE ATT&CK T1530 — Data from Cloud Storage](https://attack.mitre.org/techniques/T1530/)
 - [AWS S3 Security Best Practices](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html)

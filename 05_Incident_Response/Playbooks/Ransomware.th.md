@@ -34,7 +34,7 @@ graph TD
 - [ ] ทบทวน endpoint hardening (macros, RDP, PowerShell)
 - [ ] ใช้ network segmentation ป้องกัน lateral movement
 - [ ] จัด awareness training เรื่อง phishing/ransomware
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 
 ## 1. การวิเคราะห์
@@ -144,6 +144,41 @@ sequenceDiagram
 
 ---
 
+## 6. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐานผลกระทบที่เครื่อง | ransom note, encrypted extensions, hostname ที่ได้รับผลกระทบ, timestamp | Endpoint / EDR | ยืนยันพฤติกรรมของสายพันธุ์และเวลาเริ่มกระจาย |
+| หลักฐานมัลแวร์ | binary hash, execution path, persistence artifacts, process tree | EDR / forensic tools | ใช้กำจัดและ block การกลับมาอีก |
+| หลักฐาน lateral movement | กิจกรรม RDP/SMB/WMI/PsExec, authentication events | SIEM / Windows logs / EDR | ใช้ระบุวิธีการกระจายภายใน |
+| หลักฐานด้านการกู้คืน | สถานะ backup, immutable snapshot, ผล restore test | Backup console / DR team | ใช้ตัดสินใจเส้นทาง recovery |
+| หลักฐานผลกระทบทางธุรกิจและกฎหมาย | ตัวบ่งชี้ exfiltration, ระบบที่ได้รับผลกระทบ, downtime, critical services | DLP / NetFlow / asset inventory | ใช้ตัดสินใจเรื่อง notification และ BCP |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| Endpoint detection และ forensic telemetry | ดู encryption behavior, process lineage, persistence, การแพร่กระจาย | Required | ยืนยัน patient zero หรือการเข้ารหัสที่ยัง active อยู่ไม่ได้ |
+| Windows หรือ system authentication logs | ดู lateral movement, credential abuse, privileged access | Required | ไล่เส้นทางการแพร่ข้ามเครื่องหรือข้ามบัญชีไม่ได้ |
+| Network telemetry และ DNS logs | ดู C2, staging, remote encryption activity, exfiltration clue | Required | scope การสื่อสารภายนอกหรือ propagation path ไม่ครบ |
+| Backup, snapshot, และ recovery logs | ประเมิน restore viability, immutable copy, เวลา recovery | Required | วางแผนกู้คืนแบบมีข้อมูลรองรับไม่ได้ |
+| Asset inventory และ business service mapping | ดูผลกระทบต่อระบบสำคัญและลำดับการกู้คืน | Recommended | จัดลำดับความสำคัญให้ผู้บริหารและทีมปฏิบัติการได้ไม่ดี |
+
+---
+
+## 8. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| งาน deploy software หรือ patching ที่ได้รับอนุมัติ | การเขียนไฟล์จำนวนมากและ process execution ดูเหมือน encryption | ยืนยัน maintenance window, package source, และ signed installer lineage | suppress เฉพาะ package/process ที่รู้จักในช่วง maintenance window | การ rename/write ไฟล์ยังเกิดต่อนอก path ของ package ที่อนุมัติ |
+| งาน backup, compression, หรือ archival | file I/O สูงและ extension change ดูเหมือน ransomware staging | ยืนยัน service account, schedule, destination, และ host list | tune threshold สำหรับ binary และ service account ที่อนุมัติ | มี user context แปลก, shadow copy deletion, หรือ ransom note |
+| Security scanning หรือ EDR remediation | การแตะไฟล์จำนวนมากหรือการกักกันไฟล์อาจดูเหมือนความเสียหาย | ยืนยัน job ID และ action จาก console ของเครื่องมือ | suppress ตามชื่อ process ของเครื่องมือร่วมกับ management server correlation | เครื่องเดียวกันมี lateral movement หรือ payload ที่ไม่รู้จักร่วมด้วย |
+| Lab, sandbox, หรือ malware analysis environment | การระเบิด ransomware ในห้องทดสอบดูเหมือนเหตุจริง | ยืนยัน asset tag, owner, และ network segment ของห้องทดสอบ | จำกัด exception เฉพาะ asset ใน lab ที่แยกจาก production | พฤติกรรมหลุดออกจาก lab boundary หรือแตะระบบ production |
+
+---
+
 ### ผัง 3-2-1 Backup Strategy
 
 ```mermaid
@@ -230,7 +265,7 @@ Hardening Checklist:
 | Decryptor available | nomoreransom.org | Yes/No |
 | Backup integrity | Restore test | Verified/Failed |
 
-## อ้างอิง
+## References
 
 - [CISA — Ransomware Guide](https://www.cisa.gov/stopransomware)
 - [NoMoreRansom.org](https://www.nomoreransom.org/)

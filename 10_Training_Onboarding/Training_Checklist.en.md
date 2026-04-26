@@ -163,6 +163,23 @@
 | SC-200 | Microsoft | Intermediate | Within 6 months |
 | BTL1 | Security Blue Team | Entry–Intermediate | Within 6 months |
 
+## Release-to-Production Decision Criteria
+
+| Criterion | Pass Requirement | Owner |
+|:---|:---|:---|
+| Written and practical assessment | Meets stated pass score | SOC Manager |
+| Ticket quality and escalation behavior | No critical gaps in reviewed samples | Mentor |
+| Core tool proficiency | SIEM, EDR, ticketing tasks completed unaided | SOC Lead |
+| Compliance and data-handling awareness | PDPA and evidence handling checkpoints passed | SOC Manager |
+
+## Checklist Escalation Triggers
+
+| Condition | Escalate To | SLA | Required Action |
+|:---|:---|:---:|:---|
+| Week milestone missed with no recovery plan | SOC Manager | Within 24 hours | Re-baseline training schedule |
+| Analyst passes theory but fails practical handling | Mentor + SOC Lead | Same business day | Extend supervised practice |
+| Documentation quality remains below threshold | SOC Lead | Within 24 hours | Assign focused writing review and re-test |
+
 ---
 
 ## Related Documents

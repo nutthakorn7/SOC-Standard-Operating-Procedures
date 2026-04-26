@@ -174,6 +174,28 @@ experimental → test → stable → deprecated
 3. Update Detection Rules Index
 4. Document reason in rule changelog
 
+## 7. Minimum Detection Release Pack
+
+- [ ] **Use case documented**: Threat, asset scope, required telemetry, and expected analyst action are defined.
+- [ ] **Evidence of testing retained**: Syntax validation, historical replay, simulation result, and peer review outcome are recorded.
+- [ ] **False positive strategy prepared**: Known benign scenarios and first tuning actions are documented before go-live.
+- [ ] **Owner assigned**: A named detection owner is responsible for tuning, review cadence, and incident feedback.
+
+## 8. Release Decision Matrix
+
+| Decision | Minimum Condition | Owner |
+|:---|:---|:---|
+| **Promote to test** | Syntax passes, logic is mapped to a real use case, and expected output is understood | Detection Engineer |
+| **Promote to stable** | Historical validation passes, simulation works, and analyst review confirms the signal is actionable | SOC Lead |
+| **Retune** | False positives, query cost, or triage burden exceed agreed thresholds | Detection Owner |
+| **Deprecate** | Log source disappears, technique is no longer relevant, or rule value is outweighed by noise/cost | SOC Lead + RFC Owner |
+
+## 9. Escalation Triggers for Detection Content
+
+- [ ] **Escalate to SOC Manager** if a Priority 1 use case has no viable detection owner or no telemetry path.
+- [ ] **Escalate to Security Engineering** if query performance, parser quality, or schema instability prevents reliable deployment.
+- [ ] **Escalate to CISO** if critical detection gaps remain open for high-impact assets or recurring incidents.
+
 ---
 
 ## Related Documents

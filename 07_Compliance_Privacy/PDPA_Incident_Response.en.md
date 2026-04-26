@@ -152,6 +152,26 @@ Required information for PDPC:
 □ Consider voluntary disclosure to media (PR/Legal decision)
 ```
 
+## Notification Decision Matrix
+
+| Condition | Notify PDPC | Notify Data Subjects | Escalate To |
+|:---|:---:|:---:|:---|
+| Personal data confirmed, impact still under assessment | ✅ | Assess | DPO + SOC Manager |
+| Sensitive data, financial data, or authentication secrets exposed | ✅ | ✅ | DPO + CISO + Legal |
+| Data encrypted and key integrity confirmed | Assess | Usually no | DPO |
+| No evidence of access but public exposure existed | ✅ | Assess | DPO + SOC Manager |
+| Third-party breach affects your controlled data | ✅ | Assess | DPO + Vendor owner + Legal |
+
+## Minimum Evidence Before Notification
+
+| Evidence | Why It Matters | Owner |
+|:---|:---|:---|
+| Timeline of detection, escalation, and containment | Supports legal timeline and defensibility | IR Engineer |
+| Data types, estimated record count, and affected subjects | Required for regulator and subject notice | SOC Analyst |
+| Containment status and known blast radius | Prevents incomplete or misleading notification | Technical Lead |
+| Current contact details for DPO, legal, and business owner | Ensures notification does not stall | SOC Manager |
+| Copy of draft and final notification packages | Preserves audit and legal record | DPO |
+
 ---
 
 ## PDPA Penalties Reference
@@ -198,3 +218,8 @@ Maintain a register of all data breaches (required by PDPA):
 - [Communication Templates](../05_Incident_Response/Communication_Templates.en.md)
 - [Lessons Learned Template](../05_Incident_Response/Lessons_Learned_Template.en.md)
 - [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.en.md)
+
+## References
+
+- [Thailand Personal Data Protection Committee (PDPC)](https://www.pdpc.or.th/)
+- [NIST SP 800-61r2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)

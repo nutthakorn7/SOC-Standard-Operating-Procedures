@@ -228,6 +228,49 @@ Quick reference for all metric targets:
 
 ---
 
+## 7. Role-Based Use of Metrics
+
+| Role | Primary Decisions | Metrics to Watch First | Action Trigger |
+|:---|:---|:---|:---|
+| **CISO** | Risk posture, budget, executive escalation | MTTD, MTTR, SLA adherence, critical incident trend | Two consecutive reporting periods missing targets |
+| **SOC Manager** | Staffing, queue health, operating rhythm | MTTA, backlog, alerts per analyst, escalation accuracy | Queue backlog older than 24 hours or analyst utilization above 80% |
+| **SOC Analyst** | Triage quality, escalation discipline | MTTA, false positive rate, case aging | Repeated delayed acknowledgements or recurring low-value alerts |
+| **Security Engineer** | Telemetry and platform reliability | Detection coverage, ingestion health, rule failure rate | Missing telemetry or query latency affecting detection timeliness |
+| **IR Engineer** | Incident containment readiness | MTTR, dwell time, PIR completion time | Critical cases exceeding containment SLA or repeated recovery delays |
+
+## 8. Metric Decision Matrix
+
+| Condition | Primary Owner | Immediate Decision | Required Follow-Up |
+|:---|:---|:---|:---|
+| **MTTA above target for 3 consecutive days** | SOC Manager | Rebalance shift coverage and queue ownership | Review staffing and automation within 5 business days |
+| **MTTR above target for any Critical incident** | IR Engineer | Open service review and identify containment blocker | Brief CISO and track remediation to closure |
+| **False positive rate above 25%** | Detection Engineer | Freeze non-essential new detections and prioritize tuning | Publish top noisy rules and tuning plan in weekly review |
+| **Detection coverage drops below target** | Security Engineer | Validate data source loss vs content gap | Update gap register and recovery plan |
+| **Escalation accuracy below 85%** | SOC Manager | Review T1/T2 handoff quality and case notes | Coaching plan plus spot review of closed cases |
+| **Analyst utilization above 80% for a month** | CISO + SOC Manager | Approve workload reduction measures | Evaluate hiring, automation, or scope reduction |
+
+## 9. Minimum Data Quality Requirements
+
+| Metric | Minimum Input Required | Blind Spot If Missing |
+|:---|:---|:---|
+| **MTTD** | Reliable compromise estimate, detection timestamp, normalized event time | Detection performance will look artificially good or bad |
+| **MTTA** | Alert creation time and analyst acknowledgement time from the same workflow | Queue responsiveness cannot be measured consistently |
+| **MTTR** | Incident start, containment time, and resolution timestamp | Response performance gets confused with ticket closure hygiene |
+| **FPR** | Final case disposition with true/false positive tagging | Noise cannot be separated from legitimate alert volume |
+| **Coverage** | Current rule inventory mapped to use cases or MITRE ATT&CK | Coverage percentages become presentation-only, not operational |
+| **Utilization** | Shift hours, alert handling volume, overtime, training allocation | Burnout risk stays hidden until attrition occurs |
+
+## 10. Review and Escalation Cadence
+
+| Cadence | Audience | Focus | Escalate When |
+|:---|:---|:---|:---|
+| **Daily** | Shift Lead, SOC Manager | MTTA, queue depth, open P1/P2 cases | Queue aging or missed shift SLA |
+| **Weekly** | SOC Manager, Detection Engineering | FPR, escalation accuracy, noisy rules | Repeated noise or case quality degradation |
+| **Monthly** | CISO, SOC Manager, IR Lead | MTTD, MTTR, utilization, business impact | KPI target missed twice in a row |
+| **Quarterly** | CISO, executive stakeholders | Trendline, staffing, investment need, risk reduction | Sustained underperformance or rising incident impact |
+
+---
+
 ## Related Documents
 
 - [IR Framework](../05_Incident_Response/Framework.en.md) — Incident lifecycle and SLAs

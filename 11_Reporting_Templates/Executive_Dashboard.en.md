@@ -144,6 +144,23 @@ This template defines the metrics and visualizations for a SOC executive dashboa
 | **Coverage** | MITRE ATT&CK technique coverage | Covered / Total × 100 | ≥ 60% | 🟢≥60% 🟡≥40% 🔴<40% |
 | **Staffing** | Analyst utilization rate | Active Hours / Available × 100 | 60-80% | 🟢60-80% 🟡>80% 🔴>90% |
 
+## Minimum Executive Dashboard Pack
+
+- [ ] **Overall status panel**: One RED/AMBER/GREEN view for detection, response, staffing, technology, coverage, and compliance.
+- [ ] **Business-impact panel**: Show material incidents, downtime, exposed users, or regulated data involvement.
+- [ ] **Trend panel**: Compare this period to the last period for alerts, incidents, MTTD, MTTR, and SLA compliance.
+- [ ] **Action panel**: List the top 3 decisions, risks, or funding requests that require leadership attention.
+
+## Executive Trigger Thresholds
+
+| Condition | Status | Expected Executive Action |
+|:---|:---:|:---|
+| **Critical incident with confirmed material impact** | 🔴 | Join incident governance, approve containment tradeoffs, and track recovery |
+| **MTTD or MTTR exceeds target for 2 periods** | 🟡/🔴 | Review staffing, escalation flow, and control coverage gaps |
+| **SLA compliance drops below 85%** | 🔴 | Approve workload relief, reprioritization, or external support |
+| **Coverage for critical assets drops below agreed baseline** | 🔴 | Fund telemetry restoration, control deployment, or asset-owner remediation |
+| **Repeated control failures create recurring incidents** | 🟡/🔴 | Demand remediation owner, due date, and progress reporting |
+
 ## RAG Status Dashboard Template
 
 ```markdown
@@ -167,3 +184,9 @@ This template defines the metrics and visualizations for a SOC executive dashboa
 - [Monthly SOC Report Template](../11_Reporting_Templates/Monthly_SOC_Report.en.md)
 - [Quarterly Business Review](../11_Reporting_Templates/Quarterly_Business_Review.en.md)
 - [SLA Template](../06_Operations_Management/SLA_Template.en.md)
+
+## References
+
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
+- [SANS SOC Metrics](https://www.sans.org/white-papers/)
+- [SOC-CMM](https://www.soc-cmm.com/)

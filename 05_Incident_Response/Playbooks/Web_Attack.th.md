@@ -13,7 +13,7 @@
 - [ ] อัพเดท WAF rules ด้วย attack signatures ที่พบ
 - [ ] รัน DAST/SAST scans
 - [ ] ใช้ Content Security Policy (CSP) headers
-- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.en.md)
+- [ ] จัดทำ [Incident Report](../../11_Reporting_Templates/incident_report.th.md)
 
 ### ผังเส้นทางการโจมตีเว็บ
 
@@ -166,6 +166,41 @@ graph TD
 
 ---
 
+## 6. Evidence Checklist
+
+| ประเภทหลักฐาน | สิ่งที่ต้องเก็บ | แหล่งข้อมูล | เหตุผลที่ต้องเก็บ |
+|:---|:---|:---|:---|
+| หลักฐาน request | full request path, parameter, header, cookie, timestamp, source IP | WAF / access logs | ใช้ reconstruct การโจมตีและ target surface |
+| หลักฐานแอปพลิเคชัน | error trace, stack log, session context, พฤติกรรม endpoint | App logs / APM | ใช้ยืนยันว่า exploit สำเร็จถึง code path ใด |
+| หลักฐาน persistence | web shell path, file ที่ถูกสร้าง, cron/task, user ใหม่, config change | File integrity / forensics | ใช้ดู post-exploitation foothold |
+| หลักฐานผลกระทบข้อมูล | table ที่ถูก query, data export, record ที่ถูกแก้, customer impact | DB audit / app logs | ใช้รองรับ breach และ legal decision |
+| หลักฐานโครงสร้างพื้นฐาน | action ของ load balancer, WAF, CDN, server ระหว่างโจมตี | Infra logs / ticketing | ใช้ validate containment และ root cause timeline |
+
+---
+
+## 7. Minimum Telemetry Required
+
+| แหล่ง Telemetry | ใช้เพื่ออะไร | ความสำคัญ | Blind Spot ถ้าไม่มี |
+|:---|:---|:---:|:---|
+| WAF และ web access logs | ดู payload, source behavior, rate, endpoint targeting | Required | reconstruct exploit sequence และขอบเขตการยิงไม่ได้ |
+| Application และ APM logs | ดู error condition, code path, auth/session behavior | Required | บอกไม่ได้ว่า request ไปถึง logic ที่เปราะบางสำเร็จหรือไม่ |
+| Host และ file-integrity telemetry | ดู web shell, persistence, process activity, server compromise | Required | มองไม่เห็น RCE หรือ post-exploitation activity |
+| Database audit logs | ดู query abuse, extraction, destructive change | Required | พิสูจน์ผลกระทบต่อข้อมูลไม่ได้ |
+| Release และ change-management records | ดู code/config change และ rollout timing | Recommended | อาจตี release regression เป็นการโจมตี |
+
+---
+
+## 8. False Positive และ Tuning Guide
+
+| Scenario | ทำไมจึงดูน่าสงสัย | วิธีตรวจสอบ | Tuning Action | ต้องยกระดับเมื่อ |
+|:---|:---|:---|:---|:---|
+| vulnerability scan หรือ DAST exercise | payload และ request burst ดูเหมือน exploit จริง | ยืนยัน scanner source, target scope, และ schedule | allowlist source range และ header ของ scanner ในช่วงเวลาที่อนุมัติ | scanner โผล่ใน production โดยไม่อนุมัติหรือมีสัญญาณ exploit สำเร็จ |
+| search engine crawler หรือ partner integration | request volume สูงหรือ URL traversal แปลก | ยืนยัน user agent, IP range, และ path coverage ที่คาดไว้ | tune profile ของ crawler/partner แบบแคบ | request เข้า admin path, auth endpoint, หรือมี malicious payload |
+| QA หรือ release validation หลัง deploy | test payload และ error spike อาจสูงผิดปกติ | ยืนยัน release window, owner, และ endpoint ที่ทดสอบ | ลด severity เฉพาะใน release window และ endpoint scope | error เกิดพร้อม payload เสี่ยง, data access, หรือ shell artifact |
+| WAF false positive จาก business input ที่ encode ซับซ้อน | payload ที่ถูกต้องอาจดูเหมือน injection/traversal | reproduce request กับ business owner และดู response อย่างปลอดภัย | tune exception เฉพาะ parameter และ rule ที่ยืนยันแล้ว | payload เปลี่ยนรูปแบบ, ขยาย endpoint, หรือแตะ function สำคัญ |
+
+---
+
 ### ผัง Web Security Architecture
 
 ```mermaid
@@ -228,7 +263,7 @@ graph TD
 | Application logs | App server | Centralized logging |
 | Client-side | Browser console | Screenshot/HAR |
 
-## อ้างอิง
+## References
 
 - [OWASP Top 10](https://owasp.org/Top10/)
 - [MITRE ATT&CK T1190](https://attack.mitre.org/techniques/T1190/)

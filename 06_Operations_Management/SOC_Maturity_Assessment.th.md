@@ -233,7 +233,7 @@ gantt
 | L3 | L4 | SOAR, KPI dashboards, automation | 12-18 เดือน |
 | L4 | L5 | AI/ML, threat hunting, R&D | 18-24 เดือน |
 
-### Assessment Automation
+### เครื่องมือช่วยประเมินอัตโนมัติ
 
 | Tool | Purpose | ใช้กับ Level |
 |:---|:---|:---|
@@ -241,7 +241,7 @@ gantt
 | MITRE ATT&CK Navigator | Coverage mapping | Level 3+ |
 | KPI Dashboard | Metrics tracking | Level 4+ |
 
-### Assessment Report Template
+### เทมเพลตรายงานการประเมิน
 
 ```
 Executive Summary:
@@ -253,7 +253,7 @@ Executive Summary:
   Budget Estimate: [THB]
 ```
 
-### Quick Self-Assessment
+### การประเมินตนเองแบบย่อ
 
 | Area | L1? | L3? | L5? |
 |:---|:---|:---|:---|
@@ -263,9 +263,9 @@ Executive Summary:
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [SOC Metrics & KPIs](SOC_Metrics.en.md) — ตัวชี้วัด
--   [KPI Dashboard Template](KPI_Dashboard_Template.en.md) — รายงานรายเดือน
--   [SOC Automation Catalog](SOC_Automation_Catalog.en.md) — วุฒิภาวะ automation
--   [Log Source Matrix](Log_Source_Matrix.en.md) — แหล่งข้อมูล
--   [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.en.md) — การ comply กับ framework
--   [Third-Party Risk](Third_Party_Risk.en.md) — ความเสี่ยง vendor
+-   [SOC Metrics & KPIs](SOC_Metrics.th.md) — ตัวชี้วัด
+-   [KPI Dashboard Template](KPI_Dashboard_Template.th.md) — รายงานรายเดือน
+-   [SOC Automation Catalog](SOC_Automation_Catalog.th.md) — วุฒิภาวะด้าน automation
+-   [Log Source Matrix](Log_Source_Matrix.th.md) — แหล่งข้อมูล
+-   [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.th.md) — การเทียบกับ framework มาตรฐาน
+-   [Third-Party Risk](Third_Party_Risk.th.md) — ความเสี่ยงจาก vendor

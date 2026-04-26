@@ -288,7 +288,7 @@ flowchart LR
     I --> J[Containment action]
 ```
 
-### Legal Compliance Checklist
+### Checklist ด้านกฎหมายและการกำกับดูแล
 
 | Requirement | Status | Notes |
 |:---|:---|:---|
@@ -297,7 +297,7 @@ flowchart LR
 | Union notification | ☐ | If applicable |
 | Evidence handling | ☐ | Chain of custody |
 
-### Program Review Cadence
+### รอบการทบทวนโปรแกรม
 
 | Review | Frequency |
 |:---|:---|
@@ -306,8 +306,8 @@ flowchart LR
 
 ## เอกสารที่เกี่ยวข้อง
 
--   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.en.md) — การเก็บหลักฐาน
--   [Incident Classification](../05_Incident_Response/Incident_Classification.en.md) — จำแนก severity
--   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.en.md) — ขั้นตอน escalation
--   [Alert Tuning SOP](Alert_Tuning.en.md) — การ tune UEBA
--   [Third-Party Risk](Third_Party_Risk.en.md) — ความเสี่ยง contractor/vendor
+-   [Forensic Investigation](../05_Incident_Response/Forensic_Investigation.th.md) — การเก็บหลักฐาน
+-   [Incident Classification](../05_Incident_Response/Incident_Classification.th.md) — จำแนกระดับความรุนแรง
+-   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.th.md) — ขั้นตอนการส่งต่อ
+-   [Alert Tuning SOP](Alert_Tuning.th.md) — การปรับจูน UEBA
+-   [Third-Party Risk](Third_Party_Risk.th.md) — ความเสี่ยงจาก contractor/vendor

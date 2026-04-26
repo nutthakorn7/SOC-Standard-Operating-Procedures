@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.15.0] - 2026-04-26
+
+### Changed
+- **Compliance Mapping** (EN+TH) — expanded the existing document to cover practical AI / GenAI compliance use instead of adding a separate report:
+  - Added role-based usage for CISO, SOC Manager, SOC Analyst, Security Engineer, and IR Engineer
+  - Added AI / GenAI control mapping aligned to NIST AI RMF
+  - Added minimum production deliverables and a first-30-days rollout plan
+- **AI playbooks refreshed with current research**:
+  - PB-51 AI Prompt Injection now includes trust-boundary review, tool-permission containment, and updated OWASP GenAI / CISA references
+  - PB-52 LLM Data Poisoning now includes vector integrity, provenance controls, ingestion freeze criteria, and updated NIST / CISA references
+  - PB-53 AI Model Theft now includes model inventory checks, export-path containment, registry reconciliation, and updated OWASP / NIST / CISA references
+- **README.md / mkdocs.yml / VERSION_TRACKER.md** updated to reflect the in-place improvement to existing documents
+
+## [2.14.0] - 2026-04-26
+
+### Added
+- **SOC Use Case Library** (EN+TH) — practical detection use case catalog by maturity tier:
+  - Foundational, operational, and advanced use cases
+  - Required telemetry, mapped Sigma/YARA rules, linked response playbooks, and KPIs
+  - Intake checklist, weighted prioritization model, and review cadence
+
+### Fixed
+- **README.md** — updated document count and Sigma rule count in the detection section
+- **Playbook numbering consistency** — aligned AGENTS.md, README.md, MkDocs navigation, quick reference cards, version tracker, and detection coverage matrix with canonical PB-01 to PB-53 metadata
+- **Detection Coverage Matrix** — added PB-51 to PB-53 AI coverage and corrected PB-21 to PB-33 mappings
+
+---
+
 ## [2.13.0] - 2026-03-06
 
 ### Added

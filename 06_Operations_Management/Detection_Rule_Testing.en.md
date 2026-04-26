@@ -188,6 +188,36 @@ jobs:
 | ⚪ **Deprecated** | No longer relevant | Remove after 30-day notice |
 | 🔴 **Broken** | Syntax error or produces no output | Fix within 24h |
 
+## Release Decision Matrix
+
+| Test Outcome | Owner | Release Decision | Next Action |
+|:---|:---|:---|:---|
+| **Syntax valid, TP confirmed, FP within target** | Detection Engineer | Approve for staged or controlled production release | Start 7-day monitoring window |
+| **TP confirmed but FP above target** | Detection Engineer + SOC Lead | Hold release | Tune exclusions or thresholds and retest |
+| **No TP confirmation but strong threat hypothesis** | SOC Lead | Release only in shadow mode or low-severity state | Collect production evidence before promotion |
+| **Parser or field mapping issue discovered** | Security Engineer | Reject release | Fix normalization before retesting |
+| **Performance impact above threshold** | Security Engineer | Reject release | Optimize query or narrow scope |
+
+## Minimum Evidence Pack for Approval
+
+| Evidence | Why Required |
+|:---|:---|
+| **Rule logic and source reference** | Shows what behavior is intended and why it matters |
+| **Backtest sample output** | Proves the rule behaves correctly on historical data |
+| **False positive review notes** | Shows benign patterns were assessed before release |
+| **MITRE/use-case mapping** | Confirms the rule belongs to a coverage plan |
+| **Related playbook or analyst guidance** | Ensures responders know what to do with the alert |
+| **Rollback plan** | Prevents prolonged noise or broken detections in production |
+
+## Rollback Criteria During Bake Period
+
+| Condition | Owner | Required Action |
+|:---|:---|:---|
+| **FP rate materially exceeds expected threshold** | SOC Analyst | Downgrade, disable, or revert the rule and open tuning ticket |
+| **Alert flood affects queue SLA** | SOC Manager | Pause the rule and prioritize service restoration |
+| **Critical true positive missed during validation exercise** | Detection Engineer | Revert changes and reopen design review |
+| **Query or pipeline performance regresses** | Security Engineer | Disable the rule until optimized |
+
 ## Related Documents
 
 - [Change Management SOP](Change_Management.en.md)
@@ -196,4 +226,9 @@ jobs:
 - [Alert Tuning SOP](Alert_Tuning.en.md) — Tuning methodology for noisy rules
 - [PB-01 Phishing](../05_Incident_Response/Playbooks/Phishing.en.md) — Example: testing email detection rules
 - [PB-02 Ransomware](../05_Incident_Response/Playbooks/Ransomware.en.md) — Example: testing file encryption rules
-- [PB-25 Zero-Day Exploit](../05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md) — Example: testing exploit payload rules
+- [PB-24 Zero-Day Exploit](../05_Incident_Response/Playbooks/Zero_Day_Exploit.en.md) — Example: testing exploit payload rules
+
+## References
+
+- [Sigma Rule Basics](https://sigmahq.io/docs/basics/rules.html)
+- [MITRE ATT&CK](https://attack.mitre.org/)

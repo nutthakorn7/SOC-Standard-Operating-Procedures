@@ -224,6 +224,32 @@ graph LR
 - สอบ SOC Maturity — ใช้ [เครื่องมือวัดคะแนน](../tools/soc_maturity_scorer.html)
 - Compliance audit — ใช้ [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.th.md)
 
+## เกณฑ์ตัดสินใจผ่านแต่ละเฟส (Phase Gate Decision Criteria)
+
+| การเปลี่ยนเฟส | เงื่อนไขขั้นต่ำ | ผู้ตัดสินใจ |
+|:---|:---|:---|
+| วางรากฐาน → ตรวจจับ | SIEM ใช้งานจริง, onboard log source สำคัญชุดแรก, มี owner สำหรับ daily monitoring | CISO + SOC Manager |
+| ตรวจจับ → ปฏิบัติการ | core alerts ถูก tune, Tier 1 runbook ถูกใช้จริง, ทดสอบ escalation path แล้ว | SOC Manager |
+| ปฏิบัติการ → พัฒนา | review metrics รายเดือน, ใช้ playbook กับเคสจริง, จบ exercise อย่างน้อย 1 ครั้ง | CISO |
+
+## ผลลัพธ์ขั้นต่ำของแต่ละเฟส (Minimum Deliverables by Phase)
+
+| เฟส | ผลลัพธ์ขั้นต่ำ | ผู้รับผิดชอบหลัก |
+|:---|:---|:---|
+| วางรากฐาน | SOC mission, operating model, budget ที่อนุมัติ, tool shortlist, staffing plan | CISO |
+| ตรวจจับ | log source inventory, ruleset ชุดแรก, alert routing, Tier 1 workflow | Security Engineer |
+| ปฏิบัติการ | playbook ที่ active, metrics dashboard, reporting cadence, evidence handling standard | SOC Manager |
+| พัฒนา | automation backlog, hunting plan, review cadence, control-improvement roadmap | SOC Manager + Security Engineer |
+
+## Trigger สำหรับการยกระดับระหว่างสร้าง SOC (Escalation Triggers During SOC Buildout)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| งบประมาณล่าช้าจน block เครื่องมือหรือคนที่จำเป็น | Executive sponsor | ภายในวันทำการเดียวกัน | ลด scope ชั่วคราวหรือหา funding ระยะสั้น |
+| ไม่มี owner สำหรับ monitoring, incident handling หรือ engineering workstream | CISO | ภายใน 24 ชม. | แต่งตั้ง accountable lead ก่อนขึ้นเฟสถัดไป |
+| critical log source หรือ endpoint coverage ยังไม่พร้อมเกินแผน | SOC Manager + Business owner | ภายในวันทำการเดียวกัน | รับ blind spot อย่างเป็นทางการหรือแก้ dependency |
+| มีกฎหรือข้อกำหนดใหม่ระหว่าง build | CISO + Compliance Officer | ภายใน 5 วันทำการ | ปรับลำดับ roadmap และขอบเขต |
+
 ---
 
 

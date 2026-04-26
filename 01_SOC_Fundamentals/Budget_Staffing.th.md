@@ -258,6 +258,25 @@ graph LR
 | Turnover > 15% | 🔴 | Retention plan |
 | Satisfaction < 3/5 | ⚠️ | Team survey |
 
+## ข้อมูลขั้นต่ำก่อนอนุมัติงบ (Minimum Inputs for Budget Approval)
+
+| ข้อมูล | เหตุผล | ผู้รับผิดชอบ |
+|:---|:---|:---|
+| coverage model เป้าหมาย (8x5, 16x5, 24x7) | เป็นตัวกำหนดจำนวนคนและค่าเครื่องมือ | CISO |
+| ระบบ ผู้ใช้ และปริมาณ log ที่อยู่ใน scope | ป้องกันการตั้งงบเทคโนโลยีต่ำเกินจริง | Security Engineer |
+| staffing plan แยกตาม role และ shift | แปลง architecture ให้เป็นต้นทุนดำเนินงานจริง | SOC Manager |
+| แผนฝึกอบรมและใบรับรอง | ป้องกัน hidden cost หลังเริ่มจ้างงาน | SOC Manager |
+| สมมติฐานด้าน cost-of-risk และ incident | ทำให้ business case คุยกับ finance ได้อย่างมีเหตุผล | CISO |
+
+## Trigger สำหรับการยกระดับเรื่องงบและคน (Budget and Hiring Escalation Triggers)
+
+| เงื่อนไข | ยกระดับถึง | SLA | การดำเนินการที่ต้องทำ |
+|:---|:---|:---:|:---|
+| งบที่อนุมัติไม่พอสำหรับ staffing หรือ tooling ขั้นต่ำ | Executive sponsor | ภายในวันทำการเดียวกัน | ลด scope หรือจัดงบสำหรับ minimum viable model |
+| role สำคัญยังหาคนไม่ได้เกิน milestone | CISO + HR | ภายใน 5 วันทำการ | เปิด backup hiring plan หรือใช้ MSSP ชั่วคราว |
+| attrition, OT หรือ burnout เกิน threshold | SOC Manager + CISO | ภายในวันทำการเดียวกัน | ปรับกะหรือเพิ่มกำลังคน |
+| งบฝึกอบรมถูกลดต่ำกว่าระดับ readiness ขั้นต่ำ | CISO | ก่อนเริ่มใช้งาน | อนุมัติใหม่หรือชะลอ rollout ให้ตรงกับ capability |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [แผนงานสร้าง SOC](SOC_Building_Roadmap.th.md)

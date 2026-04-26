@@ -172,6 +172,38 @@
 
 ---
 
+## Role Ownership by Cadence
+
+| Cadence | Primary Owner | Supporting Roles | Expected Output |
+|:---|:---|:---|:---|
+| **Shift / Daily** | Shift Lead | SOC Analyst, Security Engineer | Queue health, handoff note, open-incident status |
+| **Weekly** | SOC Manager | Detection Engineer, TI Analyst | Tuning priorities, stale-case review, staffing adjustments |
+| **Monthly** | SOC Manager | CISO, Detection Engineer, IR Lead | KPI pack, improvement actions, management summary |
+| **Quarterly** | CISO / SOC Manager | SOC Lead, GRC, Security Engineering | Maturity review, control gaps, investment priorities |
+| **Annual** | CISO | SOC Manager, HR, GRC, platform owners | Strategy, budget, audit readiness, roadmap refresh |
+
+## Escalation Triggers Built into Checklists
+
+| Trigger | Escalate To | Why |
+|:---|:---|:---|
+| **Queue contains untriaged P1/P2 alerts beyond SLA** | SOC Manager + IR Lead | Active incident handling is at risk |
+| **Critical log source gap persists into next shift** | Security Engineer + SOC Manager | Detection coverage and evidence quality are degraded |
+| **Open incident remains stalled beyond documented threshold** | IR Lead | Case ownership or containment is blocked |
+| **Repeated tuning issue appears in weekly review** | Detection Engineer + SOC Manager | Rule health is affecting analyst capacity |
+| **Monthly KPI pack shows repeated target miss** | CISO | Requires management action, not analyst-level fixes |
+
+## Evidence and Artifacts to Retain
+
+| Cadence | Artifact | Minimum Retention Purpose |
+|:---|:---|:---|
+| **Shift / Daily** | Handoff notes, queue snapshot, active-incident summary | Supports continuity and later incident reconstruction |
+| **Weekly** | Noisy-rule review, stale-case list, tuning requests | Demonstrates operational follow-through |
+| **Monthly** | KPI pack, incident trend summary, management decisions | Supports governance and executive reporting |
+| **Quarterly** | Maturity review, tabletop outputs, gap register | Tracks risk reduction over time |
+| **Annual** | Audit evidence pack, roadmap decisions, training summary | Supports compliance and budget planning |
+
+---
+
 ## Related Documents
 
 - [Tier 1 Runbook](../05_Incident_Response/Runbooks/Tier1_Runbook.en.md)
@@ -179,3 +211,8 @@
 - [Shift Handoff](../06_Operations_Management/Shift_Handoff.en.md)
 - [Tabletop Exercises](../05_Incident_Response/Tabletop_Exercises.en.md)
 - [Purple Team Exercises](../05_Incident_Response/Purple_Team_Exercises.en.md)
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [NIST Cybersecurity Framework](https://csrc.nist.gov/projects/cybersecurity-framework)

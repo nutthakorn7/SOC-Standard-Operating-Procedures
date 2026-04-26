@@ -293,7 +293,7 @@ graph LR
 | Eradicate | Remove cause | 4 hrs |
 | Recover | Restore ops | 8 hrs |
 
-## อ้างอิง (References)
+## References (References)
 
 - [NIST SP 800-61r2 — Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
 - [MITRE ATT&CK Framework](https://attack.mitre.org/)
