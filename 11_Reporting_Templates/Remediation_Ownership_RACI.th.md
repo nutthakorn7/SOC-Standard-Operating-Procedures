@@ -6,9 +6,9 @@
 ```mermaid
 graph TD
     A["เปิด Remediation Action"] --> B["กำหนด Owner และ Due Date"]
-    B --> C["Execute และ Validate"]
-    C --> D["ทบทวน Residual Risk"]
-    D --> E["Close หรือ Escalate"]
+    B --> C["ดำเนินการและตรวจสอบ"]
+    C --> D["ทบทวน residual risk"]
+    D --> E["ปิดงานหรือยกระดับ"]
 ```
 
 ## 1. ขอบเขตการใช้งาน
@@ -36,6 +36,11 @@ graph TD
 -   [ ] high-risk overdue actions ต้องถูก escalate ใน monthly review pack
 -   [ ] ต้องมี validation evidence ก่อนปิดงาน
 -   [ ] รายการที่ย้ายไป risk acceptance ต้องลิงก์กับ risk acceptance record ที่อนุมัติแล้ว
+
+## 4. เส้นทางส่งต่อใน Governance
+
+-   [ ] งาน remediation ที่ค้างเกินกำหนดและมีความเสี่ยงสูงต้องถูกยกระดับไป monthly remediation review และ monthly governance review
+-   [ ] รายการที่ไม่สามารถปิดด้วยการปฏิบัติการปกติได้ต้องเชื่อมไป risk acceptance หรือ board decision pack ตามระดับอำนาจที่ต้องใช้
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 

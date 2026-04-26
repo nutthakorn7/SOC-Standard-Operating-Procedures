@@ -69,10 +69,16 @@ graph TD
 
 | Action | Owner | Due Date | Status |
 |:---|:---|:---|:---:|
-| Confirm safeguards active | | | ☐ |
-| Review ก่อนหมดอายุ | | | ☐ |
+| ยืนยันว่า safeguards ทำงานอยู่ | | | ☐ |
+| ทบทวนก่อนหมดอายุ | | | ☐ |
 | ยกเลิกข้อยกเว้นหรือขอต่ออายุพร้อมเหตุผล | | | ☐ |
-| Update decision log | | | ☐ |
+| อัปเดต decision log | | | ☐ |
+
+## 8. เส้นทางส่งต่อใน Governance
+
+-   [ ] ทบทวนข้อยกเว้นที่ยังเปิดอยู่ใน monthly governance review จนกว่าจะยกเลิก ต่ออายุ หรือยกระดับ
+-   [ ] หากข้อยกเว้นเกิดซ้ำหรือ safeguards ล้มเหลว ให้ส่งต่อเข้า quarterly risk acceptance review
+-   [ ] หากต้องใช้อำนาจตัดสินใจหรือวงเงินระดับสูง ให้ยกระดับเข้า board quarterly decision pack
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
@@ -80,6 +86,7 @@ graph TD
 -   [Request for Change (RFC)](change_request_rfc.th.md)
 -   [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.th.md)
 -   [Access Control Policy](../06_Operations_Management/Access_Control.th.md)
+-   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
 
 ## References
 

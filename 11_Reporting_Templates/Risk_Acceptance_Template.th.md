@@ -84,12 +84,21 @@ graph TD
 | Reassess หาก threat conditions เปลี่ยน | | | ☐ |
 | ติดตาม remediation plan | | | ☐ |
 
+## 9. เส้นทางส่งต่อใน Governance
+
+-   [ ] ติดตาม acceptance ที่ยัง active ใน monthly governance review จนกว่าจะปิดหรือยกระดับ
+-   [ ] หากมีการต่ออายุซ้ำหรือ residual risk ยังเป็น High ให้ส่งต่อเข้า quarterly risk acceptance review
+-   [ ] หากต้องใช้งบ อำนาจตัดสินใจ หรือการยอมรับความเสี่ยงระดับบอร์ด ให้ยกระดับเข้า board quarterly decision pack
+
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
 -   [Compliance Gap Analysis](../07_Compliance_Privacy/Compliance_Gap_Analysis.th.md)
 -   [SLA Template](../06_Operations_Management/SLA_Template.th.md)
 -   [Executive Dashboard](Executive_Dashboard.th.md)
 -   [Monthly SOC Report](Monthly_SOC_Report.th.md)
+-   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
+-   [Quarterly Risk Acceptance Review Pack](Quarterly_Risk_Acceptance_Review_Pack.th.md)
+-   [Board Quarterly Decision Pack](Board_Quarterly_Decision_Pack.th.md)
 
 ## References
 

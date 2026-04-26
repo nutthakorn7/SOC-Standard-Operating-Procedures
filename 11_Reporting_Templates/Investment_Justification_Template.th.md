@@ -75,10 +75,15 @@ graph TD
 
 | Action | Owner | Due Date | Status |
 |:---|:---|:---|:---:|
-| Procurement หรือ staffing started | | | ☐ |
-| เก็บ success metric baseline | | | ☐ |
-| นัด 30/60/90-day review | | | ☐ |
-| รายงาน outcome ให้ leadership | | | ☐ |
+| เริ่ม procurement หรือกระบวนการจัดกำลังคนแล้ว | | | ☐ |
+| เก็บ baseline ของ success metric แล้ว | | | ☐ |
+| นัดทบทวน 30/60/90 วันแล้ว | | | ☐ |
+| รายงานผลลัพธ์ให้ผู้บริหารแล้ว | | | ☐ |
+
+## 9. เส้นทางส่งต่อใน Governance
+
+-   [ ] ติดตามการลงทุนที่อนุมัติแล้วใน monthly governance review จนกว่าจะยืนยันผลลัพธ์ตามที่สัญญาไว้ได้
+-   [ ] หากการลงทุนล่าช้าหรือไม่ลดความเสี่ยงได้ตามคาด ให้ส่งกลับไปยัง board หรือ executive review
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
@@ -86,6 +91,8 @@ graph TD
 -   [Executive Dashboard](Executive_Dashboard.th.md)
 -   [SOC Capacity Planning](../06_Operations_Management/SOC_Capacity_Planning.th.md)
 -   [Vendor Evaluation](../06_Operations_Management/Vendor_Evaluation.th.md)
+-   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
+-   [Board Quarterly Decision Pack](Board_Quarterly_Decision_Pack.th.md)
 
 ## References
 

@@ -43,6 +43,12 @@ graph TD
 -   [ ] re-score เมื่อ incident trends หรือ threat intelligence เปลี่ยน
 -   [ ] บันทึก noise concerns ก่อนกำหนด production deadline
 
+## 5. เส้นทางส่งต่อใน Backlog และ Governance
+
+-   [ ] เชื่อมรายการที่ยังขาด telemetry ไปยัง telemetry backlog หรือ log source onboarding request
+-   [ ] เชื่อมรายการที่มาจาก PIR, incident, หรือ hunt ไปยัง remediation และ governance tracking ตามความจำเป็น
+-   [ ] ยกระดับ detection gap ที่คงอยู่และกระทบ critical services ไปยัง monthly governance review
+
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
 -   [Detection Request Template](Detection_Request_Template.th.md)

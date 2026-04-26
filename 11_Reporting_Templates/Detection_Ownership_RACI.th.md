@@ -6,9 +6,9 @@
 ```mermaid
 graph TD
     A["Detection Request"] --> B["จัดลำดับและกำหนด Owner"]
-    B --> C["Build และ Test"]
-    C --> D["Deploy และ Monitor"]
-    D --> E["Tune หรือ Retire"]
+    B --> C["พัฒนาและทดสอบ"]
+    C --> D["Deploy และติดตามผล"]
+    D --> E["ปรับแต่งหรือยกเลิก"]
 ```
 
 ## 1. ขอบเขตการใช้งาน
@@ -38,6 +38,11 @@ graph TD
 -   [ ] ห้าม deploy ขึ้น production หากยังไม่มี accountable approver
 -   [ ] ปัญหา telemetry dependency ต้อง handoff ไป Security Engineering พร้อม owner และ due date
 -   [ ] แรงกดดันจาก false positives ต้องถูกทบทวนรายสัปดาห์จนกว่าจะปิดหรือ defer อย่างเป็นทางการ
+
+## 4. เส้นทางส่งต่อใน Governance
+
+-   [ ] detection gap ที่กระทบ critical services ต้องถูกยกระดับไป weekly review และ monthly governance review ตามความรุนแรง
+-   [ ] รายการที่ยังปล่อย production ไม่ได้เพราะ telemetry ขาด ต้องเชื่อมไป telemetry backlog หรือ log source onboarding request
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 

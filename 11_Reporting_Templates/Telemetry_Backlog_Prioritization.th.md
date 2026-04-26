@@ -42,6 +42,12 @@ graph TD
 -   [ ] ห้ามปิดงานจนกว่าจะผ่าน data quality และ timestamp checks
 -   [ ] re-score เมื่อ service ownership, retention, หรือ legal constraints เปลี่ยน
 
+## 5. เส้นทางส่งต่อใน Backlog และ Governance
+
+-   [ ] เชื่อมรายการที่ต้องเริ่มงานใหม่ไปยัง log source onboarding request
+-   [ ] เชื่อมรายการที่บล็อก detection use case สำคัญไป weekly telemetry review และ monthly governance review เมื่อกระทบความเสี่ยงเชิงบริการ
+-   [ ] ยกระดับ blind spot ที่คงอยู่นานหรือกระทบ regulated data ไป quarterly risk หรือ board review ตามเกณฑ์ที่เกี่ยวข้อง
+
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
 -   [Log Source Onboarding Request](Log_Source_Onboarding_Request.th.md)

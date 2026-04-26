@@ -1,14 +1,14 @@
 # ชุดทบทวน Telemetry ประจำสัปดาห์
 
 **กลุ่มเป้าหมาย**: Security Engineer, SOC Manager, Platform Owner, Detection Engineer
-**วัตถุประสงค์**: ใช้ชุดเอกสารนี้เพื่อทบทวนความคืบหน้าในการ onboarding telemetry ปัญหา data quality ingestion failures และประเด็นตัดสินใจที่กระทบ detection readiness
+**วัตถุประสงค์**: ใช้ชุดเอกสารนี้เพื่อทบทวนความคืบหน้าในการ onboarding telemetry ปัญหา data quality, ingestion failure, และประเด็นตัดสินใจที่กระทบ detection readiness
 
 ```mermaid
 graph TD
-    A["รวบรวมข้อมูล Telemetry Health"] --> B["ทบทวน Quality และ Gaps"]
-    B --> C["ตรวจสอบ Backlog และ Dependencies"]
-    C --> D["ตัดสินใจ Fix, Escalate, หรือ Defer"]
-    D --> E["กำหนด Owner และวันครบกำหนด"]
+    A["รวบรวมข้อมูลสุขภาพของ telemetry"] --> B["ทบทวนคุณภาพและช่องว่าง"]
+    B --> C["ตรวจสอบ backlog และ dependency"]
+    C --> D["ตัดสินใจแก้ไข ยกระดับ หรือเลื่อน"]
+    D --> E["กำหนด owner และวันครบกำหนด"]
 ```
 
 ## 1. ส่วนหัวการประชุม

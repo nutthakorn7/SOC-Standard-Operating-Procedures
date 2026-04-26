@@ -18,7 +18,7 @@ graph LR
 
 ## 2. ตัวชี้วัดผลการดำเนินงาน (KPIs)
 
-| ตัวชี้วัด (Metric) | เป้าหมาย (Target) | ผลลัพธ์ (Actual) | สถานะ |
+| ตัวชี้วัด | เป้าหมาย | ผลลัพธ์จริง | สถานะ |
 | :--- | :--- | :--- | :--- |
 | **MTTD** (เวลาตรวจจับเฉลี่ย) | < 30 นาที | [XX] นาที | [🟢/🔴] |
 | **MTTR** (เวลาตอบสนองเฉลี่ย) | < 60 นาที | [XX] นาที | [🟢/🔴] |
@@ -103,9 +103,9 @@ graph LR
 
 | ขั้นตอน | เงื่อนไขขั้นต่ำ | ผู้รับผิดชอบ |
 |:---|:---|:---|
-| **Draft complete** | กรอกครบทุกส่วนบังคับ และย้อนกลับไปยังข้อมูลต้นทางได้ | SOC Analyst / Report Owner |
-| **Manager review** | เนื้อหาสอดคล้องกับหลักฐาน และ recommendation มี owner ชัด | SOC Manager |
-| **Executive release** | ข้อความความเสี่ยงระดับสูงถูกต้อง เปิดเผยประเด็นค้างครบ และไม่มี critical omission | CISO หรือผู้ได้รับมอบหมาย |
+| **ร่างรายงานเสร็จสมบูรณ์** | กรอกครบทุกส่วนบังคับ และย้อนกลับไปยังข้อมูลต้นทางได้ | SOC Analyst / Report Owner |
+| **ผู้จัดการทบทวนแล้ว** | เนื้อหาสอดคล้องกับหลักฐาน และ recommendation มี owner ชัด | SOC Manager |
+| **อนุมัติส่งผู้บริหาร** | ข้อความความเสี่ยงระดับสูงถูกต้อง เปิดเผยประเด็นค้างครบ และไม่มี critical omission | CISO หรือผู้ได้รับมอบหมาย |
 
 ## คู่มือการเลือกภาพประกอบรายงาน
 
@@ -113,14 +113,14 @@ graph LR
 
 | ตัวชี้วัด | ประเภทแผนภูมิ | วัตถุประสงค์ |
 |:---|:---|:---|
-| ปริมาณ alert ตาม severity | Stacked bar chart | แสดงแนวโน้มปริมาณ |
-| MTTD / MTTR trend | Line chart (dual axis) | แสดงการปรับปรุงประสิทธิภาพ |
-| Top 10 alert types | Horizontal bar chart | ระบุ alert ที่มีปริมาณมากที่สุด |
-| True vs False Positive | Pie/donut chart | แสดงความแม่นยำ detection |
-| Incidents ตามหมวด | Treemap | แสดงการกระจายตัว incident |
-| SLA compliance | Gauge/meter | ดูเร็ว ผ่าน/ไม่ผ่าน |
-| MITRE ATT&CK heatmap | Matrix heatmap | แสดงช่องว่าง coverage |
-| Workload ต่อ analyst | Bar chart ต่อ analyst | ระบุปัญหา capacity |
+| ปริมาณ alert ตาม severity | กราฟแท่งซ้อน | แสดงแนวโน้มปริมาณ |
+| แนวโน้ม MTTD / MTTR | กราฟเส้นแบบสองแกน | แสดงการปรับปรุงประสิทธิภาพ |
+| Alert 10 ประเภทที่พบบ่อย | กราฟแท่งแนวนอน | ระบุ alert ที่มีปริมาณมากที่สุด |
+| True Positive เทียบ False Positive | กราฟวงกลมหรือโดนัท | แสดงความแม่นยำของ detection |
+| Incident ตามหมวด | Treemap | แสดงการกระจายตัวของ incident |
+| การทำตาม SLA | Gauge / Meter | ดูเร็วว่าผ่านหรือไม่ผ่าน |
+| Heatmap ของ MITRE ATT&CK | Matrix heatmap | แสดงช่องว่างของ coverage |
+| ภาระงานต่อ analyst | กราฟแท่งรายบุคคล | ระบุปัญหา capacity |
 
 ### ส่วนวิเคราะห์แนวโน้ม
 
@@ -180,30 +180,30 @@ graph LR
 
 ### ส่วนบังคับของรายงาน
 
-| Section | เนื้อหา | Charts |
+| ส่วนรายงาน | เนื้อหา | แผนภูมิที่แนะนำ |
 |:---|:---|:---|
 | Executive Summary | สรุป 1 หน้า | Key metrics |
 | Alert Statistics | Volume, types, trends | Bar + line |
 | Incidents | Summary, severity, status | Pie + table |
-| KPI Performance | ตัวชี้วัดหลัก vs target | Gauge |
+| KPI Performance | ตัวชี้วัดหลักเทียบเป้าหมาย | Gauge |
 | Threat Landscape | ภัยคุกคามล่าสุด | Timeline |
 | Recommendations | ข้อเสนอปรับปรุง | Priority list |
 
 ### Checklist ทบทวนรายงาน
 - [ ] ข้อมูลถูกต้องครบถ้วน
-- [ ] Charts อ่านเข้าใจง่าย
+- [ ] แผนภูมิอ่านเข้าใจง่าย
 - [ ] Recommendations มี action items
 - [ ] เปรียบเทียบกับเดือนก่อน
 - [ ] Proofread ก่อนส่ง
 
 ### ขั้นตอนอนุมัติรายงาน
 
-| Step | Approver | SLA |
+| ขั้นตอน | ผู้อนุมัติ | SLA |
 |:---|:---|:---|
-| Draft | SOC Analyst | Day 3 |
-| Review | SOC Manager | Day 5 |
-| Final | CISO | Day 7 |
-| Distribute | Admin | Day 8 |
+| ร่างรายงาน | SOC Analyst | Day 3 |
+| ทบทวน | SOC Manager | Day 5 |
+| อนุมัติขั้นสุดท้าย | CISO | Day 7 |
+| เผยแพร่ | Admin | Day 8 |
 
 ### งบประมาณ / ทรัพยากรที่ต้องการ
 - [ความต้องการกำลังคน เครื่องมือ หรือการฝึกอบรม]

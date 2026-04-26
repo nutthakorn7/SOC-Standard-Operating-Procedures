@@ -115,11 +115,11 @@
 
 ---
 
-## QBR Agenda
+## วาระการประชุม QBR
 
 | เวลา | หัวข้อ | ผู้นำเสนอ |
 |:---:|:---|:---|
-| 10 นาที | สรุป Executive | SOC Manager |
+| 10 นาที | สรุปผู้บริหาร | SOC Manager |
 | 15 นาที | Incident Highlights + Trends | SOC Lead |
 | 10 นาที | Detection & Response Metrics | Detection Engineer |
 | 10 นาที | Threat Landscape Update | TI Analyst |
@@ -128,9 +128,9 @@
 | 10 นาที | Budget Review | SOC Manager |
 | 15 นาที | Q&A + Next Quarter Goals | ทุกคน |
 
-## QBR Metrics Dashboard
+## แดชบอร์ดตัวชี้วัดสำหรับ QBR
 
-| Category | ตัวชี้วัด | Q ก่อน | Q นี้ | เป้า | สถานะ |
+| หมวด | ตัวชี้วัด | Q ก่อน | Q นี้ | เป้า | สถานะ |
 |:---|:---|:---:|:---:|:---:|:---:|
 | **Detection** | MTTD | [XX]m | [XX]m | ≤60m | ✅/❌ |
 | **Response** | MTTR | [XX]m | [XX]m | ≤240m | ✅/❌ |
@@ -147,7 +147,7 @@
 
 ### โครงสร้างการนำเสนอ QBR
 
-| Slide | เนื้อหา | เวลา |
+| สไลด์ | เนื้อหา | เวลา |
 |:---|:---|:---|
 | 1 | Executive Summary | 5 min |
 | 2 | KPI เทียบเป้าหมาย | 10 min |
@@ -159,7 +159,7 @@
 
 ### เทมเพลตคำนวณ ROI
 
-| Metric | Before SOC | After SOC | Savings |
+| ตัวชี้วัด | ก่อนมี SOC | หลังมี SOC | ผลประหยัด |
 |:---|:---|:---|:---|
 | Avg breach cost | 15M THB | 5M THB | 10M THB |
 | MTTR | 72 hrs | 4 hrs | 68 hrs |
@@ -168,7 +168,7 @@
 
 ### ตัวชี้วัดความสำเร็จของ QBR
 
-| Metric | Target |
+| ตัวชี้วัด | เป้าหมาย |
 |:---|:---|
 | Attendees | 100% stakeholders |
 | Action items | ≤ 10, assigned |

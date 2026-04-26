@@ -6,9 +6,9 @@
 ```mermaid
 graph TD
     A["รวบรวม Detection Metrics"] --> B["ทบทวน Noise และ Coverage"]
-    B --> C["ตรวจสอบความคืบหน้า Backlog"]
-    C --> D["ตัดสินใจ Tune, Deploy, หรือ Defer"]
-    D --> E["กำหนด Owner และ Due Date"]
+    B --> C["ตรวจสอบความคืบหน้าของ backlog"]
+    C --> D["ตัดสินใจปรับแต่ง ปล่อยใช้งาน หรือเลื่อน"]
+    D --> E["กำหนด owner และวันครบกำหนด"]
 ```
 
 ## 1. ส่วนหัวการประชุม
@@ -71,7 +71,7 @@ graph TD
 
 | ถ้าการทบทวนรายสัปดาห์พบว่า | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องมี |
 |:---|:---|:---|
-| **telemetry dependency บล็อกการปล่อย detection** | Weekly Telemetry Review Pack | แหล่งข้อมูลที่ขาด parser issue use case ที่ได้รับผลกระทบ และ due date |
+| **telemetry dependency บล็อกการปล่อย detection** | Weekly Telemetry Review Pack | แหล่งข้อมูลที่ขาด, parser issue, use case ที่ได้รับผลกระทบ, และ due date |
 | **detection gap ทำให้ remediation ของ incident ยังไม่ปิด** | Monthly Remediation Review Pack | remediation item owner incident ที่ได้รับผลกระทบ และหลักฐานที่ต้อง validate |
 | **noise หรือ coverage issue ซ้ำจนกระทบ SLA หรือ analyst load** | Monthly Governance Review Pack | service impact summary, owner, และข้อเสนอแนะในการ escalate |
 

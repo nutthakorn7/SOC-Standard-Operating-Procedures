@@ -74,12 +74,19 @@ graph TD
 | Remove exception or renew with justification | | | ☐ |
 | Update decision log | | | ☐ |
 
+## 8. Governance Routing
+
+-   [ ] Review open exceptions in monthly governance review until they are removed, renewed, or escalated.
+-   [ ] Move repeated exceptions or failed safeguards to quarterly risk acceptance review.
+-   [ ] Escalate material authority or funding questions to the board quarterly decision pack.
+
 ## Related Documents
 
 -   [Risk Acceptance Template](Risk_Acceptance_Template.en.md)
 -   [Request for Change (RFC)](change_request_rfc.en.md)
 -   [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.en.md)
 -   [Access Control Policy](../06_Operations_Management/Access_Control.en.md)
+-   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.en.md)
 
 ## References
 

@@ -5,10 +5,10 @@
 
 ```mermaid
 graph TD
-    A["ส่งคำขอ Onboarding"] --> B["ยืนยัน Owner และ Scope"]
-    B --> C["Map Security Use Cases"]
-    C --> D["อนุมัติแผน Onboarding"]
-    D --> E["ติดตาม Validation และ Go-Live"]
+    A["ส่งคำขอ onboarding"] --> B["ยืนยัน owner และขอบเขต"]
+    B --> C["จับคู่กับ security use cases"]
+    C --> D["อนุมัติแผน onboarding"]
+    D --> E["ติดตาม validation และ go-live"]
 ```
 
 ## 1. ส่วนหัวคำขอ
@@ -27,20 +27,20 @@ graph TD
 
 | Question | Answer |
 |:---|:---|
-| **ประเภทของแหล่งข้อมูล** | ☐ Cloud · ☐ Endpoint · ☐ Network · ☐ Application · ☐ Identity · ☐ Other |
-| **วิธีส่ง Log** | |
+| **ประเภทของแหล่งข้อมูล** | ☐ Cloud · ☐ Endpoint · ☐ Network · ☐ Application · ☐ Identity · ☐ อื่น ๆ |
+| **วิธีส่ง log** | |
 | **ปริมาณ event ที่คาดหวัง** | |
 | **ข้อกำหนด retention** | |
-| **มี regulated หรือ sensitive data หรือไม่** | ☐ Yes · ☐ No |
+| **มี regulated หรือ sensitive data หรือไม่** | ☐ ใช่ · ☐ ไม่ใช่ |
 
 ## 3. Security Use Cases
 
 | Use Case | Priority | Required | Notes |
 |:---|:---:|:---:|:---|
-| Authentication monitoring | High/Med/Low | ☐ | |
-| Admin activity monitoring | High/Med/Low | ☐ | |
-| Incident investigation support | High/Med/Low | ☐ | |
-| Compliance evidence | High/Med/Low | ☐ | |
+| Authentication monitoring | สูง/กลาง/ต่ำ | ☐ | |
+| Admin activity monitoring | สูง/กลาง/ต่ำ | ☐ | |
+| Incident investigation support | สูง/กลาง/ต่ำ | ☐ | |
+| Compliance evidence | สูง/กลาง/ต่ำ | ☐ | |
 
 ## 4. Readiness Checks
 
@@ -67,6 +67,12 @@ graph TD
 | Technical Owner | | ☐ Approve · ☐ Reject | |
 | Security Engineer | | ☐ Reviewed | |
 | SOC Manager | | ☐ Approve · ☐ Reject | |
+
+## 7. เส้นทางส่งต่อใน Backlog และ Governance
+
+-   [ ] หาก onboarding นี้ปลดล็อก telemetry gap สำคัญ ให้เชื่อมไป telemetry backlog prioritization
+-   [ ] หาก onboarding นี้รองรับ detection use case สำคัญ ให้เชื่อมไป detection request หรือ detection backlog
+-   [ ] หากมี blocker ด้าน owner, retention, legal, หรือ data quality ให้ยกระดับเข้า monthly governance review ตามความรุนแรง
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 

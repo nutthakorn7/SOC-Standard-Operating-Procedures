@@ -5,10 +5,10 @@
 
 ```mermaid
 graph TD
-    A["คำขอ Telemetry หรือ Gap"] --> B["กำหนด Data Owner และ Security Owner"]
-    B --> C["Onboard และ Validate"]
-    C --> D["Monitor Health"]
-    D --> E["Fix, Escalate, หรือ Accept Risk"]
+    A["คำขอ telemetry หรือ gap"] --> B["กำหนด data owner และ security owner"]
+    B --> C["Onboard และตรวจสอบ"]
+    C --> D["ติดตามสุขภาพข้อมูล"]
+    D --> E["แก้ไข ยกระดับ หรือยอมรับความเสี่ยง"]
 ```
 
 ## 1. ขอบเขตการใช้งาน
@@ -37,6 +37,11 @@ graph TD
 -   [ ] data quality failures บน critical assets ต้องถูก escalate ภายในสัปดาห์เดียวกัน
 -   [ ] ห้ามปิด onboarding item หากยังไม่มี validation evidence
 -   [ ] workaround ชั่วคราวต้องมี expiry date และ owner
+
+## 4. เส้นทางส่งต่อใน Governance
+
+-   [ ] blind spot หรือ ingestion failure ที่กระทบ critical services ต้องถูกยกระดับเข้า weekly telemetry review และ monthly governance review
+-   [ ] รายการที่ต้องยอมรับความเสี่ยงชั่วคราวต้องเชื่อมไป quarterly risk acceptance review
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 

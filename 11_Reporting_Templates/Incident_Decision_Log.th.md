@@ -19,7 +19,7 @@ graph TD
 
 ## 2. ภาพรวมของเหตุการณ์
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
 | **Incident ID** | INC-[YYYYMMDD]-[001] |
 | **Incident Type** | |
@@ -29,7 +29,7 @@ graph TD
 
 ## 3. บันทึกการตัดสินใจ
 
-| Time (UTC) | Decision | Decision Owner | Facts Available | Risk / Tradeoff | Action Taken |
+| เวลา (UTC) | การตัดสินใจ | ผู้ตัดสินใจ | ข้อเท็จจริงที่มี | ความเสี่ยง / Tradeoff | การดำเนินการ |
 |:---|:---|:---|:---|:---|:---|
 | | | | | | |
 | | | | | | |
@@ -80,7 +80,7 @@ graph TD
 
 ## 9. การทบทวนตอนปิดเคส
 
-| Question | Answer |
+| คำถาม | คำตอบ |
 |:---|:---|
 | **การตัดสินใจใดสร้างความเสี่ยงสูงสุด** | |
 | **การตัดสินใจใดช่วยลดผลกระทบได้มากที่สุด** | |
@@ -89,11 +89,11 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [Incident Report Template](incident_report.th.md)
--   [IR Framework](../05_Incident_Response/Framework.th.md)
--   [SOC Communication SOP](../06_Operations_Management/SOC_Communication.th.md)
--   [Executive Dashboard](Executive_Dashboard.th.md)
--   [Escalation Matrix](../05_Incident_Response/Escalation_Matrix.th.md)
+-   [เทมเพลตรายงาน Incident](incident_report.th.md)
+-   [กรอบการทำงาน Incident Response](../05_Incident_Response/Framework.th.md)
+-   [แนวทางการสื่อสารของ SOC](../06_Operations_Management/SOC_Communication.th.md)
+-   [แดชบอร์ดผู้บริหาร](Executive_Dashboard.th.md)
+-   [ตารางการ Escalate](../05_Incident_Response/Escalation_Matrix.th.md)
 
 ## References
 

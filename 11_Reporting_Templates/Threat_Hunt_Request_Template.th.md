@@ -5,10 +5,10 @@
 
 ```mermaid
 graph TD
-    A["ส่งคำขอ Hunt"] --> B["กำหนด Hypothesis และ Scope"]
+    A["ส่งคำขอ hunt"] --> B["กำหนด hypothesis และขอบเขต"]
     B --> C["ตรวจสอบความพร้อมของข้อมูล"]
-    C --> D["กำหนดตาราง Hunt"]
-    D --> E["แปลง Findings เป็น Actions"]
+    C --> D["กำหนดตารางการ hunt"]
+    D --> E["แปลงผลที่พบเป็นงานต่อ"]
 ```
 
 ## 1. ส่วนหัวคำขอ
@@ -18,16 +18,16 @@ graph TD
 | **Request ID** | HUNT-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
 | **วันที่ส่งคำขอ** | |
-| **เหตุผลของการ Hunt** | ☐ Hypothesis · ☐ Incident Follow-up · ☐ Threat Intel · ☐ Audit / Gap |
+| **เหตุผลของการ hunt** | ☐ Hypothesis · ☐ ติดตาม incident · ☐ Threat Intel · ☐ Audit / Gap |
 
 ## 2. เป้าหมายของการ Hunt
 
 | Question | Answer |
 |:---|:---|
-| **Hypothesis หรือข้อกังวล** | |
+| **Hypothesis หรือข้อกังวลหลัก** | |
 | **Assets หรือ users ที่อยู่ใน scope** | |
 | **ช่วงเวลา** | |
-| **Indicators หรือ behaviors ที่คาดหวัง** | |
+| **Indicators หรือพฤติกรรมที่คาดว่าจะพบ** | |
 
 ## 3. ข้อมูลและข้อจำกัด
 
@@ -51,6 +51,12 @@ graph TD
 |:---|:---|:---:|:---|
 | Threat Hunt Lead | | ☐ Accept · ☐ Reject · ☐ Need More Info | |
 | SOC Manager | | ☐ Scheduled | |
+
+## 6. เส้นทางส่งต่อหลังจบ Hunt
+
+-   [ ] หากพบ incident indicator ที่น่าเชื่อถือ ให้ยกระดับเข้า incident response ทันที
+-   [ ] หากพบ detection candidate ให้เชื่อมไป detection request หรือ detection backlog
+-   [ ] หากพบ telemetry gap หรือ blind spot ให้เชื่อมไป telemetry backlog หรือ log source onboarding request
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 

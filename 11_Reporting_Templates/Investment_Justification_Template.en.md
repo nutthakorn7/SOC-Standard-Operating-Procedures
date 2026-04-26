@@ -80,12 +80,19 @@ graph TD
 | 30/60/90-day review scheduled | | | ☐ |
 | Outcome reported to leadership | | | ☐ |
 
+## 9. Governance Routing
+
+-   [ ] Track approved investment in monthly governance review until the promised outcome is validated.
+-   [ ] Return delayed or underperforming investments to board or executive review when the expected risk reduction is not materializing.
+
 ## Related Documents
 
 -   [Monthly SOC Report](Monthly_SOC_Report.en.md)
 -   [Executive Dashboard](Executive_Dashboard.en.md)
 -   [SOC Capacity Planning](../06_Operations_Management/SOC_Capacity_Planning.en.md)
 -   [Vendor Evaluation](../06_Operations_Management/Vendor_Evaluation.en.md)
+-   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.en.md)
+-   [Board Quarterly Decision Pack](Board_Quarterly_Decision_Pack.en.md)
 
 ## References
 

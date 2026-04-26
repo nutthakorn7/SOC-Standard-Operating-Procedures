@@ -5,10 +5,10 @@
 
 ```mermaid
 graph TD
-    A["ส่งคำขอ Detection"] --> B["ยืนยัน Use Case และ Telemetry"]
-    B --> C["ประเมิน Priority และ Noise Risk"]
-    C --> D["Build และ Test"]
-    D --> E["อนุมัติ Deploy หรือ Defer"]
+    A["ส่งคำขอ detection"] --> B["ยืนยัน use case และ telemetry"]
+    B --> C["ประเมินความสำคัญและความเสี่ยงด้าน noise"]
+    C --> D["พัฒนาและทดสอบ"]
+    D --> E["อนุมัติ deploy หรือเลื่อน"]
 ```
 
 ## 1. ส่วนหัวคำขอ
@@ -17,7 +17,7 @@ graph TD
 |:---|:---|
 | **Request ID** | DET-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
-| **ประเภทคำขอ** | ☐ New Detection · ☐ Tuning · ☐ Gap Fix · ☐ Retirement |
+| **ประเภทคำขอ** | ☐ Detection ใหม่ · ☐ ปรับแต่ง · ☐ แก้ช่องว่าง · ☐ ยกเลิก |
 | **วันที่ส่งคำขอ** | |
 | **ความสำคัญที่ร้องขอ** | ☐ Critical · ☐ High · ☐ Medium · ☐ Low |
 
@@ -25,9 +25,9 @@ graph TD
 
 | Question | Answer |
 |:---|:---|
-| **Threat หรือ behavior ที่ต้องการตรวจจับ** | |
+| **Threat หรือพฤติกรรมที่ต้องการตรวจจับ** | |
 | **เหตุผลทางธุรกิจหรือความปลอดภัย** | |
-| **Incident, hunt, หรือ audit finding ที่เกี่ยวข้อง** | |
+| **Incident, hunt, หรือข้อค้นพบจาก audit ที่เกี่ยวข้อง** | |
 | **แหล่งหลักฐานที่คาดหวัง** | |
 
 ## 3. ความต้องการด้าน Telemetry และข้อมูล
@@ -41,7 +41,7 @@ graph TD
 
 ## 4. หมายเหตุด้านการ Implement
 
-| Topic | Notes |
+| หัวข้อ | Notes |
 |:---|:---|
 | **แนวคิดของ detection logic** | |
 | **รูปแบบ false positive ที่คาดไว้** | |
@@ -54,6 +54,11 @@ graph TD
 |:---|:---|:---:|:---|
 | Detection Engineer | | ☐ Accept · ☐ Reject · ☐ Need More Info | |
 | SOC Manager | | ☐ Prioritized | |
+
+## 6. เส้นทางส่งต่อใน Backlog และ Governance
+
+-   [ ] หากคำขอนี้ต้องใช้ log source ใหม่หรือแก้ blind spot ให้เชื่อมไป telemetry backlog
+-   [ ] หากคำขอนี้เกิดจาก PIR, incident, หรือ control gap ที่สำคัญ ให้บันทึกแหล่งที่มาเพื่อใช้ใน remediation และ governance review
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 

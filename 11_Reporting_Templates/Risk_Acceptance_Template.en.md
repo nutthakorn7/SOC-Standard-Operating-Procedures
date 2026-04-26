@@ -84,12 +84,21 @@ graph TD
 | Reassess if threat conditions change | | | ☐ |
 | Track remediation plan | | | ☐ |
 
+## 9. Governance Routing
+
+-   [ ] Track active acceptance in the monthly governance review until it is closed or escalated.
+-   [ ] Move repeated renewals or High residual risk to the quarterly risk acceptance review.
+-   [ ] Escalate board-level funding, authority, or tolerance decisions to the board quarterly decision pack.
+
 ## Related Documents
 
 -   [Compliance Gap Analysis](../07_Compliance_Privacy/Compliance_Gap_Analysis.en.md)
 -   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
 -   [Executive Dashboard](Executive_Dashboard.en.md)
 -   [Monthly SOC Report](Monthly_SOC_Report.en.md)
+-   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.en.md)
+-   [Quarterly Risk Acceptance Review Pack](Quarterly_Risk_Acceptance_Review_Pack.en.md)
+-   [Board Quarterly Decision Pack](Board_Quarterly_Decision_Pack.en.md)
 
 ## References
 
