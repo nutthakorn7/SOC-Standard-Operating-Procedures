@@ -13,7 +13,7 @@ graph TD
 
 ## 1. ส่วนหัวคำขอ
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
 | **Request ID** | RPT-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
@@ -23,7 +23,7 @@ graph TD
 
 ## 2. เป้าหมายของรายงาน
 
-| Question | Answer |
+| คำถาม | คำตอบ |
 |:---|:---|
 | **เหตุใดจึงต้องมีรายงานนี้** | |
 | **ต้องการให้รายงานนี้ช่วยรองรับการตัดสินใจใด** | |
@@ -32,7 +32,7 @@ graph TD
 
 ## 3. เนื้อหาที่ต้องมี
 
-| รายการเนื้อหา | Required | Notes |
+| รายการเนื้อหา | บังคับหรือไม่ | หมายเหตุ |
 |:---|:---:|:---|
 | บทสรุปผู้บริหาร | ☐ | |
 | แนวโน้ม KPI | ☐ | |
@@ -42,7 +42,7 @@ graph TD
 
 ## 4. การทบทวนและการอนุมัติ
 
-| Role | Name | Decision | Date |
+| บทบาท | ชื่อ | การตัดสินใจ | วันที่ |
 |:---|:---|:---:|:---|
 | SOC Manager | | ☐ Reviewed | |
 | CISO Delegate | | ☐ Approve · ☐ Revise | |
@@ -55,10 +55,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
--   [Monthly SOC Report](Monthly_SOC_Report.th.md)
--   [Quarterly Business Review](Quarterly_Business_Review.th.md)
--   [Executive Dashboard](Executive_Dashboard.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [รายงานผลการดำเนินงาน SOC ประจำเดือน](Monthly_SOC_Report.th.md)
+-   [รายงานทบทวนผลการดำเนินงานรายไตรมาส](Quarterly_Business_Review.th.md)
+-   [แม่แบบ Dashboard สำหรับผู้บริหาร](Executive_Dashboard.th.md)
 
 ## References
 

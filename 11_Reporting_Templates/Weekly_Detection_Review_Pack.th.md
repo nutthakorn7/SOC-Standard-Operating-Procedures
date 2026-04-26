@@ -5,7 +5,7 @@
 
 ```mermaid
 graph TD
-    A["รวบรวม Detection Metrics"] --> B["ทบทวน Noise และ Coverage"]
+    A["รวบรวมตัวชี้วัดของ detection"] --> B["ทบทวน noise และ coverage"]
     B --> C["ตรวจสอบความคืบหน้าของ backlog"]
     C --> D["ตัดสินใจปรับแต่ง ปล่อยใช้งาน หรือเลื่อน"]
     D --> E["กำหนด owner และวันครบกำหนด"]
@@ -13,9 +13,9 @@ graph TD
 
 ## 1. ส่วนหัวการประชุม
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
-| **Review Week** | [YYYY-WW] |
+| **สัปดาห์ที่ทบทวน** | [YYYY-WW] |
 | **ผู้จัดทำ** | |
 | **วันที่ทบทวน** | |
 | **ประธานการประชุม** | |
@@ -29,7 +29,7 @@ graph TD
 
 ## 3. สรุปสุขภาพของ Detection
 
-| Area | Status | Notes |
+| มิติ | สถานะ | หมายเหตุ |
 |:---|:---:|:---|
 | คำขอ detection ใหม่ | 🟢 / 🟡 / 🔴 | |
 | detections ที่ deploy สัปดาห์นี้ | 🟢 / 🟡 / 🔴 | |
@@ -47,14 +47,14 @@ graph TD
 
 ## 5. การทบทวน Backlog
 
-| Item | Priority | Owner | Current State | Next Action |
+| รายการ | ลำดับความสำคัญ | Owner | สถานะปัจจุบัน | การดำเนินการถัดไป |
 |:---|:---:|:---|:---|:---|
 | | High / Medium / Low | | | |
 | | | | | |
 
 ## 6. การทบทวน Tuning และคุณภาพ
 
-| Topic | Finding | Decision | Owner |
+| หัวข้อ | ข้อค้นพบ | การตัดสินใจ | Owner |
 |:---|:---|:---|:---|
 | False positives | | Tune / Monitor / Defer | |
 | Missed detections | | Build / Re-test / Escalate | |
@@ -77,13 +77,13 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [Detection Backlog Prioritization](Detection_Backlog_Prioritization.th.md)
--   [Detection Request Template](Detection_Request_Template.th.md)
--   [Alert Tuning](../06_Operations_Management/Alert_Tuning.th.md)
--   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.th.md)
--   [Weekly Telemetry Review Pack](Weekly_Telemetry_Review_Pack.th.md)
--   [Monthly Remediation Review Pack](Monthly_Remediation_Review_Pack.th.md)
--   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
+-   [แบบฟอร์มจัดลำดับ Detection Backlog](Detection_Backlog_Prioritization.th.md)
+-   [แบบฟอร์มคำขอ Detection](Detection_Request_Template.th.md)
+-   [แนวทาง Alert Tuning](../06_Operations_Management/Alert_Tuning.th.md)
+-   [การทดสอบ Detection Rules](../06_Operations_Management/Detection_Rule_Testing.th.md)
+-   [ชุดทบทวน Telemetry ประจำสัปดาห์](Weekly_Telemetry_Review_Pack.th.md)
+-   [ชุดทบทวน Remediation รายเดือน](Monthly_Remediation_Review_Pack.th.md)
+-   [ชุดทบทวน Governance รายเดือน](Monthly_Governance_Review_Pack.th.md)
 
 ## References
 

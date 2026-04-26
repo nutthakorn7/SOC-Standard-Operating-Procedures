@@ -13,9 +13,9 @@ graph TD
 
 ## 1. ส่วนหัวการประชุม
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
-| **Review Week** | [YYYY-WW] |
+| **สัปดาห์ที่ทบทวน** | [YYYY-WW] |
 | **ผู้จัดทำ** | |
 | **วันที่ทบทวน** | |
 | **ประธานการประชุม** | |
@@ -29,7 +29,7 @@ graph TD
 
 ## 3. สรุปสุขภาพของ Telemetry
 
-| Area | Status | Notes |
+| มิติ | สถานะ | หมายเหตุ |
 |:---|:---:|:---|
 | ความพร้อมของ critical sources | 🟢 / 🟡 / 🔴 | |
 | data quality และ timestamp health | 🟢 / 🟡 / 🔴 | |
@@ -47,7 +47,7 @@ graph TD
 
 ## 5. การทบทวน Backlog และ Dependency
 
-| Item | Priority | Dependency | Owner | Next Action |
+| รายการ | ลำดับความสำคัญ | Dependency | Owner | การดำเนินการถัดไป |
 |:---|:---:|:---|:---|:---|
 | | High / Medium / Low | | | |
 | | | | | |
@@ -70,13 +70,13 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [Telemetry Backlog Prioritization](Telemetry_Backlog_Prioritization.th.md)
--   [Log Source Onboarding Request](Log_Source_Onboarding_Request.th.md)
--   [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.th.md)
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
--   [Weekly Detection Review Pack](Weekly_Detection_Review_Pack.th.md)
--   [Monthly Remediation Review Pack](Monthly_Remediation_Review_Pack.th.md)
--   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
+-   [แบบฟอร์มจัดลำดับ Telemetry Backlog](Telemetry_Backlog_Prioritization.th.md)
+-   [แบบฟอร์มคำขอ Onboarding Log Source](Log_Source_Onboarding_Request.th.md)
+-   [ตารางแหล่งข้อมูล Log](../06_Operations_Management/Log_Source_Matrix.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [ชุดทบทวน Detection ประจำสัปดาห์](Weekly_Detection_Review_Pack.th.md)
+-   [ชุดทบทวน Remediation รายเดือน](Monthly_Remediation_Review_Pack.th.md)
+-   [ชุดทบทวน Governance รายเดือน](Monthly_Governance_Review_Pack.th.md)
 
 ## References
 

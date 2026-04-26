@@ -13,7 +13,7 @@ graph TD
 
 ## 1. ส่วนหัวคำขอ
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
 | **Request ID** | HUNT-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
@@ -22,7 +22,7 @@ graph TD
 
 ## 2. เป้าหมายของการ Hunt
 
-| Question | Answer |
+| คำถาม | คำตอบ |
 |:---|:---|
 | **Hypothesis หรือข้อกังวลหลัก** | |
 | **Assets หรือ users ที่อยู่ใน scope** | |
@@ -31,7 +31,7 @@ graph TD
 
 ## 3. ข้อมูลและข้อจำกัด
 
-| Item | Status | Notes |
+| รายการ | สถานะ | หมายเหตุ |
 |:---|:---:|:---|
 | มี logs ที่เกี่ยวข้องพร้อม | ☐ | |
 | มี EDR หรือ endpoint data พร้อม | ☐ | |
@@ -42,12 +42,12 @@ graph TD
 
 -   [ ] สรุปผลการ hunt
 -   [ ] Findings ที่ต้อง escalate เป็น incident
--   [ ] Detection candidates
+-   [ ] ตัวเลือก detection ที่ควรสร้างต่อ
 -   [ ] ช่องว่างด้าน telemetry หรือ coverage
 
 ## 5. การอนุมัติและการจัดตาราง
 
-| Role | Name | Decision | Date |
+| บทบาท | ชื่อ | การตัดสินใจ | วันที่ |
 |:---|:---|:---:|:---|
 | Threat Hunt Lead | | ☐ Accept · ☐ Reject · ☐ Need More Info | |
 | SOC Manager | | ☐ Scheduled | |
@@ -60,10 +60,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
--   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.th.md)
--   [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.th.md)
--   [SOC Use Case Library](../08_Detection_Engineering/SOC_Use_Case_Library.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [คู่มือ Threat Hunting](../05_Incident_Response/Threat_Hunting_Playbook.th.md)
+-   [วงจรการทำงาน Threat Intelligence](../06_Operations_Management/Threat_Intelligence_Lifecycle.th.md)
+-   [คลัง SOC Use Cases](../08_Detection_Engineering/SOC_Use_Case_Library.th.md)
 
 ## References
 

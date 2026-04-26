@@ -13780,7 +13780,7 @@ graph TD
 
 ## 1. ส่วนหัวคำขอ
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
 | **Request ID** | RPT-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
@@ -13790,7 +13790,7 @@ graph TD
 
 ## 2. เป้าหมายของรายงาน
 
-| Question | Answer |
+| คำถาม | คำตอบ |
 |:---|:---|
 | **เหตุใดจึงต้องมีรายงานนี้** | |
 | **ต้องการให้รายงานนี้ช่วยรองรับการตัดสินใจใด** | |
@@ -13799,7 +13799,7 @@ graph TD
 
 ## 3. เนื้อหาที่ต้องมี
 
-| รายการเนื้อหา | Required | Notes |
+| รายการเนื้อหา | บังคับหรือไม่ | หมายเหตุ |
 |:---|:---:|:---|
 | บทสรุปผู้บริหาร | ☐ | |
 | แนวโน้ม KPI | ☐ | |
@@ -13809,7 +13809,7 @@ graph TD
 
 ## 4. การทบทวนและการอนุมัติ
 
-| Role | Name | Decision | Date |
+| บทบาท | ชื่อ | การตัดสินใจ | วันที่ |
 |:---|:---|:---:|:---|
 | SOC Manager | | ☐ Reviewed | |
 | CISO Delegate | | ☐ Approve · ☐ Revise | |
@@ -13822,10 +13822,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
--   [Monthly SOC Report](Monthly_SOC_Report.th.md)
--   [Quarterly Business Review](Quarterly_Business_Review.th.md)
--   [Executive Dashboard](Executive_Dashboard.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [รายงานผลการดำเนินงาน SOC ประจำเดือน](Monthly_SOC_Report.th.md)
+-   [รายงานทบทวนผลการดำเนินงานรายไตรมาส](Quarterly_Business_Review.th.md)
+-   [แม่แบบ Dashboard สำหรับผู้บริหาร](Executive_Dashboard.th.md)
 
 ## References
 
@@ -16600,7 +16600,7 @@ graph TD
 
 ## 1. ส่วนหัวคำขอ
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
 | **Request ID** | HUNT-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
@@ -16609,7 +16609,7 @@ graph TD
 
 ## 2. เป้าหมายของการ Hunt
 
-| Question | Answer |
+| คำถาม | คำตอบ |
 |:---|:---|
 | **Hypothesis หรือข้อกังวลหลัก** | |
 | **Assets หรือ users ที่อยู่ใน scope** | |
@@ -16618,7 +16618,7 @@ graph TD
 
 ## 3. ข้อมูลและข้อจำกัด
 
-| Item | Status | Notes |
+| รายการ | สถานะ | หมายเหตุ |
 |:---|:---:|:---|
 | มี logs ที่เกี่ยวข้องพร้อม | ☐ | |
 | มี EDR หรือ endpoint data พร้อม | ☐ | |
@@ -16629,12 +16629,12 @@ graph TD
 
 -   [ ] สรุปผลการ hunt
 -   [ ] Findings ที่ต้อง escalate เป็น incident
--   [ ] Detection candidates
+-   [ ] ตัวเลือก detection ที่ควรสร้างต่อ
 -   [ ] ช่องว่างด้าน telemetry หรือ coverage
 
 ## 5. การอนุมัติและการจัดตาราง
 
-| Role | Name | Decision | Date |
+| บทบาท | ชื่อ | การตัดสินใจ | วันที่ |
 |:---|:---|:---:|:---|
 | Threat Hunt Lead | | ☐ Accept · ☐ Reject · ☐ Need More Info | |
 | SOC Manager | | ☐ Scheduled | |
@@ -16647,10 +16647,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
--   [Threat Hunting Playbook](../05_Incident_Response/Threat_Hunting_Playbook.th.md)
--   [Threat Intelligence Lifecycle](../06_Operations_Management/Threat_Intelligence_Lifecycle.th.md)
--   [SOC Use Case Library](../08_Detection_Engineering/SOC_Use_Case_Library.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [คู่มือ Threat Hunting](../05_Incident_Response/Threat_Hunting_Playbook.th.md)
+-   [วงจรการทำงาน Threat Intelligence](../06_Operations_Management/Threat_Intelligence_Lifecycle.th.md)
+-   [คลัง SOC Use Cases](../08_Detection_Engineering/SOC_Use_Case_Library.th.md)
 
 ## References
 
@@ -16764,7 +16764,7 @@ graph TD
 
 ```mermaid
 graph TD
-    A["รวบรวม Detection Metrics"] --> B["ทบทวน Noise และ Coverage"]
+    A["รวบรวมตัวชี้วัดของ detection"] --> B["ทบทวน noise และ coverage"]
     B --> C["ตรวจสอบความคืบหน้าของ backlog"]
     C --> D["ตัดสินใจปรับแต่ง ปล่อยใช้งาน หรือเลื่อน"]
     D --> E["กำหนด owner และวันครบกำหนด"]
@@ -16772,9 +16772,9 @@ graph TD
 
 ## 1. ส่วนหัวการประชุม
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
-| **Review Week** | [YYYY-WW] |
+| **สัปดาห์ที่ทบทวน** | [YYYY-WW] |
 | **ผู้จัดทำ** | |
 | **วันที่ทบทวน** | |
 | **ประธานการประชุม** | |
@@ -16788,7 +16788,7 @@ graph TD
 
 ## 3. สรุปสุขภาพของ Detection
 
-| Area | Status | Notes |
+| มิติ | สถานะ | หมายเหตุ |
 |:---|:---:|:---|
 | คำขอ detection ใหม่ | 🟢 / 🟡 / 🔴 | |
 | detections ที่ deploy สัปดาห์นี้ | 🟢 / 🟡 / 🔴 | |
@@ -16806,14 +16806,14 @@ graph TD
 
 ## 5. การทบทวน Backlog
 
-| Item | Priority | Owner | Current State | Next Action |
+| รายการ | ลำดับความสำคัญ | Owner | สถานะปัจจุบัน | การดำเนินการถัดไป |
 |:---|:---:|:---|:---|:---|
 | | High / Medium / Low | | | |
 | | | | | |
 
 ## 6. การทบทวน Tuning และคุณภาพ
 
-| Topic | Finding | Decision | Owner |
+| หัวข้อ | ข้อค้นพบ | การตัดสินใจ | Owner |
 |:---|:---|:---|:---|
 | False positives | | Tune / Monitor / Defer | |
 | Missed detections | | Build / Re-test / Escalate | |
@@ -16836,13 +16836,13 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [Detection Backlog Prioritization](Detection_Backlog_Prioritization.th.md)
--   [Detection Request Template](Detection_Request_Template.th.md)
--   [Alert Tuning](../06_Operations_Management/Alert_Tuning.th.md)
--   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.th.md)
--   [Weekly Telemetry Review Pack](Weekly_Telemetry_Review_Pack.th.md)
--   [Monthly Remediation Review Pack](Monthly_Remediation_Review_Pack.th.md)
--   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
+-   [แบบฟอร์มจัดลำดับ Detection Backlog](Detection_Backlog_Prioritization.th.md)
+-   [แบบฟอร์มคำขอ Detection](Detection_Request_Template.th.md)
+-   [แนวทาง Alert Tuning](../06_Operations_Management/Alert_Tuning.th.md)
+-   [การทดสอบ Detection Rules](../06_Operations_Management/Detection_Rule_Testing.th.md)
+-   [ชุดทบทวน Telemetry ประจำสัปดาห์](Weekly_Telemetry_Review_Pack.th.md)
+-   [ชุดทบทวน Remediation รายเดือน](Monthly_Remediation_Review_Pack.th.md)
+-   [ชุดทบทวน Governance รายเดือน](Monthly_Governance_Review_Pack.th.md)
 
 ## References
 
@@ -16957,9 +16957,9 @@ graph TD
 
 ## 1. ส่วนหัวการประชุม
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
-| **Review Week** | [YYYY-WW] |
+| **สัปดาห์ที่ทบทวน** | [YYYY-WW] |
 | **ผู้จัดทำ** | |
 | **วันที่ทบทวน** | |
 | **ประธานการประชุม** | |
@@ -16973,7 +16973,7 @@ graph TD
 
 ## 3. สรุปสุขภาพของ Telemetry
 
-| Area | Status | Notes |
+| มิติ | สถานะ | หมายเหตุ |
 |:---|:---:|:---|
 | ความพร้อมของ critical sources | 🟢 / 🟡 / 🔴 | |
 | data quality และ timestamp health | 🟢 / 🟡 / 🔴 | |
@@ -16991,7 +16991,7 @@ graph TD
 
 ## 5. การทบทวน Backlog และ Dependency
 
-| Item | Priority | Dependency | Owner | Next Action |
+| รายการ | ลำดับความสำคัญ | Dependency | Owner | การดำเนินการถัดไป |
 |:---|:---:|:---|:---|:---|
 | | High / Medium / Low | | | |
 | | | | | |
@@ -17014,13 +17014,13 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [Telemetry Backlog Prioritization](Telemetry_Backlog_Prioritization.th.md)
--   [Log Source Onboarding Request](Log_Source_Onboarding_Request.th.md)
--   [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.th.md)
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
--   [Weekly Detection Review Pack](Weekly_Detection_Review_Pack.th.md)
--   [Monthly Remediation Review Pack](Monthly_Remediation_Review_Pack.th.md)
--   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
+-   [แบบฟอร์มจัดลำดับ Telemetry Backlog](Telemetry_Backlog_Prioritization.th.md)
+-   [แบบฟอร์มคำขอ Onboarding Log Source](Log_Source_Onboarding_Request.th.md)
+-   [ตารางแหล่งข้อมูล Log](../06_Operations_Management/Log_Source_Matrix.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [ชุดทบทวน Detection ประจำสัปดาห์](Weekly_Detection_Review_Pack.th.md)
+-   [ชุดทบทวน Remediation รายเดือน](Monthly_Remediation_Review_Pack.th.md)
+-   [ชุดทบทวน Governance รายเดือน](Monthly_Governance_Review_Pack.th.md)
 
 ## References
 
