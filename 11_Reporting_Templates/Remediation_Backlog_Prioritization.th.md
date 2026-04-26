@@ -13,7 +13,7 @@ graph TD
 
 ## 1. ทะเบียนรายการ Backlog
 
-| รหัส | รายการ Remediation | ต้นทาง incident หรือ gap | Owner | สถานะ |
+| รหัส | รายการ Remediation | ต้นทาง incident หรือ gap | ผู้รับผิดชอบ | สถานะ |
 |:---|:---|:---|:---|:---:|
 | REM-BL-[001] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |
 | REM-BL-[002] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |
@@ -25,12 +25,12 @@ graph TD
 | Residual risk | หากไม่ทำงานนี้จะเกิดอะไรขึ้น | |
 | Recurrence potential | Incident หรือ failure เดิมมีโอกาสเกิดซ้ำหรือไม่ | |
 | Critical dependency | งานนี้บล็อก recovery, compliance, หรือ safe operation หรือไม่ | |
-| Owner readiness | Owner พร้อม execute ภายในเวลาที่ต้องการหรือไม่ | |
+| ความพร้อมของผู้รับผิดชอบ | ผู้รับผิดชอบพร้อม execute ภายในเวลาที่ต้องการหรือไม่ | |
 | Validation clarity | สามารถยืนยันการปิดงานได้อย่างเป็นกลางหรือไม่ | |
 
 ## 3. ตารางจัดลำดับความสำคัญ
 
-| รายการ | Residual Risk | Recurrence | Dependency | ความพร้อมของ Owner | Validation | คะแนนรวม | ลำดับความสำคัญ |
+| รายการ | Residual Risk | Recurrence | Dependency | ความพร้อมของผู้รับผิดชอบ | Validation | คะแนนรวม | ลำดับความสำคัญ |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | | | | | | | | High / Medium / Low |
 | | | | | | | | |

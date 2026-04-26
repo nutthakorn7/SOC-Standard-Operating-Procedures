@@ -13,7 +13,7 @@ graph TD
 
 ## 1. ทะเบียนรายการ Backlog
 
-| รหัส | คำขอ Detection | ฉากทัศน์ภัยคุกคาม | Owner | สถานะ |
+| รหัส | คำขอ Detection | ฉากทัศน์ภัยคุกคาม | ผู้รับผิดชอบ | สถานะ |
 |:---|:---|:---|:---|:---:|
 | DET-BL-[001] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |
 | DET-BL-[002] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |

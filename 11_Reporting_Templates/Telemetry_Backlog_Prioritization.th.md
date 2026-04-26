@@ -13,7 +13,7 @@ graph TD
 
 ## 1. ทะเบียนรายการ Backlog
 
-| รหัส | Telemetry Gap | ระบบหรือบริการที่ได้รับผลกระทบ | Owner | สถานะ |
+| รหัส | Telemetry Gap | ระบบหรือบริการที่ได้รับผลกระทบ | ผู้รับผิดชอบ | สถานะ |
 |:---|:---|:---|:---|:---:|
 | TEL-BL-[001] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |
 | TEL-BL-[002] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |

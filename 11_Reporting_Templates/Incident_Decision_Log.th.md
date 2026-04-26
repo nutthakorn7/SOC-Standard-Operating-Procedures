@@ -63,7 +63,7 @@ graph TD
 
 ## 7. การตัดสินใจเรื่อง Evidence Hold / Retention
 
-| ประเภทการตัดสินใจ | Owner | รูปแบบข้อเท็จจริงที่ต้องมี |
+| ประเภทการตัดสินใจ | ผู้รับผิดชอบ | รูปแบบข้อเท็จจริงที่ต้องมี |
 |:---|:---|:---|
 | **เริ่ม legal hold** | Legal / DPO / CISO | มี regulated data, ความอ่อนไหวระดับ board, ความเสี่ยงต่อข้อพิพาท, หรือมี law-enforcement involvement |
 | **ย้ายหลักฐานเข้า archive** | IR Lead / evidence custodian | วิเคราะห์เสร็จแล้ว hash verified และยืนยัน basis ของ retention แล้ว |
@@ -71,7 +71,7 @@ graph TD
 
 ## 8. การตัดสินใจเรื่อง Restore / Rollback
 
-| ประเภทการตัดสินใจ | Owner | evidence gate | งานติดตามที่ต้องมี |
+| ประเภทการตัดสินใจ | ผู้รับผิดชอบ | evidence gate | งานติดตามที่ต้องมี |
 |:---|:---|:---|:---|
 | **restore จาก backup / snapshot** | IT Ops + service owner | แหล่ง restore เชื่อถือได้, ยอมรับ recovery point แล้ว, และระบุ owner ของการตรวจสอบไว้แล้ว | enhanced monitoring และ business validation |
 | **rollback release / configuration** | service owner + change owner | state ก่อนหน้าผ่านการยืนยัน, อนุมัติ rollback window แล้ว, และ review security impact แล้ว | ยืนยันว่าไม่ได้พาช่องโหว่หรือ defect เดิมกลับมา |
