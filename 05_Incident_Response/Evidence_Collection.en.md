@@ -211,6 +211,22 @@ sudo tcpdump -i eth0 port 53 -w /evidence/dns_capture.pcap
 | **Location** | Dedicated forensic storage, not shared drives |
 | **Backup** | At least 2 copies on separate media |
 
+## Legal Hold / Retention Escalation Path
+
+| Trigger | Escalate To | Immediate Action | Minimum Record |
+|:---|:---|:---|:---|
+| **Regulated data or privacy exposure** | DPO + Legal + IR Lead | Suspend normal deletion for related evidence | Legal-hold start time and scope |
+| **Board-level or executive-sensitive incident** | CISO + IR Lead | Preserve all core evidence and decision records | Executive preservation note |
+| **Law enforcement request or external counsel involvement** | Legal | Freeze transfer, export, and disposal actions until guidance is issued | Request reference and owner |
+| **Chain-of-custody gap or integrity concern** | IR Lead + Compliance Officer | Stop further handling of affected item and preserve remaining copies | Integrity-risk note and containment action |
+
+## Minimum Evidence Retention Record
+
+-   [ ] Record the retention basis: standard case retention, legal hold, regulatory requirement, or executive instruction.
+-   [ ] Record the evidence custodian and approved storage location.
+-   [ ] Record the planned review date for release, archive, or destruction.
+-   [ ] Record every exception to standard retention or transfer handling.
+
 ---
 
 ## Related Documents
@@ -218,3 +234,11 @@ sudo tcpdump -i eth0 port 53 -w /evidence/dns_capture.pcap
 - [IR Framework](../05_Incident_Response/Framework.en.md)
 - [Tabletop Exercises](../05_Incident_Response/Tabletop_Exercises.en.md)
 - [Severity Matrix](../05_Incident_Response/Severity_Matrix.en.md)
+- [Forensic Investigation](Forensic_Investigation.en.md)
+- [Data Governance Policy](../07_Compliance_Privacy/Data_Governance_Policy.en.md)
+
+## References
+
+- [NIST SP 800-61r2 — Incident Handling](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [NIST SP 800-86 — Integrating Forensic Techniques into Incident Response](https://csrc.nist.gov/pubs/sp/800/86/final)
+- [FIRST Traffic Light Protocol (TLP)](https://www.first.org/tlp/)

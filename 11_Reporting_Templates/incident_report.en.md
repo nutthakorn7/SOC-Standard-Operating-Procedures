@@ -24,8 +24,6 @@
 
 *2–3 sentence overview: What happened, what was the impact, and what was the outcome?*
 
-> 
-
 ---
 
 ## ★ 2. Timeline (UTC)
@@ -198,12 +196,81 @@ Use UTC timestamps and format consistently:
 | **Incident affecting executive, privileged, or shared administration accounts** | CISO, SOC Manager, identity owner | Immediate |
 | **Containment requires service interruption or emergency access restriction** | Business owner, IT operations, CISO | Before action when feasible |
 
+## Executive / Legal / Privacy Notification Record
+
+| Decision Point | Owner | Time | Evidence Used | Next Action |
+|:---|:---|:---|:---|:---|
+| Executive notification required? | | | | |
+| Legal / privacy review required? | | | | |
+| Customer or third-party notification required? | | | | |
+| Board-level follow-up required? | | | | |
+
+## Outbound Communication Handoff Record
+
+| Communication Type | Approved Sender | Audience | Approval Time | Tracking Reference |
+|:---|:---|:---|:---|:---|
+| Customer notification | | | | |
+| Regulator notification | | | | |
+| Vendor / third-party notification | | | | |
+| Media / executive statement | | | | |
+
+## War Room Governance Record
+
+| Item | Value |
+|:---|:---|
+| **War room activated?** | ☐ Yes · ☐ No |
+| **Incident Commander** | |
+| **Backup Commander** | |
+| **War room opened at** | |
+| **War room closed at** | |
+| **Update cadence used** | |
+| **Major decisions logged at** | |
+| **Monitoring owner after war room** | |
+| **Next governance review time** | |
+
+## Service Restoration / Rollback Record
+
+| Decision Point | Owner | Time | Evidence Used | Validation Required |
+|:---|:---|:---|:---|:---|
+| Restore from backup / snapshot approved? | | | | |
+| Rollback to prior release / configuration approved? | | | | |
+| Reconnect host / network path / integration approved? | | | | |
+| Return service to production approved? | | | | |
+
+## Minimum Return-to-Service Evidence
+
+- [ ] **Clean state confirmed**: Host, account, application, or integration passed the agreed integrity or validation checks.
+- [ ] **Data consistency reviewed**: Backup point, transaction gap, or rollback state is accepted by the service owner.
+- [ ] **Monitoring active**: Enhanced monitoring owner, duration, and escalation threshold are defined before restore or reconnect.
+- [ ] **Rollback path retained**: A fallback action remains available if the restored service degrades or shows recurrence.
+- [ ] **Business owner sign-off captured**: Material service restoration or access re-enable decisions show the accountable owner.
+
+## Enhanced Monitoring Exit and Incident Closure Record
+
+| Checkpoint | Owner | Status | Evidence / Note |
+|:---|:---|:---|:---|
+| Enhanced monitoring completed for agreed duration | | ☐ Pass · ☐ Blocked | |
+| No recurrence or unresolved suspicious activity | | ☐ Pass · ☐ Blocked | |
+| Telemetry stayed available during validation | | ☐ Pass · ☐ Blocked | |
+| Open notifications and external obligations completed or handed over | | ☐ Pass · ☐ Blocked | |
+| Residual risk accepted at the right authority level | | ☐ Pass · ☐ Blocked | |
+| Incident approved for closure | | ☐ Pass · ☐ Blocked | |
+
+## Board Escalation Criteria
+
+-   [ ] Escalate to the board pack if the case caused material business disruption, unresolved regulatory exposure, or remediation decisions that need funding-level approval.
+-   [ ] Escalate if residual risk remains **High** after containment or if accepted risk exceeds management authority.
+-   [ ] Escalate if repeated incident patterns show systemic control failure.
+
 ## Related Documents
 
 - [IR Framework](../05_Incident_Response/Framework.en.md)
 - [Shift Handover Template](shift_handover.en.md)
 - [Change Request (RFC)](change_request_rfc.en.md)
 - [PDPA Compliance](../07_Compliance_Privacy/PDPA_Compliance.en.md)
+- [PDPA Incident Response Guide](../07_Compliance_Privacy/PDPA_Incident_Response.en.md)
+- [Board Quarterly Decision Pack](Board_Quarterly_Decision_Pack.en.md)
+- [Communication Templates](../05_Incident_Response/Communication_Templates.en.md)
 
 ## References
 

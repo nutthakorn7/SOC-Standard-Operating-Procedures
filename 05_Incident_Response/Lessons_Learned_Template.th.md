@@ -51,6 +51,23 @@ _อธิบาย root cause 2–3 ประโยค_
 | 2 | อัปเดต playbook PB-XX | SOC Lead | | ☐ |
 | 3 | Implement MFA สำหรับ ____ | IT | | ☐ |
 
+## เส้นทางการปรับปรุงหลัง PIR
+
+| ประเภทข้อค้นพบจาก PIR | ต้องส่งต่อไปที่ | ผลลัพธ์ขั้นต่ำ |
+|:---|:---|:---|
+| **detection gap** | detection backlog / weekly detection review | rule request, test owner, และ target release date |
+| **telemetry หรือ visibility gap** | telemetry backlog / weekly telemetry review | source ที่ขาด, onboarding owner, และ workaround ชั่วคราว |
+| **remediation หรือ control failure** | monthly remediation review | owner, due date, และ validation evidence ที่คาดหวัง |
+| **residual risk ยังเป็น High** | monthly governance และ quarterly risk acceptance review | residual risk statement, compensating controls, และข้อเสนอการยกระดับ |
+| **ขาด funding, authority, หรือเป็น strategic gap** | board quarterly decision pack | business impact, decision request, และผู้บริหารที่รับผิดชอบ |
+
+## เกณฑ์ปิด PIR
+
+-   [ ] action item ทุกข้อมี owner และ due date ชัดเจน
+-   [ ] รายการที่ต้องเข้าคิว backlog มีเลขอ้างอิง intake หรือ tracking ID
+-   [ ] หาก residual risk ยังเป็น High ต้องถูกยกระดับอย่างชัดเจน ไม่ปล่อยค้างในบันทึก PIR
+-   [ ] ระบุ governance forum ถัดไปสำหรับทุกประเด็นที่ incident team ปิดเองไม่ได้
+
 ---
 
 ## การจัดอันดับการปรับปรุง
@@ -123,6 +140,10 @@ _อธิบาย root cause 2–3 ประโยค_
 - [IR Framework](Framework.th.md)
 - [แม่แบบรายงานเหตุการณ์](../11_Reporting_Templates/incident_report.th.md)
 - [Escalation Matrix](Escalation_Matrix.th.md)
+- [Monthly Remediation Review Pack](../11_Reporting_Templates/Monthly_Remediation_Review_Pack.th.md)
+- [Monthly Governance Review Pack](../11_Reporting_Templates/Monthly_Governance_Review_Pack.th.md)
+- [Quarterly Risk Acceptance Review Pack](../11_Reporting_Templates/Quarterly_Risk_Acceptance_Review_Pack.th.md)
+- [Board Quarterly Decision Pack](../11_Reporting_Templates/Board_Quarterly_Decision_Pack.th.md)
 
 ---
 
@@ -170,3 +191,8 @@ _อธิบาย root cause 2–3 ประโยค_
 SOC Manager: ____________________ วันที่: __________
 CISO:        ____________________ วันที่: __________
 ```
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)

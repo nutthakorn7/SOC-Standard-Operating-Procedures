@@ -98,6 +98,23 @@ graph TD
 | **หมวดหมู่** | Phishing · Malware · Ransomware · Account Compromise · DDoS · Insider · Data Breach | [การจำแนกเหตุการณ์](Incident_Classification.th.md) |
 | **ลำดับความสำคัญ** | P1 (ทันที) · P2 (เร่งด่วน) · P3 (ปกติ) · P4 (ต่ำ) | [Escalation Matrix](Escalation_Matrix.th.md) |
 
+### 2.4 การเปิดใช้ Crisis Command / War Room
+
+| Trigger | ต้องเปิด War Room หรือไม่ | Incident Commander | ผลลัพธ์ขั้นต่ำที่ต้องมีทันที |
+|:---|:---:|:---|:---|
+| **P1 Critical incident** | ✅ ต้องเปิด | SOC Lead หรือ IR Lead ที่ได้รับมอบหมาย | ระบุ commander, war room channel, และเวลาของอัปเดตครั้งแรก |
+| **P2 ที่ยังมี business disruption ไม่คลี่คลาย** | ✅ ต้องเปิด | SOC Manager หรือ IR Lead | owner ของการตัดสินใจ, สรุปผลกระทบบริการ, และ cadence การอัปเดต |
+| **containment ต้องประสานหลายทีม หรือมี legal / privacy เกี่ยวข้อง** | ✅ ต้องเปิด | IR Lead | รายชื่อผู้เกี่ยวข้อง, owner ของ decision log, และเส้นทางการประสานงาน |
+| **incident ที่ควบคุม scope ได้และใช้ทีมเดียว** | เปิดตามความจำเป็น | Shift Lead | ใช้การประสานผ่าน ticket ไปก่อนจนกว่าจะมี scope เพิ่ม |
+
+### 2.5 กติกาการสั่งการใน War Room
+
+-   [ ] ระบุ **Incident Commander** 1 คน และ backup 1 คน ก่อนมีการยกระดับวงกว้างครั้งแรก
+-   [ ] เปิด war room channel หลักเพียง 1 ช่องทางและบันทึกไว้ใน incident ticket
+-   [ ] กำหนด cadence การอัปเดตตั้งแต่ตอนเปิด war room และคงไว้จนกว่าเคสจะเริ่มนิ่ง
+-   [ ] บันทึก containment tradeoff, การอนุมัติ, และ blocker ที่ยังไม่ปิดไว้ใน decision log กลาง
+-   [ ] ปิด war room ได้เมื่อ ownership กลับสู่การทำงานปกติผ่าน ticket หรือเข้าสู่ recovery governance แล้วเท่านั้น
+
 ---
 
 ## 3. การจำกัดความเสียหาย (Containment)
@@ -152,7 +169,17 @@ graph TD
 | 4 | เปิดบัญชีผู้ใช้ | IAM Team | ตรวจสอบสิทธิ์ |
 | 5 | เฝ้าระวังเข้มข้น | SOC | 24–72 ชั่วโมง |
 
-### ระยะเวลาเฝ้าระวังเข้มข้น
+### 5.1 Decision Gates สำหรับการกู้คืน
+
+| การตัดสินใจด้านการกู้คืน | owner โดยทั่วไป | หลักฐานขั้นต่ำก่อนอนุมัติ | ต้องยกระดับต่อเมื่อ |
+|:---|:---|:---|:---|
+| **restore จาก backup / snapshot** | IT Ops + service owner | ยืนยันว่าแหล่ง restore เชื่อถือได้, ยอมรับ recovery point แล้ว, และมีวิธีตรวจ integrity | ความน่าเชื่อถือของ backup ยังไม่ชัด, regulated data อาจไม่ครบ, หรือ downtime เริ่มมีนัยสำคัญ |
+| **rollback ไปยัง release / configuration ก่อนหน้า** | service owner + change owner | version ก่อนหน้าผ่านการยืนยัน, เข้าใจผลกระทบแล้ว, และอนุมัติ rollback window แล้ว | rollback อาจพาช่องโหว่เดิมกลับมา หรือกระทบบริการสำคัญอื่น |
+| **re-enable identity หรือ privileged access** | IAM owner + Incident Commander | reset credential เสร็จแล้ว, revoke session แล้ว, และ review สิทธิ์แล้ว | เป็นบัญชี privileged, owner บัญชียังไม่ชัด, หรือ scope ของการ compromise ยังไม่นิ่ง |
+| **reconnect host / segment / integration** | Network owner + Incident Commander | containment เสถียรแล้ว, host สะอาด, มี monitoring coverage, และ compensating control ทำงานอยู่ | การ reconnect จะเปิดทางกลับเข้าสู่ crown-jewel systems, third party, หรือยังเสี่ยง lateral movement |
+| **return service to production** | business owner + CISO สำหรับเคส material | business validation ผ่าน, กำหนด cadence การ monitor แล้ว, และยังมี rollback path | มี customer impact, board visibility, หรือ residual risk ยังเป็น High |
+
+### 5.2 ระยะเวลาเฝ้าระวังเข้มข้น
 
 | ความรุนแรง | ระยะเวลา | จุดสนใจ |
 |:---|:---|:---|
@@ -160,6 +187,22 @@ graph TD
 | **High** | 48 ชั่วโมง | Persistence, C2 communication |
 | **Medium** | 24 ชั่วโมง | Alert ที่คล้ายกัน, บัญชีที่เกี่ยวข้อง |
 | **Low** | เฝ้าระวังปกติ | Standard alerting |
+
+### 5.3 เกณฑ์ออกจาก Enhanced Monitoring
+
+| จุดตรวจ | ข้อกำหนดขั้นต่ำ | ต้องยกระดับอีกครั้งเมื่อ |
+|:---|:---|:---|
+| **ไม่พบการเกิดซ้ำ** | ไม่พบ indicator เดิม, alert pattern เดิม, หรือกิจกรรมต้องสงสัยที่ยืนยันได้ตลอดช่วงเฝ้าระวัง | พฤติกรรมเดิม บัญชีเดิม หรือ asset เดิมกลับมาผิดปกติอีก |
+| **control ยังทำงานอยู่** | block, credential reset, segmentation, หรือ compensating control ยังอยู่และตรวจสอบแล้ว | control ชั่วคราวหมดอายุ ล้มเหลว หรือถูก bypass |
+| **business validation เสร็จแล้ว** | service owner ยืนยันว่า workflow ที่กู้คืนกลับมานิ่งพอสำหรับการใช้งานปกติ | ผู้ใช้ ลูกค้า หรือทีม downstream รายงานการเสื่อมสภาพที่มีนัยสำคัญ |
+| **telemetry coverage ครบ** | log, EDR, และ alerting ที่ต้องใช้ยังพร้อมตลอดช่วง monitoring | มี blind spot, parser failure, หรือ log outage ที่ทำให้ validate ไม่ได้ |
+
+### 5.4 เงื่อนไขปิด War Room และปิด Incident
+
+-   [ ] ปิด war room ได้เมื่อมี owner รับช่วง enhanced monitoring, งาน remediation ที่ยังเปิด, และ stakeholder follow-up ชัดเจนแล้ว
+-   [ ] เปลี่ยนจาก war room cadence กลับสู่ ticket cadence ปกติได้เมื่อระบุเวลาอัปเดตถัดไป เส้นทางการแจ้ง และ decision backlog ที่ส่งมอบไว้แล้ว
+-   [ ] ปิด incident ได้เมื่อผ่านเกณฑ์ออกจาก enhanced monitoring, ยอมรับ residual risk ในระดับอำนาจที่ถูกต้อง, และ closure evidence ครบ
+-   [ ] ถ้า monitoring พบการเกิดซ้ำ ความไม่นิ่งที่มีนัยสำคัญ หรือ external obligation ยังไม่จบ ต้องยกระดับ severity หรือ governance ใหม่
 
 ---
 

@@ -24,8 +24,6 @@
 
 *สรุป 2-3 ประโยค: เกิดอะไรขึ้น ผลกระทบคืออะไร ผลลัพธ์เป็นอย่างไร*
 
-> 
-
 ---
 
 ## ★ 2. ไทม์ไลน์ (UTC)
@@ -182,12 +180,81 @@
 | **incident กระทบบัญชีผู้บริหาร บัญชีสิทธิ์สูง หรือบัญชี shared administration** | CISO, SOC Manager, identity owner | ทันที |
 | **การจำกัดวงต้องกระทบบริการหรือจำกัดสิทธิ์แบบฉุกเฉิน** | Business owner, IT operations, CISO | ก่อนลงมือ ถ้าทำได้ |
 
+## บันทึกการแจ้งผู้บริหาร / กฎหมาย / Privacy
+
+| จุดตัดสินใจ | Owner | เวลา | หลักฐานที่ใช้ | ขั้นตอนถัดไป |
+|:---|:---|:---|:---|:---|
+| ต้องแจ้งผู้บริหารหรือไม่ | | | | |
+| ต้องให้ legal / privacy review หรือไม่ | | | | |
+| ต้องแจ้งลูกค้า หรือ third party หรือไม่ | | | | |
+| ต้องยกระดับไปยัง board หรือไม่ | | | | |
+
+## บันทึกการส่งต่องานสื่อสารออกนอกทีม
+
+| ประเภทการสื่อสาร | ผู้ส่งที่ได้รับอนุมัติ | ผู้รับสาร | เวลาอนุมัติ | เอกสารอ้างอิง |
+|:---|:---|:---|:---|:---|
+| แจ้งลูกค้า | | | | |
+| แจ้ง regulator | | | | |
+| แจ้ง vendor / third party | | | | |
+| แถลงต่อสื่อ / ผู้บริหาร | | | | |
+
+## บันทึกการกำกับ War Room
+
+| รายการ | ค่า |
+|:---|:---|
+| **มีการเปิด War room หรือไม่** | ☐ Yes · ☐ No |
+| **Incident Commander** | |
+| **Backup Commander** | |
+| **เวลาเปิด War room** | |
+| **เวลาปิด War room** | |
+| **Cadence การอัปเดตที่ใช้จริง** | |
+| **เวลาที่บันทึกการตัดสินใจสำคัญ** | |
+| **owner ของ monitoring หลังปิด war room** | |
+| **เวลา governance review ถัดไป** | |
+
+## บันทึกการตัดสินใจ Restore / Rollback / Return-to-Service
+
+| จุดตัดสินใจ | Owner | เวลา | หลักฐานที่ใช้ | การยืนยันที่ต้องทำต่อ |
+|:---|:---|:---|:---|:---|
+| อนุมัติ restore จาก backup / snapshot หรือไม่ | | | | |
+| อนุมัติ rollback ไปยัง release / configuration ก่อนหน้าหรือไม่ | | | | |
+| อนุมัติ reconnect host / network path / integration หรือไม่ | | | | |
+| อนุมัติ return service to production หรือไม่ | | | | |
+
+## หลักฐานขั้นต่ำก่อน Return-to-Service
+
+- [ ] **ยืนยัน clean state แล้ว**: host, account, application, หรือ integration ผ่าน integrity check หรือ validation ตามที่ตกลงกันแล้ว
+- [ ] **ทบทวน data consistency แล้ว**: service owner ยอมรับ backup point, transaction gap, หรือ state หลัง rollback แล้ว
+- [ ] **เปิด monitoring แล้ว**: ระบุ owner ระยะเวลา และ escalation threshold ของ enhanced monitoring ไว้ก่อน restore หรือ reconnect
+- [ ] **ยังมี rollback path**: ยังมีทางย้อนกลับได้หากบริการที่กู้คืนเริ่มมีปัญหาหรือมีสัญญาณเกิดซ้ำ
+- [ ] **มี business owner sign-off**: การ restore บริการสำคัญหรือ re-enable access ที่มีนัยสำคัญต้องมี owner ผู้รับผิดชอบชัดเจน
+
+## บันทึกการออกจาก Enhanced Monitoring และการปิด Incident
+
+| จุดตรวจ | Owner | สถานะ | หลักฐาน / หมายเหตุ |
+|:---|:---|:---|:---|
+| enhanced monitoring ครบตามช่วงเวลาที่ตกลง | | ☐ Pass · ☐ Blocked | |
+| ไม่พบการเกิดซ้ำหรือกิจกรรมต้องสงสัยที่ยังไม่คลี่คลาย | | ☐ Pass · ☐ Blocked | |
+| telemetry พร้อมใช้งานตลอดช่วง validate | | ☐ Pass · ☐ Blocked | |
+| การแจ้งและ external obligation ที่เปิดอยู่เสร็จแล้วหรือส่งมอบต่อแล้ว | | ☐ Pass · ☐ Blocked | |
+| residual risk ถูกยอมรับในระดับอำนาจที่ถูกต้อง | | ☐ Pass · ☐ Blocked | |
+| อนุมัติปิด incident แล้ว | | ☐ Pass · ☐ Blocked | |
+
+## เกณฑ์การยกระดับไปยัง Board
+
+-   [ ] ยกระดับเข้า board pack หากเหตุการณ์ก่อให้เกิด material business disruption, มี regulatory exposure ที่ยังไม่ปิด, หรือ remediation decision ที่ต้องใช้อำนาจอนุมัติงบ
+-   [ ] ยกระดับหาก residual risk หลัง containment ยังอยู่ระดับ **High** หรือ accepted risk เกินอำนาจของ management
+-   [ ] ยกระดับหาก incident pattern เกิดซ้ำและชี้ว่ามี systemic control failure
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [กรอบ IR](../05_Incident_Response/Framework.th.md)
 - [แบบฟอร์มส่งมอบกะ](shift_handover.th.md)
 - [แบบฟอร์ม RFC](change_request_rfc.th.md)
 - [PDPA Compliance](../07_Compliance_Privacy/PDPA_Compliance.th.md)
+- [คู่มือ PDPA Incident Response](../07_Compliance_Privacy/PDPA_Incident_Response.th.md)
+- [Board Quarterly Decision Pack](Board_Quarterly_Decision_Pack.th.md)
+- [แม่แบบการสื่อสารเหตุการณ์](../05_Incident_Response/Communication_Templates.th.md)
 
 ## Checklist คุณภาพรายงาน (Report Quality Checklist)
 

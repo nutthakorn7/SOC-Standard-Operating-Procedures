@@ -187,6 +187,22 @@ sha256sum /evidence/logs.tar.gz > /evidence/logs.tar.gz.sha256
 | เก็บในพื้นที่เข้ารหัส | ส่งผ่านช่องทางไม่ปลอดภัย |
 | จำกัดการเข้าถึงเฉพาะทีม IR | ให้คนนอกทีมเข้าถึงโดยไม่มี log |
 
+## เส้นทางการยกระดับเรื่อง Legal Hold / Retention
+
+| Trigger | ต้องยกระดับถึง | การดำเนินการทันที | บันทึกขั้นต่ำ |
+|:---|:---|:---|:---|
+| **มี regulated data หรือ privacy exposure** | DPO + Legal + IR Lead | หยุดการลบตามรอบปกติของหลักฐานที่เกี่ยวข้อง | เวลาเริ่ม legal hold และขอบเขต |
+| **เป็น incident ที่ไปถึง board หรือมีความอ่อนไหวต่อผู้บริหาร** | CISO + IR Lead | รักษาหลักฐานหลักและ decision records ทั้งหมดไว้ | บันทึกคำสั่ง preservation จากผู้บริหาร |
+| **มีคำขอจาก law enforcement หรือ external counsel** | Legal | หยุดการโอน การ export และการทำลายไว้ก่อนจนกว่าจะมีคำสั่ง | เลขอ้างอิงคำขอและ owner |
+| **พบช่องโหว่ใน chain-of-custody หรือความเสี่ยงด้าน integrity** | IR Lead + Compliance Officer | หยุดการจับต้องหลักฐานชิ้นนั้นต่อและรักษาสำเนาที่เหลือ | บันทึกความเสี่ยงด้าน integrity และการควบคุมที่ทำ |
+
+## บันทึกขั้นต่ำสำหรับการเก็บรักษาหลักฐาน
+
+-   [ ] ระบุ basis ของ retention ว่าเป็นการเก็บตามรอบปกติ, legal hold, regulatory requirement, หรือคำสั่งผู้บริหาร
+-   [ ] ระบุ evidence custodian และ approved storage location
+-   [ ] ระบุวันทบทวนถัดไปสำหรับการ release, archive, หรือ destruction
+-   [ ] ระบุ exception ทุกกรณีที่เบี่ยงจาก retention หรือ transfer handling ปกติ
+
 ## Volatility Order (ลำดับความผันผวน)
 
 | ลำดับ | ที่มา | ความผันผวน | เก็บก่อน? |
@@ -215,3 +231,11 @@ sha256sum /evidence/logs.tar.gz > /evidence/logs.tar.gz.sha256
 - [กรอบ IR](Framework.th.md)
 - [สถานการณ์จำลอง](Tabletop_Exercises.th.md)
 - [ตารางความรุนแรง](Severity_Matrix.th.md)
+- [การสืบสวนนิติวิทยาศาสตร์](Forensic_Investigation.th.md)
+- [นโยบายธรรมาภิบาลข้อมูล](../07_Compliance_Privacy/Data_Governance_Policy.th.md)
+
+## References
+
+- [NIST SP 800-61r2 — Incident Handling](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [NIST SP 800-86 — Integrating Forensic Techniques into Incident Response](https://csrc.nist.gov/pubs/sp/800/86/final)
+- [FIRST Traffic Light Protocol (TLP)](https://www.first.org/tlp/)

@@ -120,8 +120,7 @@
 
 **CAB Decision**: ☐ Approved · ☐ Approved with Conditions · ☐ Deferred · ☐ Rejected
 
-**Conditions (if any)**:
-> 
+**Conditions (if any)**: [Enter approval conditions or state "None"]
 
 ---
 

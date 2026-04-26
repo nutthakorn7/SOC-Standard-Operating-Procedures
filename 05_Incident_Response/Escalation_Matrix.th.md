@@ -122,6 +122,36 @@ graph TD
 - **ห้ามแบ่งปัน IOCs** สู่สาธารณะโดยไม่ได้รับอนุมัติ
 - **ห้ามคุยเรื่อง incident** บนอุปกรณ์ส่วนตัวหรือช่องทางที่ไม่ปลอดภัย
 
+## Authority Matrix / ตารางอำนาจการตัดสินใจ
+
+| ประเภทการตัดสินใจ | P1 Critical | P2 High | P3 Medium | P4 Low |
+|:---|:---|:---|:---|:---|
+| **แยกเครื่อง / ปิดบัญชีทันที** | Tier 2 หรือ Incident Commander | Tier 2 โดยมี SOC Lead อนุมัติ | Analyst ใช้ดุลยพินิจ หรือให้ Tier 2 ช่วย | owner ของ ticket |
+| **บล็อก IP / domain / IOC** | Tier 2 หรือ Incident Commander | Tier 2 โดยมี SOC Lead อนุมัติ | Tier 2 หากมีเหตุผลรองรับ | โดยปกติไม่จำเป็น |
+| **หยุดบริการ / shutdown business function** | CISO หรือ business owner ที่ได้รับมอบหมาย | SOC Manager + business owner | ต้องให้ business owner อนุมัติ | ไม่เกี่ยวข้อง |
+| **restore จาก backup / snapshot** | service owner + IT Ops | service owner + SOC Manager | service owner | owner ของ ticket |
+| **rollback release / configuration** | service owner + change owner | service owner + SOC Manager | change owner | owner ของ ticket |
+| **reconnect host / network path / integration** | Incident Commander + infrastructure owner | SOC Lead + infrastructure owner | analyst ได้หลัง Tier 2 review เท่านั้น | ไม่เกี่ยวข้อง |
+| **return service to production / re-enable business process** | business owner + CISO สำหรับผลกระทบที่มีนัยสำคัญ | business owner + SOC Manager | service owner | owner ของ ticket |
+| **แจ้งผู้บริหาร** | Incident Commander + CISO | SOC Manager หากมี business impact หรือเริ่มเป็น trend | SOC Lead หากเกิดซ้ำหรือมีแนวโน้มยกระดับ | ไม่ต้องแจ้ง |
+| **แจ้ง legal / privacy / regulator** | ต้องเข้า path ของ Legal / DPO / CISO เมื่อเข้า trigger | ให้ Legal / DPO review เมื่อมี regulated data เกี่ยวข้อง | พิจารณาเป็นรายกรณี | ไม่ต้องแจ้ง |
+| **ออก statement ถึงลูกค้าหรือสาธารณะ** | CEO หรือผู้บริหารที่ได้รับมอบหมาย หลัง Legal + Communications review | CISO หรือผู้บริหารที่ได้รับมอบหมายหลัง review | โดยปกติไม่ต้องทำ | ไม่ต้องทำ |
+| **ยอมรับ residual risk / เลื่อน remediation** | Executive Committee / Board หากเป็นเคส material | CISO + business owner | SOC Manager หรือ service owner | service owner |
+
+## กติกาขั้นต่ำของการบันทึกการตัดสินใจ
+
+-   [ ] บันทึกทุกการตัดสินใจที่มี containment tradeoff, service interruption, external notification, หรือ accepted risk
+-   [ ] ระบุ owner ผู้อนุมัติ เวลา ข้อเท็จจริงที่มี และรอบทบทวนถัดไป
+-   [ ] อ้างอิง incident ticket และ war room channel เมื่อมีการเปิดใช้งาน
+-   [ ] หากเป็นการตัดสินใจชั่วคราว ต้องกลับมายืนยันอีกครั้งในรอบ severity หรือ governance ถัดไปหากเคสยังไม่ปิด
+
+## หลักฐานขั้นต่ำก่อน Restore / Rollback / Return-to-Service
+
+-   [ ] ระบุแหล่ง restore, เป้าหมาย rollback, หรือขอบเขตการ reconnect ให้ชัดเจน
+-   [ ] owner ผู้อนุมัติยอมรับ tradeoff เรื่อง downtime, data consistency, และ residual risk แล้ว
+-   [ ] กำหนด monitoring, rollback, และ business validation ไว้ก่อน return-to-service
+-   [ ] หากกู้คืนก่อนมี root-cause confidence ครบ ต้องบันทึกเหตุผลไว้ใน incident log
+
 ---
 
 ## กฎ Auto-Escalation (SOAR)
@@ -190,3 +220,4 @@ graph TD
 -   [PDPA Incident Response](../07_Compliance_Privacy/PDPA_Incident_Response.th.md) — การแจ้ง data breach ตาม PDPA
 -   [SOC Communication SOP](../06_Operations_Management/SOC_Communication.th.md)
 -   [SLA Template](../06_Operations_Management/SLA_Template.th.md)
+-   [Incident Decision Log](../11_Reporting_Templates/Incident_Decision_Log.th.md)

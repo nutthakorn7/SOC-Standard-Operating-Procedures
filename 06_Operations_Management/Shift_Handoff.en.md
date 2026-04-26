@@ -234,7 +234,26 @@ SOC Manager should conduct monthly handoff quality audits:
 | **Pending action depends on external team beyond SLA** | SOC Manager | Needs management intervention before the next shift inherits the delay |
 | **High-risk change window overlaps unresolved incident** | IR Lead + Change Owner | Prevents operational collision and evidence loss |
 
-## 9. Minimum Evidence in Every Handoff
+## 9. War Room Handoff Rules
+
+| Handoff Item | Minimum Requirement |
+|:---|:---|
+| **Commander status** | Confirm current Incident Commander and backup for the next shift |
+| **War room channel** | Confirm the active bridge, chat room, or call link |
+| **Next update deadline** | Record the exact time of the next management or stakeholder update |
+| **Open decisions** | List tradeoffs awaiting approval and current blockers |
+| **External path** | State whether legal, privacy, customer, regulator, or media coordination is active |
+
+## 10. Monitoring and Closure Handoff Rules
+
+| Handoff Item | Minimum Requirement |
+|:---|:---|
+| **Enhanced monitoring owner** | Name who owns the watch window, duration, and escalation threshold |
+| **Exit criteria** | Record what must be true before leaving enhanced monitoring |
+| **War room exit status** | State whether war room closure is pending, approved, or blocked |
+| **Closure blockers** | Record any unresolved remediation, notification, or validation item preventing case closure |
+
+## 11. Minimum Evidence in Every Handoff
 
 | Artifact | Minimum Standard |
 |:---|:---|

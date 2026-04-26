@@ -30,12 +30,14 @@ def consolidate_docs():
                     print(f"Processing: {relpath}")
                     
                     outfile.write(f"\n\n---\n\n")
-                    outfile.write(f"## File: {relpath}\n\n")
+                    outfile.write(f"## File: {relpath}\n")
                     
                     try:
                         with open(filepath, "r", encoding="utf-8") as infile:
-                            content = infile.read()
+                            raw_content = infile.read().splitlines()
+                            content = "\n".join(line.rstrip() for line in raw_content)
                             outfile.write(content)
+                            outfile.write("\n")
                     except Exception as e:
                         print(f"Error reading {filepath}: {e}")
 

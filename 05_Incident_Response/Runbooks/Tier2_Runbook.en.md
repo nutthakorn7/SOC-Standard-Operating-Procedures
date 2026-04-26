@@ -73,6 +73,15 @@ Before you start, ensure you have:
 | Priority correct? | Re-assess severity based on asset criticality + threat context |
 | Quick wins? | Can you resolve in < 5 min? (e.g., known FP that T1 missed) |
 
+### Step 1.1: Accept or Return the Handoff
+
+| If the Handoff Is Missing | Tier 2 Action | Expected Analyst Correction |
+|:---|:---|:---|
+| **No clear summary or escalation reason** | Return once for clarification unless immediate incident risk exists | Add concise case summary and escalation trigger |
+| **Evidence references missing** | Ask for ticket links, query refs, or screenshots before deep pivoting when time allows | Attach or reference the reviewed artifacts |
+| **Timeline unclear** | Rebuild minimum timeline only if urgency requires; otherwise request update | Add first alert time, pivots taken, and handoff time |
+| **Severity or asset context unclear** | Reassess immediately and flag to SOC Manager if repeated | Add asset/user criticality and business context |
+
 ### Step 2: Classify the Investigation
 
 | Category | Examples | Typical Duration |
@@ -171,6 +180,23 @@ event.category: "network" AND source.ip: "INTERNAL_IP"
 □ Check MITRE ATT&CK techniques observed
 □ Compare with known malware families
 ```
+
+## T2-to-IR Engineer Handoff Criteria
+
+| Trigger | Why It Leaves Tier 2 Scope | What IR Must Receive |
+|:---|:---|:---|
+| **Containment decision carries material business tradeoff** | Needs broader authority than analyst-led action | Containment options, affected services, and residual risk |
+| **Evidence handling becomes legally or regulatorily sensitive** | Requires stricter preservation and notification discipline | Evidence list, custodian, gaps, and notification concerns |
+| **Investigation scope expands across multiple assets, tenants, or business units** | Requires incident-wide coordination | Confirmed scope, suspected spread path, and current containment state |
+| **Residual risk remains High after initial containment** | Case is no longer just an investigation problem | Open exposures, workaround status, and decisions still needed |
+
+## Minimum Handoff Packet to IR
+
+-   [ ] Confirmed incident summary with severity, scope, and current status.
+-   [ ] Timeline covering first activity, detection, investigation pivots, and containment actions taken.
+-   [ ] Evidence list with current location, custodian, and anything not yet preserved.
+-   [ ] Containment decision log stating what was done, what was deferred, and what still needs approval.
+-   [ ] List of unresolved questions, affected business services, and notification considerations.
 
 ---
 

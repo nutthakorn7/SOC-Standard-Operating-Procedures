@@ -15,8 +15,6 @@
 
 *2–3 paragraph overview of SOC posture, key wins, and challenges this quarter.*
 
-> 
-
 ---
 
 ## 2. KPI Dashboard

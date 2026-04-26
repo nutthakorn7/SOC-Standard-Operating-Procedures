@@ -220,6 +220,22 @@ Forensic report should include:
 | IOCs extracted | Indefinite | TI Platform | SOC team |
 | Chain of custody logs | 7 years | Legal archives | Legal only |
 
+## Legal Hold Decision Matrix
+
+| Situation | Legal Hold | Owner | Release Condition |
+|:---|:---:|:---|:---|
+| **Confirmed or suspected regulated-data breach** | Mandatory | Legal + DPO | Legal confirms notification and follow-up obligations are complete |
+| **Insider threat, HR, or law enforcement matter** | Mandatory | Legal | Counsel releases hold in writing |
+| **Board-level or material litigation-risk incident** | Mandatory | CISO + Legal | Executive and legal review completed |
+| **Routine technical case with no external obligation** | Case-by-case | IR Lead | Standard retention period ends |
+
+## Minimum Retention / Release Checklist
+
+-   [ ] Evidence owner and custodian are named.
+-   [ ] Retention basis and expected duration are documented.
+-   [ ] Release, archive, or destruction authority is explicitly named.
+-   [ ] Hash verification is repeated before any archive transfer or destruction approval.
+
 ---
 
 ## Chain of Custody Template
@@ -258,6 +274,8 @@ Forensic report should include:
 ## Related Documents
 
 -   [Evidence Collection](Evidence_Collection.en.md) — Basic evidence collection procedures
+-   [Data Governance Policy](../07_Compliance_Privacy/Data_Governance_Policy.en.md) — Retention and classification requirements
+-   [Incident Decision Log](../11_Reporting_Templates/Incident_Decision_Log.en.md) — Record legal-hold and evidence-governance decisions
 -   [IR Framework](Framework.en.md) — Incident response lifecycle
 -   [Incident Classification](Incident_Classification.en.md) — How to classify incidents
 -   [Escalation Matrix](Escalation_Matrix.en.md) — Escalation procedures

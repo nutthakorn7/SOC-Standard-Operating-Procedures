@@ -73,6 +73,15 @@ graph LR
 | Priority ถูกไหม? | ประเมินซ้ำตาม asset criticality + threat context |
 | แก้เร็วได้ไหม? | จัดการได้ใน < 5 นาทีไหม? (เช่น FP ที่ T1 พลาด) |
 
+### ขั้นที่ 1.1: รับหรือส่งกลับการส่งต่อ
+
+| ถ้าการส่งต่อยังขาด | การดำเนินการของ Tier 2 | สิ่งที่ Analyst ต้องแก้ |
+|:---|:---|:---|
+| **ไม่มี summary หรือเหตุผลในการ escalate ที่ชัด** | ส่งกลับเพื่อขอข้อมูลเพิ่ม 1 รอบ เว้นแต่มี incident risk เร่งด่วน | เพิ่ม case summary แบบสั้นและ trigger ที่ทำให้ต้อง escalate |
+| **ไม่มี evidence references** | ขอ ticket links, query refs, หรือ screenshots ก่อน pivot ลึก ถ้ามีเวลา | แนบหรืออ้างอิง artifacts ที่ตรวจแล้ว |
+| **timeline ไม่ชัด** | สร้าง minimum timeline เองเฉพาะเมื่อมีเหตุเร่งด่วน มิฉะนั้นให้ขออัปเดต | เพิ่มเวลา alert แรก, pivots ที่ทำ, และเวลาที่ส่งต่อ |
+| **severity หรือบริบทของ asset ไม่ชัด** | ประเมินใหม่ทันที และแจ้ง SOC Manager หากเกิดซ้ำ | เพิ่ม asset/user criticality และ business context |
+
 ### ขั้นที่ 2: จำแนก Investigation
 
 | หมวด | ตัวอย่าง | ระยะเวลาปกติ |
@@ -171,6 +180,23 @@ event.category: "network" AND source.ip: "INTERNAL_IP"
 □ ตรวจ MITRE ATT&CK techniques ที่สังเกตเห็น
 □ เปรียบเทียบกับ malware families ที่รู้จัก
 ```
+
+## เกณฑ์การส่งต่อจาก T2 ไป IR Engineer
+
+| Trigger | ทำไมจึงเกินขอบเขตของ Tier 2 | สิ่งที่ IR ต้องได้รับ |
+|:---|:---|:---|
+| **containment decision มี tradeoff ต่อธุรกิจอย่างมีนัยสำคัญ** | ต้องใช้อำนาจกว้างกว่าการตัดสินใจระดับ analyst | ทางเลือกในการ contain, บริการที่ได้รับผลกระทบ, และ residual risk |
+| **evidence handling เริ่มมีความอ่อนไหวด้านกฎหมายหรือกฎระเบียบ** | ต้องใช้วินัยด้าน preservation และ notification ที่เข้มขึ้น | evidence list, custodian, gaps, และข้อกังวลเรื่องการแจ้ง |
+| **ขอบเขตการสืบสวนขยายไปหลาย asset, tenant, หรือ business unit** | ต้องมีการประสานงานระดับ incident ทั้งเคส | scope ที่ยืนยันแล้ว, suspected spread path, และสถานะ containment ปัจจุบัน |
+| **residual risk ยังอยู่ระดับ High หลัง initial containment** | เคสไม่ใช่แค่ปัญหาด้าน investigation อีกต่อไป | exposure ที่ยังเปิดอยู่, สถานะ workaround, และ decision ที่ยังต้องใช้ |
+
+## ชุดข้อมูลขั้นต่ำที่ต้องส่งต่อให้ IR
+
+-   [ ] incident summary ที่ยืนยันแล้ว พร้อม severity, scope, และสถานะปัจจุบัน
+-   [ ] timeline ที่ครอบคลุม first activity, detection, pivots ระหว่างสืบสวน, และ containment actions ที่ทำแล้ว
+-   [ ] evidence list พร้อมตำแหน่งจัดเก็บ, custodian, และสิ่งที่ยังไม่ได้ preserve
+-   [ ] บันทึกการตัดสินใจด้าน containment ว่าทำอะไรไปแล้ว อะไรที่ defer ไว้ และอะไรที่ยังต้องขออนุมัติ
+-   [ ] รายการคำถามที่ยังไม่ปิด, business services ที่ได้รับผลกระทบ, และข้อพิจารณาเรื่องการแจ้ง
 
 ---
 

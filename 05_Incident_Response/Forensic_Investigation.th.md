@@ -196,6 +196,22 @@ vol -f memory.raw windows.malfind
 | IOCs ที่ดึงออกมา | ไม่จำกัด | TI Platform | ทีม SOC |
 | Chain of custody logs | 7 ปี | Legal archives | กฎหมายเท่านั้น |
 
+## ตารางตัดสินใจเรื่อง Legal Hold
+
+| สถานการณ์ | Legal Hold | Owner | เงื่อนไขการปล่อย hold |
+|:---|:---:|:---|:---|
+| **ยืนยันหรือสงสัยว่ามี regulated-data breach** | บังคับ | Legal + DPO | ฝ่ายกฎหมายยืนยันว่าหน้าที่การแจ้งและ follow-up เสร็จแล้ว |
+| **เป็นเคส insider threat, HR, หรือ law enforcement** | บังคับ | Legal | Counsel ปลด hold เป็นลายลักษณ์อักษร |
+| **เป็น incident ระดับ board หรือมีความเสี่ยงต่อข้อพิพาทอย่างมีนัยสำคัญ** | บังคับ | CISO + Legal | การทบทวนของผู้บริหารและกฎหมายเสร็จสมบูรณ์ |
+| **เป็นเคสเทคนิคทั่วไปที่ไม่มีภาระภายนอก** | พิจารณาเป็นรายกรณี | IR Lead | ครบระยะ retention ปกติ |
+
+## เช็กลิสต์ขั้นต่ำก่อน release / archive / destruction
+
+-   [ ] ระบุ evidence owner และ custodian ชัดเจน
+-   [ ] บันทึก basis ของ retention และระยะเวลาที่คาดไว้
+-   [ ] ระบุว่าใครมีอำนาจ release, archive, หรือ destruction
+-   [ ] ทำ hash verification ซ้ำก่อนย้ายเข้า archive หรืออนุมัติการทำลาย
+
 ---
 
 ## Template Chain of Custody
@@ -265,3 +281,5 @@ vol -f memory.raw windows.malfind
 -   [Escalation Matrix](Escalation_Matrix.th.md) — ขั้นตอนการส่งต่อ
 -   [Communication Templates](Communication_Templates.th.md) — แม่แบบการแจ้งเตือน
 -   [Lessons Learned Template](Lessons_Learned_Template.th.md) — ทบทวนหลังเหตุการณ์
+-   [นโยบายธรรมาภิบาลข้อมูล](../07_Compliance_Privacy/Data_Governance_Policy.th.md) — ข้อกำหนดด้าน retention และ classification
+-   [บันทึกการตัดสินใจระหว่างเหตุการณ์](../11_Reporting_Templates/Incident_Decision_Log.th.md) — บันทึก legal hold และ evidence governance decisions

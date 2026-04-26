@@ -163,6 +163,15 @@ graph LR
 | ตัวอย่าง label ใน case หรือหลักฐานที่มี TLP และ classification | ยืนยันการใช้จริง ไม่ใช่มีแต่ policy | SOC Analyst |
 | บันทึกการอนุมัติ exception สำหรับ data sharing หรือการเก็บยาวเกินกำหนด | เก็บ accountability เมื่อมีการเบี่ยงจากมาตรฐาน | SOC Manager / DPO |
 
+## เส้นทางการจัดการ Legal Hold / Retention ของหลักฐาน
+
+| เงื่อนไข | การทำ hold หรือ retention | ต้องยกระดับถึง | ผลลัพธ์ขั้นต่ำ |
+|:---|:---|:---|:---|
+| **หลักฐานของ incident มี regulated data หรือ exposure ระดับ board** | หยุดการลบตามรอบปกติและเก็บหลักฐานทั้งชุดไว้ | DPO + Legal + CISO | ขอบเขต hold, owner, และวันทบทวน |
+| **มีการย้ายหลักฐานเข้า forensic archive** | hash ซ้ำ ยืนยัน custodian และบันทึกตำแหน่ง archive | IR Lead | archive record และผล integrity check |
+| **มีคำขอ release หรือ destruction ของหลักฐาน** | ตรวจสถานะ hold ก่อนปล่อยหรือทำลาย | Legal + evidence custodian | หนังสืออนุมัติและ disposal record |
+| **มีคำขอ exception เรื่อง retention** | อนุมัติการเก็บเพิ่มพร้อมระบุ owner และเหตุผล | DPO / Legal / SOC Manager | บันทึกการอนุมัติ exception |
+
 ## เอกสารที่เกี่ยวข้อง
 
 - [PDPA Compliance](PDPA_Compliance.th.md)

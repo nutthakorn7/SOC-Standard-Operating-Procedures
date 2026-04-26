@@ -118,6 +118,23 @@ When an alert is classified as a true positive or requires further investigation
 
 > 📚 **Log sources**: [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.en.md)
 
+### 2.5 Crisis Command / War Room Activation
+
+| Trigger | Activate War Room? | Incident Commander | Minimum Immediate Output |
+|:---|:---:|:---|:---|
+| **P1 Critical incident** | ✅ Yes | SOC Lead or assigned IR Lead | Named commander, war room channel, first update time |
+| **P2 incident with unresolved business disruption** | ✅ Yes | SOC Manager or IR Lead | Decision owner, service-impact summary, update cadence |
+| **Multi-team containment or legal / privacy coordination** | ✅ Yes | IR Lead | Stakeholder list, decision log owner, coordination path |
+| **Single-team incident with contained scope** | Optional | Shift Lead | Ticket-based coordination unless scope expands |
+
+### 2.6 War Room Command Rules
+
+-   [ ] Name one **Incident Commander** and one backup before the first broad escalation.
+-   [ ] Open one primary war room channel and record it in the incident ticket.
+-   [ ] Set an update cadence at activation time and keep it until the case stabilizes.
+-   [ ] Record every containment tradeoff, approval, and unresolved blocker in one decision log.
+-   [ ] Close the war room only after ownership returns to normal ticket-based handling or recovery governance.
+
 ---
 
 ## 3. Containment
@@ -192,7 +209,17 @@ Objective: **Safely restore** systems to normal operations with enhanced monitor
 | 4 | Re-enable user accounts | IAM Team | Access review |
 | 5 | Enhanced monitoring period | SOC | 24–72 hour watch |
 
-### 5.2 Enhanced Monitoring Period
+### 5.2 Recovery Decision Gates
+
+| Recovery Decision | Usual Owner | Minimum Evidence Gate | Escalate Further When |
+|:---|:---|:---|:---|
+| **Restore from backup / snapshot** | IT Ops + service owner | Restore source is known-good, recovery point is accepted, integrity validation is defined | Backup trust is uncertain, regulated data may be inconsistent, or downtime becomes material |
+| **Rollback to prior release / configuration** | Service owner + change owner | Prior version is verified, rollback impact is understood, rollback window is approved | Rollback could reintroduce exploitable weakness or break another critical service |
+| **Re-enable identity or privileged access** | IAM owner + Incident Commander | Credential reset complete, session revocation confirmed, access review finished | Privileged access is involved, account owner is disputed, or compromise scope remains unclear |
+| **Reconnect host / segment / integration** | Network owner + Incident Commander | Containment is stable, host is clean, monitoring coverage exists, and compensating controls are active | Reconnection exposes crown-jewel systems, third parties, or unresolved lateral-movement risk |
+| **Return service to production** | Business owner + CISO for material cases | Business validation passed, monitoring cadence defined, rollback path remains available | Customer impact, board visibility, or residual risk remains High |
+
+### 5.3 Enhanced Monitoring Period
 
 | Severity | Monitoring Duration | Focus Areas |
 |:---|:---|:---|
@@ -200,6 +227,22 @@ Objective: **Safely restore** systems to normal operations with enhanced monitor
 | **High** | 48 hours | Persistence, C2 communication |
 | **Medium** | 24 hours | Similar alerts, related accounts |
 | **Low** | Normal monitoring | Standard alerting |
+
+### 5.4 Exit Criteria for Enhanced Monitoring
+
+| Exit Check | Minimum Requirement | Escalate Again When |
+|:---|:---|:---|
+| **No recurrence observed** | No repeat indicator, matching alert pattern, or confirmed suspicious activity during the agreed watch window | The same behavior, account, or asset triggers again |
+| **Controls remain active** | Blocks, credential resets, segmentation, or compensating controls are still in place and verified | A temporary control expired, failed, or was bypassed |
+| **Business validation complete** | Service owner confirms the restored workflow is stable enough for normal operation | Users, customers, or downstream teams report material degradation |
+| **Telemetry coverage intact** | Required logs, EDR, and alerting stayed available during monitoring | Monitoring blind spot, parser failure, or log outage affects validation |
+
+### 5.5 War Room Exit and Incident Closure Gate
+
+-   [ ] Close the war room only after an owner is assigned for enhanced monitoring, open remediation, and stakeholder follow-up.
+-   [ ] Return from war room cadence to normal ticket cadence only after the next update time, notification path, and decision backlog are explicitly handed off.
+-   [ ] Close the incident only after enhanced monitoring exit criteria pass, residual risk is accepted at the right level, and closure evidence is complete.
+-   [ ] Re-open severity or governance escalation if monitoring reveals recurrence, material instability, or unresolved external obligations.
 
 ---
 

@@ -79,6 +79,16 @@ nav:
     - คู่มือเริ่มต้น (TH): 00_Getting_Started/Quickstart_Guide.th.md
     - Glossary: 00_Getting_Started/Glossary.en.md
     - คำศัพท์ (TH): 00_Getting_Started/Glossary.th.md
+    - CISO Entry Path: 00_Getting_Started/CISO_Entry_Path.en.md
+    - เส้นทางสำหรับ CISO (TH): 00_Getting_Started/CISO_Entry_Path.th.md
+    - SOC Manager Entry Path: 00_Getting_Started/SOC_Manager_Entry_Path.en.md
+    - เส้นทางสำหรับ SOC Manager (TH): 00_Getting_Started/SOC_Manager_Entry_Path.th.md
+    - SOC Analyst Entry Path: 00_Getting_Started/SOC_Analyst_Entry_Path.en.md
+    - เส้นทางสำหรับ SOC Analyst (TH): 00_Getting_Started/SOC_Analyst_Entry_Path.th.md
+    - Security Engineer Entry Path: 00_Getting_Started/Security_Engineer_Entry_Path.en.md
+    - เส้นทางสำหรับ Security Engineer (TH): 00_Getting_Started/Security_Engineer_Entry_Path.th.md
+    - IR Engineer Entry Path: 00_Getting_Started/IR_Engineer_Entry_Path.en.md
+    - เส้นทางสำหรับ IR Engineer (TH): 00_Getting_Started/IR_Engineer_Entry_Path.th.md
     - SOC Building Roadmap: 01_SOC_Fundamentals/SOC_Building_Roadmap.en.md
     - แผนงานสร้าง SOC (TH): 01_SOC_Fundamentals/SOC_Building_Roadmap.th.md
     - Technology Stack Guide: 01_SOC_Fundamentals/Technology_Stack.en.md
@@ -263,6 +273,8 @@ nav:
     - 👥 Team & Daily Operations:
       - SOC Team Structure: 06_Operations_Management/SOC_Team_Structure.en.md
       - โครงสร้างทีม (TH): 06_Operations_Management/SOC_Team_Structure.th.md
+      - SOC Service Catalog: 06_Operations_Management/SOC_Service_Catalog.en.md
+      - แคตตาล็อกบริการ SOC (TH): 06_Operations_Management/SOC_Service_Catalog.th.md
       - Shift Handoff: 06_Operations_Management/Shift_Handoff.en.md
       - ส่งมอบกะ (TH): 06_Operations_Management/Shift_Handoff.th.md
       - SOC Checklists: 06_Operations_Management/SOC_Checklists.en.md
@@ -378,6 +390,8 @@ nav:
     - รายงานรายเดือน (TH): 11_Reporting_Templates/Monthly_SOC_Report.th.md
     - Quarterly Review: 11_Reporting_Templates/Quarterly_Business_Review.en.md
     - รายงานรายไตรมาส (TH): 11_Reporting_Templates/Quarterly_Business_Review.th.md
+    - Board Quarterly Decision Pack: 11_Reporting_Templates/Board_Quarterly_Decision_Pack.en.md
+    - ชุดเอกสารตัดสินใจสำหรับบอร์ด (TH): 11_Reporting_Templates/Board_Quarterly_Decision_Pack.th.md
     - Executive Dashboard: 11_Reporting_Templates/Executive_Dashboard.en.md
     - Dashboard ผู้บริหาร (TH): 11_Reporting_Templates/Executive_Dashboard.th.md
     - Incident Report Template: 11_Reporting_Templates/incident_report.en.md
@@ -386,6 +400,46 @@ nav:
     - แบบฟอร์มส่งมอบกะ (TH): 11_Reporting_Templates/shift_handover.th.md
     - Change Request (RFC): 11_Reporting_Templates/change_request_rfc.en.md
     - แบบฟอร์ม RFC (TH): 11_Reporting_Templates/change_request_rfc.th.md
+    - Risk Acceptance Template: 11_Reporting_Templates/Risk_Acceptance_Template.en.md
+    - แบบฟอร์มยอมรับความเสี่ยง (TH): 11_Reporting_Templates/Risk_Acceptance_Template.th.md
+    - Security Exception Approval: 11_Reporting_Templates/Exception_Approval_Template.en.md
+    - แบบฟอร์มอนุมัติข้อยกเว้น (TH): 11_Reporting_Templates/Exception_Approval_Template.th.md
+    - Incident Decision Log: 11_Reporting_Templates/Incident_Decision_Log.en.md
+    - บันทึกการตัดสินใจระหว่างเหตุการณ์ (TH): 11_Reporting_Templates/Incident_Decision_Log.th.md
+    - Investment Justification Template: 11_Reporting_Templates/Investment_Justification_Template.en.md
+    - แบบฟอร์มอนุมัติการลงทุน (TH): 11_Reporting_Templates/Investment_Justification_Template.th.md
+    - Log Source Onboarding Request: 11_Reporting_Templates/Log_Source_Onboarding_Request.en.md
+    - แบบฟอร์มขอ Onboard Log Source (TH): 11_Reporting_Templates/Log_Source_Onboarding_Request.th.md
+    - Detection Request Template: 11_Reporting_Templates/Detection_Request_Template.en.md
+    - แบบฟอร์มคำขอ Detection (TH): 11_Reporting_Templates/Detection_Request_Template.th.md
+    - Threat Hunt Request Template: 11_Reporting_Templates/Threat_Hunt_Request_Template.en.md
+    - แบบฟอร์มคำขอ Threat Hunt (TH): 11_Reporting_Templates/Threat_Hunt_Request_Template.th.md
+    - Executive Reporting Request: 11_Reporting_Templates/Executive_Reporting_Request.en.md
+    - แบบฟอร์มคำขอรายงานผู้บริหาร (TH): 11_Reporting_Templates/Executive_Reporting_Request.th.md
+    - Detection Backlog Prioritization: 11_Reporting_Templates/Detection_Backlog_Prioritization.en.md
+    - แบบฟอร์มจัดลำดับ Detection Backlog (TH): 11_Reporting_Templates/Detection_Backlog_Prioritization.th.md
+    - Telemetry Backlog Prioritization: 11_Reporting_Templates/Telemetry_Backlog_Prioritization.en.md
+    - แบบฟอร์มจัดลำดับ Telemetry Backlog (TH): 11_Reporting_Templates/Telemetry_Backlog_Prioritization.th.md
+    - Remediation Backlog Prioritization: 11_Reporting_Templates/Remediation_Backlog_Prioritization.en.md
+    - แบบฟอร์มจัดลำดับ Remediation Backlog (TH): 11_Reporting_Templates/Remediation_Backlog_Prioritization.th.md
+    - Weekly Detection Review Pack: 11_Reporting_Templates/Weekly_Detection_Review_Pack.en.md
+    - ชุดทบทวน Detection รายสัปดาห์ (TH): 11_Reporting_Templates/Weekly_Detection_Review_Pack.th.md
+    - Weekly Telemetry Review Pack: 11_Reporting_Templates/Weekly_Telemetry_Review_Pack.en.md
+    - ชุดทบทวน Telemetry รายสัปดาห์ (TH): 11_Reporting_Templates/Weekly_Telemetry_Review_Pack.th.md
+    - Monthly Remediation Review Pack: 11_Reporting_Templates/Monthly_Remediation_Review_Pack.en.md
+    - ชุดทบทวน Remediation รายเดือน (TH): 11_Reporting_Templates/Monthly_Remediation_Review_Pack.th.md
+    - Detection Ownership RACI: 11_Reporting_Templates/Detection_Ownership_RACI.en.md
+    - RACI งาน Detection (TH): 11_Reporting_Templates/Detection_Ownership_RACI.th.md
+    - Telemetry Ownership RACI: 11_Reporting_Templates/Telemetry_Ownership_RACI.en.md
+    - RACI งาน Telemetry (TH): 11_Reporting_Templates/Telemetry_Ownership_RACI.th.md
+    - Remediation Ownership RACI: 11_Reporting_Templates/Remediation_Ownership_RACI.en.md
+    - RACI งาน Remediation (TH): 11_Reporting_Templates/Remediation_Ownership_RACI.th.md
+    - Monthly Governance Review Pack: 11_Reporting_Templates/Monthly_Governance_Review_Pack.en.md
+    - ชุดทบทวน Governance รายเดือน (TH): 11_Reporting_Templates/Monthly_Governance_Review_Pack.th.md
+    - Quarterly Risk Acceptance Review Pack: 11_Reporting_Templates/Quarterly_Risk_Acceptance_Review_Pack.en.md
+    - ชุดทบทวน Risk Acceptance รายไตรมาส (TH): 11_Reporting_Templates/Quarterly_Risk_Acceptance_Review_Pack.th.md
+    - Annual Control Coverage Review Pack: 11_Reporting_Templates/Annual_Control_Coverage_Review_Pack.en.md
+    - ชุดทบทวน Control Coverage ประจำปี (TH): 11_Reporting_Templates/Annual_Control_Coverage_Review_Pack.th.md
   - 📋 Version Tracking:
     - Changelog: CHANGELOG.md
     - Document Version Tracker: VERSION_TRACKER.md

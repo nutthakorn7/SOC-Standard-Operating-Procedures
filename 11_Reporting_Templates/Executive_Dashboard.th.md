@@ -160,6 +160,31 @@
 | **coverage ของ critical assets ต่ำกว่า baseline ที่ตกลงไว้** | 🔴 | อนุมัติการกู้ telemetry การติดตั้ง control หรือการ remediation โดย asset owner |
 | **control failure เดิมทำให้เกิด incident ซ้ำ** | 🟡/🔴 | กำหนด owner, due date และติดตามความคืบหน้าของ remediation |
 
+## Mapping ไปยังรอบ Governance
+
+| สัญญาณจาก Dashboard | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องมี |
+|:---|:---|:---|
+| **ตัวชี้วัดแย่ลงรอบเดียวแต่ยังควบคุมผลกระทบได้** | Monthly Governance Review Pack | owner, corrective action, และ next review date |
+| **ตัวชี้วัดล้มเหลวซ้ำตลอดไตรมาส** | Board Quarterly Decision Pack | คำขอเรื่อง capacity, funding, หรือ scope decision |
+| **มีประเด็น exception หรือ risk tolerance** | Quarterly Risk Acceptance Review Pack | residual risk statement, วันหมดอายุ, และ recommendation |
+| **มีช่องว่างเชิงโครงสร้างด้าน coverage หรือ telemetry** | Annual Control Coverage Review Pack | priority gap statement, บริการที่ได้รับผลกระทบ, และความต้องการลงทุน |
+| **incident กลายเป็นประเด็นสาธารณะหรือมีแรงกดดันด้านการสื่อสาร** | Communication Templates และ Board Quarterly Decision Pack | เส้นทางข้อความที่อนุมัติแล้ว owner ผู้แถลง และบันทึกการตัดสินใจของผู้บริหาร |
+
+## บันทึกการตัดสินใจขั้นต่ำสำหรับผู้บริหาร
+
+- [ ] ระบุ 3 ประเด็นหลักที่ต้องการความสนใจจากผู้บริหารในรอบนี้
+- [ ] ระบุให้ชัดว่าแต่ละประเด็นต้องการ funding, risk acceptance, scope change, หรือแค่ follow-up
+- [ ] บันทึก owner และ target date สำหรับทุกรายการที่ขึ้นสถานะ RED
+
+## สัญญาณของเคสที่เป็นประเด็นสาธารณะ
+
+| สัญญาณ | ความหมายต่อผู้บริหาร | ต้องยกระดับทันทีเมื่อ |
+|:---|:---|:---|
+| **มีสื่อสอบถามเข้ามา** | incident อาจเกินขอบเขตการจัดการเฉพาะฝั่งปฏิบัติการ | ข้อเท็จจริงยังไม่ครบ แต่ไม่สามารถรอการตอบภายนอกได้ |
+| **ความเชื่อมั่นของลูกค้าลดลง** | ผลกระทบบริการหรือข้อมูลอาจแปลงเป็น churn หรือแรงกดดันตามสัญญา | ต้องแจ้งลูกค้าหรือออก service statement |
+| **มีการออก public statement แล้ว** | ผู้บริหารต้องติดตามความสอดคล้องของข้อความและความเสี่ยงต่อเนื่อง | ข้อความอ้างถึง outage, breach, หรือการสอบสวนที่ยัง active |
+| **มี regulator path และ media path พร้อมกัน** | ต้องคุม alignment ระหว่าง legal, privacy, และผู้บริหาร | มีการแจ้งตาม PDPA หรือข้อกำกับอื่นระหว่างที่แรงกดดันสาธารณะเพิ่มขึ้น |
+
 ## เทมเพลต Dashboard สถานะ RAG
 
 ```markdown
@@ -182,6 +207,9 @@
 - [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)
 - [รายงานรายเดือน](Monthly_SOC_Report.th.md)
 - [รายงานรายไตรมาส](Quarterly_Business_Review.th.md)
+- [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
+- [Board Quarterly Decision Pack](Board_Quarterly_Decision_Pack.th.md)
+- [แม่แบบการสื่อสารเหตุการณ์](../05_Incident_Response/Communication_Templates.th.md)
 
 ## References
 

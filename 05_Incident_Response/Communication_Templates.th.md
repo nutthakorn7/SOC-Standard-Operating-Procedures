@@ -7,6 +7,15 @@
 
 ---
 
+```mermaid
+graph TD
+    A["ยืนยัน Incident แล้ว"] --> B{"มีผลกระทบภายนอกหรือมีกฎระเบียบเกี่ยวข้องหรือไม่"}
+    B -->|ไม่มี| C["ใช้เส้นทางอัปเดตภายใน"]
+    B -->|มี| D["ให้ Legal / Privacy ทบทวน"]
+    D --> E["อนุมัติข้อความถึงลูกค้าหรือ regulator"]
+    E --> F["ส่งข้อความและบันทึกหลักฐาน"]
+```
+
 ## ตารางการแจ้ง
 
 | ระดับ | ภายใน | ผู้บริหาร | Legal | ภายนอก | หน่วยงานกำกับ |
@@ -15,6 +24,64 @@
 | **P2** | 15 นาที | 1 ชม. | ถ้ามีข้อมูลรั่ว | ตามจำเป็น | ถ้าจำเป็น |
 | **P3** | 30 นาที | รายงานรายวัน | ไม่ | ไม่ | ไม่ |
 | **P4** | standup ถัดไป | รายงานรายสัปดาห์ | ไม่ | ไม่ | ไม่ |
+
+## เส้นทางการสื่อสารกับลูกค้า / Regulator
+
+| Trigger | ต้องให้ใครทบทวนก่อน | ใครเป็นผู้ส่ง | หลักฐานที่ต้องมี |
+|:---|:---|:---|:---|
+| ยืนยันแล้วว่ามี regulated data exposure | Legal + Privacy + DPO | DPO หรือผู้แทน privacy ที่ได้รับมอบหมาย | บันทึกผลการตัดสินใจแจ้ง PDPA และเวลาที่ส่งแจ้ง |
+| ข้อมูลลูกค้าได้รับผลกระทบและลูกค้าต้องลงมือทำบางอย่าง | Legal + Communications + Business owner | ผู้รับผิดชอบด้านการสื่อสารลูกค้าที่ได้รับอนุมัติ | สำเนาข้อความแจ้งลูกค้าและช่องทาง support |
+| กระทบ dependency ของ third party หรือ vendor | Legal + Vendor owner + IR Lead | Vendor owner หรือ contract owner | external coordination log และกำหนดเวลาอัปเดตถัดไป |
+| เป็นเคส public, media, หรือกระทบผู้บริหารอย่างมีนัยสำคัญ | CISO + Legal + Communications | โฆษกที่ได้รับอนุมัติเท่านั้น | media position และหลักฐานการอนุมัติจากผู้บริหาร |
+
+## ชุดข้อมูลขั้นต่ำก่อนสื่อสารออกนอกทีม
+
+-   [ ] ยืนยัน Incident ID, severity, และ current status แล้ว
+-   [ ] ระบุขอบเขตของระบบ ผู้ใช้ หรือข้อมูลที่ได้รับผลกระทบว่าเป็นข้อมูลยืนยันแล้วหรือเป็นค่าประมาณ
+-   [ ] บันทึกสถานะการทบทวนโดย legal และ privacy ก่อนส่งข้อความถึงลูกค้าหรือ regulator
+-   [ ] ระบุช่องทางตอบคำถามกลับและ owner ที่จะเฝ้าช่องทางนั้น
+-   [ ] แนบสำเนาข้อความที่ส่งจริงไว้ใน incident record
+
+## ขอบเขตการอนุมัติสำหรับการสื่อสารภายนอก
+
+| ประเภทการสื่อสาร | ผู้ทบทวนขั้นต่ำ | ผู้อนุมัติสุดท้าย |
+|:---|:---|:---|
+| แจ้งลูกค้า | Legal + Business owner + Communications | CISO หรือผู้บริหารที่ได้รับมอบหมาย |
+| แจ้ง regulator | DPO + Legal | CISO หรือ privacy owner ที่รับผิดชอบ |
+| แจ้ง vendor / partner | Legal + Vendor owner + IR Lead | Service owner หรือ CISO |
+| แถลงต่อสื่อ | Legal + Communications + Executive stakeholders | CEO หรือผู้บริหารที่ได้รับมอบหมาย |
+
+## เส้นทางการสื่อสารกับสื่อ / สาธารณะ
+
+| Trigger | จุดตัดสินใจแรก | ผู้ทบทวนที่ต้องมี | ผลลัพธ์สุดท้าย |
+|:---|:---|:---|:---|
+| มีข่าวลือ มีโพสต์ข้อมูลรั่ว หรือมีสื่อสอบถามเข้ามา | ยืนยันก่อนว่าเคสยัง active และเป็น material หรือไม่ | CISO + Legal + Communications | holding statement หรือ no-comment position |
+| มี outage ที่กระทบลูกค้าและมีแนวโน้มกลายเป็นประเด็นสาธารณะ | ยืนยัน business impact และเวลาโดยประมาณในการกู้คืน | Business owner + CISO + Communications | ข้อความแจ้งผลกระทบบริการที่อนุมัติแล้ว |
+| ยืนยันแล้วว่ามี data breach ที่สาธารณะจะกังวล | ยืนยันเส้นทางการแจ้ง regulator และลูกค้าก่อน | Legal + DPO + Communications + CISO | public statement ที่สอดคล้องกับการแจ้งตามกฎหมาย |
+| เป็นเหตุการณ์ที่กระทบผู้บริหารหรือชื่อเสียงองค์กรอย่างมีนัยสำคัญ | ยืนยันว่า board/executive escalation ถูกเปิดใช้แล้วหรือไม่ | CISO + Executive stakeholders + Legal | ผู้แถลงที่อนุมัติแล้ว talking points และบันทึกการยกระดับ |
+
+## หลักควบคุมขั้นต่ำสำหรับการสื่อสารสู่สาธารณะ
+
+-   [ ] ห้ามออก public statement ก่อนบันทึกข้อเท็จจริง สถานะปัจจุบัน และ owner ที่อนุมัติ
+-   [ ] ใช้ถ้อยคำให้สอดคล้องกับข้อความที่แจ้งลูกค้าหรือ regulator แล้ว หรือกำลังจะส่ง
+-   [ ] หลีกเลี่ยง technical detail ที่ช่วยผู้โจมตีหรือขัดกับข้อเท็จจริงที่ยังสอบสวนไม่จบ
+-   [ ] บันทึกว่าใครอนุมัติข้อความ ออกเมื่อใด และเผยแพร่ผ่านช่องทางใด
+-   [ ] หากเป็น public statement ของเคส material ให้ส่งต่อเข้า incident report และ board pack ด้วย
+
+## Cadence การอัปเดตใน War Room
+
+| สถานะของ incident | กลุ่มผู้รับ | Cadence ขั้นต่ำ | Owner |
+|:---|:---|:---|:---|
+| **P1 ที่ยัง containment อยู่** | ผู้บริหารและผู้ที่อยู่ใน war room | ทุก 30 นาที | Incident Commander |
+| **P2 ที่ยัง containment อยู่ หรือมีแรงกดดันสาธารณะ** | ฝ่ายบริหารและผู้เกี่ยวข้องหลัก | ทุก 60 นาที | Incident Commander หรือ SOC Lead |
+| **อยู่ระหว่าง recovery** | ฝ่ายบริหารและ service owner | ทุก 2-4 ชั่วโมง | IR Lead |
+| **เข้าสู่ช่วง monitoring ที่เริ่มนิ่ง** | owner ของ ticket และผู้บริหารตามความจำเป็น | เมื่อมีความเปลี่ยนแปลงสำคัญ หรือเวลาทบทวนที่ตกลงไว้ | owner ของ ticket |
+
+## เกณฑ์การสื่อสารก่อนปิด War Room
+
+-   [ ] ส่งอัปเดตการเปลี่ยนช่วงอย่างชัดเจนเมื่อเคสเปลี่ยนจาก war room cadence ไปเป็น enhanced monitoring หรือการติดตามผ่าน ticket ปกติ
+-   [ ] ระบุว่าใครเป็น owner ของ monitoring ต่อ จุดตัดสินใจถัดไปคืออะไร และเส้นทาง executive, legal, customer, หรือ regulator ยังเปิดอยู่หรือไม่
+-   [ ] ห้ามหยุดการอัปเดตตามรอบจนกว่าจะผ่าน closure criteria ไม่ใช่แค่ระบบกลับมาใช้งานได้
 
 ---
 
@@ -298,3 +365,13 @@ Timeline + สาเหตุ + ผลกระทบ + สิ่งที่ด
 - [กรอบ IR](Framework.th.md)
 - [ตารางความรุนแรง](Severity_Matrix.th.md)
 - [สถานการณ์จำลอง](Tabletop_Exercises.th.md)
+- [คู่มือตอบเหตุข้อมูลรั่วตาม PDPA](../07_Compliance_Privacy/PDPA_Incident_Response.th.md)
+- [แบบฟอร์มรายงานเหตุการณ์](../11_Reporting_Templates/incident_report.th.md)
+- [Executive Dashboard](../11_Reporting_Templates/Executive_Dashboard.th.md)
+- [Board Quarterly Decision Pack](../11_Reporting_Templates/Board_Quarterly_Decision_Pack.th.md)
+
+## References
+
+- [NIST SP 800-61r2 — Incident Handling](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [Thailand Personal Data Protection Committee (PDPC)](https://www.pdpc.or.th/)
+- [CISA Cyber Incident Response and Recovery](https://www.cisa.gov/resources-tools/resources/cyber-incident-response-and-recovery)

@@ -183,6 +183,15 @@ graph LR
 | Sample case or evidence labels with TLP and classification | Confirms practical use, not policy only | SOC Analyst |
 | Exception approvals for data sharing or extended retention | Preserves accountability for deviations | SOC Manager / DPO |
 
+## Evidence Legal Hold / Retention Path
+
+| Condition | Hold or Retention Action | Escalate To | Minimum Output |
+|:---|:---|:---|:---|
+| **Incident evidence includes regulated data or board-level exposure** | Suspend standard deletion and preserve full evidence set | DPO + Legal + CISO | Hold scope, owner, and review date |
+| **Evidence is transferred to forensic archive** | Re-hash, confirm custodian, and log archive location | IR Lead | Archive record and integrity check |
+| **Evidence release or destruction is requested** | Validate hold status before release or destruction | Legal + evidence custodian | Written approval and disposal record |
+| **Retention exception is requested** | Approve extended retention with named owner and reason | DPO / Legal / SOC Manager | Exception approval record |
+
 ## Related Documents
 
 - [PDPA Compliance](PDPA_Compliance.en.md)

@@ -122,6 +122,36 @@ graph TD
 - **Never share IOCs publicly** without SOC Lead approval
 - **Never discuss incidents** on personal devices or unsecured channels
 
+## Authority Matrix
+
+| Decision Type | P1 Critical | P2 High | P3 Medium | P4 Low |
+|:---|:---|:---|:---|:---|
+| **Isolate host / disable account immediately** | Tier 2 or Incident Commander | Tier 2 with SOC Lead approval | Analyst judgment or Tier 2 | Ticket owner |
+| **Block IP / domain / IOC** | Tier 2 or Incident Commander | Tier 2 with SOC Lead approval | Tier 2 if justified | Not usually required |
+| **Pause service / shutdown business function** | CISO or delegated business owner | SOC Manager + business owner | Business owner approval | Not applicable |
+| **Restore from backup / snapshot** | Service owner + IT Ops | Service owner + SOC Manager | Service owner | Ticket owner |
+| **Rollback release / configuration** | Service owner + change owner | Service owner + SOC Manager | Change owner | Ticket owner |
+| **Reconnect host / network path / integration** | Incident Commander + infrastructure owner | SOC Lead + infrastructure owner | Analyst only after Tier 2 review | Not applicable |
+| **Return service to production / re-enable business process** | Business owner + CISO for material impact | Business owner + SOC Manager | Service owner | Ticket owner |
+| **Notify executives** | Incident Commander + CISO | SOC Manager if business impact or trend | SOC Lead if recurring or escalating | Not required |
+| **Notify legal / privacy / regulator** | Legal / DPO / CISO path required when triggered | Legal / DPO review when regulated data is involved | Case-by-case | Not required |
+| **Issue customer or public statement** | CEO or delegated executive after Legal + Communications review | CISO or delegated executive after review | Not normally required | Not required |
+| **Accept residual risk / defer remediation** | Executive Committee / Board if material | CISO + business owner | SOC Manager or service owner | Service owner |
+
+## Minimum Decision Logging Rules
+
+-   [ ] Log every decision involving containment tradeoff, service interruption, external notification, or accepted risk.
+-   [ ] Record the approval owner, time, facts available, and next review point.
+-   [ ] Reference the incident ticket and war room channel when one is active.
+-   [ ] Reconfirm any temporary decision at the next severity or governance review if the case remains open.
+
+## Minimum Restoration Evidence
+
+-   [ ] The restored source, rollback target, or reconnection scope is explicitly identified.
+-   [ ] The approving owner accepts downtime, data-consistency, and residual-risk tradeoffs.
+-   [ ] Monitoring, rollback, and business validation steps are defined before return-to-service.
+-   [ ] The decision is recorded in the incident log if restoration happens before full root-cause confidence.
+
 ---
 
 ## Auto-Escalation Rules (SOAR)
@@ -190,3 +220,4 @@ graph TD
 -   [PDPA Incident Response](../07_Compliance_Privacy/PDPA_Incident_Response.en.md) — Thai data breach notification
 -   [SOC Communication SOP](../06_Operations_Management/SOC_Communication.en.md)
 -   [SLA Template](../06_Operations_Management/SLA_Template.en.md)
+-   [Incident Decision Log](../11_Reporting_Templates/Incident_Decision_Log.en.md)

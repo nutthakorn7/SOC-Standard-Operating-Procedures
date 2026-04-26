@@ -98,6 +98,16 @@ This matrix defines the **severity classification** (P1–P4) for all security i
 | PR / Communications | ✅ (if public) | — | — | — |
 | External DFIR | On-demand | — | — | — |
 
+## War Room Activation Thresholds
+
+| Condition | War Room | Commander | Update Cadence |
+|:---|:---:|:---|:---|
+| **P1 Critical** | Mandatory | Incident Commander | Every 30 minutes |
+| **P2 High with unresolved business impact** | Mandatory | SOC Lead or IR Lead | Every 60 minutes |
+| **P2 with legal / privacy / public communications path active** | Mandatory | IR Lead | Every 60 minutes |
+| **P3 Medium with cross-team blocker** | Optional | Shift Lead | Every 4 hours or on major change |
+| **P4 Low** | Not required | Ticket owner | Daily or normal queue cadence |
+
 ---
 
 ## Severity Classification Decision Tree

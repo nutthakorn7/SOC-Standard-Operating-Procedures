@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/📄_Documents-281-blue?style=for-the-badge" alt="Documents">
+  <img src="https://img.shields.io/badge/📄_Documents-335-blue?style=for-the-badge" alt="Documents">
   <img src="https://img.shields.io/badge/🛡️_Playbooks-53-red?style=for-the-badge" alt="Playbooks">
   <img src="https://img.shields.io/badge/🔍_Sigma_Rules-54-orange?style=for-the-badge" alt="Sigma Rules">
   <img src="https://img.shields.io/badge/🌐_Bilingual-EN%2FTH-green?style=for-the-badge" alt="Bilingual">
@@ -38,13 +38,23 @@
 | 2️⃣ | **Quickstart Guide** — สร้าง SOC ใน 30 นาที | [Read](00_Getting_Started/Quickstart_Guide.en.md) | [อ่าน](00_Getting_Started/Quickstart_Guide.th.md) |
 | 📖 | **Glossary** — คำศัพท์ที่ต้องรู้ | [Read](00_Getting_Started/Glossary.en.md) | [อ่าน](00_Getting_Started/Glossary.th.md) |
 
+### Role-Based Entry Paths / เส้นทางเริ่มต้นตามบทบาท
+
+| Role | English | ภาษาไทย |
+|:---|:---:|:---:|
+| **CISO / Security Director** | [Read](00_Getting_Started/CISO_Entry_Path.en.md) | [อ่าน](00_Getting_Started/CISO_Entry_Path.th.md) |
+| **SOC Manager / SOC Lead** | [Read](00_Getting_Started/SOC_Manager_Entry_Path.en.md) | [อ่าน](00_Getting_Started/SOC_Manager_Entry_Path.th.md) |
+| **SOC Analyst** | [Read](00_Getting_Started/SOC_Analyst_Entry_Path.en.md) | [อ่าน](00_Getting_Started/SOC_Analyst_Entry_Path.th.md) |
+| **Security Engineer / Detection Engineer** | [Read](00_Getting_Started/Security_Engineer_Entry_Path.en.md) | [อ่าน](00_Getting_Started/Security_Engineer_Entry_Path.th.md) |
+| **IR Engineer / Incident Responder** | [Read](00_Getting_Started/IR_Engineer_Entry_Path.en.md) | [อ่าน](00_Getting_Started/IR_Engineer_Entry_Path.th.md) |
+
 ---
 
 ## 📊 What's Inside / สิ่งที่มีในโปรเจกต์นี้
 
 | Category | Count | Highlights |
 |:---|:---:|:---|
-| 📄 Documents (EN+TH) | 281 | Bilingual, vendor-agnostic SOPs |
+| 📄 Documents (EN+TH) | 335 | Bilingual, vendor-agnostic SOPs |
 | 🛡️ IR Playbooks | 53 | PB-01 Phishing → PB-53 AI Model Theft, MITRE/ATLAS mapped |
 | 🔍 Sigma Detection Rules | 54 | Ready-to-import SIEM rules |
 | 🧬 YARA Rules | 15 | File-based threat detection |
@@ -291,6 +301,7 @@ File-based threat detection: [YARA Index](08_Detection_Engineering/yara/README.m
 | Document | English | ภาษาไทย |
 |:---|:---:|:---:|
 | **SOC Team Structure** | [Read](06_Operations_Management/SOC_Team_Structure.en.md) | [อ่าน](06_Operations_Management/SOC_Team_Structure.th.md) |
+| **SOC Service Catalog** | [Read](06_Operations_Management/SOC_Service_Catalog.en.md) | [อ่าน](06_Operations_Management/SOC_Service_Catalog.th.md) |
 | **Shift Handoff SOP** | [Read](06_Operations_Management/Shift_Handoff.en.md) | [อ่าน](06_Operations_Management/Shift_Handoff.th.md) |
 | **SOC Checklists** (Daily/Weekly/Monthly) | [Read](06_Operations_Management/SOC_Checklists.en.md) | [อ่าน](06_Operations_Management/SOC_Checklists.th.md) |
 | **SOC Metrics & KPIs** | [Read](06_Operations_Management/SOC_Metrics.en.md) | [อ่าน](06_Operations_Management/SOC_Metrics.th.md) |
@@ -396,6 +407,7 @@ File-based threat detection: [YARA Index](08_Detection_Engineering/yara/README.m
 |:---|:---:|:---:|
 | **Monthly SOC Report** | [Read](11_Reporting_Templates/Monthly_SOC_Report.en.md) | [อ่าน](11_Reporting_Templates/Monthly_SOC_Report.th.md) |
 | **Quarterly Business Review** | [Read](11_Reporting_Templates/Quarterly_Business_Review.en.md) | [อ่าน](11_Reporting_Templates/Quarterly_Business_Review.th.md) |
+| **Board Quarterly Decision Pack** | [Read](11_Reporting_Templates/Board_Quarterly_Decision_Pack.en.md) | [อ่าน](11_Reporting_Templates/Board_Quarterly_Decision_Pack.th.md) |
 | **Executive Dashboard** | [Read](11_Reporting_Templates/Executive_Dashboard.en.md) | [อ่าน](11_Reporting_Templates/Executive_Dashboard.th.md) |
 
 ### Templates / แบบฟอร์มพร้อมใช้
@@ -405,6 +417,26 @@ File-based threat detection: [YARA Index](08_Detection_Engineering/yara/README.m
 | **Incident Report** | [Read](11_Reporting_Templates/incident_report.en.md) | [อ่าน](11_Reporting_Templates/incident_report.th.md) |
 | **Shift Handover Log** | [Read](11_Reporting_Templates/shift_handover.en.md) | [อ่าน](11_Reporting_Templates/shift_handover.th.md) |
 | **Change Request (RFC)** | [Read](11_Reporting_Templates/change_request_rfc.en.md) | [อ่าน](11_Reporting_Templates/change_request_rfc.th.md) |
+| **Risk Acceptance Template** | [Read](11_Reporting_Templates/Risk_Acceptance_Template.en.md) | [อ่าน](11_Reporting_Templates/Risk_Acceptance_Template.th.md) |
+| **Security Exception Approval** | [Read](11_Reporting_Templates/Exception_Approval_Template.en.md) | [อ่าน](11_Reporting_Templates/Exception_Approval_Template.th.md) |
+| **Incident Decision Log** | [Read](11_Reporting_Templates/Incident_Decision_Log.en.md) | [อ่าน](11_Reporting_Templates/Incident_Decision_Log.th.md) |
+| **Investment Justification Template** | [Read](11_Reporting_Templates/Investment_Justification_Template.en.md) | [อ่าน](11_Reporting_Templates/Investment_Justification_Template.th.md) |
+| **Log Source Onboarding Request** | [Read](11_Reporting_Templates/Log_Source_Onboarding_Request.en.md) | [อ่าน](11_Reporting_Templates/Log_Source_Onboarding_Request.th.md) |
+| **Detection Request Template** | [Read](11_Reporting_Templates/Detection_Request_Template.en.md) | [อ่าน](11_Reporting_Templates/Detection_Request_Template.th.md) |
+| **Threat Hunt Request Template** | [Read](11_Reporting_Templates/Threat_Hunt_Request_Template.en.md) | [อ่าน](11_Reporting_Templates/Threat_Hunt_Request_Template.th.md) |
+| **Executive Reporting Request** | [Read](11_Reporting_Templates/Executive_Reporting_Request.en.md) | [อ่าน](11_Reporting_Templates/Executive_Reporting_Request.th.md) |
+| **Detection Backlog Prioritization** | [Read](11_Reporting_Templates/Detection_Backlog_Prioritization.en.md) | [อ่าน](11_Reporting_Templates/Detection_Backlog_Prioritization.th.md) |
+| **Telemetry Backlog Prioritization** | [Read](11_Reporting_Templates/Telemetry_Backlog_Prioritization.en.md) | [อ่าน](11_Reporting_Templates/Telemetry_Backlog_Prioritization.th.md) |
+| **Remediation Backlog Prioritization** | [Read](11_Reporting_Templates/Remediation_Backlog_Prioritization.en.md) | [อ่าน](11_Reporting_Templates/Remediation_Backlog_Prioritization.th.md) |
+| **Weekly Detection Review Pack** | [Read](11_Reporting_Templates/Weekly_Detection_Review_Pack.en.md) | [อ่าน](11_Reporting_Templates/Weekly_Detection_Review_Pack.th.md) |
+| **Weekly Telemetry Review Pack** | [Read](11_Reporting_Templates/Weekly_Telemetry_Review_Pack.en.md) | [อ่าน](11_Reporting_Templates/Weekly_Telemetry_Review_Pack.th.md) |
+| **Monthly Remediation Review Pack** | [Read](11_Reporting_Templates/Monthly_Remediation_Review_Pack.en.md) | [อ่าน](11_Reporting_Templates/Monthly_Remediation_Review_Pack.th.md) |
+| **Detection Ownership RACI** | [Read](11_Reporting_Templates/Detection_Ownership_RACI.en.md) | [อ่าน](11_Reporting_Templates/Detection_Ownership_RACI.th.md) |
+| **Telemetry Ownership RACI** | [Read](11_Reporting_Templates/Telemetry_Ownership_RACI.en.md) | [อ่าน](11_Reporting_Templates/Telemetry_Ownership_RACI.th.md) |
+| **Remediation Ownership RACI** | [Read](11_Reporting_Templates/Remediation_Ownership_RACI.en.md) | [อ่าน](11_Reporting_Templates/Remediation_Ownership_RACI.th.md) |
+| **Monthly Governance Review Pack** | [Read](11_Reporting_Templates/Monthly_Governance_Review_Pack.en.md) | [อ่าน](11_Reporting_Templates/Monthly_Governance_Review_Pack.th.md) |
+| **Quarterly Risk Acceptance Review Pack** | [Read](11_Reporting_Templates/Quarterly_Risk_Acceptance_Review_Pack.en.md) | [อ่าน](11_Reporting_Templates/Quarterly_Risk_Acceptance_Review_Pack.th.md) |
+| **Annual Control Coverage Review Pack** | [Read](11_Reporting_Templates/Annual_Control_Coverage_Review_Pack.en.md) | [อ่าน](11_Reporting_Templates/Annual_Control_Coverage_Review_Pack.th.md) |
 
 ---
 
@@ -440,7 +472,7 @@ File-based threat detection: [YARA Index](08_Detection_Engineering/yara/README.m
 
 For offline reading or printing, download the consolidated manual:
 
-> **[📖 SOC_Manual_Consolidated.md](https://github.com/nutthakorn7/SOC-SOP/blob/main/SOC_Manual_Consolidated.md)** — All 281 documents in one file
+> **[📖 SOC_Manual_Consolidated.md](https://github.com/nutthakorn7/SOC-SOP/blob/main/SOC_Manual_Consolidated.md)** — All 335 documents in one file
 
 ---
 
@@ -450,7 +482,7 @@ For offline reading or printing, download the consolidated manual:
 |:---|:---|
 | **[📝 CHANGELOG.md](CHANGELOG.md)** | All changes by version (Keep a Changelog format) |
 | **[📋 VERSION_TRACKER.md](VERSION_TRACKER.md)** | Every document's version, last update, and next review date |
-| **Current Version** | **v2.15.0** (2026-04-26) |
+| **Current Version** | **v2.23.15** (2026-04-26) |
 
 ---
 

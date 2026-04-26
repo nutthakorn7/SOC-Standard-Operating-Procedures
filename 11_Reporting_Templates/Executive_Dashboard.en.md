@@ -161,6 +161,31 @@ This template defines the metrics and visualizations for a SOC executive dashboa
 | **Coverage for critical assets drops below agreed baseline** | 🔴 | Fund telemetry restoration, control deployment, or asset-owner remediation |
 | **Repeated control failures create recurring incidents** | 🟡/🔴 | Demand remediation owner, due date, and progress reporting |
 
+## Governance Escalation Mapping
+
+| Dashboard Signal | Move To | Required Output |
+|:---|:---|:---|
+| **Single-period deterioration with manageable impact** | Monthly Governance Review Pack | Owner, corrective action, and next review date |
+| **Repeated metric failure across the quarter** | Board Quarterly Decision Pack | Capacity, funding, or scope decision request |
+| **Open exception or risk tolerance issue** | Quarterly Risk Acceptance Review Pack | Residual risk statement, expiry, and recommendation |
+| **Structural coverage or telemetry gap** | Annual Control Coverage Review Pack | Priority gap statement, affected services, and investment need |
+| **Public-facing incident or communications pressure** | Communication Templates and Board Quarterly Decision Pack | Approved message path, spokesperson owner, and leadership decision note |
+
+## Minimum Decision Notes for Executives
+
+- [ ] Identify the top 3 items that require executive attention this period.
+- [ ] State whether each item needs funding, risk acceptance, scope change, or follow-up only.
+- [ ] Record the owner and target date for every item shown in RED.
+
+## Public-Facing Incident Signals
+
+| Signal | Executive Meaning | Move Immediately When |
+|:---|:---|:---|
+| **Media inquiry received** | Incident visibility may exceed operations-only handling | Facts are incomplete but external response cannot wait |
+| **Customer trust risk rising** | Service or data impact may convert into churn or contractual pressure | Customer notice or service statement is required |
+| **Public statement already issued** | Leadership must track message consistency and follow-up risk | Statement references outage, breach, or active investigation |
+| **Regulator plus media path active together** | Legal, privacy, and executive alignment is critical | PDPA or other notification is running while public attention is escalating |
+
 ## RAG Status Dashboard Template
 
 ```markdown
@@ -184,6 +209,9 @@ This template defines the metrics and visualizations for a SOC executive dashboa
 - [Monthly SOC Report Template](../11_Reporting_Templates/Monthly_SOC_Report.en.md)
 - [Quarterly Business Review](../11_Reporting_Templates/Quarterly_Business_Review.en.md)
 - [SLA Template](../06_Operations_Management/SLA_Template.en.md)
+- [Monthly Governance Review Pack](../11_Reporting_Templates/Monthly_Governance_Review_Pack.en.md)
+- [Board Quarterly Decision Pack](../11_Reporting_Templates/Board_Quarterly_Decision_Pack.en.md)
+- [Communication Templates](../05_Incident_Response/Communication_Templates.en.md)
 
 ## References
 

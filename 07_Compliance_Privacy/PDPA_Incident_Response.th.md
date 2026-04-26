@@ -124,6 +124,31 @@
 | ช่องทางติดต่อปัจจุบันของ DPO, legal และ business owner | ป้องกันการค้างระหว่างการแจ้ง | SOC Manager |
 | สำเนา draft และ final notification package | เก็บเป็นหลักฐาน audit และกฎหมาย | DPO |
 
+## เส้นทางการยกระดับไปยังผู้บริหาร / กฎหมาย / Privacy
+
+| สถานการณ์ | ต้องแจ้งก่อน | ต้องแจ้งต่อ | ผลลัพธ์ขั้นต่ำ |
+|:---|:---|:---|:---|
+| ยืนยันแล้วว่ามีข้อมูลส่วนบุคคลรั่ว แต่ขอบเขตยังสรุปไม่ครบ | DPO + SOC Manager | CISO | สรุป breach เบื้องต้นและ timeline การสืบสวน |
+| ข้อมูลอ่อนไหว ข้อมูลการเงิน หรือ secrets ด้านการยืนยันตัวตนถูกเปิดเผย | DPO + Legal + CISO | Business owner + Privacy lead | ร่างเอกสารแจ้ง สคส. และแผนแจ้งเจ้าของข้อมูล |
+| มีแนวโน้มกระทบสื่อ ลูกค้า หรือข้อผูกพันตามสัญญา | CISO + Legal | Communications lead / Vendor owner | แนวทางการสื่อสารภายนอกที่ตกลงร่วมกัน |
+| มีความเสี่ยงด้าน regulator อย่างมีนัยสำคัญ หรือเป็น breach pattern ที่เกิดซ้ำ | CISO + Legal + DPO | Board / Executive Committee | สรุปประเด็นตัดสินใจสำหรับ board pack และ owner ของ corrective action |
+
+## บันทึกผลการตัดสินใจแจ้งขั้นต่ำ
+
+-   [ ] ระบุว่า การแจ้ง สคส. เป็น **ต้องแจ้ง**, **กำลังประเมิน**, หรือ **ไม่ต้องแจ้ง**
+-   [ ] ระบุว่า การแจ้งเจ้าของข้อมูลเป็น **ต้องแจ้ง**, **กำลังประเมิน**, หรือ **ไม่ต้องแจ้ง**
+-   [ ] บันทึกว่าใครเป็นผู้อนุมัติการตัดสินใจแจ้ง และอนุมัติเมื่อใด
+-   [ ] บันทึกว่าขณะตัดสินใจแจ้ง ยังมีหลักฐานใดที่ยังไม่ทราบครบ
+
+## การส่งต่องานสื่อสารไปยังลูกค้า / Regulator
+
+| การสื่อสารออกนอกทีม | Owner หลัก | ข้อมูลที่ต้องมี | ต้องบันทึกไว้ที่ใด |
+|:---|:---|:---|:---|
+| การแจ้ง สคส. | DPO | ผลการตัดสินใจแจ้ง ขอบเขตโดยประมาณ และสถานะ containment | incident record และ breach register |
+| การแจ้งเจ้าของข้อมูล | DPO + Communications | ข้อความที่อนุมัติแล้ว ช่องทาง support และนิยามกลุ่มผู้ได้รับผลกระทบ | incident record และ subject-notification log |
+| การแจ้งลูกค้าหรือการแจ้งตามสัญญา | Legal + Business owner | service impact ที่ยืนยันแล้ว ข้อความที่ legal อนุมัติ และช่องทางตอบกลับ | incident report และ communications log |
+| การ follow-up ต่อ board หรือผู้บริหาร | CISO | สรุปผลกระทบ material, residual risk, และ corrective-action plan | board pack และ governance tracker |
+
 ---
 
 ## บทลงโทษ PDPA
@@ -220,6 +245,8 @@ graph LR
 - [เก็บหลักฐาน](../05_Incident_Response/Evidence_Collection.th.md)
 - [แม่แบบ Lessons Learned](../05_Incident_Response/Lessons_Learned_Template.th.md)
 - [Compliance Mapping](Compliance_Mapping.th.md)
+- [Incident Report Template](../11_Reporting_Templates/incident_report.th.md)
+- [Board Quarterly Decision Pack](../11_Reporting_Templates/Board_Quarterly_Decision_Pack.th.md)
 
 ## References
 

@@ -13,6 +13,11 @@
 | [SOC 101](00_Getting_Started/SOC_101.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Quickstart Guide](00_Getting_Started/Quickstart_Guide.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Glossary](00_Getting_Started/Glossary.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [CISO Entry Path](00_Getting_Started/CISO_Entry_Path.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [SOC Manager Entry Path](00_Getting_Started/SOC_Manager_Entry_Path.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [SOC Analyst Entry Path](00_Getting_Started/SOC_Analyst_Entry_Path.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Security Engineer Entry Path](00_Getting_Started/Security_Engineer_Entry_Path.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [IR Engineer Entry Path](00_Getting_Started/IR_Engineer_Entry_Path.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
 
 ## 🏗️ SOC Fundamentals
 
@@ -29,21 +34,21 @@
 
 | Document | Version | Last Updated | Status | Next Review |
 |:---|:---:|:---:|:---:|:---:|
-| [IR Framework](05_Incident_Response/Framework.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [IR Framework](05_Incident_Response/Framework.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
 | [Severity Matrix](05_Incident_Response/Severity_Matrix.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Incident Classification](05_Incident_Response/Incident_Classification.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
-| [Escalation Matrix](05_Incident_Response/Escalation_Matrix.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Escalation Matrix](05_Incident_Response/Escalation_Matrix.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
 | [Tier 1 Runbook](05_Incident_Response/Runbooks/Tier1_Runbook.en.md) | 2.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 | [Tier 2 Runbook](05_Incident_Response/Runbooks/Tier2_Runbook.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 | [Tier 3 Runbook](05_Incident_Response/Runbooks/Tier3_Runbook.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
-| [Communication Templates](05_Incident_Response/Communication_Templates.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Communication Templates](05_Incident_Response/Communication_Templates.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
 | [Forensic Investigation](05_Incident_Response/Forensic_Investigation.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Evidence Collection](05_Incident_Response/Evidence_Collection.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Threat Hunting Playbook](05_Incident_Response/Threat_Hunting_Playbook.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Interview Guide](05_Incident_Response/Interview_Guide.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Disaster Recovery / BCP](05_Incident_Response/Disaster_Recovery_BCP.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [SOAR Playbooks](05_Incident_Response/SOAR_Playbooks.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
-| [Lessons Learned Template](05_Incident_Response/Lessons_Learned_Template.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Lessons Learned Template](05_Incident_Response/Lessons_Learned_Template.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
 | [Playbook Development Guide](05_Incident_Response/Playbook_Development_Guide.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 | [Tabletop Exercises](05_Incident_Response/Tabletop_Exercises.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
 | [Purple Team Exercises](05_Incident_Response/Purple_Team_Exercises.en.md) | 1.0 | 2026-02-16 | ✅ Current | 2027-02-16 |
@@ -69,7 +74,8 @@
 | Document | Version | Last Updated | Status | Next Review |
 |:---|:---:|:---:|:---:|:---:|
 | [SOC Team Structure](06_Operations_Management/SOC_Team_Structure.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
-| [Shift Handoff](06_Operations_Management/Shift_Handoff.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [SOC Service Catalog](06_Operations_Management/SOC_Service_Catalog.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Shift Handoff](06_Operations_Management/Shift_Handoff.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
 | [SOC Checklists](06_Operations_Management/SOC_Checklists.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [SOC Metrics & KPIs](06_Operations_Management/SOC_Metrics.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [KPI Dashboard Template](06_Operations_Management/KPI_Dashboard_Template.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
@@ -136,10 +142,31 @@
 |:---|:---:|:---:|:---:|:---:|
 | [Monthly SOC Report](11_Reporting_Templates/Monthly_SOC_Report.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Quarterly Business Review](11_Reporting_Templates/Quarterly_Business_Review.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Board Quarterly Decision Pack](11_Reporting_Templates/Board_Quarterly_Decision_Pack.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
 | [Executive Dashboard](11_Reporting_Templates/Executive_Dashboard.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
-| [Incident Report Template](11_Reporting_Templates/incident_report.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Incident Report Template](11_Reporting_Templates/incident_report.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
 | [Shift Handover Template](11_Reporting_Templates/shift_handover.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
 | [Change Request (RFC)](11_Reporting_Templates/change_request_rfc.en.md) | 1.0 | 2026-02-15 | ✅ Current | 2027-02-15 |
+| [Risk Acceptance Template](11_Reporting_Templates/Risk_Acceptance_Template.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Security Exception Approval](11_Reporting_Templates/Exception_Approval_Template.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Incident Decision Log](11_Reporting_Templates/Incident_Decision_Log.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Investment Justification Template](11_Reporting_Templates/Investment_Justification_Template.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Log Source Onboarding Request](11_Reporting_Templates/Log_Source_Onboarding_Request.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Detection Request Template](11_Reporting_Templates/Detection_Request_Template.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Threat Hunt Request Template](11_Reporting_Templates/Threat_Hunt_Request_Template.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Executive Reporting Request](11_Reporting_Templates/Executive_Reporting_Request.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Detection Backlog Prioritization](11_Reporting_Templates/Detection_Backlog_Prioritization.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Telemetry Backlog Prioritization](11_Reporting_Templates/Telemetry_Backlog_Prioritization.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Remediation Backlog Prioritization](11_Reporting_Templates/Remediation_Backlog_Prioritization.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Weekly Detection Review Pack](11_Reporting_Templates/Weekly_Detection_Review_Pack.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Weekly Telemetry Review Pack](11_Reporting_Templates/Weekly_Telemetry_Review_Pack.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Monthly Remediation Review Pack](11_Reporting_Templates/Monthly_Remediation_Review_Pack.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Detection Ownership RACI](11_Reporting_Templates/Detection_Ownership_RACI.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Telemetry Ownership RACI](11_Reporting_Templates/Telemetry_Ownership_RACI.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Remediation Ownership RACI](11_Reporting_Templates/Remediation_Ownership_RACI.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Monthly Governance Review Pack](11_Reporting_Templates/Monthly_Governance_Review_Pack.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Quarterly Risk Acceptance Review Pack](11_Reporting_Templates/Quarterly_Risk_Acceptance_Review_Pack.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
+| [Annual Control Coverage Review Pack](11_Reporting_Templates/Annual_Control_Coverage_Review_Pack.en.md) | 1.0 | 2026-04-26 | ✅ Current | 2027-04-26 |
 
 ---
 
@@ -147,14 +174,14 @@
 
 | Category | Documents | All Current | Next Review |
 |:---|:---:|:---:|:---:|
-| Getting Started | 3 | ✅ | 2027-02 |
+| Getting Started | 8 | ✅ | 2027-04 |
 | SOC Fundamentals | 6 | ✅ | 2027-02 |
 | Incident Response | 18 + 53 playbooks | ✅ | 2027-03 |
-| Operations Management | 28 | ✅ | 2027-02 |
+| Operations Management | 29 | ✅ | 2027-04 |
 | Testing & Training | 8 | ✅ | 2027-02 |
 | Detection Engineering | 2 | ✅ | 2027-04 |
 | Compliance | 8 | ✅ | 2027-04 |
-| Reports & Templates | 6 | ✅ | 2027-02 |
-| **Total** | **129+** | **✅ 100%** | **2027-04** |
+| Reports & Templates | 27 | ✅ | 2027-04 |
+| **Total** | **156+** | **✅ 100%** | **2027-04** |
 
-> **Last tracker update**: 2026-04-26 | **Repository version**: 2.15.0
+> **Last tracker update**: 2026-04-26 | **Repository version**: 2.23.15

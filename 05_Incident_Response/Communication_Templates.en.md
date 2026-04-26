@@ -7,6 +7,15 @@
 
 ---
 
+```mermaid
+graph TD
+    A["Incident Confirmed"] --> B{"External or regulated impact?"}
+    B -->|No| C["Use internal update path"]
+    B -->|Yes| D["Legal / Privacy review"]
+    D --> E["Approve customer or regulator message"]
+    E --> F["Send and record communication"]
+```
+
 ## Communication Matrix
 
 | Severity | Internal Notify | Management | Legal | External | Regulator |
@@ -15,6 +24,64 @@
 | **P2 High** | 15 min | 1h | If data breach | As needed | If required |
 | **P3 Medium** | 30 min | Daily report | No | No | No |
 | **P4 Low** | Next standup | Weekly report | No | No | No |
+
+## Customer / Regulator Communication Path
+
+| Trigger | First Review | Sender | Required Record |
+|:---|:---|:---|:---|
+| Confirmed regulated data exposure | Legal + Privacy + DPO | DPO or approved privacy delegate | PDPA notification decision and submission timestamp |
+| Customer data impact with action required | Legal + Communications + Business owner | Approved customer communications owner | Customer notification copy and support path |
+| Third-party or vendor dependency affected | Legal + Vendor owner + IR Lead | Vendor owner or contract owner | External coordination log and agreed next update |
+| Public, media, or executive-sensitive case | CISO + Legal + Communications | Approved spokesperson only | Media position and executive approval record |
+
+## Minimum Outbound Communication Package
+
+-   [ ] Incident ID, severity, and current status are confirmed.
+-   [ ] Scope of affected systems, users, or data is stated as confirmed or estimated.
+-   [ ] Legal and privacy review status is recorded before any customer or regulator message.
+-   [ ] Contact path for follow-up questions is assigned and monitored.
+-   [ ] Copy of the exact message sent is attached to the incident record.
+
+## Approval Boundaries for External Communication
+
+| Communication Type | Minimum Reviewers | Final Approver |
+|:---|:---|:---|
+| Customer notification | Legal + Business owner + Communications | CISO or delegated executive |
+| Regulator notification | DPO + Legal | CISO or accountable privacy owner |
+| Vendor / partner notification | Legal + Vendor owner + IR Lead | Service owner or CISO |
+| Media statement | Legal + Communications + Executive stakeholders | CEO or delegated executive |
+
+## Media / Public Statement Path
+
+| Trigger | First Decision | Required Reviewers | Final Output |
+|:---|:---|:---|:---|
+| Public rumor, leak post, or journalist inquiry | Confirm whether the case is active and material | CISO + Legal + Communications | Holding statement or no-comment position |
+| Customer-facing outage with likely public attention | Confirm business impact and service-restoration estimate | Business owner + CISO + Communications | Approved service-impact statement |
+| Confirmed data breach with likely public concern | Confirm regulator and customer notification path first | Legal + DPO + Communications + CISO | Public statement aligned with legal notification |
+| Executive-sensitive or reputation-threatening event | Confirm whether board/executive escalation is active | CISO + Executive stakeholders + Legal | Approved spokesperson, talking points, and escalation note |
+
+## Minimum Public Statement Controls
+
+-   [ ] Do not issue a public statement until incident facts, current status, and approval owner are recorded.
+-   [ ] Keep public wording consistent with customer and regulator notifications already sent or being prepared.
+-   [ ] Avoid technical detail that would help an attacker or contradict open investigative facts.
+-   [ ] Record who approved the message, when it was released, and which channels were used.
+-   [ ] Feed every material public statement into the incident report and board pack if business or regulatory impact is material.
+
+## War Room Update Cadence
+
+| Incident State | Audience | Minimum Cadence | Owner |
+|:---|:---|:---|:---|
+| **P1 active containment** | Executive stakeholders and war room | Every 30 minutes | Incident Commander |
+| **P2 active containment or public-facing pressure** | Management and key stakeholders | Every 60 minutes | Incident Commander or SOC Lead |
+| **Recovery in progress** | Management and service owner | Every 2-4 hours | IR Lead |
+| **Stabilized monitoring** | Ticket owner and leadership as needed | On major change or agreed review time | Ticket owner |
+
+## War Room Exit Communication Gate
+
+-   [ ] Send one explicit transition update when the case moves from war room cadence to enhanced monitoring or normal ticket handling.
+-   [ ] State who now owns monitoring, the next decision point, and whether any executive, legal, customer, or regulator path stays open.
+-   [ ] Do not stop scheduled updates until closure criteria, not just technical recovery, are satisfied.
 
 ---
 
@@ -297,3 +364,13 @@ Example: #inc-2026-042-ransomware-finance
 - [IR Framework](Framework.en.md)
 - [Severity Matrix](Severity_Matrix.en.md)
 - [Tabletop Exercises](Tabletop_Exercises.en.md)
+- [PDPA Incident Response Guide](../07_Compliance_Privacy/PDPA_Incident_Response.en.md)
+- [Incident Report Template](../11_Reporting_Templates/incident_report.en.md)
+- [Executive Dashboard](../11_Reporting_Templates/Executive_Dashboard.en.md)
+- [Board Quarterly Decision Pack](../11_Reporting_Templates/Board_Quarterly_Decision_Pack.en.md)
+
+## References
+
+- [NIST SP 800-61r2 — Incident Handling](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [Thailand Personal Data Protection Committee (PDPC)](https://www.pdpc.or.th/)
+- [CISA Cyber Incident Response and Recovery](https://www.cisa.gov/resources-tools/resources/cyber-incident-response-and-recovery)

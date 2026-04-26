@@ -83,6 +83,23 @@ file server. The MFA bypass was possible due to legacy authentication protocols.
 | 4 | Add IOCs to blocklist | T2 Analyst | YYYY-MM-DD | ☐ |
 | 5 | Security awareness training on ____ | HR/Security | YYYY-MM-DD | ☐ |
 
+## Improvement Path After PIR
+
+| PIR Finding Type | Move To | Minimum Output |
+|:---|:---|:---|
+| **Detection gap** | Detection backlog / weekly detection review | Rule request, test owner, target release date |
+| **Telemetry or visibility gap** | Telemetry backlog / weekly telemetry review | Missing source, onboarding owner, interim workaround |
+| **Remediation or control failure** | Monthly remediation review | Action owner, due date, validation evidence expected |
+| **Residual risk remains High** | Monthly governance and quarterly risk acceptance review | Residual risk statement, compensating controls, escalation recommendation |
+| **Funding, authority, or strategic gap** | Board quarterly decision pack | Business impact, decision request, accountable executive |
+
+## PIR Closure Criteria
+
+-   [ ] Every action item has a named owner and due date.
+-   [ ] Backlog-bound items have an intake reference or tracking ID.
+-   [ ] Any unresolved High residual risk is explicitly escalated, not left inside the PIR note.
+-   [ ] The next governance forum is named for every item that cannot be closed within the incident team.
+
 ---
 
 ## Detection Gap Analysis
@@ -172,3 +189,12 @@ AFTER MEETING:
 - [IR Framework](Framework.en.md)
 - [Communication Templates](Communication_Templates.en.md)
 - [Incident Report Template](../11_Reporting_Templates/incident_report.en.md)
+- [Monthly Remediation Review Pack](../11_Reporting_Templates/Monthly_Remediation_Review_Pack.en.md)
+- [Monthly Governance Review Pack](../11_Reporting_Templates/Monthly_Governance_Review_Pack.en.md)
+- [Quarterly Risk Acceptance Review Pack](../11_Reporting_Templates/Quarterly_Risk_Acceptance_Review_Pack.en.md)
+- [Board Quarterly Decision Pack](../11_Reporting_Templates/Board_Quarterly_Decision_Pack.en.md)
+
+## References
+
+- [NIST SP 800-61 Rev. 2](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [NIST Cybersecurity Framework 2.0](https://www.nist.gov/cyberframework)

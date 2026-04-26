@@ -172,6 +172,31 @@ Required information for PDPC:
 | Current contact details for DPO, legal, and business owner | Ensures notification does not stall | SOC Manager |
 | Copy of draft and final notification packages | Preserves audit and legal record | DPO |
 
+## Executive / Legal / Privacy Escalation Path
+
+| Situation | Notify First | Notify Next | Minimum Output |
+|:---|:---|:---|:---|
+| Personal data exposure confirmed but scope still incomplete | DPO + SOC Manager | CISO | Initial breach summary and investigation timeline |
+| Sensitive data, financial data, or identity secrets exposed | DPO + Legal + CISO | Business owner + Privacy lead | Draft PDPC package and subject-notification plan |
+| Potential media, customer, or contractual impact | CISO + Legal | Communications lead / Vendor owner | Agreed external communications position |
+| Material regulatory exposure or repeated breach pattern | CISO + Legal + DPO | Board / Executive Committee | Decision summary for board pack and corrective-action owner |
+
+## Minimum Notification Decision Record
+
+-   [ ] State whether PDPC notification is **required**, **assessed**, or **not required**.
+-   [ ] State whether data subject notification is **required**, **assessed**, or **not required**.
+-   [ ] Record who approved the notification decision and at what time.
+-   [ ] Record which evidence was still unknown at the time of notification.
+
+## Customer / Regulator Communication Handoff
+
+| Outbound Communication | Primary Owner | Required Input | Record Destination |
+|:---|:---|:---|:---|
+| PDPC notification | DPO | Notification decision, scope estimate, containment status | Incident record and breach register |
+| Data subject notification | DPO + Communications | Approved message, support path, affected-group definition | Incident record and subject-notification log |
+| Customer or contract-driven notification | Legal + Business owner | Confirmed service impact, legal wording, response path | Incident report and communications log |
+| Board or executive follow-up | CISO | Material impact summary, residual risk, corrective-action plan | Board pack and governance tracker |
+
 ---
 
 ## PDPA Penalties Reference
@@ -218,6 +243,8 @@ Maintain a register of all data breaches (required by PDPA):
 - [Communication Templates](../05_Incident_Response/Communication_Templates.en.md)
 - [Lessons Learned Template](../05_Incident_Response/Lessons_Learned_Template.en.md)
 - [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.en.md)
+- [Incident Report Template](../11_Reporting_Templates/incident_report.en.md)
+- [Board Quarterly Decision Pack](../11_Reporting_Templates/Board_Quarterly_Decision_Pack.en.md)
 
 ## References
 

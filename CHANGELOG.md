@@ -7,6 +7,228 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.23.15] - 2026-04-26
+
+- Post-incident improvement path — connected PIR outputs to remediation intake, monthly governance, quarterly risk acceptance, and board follow-up so recurring weaknesses cannot stop at documentation.
+- Governance return loop — added closure rules and return-path checks so funded actions, accepted risks, and recurring findings flow back into operational tracking.
+- **README.md** — updated the current version to `v2.23.15`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.14] - 2026-04-26
+
+- Post-restoration monitoring / exit criteria path — connected enhanced monitoring, war room exit, and final incident closure so teams know when recovery is stable enough to step down and close.
+- Closure governance — added monitoring exit checks, handoff requirements, and explicit closure records for technical, business, and external-obligation completion.
+- **README.md** — updated the current version to `v2.23.14`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.13] - 2026-04-26
+
+- Service restoration / business rollback authority path — connected recovery-phase restore, rollback, reconnect, and return-to-service decisions to explicit approval owners and evidence gates.
+- Recovery governance — added minimum restoration evidence, decision records, and return-to-service validation requirements across IR framework, escalation, decision logging, and incident reporting.
+- **README.md** — updated the current version to `v2.23.13`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.12] - 2026-04-26
+
+- Evidence chain / legal hold / retention path — connected evidence handling, forensics, data governance, and decision logging so regulated or board-level cases have explicit custody and retention control.
+- Evidence governance — added legal-hold triggers, archive/release checks, and minimum retention records for forensic and incident evidence.
+- **README.md** — updated the current version to `v2.23.12`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.11] - 2026-04-26
+
+- Decision authority matrix — added explicit approval ownership for containment, shutdown, blocking, notification, public statements, and risk acceptance across severity levels.
+- Decision logging — connected escalation guidance to the incident decision log so major approvals can be recorded with facts, owners, and follow-up review points.
+- **README.md** — updated the current version to `v2.23.11`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.10] - 2026-04-26
+
+- Crisis command / war room governance path — added activation thresholds, commander model, update cadence, and handoff expectations across IR framework, severity, shift handoff, communications, and incident reporting.
+- War room records — added explicit commander, cadence, and decision-log fields so major incidents can be handed over and closed with complete governance evidence.
+- **README.md** — updated the current version to `v2.23.10`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.9] - 2026-04-26
+
+- Media / public statement path — connected communications, executive dashboard, and board review documents for public-facing incidents and reputation-sensitive cases.
+- Communication controls — added public-statement triggers, minimum controls, and board-level evidence expectations for cases with media, customer-trust, or public-pressure impact.
+- **README.md** — updated the current version to `v2.23.9`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.8] - 2026-04-26
+
+- Customer / regulator communications path — added explicit outbound communication workflow, approval boundaries, and handoff records across communication, PDPA, and incident-report documents.
+- Communication governance — added minimum outbound communication package, sender approval model, and tracking fields for customer, regulator, vendor, and media-facing messages.
+- **README.md** — updated the current version to `v2.23.8`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.7] - 2026-04-26
+
+- Executive / legal / privacy notification path — connected IR workflow to PDPA notification, incident reporting, and board escalation documents.
+- Notification records — added explicit notification decision records, escalation paths, and board-escalation criteria for material incidents and regulated-data cases.
+- **README.md** — updated the current version to `v2.23.7`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.6] - 2026-04-26
+
+### Changed
+- **Incident lifecycle handoff path** — added analyst-to-Tier-2 and Tier-2-to-IR handoff criteria, minimum handoff packets, and IR intake questions.
+- **Runbook alignment** — tightened the Tier 2 runbook and role entry paths so escalation quality is explicit at each stage of the incident lifecycle.
+- **README.md** — updated the current version to `v2.23.6`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.5] - 2026-04-26
+
+### Changed
+- **SOC Analyst operating view** — expanded the SOC Analyst entry path with role-specific reviews, analyst-facing metrics, and decision ownership for triage, handoff, and escalation quality.
+- **Analyst role links** — connected the analyst guide directly to shift handoff, weekly detection review, and training readiness documents.
+- **README.md** — updated the current version to `v2.23.5`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.4] - 2026-04-26
+
+### Changed
+- **Role-based operating views** — expanded the CISO, SOC Manager, Security Engineer, and IR Engineer entry paths with operating reviews, role-specific metrics, and explicit decision ownership.
+- **Getting Started role paths** — linked the role guides directly to governance, review, and remediation cadence packs so each role has a practical operating path.
+- **README.md** — updated the current version to `v2.23.4`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.3] - 2026-04-26
+
+### Changed
+- **Service-level operating cadence** — aligned the weekly detection review, weekly telemetry review, and monthly remediation review packs with monthly governance review.
+- **Cross-review escalation rules** — added escalation thresholds, carry-forward rules, and related-document links so issues move cleanly between engineering, remediation, and governance review loops.
+- **README.md** — updated the current version to `v2.23.3`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.2] - 2026-04-26
+
+### Changed
+- **Board and executive governance flow** — aligned the board quarterly decision pack and executive dashboard with the monthly, quarterly, and annual governance cadence.
+- **Decision mapping** — added explicit escalation inputs, scenario-based decision options, dashboard-to-governance mapping, and minimum executive decision notes.
+- **README.md** — updated the current version to `v2.23.2`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.1] - 2026-04-26
+
+### Changed
+- **Governance cadence packs** — tightened the operating flow between monthly governance review, quarterly risk acceptance review, and annual control coverage review.
+- **Decision thresholds** — added concrete escalation thresholds, carry-forward outputs, and board escalation criteria so the packs work as a connected governance cycle.
+- **README.md** — updated the current version to `v2.23.1`
+- **VERSION_TRACKER.md** — updated repository version metadata
+
+## [2.23.0] - 2026-04-26
+
+### Added
+- **Governance cadence packs** (EN+TH) under `11_Reporting_Templates`:
+  - Monthly Governance Review Pack
+  - Quarterly Risk Acceptance Review Pack
+  - Annual Control Coverage Review Pack
+
+### Changed
+- **README.md** — added the new governance packs to the template section, updated the consolidated manual count from 329 to 335, and set the current version to `v2.23.0`
+- **mkdocs.yml** — added navigation entries for the new governance packs
+- **VERSION_TRACKER.md** — added the new template records and updated repository version metadata
+
+## [2.22.0] - 2026-04-26
+
+### Added
+- **Ownership and RACI packs** (EN+TH) under `11_Reporting_Templates`:
+  - Detection Ownership RACI
+  - Telemetry Ownership RACI
+  - Remediation Ownership RACI
+
+### Changed
+- **README.md** — added the new ownership packs to the template section, updated the consolidated manual count from 323 to 329, and set the current version to `v2.22.0`
+- **mkdocs.yml** — added navigation entries for the new ownership packs
+- **VERSION_TRACKER.md** — added the new template records and updated repository version metadata
+
+## [2.21.0] - 2026-04-26
+
+### Added
+- **Operating review packs** (EN+TH) under `11_Reporting_Templates`:
+  - Weekly Detection Review Pack
+  - Weekly Telemetry Review Pack
+  - Monthly Remediation Review Pack
+
+### Changed
+- **README.md** — added the new operating review packs to the template section, updated the consolidated manual count from 317 to 323, and set the current version to `v2.21.0`
+- **mkdocs.yml** — added navigation entries for the new review packs
+- **VERSION_TRACKER.md** — added the new template records and updated repository version metadata
+
+## [2.20.0] - 2026-04-26
+
+### Added
+- **Backlog and prioritization templates** (EN+TH) under `11_Reporting_Templates`:
+  - Detection Backlog Prioritization
+  - Telemetry Backlog Prioritization
+  - Remediation Backlog Prioritization
+
+### Changed
+- **README.md** — added the new backlog templates to the template section, updated the consolidated manual count from 311 to 317, and set the current version to `v2.20.0`
+- **mkdocs.yml** — added navigation entries for the new backlog templates
+- **VERSION_TRACKER.md** — added the new template records and updated repository version metadata
+
+## [2.19.0] - 2026-04-26
+
+### Added
+- **Service request and intake templates** (EN+TH) under `11_Reporting_Templates`:
+  - Log Source Onboarding Request
+  - Detection Request Template
+  - Threat Hunt Request Template
+  - Executive Reporting Request
+
+### Changed
+- **README.md** — added the new intake templates to the template section, updated the consolidated manual count from 303 to 311, and set the current version to `v2.19.0`
+- **mkdocs.yml** — added navigation entries for the new intake templates
+- **VERSION_TRACKER.md** — added the new template records and updated repository version metadata
+
+## [2.18.0] - 2026-04-26
+
+### Added
+- **Board Quarterly Decision Pack** (EN+TH) under `11_Reporting_Templates`:
+  - Structured the minimum board-level decisions around material incidents, open gaps, funding requests, and follow-up tracking
+  - Linked the pack to quarterly business review, executive dashboard, risk acceptance, and investment justification workflows
+
+### Changed
+- **README.md** — added the board decision pack to the reporting section, updated the consolidated manual count from 301 to 303, and set the current version to `v2.18.0`
+- **mkdocs.yml** — added navigation entries for the board decision pack
+- **VERSION_TRACKER.md** — added the new template record and updated repository version metadata
+
+## [2.17.0] - 2026-04-26
+
+### Added
+- **Executive decision templates** (EN+TH) under `11_Reporting_Templates`:
+  - Risk Acceptance Template
+  - Security Exception Approval
+  - Incident Decision Log
+  - Investment Justification Template
+
+### Changed
+- **README.md** — added the new executive templates to the reporting section, updated the consolidated manual count from 281 to 301, and set the current version to `v2.17.0`
+- **mkdocs.yml** — added navigation entries for the new executive templates
+- **VERSION_TRACKER.md** — added the new template records and updated repository version metadata
+
+## [2.16.0] - 2026-04-26
+
+### Added
+- **Role-based entry paths** (EN+TH) under `00_Getting_Started` for the five primary audiences of this repository:
+  - CISO / Security Director
+  - SOC Manager / SOC Lead
+  - SOC Analyst
+  - Security Engineer / Detection Engineer
+  - IR Engineer / Incident Responder
+
+### Changed
+- **README.md** — added a role-based entry table and updated the document count from 281 to 291
+- **mkdocs.yml** — added role-based navigation entries under `🚀 Getting Started`
+- **VERSION_TRACKER.md** — added the new role-based entry pages and updated repository version metadata
+- **SOC Service Catalog** (EN+TH) under `06_Operations_Management`:
+  - Defined active SOC services, intake paths, owners, response targets, handoff boundaries, and out-of-scope items
+  - Added service metrics and governance outputs for scope review and SLA alignment
+- **README.md / mkdocs.yml / VERSION_TRACKER.md** updated again to expose the new service catalog and reflect the document count increase from 291 to 293
+
 ## [2.15.0] - 2026-04-26
 
 ### Changed
