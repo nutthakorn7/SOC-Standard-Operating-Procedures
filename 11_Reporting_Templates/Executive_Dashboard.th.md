@@ -17,7 +17,7 @@
 | **Incidents** | Alert ที่เป็นเหตุจริง | — | ตัวเลข + ทิศทาง |
 | **MTTD** | เวลาตรวจจับ | ≤ 60 นาที | เขียว/แดง |
 | **MTTR** | เวลาตอบสนอง | ≤ 4 ชม. | เขียว/แดง |
-| **SLA Compliance** | % ที่ผ่าน SLA | ≥ 95% | % ต่อ severity |
+| **SLA Compliance** | % ที่ผ่าน SLA | ≥ 95% | % แยกตาม severity |
 | **FP Rate** | % false positive | ≤ 30% | % + trend |
 
 ### Tier 2: มุมมองปฏิบัติการ (เสริม)
@@ -91,9 +91,9 @@
 |:---|:---:|:---:|:---:|
 | Detection Coverage | [X] | ↑ | 🟢 |
 | Response Readiness | [X] | → | 🟡 |
-| Vulnerability Mgmt | [X] | ↑ | 🟢 |
+| การจัดการช่องโหว่ | [X] | ↑ | 🟢 |
 | Compliance | [X] | → | 🟡 |
-| People & Training | [X] | ↓ | 🔴 |
+| บุคลากรและการฝึกอบรม | [X] | ↓ | 🔴 |
 | **Overall** | **[X.X]** | | |
 
 ### Panel 2: สรุปภัยคุกคาม
@@ -116,7 +116,7 @@
 
 ### การจัดวาง KPI Card
 
-| Card | Metric | Visualization | Target |
+| การ์ด | ตัวชี้วัด | รูปแบบการแสดงผล | เป้าหมาย |
 |:---|:---|:---|:---|
 | 1 | MTTR | Gauge | < 4 hrs |
 | 2 | Open Incidents | Counter | < 10 |
@@ -126,7 +126,7 @@
 
 ### ตารางสิทธิ์การเข้าถึงของผู้มีส่วนเกี่ยวข้อง
 
-| Role | Dashboard | Export | Customize |
+| บทบาท | ระดับการเข้าถึง Dashboard | ส่งออกข้อมูล | ปรับแต่งมุมมอง |
 |:---|:---|:---|:---|
 | CISO | Full | ✅ | ✅ |
 | Director | Summary | ✅ | ❌ |
@@ -207,8 +207,8 @@
 - [ตัวชี้วัด SOC](../06_Operations_Management/SOC_Metrics.th.md)
 - [รายงานรายเดือน](Monthly_SOC_Report.th.md)
 - [รายงานรายไตรมาส](Quarterly_Business_Review.th.md)
-- [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
-- [Board Quarterly Decision Pack](Board_Quarterly_Decision_Pack.th.md)
+- [ชุดทบทวน Governance รายเดือน](Monthly_Governance_Review_Pack.th.md)
+- [ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด](Board_Quarterly_Decision_Pack.th.md)
 - [แม่แบบการสื่อสารเหตุการณ์](../05_Incident_Response/Communication_Templates.th.md)
 
 ## References

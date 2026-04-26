@@ -5,17 +5,17 @@
 
 ```mermaid
 graph TD
-    A["รวบรวม Annual Coverage Data"] --> B["ทบทวน Detection, Telemetry, และ Response Coverage"]
+    A["รวบรวมข้อมูล coverage ประจำปี"] --> B["ทบทวน Detection, Telemetry และ Response Coverage"]
     B --> C["เทียบกับความต้องการของธุรกิจและ Compliance"]
-    C --> D["อนุมัติ Improvement Priorities"]
-    D --> E["กำหนด Annual Roadmap"]
+    C --> D["อนุมัติลำดับความสำคัญในการปรับปรุง"]
+    D --> E["กำหนด Roadmap ประจำปี"]
 ```
 
 ## 1. ส่วนหัวการประชุม
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
-| **Review Year** | [YYYY] |
+| **ปีที่ทบทวน** | [YYYY] |
 | **ผู้จัดทำ** | |
 | **วันที่ทบทวน** | |
 | **ประธานการประชุม** | |
@@ -29,7 +29,7 @@ graph TD
 
 ## 3. สรุป Coverage
 
-| Domain | Current State | Gap Level | Priority Action |
+| มิติ | สถานะปัจจุบัน | ระดับช่องว่าง | การดำเนินการลำดับแรก |
 |:---|:---|:---:|:---|
 | Detection coverage | | High / Medium / Low | |
 | Telemetry coverage | | | |
@@ -66,12 +66,12 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [Detection Coverage Matrix](../08_Detection_Engineering/Coverage_Matrix.th.md)
--   [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.th.md)
--   [Compliance Mapping](../07_Compliance_Privacy/Compliance_Mapping.th.md)
--   [SOC Building Roadmap](../01_SOC_Fundamentals/SOC_Building_Roadmap.th.md)
--   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
--   [Quarterly Risk Acceptance Review Pack](Quarterly_Risk_Acceptance_Review_Pack.th.md)
+-   [ตาราง Coverage ของ Detection](../08_Detection_Engineering/Coverage_Matrix.th.md)
+-   [ตารางแหล่งข้อมูล Log](../06_Operations_Management/Log_Source_Matrix.th.md)
+-   [เอกสาร Mapping ด้าน Compliance](../07_Compliance_Privacy/Compliance_Mapping.th.md)
+-   [Roadmap การสร้าง SOC](../01_SOC_Fundamentals/SOC_Building_Roadmap.th.md)
+-   [ชุดทบทวน Governance รายเดือน](Monthly_Governance_Review_Pack.th.md)
+-   [ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส](Quarterly_Risk_Acceptance_Review_Pack.th.md)
 
 ## References
 

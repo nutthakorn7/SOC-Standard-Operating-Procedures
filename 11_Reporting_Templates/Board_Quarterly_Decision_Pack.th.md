@@ -19,7 +19,7 @@ graph TD
 
 ## 2. เนื้อหาขั้นต่ำที่ต้องมีในชุดเอกสาร
 
-| Section | สิ่งที่ต้องแสดง | เหตุผล |
+| ส่วนเอกสาร | สิ่งที่ต้องแสดง | เหตุผล |
 |:---|:---|:---|
 | **Executive Summary** | 3-5 bullets เกี่ยวกับ security posture, material incidents, และประเด็นตัดสินใจหลัก | ทำให้การประชุมโฟกัสที่ decision ไม่ใช่งานปฏิบัติการดิบ |
 | **Material Incident Review** | ประเภท incident, impact, current status, และ exposure ที่ยังไม่ปิด | ยืนยันว่าความเสี่ยงกำลังลดลงหรือสะสมเพิ่ม |
@@ -29,7 +29,7 @@ graph TD
 
 ## 3. Trigger ระดับบอร์ดที่ควรใช้ชุดนี้
 
-| Trigger | Decision Type | Typical Owner | Deadline Expectation |
+| Trigger | ประเภทการตัดสินใจ | owner โดยทั่วไป | กรอบเวลาที่คาดหวัง |
 |:---|:---|:---|:---|
 | **Material incident ที่มีผลกระทบทางธุรกิจหรือกฎระเบียบ** | Recovery oversight และ remediation funding | CISO / Business Executive | ตัดสินใจในที่ประชุมเดียวกันหรือ emergency session |
 | **SLA breach ซ้ำหรือสูญเสีย critical visibility** | Capacity หรือ tooling decision | CISO / COO / CIO | ภายใน 30 วัน |
@@ -48,7 +48,7 @@ graph TD
 
 ## 5. ตารางสรุปเหตุการณ์สำคัญ
 
-| Incident | Business Impact | Current Residual Risk | Decision Needed | Owner |
+| Incident | ผลกระทบทางธุรกิจ | Residual Risk ปัจจุบัน | สิ่งที่ต้องตัดสินใจ | Owner |
 |:---|:---|:---|:---|:---|
 | [INC-XXX] | | | | |
 | [INC-XXX] | | | | |
@@ -56,7 +56,7 @@ graph TD
 
 ## 6. สรุปความเสี่ยงและช่องว่างที่ยังเปิดอยู่
 
-| Gap or Exposure | Affected Service | Current Control State | Board Concern | Recommendation |
+| ช่องว่างหรือความเสี่ยง | บริการที่ได้รับผลกระทบ | สถานะ control ปัจจุบัน | ประเด็นที่บอร์ดต้องรับทราบ | ข้อเสนอแนะ |
 |:---|:---|:---|:---|:---|
 | | | | | |
 | | | | | |
@@ -64,7 +64,7 @@ graph TD
 
 ## 7. ทางเลือกการตัดสินใจตามสถานการณ์
 
-| สถานการณ์ | Option A | Option B | Option C |
+| สถานการณ์ | ทางเลือก A | ทางเลือก B | ทางเลือก C |
 |:---|:---|:---|:---|
 | **critical control gap ที่ยังไม่ได้งบ** | อนุมัติงบทันที | ยอมรับ exposure ชั่วคราวพร้อม due date | ลด business scope จนกว่าจะคืน control ได้ |
 | **exception ใกล้หมดอายุแต่ residual risk ยังสูง** | อนุมัติต่ออายุแบบมีเงื่อนไข | ไม่อนุมัติและบังคับ remediation | ยกระดับให้ business owner รับความเสี่ยงโดยตรง |
@@ -73,7 +73,7 @@ graph TD
 
 ## 8. ทะเบียนการตัดสินใจ
 
-| Decision ID | Decision Required | Options Presented | Recommended Option | Decision Date |
+| รหัสมติ | สิ่งที่ต้องตัดสินใจ | ทางเลือกที่นำเสนอ | ทางเลือกที่แนะนำ | วันที่ตัดสินใจ |
 |:---|:---|:---|:---|:---|
 | BRD-[001] | | | | |
 | BRD-[002] | | | | |
@@ -103,14 +103,14 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [Quarterly Business Review](Quarterly_Business_Review.th.md)
--   [Executive Dashboard](Executive_Dashboard.th.md)
--   [Risk Acceptance Template](Risk_Acceptance_Template.th.md)
--   [Investment Justification Template](Investment_Justification_Template.th.md)
--   [Monthly Governance Review Pack](Monthly_Governance_Review_Pack.th.md)
--   [Quarterly Risk Acceptance Review Pack](Quarterly_Risk_Acceptance_Review_Pack.th.md)
--   [Annual Control Coverage Review Pack](Annual_Control_Coverage_Review_Pack.th.md)
--   [Incident Report Template](incident_report.th.md)
+-   [รายงานทบทวนผลการดำเนินงานรายไตรมาส](Quarterly_Business_Review.th.md)
+-   [แม่แบบ Dashboard สำหรับผู้บริหาร](Executive_Dashboard.th.md)
+-   [เทมเพลตการยอมรับความเสี่ยง](Risk_Acceptance_Template.th.md)
+-   [เทมเพลตขออนุมัติการลงทุน](Investment_Justification_Template.th.md)
+-   [ชุดทบทวน Governance รายเดือน](Monthly_Governance_Review_Pack.th.md)
+-   [ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส](Quarterly_Risk_Acceptance_Review_Pack.th.md)
+-   [ชุดทบทวน Control Coverage ประจำปี](Annual_Control_Coverage_Review_Pack.th.md)
+-   [เทมเพลตรายงาน Incident](incident_report.th.md)
 -   [คู่มือ PDPA Incident Response](../07_Compliance_Privacy/PDPA_Incident_Response.th.md)
 -   [แม่แบบการสื่อสารเหตุการณ์](../05_Incident_Response/Communication_Templates.th.md)
 
