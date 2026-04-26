@@ -31,7 +31,7 @@ graph TD
 
 | มิติ | สถานะปัจจุบัน | ระดับช่องว่าง | การดำเนินการลำดับแรก |
 |:---|:---|:---:|:---|
-| Detection coverage | | High / Medium / Low | |
+| Detection coverage | | สูง / กลาง / ต่ำ | |
 | Telemetry coverage | | | |
 | Playbook coverage | | | |
 | Compliance coverage | | | |

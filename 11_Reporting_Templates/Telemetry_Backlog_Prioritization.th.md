@@ -32,7 +32,7 @@ graph TD
 
 | รายการ | Asset Exposure | Detection Dependency | IR Dependency | Readiness | Quality Risk | คะแนนรวม | ลำดับความสำคัญ |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| | | | | | | | High / Medium / Low |
+| | | | | | | | สูง / กลาง / ต่ำ |
 | | | | | | | | |
 
 ## 4. กติกาการทบทวน
