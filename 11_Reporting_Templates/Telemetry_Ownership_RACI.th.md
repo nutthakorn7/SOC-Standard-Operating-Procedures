@@ -18,7 +18,7 @@ graph TD
 
 ## 2. RACI Matrix
 
-| Activity | Security Engineer | Platform Owner | SOC Manager | Detection Engineer | Data Owner |
+| กิจกรรม | Security Engineer | Platform Owner | SOC Manager | Detection Engineer | Data Owner |
 |:---|:---:|:---:|:---:|:---:|:---:|
 | ส่งคำขอ onboarding | I | C | I | C | **R** |
 | อนุมัติขอบเขต onboarding | C | **A** | C | I | R |

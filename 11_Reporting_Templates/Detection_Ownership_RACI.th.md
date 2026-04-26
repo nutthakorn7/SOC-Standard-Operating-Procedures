@@ -18,7 +18,7 @@ graph TD
 
 ## 2. RACI Matrix
 
-| Activity | Detection Engineer | SOC Manager | Threat Hunter | SOC Analyst | Security Engineer |
+| กิจกรรม | Detection Engineer | SOC Manager | Threat Hunter | SOC Analyst | Security Engineer |
 |:---|:---:|:---:|:---:|:---:|:---:|
 | รับคำขอ detection | **R** | A | C | C | I |
 | จัดลำดับ backlog item | C | **A** | C | I | I |

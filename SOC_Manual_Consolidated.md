@@ -12860,7 +12860,7 @@ graph TD
 
 ## 2. RACI Matrix
 
-| Activity | Detection Engineer | SOC Manager | Threat Hunter | SOC Analyst | Security Engineer |
+| กิจกรรม | Detection Engineer | SOC Manager | Threat Hunter | SOC Analyst | Security Engineer |
 |:---|:---:|:---:|:---:|:---:|:---:|
 | รับคำขอ detection | **R** | A | C | C | I |
 | จัดลำดับ backlog item | C | **A** | C | I | I |
@@ -12990,7 +12990,7 @@ graph TD
 
 ## 1. ส่วนหัวคำขอ
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
 | **Request ID** | DET-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
@@ -13000,7 +13000,7 @@ graph TD
 
 ## 2. เป้าหมายของ Detection
 
-| Question | Answer |
+| คำถาม | คำตอบ |
 |:---|:---|
 | **Threat หรือพฤติกรรมที่ต้องการตรวจจับ** | |
 | **เหตุผลทางธุรกิจหรือความปลอดภัย** | |
@@ -13009,7 +13009,7 @@ graph TD
 
 ## 3. ความต้องการด้าน Telemetry และข้อมูล
 
-| Requirement | Status | Notes |
+| ข้อกำหนด | สถานะ | หมายเหตุ |
 |:---|:---:|:---|
 | ระบุ required log source แล้ว | ☐ | |
 | ยืนยัน required fields แล้ว | ☐ | |
@@ -13018,7 +13018,7 @@ graph TD
 
 ## 4. หมายเหตุด้านการ Implement
 
-| หัวข้อ | Notes |
+| หัวข้อ | หมายเหตุ |
 |:---|:---|
 | **แนวคิดของ detection logic** | |
 | **รูปแบบ false positive ที่คาดไว้** | |
@@ -13027,7 +13027,7 @@ graph TD
 
 ## 5. การอนุมัติและผลลัพธ์
 
-| Role | Name | Decision | Date |
+| บทบาท | ชื่อ | การตัดสินใจ | วันที่ |
 |:---|:---|:---:|:---|
 | Detection Engineer | | ☐ Accept · ☐ Reject · ☐ Need More Info | |
 | SOC Manager | | ☐ Prioritized | |
@@ -13039,10 +13039,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
 -   [SOC Use Case Library](../08_Detection_Engineering/SOC_Use_Case_Library.th.md)
--   [Alert Tuning](../06_Operations_Management/Alert_Tuning.th.md)
--   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.th.md)
+-   [แนวทาง Alert Tuning](../06_Operations_Management/Alert_Tuning.th.md)
+-   [การทดสอบ Detection Rules](../06_Operations_Management/Detection_Rule_Testing.th.md)
 
 ## References
 
@@ -14359,7 +14359,7 @@ graph TD
 
 ## 1. ส่วนหัวคำขอ
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
 | **Request ID** | LOG-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
@@ -14371,7 +14371,7 @@ graph TD
 
 ## 2. รายละเอียดของแหล่งข้อมูล
 
-| Question | Answer |
+| คำถาม | คำตอบ |
 |:---|:---|
 | **ประเภทของแหล่งข้อมูล** | ☐ Cloud · ☐ Endpoint · ☐ Network · ☐ Application · ☐ Identity · ☐ อื่น ๆ |
 | **วิธีส่ง log** | |
@@ -14381,7 +14381,7 @@ graph TD
 
 ## 3. Security Use Cases
 
-| Use Case | Priority | Required | Notes |
+| Use Case | ลำดับความสำคัญ | บังคับหรือไม่ | หมายเหตุ |
 |:---|:---:|:---:|:---|
 | Authentication monitoring | สูง/กลาง/ต่ำ | ☐ | |
 | Admin activity monitoring | สูง/กลาง/ต่ำ | ☐ | |
@@ -14398,7 +14398,7 @@ graph TD
 
 ## 5. เกณฑ์รับมอบขั้นต่ำ
 
-| Criterion | Status | Evidence |
+| เกณฑ์ | สถานะ | หลักฐาน |
 |:---|:---:|:---|
 | Log ingestion สำเร็จ | ☐ | |
 | ตรวจสอบ timestamp quality แล้ว | ☐ | |
@@ -14408,7 +14408,7 @@ graph TD
 
 ## 6. การอนุมัติ
 
-| Role | Name | Decision | Date |
+| บทบาท | ชื่อ | การตัดสินใจ | วันที่ |
 |:---|:---|:---:|:---|
 | Technical Owner | | ☐ Approve · ☐ Reject | |
 | Security Engineer | | ☐ Reviewed | |
@@ -14422,10 +14422,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
--   [Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.th.md)
--   [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.th.md)
--   [Integration Hub](../03_User_Guides/Integration_Hub.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [คู่มือ Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.th.md)
+-   [ตารางแหล่งข้อมูล Log](../06_Operations_Management/Log_Source_Matrix.th.md)
+-   [ศูนย์กลางการเชื่อมต่อระบบ](../03_User_Guides/Integration_Hub.th.md)
 
 ## References
 
@@ -15882,22 +15882,22 @@ graph TD
 
 ```mermaid
 graph TD
-    A["รวบรวม Remediation Actions"] --> B["ให้คะแนน Residual Risk"]
-    B --> C["ตรวจสอบ Recurrence และ Dependency"]
-    C --> D["จัดลำดับ Backlog"]
-    D --> E["ติดตาม Closure และ Validation"]
+    A["รวบรวมรายการ remediation"] --> B["ให้คะแนน residual risk"]
+    B --> C["ตรวจสอบโอกาสเกิดซ้ำและ dependency"]
+    C --> D["จัดลำดับ backlog"]
+    D --> E["ติดตามการปิดงานและการยืนยันผล"]
 ```
 
 ## 1. ทะเบียนรายการ Backlog
 
-| ID | Remediation Action | Source Incident or Gap | Owner | Status |
+| รหัส | รายการ Remediation | ต้นทาง incident หรือ gap | Owner | สถานะ |
 |:---|:---|:---|:---|:---:|
 | REM-BL-[001] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |
 | REM-BL-[002] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |
 
 ## 2. โมเดลการให้คะแนน
 
-| Factor | Question | Score (1-5) |
+| ปัจจัย | คำถาม | คะแนน (1-5) |
 |:---|:---|:---:|
 | Residual risk | หากไม่ทำงานนี้จะเกิดอะไรขึ้น | |
 | Recurrence potential | Incident หรือ failure เดิมมีโอกาสเกิดซ้ำหรือไม่ | |
@@ -15907,7 +15907,7 @@ graph TD
 
 ## 3. ตารางจัดลำดับความสำคัญ
 
-| Item | Residual Risk | Recurrence | Dependency | Owner Readiness | Validation | Total | Priority |
+| รายการ | Residual Risk | Recurrence | Dependency | ความพร้อมของ Owner | Validation | คะแนนรวม | ลำดับความสำคัญ |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | | | | | | | | High / Medium / Low |
 | | | | | | | | |
@@ -15921,10 +15921,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [Incident Report Template](incident_report.th.md)
--   [Risk Acceptance Template](Risk_Acceptance_Template.th.md)
--   [Compliance Gap Analysis](../07_Compliance_Privacy/Compliance_Gap_Analysis.th.md)
--   [Monthly SOC Report](Monthly_SOC_Report.th.md)
+-   [เทมเพลตรายงาน Incident](incident_report.th.md)
+-   [เทมเพลตการยอมรับความเสี่ยง](Risk_Acceptance_Template.th.md)
+-   [การวิเคราะห์ช่องว่างด้าน Compliance](../07_Compliance_Privacy/Compliance_Gap_Analysis.th.md)
+-   [รายงานผลการดำเนินงาน SOC ประจำเดือน](Monthly_SOC_Report.th.md)
 
 ## References
 
@@ -16474,7 +16474,7 @@ graph TD
 
 ## 2. RACI Matrix
 
-| Activity | Security Engineer | Platform Owner | SOC Manager | Detection Engineer | Data Owner |
+| กิจกรรม | Security Engineer | Platform Owner | SOC Manager | Detection Engineer | Data Owner |
 |:---|:---:|:---:|:---:|:---:|:---:|
 | ส่งคำขอ onboarding | I | C | I | C | **R** |
 | อนุมัติขอบเขต onboarding | C | **A** | C | I | R |

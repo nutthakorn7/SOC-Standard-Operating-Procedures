@@ -13,7 +13,7 @@ graph TD
 
 ## 1. ส่วนหัวคำขอ
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
 | **Request ID** | DET-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
@@ -23,7 +23,7 @@ graph TD
 
 ## 2. เป้าหมายของ Detection
 
-| Question | Answer |
+| คำถาม | คำตอบ |
 |:---|:---|
 | **Threat หรือพฤติกรรมที่ต้องการตรวจจับ** | |
 | **เหตุผลทางธุรกิจหรือความปลอดภัย** | |
@@ -32,7 +32,7 @@ graph TD
 
 ## 3. ความต้องการด้าน Telemetry และข้อมูล
 
-| Requirement | Status | Notes |
+| ข้อกำหนด | สถานะ | หมายเหตุ |
 |:---|:---:|:---|
 | ระบุ required log source แล้ว | ☐ | |
 | ยืนยัน required fields แล้ว | ☐ | |
@@ -41,7 +41,7 @@ graph TD
 
 ## 4. หมายเหตุด้านการ Implement
 
-| หัวข้อ | Notes |
+| หัวข้อ | หมายเหตุ |
 |:---|:---|
 | **แนวคิดของ detection logic** | |
 | **รูปแบบ false positive ที่คาดไว้** | |
@@ -50,7 +50,7 @@ graph TD
 
 ## 5. การอนุมัติและผลลัพธ์
 
-| Role | Name | Decision | Date |
+| บทบาท | ชื่อ | การตัดสินใจ | วันที่ |
 |:---|:---|:---:|:---|
 | Detection Engineer | | ☐ Accept · ☐ Reject · ☐ Need More Info | |
 | SOC Manager | | ☐ Prioritized | |
@@ -62,10 +62,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
 -   [SOC Use Case Library](../08_Detection_Engineering/SOC_Use_Case_Library.th.md)
--   [Alert Tuning](../06_Operations_Management/Alert_Tuning.th.md)
--   [Detection Rule Testing](../06_Operations_Management/Detection_Rule_Testing.th.md)
+-   [แนวทาง Alert Tuning](../06_Operations_Management/Alert_Tuning.th.md)
+-   [การทดสอบ Detection Rules](../06_Operations_Management/Detection_Rule_Testing.th.md)
 
 ## References
 

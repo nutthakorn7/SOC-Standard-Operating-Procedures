@@ -13,7 +13,7 @@ graph TD
 
 ## 1. ส่วนหัวคำขอ
 
-| Field | Value |
+| รายการ | ค่า |
 |:---|:---|
 | **Request ID** | LOG-[YYYYMMDD]-[001] |
 | **ผู้ร้องขอ** | |
@@ -25,7 +25,7 @@ graph TD
 
 ## 2. รายละเอียดของแหล่งข้อมูล
 
-| Question | Answer |
+| คำถาม | คำตอบ |
 |:---|:---|
 | **ประเภทของแหล่งข้อมูล** | ☐ Cloud · ☐ Endpoint · ☐ Network · ☐ Application · ☐ Identity · ☐ อื่น ๆ |
 | **วิธีส่ง log** | |
@@ -35,7 +35,7 @@ graph TD
 
 ## 3. Security Use Cases
 
-| Use Case | Priority | Required | Notes |
+| Use Case | ลำดับความสำคัญ | บังคับหรือไม่ | หมายเหตุ |
 |:---|:---:|:---:|:---|
 | Authentication monitoring | สูง/กลาง/ต่ำ | ☐ | |
 | Admin activity monitoring | สูง/กลาง/ต่ำ | ☐ | |
@@ -52,7 +52,7 @@ graph TD
 
 ## 5. เกณฑ์รับมอบขั้นต่ำ
 
-| Criterion | Status | Evidence |
+| เกณฑ์ | สถานะ | หลักฐาน |
 |:---|:---:|:---|
 | Log ingestion สำเร็จ | ☐ | |
 | ตรวจสอบ timestamp quality แล้ว | ☐ | |
@@ -62,7 +62,7 @@ graph TD
 
 ## 6. การอนุมัติ
 
-| Role | Name | Decision | Date |
+| บทบาท | ชื่อ | การตัดสินใจ | วันที่ |
 |:---|:---|:---:|:---|
 | Technical Owner | | ☐ Approve · ☐ Reject | |
 | Security Engineer | | ☐ Reviewed | |
@@ -76,10 +76,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [SOC Service Catalog](../06_Operations_Management/SOC_Service_Catalog.th.md)
--   [Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.th.md)
--   [Log Source Matrix](../06_Operations_Management/Log_Source_Matrix.th.md)
--   [Integration Hub](../03_User_Guides/Integration_Hub.th.md)
+-   [แค็ตตาล็อกบริการของ SOC](../06_Operations_Management/SOC_Service_Catalog.th.md)
+-   [คู่มือ Log Source Onboarding](../06_Operations_Management/Log_Source_Onboarding.th.md)
+-   [ตารางแหล่งข้อมูล Log](../06_Operations_Management/Log_Source_Matrix.th.md)
+-   [ศูนย์กลางการเชื่อมต่อระบบ](../03_User_Guides/Integration_Hub.th.md)
 
 ## References
 

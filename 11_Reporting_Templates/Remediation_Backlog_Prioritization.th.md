@@ -5,22 +5,22 @@
 
 ```mermaid
 graph TD
-    A["รวบรวม Remediation Actions"] --> B["ให้คะแนน Residual Risk"]
-    B --> C["ตรวจสอบ Recurrence และ Dependency"]
-    C --> D["จัดลำดับ Backlog"]
-    D --> E["ติดตาม Closure และ Validation"]
+    A["รวบรวมรายการ remediation"] --> B["ให้คะแนน residual risk"]
+    B --> C["ตรวจสอบโอกาสเกิดซ้ำและ dependency"]
+    C --> D["จัดลำดับ backlog"]
+    D --> E["ติดตามการปิดงานและการยืนยันผล"]
 ```
 
 ## 1. ทะเบียนรายการ Backlog
 
-| ID | Remediation Action | Source Incident or Gap | Owner | Status |
+| รหัส | รายการ Remediation | ต้นทาง incident หรือ gap | Owner | สถานะ |
 |:---|:---|:---|:---|:---:|
 | REM-BL-[001] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |
 | REM-BL-[002] | | | | ☐ New ☐ Ranked ☐ In Progress ☐ Done |
 
 ## 2. โมเดลการให้คะแนน
 
-| Factor | Question | Score (1-5) |
+| ปัจจัย | คำถาม | คะแนน (1-5) |
 |:---|:---|:---:|
 | Residual risk | หากไม่ทำงานนี้จะเกิดอะไรขึ้น | |
 | Recurrence potential | Incident หรือ failure เดิมมีโอกาสเกิดซ้ำหรือไม่ | |
@@ -30,7 +30,7 @@ graph TD
 
 ## 3. ตารางจัดลำดับความสำคัญ
 
-| Item | Residual Risk | Recurrence | Dependency | Owner Readiness | Validation | Total | Priority |
+| รายการ | Residual Risk | Recurrence | Dependency | ความพร้อมของ Owner | Validation | คะแนนรวม | ลำดับความสำคัญ |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | | | | | | | | High / Medium / Low |
 | | | | | | | | |
@@ -44,10 +44,10 @@ graph TD
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
--   [Incident Report Template](incident_report.th.md)
--   [Risk Acceptance Template](Risk_Acceptance_Template.th.md)
--   [Compliance Gap Analysis](../07_Compliance_Privacy/Compliance_Gap_Analysis.th.md)
--   [Monthly SOC Report](Monthly_SOC_Report.th.md)
+-   [เทมเพลตรายงาน Incident](incident_report.th.md)
+-   [เทมเพลตการยอมรับความเสี่ยง](Risk_Acceptance_Template.th.md)
+-   [การวิเคราะห์ช่องว่างด้าน Compliance](../07_Compliance_Privacy/Compliance_Gap_Analysis.th.md)
+-   [รายงานผลการดำเนินงาน SOC ประจำเดือน](Monthly_SOC_Report.th.md)
 
 ## References
 
