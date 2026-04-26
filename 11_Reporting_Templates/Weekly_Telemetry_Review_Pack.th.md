@@ -63,10 +63,10 @@ graph TD
 
 | ถ้าการทบทวนรายสัปดาห์พบว่า | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องมี |
 |:---|:---|:---|
-| **telemetry defect บล็อก detection release** | Weekly Detection Review Pack | rules ที่ได้รับผลกระทบ, interim tuning decision, และวันที่คาดว่าจะ fix |
-| **telemetry issue ทำให้ remediation ของ incident ยังไม่ปิด** | Monthly Remediation Review Pack | remediation item, asset/service ที่ได้รับผลกระทบ, และ owner |
-| **visibility gap ต่อเนื่องจนกระทบ service quality หรือ compliance** | Monthly Governance Review Pack | blind spot statement, business impact, และข้อเสนอแนะในการ escalate |
-| **blind spot อยู่ยาวจนต้องยอมรับความเสี่ยง** | Quarterly Risk Acceptance Review Pack | residual risk statement, compensating control, และข้อเสนอเรื่องวันหมดอายุ |
+| **telemetry defect บล็อก detection release** | ชุดทบทวน Detection ประจำสัปดาห์ | rules ที่ได้รับผลกระทบ, interim tuning decision, และวันที่คาดว่าจะ fix |
+| **telemetry issue ทำให้ remediation ของ incident ยังไม่ปิด** | ชุดทบทวน Remediation รายเดือน | remediation item, asset/service ที่ได้รับผลกระทบ, และ owner |
+| **visibility gap ต่อเนื่องจนกระทบ service quality หรือ compliance** | ชุดทบทวน Governance รายเดือน | blind spot statement, business impact, และข้อเสนอแนะในการ escalate |
+| **blind spot อยู่ยาวจนต้องยอมรับความเสี่ยง** | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส | residual risk statement, compensating control, และข้อเสนอเรื่องวันหมดอายุ |
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 

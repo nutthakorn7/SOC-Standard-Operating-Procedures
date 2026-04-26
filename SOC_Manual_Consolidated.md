@@ -13642,9 +13642,9 @@ This template defines the metrics and visualizations for a SOC executive dashboa
 
 | สัญญาณจาก Dashboard | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องมี |
 |:---|:---|:---|
-| **ตัวชี้วัดแย่ลงรอบเดียวแต่ยังควบคุมผลกระทบได้** | Monthly Governance Review Pack | owner, corrective action, และ next review date |
+| **ตัวชี้วัดแย่ลงรอบเดียวแต่ยังควบคุมผลกระทบได้** | ชุดทบทวน Governance รายเดือน | owner, corrective action, และ next review date |
 | **ตัวชี้วัดล้มเหลวซ้ำตลอดไตรมาส** | ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | คำขอเรื่อง capacity, funding, หรือ scope decision |
-| **มีประเด็น exception หรือ risk tolerance** | Quarterly Risk Acceptance Review Pack | residual risk statement, วันหมดอายุ, และ recommendation |
+| **มีประเด็น exception หรือ risk tolerance** | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส | residual risk statement, วันหมดอายุ, และ recommendation |
 | **มีช่องว่างเชิงโครงสร้างด้าน coverage หรือ telemetry** | Annual Control Coverage Review Pack | priority gap statement, บริการที่ได้รับผลกระทบ, และความต้องการลงทุน |
 | **incident กลายเป็นประเด็นสาธารณะหรือมีแรงกดดันด้านการสื่อสาร** | เทมเพลตการสื่อสารเหตุการณ์ และชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | เส้นทางข้อความที่อนุมัติแล้ว owner ผู้แถลง และบันทึกการตัดสินใจของผู้บริหาร |
 
@@ -14595,7 +14595,7 @@ graph TD
 
 | ถ้าเดือนนี้พบว่า | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องส่ง |
 |:---|:---|:---|
-| **มี exception หรือ risk acceptance ที่เกิดซ้ำ** | Quarterly Risk Acceptance Review Pack | residual risk statement, วันหมดอายุ, และข้อเสนอแนะของ owner ที่อัปเดตแล้ว |
+| **มี exception หรือ risk acceptance ที่เกิดซ้ำ** | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส | residual risk statement, วันหมดอายุ, และข้อเสนอแนะของ owner ที่อัปเดตแล้ว |
 | **มีปัญหาด้านบริการ บุคลากร หรือ tooling ต่อเนื่อง** | ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | คำขอเรื่องงบประมาณหรืออำนาจตัดสินใจพร้อม business impact |
 | **มีช่องว่างเชิงโครงสร้างด้าน detection หรือ telemetry** | Annual Control Coverage Review Pack | control gap statement, บริการที่ได้รับผลกระทบ, และลำดับความสำคัญในการลงทุน |
 | **มีแนวโน้ม material incident ต่อเนื่อง** | ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | สรุปแนวโน้ม residual exposure และ decision ที่ผู้บริหารต้องตัดสินใจ |
@@ -14763,9 +14763,9 @@ graph TD
 | เงื่อนไข | เกณฑ์ | การตัดสินใจตั้งต้น | ต้องส่งต่อไปที่ |
 |:---|:---|:---|:---|
 | **remediation ค้างเกินกำหนดซ้ำ** | Critical เกิน 30 วัน หรือ High เกิน 60 วัน | เปลี่ยน owner, escalate, หรือบังคับวันปิด | Monthly Governance Review |
-| **residual risk ยังอยู่ระดับ High** | incident ยังปิดไม่ได้สะอาด หรือ audit gap ยัง material | escalate หรือย้ายเข้า formal acceptance path | Quarterly Risk Acceptance Review Pack |
+| **residual risk ยังอยู่ระดับ High** | incident ยังปิดไม่ได้สะอาด หรือ audit gap ยัง material | escalate หรือย้ายเข้า formal acceptance path | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส |
 | **validation evidence ไม่พอ** | งานที่ปิดแล้วตรวจสอบยืนยันไม่ได้ | เปิดงานใหม่และกำหนด due date ใหม่ | Weekly Detection หรือ Telemetry Review ถ้ายังไม่ชัดว่า technical fix คืออะไร |
-| **remediation ต้องใช้งบหรือ authority เพิ่ม** | owner ปิดงานไม่ได้หากไม่มี budget หรือ executive mandate | เตรียม decision request | Board Quarterly Decision Pack |
+| **remediation ต้องใช้งบหรือ authority เพิ่ม** | owner ปิดงานไม่ได้หากไม่มี budget หรือ executive mandate | เตรียม decision request | ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด |
 
 ## 5. การทบทวน Backlog
 
@@ -14785,10 +14785,10 @@ graph TD
 
 | ถ้าการทบทวนรายเดือนพบว่า | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องมี |
 |:---|:---|:---|
-| **technical fix ยังติด detection issue** | Weekly Detection Review Pack | rule ที่ขาดอยู่, test status, และ owner |
-| **technical fix ยังติด telemetry issue** | Weekly Telemetry Review Pack | source/data issue, workaround, และ owner |
-| **remediation ที่ค้างหรือ material กระทบ service/risk posture** | Monthly Governance Review Pack | service impact, เหตุผลที่ค้าง, และข้อเสนอแนะในการ escalate |
-| **open remediation เริ่มต้องใช้ formal acceptance** | Quarterly Risk Acceptance Review Pack | residual risk statement, compensating control, และข้อเสนอเรื่องวันหมดอายุ |
+| **technical fix ยังติด detection issue** | ชุดทบทวน Detection ประจำสัปดาห์ | rule ที่ขาดอยู่, test status, และ owner |
+| **technical fix ยังติด telemetry issue** | ชุดทบทวน Telemetry ประจำสัปดาห์ | source/data issue, workaround, และ owner |
+| **remediation ที่ค้างหรือ material กระทบ service/risk posture** | ชุดทบทวน Governance รายเดือน | service impact, เหตุผลที่ค้าง, และข้อเสนอแนะในการ escalate |
+| **open remediation เริ่มต้องใช้ formal acceptance** | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส | residual risk statement, compensating control, และข้อเสนอเรื่องวันหมดอายุ |
 
 ## 8. เกณฑ์รับงานจาก PIR เข้า Remediation
 
@@ -16830,9 +16830,9 @@ graph TD
 
 | ถ้าการทบทวนรายสัปดาห์พบว่า | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องมี |
 |:---|:---|:---|
-| **telemetry dependency บล็อกการปล่อย detection** | Weekly Telemetry Review Pack | แหล่งข้อมูลที่ขาด, parser issue, use case ที่ได้รับผลกระทบ, และ due date |
-| **detection gap ทำให้ remediation ของ incident ยังไม่ปิด** | Monthly Remediation Review Pack | remediation item owner incident ที่ได้รับผลกระทบ และหลักฐานที่ต้อง validate |
-| **noise หรือ coverage issue ซ้ำจนกระทบ SLA หรือ analyst load** | Monthly Governance Review Pack | service impact summary, owner, และข้อเสนอแนะในการ escalate |
+| **telemetry dependency บล็อกการปล่อย detection** | ชุดทบทวน Telemetry ประจำสัปดาห์ | แหล่งข้อมูลที่ขาด, parser issue, use case ที่ได้รับผลกระทบ, และ due date |
+| **detection gap ทำให้ remediation ของ incident ยังไม่ปิด** | ชุดทบทวน Remediation รายเดือน | remediation item owner incident ที่ได้รับผลกระทบ และหลักฐานที่ต้อง validate |
+| **noise หรือ coverage issue ซ้ำจนกระทบ SLA หรือ analyst load** | ชุดทบทวน Governance รายเดือน | service impact summary, owner, และข้อเสนอแนะในการ escalate |
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 
@@ -17007,10 +17007,10 @@ graph TD
 
 | ถ้าการทบทวนรายสัปดาห์พบว่า | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องมี |
 |:---|:---|:---|
-| **telemetry defect บล็อก detection release** | Weekly Detection Review Pack | rules ที่ได้รับผลกระทบ, interim tuning decision, และวันที่คาดว่าจะ fix |
-| **telemetry issue ทำให้ remediation ของ incident ยังไม่ปิด** | Monthly Remediation Review Pack | remediation item, asset/service ที่ได้รับผลกระทบ, และ owner |
-| **visibility gap ต่อเนื่องจนกระทบ service quality หรือ compliance** | Monthly Governance Review Pack | blind spot statement, business impact, และข้อเสนอแนะในการ escalate |
-| **blind spot อยู่ยาวจนต้องยอมรับความเสี่ยง** | Quarterly Risk Acceptance Review Pack | residual risk statement, compensating control, และข้อเสนอเรื่องวันหมดอายุ |
+| **telemetry defect บล็อก detection release** | ชุดทบทวน Detection ประจำสัปดาห์ | rules ที่ได้รับผลกระทบ, interim tuning decision, และวันที่คาดว่าจะ fix |
+| **telemetry issue ทำให้ remediation ของ incident ยังไม่ปิด** | ชุดทบทวน Remediation รายเดือน | remediation item, asset/service ที่ได้รับผลกระทบ, และ owner |
+| **visibility gap ต่อเนื่องจนกระทบ service quality หรือ compliance** | ชุดทบทวน Governance รายเดือน | blind spot statement, business impact, และข้อเสนอแนะในการ escalate |
+| **blind spot อยู่ยาวจนต้องยอมรับความเสี่ยง** | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส | residual risk statement, compensating control, และข้อเสนอเรื่องวันหมดอายุ |
 
 ## เอกสารที่เกี่ยวข้อง (Related Documents)
 

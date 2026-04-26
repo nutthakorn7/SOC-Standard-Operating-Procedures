@@ -41,9 +41,9 @@ graph TD
 | เงื่อนไข | เกณฑ์ | การตัดสินใจตั้งต้น | ต้องส่งต่อไปที่ |
 |:---|:---|:---|:---|
 | **remediation ค้างเกินกำหนดซ้ำ** | Critical เกิน 30 วัน หรือ High เกิน 60 วัน | เปลี่ยน owner, escalate, หรือบังคับวันปิด | Monthly Governance Review |
-| **residual risk ยังอยู่ระดับ High** | incident ยังปิดไม่ได้สะอาด หรือ audit gap ยัง material | escalate หรือย้ายเข้า formal acceptance path | Quarterly Risk Acceptance Review Pack |
+| **residual risk ยังอยู่ระดับ High** | incident ยังปิดไม่ได้สะอาด หรือ audit gap ยัง material | escalate หรือย้ายเข้า formal acceptance path | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส |
 | **validation evidence ไม่พอ** | งานที่ปิดแล้วตรวจสอบยืนยันไม่ได้ | เปิดงานใหม่และกำหนด due date ใหม่ | Weekly Detection หรือ Telemetry Review ถ้ายังไม่ชัดว่า technical fix คืออะไร |
-| **remediation ต้องใช้งบหรือ authority เพิ่ม** | owner ปิดงานไม่ได้หากไม่มี budget หรือ executive mandate | เตรียม decision request | Board Quarterly Decision Pack |
+| **remediation ต้องใช้งบหรือ authority เพิ่ม** | owner ปิดงานไม่ได้หากไม่มี budget หรือ executive mandate | เตรียม decision request | ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด |
 
 ## 5. การทบทวน Backlog
 
@@ -63,10 +63,10 @@ graph TD
 
 | ถ้าการทบทวนรายเดือนพบว่า | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องมี |
 |:---|:---|:---|
-| **technical fix ยังติด detection issue** | Weekly Detection Review Pack | rule ที่ขาดอยู่, test status, และ owner |
-| **technical fix ยังติด telemetry issue** | Weekly Telemetry Review Pack | source/data issue, workaround, และ owner |
-| **remediation ที่ค้างหรือ material กระทบ service/risk posture** | Monthly Governance Review Pack | service impact, เหตุผลที่ค้าง, และข้อเสนอแนะในการ escalate |
-| **open remediation เริ่มต้องใช้ formal acceptance** | Quarterly Risk Acceptance Review Pack | residual risk statement, compensating control, และข้อเสนอเรื่องวันหมดอายุ |
+| **technical fix ยังติด detection issue** | ชุดทบทวน Detection ประจำสัปดาห์ | rule ที่ขาดอยู่, test status, และ owner |
+| **technical fix ยังติด telemetry issue** | ชุดทบทวน Telemetry ประจำสัปดาห์ | source/data issue, workaround, และ owner |
+| **remediation ที่ค้างหรือ material กระทบ service/risk posture** | ชุดทบทวน Governance รายเดือน | service impact, เหตุผลที่ค้าง, และข้อเสนอแนะในการ escalate |
+| **open remediation เริ่มต้องใช้ formal acceptance** | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส | residual risk statement, compensating control, และข้อเสนอเรื่องวันหมดอายุ |
 
 ## 8. เกณฑ์รับงานจาก PIR เข้า Remediation
 

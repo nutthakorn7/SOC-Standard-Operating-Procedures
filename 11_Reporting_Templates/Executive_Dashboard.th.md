@@ -164,9 +164,9 @@
 
 | สัญญาณจาก Dashboard | ต้องส่งต่อไปที่ | ผลลัพธ์ที่ต้องมี |
 |:---|:---|:---|
-| **ตัวชี้วัดแย่ลงรอบเดียวแต่ยังควบคุมผลกระทบได้** | Monthly Governance Review Pack | owner, corrective action, และ next review date |
+| **ตัวชี้วัดแย่ลงรอบเดียวแต่ยังควบคุมผลกระทบได้** | ชุดทบทวน Governance รายเดือน | owner, corrective action, และ next review date |
 | **ตัวชี้วัดล้มเหลวซ้ำตลอดไตรมาส** | ชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | คำขอเรื่อง capacity, funding, หรือ scope decision |
-| **มีประเด็น exception หรือ risk tolerance** | Quarterly Risk Acceptance Review Pack | residual risk statement, วันหมดอายุ, และ recommendation |
+| **มีประเด็น exception หรือ risk tolerance** | ชุดทบทวนการยอมรับความเสี่ยงรายไตรมาส | residual risk statement, วันหมดอายุ, และ recommendation |
 | **มีช่องว่างเชิงโครงสร้างด้าน coverage หรือ telemetry** | Annual Control Coverage Review Pack | priority gap statement, บริการที่ได้รับผลกระทบ, และความต้องการลงทุน |
 | **incident กลายเป็นประเด็นสาธารณะหรือมีแรงกดดันด้านการสื่อสาร** | เทมเพลตการสื่อสารเหตุการณ์ และชุดเอกสารการตัดสินใจรายไตรมาสสำหรับบอร์ด | เส้นทางข้อความที่อนุมัติแล้ว owner ผู้แถลง และบันทึกการตัดสินใจของผู้บริหาร |
 
